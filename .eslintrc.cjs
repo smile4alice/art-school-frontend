@@ -8,7 +8,13 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  ignorePatterns: [
+    'dist',
+    '.eslintrc.cjs',
+    'commitlint.config.cjs',
+    'vite.config.js',
+    'vitest.setup.js',
+  ],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
@@ -17,5 +23,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/prop-types': 0,
+    'no-use-before-define': 'error',
+    'no-self-compare': 'error',
   },
 };
