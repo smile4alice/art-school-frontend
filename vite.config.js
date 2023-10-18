@@ -12,4 +12,9 @@ export default defineConfig({
       scss: { additionalData: `@import "@/assets/scss/global";` },
     },
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/tests/setup.js',
+  },
 });
