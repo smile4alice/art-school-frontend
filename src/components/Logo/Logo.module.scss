@@ -1,0 +1,10 @@
+.logoWrapper {
+  @extend%aligncenter;
+  gap: 10px;
+  height: 94px;
+}
+
+.logoText {
+  width: 218px;
+  @include font(16px, 700, 1);
+}

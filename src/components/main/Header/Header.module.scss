@@ -1,14 +1,13 @@
 .headerWrapper {
   outline: 1px solid red;
   width: 100%;
-  background-color: $black;
 }
 
 .contactsWrapper {
   width: 100%;
   @extend%aligncenter;
   flex-wrap: wrap;
-
+  background-color: $black;
   gap: 10px;
   padding: 25px 0 25px 0;
 }
@@ -46,9 +45,21 @@
 }
 
 .socialLink {
-
-
   @extend%aligncenter;
 
   // padding: 4px 2px 4px 2px;
+}
+
+.headerNavigationWrapper {
+  outline: 1px solid blue;
+  @extend%aligncenter;
+
+  justify-content: space-evenly;
+}
+
+.navList {
+  list-style: none;
+  @extend%aligncenter;
+  flex-wrap: wrap;
+  gap: 30px;
 }
