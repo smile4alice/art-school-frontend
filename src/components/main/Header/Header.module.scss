@@ -1,0 +1,54 @@
+.headerWrapper {
+  outline: 1px solid red;
+  width: 100%;
+  background-color: $black;
+}
+
+.contactsWrapper {
+  width: 100%;
+  @extend%aligncenter;
+  flex-wrap: wrap;
+
+  gap: 10px;
+  padding: 25px 0 25px 0;
+}
+
+.contactsList {
+  list-style: none;
+  @extend%aligncenter;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.contactsListItem {
+  @extend%aligncenter;
+  gap: 10px;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  padding-right: 15px;
+  border-right: 1px solid$gray;
+
+  a {
+    text-decoration: none;
+    color: $white;
+    @include font(16px, 400, 1);
+  }
+}
+
+.contactsListItem_PhoneWrapper {
+  @extend%aligncenter;
+  gap: 10px;
+}
+.social {
+  @extend%aligncenter;
+  gap: 8px;
+  list-style: none;
+}
+
+.socialLink {
+
+
+  @extend%aligncenter;
+
+  // padding: 4px 2px 4px 2px;
+}
