@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
-  // width: 100vw;
   min-height: 100vh;
   min-width: 320px;
   display: flex;
@@ -10,4 +15,7 @@ body {
   font-family: 'Mulish', sans-serif;
 }
 
-
+.leaflet-container {
+  height: 80vh;
+  width: 90vw;
+}
