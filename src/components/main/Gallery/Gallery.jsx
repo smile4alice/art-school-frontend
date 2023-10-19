@@ -1,7 +1,12 @@
+import Container from "../../Container/Container";
+import styles from './Gallery.module.scss';
+
 const Gallery = () => {
   return (
-    <div>Gallery</div>
-  )
-}
+    <Container>
+      <div >Gallery</div>
+    </Container>
+  );
+};
 
-export default Gallery
+export default Gallery;
