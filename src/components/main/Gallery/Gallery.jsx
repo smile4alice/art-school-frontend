@@ -1,5 +1,4 @@
-import Container from "../../Container/Container";
-import styles from './Gallery.module.scss';
+import Container from "@/components/Container/Container";
 
 const Gallery = () => {
   return (
