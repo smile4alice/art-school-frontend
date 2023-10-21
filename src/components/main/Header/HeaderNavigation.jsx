@@ -1,19 +1,32 @@
+import { Link } from 'react-router-dom';
 import Logo from '../../Logo/Logo';
 
 import styles from './Header.module.scss';
 
+import { aboutUs, departmemts } from './departmemts';
+import DropDownMenu from './DropDownMenu/DropDownMenu';
+
 const HeaderNavigation = () => {
+  const items = [
+    { name: 'Афіша', to: '/poster' },
+    { name: 'Галерея', to: '/gallery' },
+    { name: 'Співпраця', to: '/cooperation' },
+    { name: 'Контакти', to: '/contacts' },
+  ];
   return (
     <div className={styles.headerNavigationWrapper}>
       <Logo />
-      <nav>
+      <nav className={styles.nav}>
+        <div className={styles.navSelectMenu}>
+          <DropDownMenu type="Відділення" items={departmemts} />
+          <DropDownMenu type="Про нас" items={aboutUs} />
+        </div>
         <ul className={styles.navList}>
-          <li>Відділення</li>
-          <li>Про нас</li>
-          <li>Наші події</li>
-          <li>Афіша</li>
-          <li>Галерея</li>
-          <li>Співпраця</li>
+          {items.map(({ name, to }) => (
+            <Link key={name} to={to}>
+              {name}
+            </Link>
+          ))}
         </ul>
       </nav>
     </div>

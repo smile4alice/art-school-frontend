@@ -52,14 +52,31 @@
 
 .headerNavigationWrapper {
   outline: 1px solid blue;
+
   @extend%aligncenter;
 
   justify-content: space-evenly;
 }
 
+.nav {
+  @extend%aligncenter;
+  gap: 30px;
+}
+
+.navSelectMenu {
+  @extend%aligncenter;
+
+  gap: 30px;
+}
 .navList {
   list-style: none;
   @extend%aligncenter;
-  flex-wrap: wrap;
+
   gap: 30px;
+}
+
+.navList_item {
+  @include font(16px, 400, 2);
+  letter-spacing: 0.19px;
+  color: $black;
 }
