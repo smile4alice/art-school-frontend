@@ -1,0 +1,49 @@
+.News {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .ButtonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+    
+  }
+  .Slider {
+    width: 100%;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .Slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+      .Text {
+        padding: 1rem 0;
+        margin-bottom: 2rem;
+        span {
+          font-size: 16px;
+          color: $gray;
+        }
+        p {
+          font-size: 24px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
