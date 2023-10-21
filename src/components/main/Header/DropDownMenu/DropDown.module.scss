@@ -6,9 +6,8 @@
 }
 
 .link {
-  width: 100px;
-
   padding: 10px;
+  // border: 1px solid $white;
   text-align: center;
   position: relative;
   cursor: pointer;
@@ -19,11 +18,11 @@
   position: absolute;
   top: 40px; // same as your nav height
   left: 0;
-  background: #ededed;
-  border: 1px solid gray;
+  background: $accent;
+
   padding: 10px;
   text-align: center;
-  transition: all 1000ms ease;
+  transition: all 500ms ease;
 }
 
 .menu.open {
