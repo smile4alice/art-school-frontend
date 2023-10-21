@@ -19,7 +19,7 @@
     width: 50%;
 }
 
-.title {
+.cardTitle {
     color: $title-card-department;
     font-size: 20px;
     font-weight: 600;
@@ -35,10 +35,10 @@
     align-items: center;
 }
 
-.vertical_line {
+.verticalLine {
   width: 1px;
   height: 20px;
-  background-color: black;
+  background-color: $black;
 }
 
 .linkKnowMore {
