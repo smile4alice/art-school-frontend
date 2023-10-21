@@ -1,5 +1,4 @@
 .headerWrapper {
-  outline: 1px solid red;
   width: 100%;
 }
 
@@ -51,11 +50,9 @@
 }
 
 .headerNavigationWrapper {
-  outline: 1px solid blue;
-
   @extend%aligncenter;
 
-  justify-content: space-evenly;
+  gap: 32px;
 }
 
 .nav {

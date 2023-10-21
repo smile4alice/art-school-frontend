@@ -31,7 +31,7 @@ const HeaderContacts = () => {
         </li>
         <li className={styles.contactsListItem}>
           <EmailIcon />
-          <a href="mailto:info@gmail.com"> info@gmail.com</a>
+          <a href="mailto:Shkola_2@ukr.net">Shkola_2@ukr.net</a>
         </li>
       </ul>
 

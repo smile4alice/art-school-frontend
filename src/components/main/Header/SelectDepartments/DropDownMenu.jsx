@@ -5,9 +5,11 @@ import DropDownIcon from '../../../../assets/icons/DropDownIcon';
 //<div className={`{styles.menu} ${open ? 'open' : ''}`}>
 const DropDownMenu = ({ type, items, handleClick, open }) => {
   return (
-    <div className={styles.dropDown} onClick={handleClick}>
-      <span>{type}</span>
-      <DropDownIcon />
+    <div className={styles.dropDown}>
+      <div className={styles.dropDownName} onClick={handleClick}>
+        <span>{type}</span>
+        <DropDownIcon />
+      </div>
 
       <ul
         className={clsx(
@@ -18,7 +20,11 @@ const DropDownMenu = ({ type, items, handleClick, open }) => {
       >
         {items.map(({ name, to }) => (
           <li className={styles.menuItem} key={name}>
-            <Link className={styles.menulink} key={name} to={to}>
+            <Link
+              className={clsx(styles.menulink, open ? styles.open : '')}
+              key={name}
+              to={to}
+            >
               {name}
             </Link>
           </li>

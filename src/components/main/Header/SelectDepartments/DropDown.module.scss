@@ -1,5 +1,7 @@
 .dropDown {
   position: relative;
+}
+.dropDownName {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -11,11 +13,12 @@
 }
 
 .menu {
-  width: 247px;
   opacity: 0;
+
   position: absolute;
   top: 32px; // same as your nav height
   left: 0;
+  z-index: 10;
   background: $accent;
 
   display: flex;
@@ -26,10 +29,10 @@
   border-radius: 5px;
   transition: all 500ms ease;
 }
-.departmentsMenu{
+.departmentsMenu {
   width: 247px;
 }
-.aboutUsMenu{
+.aboutUsMenu {
   width: 210px;
 }
 .menuItem {
@@ -37,8 +40,10 @@
 
   text-align: center;
   border-bottom: 1px solid $white;
+  border-radius: 5px;
 }
 .menulink {
+  pointer-events: none;
   display: block;
   width: 100%;
   padding-top: 10px;
@@ -55,8 +60,6 @@
   opacity: 1;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.menulink.open {
+  pointer-events: all;
 }

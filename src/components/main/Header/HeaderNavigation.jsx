@@ -4,7 +4,7 @@ import Logo from '../../Logo/Logo';
 import styles from './Header.module.scss';
 
 import { aboutUs, departmemts } from './departmemts';
-import DropDownMenu from './DropDownMenu/DropDownMenu';
+import DropDownMenu from './SelectDepartments/DropDownMenu';
 import { useState } from 'react';
 
 const HeaderNavigation = () => {
@@ -19,12 +19,12 @@ const HeaderNavigation = () => {
   const [showAboutUs, setShowAboutUs] = useState(false);
 
   const handleClickDepartment = () => {
-    setShowDepartment(true);
+    setShowDepartment(!showDepartment);
     setShowAboutUs(false);
   };
   const handleClickAboutUs = () => {
     setShowDepartment(false);
-    setShowAboutUs(true);
+    setShowAboutUs(!showAboutUs);
   };
 
   return (
