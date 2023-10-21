@@ -1,33 +1,29 @@
-import { useState } from 'react';
 import { clsx } from 'clsx';
-import styles from './SelectDepertmemts.module.scss';
+import styles from './DropDown.module.scss';
 import { Link } from 'react-router-dom';
 import DropDownIcon from '../../../../assets/icons/DropDownIcon';
 //<div className={`{styles.menu} ${open ? 'open' : ''}`}>
-const DropDownMenu = ({ type, items }) => {
-  const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
+const DropDownMenu = ({ type, items, handleClick, open }) => {
   return (
-    <div className={styles.link} onClick={handleClick}>
+    <div className={styles.dropDown} onClick={handleClick}>
       <span>{type}</span>
-      <span>
-        <DropDownIcon />
-      </span>
-      <div className={clsx(styles.menu, open ? styles.open : '')}>
-        <ul className={styles.navList}>
-          {items.map(({ name, to }) => (
-            <li key={name}>
-              <Link key={name} to={to}>
-                {name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <DropDownIcon />
+
+      <ul
+        className={clsx(
+          styles.menu,
+          open ? styles.open : '',
+          type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
+        )}
+      >
+        {items.map(({ name, to }) => (
+          <li className={styles.menuItem} key={name}>
+            <Link className={styles.menulink} key={name} to={to}>
+              {name}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
