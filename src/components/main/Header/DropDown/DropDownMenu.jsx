@@ -5,9 +5,15 @@ import DropDownIcon from '@/assets/icons/DropDownIcon';
 const DropDownMenu = ({ type, items, handleClick, open }) => {
   return (
     <div className={styles.dropDown}>
-      <div className={styles.dropDownName} onClick={handleClick}>
-        <span>{type}</span>
-        <DropDownIcon />
+      <div
+        data-element-id="dropdown"
+        className={styles.dropDownName}
+        onClick={handleClick}
+      >
+        <span data-element-id="dropdown">{type}</span>
+        <span data-element-id="dropdown">
+          <DropDownIcon data-element-id="dropdown" />
+        </span>
       </div>
 
       <ul

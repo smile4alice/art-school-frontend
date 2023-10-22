@@ -5,11 +5,11 @@ import styles from './Header.module.scss';
 
 import { aboutUs, departmemts } from './dropDownItems';
 import DropDownMenu from './DropDown/DropDownMenu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const HeaderNavigation = () => {
   const items = [
-    { name:'Наші події', to: '/events' },
+    { name: 'Наші події', to: '/events' },
     { name: 'Афіша', to: '/poster' },
     { name: 'Галерея', to: '/gallery' },
     { name: 'Співпраця', to: '/cooperation' },
@@ -28,6 +28,22 @@ const HeaderNavigation = () => {
     setShowAboutUs(!showAboutUs);
   };
 
+  useEffect(() => {
+    const func = e => {
+      const target = e.target.getAttribute('data-element-id');
+      if (target !== 'dropdown') {
+        setShowDepartment(false);
+        setShowAboutUs(false);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('click', func);
+      return () => {
+        window.removeEventListener('click', func);
+      };
+    }
+  }, []);
   return (
     <div className={styles.headerNavigationWrapper}>
       <Logo />
