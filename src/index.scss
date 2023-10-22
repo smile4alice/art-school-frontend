@@ -16,9 +16,10 @@ body {
 }
 
 .leaflet-container {
-  height: 80vh;
-  width: 90vw;
+  height:21.8rem;
+  width: 90rem;
 }
+
 
 h1,
 h2,
@@ -63,5 +64,18 @@ textarea {
 }
 
 iframe {
+  border: none;
+}
+
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: $white;
+  border: 1px solid $black;
+}
+
+.swiper-pagination-bullet-active {
+  color: $accent;
+  background: $accent;
   border: none;
 }
