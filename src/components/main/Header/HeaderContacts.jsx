@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { clsx } from 'clsx';
+
 import EmailIcon from '@/assets/icons/EmailIcon';
 import LocationIcon from '@/assets/icons/LocationIcon';
 import PhoneIcon from '@/assets/icons/PhoneIcon';
@@ -8,8 +11,29 @@ import YoutubeIcon from '../../../assets/icons/YouTubeIcon';
 import styles from './Header.module.scss';
 
 const HeaderContacts = () => {
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        if (window.scrollY > lastScrollY) {
+          setShow(false);
+        } else {
+          setShow(true);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
   return (
-    <div className={styles.contactsWrapper}>
+    <div className={clsx(styles.contactsWrapper, show ? '' : styles.hidden)}>
       <ul className={styles.contactsList}>
         <li className={styles.contactsListItem}>
           <LocationIcon />

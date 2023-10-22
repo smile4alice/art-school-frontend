@@ -1,16 +1,30 @@
 .headerWrapper {
+  margin: 0 auto;
   width: 100%;
-}
+  max-width: 1080px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999}
 
 .contactsWrapper {
   width: 100%;
+  padding: 0 50px;
   @extend%aligncenter;
   flex-wrap: wrap;
   background-color: $black;
   gap: 10px;
   padding: 25px 0 25px 0;
+  // opacity: 1;
+  // transition: all 500ms ease;
 }
 
+.contactsWrapper.hidden {
+  display: none;
+
+  // opacity: 0;
+}
 .contactsList {
   list-style: none;
   @extend%aligncenter;
@@ -51,7 +65,7 @@
 
 .headerNavigationWrapper {
   @extend%aligncenter;
-
+  background-color: $white;
   gap: 32px;
 }
 
@@ -76,4 +90,12 @@
   @include font(16px, 400, 2);
   letter-spacing: 0.19px;
   color: $black;
+}
+
+.headerNavigationWrapper.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: white;
 }

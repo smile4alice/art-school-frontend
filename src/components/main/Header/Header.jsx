@@ -7,12 +7,12 @@ import styles from './Header.module.scss';
 
 const Header = () => {
   return (
-    <Container>
-      <header className={styles.headerWrapper}>
+    <header className={styles.headerWrapper}>
+  
         <HeaderContacts />
         <HeaderNavigation />
-      </header>
-    </Container>
+  
+    </header>
   );
 };
 

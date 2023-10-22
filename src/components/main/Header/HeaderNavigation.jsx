@@ -5,7 +5,8 @@ import styles from './Header.module.scss';
 
 import { aboutUs, departmemts } from './departmemts';
 import DropDownMenu from './SelectDepartments/DropDownMenu';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { clsx } from 'clsx';
 
 const HeaderNavigation = () => {
   const items = [
