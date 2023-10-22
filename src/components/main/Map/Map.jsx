@@ -13,9 +13,9 @@ const Map = () => {
     <Container>
       <section className={styles.Map}>
         <h1>Наше Розташування</h1>
-        <div>
+        <div className={styles.MapContainer}>
           <MapContainer
-            center={[50.454, 30.504]}
+            center={[50.45449, 30.50435]}
             zoom={17}
             scrollWheelZoom={false}
           >
