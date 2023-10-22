@@ -3,8 +3,8 @@ import Logo from '../../Logo/Logo';
 
 import styles from './Header.module.scss';
 
-import { aboutUs, departmemts } from './departmemts';
-import DropDownMenu from './SelectDepartments/DropDownMenu';
+import { aboutUs, departmemts } from './dropDownItems';
+import DropDownMenu from './DropDown/DropDownMenu';
 import { useState } from 'react';
 
 const HeaderNavigation = () => {
