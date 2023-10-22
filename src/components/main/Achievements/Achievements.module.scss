@@ -1,0 +1,73 @@
+.achievements{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: inherit;
+    h2{
+        font-size: 2rem;
+    }   
+}
+.slidersContainer{
+    position: relative;
+    width: 100%;
+     
+    .prevSlide, .nextSlide{
+        position: absolute;
+        top: 50%;
+        padding: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg{
+            width: 2rem;
+            height: 2rem;
+            fill: $graylight;
+            transition: all linear .25s;
+        }
+    }
+    .prevSlide{
+        transform: translateY(-100%);
+        left: 0;  
+    }
+    .nextSlide{
+        transform: rotate(180deg) translateY(100%);
+        right: 0;
+    }
+    .prevSlide:hover svg, .nextSlide:hover svg{
+        fill: $accent;
+    }
+
+    .slider{
+        margin: 2rem auto;
+        width: 86%;
+
+        .slide{
+            padding-bottom: 3rem;
+
+            .slidePhoto{
+                overflow: hidden; 
+                height: 420px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            img{
+                width: 100%;
+                object-fit: contain;
+                object-position: center;
+                border-radius: .5rem;
+            }
+            .slideText{
+                font-size: 1rem;
+                font-weight: 500;
+                text-align: center;
+                padding-top: .5rem;
+            }
+        }
+    }
+}
+
+
+
+
+
+
