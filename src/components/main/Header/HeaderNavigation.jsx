@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 const HeaderNavigation = () => {
   const items = [
+    { name:'Наші події', to: '/events' },
     { name: 'Афіша', to: '/poster' },
     { name: 'Галерея', to: '/gallery' },
     { name: 'Співпраця', to: '/cooperation' },
