@@ -13,18 +13,20 @@ import styles from './Header.module.scss';
 const HeaderContacts = () => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  console.log('lastScrollY: ', lastScrollY);
 
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         if (window.scrollY > lastScrollY) {
-          setShow(false);
+          setShow(false);  //  scroll down  hide header contacts l
         } else {
-          setShow(true);
+          setShow(true);  // srroll up,  show header contacts again 
         }
-        setLastScrollY(window.scrollY);
+        setLastScrollY(window.scrollY); // scroll number
       }
     };
+
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', controlNavbar);
       return () => {
