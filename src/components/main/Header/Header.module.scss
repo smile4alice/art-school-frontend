@@ -14,7 +14,7 @@
   width: 100%;
   padding: 0 50px;
   @extend%aligncenter;
-  flex-wrap: wrap;
+
   background-color: $black;
   gap: 10px;
   padding: 25px 0 25px 0;
@@ -30,7 +30,7 @@
 .contactsList {
   list-style: none;
   @extend%aligncenter;
-  flex-wrap: wrap;
+
   gap: 30px;
 }
 
