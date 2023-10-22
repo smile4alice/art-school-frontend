@@ -1,12 +1,14 @@
 .headerWrapper {
   margin: 0 auto;
   width: 100%;
-  max-width: 1080px;
+  max-width: 1180px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999}
+  z-index: 999;
+  outline: 1px solid red;
+}
 
 .contactsWrapper {
   width: 100%;
@@ -66,7 +68,7 @@
 .headerNavigationWrapper {
   @extend%aligncenter;
   background-color: $white;
-  gap: 32px;
+  justify-content: space-around;
 }
 
 .nav {
