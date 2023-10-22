@@ -54,7 +54,10 @@
     @include font(16px, 400, 1);
   }
 }
-
+.contactsListItem_PhoneWrapper {
+  @extend%aligncenter;
+  gap: 10px;
+}
 .social {
   @extend%aligncenter;
   gap: 8px;
