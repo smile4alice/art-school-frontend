@@ -1,4 +1,5 @@
-import Container from "@/components/Container/Container";
+import Container from '@/components/Container/Container';
+import NavLinkButton from '@/components/ui/NavLinkButton/NavLinkButton';
 import styles from './Gallery.module.scss';
 
 const images = [
@@ -14,18 +15,24 @@ const images = [
 const Gallery = () => {
   return (
     <Container>
-      <div className={styles.galleryHeader}>
-        <div className={styles.galleryHeading}>Галерея</div>
-        <button className={styles.galleryButton} >дивитись всі фото</button>
-      </div>
-
-      <div className={styles.gallery}>
-        {images.map((image, index) => (
-          <div key={`item${index + 1}`} className={styles[`item${index + 1}`]}>
-            <img src={image} alt={`Image ${index + 1}`} />
-          </div>
-        ))}
-      </div>
+      <section className={styles.Gallery}>
+        <div className={styles.galleryHeading}>
+          <h1>Галерея</h1>
+        </div>
+        <div className={styles.ButtonContainer}>
+          <NavLinkButton title={'Переглянути всі фото'} href={'/'} />
+        </div>
+        <div className={styles.gallery}>
+          {images.map((image, index) => (
+            <div
+              key={`item${index + 1}`}
+              className={styles.item}
+            >
+              <img src={image} alt={`Image ${index + 1}`} />
+            </div>
+          ))}
+        </div>
+      </section>
     </Container>
   );
 };

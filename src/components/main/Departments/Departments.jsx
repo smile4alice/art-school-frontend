@@ -1,11 +1,12 @@
-import Department from './Department/Department';
-import Container from '../../Container/Container';
+import NavLinkButton from "@/components/ui/NavLinkButton/NavLinkButton";
+import Department from "./Department/Department";
+import Container from '@/components/Container/Container'
 
-import musicImg from '/departments/music.png';
-import artImg from '/departments/art.png';
-import horeografyImg from '/departments/horeografy.png';
-import theaterImg from '/departments/theater.png';
-import vocalImg from '/departments/vocal.png';
+import musicImg from "/departments/music.png";
+import artImg from "/departments/art.png";
+import choreografyImg from "/departments/horeografy.png";
+import theaterImg from "/departments/theater.png";
+import vocalImg from "/departments/vocal.png";
 
 import styles from './Departments.module.scss';
 
@@ -38,6 +39,6 @@ const Departments = () => {
       </div>
     </Container>
   );
-};
+
 
 export default Departments;
