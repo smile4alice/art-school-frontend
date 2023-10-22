@@ -1,27 +1,16 @@
 .headerWrapper {
-  margin: 0 auto;
-  padding: 0 2rem;
-  width: 100vw;
-  max-width: 1280px;
-
-  @media screen and (max-width: 450px) {
-    padding: 1rem;
-  }
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 
   z-index: 999;
-  // outline: 1px solid red;
+  background-color: $black;
 }
 
 .contactsWrapper {
-  width: 100%;
-
   @extend%aligncenter;
 
-  background-color: $black;
   gap: 10px;
   padding: 25px 0 25px 0;
   // opacity: 1;
@@ -72,7 +61,7 @@
 
 .headerNavigationWrapper {
   @extend%aligncenter;
-  background-color: $white;
+  background-color: #fff;
   gap: 32px;
 }
 .nav {
