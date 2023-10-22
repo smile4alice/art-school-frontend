@@ -1,5 +1,4 @@
 import Department from './Department/Department';
-import Container from '../../Container/Container';
 
 import musicImg from '/departments/music.png';
 import artImg from '/departments/art.png';
@@ -22,7 +21,6 @@ const Departments = () => {
   };
 
   return (
-    <Container>
       <div className={styles.wrapper}>
         <p className={styles.title}>Відділення</p>
         <div className={styles.buttonContainer}>
@@ -36,7 +34,6 @@ const Departments = () => {
           <Department title={theaterDepartment} link={link} img={theaterImg} />
         </div>
       </div>
-    </Container>
   );
 };
 
