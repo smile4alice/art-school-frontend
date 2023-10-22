@@ -12,13 +12,15 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <Hero />
-      <History />
-      <Departments />
-      <News />
-      <Gallery />
-      <Achievements />
-      <Map />
+      <main>
+        <Hero />
+        <History />
+        <Departments />
+        <News />
+        <Gallery />
+        <Achievements />
+        <Map />
+      </main>
       <Footer />
     </>
   );
