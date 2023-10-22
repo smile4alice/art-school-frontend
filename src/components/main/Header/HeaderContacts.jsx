@@ -5,8 +5,8 @@ import EmailIcon from '@/assets/icons/EmailIcon';
 import LocationIcon from '@/assets/icons/LocationIcon';
 import PhoneIcon from '@/assets/icons/PhoneIcon';
 
-import FacebookIcon from '../../../assets/icons/FacebookIcon';
-import YoutubeIcon from '../../../assets/icons/YouTubeIcon';
+import FacebookIcon from '@/assets/icons/FacebookIcon';
+import YoutubeIcon from '@/assets/icons/YouTubeIcon';
 
 import styles from './Header.module.scss';
 
