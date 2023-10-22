@@ -16,10 +16,9 @@ body {
 }
 
 .leaflet-container {
-  height:21.8rem;
+  height: 21.8rem;
   width: 90rem;
 }
-
 
 h1,
 h2,
@@ -78,4 +77,12 @@ iframe {
   color: $accent;
   background: $accent;
   border: none;
+}
+
+.sectionTitle {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: $black;
 }
