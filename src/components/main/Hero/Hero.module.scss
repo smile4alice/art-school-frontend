@@ -1,0 +1,22 @@
+.Hero {
+  .SliderStyle {
+    width: 100%;
+    // background-color: $white;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    .SlideStyle {
+      width: 100%;
+      // height: 100%;
+      // display: flex;
+      // justify-content: flex-start;
+      // align-items: flex-start;
+      // flex-direction: column;
+      .HeroImage{
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
