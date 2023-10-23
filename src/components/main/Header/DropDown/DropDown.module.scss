@@ -1,17 +1,24 @@
 .dropDown {
   position: relative;
 }
-.dropDownName {
+.dropDownNameWrapper {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.dropDown span {
+.dropDownName {
   @include font(16px, 400, 2);
   letter-spacing: 0.19px;
   color: $black;
 }
 
+.dropDown_icon {
+  width: 4px;
+  height: 4px;
+  border-top: 1px solid $black;
+  border-right: 1px solid $black;
+  transform: rotate(135deg);
+}
 .menu {
   opacity: 0;
 

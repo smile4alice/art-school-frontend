@@ -1,27 +1,26 @@
 import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 
-import EmailIcon from '@/assets/icons/EmailIcon';
-import LocationIcon from '@/assets/icons/LocationIcon';
-import PhoneIcon from '@/assets/icons/PhoneIcon';
-
-import FacebookIcon from '@/assets/icons/FacebookIcon';
-import YoutubeIcon from '@/assets/icons/YouTubeIcon';
+import LocationIcon from '@/components/Icons/LocationIcon';
+import PhoneIcon from '@/components/Icons/PhoneIcon';
+import EmailIcon from '@/components/Icons/EmailIcon';
+import FacebookIcon from '@/components/Icons/FacebookIcon';
+import YoutubeIcon from '@/components/Icons/YoutubeIcon';
 
 import styles from './Header.module.scss';
 
 const HeaderContacts = () => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  console.log('lastScrollY: ', lastScrollY);
+  // console.log('lastScrollY: ', lastScrollY);
 
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         if (window.scrollY > lastScrollY) {
-          setShow(false);  //  scroll down  hide header contacts l
+          setShow(false); //  scroll down  hide header contacts l
         } else {
-          setShow(true);  // srroll up,  show header contacts again 
+          setShow(true); // srroll up,  show header contacts again
         }
         setLastScrollY(window.scrollY); // scroll number
       }

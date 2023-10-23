@@ -1,19 +1,22 @@
 import { clsx } from 'clsx';
 import styles from './DropDown.module.scss';
 import { Link } from 'react-router-dom';
-import DropDownIcon from '@/assets/icons/DropDownIcon';
+
 const DropDownMenu = ({ type, items, handleClick, open }) => {
   return (
     <div className={styles.dropDown}>
       <div
         data-element-id="dropdown"
-        className={styles.dropDownName}
+        className={styles.dropDownNameWrapper}
         onClick={handleClick}
       >
-        <span data-element-id="dropdown">{type}</span>
-        <span data-element-id="dropdown">
-          <DropDownIcon data-element-id="dropdown" />
+        <span className={styles.dropDownName} data-element-id="dropdown">
+          {type}
         </span>
+        <span
+          className={styles.dropDown_icon}
+          data-element-id="dropdown"
+        ></span>
       </div>
 
       <ul
