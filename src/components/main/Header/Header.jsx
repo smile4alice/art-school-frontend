@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className={styles.headerWrapper}>
       <HeaderContacts />
-      <HeaderNavigation />
+      {/* <HeaderNavigation /> */}
     </header>
   );
 };
