@@ -1,4 +1,4 @@
-import NavLinkButton from "@/components/ui/NavLinkButton/NavLinkButton";
+import NavLinkButton from "@/components/ui/Buttons/NavLinkButton";
 import Department from "./Department/Department";
 import Container from '@/components/Container/Container'
 
