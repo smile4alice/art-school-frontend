@@ -3,12 +3,12 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   background-color: #120000;
+   background-color: $black;
    width: 100%;
 }
 
 .footerWrap {
-   color: #FFFCFC;
+   color: $white;
    display: flex;
    width: 1180px;
    padding: 30px 0;
@@ -40,7 +40,9 @@
    gap: 8px;
 }
 
-.socialLink {}
+.YoutubeIcon:hover{
+   fill: #C2D1D9;
+}
 
 .footerLinksRules {
    display: flex;
@@ -52,6 +54,12 @@
    font-style: normal;
    font-weight: 400;
    line-height: normal;
+   
+   transition: color 0.3s;
+}
+
+.footerLinksRules a:hover {
+text-decoration:underline;
 }
 
 .footerLinksSection {
@@ -69,7 +77,14 @@
    display: flex;
    flex-direction: column;
    gap: 14px;
+
+   transition: color 0.3s;
 }
+
+.footerLinksColumn a:hover {
+   text-decoration: underline;
+}
+
 
 .contactsList {
    display: flex;
@@ -87,6 +102,10 @@
    flex-direction: column;
    align-items: flex-start;
    gap: 10px;
+}
+
+.contactsListItem a:hover {
+   color: $accent;
 }
 
 .footerSecurity {
