@@ -1,0 +1,29 @@
+.Map {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.Map h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.Map .MapContainer {
+  height: 22rem;
+  width: 85vw;
+  flex: 1 0 auto;
+  margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .Map .MapContainer {
+    width: 45rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .Map .MapContainer {
+    width: 25rem;
+  }
+}/*# sourceMappingURL=Map.module.css.map */
