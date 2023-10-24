@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import  { useRef } from 'react';
 import Container from '@/components/Container/Container';
 import fakeDataAchievements  from './achievements-fake-data.json';
 import { Swiper, SwiperSlide } from 'swiper/react';
