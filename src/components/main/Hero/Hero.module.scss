@@ -1,4 +1,31 @@
-.Hero {
+.HeroSection {
+  margin: 0 auto;
+  padding: 0;
+  width: 100vw;
+  max-width: 1280px;
+  margin-bottom: 10vh;
+  @media screen and (max-width: 450px) {
+   padding: 1rem;
+  }
+
+// .swiper-button-prev {
+//   background-color: transparent;
+//   border: 1px solid #51ff00; /* Border color */
+//   color: #ff0000; /* Text color */
+//   border-radius: 50%; /* Make it circular */
+//   padding: 10px; /* Padding size */
+//   font-size: 24px; /* Font size */
+// }
+
+// .swiper-button-next {
+//   background-color: transparent;
+//   border: 1px solid #ff00aa; /* Border color */
+//   color: #007bff; /* Text color */
+//   border-radius: 50%; /* Make it circular */
+//   padding: 10px; /* Padding size */
+//   font-size: 24px; /* Font size */
+// }
+
   .SliderStyle {
     width: 100%;
     // background-color: $white;

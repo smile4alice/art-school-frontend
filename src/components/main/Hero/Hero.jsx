@@ -4,7 +4,7 @@
 // import React, { useRef, useState } from 'react';
 // import Container from '@/components/Container/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Keyboard } from 'swiper/modules';
 import { hero } from '@/constants/hero.js';
 
 import 'swiper/css';
@@ -13,14 +13,31 @@ import styles from './Hero.module.scss';
 
 const Hero = () => {
   return (
-    <section>
+    // <Container>
+    <section className={styles.HeroSection}>
       <Swiper
+        style={{
+          '--swiper-navigation-color': '#d66600',
+          '--swiper-navigation-background-color': '#00ff0d',
+          '--swiper-navigation-top-offset': '50%',
+          '--swiper-navigation-size': '20px',
+          '--swiper-navigation-weight': '900',
+          '--swiper-pagination-color': '#ffffff',
+          '--swiper-pagination-active-color': '#007bff',
+        }}
+        navigation={true}
         pagination={{
           dynamicBullets: true,
         }}
-        modules={[Pagination]}
+        // navigation={{
+        //   prevEl: '.swiper-button-prev',
+        //   nextEl: '.swiper-button-next',
+        // }}
+        mousewheel={true}
+        keyboard={true}
         slidesPerView={1}
-        spaceBetween={10}
+        spaceBetween={2}
+        modules={[Navigation, Pagination, Keyboard]}
         className={styles.SliderStyle}
         // pagination="true"
         // effect="coverflow"
@@ -41,11 +58,11 @@ const Hero = () => {
             <div
               className={styles.HeroImage}
               style={{
-                backgroundImage: `url("public/hero/building.jpg")`,
+                backgroundImage: `url("hero/building.jpg")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 width: '100%',
-                height: '60vh', // Set the height as per your design
+                height: '615px', // Set the height as per your design
               }}
             />
             {/* <img src="/hero/building.jpg" alt="" className={styles.HeroImage} /> */}
@@ -53,6 +70,7 @@ const Hero = () => {
         ))}
       </Swiper>
     </section>
+    // </Container>
   );
 };
 
