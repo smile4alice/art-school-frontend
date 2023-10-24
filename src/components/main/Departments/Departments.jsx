@@ -9,7 +9,7 @@ import vocalImg from "/departments/vocal.png";
 import styles from './Departments.module.scss';
 
 const Departments = () => {
-  const link = 'hppp:\\example.com';
+  const link = 'https://example.com';
   const musicDepartment = 'Музичне відділення';
   const artDepartment = 'Образотворче відділення';
   const choreografyDepartment = 'Хореографічне відділення';
@@ -22,7 +22,7 @@ const Departments = () => {
 
   return (
       <div className={styles.wrapper}>
-        <p className={styles.title}>Відділення</p>
+        <p className={`${styles.title} sectionTitle`}>Відділення</p>
         <div className={styles.buttonContainer}>
           <button onClick={downloadFile} className={styles.buttonStyle}>завантажити заяву</button>
         </div>

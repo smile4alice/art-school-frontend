@@ -1,13 +1,12 @@
 import { Pagination } from 'swiper/modules';
+import { news } from '@/constants/news.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/NavLinkButton/NavLinkButton';
-import { news } from '@/constants/news.js';
+import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
+import styles from './News.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
-
-import styles from './News.module.scss';
 
 const News = () => {
   return (
@@ -27,10 +26,10 @@ const News = () => {
         >
           {news.map((slide, index) => (
             <SwiperSlide key={index} className={styles.Slide}>
-              <img src="/images/news/ph.png" alt="" />
+              <img src={slide.img} alt={slide.title} />
               <div className={styles.Text}>
-                <span>5 Жовтня 2023</span>
-                <p>Звітний концерт відділу сольного співу</p>
+                <span>{slide.date}</span>
+                <p>{slide.title}</p>
               </div>
             </SwiperSlide>
           ))}
