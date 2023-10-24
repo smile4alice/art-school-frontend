@@ -15,12 +15,6 @@ body {
   font-family: 'Mulish', sans-serif;
 }
 
-.leaflet-container {
-  height:21.8rem;
-  width: 90rem;
-}
-
-
 h1,
 h2,
 h3,
@@ -67,6 +61,11 @@ iframe {
   border: none;
 }
 
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
 .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
@@ -75,7 +74,18 @@ iframe {
 }
 
 .swiper-pagination-bullet-active {
+  width: 9px;
+  height: 9px;
   color: $accent;
   background: $accent;
   border: none;
 }
+
+.sectionTitle {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: $black;
+}
+

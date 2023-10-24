@@ -6,7 +6,6 @@ import { news } from '@/constants/news.js';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
-
 import styles from './News.module.scss';
 
 const News = () => {
