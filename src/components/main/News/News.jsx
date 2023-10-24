@@ -1,7 +1,7 @@
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/NavLinkButton/NavLinkButton';
+import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 import { news } from '@/constants/news.js';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

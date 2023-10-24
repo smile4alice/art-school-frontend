@@ -1,4 +1,4 @@
-import NavLinkButton from '../../ui/NavLinkButton/NavLinkButton';
+import NavLinkButton from '../../ui/Buttons/NavLinkButton';
 
 import styles from './History.module.scss';
 
