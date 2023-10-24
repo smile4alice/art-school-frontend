@@ -15,36 +15,47 @@
    flex-direction: column;
    align-items: center;
    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $black;
+  width: 100%;
+  max-width: 1440px;
 }
 
+
+
 .footerContentWrap {
-   display: flex;
-   justify-content: space-between;
-   align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
 }
 
 .footerContent {
-   display: flex;
-   flex-direction: column;
-   gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .footerLogo {
-   display: flex;
-   align-items: center;
-   gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .social {
-   display: flex;
-   gap: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.socialLink {
 }
 
 .footerLinksRules {
-   display: flex;
-   flex-direction: column;
-   gap: 6px;
-
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
    font-family: Mulish;
    font-size: 14px;
    font-style: normal;
@@ -56,17 +67,21 @@
 
 .footerLinksRules a:hover {
 text-decoration:underline;
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .footerLinksSection {
-   display: flex;
-   gap: 60px;
-
-   font-family: Mulish;
-   font-size: 16px;
-   font-style: normal;
-   font-weight: 400;
-   line-height: normal;
+  display: flex;
+  gap: 60px;
+  
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .footerLinksColumn {
@@ -75,6 +90,10 @@ text-decoration:underline;
    gap: 14px;
 
    transition: color 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .footerLinksColumn a:hover {
@@ -83,21 +102,21 @@ text-decoration:underline;
 
 
 .contactsList {
-   display: flex;
-   flex-direction: column;
-   gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .contactsListItem {
-   display: flex;
-   gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .contactsListItem_PhoneWrapper {
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-   gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .contactsListItem a:hover {
@@ -105,10 +124,10 @@ text-decoration:underline;
 }
 
 .footerSecurity {
-   text-align: center;
-   font-family: Mulish;
-   font-size: 12px;
-   font-style: normal;
-   font-weight: 400;
-   line-height: normal;
+  text-align: center;
+  font-family: Mulish;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

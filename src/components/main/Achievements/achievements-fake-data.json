@@ -1,48 +1,33 @@
 [
   { 
     "id": "1",
-    "url": "../public/achievements/img1.png",
+    "url": "/achievements/img1.png",
     "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 1"
   },
   { 
     "id": "2",
-    "url": "../public/achievements/img2.png",
+    "url": "/achievements/img2.png",
     "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 2"
   },
   {
     "id": "3",
-    "url": "../public/achievements/img3.png",
+    "url": "/achievements/img3.png",
     "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 3"
   },
   {
     "id": "4",
-    "url": "../public/achievements/img1.png",
+    "url": "/achievements/img1.png",
     "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 4"
   },
   {
     "id": "5",
-    "url": "../public/achievements/img1.png",
+    "url": "/achievements/img1.png",
     "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 5"
   },
   {
     "id": "6",
-    "url": "../public/achievements/img3.png",
+    "url": "/achievements/img3.png",
     "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 6"
-  },
-  {
-    "id": "7",
-    "url": "../public/achievements/img2.png",
-    "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 7"
-  },
-  {
-    "id": "8",
-    "url": "../public/achievements/img2.png",
-    "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 8"
-  },
-  {
-    "id": "9",
-    "url": "../public/achievements/img1.png",
-    "text": "Тетяна Мазур зайняла перше місце в міжнародному конкурсі 9"
   }
   
 ]

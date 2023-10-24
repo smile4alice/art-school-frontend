@@ -13,8 +13,9 @@
   }
   .MapContainer {
     height: 22rem;
-    width: 90rem;
+    width: 85vw;
     flex: 1 0 auto;
+    margin: 0 auto;
     @media screen and (max-width: 768px) {
       width: 45rem;
     }
