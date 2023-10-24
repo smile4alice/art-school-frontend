@@ -36,34 +36,38 @@
     gap: 30px;
   }
 }
-
 .contactsListItem {
   @extend%aligncenter;
-  padding: 10px;
-  svg {
-    width: 24px;
-    height: 24px;
-  }
   @media screen and (min-width: 1280px) {
     gap: 10px;
     padding-top: 2.5px;
     padding-bottom: 2.5px;
     padding-right: 15px;
     border-right: 1px solid$gray;
+  }
+}
+.contactsListLink {
+  @extend%aligncenter;
+  gap: 10px;
+  padding: 10px;
 
+  text-decoration: none;
+  color: $white;
+  @include font(16px, 400, 1);
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 0px;
     svg {
       width: 20px;
       height: 20px;
     }
   }
-
-  a {
-    text-decoration: none;
-    
-    color: $white;
-    @include font(16px, 400, 1);
-  }
 }
+
 .contactsListItem_PhoneWrapper {
   @media screen and (min-width: 1280px) {
     display: flex;
@@ -76,12 +80,23 @@
   @extend%aligncenter;
   gap: 8px;
   list-style: none;
+  li {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .socialLink {
   @extend%aligncenter;
 
-  // padding: 4px 2px 4px 2px;
+  padding: 10px;
+
+  @media screen and (min-width: 1280px) {
+    padding: 0;
+  }
 }
 
 .headerNavigationWrapper {
@@ -89,6 +104,13 @@
   background-color: #fff;
   gap: 32px;
 }
+
+.burgerIcon {
+  align-self: start;
+  margin-top: 16px;
+  margin-right: 16px;
+}
+
 .nav {
   @extend%aligncenter;
   gap: 30px;

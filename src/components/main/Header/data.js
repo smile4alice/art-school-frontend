@@ -14,3 +14,11 @@ export const aboutUs = [
   { name: 'Адміністрація', to: '/administration' },
   { name: 'Наші викладачі', to: '/ourTeachers' },
 ];
+
+export const navItems = [
+  { name: 'Наші події', to: '/events' },
+  { name: 'Афіша', to: '/poster' },
+  { name: 'Галерея', to: '/gallery' },
+  { name: 'Співпраця', to: '/cooperation' },
+  { name: 'Контакти', to: '/contacts' },
+];
