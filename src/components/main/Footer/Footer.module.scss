@@ -12,7 +12,7 @@
   color: $white;
   width: 1180px;
   padding: 30px 0;  
-  gap: 6px;  
+  gap: 20px;  
 }
 
 .footerContentWrap {
@@ -75,7 +75,11 @@
 .footerLinksColumn a:hover {
   text-decoration: underline;
 }
-
+.contactsListButton{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 .contactsList {
   display: flex;
   flex-direction: column;

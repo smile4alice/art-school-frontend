@@ -40,7 +40,7 @@ const Footer = () => {
                 Правила користування сайтом
               </a>
             </div>
-            <DownloadButton link="#" text="Завантажити заяву" />
+            
           </div>
           <div className={styles.footerLinksSection}>
             <div className={styles.footerLinksColumn}>
@@ -62,7 +62,8 @@ const Footer = () => {
               <Link to="/visual-arts-department">Образотворче відділення</Link>
               <Link to="/theater-department">Театральне відділення</Link>
             </div>
-            <ul className={styles.contactsList}>
+            <div className={styles.contactsListButton}>
+                   <ul className={styles.contactsList}>
               <li className={styles.contactsListItem}>
                 <LocationIcon />
                 <a
@@ -85,6 +86,8 @@ const Footer = () => {
                 <a href="mailto:Shkola_2@ukr.net">Shkola_2@ukr.net</a>
               </li>
             </ul>
+            <DownloadButton link="#" text="Завантажити заяву" />
+            </div>       
           </div>
         </div>
         <div className={styles.footerSecurity}>
