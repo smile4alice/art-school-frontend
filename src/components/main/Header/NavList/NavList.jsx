@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { navItems, aboutUs, departmemts } from '../data';
+import { navItems, aboutUs, departmemts } from '../../../../constants/headerdata';
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
