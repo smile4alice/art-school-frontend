@@ -77,7 +77,6 @@
   @extend%aligncenter;
   background-color: #fff;
   justify-content: space-between;
-  padding: 16px;
 
   @media screen and (min-width: 1280px) {
     justify-content: center;
@@ -101,4 +100,9 @@
   @include font(16px, 400, 2);
   letter-spacing: 0.19px;
   color: $black;
+}
+
+.burgerButton {
+  padding-right: 16px;
+  padding-top: 16px;
 }

@@ -3,11 +3,17 @@
   align-items: center;
   gap: 10px;
   // height: 94px;
+  padding: 16px;
 
   svg {
     width: 56px;
     height: 54px;
-    @media screen and (min-width: 1280px) {
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-right: 0px;
+    padding-bottom: 0px;
+    svg {
       width: 82px;
       height: 76px;
     }
@@ -18,6 +24,7 @@
   width: 192px;
   @include font(14px, 800, 1.4);
   span {
+    display: block;
     @include font(12px, 600, 1.4);
   }
 
