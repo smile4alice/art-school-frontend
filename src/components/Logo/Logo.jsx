@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import LogoImg from '../../assets/img/Logo.png';
+import LogoIcon from '../Icons/LogoIcon';
 import styles from './Logo.module.scss';
 const Logo = () => {
   return (
       <Link to="/" className={styles.logoWrapper}>
-        <img src={LogoImg} alt="logo" />
+         <LogoIcon/>
         <p className={styles.logoText}>
-          Київська дитяча школа мистецтв №2 ім. Михайла Вериківського
+          Київська дитяча школа мистецтв №2 <br/>ім. М. I. Вериківського
         </p>
       </Link>
   );
