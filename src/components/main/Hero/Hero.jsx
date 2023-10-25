@@ -1,5 +1,4 @@
 // import React, { useRef, useState } from 'react';
-// import 'swiper/swiper-bundle.min.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Keyboard } from 'swiper/modules';
 import Data from '@/constants/hero.json';
@@ -32,9 +31,9 @@ const Hero = () => {
         modules={[Navigation, Pagination, Keyboard]}
         className={styles.SliderStyle}
       >
-        {Data.map((result, index) => (
+        {Data.map((slide, index) => (
           <SwiperSlide key={index} className={styles.SlideStyle}>
-            <img src={result.img} alt="hero" className={styles.HeroImage} />
+            <img src={slide.img} alt="hero" className={styles.HeroImage} />
           </SwiperSlide>
         ))}
       </Swiper>
