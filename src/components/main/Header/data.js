@@ -1,24 +1,24 @@
 export const departmemts = [
-  { name: 'Музичний відділення', to: '/music_department' },
-  { name: 'Вокально-хорове відділення', to: '/vocal_choral_department' },
-  { name: 'Хореографічне відділення', to: '/сhoreographic_department' },
-  { name: 'Образотворче відділення', to: '/fine_arts_epartment' },
-  { name: 'Театральне відділення', to: '/еheater/_department' },
+  { name: 'Музичний відділення', to: '/' },
+  { name: 'Вокально-хорове відділення', to: '/' },
+  { name: 'Хореографічне відділення', to: '/' },
+  { name: 'Образотворче відділення', to: '/' },
+  { name: 'Театральне відділення', to: '/' },
 ];
 
 export const aboutUs = [
-  { name: ' Про нас', to: '/aboutUs' },
-  { name: 'Історія Школи', to: '/historyOfSchool' },
+  { name: ' Про нас', to: '/' },
+  { name: 'Історія Школи', to: '/' },
   { name: 'Музей', to: '/museum' },
-  { name: 'Наші досягнення', to: '/ourAchievements' },
-  { name: 'Адміністрація', to: '/administration' },
-  { name: 'Наші викладачі', to: '/ourTeachers' },
+  { name: 'Наші досягнення', to: '/' },
+  { name: 'Адміністрація', to: '/' },
+  { name: 'Наші викладачі', to: '/' },
 ];
 
 export const navItems = [
-  { name: 'Наші події', to: '/events' },
-  { name: 'Афіша', to: '/poster' },
-  { name: 'Галерея', to: '/gallery' },
-  { name: 'Співпраця', to: '/cooperation' },
-  { name: 'Контакти', to: '/contacts' },
+  { name: 'Наші події', to: '/' },
+  { name: 'Афіша', to: '/' },
+  { name: 'Галерея', to: '/' },
+  { name: 'Співпраця', to: '/' },
+  { name: 'Контакти', to: '/' },
 ];

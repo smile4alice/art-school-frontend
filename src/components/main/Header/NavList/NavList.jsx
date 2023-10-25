@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { navItems, aboutUs, departmemts } from '../data';
 import DropDownMenu from '../DropDown/DropDownMenu';
 
-import styles from '../Header.module.scss';
+import styles from './NavList.module.scss';
 
 const NavList = () => {
   const [showDepartment, setShowDepartment] = useState(false);
@@ -52,10 +52,11 @@ const NavList = () => {
           handleClick={handleClickAboutUs}
         />
       </div>
+
       <ul className={styles.navList}>
         {navItems.map(({ name, to }) => (
-          <li key={name}>
-            <Link key={name} to={to}>
+          <li className={styles.navList_item} key={name}>
+            <Link className={styles.navList_link} key={name} to={to}>
               {name}
             </Link>
           </li>

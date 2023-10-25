@@ -3,7 +3,6 @@ import HeaderNavigation from './HeaderNavigation';
 
 import styles from './Header.module.scss';
 import { useEffect, useState } from 'react';
-import HeaderNavigationMobile from './HeaderNavigationMobile';
 
 const Header = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -21,9 +20,8 @@ const Header = () => {
   }, []);
   return (
     <header className={styles.headerWrapper}>
-      {windowWidth < 1280 && <HeaderNavigationMobile />}
-      <HeaderContacts windowWidth={windowWidth} />
-      {windowWidth > 1280 && <HeaderNavigation />}
+      {windowWidth > 1280 && <HeaderContacts />}
+      <HeaderNavigation windowWidth={windowWidth} />
     </header>
   );
 };

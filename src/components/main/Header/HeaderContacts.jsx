@@ -4,10 +4,9 @@ import { clsx } from 'clsx';
 import LocationIcon from '@/components/Icons/LocationIcon';
 import PhoneIcon from '@/components/Icons/PhoneIcon';
 import EmailIcon from '@/components/Icons/EmailIcon';
-import FacebookIcon from '@/components/Icons/FacebookIcon';
-import YoutubeIcon from '@/components/Icons/YoutubeIcon';
 
 import styles from './Header.module.scss';
+import SocialList from './SosialList/SocialList';
 
 const HeaderContacts = ({ windowWidth }) => {
   const [show, setShow] = useState(true);
@@ -42,44 +41,29 @@ const HeaderContacts = ({ windowWidth }) => {
             target="_blank"
             rel="noopener noreferrer nofollow"
           >
-            <LocationIcon />{' '}
-            {windowWidth > 1280 ? 'вул. Бульварно-Кудрявська, 2.' : ''}
+            <LocationIcon />
+            вул. Бульварно-Кудрявська, 2.
           </a>
         </li>
         <li className={styles.contactsListItem}>
-          <a className={styles.contactsListLink} href="tel:+380972907940">
-            <PhoneIcon />
-            {windowWidth > 1280 ? (
-              <div className={styles.contactsListItem_PhoneWrapper}>
-                <span> +38(097)290-79-40</span>
-                <span> +38(093)456 08 38</span>
-              </div>
-            ) : (
-              ''
-            )}
-          </a>
+          <PhoneIcon />
+
+          <div className={styles.contactsListItem_PhoneWrapper}>
+            <a className={styles.contactsListLink} href="tel:+380972907940">
+              +38(097)290-79-40
+            </a>
+            <a className={styles.contactsListLink} href="tel:+380934560838">
+              +38(093)456 08 38
+            </a>
+          </div>
         </li>
-        <li className={styles.contactsListItem} >
+        <li className={styles.contactsListItem}>
           <a className={styles.contactsListLink} href="mailto:Shkola_2@ukr.net">
-            <EmailIcon /> {windowWidth > 1280 ? 'Shkola_2@ukr.net' : ''}
+            <EmailIcon /> Shkola_2@ukr.net
           </a>
         </li>
       </ul>
-
-      <div>
-        <ul className={styles.social}>
-          <li>
-            <a className={styles.socialLink} href="#">
-              <FacebookIcon />
-            </a>
-          </li>
-          <li>
-            <a className={styles.socialLink} href="#">
-              <YoutubeIcon />
-            </a>
-          </li>
-        </ul>
-      </div>
+      <SocialList />
     </div>
   );
 };

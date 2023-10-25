@@ -8,16 +8,11 @@
   background-color: $black;
 }
 
+//-----CONTACTS-----------
 .contactsWrapper {
   @extend%aligncenter;
-  justify-content: space-between;
-
-  padding: 4px 16px 4px 16px;
-  @media screen and (min-width: 1280px) {
-    justify-content: center;
-    gap: 10px;
-    padding: 25px 0 25px 0;
-  }
+  gap: 10px;
+  padding: 25px 0 25px 0;
 
   // opacity: 1;
   // transition: all 500ms ease;
@@ -54,17 +49,16 @@
   text-decoration: none;
   color: $white;
   @include font(16px, 400, 1);
-  svg {
-    width: 24px;
-    height: 24px;
-  }
 
+  &:hover {
+    color: $accent;
+  }
   @media screen and (min-width: 1280px) {
     padding: 0px;
-    svg {
-      width: 20px;
-      height: 20px;
-    }
+  }
+  svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -76,60 +70,21 @@
     gap: 10px;
   }
 }
-.social {
-  @extend%aligncenter;
-  gap: 8px;
-  list-style: none;
-  li {
-    display: flex;
-    width: 32px;
-    height: 32px;
-    align-items: center;
-    justify-content: center;
-  }
-}
 
-.socialLink {
-  @extend%aligncenter;
-
-  padding: 10px;
-
-  @media screen and (min-width: 1280px) {
-    padding: 0;
-  }
-}
-
+// -----------NAVIGATION------------
 .headerNavigationWrapper {
   @extend%aligncenter;
   background-color: #fff;
-  gap: 32px;
+  justify-content: space-between;
+
+  @media screen and (min-width: 1280px) {
+    justify-content: center;
+    gap: 32px;
+  }
 }
 
-.burgerIcon {
+.burgerButton {
   align-self: start;
   margin-top: 16px;
   margin-right: 16px;
-}
-
-.nav {
-  @extend%aligncenter;
-  gap: 30px;
-}
-
-.navSelectMenu {
-  @extend%aligncenter;
-
-  gap: 30px;
-}
-.navList {
-  list-style: none;
-  @extend%aligncenter;
-
-  gap: 30px;
-}
-
-.navList_item {
-  @include font(16px, 400, 2);
-  letter-spacing: 0.19px;
-  color: $black;
 }
