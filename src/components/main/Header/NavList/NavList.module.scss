@@ -23,6 +23,7 @@
     gap: 30px;
   }
 }
+
 .navList {
   width: 100%;
   list-style: none;
@@ -38,12 +39,29 @@
 }
 
 .navList_item {
-  width: 100%;
+  position: relative;
+  width: max-content;
   text-align: center;
+
+  &::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+  }
+
+  &:hover {
+    &::before {
+      background-color: $accent;
+    }
+  }
   @media screen and (min-width: 1280px) {
     width: max-content;
   }
 }
+
 .navList_link {
   display: block;
   height: 100%;
