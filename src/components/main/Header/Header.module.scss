@@ -6,13 +6,15 @@
 
   z-index: 999;
   background-color: $black;
+  max-width: 1440px;
 }
 
+//-----CONTACTS-----------
 .contactsWrapper {
   @extend%aligncenter;
-
   gap: 10px;
   padding: 25px 0 25px 0;
+
   // opacity: 1;
   // transition: all 500ms ease;
 }
@@ -25,48 +27,61 @@
 .contactsList {
   list-style: none;
   @extend%aligncenter;
-
-  gap: 30px;
-}
-
-.contactsListItem {
-  @extend%aligncenter;
-  gap: 10px;
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
-  padding-right: 15px;
-  border-right: 1px solid$gray;
-
-  a {
-    text-decoration: none;
-    color: $white;
-    @include font(16px, 400, 1);
+  gap: 16px;
+  @media screen and (min-width: 1280px) {
+    gap: 30px;
   }
 }
-.contactsListItem_PhoneWrapper {
+.contactsListItem {
+  @extend%aligncenter;
+  @media screen and (min-width: 1280px) {
+    gap: 10px;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    padding-right: 15px;
+    border-right: 1px solid$gray;
+  }
+}
+.contactsListLink {
   @extend%aligncenter;
   gap: 10px;
-}
-.social {
-  @extend%aligncenter;
-  gap: 8px;
-  list-style: none;
+  padding: 10px;
+
+  text-decoration: none;
+  color: $white;
+  @include font(16px, 400, 1);
+
+  &:hover {
+    color: $accent;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 0px;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
-.socialLink {
-  @extend%aligncenter;
-
-  // padding: 4px 2px 4px 2px;
+.contactsListItem_PhoneWrapper {
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 }
 
+// -----------NAVIGATION------------
 .headerNavigationWrapper {
   @extend%aligncenter;
   background-color: #fff;
-  gap: 32px;
-}
-.nav {
-  @extend%aligncenter;
-  gap: 30px;
+  justify-content: space-between;
+
+  @media screen and (min-width: 1280px) {
+    justify-content: center;
+    gap: 32px;
+  }
 }
 
 .navSelectMenu {
@@ -87,4 +102,7 @@
   color: $black;
 }
 
-
+.burgerButton {
+  padding-right: 16px;
+  padding-top: 16px;
+}

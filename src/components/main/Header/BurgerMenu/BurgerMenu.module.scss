@@ -1,0 +1,33 @@
+//---burgerMenu---
+
+.burgerMenuWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  padding: 76px 16px;
+
+  background: $burgerMenuBG;
+
+  opacity: 1;
+  pointer-events: all;
+  transition: $transition;
+}
+
+.burgerMenuWrapper.hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+.burgerMenuContent {
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+.burgerMenuCloseButton {
+  display: flex;
+  width: 100%;
+  margin-bottom: 16px;
+  justify-content: flex-end;
+}

@@ -5,10 +5,10 @@ const Logo = () => {
   return (
     <Link to="/" className={styles.logoWrapper}>
       <LogoIcon />
-      <div className={styles.logoText}>
-        <p>Київська дитяча школа мистецтв №2</p>
-        <span> ім. М. I. Вериківського</span>
-      </div>
+      <p className={styles.logoText}>
+        Київська дитяча школа мистецтв №2 <br />
+        <span> ім. Михайла Вериківського</span>
+      </p>
     </Link>
   );
 };

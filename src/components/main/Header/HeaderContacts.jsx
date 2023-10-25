@@ -4,15 +4,13 @@ import { clsx } from 'clsx';
 import LocationIcon from '@/components/Icons/LocationIcon';
 import PhoneIcon from '@/components/Icons/PhoneIcon';
 import EmailIcon from '@/components/Icons/EmailIcon';
-import FacebookIcon from '@/components/Icons/FacebookIcon';
-import YoutubeIcon from '@/components/Icons/YoutubeIcon';
 
 import styles from './Header.module.scss';
+import SocialList from './SosialList/SocialList';
 
-const HeaderContacts = () => {
+const HeaderContacts = ({ windowWidth }) => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  // console.log('lastScrollY: ', lastScrollY);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -37,43 +35,35 @@ const HeaderContacts = () => {
     <div className={clsx(styles.contactsWrapper, show ? '' : styles.hidden)}>
       <ul className={styles.contactsList}>
         <li className={styles.contactsListItem}>
-          <LocationIcon />
           <a
+            className={styles.contactsListLink}
             href="https://www.google.com.ua/maps/place/Kiev+Art+School/@50.4685751,30.3658169,12z/data=!4m10!1m2!2m1!1z0YXRg9C00L7QttC90Y8g0YjQutC-0LTQsCDQstC10YDQvdC40LrRltCy0YHRjNC60L7Qs9C-!3m6!1s0x40d4ce5df69f9943:0x18b52a2948c8f340!8m2!3d50.4543277!4d30.5043019!15sCjTRhdGD0LTQvtC20L3RjyDRiNC60L7Qu9CwINCy0LXRgNC40LrRltCy0YHRjNC60L7Qs9C-kgEKYXJ0X3NjaG9vbOABAA!16s%2Fg%2F121jyvxp?entry=ttuпше "
             target="_blank"
             rel="noopener noreferrer nofollow"
           >
+            <LocationIcon />
             вул. Бульварно-Кудрявська, 2.
           </a>
         </li>
         <li className={styles.contactsListItem}>
           <PhoneIcon />
-          <div className={styles.contactsListItem_PhoneWrapper}>
-            <a href="tel:+380972907940">+38(097)290-79-40</a>
 
-            <a href="tel:+380934560838">+38(093)456 08 38</a>
+          <div className={styles.contactsListItem_PhoneWrapper}>
+            <a className={styles.contactsListLink} href="tel:+380972907940">
+              +38(097)290-79-40
+            </a>
+            <a className={styles.contactsListLink} href="tel:+380934560838">
+              +38(093)456 08 38
+            </a>
           </div>
         </li>
         <li className={styles.contactsListItem}>
-          <EmailIcon />
-          <a href="mailto:Shkola_2@ukr.net">Shkola_2@ukr.net</a>
+          <a className={styles.contactsListLink} href="mailto:Shkola_2@ukr.net">
+            <EmailIcon /> Shkola_2@ukr.net
+          </a>
         </li>
       </ul>
-
-      <div>
-        <ul className={styles.social}>
-          <li>
-            <a className={styles.socialLink} href="#">
-              <FacebookIcon />
-            </a>
-          </li>
-          <li>
-            <a className={styles.socialLink} href="#">
-              <YoutubeIcon width="24" height="24" />
-            </a>
-          </li>
-        </ul>
-      </div>
+      <SocialList />
     </div>
   );
 };
