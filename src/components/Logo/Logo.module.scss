@@ -1,21 +1,19 @@
 .logoWrapper {
-  @extend%aligncenter;
+  display: flex;
+  align-items: center;
   gap: 10px;
-  height: 94px;
+  // height: 94px;
 
-  a {
-    padding-left: 10px;
+  svg {
+    width: 56px;
+    height: 54px;
+    @media screen and (min-width: 1280px) {
+      width: 82px;
+      height: 76px;
+    }
   }
 }
 
-.logoImg {
-  width: 56px;
-  height: 54px;
-  @media screen and (min-width: 1280px) {
-    width: 82px;
-    height: 76px;
-  }
-}
 .logoText {
   width: 192px;
   @include font(14px, 800, 1.4);

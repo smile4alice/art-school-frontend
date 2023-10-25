@@ -1,4 +1,5 @@
-import NavLinkButton from '../../ui/NavLinkButton/NavLinkButton';
+import Container from '@/components/Container/Container';
+import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 
 import styles from './History.module.scss';
 
@@ -7,6 +8,7 @@ const History = () => {
   const buttonName = 'Читати більше';
 
   return (
+    <Container>
       <div className={styles.wrapper}>
         <div className={styles.info}>
           <p className={`${styles.title} sectionTitle`}>Історія школи</p>
@@ -26,6 +28,7 @@ const History = () => {
           <img src="/school.png" alt="school-building" />
         </div>
       </div>
+    </Container>
   );
 };
 

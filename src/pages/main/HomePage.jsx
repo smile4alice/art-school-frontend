@@ -21,7 +21,7 @@ const HomePage = () => {
         <Achievements />
         <Map />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

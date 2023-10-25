@@ -1,5 +1,5 @@
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/NavLinkButton/NavLinkButton';
+import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 import styles from './Gallery.module.scss';
 
 const images = [

@@ -1,0 +1,107 @@
+.footer {
+  @extend%aligncenter;
+  flex-direction: column;
+  background-color: $black;
+  width: 100%;
+}
+
+.footerWrap {
+  @extend%aligncenter;
+  flex-direction: column;
+  background-color: $black;
+  color: $white;
+  width: 1180px;
+  padding: 30px 0;  
+  gap: 6px;  
+}
+
+.footerContentWrap {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social {
+  display: flex;
+  gap: 8px;
+}
+
+.footerLinksRules {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;  
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  transition: color 0.3s;
+}
+
+.footerLinksRules a:hover {
+  text-decoration: underline;
+}
+
+.footerLinksSection {
+  display: flex;
+  gap: 60px;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.footerLinksColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  transition: color 0.3s;
+ }
+
+.footerLinksColumn a:hover {
+  text-decoration: underline;
+}
+
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactsListItem {
+  display: flex;
+  gap: 8px;
+}
+
+.contactsListItem_PhoneWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.contactsListItem a:hover {
+  color: $accent;
+}
+
+.footerSecurity {
+  text-align: center;  
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

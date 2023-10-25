@@ -22,7 +22,7 @@ const HeaderNavigation = ({ windowWidth }) => {
           type="button"
           onClick={() => handelClickBurgerButton(showBurgerMenu)}
         >
-          <BurgerIcon  />
+          <BurgerIcon />
         </button>
       )}
 
