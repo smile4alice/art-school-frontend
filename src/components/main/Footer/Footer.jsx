@@ -19,12 +19,12 @@ const Footer = () => {
             </div>
             <ul className={styles.social}>
               <li>
-                <a className={styles.socialLink} href="#">
+                <a className={styles.socialLink} href="https://www.facebook.com/KyivArtsSchool/" target="_blank">
                   <FacebookIcon width="32" height="32" />
                 </a>
               </li>
               <li>
-                <a className={styles.socialLink} href="#">
+                <a className={styles.socialLink} href="https://www.youtube.com/c/ArtSchoolVerykivskogo" target="_blank">
                   <YoutubeIcon width="40" height="32" />
                 </a>
               </li>
