@@ -52,11 +52,13 @@
     height: 1px;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     &::before {
       background-color: $accent;
     }
   }
+
   @media screen and (min-width: 1280px) {
     width: max-content;
   }
