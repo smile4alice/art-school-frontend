@@ -63,6 +63,44 @@
       margin-top: 0;
     }
   }
+
+
+    .HeroEvent {
+    width: 1080px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.80);
+    font-style: normal;
+    font-family: Mulish;
+    position: absolute;
+    z-index: 10;
+    top: 400px;
+    left: 120px;
+    padding: 16px 24px;
+
+
+
+    .HeroEventTitle {
+      color: $black;
+      text-align: left;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: normal;
+      // line-height: 50px; /* 111.111% */
+      // margin-bottom: 0;
+      text-transform: uppercase;
+      
+    }
+
+    .HeroEventInfo {
+      color: $accent;
+      text-align: left;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: normal;
+      // margin-top: 0;
+      text-transform: uppercase;
+    }
+  }
 }
 
 //   .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {

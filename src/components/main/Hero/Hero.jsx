@@ -16,7 +16,7 @@ const Hero = () => {
           '--swiper-navigation-color': '#d66600',
           '--swiper-navigation-sides-offset': '2.8rem',
           '--swiper-navigation-size': '1.25rem',
-          '--swiper-pagination-bullet-horizontal-gap': '1rem',
+          '--swiper-pagination-bullet-horizontal-gap': '0.3rem',
           '--swiper-pagination-bottom': '1rem',
         }}
         navigation={true}
@@ -45,6 +45,20 @@ const Hero = () => {
             імені Михайла Вериківського
           </span>
         </h1>
+      </div>
+      <div className={styles.HeroEvent}>
+        <div>
+          <p>афіша</p>
+          <a href="www.google.com" rel="link">
+            дивитись всі події
+          </a>
+        </div>
+        <h3 className={styles.HeroEventTitle}>
+          документальна вистава “обличчя кольору війни”
+        </h3>
+        <p className={styles.HeroEventInfo}>
+          благодійний показ на підтримку зсу. вистава відбудеться 14.10 О 16:00
+        </p>
       </div>
     </section>
   );
