@@ -11,6 +11,7 @@
 
 //-----CONTACTS-----------
 .contactsWrapper {
+  width: 100%;
   @extend%aligncenter;
   gap: 10px;
   padding: 25px 0 18px 0;
@@ -74,6 +75,7 @@
 
 // -----------NAVIGATION------------
 .headerNavigationWrapper {
+  width: 100%;
   @extend%aligncenter;
   background-color: #fff;
   justify-content: space-between;
