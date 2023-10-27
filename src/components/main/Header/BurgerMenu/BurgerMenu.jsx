@@ -26,7 +26,7 @@ const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
       <div className={styles.burgerMenuContent}>
         <NavList />
       </div>
-      <SocialList />
+      <SocialList type="burgerMenuIcon" />
     </div>
   );
 };
