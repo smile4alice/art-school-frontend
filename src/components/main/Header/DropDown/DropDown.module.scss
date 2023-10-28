@@ -13,7 +13,9 @@
   @include font(16px, 400, 2);
   letter-spacing: 0.19px;
   color: $black;
-
+  &:hover {
+    border-bottom: 1px solid $accent;
+  }
   @media screen and (min-width: 1280px) {
     width: max-content;
 
