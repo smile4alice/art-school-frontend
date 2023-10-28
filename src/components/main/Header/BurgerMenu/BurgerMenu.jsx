@@ -15,15 +15,14 @@ const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
         showBurgerMenu ? '' : styles.hidden
       )}
     >
-      <button
-        type="button"
-        className={styles.burgerMenuCloseButton}
-        onClick={() => handelClickBurgerButton(showBurgerMenu)}
-      >
-        <CloseIcon />
-      </button>
-
       <div className={styles.burgerMenuContent}>
+        <button
+          type="button"
+          className={styles.burgerMenuCloseButton}
+          onClick={() => handelClickBurgerButton(showBurgerMenu)}
+        >
+          <CloseIcon />
+        </button>
         <NavList />
       </div>
       <SocialList type="burgerMenuIcon" />
