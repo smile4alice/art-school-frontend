@@ -63,7 +63,7 @@ const HeaderContacts = ({ windowWidth }) => {
           </a>
         </li>
       </ul>
-      <SocialList />
+      <SocialList type="headerIcon " />
     </div>
   );
 };

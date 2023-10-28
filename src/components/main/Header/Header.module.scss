@@ -6,14 +6,15 @@
 
   z-index: 999;
   background-color: $black;
-  max-width: 1440px;
+  max-width: 100vw;
 }
 
 //-----CONTACTS-----------
 .contactsWrapper {
+  width: 100%;
   @extend%aligncenter;
   gap: 10px;
-  padding: 25px 0 25px 0;
+  padding: 25px 0 18px 0;
 
   // opacity: 1;
   // transition: all 500ms ease;
@@ -74,13 +75,15 @@
 
 // -----------NAVIGATION------------
 .headerNavigationWrapper {
+  width: 100%;
   @extend%aligncenter;
   background-color: #fff;
   justify-content: space-between;
-
+  padding: 16px;
   @media screen and (min-width: 1280px) {
     justify-content: center;
     gap: 32px;
+    padding: 0;
   }
 }
 
@@ -100,9 +103,4 @@
   @include font(16px, 400, 2);
   letter-spacing: 0.19px;
   color: $black;
-}
-
-.burgerButton {
-  padding-right: 16px;
-  padding-top: 16px;
 }

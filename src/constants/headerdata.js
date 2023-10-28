@@ -9,7 +9,7 @@ export const departmemts = [
 export const aboutUs = [
   { name: ' Про нас', to: '/' },
   { name: 'Історія Школи', to: '/' },
-  { name: 'Музей', to: '/museum' },
+  { name: 'Музей', to: '/' },
   { name: 'Наші досягнення', to: '/' },
   { name: 'Адміністрація', to: '/' },
   { name: 'Наші викладачі', to: '/' },
