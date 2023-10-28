@@ -13,10 +13,17 @@ const DropDownMenu = ({ type, items, handleClick, open }) => {
         <span className={styles.dropDownName} data-element-id="dropdown">
           {type}
         </span>
-        <span
-          className={styles.dropDown_icon}
-          data-element-id="dropdown"
-        ></span>
+        {!open ? (
+          <span
+            className={styles.dropDown_iconDown}
+            data-element-id="dropdown"
+          ></span>
+        ) : (
+          <span
+            className={styles.dropDown_iconUp}
+            data-element-id="dropdown"
+          ></span>
+        )}
       </div>
 
       <ul
