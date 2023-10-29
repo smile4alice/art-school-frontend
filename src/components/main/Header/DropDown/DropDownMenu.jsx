@@ -3,14 +3,19 @@ import styles from './DropDown.module.scss';
 import { Link } from 'react-router-dom';
 
 const DropDownMenu = ({ type, items, handleClick, open }) => {
+  console.log('open: ', open);
+
   return (
     <div className={styles.dropDown}>
       <div
         data-element-id="dropdown"
         className={styles.dropDownNameWrapper}
-        onClick={handleClick}
+        onClick={() => handleClick(open)}
       >
-        <span className={styles.dropDownName} data-element-id="dropdown">
+        <span
+          className={clsx(styles.dropDownName, open ? styles.open : '')}
+          data-element-id="dropdown"
+        >
           {type}
         </span>
         {!open ? (
@@ -33,7 +38,7 @@ const DropDownMenu = ({ type, items, handleClick, open }) => {
           type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
         )}
       >
-        {items.map(({ name, to }  ) => (
+        {items.map(({ name, to }) => (
           <li className={styles.menuItem} key={name}>
             <Link
               className={clsx(styles.menulink, open ? styles.open : '')}
