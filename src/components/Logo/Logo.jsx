@@ -3,7 +3,11 @@ import LogoIcon from '../Icons/LogoIcon';
 import styles from './Logo.module.scss';
 const Logo = () => {
   return (
-    <Link to="/" className={styles.logoWrapper}>
+    <Link
+      aria-label="company logo navigation to home page"
+      to="/"
+      className={styles.logoWrapper}
+    >
       <LogoIcon />
       <div className={styles.logoText}>
         <p>Київська дитяча школа мистецтв №2</p>

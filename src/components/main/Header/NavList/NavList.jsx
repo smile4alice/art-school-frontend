@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { navItems, aboutUs, departmemts } from '../../../../constants/headerdata';
+import {
+  navItems,
+  aboutUs,
+  departmemts,
+} from '../../../../constants/headerdata';
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
@@ -11,11 +15,11 @@ const NavList = () => {
   const [showDepartment, setShowDepartment] = useState(false);
   const [showAboutUs, setShowAboutUs] = useState(false);
 
-  const handleClickDepartment = () => {
+  const handleClickDepartment = showDepartment => {
     setShowDepartment(!showDepartment);
     setShowAboutUs(false);
   };
-  const handleClickAboutUs = () => {
+  const handleClickAboutUs = showAboutUs => {
     setShowDepartment(false);
     setShowAboutUs(!showAboutUs);
   };
@@ -40,12 +44,14 @@ const NavList = () => {
     <nav className={styles.nav}>
       <div className={styles.navSelectMenu}>
         <DropDownMenu
+          aria-label="departmemts menu"
           type="Відділення"
           items={departmemts}
           open={showDepartment}
           handleClick={handleClickDepartment}
         />
         <DropDownMenu
+          aria-label="about us menu"
           type="Про нас"
           items={aboutUs}
           open={showAboutUs}

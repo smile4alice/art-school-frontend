@@ -33,7 +33,7 @@ const DropDownMenu = ({ type, items, handleClick, open }) => {
           type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
         )}
       >
-        {items.map(({ name, to }) => (
+        {items.map(({ name, to }  ) => (
           <li className={styles.menuItem} key={name}>
             <Link
               className={clsx(styles.menulink, open ? styles.open : '')}

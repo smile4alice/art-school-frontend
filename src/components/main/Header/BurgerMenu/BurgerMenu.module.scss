@@ -37,7 +37,8 @@
   height: 56px;
   border-radius: 50%;
   margin-bottom: 16px;
-  &:hover {
+  &:hover,
+  &:focus {
     background: rgba(214, 102, 0, 0.2);
   }
 }

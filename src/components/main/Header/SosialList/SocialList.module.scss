@@ -19,6 +19,10 @@
   @extend%aligncenter;
   padding-top: 10px;
   padding-bottom: 10px;
+
+  &:focus svg {
+    fill: $accent;
+  }
   @media screen and (min-width: 1280px) {
     padding: 0;
   }

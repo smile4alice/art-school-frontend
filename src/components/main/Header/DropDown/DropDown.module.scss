@@ -1,5 +1,14 @@
 .dropDown {
   position: relative;
+
+  &:hover,
+  &:focus-within {
+    .menu {
+      opacity: 1;
+
+      visibility: visible;
+    }
+  }
 }
 .dropDownNameWrapper {
   display: flex;
@@ -95,6 +104,11 @@
   @include font(18px, 600, 1);
 
   color: $white;
+
+  &:focus {
+    font-size: 20px;
+    outline: 1px solid $white;
+  }
 }
 
 .menu.open {

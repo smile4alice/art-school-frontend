@@ -8,6 +8,9 @@
     height: 54px;
   }
 
+  &:focus {
+    outline: 1px solid $accent;
+  }
   @media screen and (min-width: 1280px) {
     padding-right: 0px;
     padding-bottom: 0px;

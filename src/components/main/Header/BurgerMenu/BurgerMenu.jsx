@@ -17,6 +17,8 @@ const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
     >
       <div className={styles.burgerMenuContent}>
         <button
+          aria-label=" menu close button"
+          tabIndex="0"
           type="button"
           className={styles.burgerMenuCloseButton}
           onClick={() => handelClickBurgerButton(showBurgerMenu)}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../../Logo/Logo';
 
 import styles from './Header.module.scss';
@@ -9,8 +9,21 @@ import BurgerIcon from '@/components/Icons/BurgerIcon';
 const HeaderNavigation = ({ windowWidth }) => {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
-  const handelClickBurgerButton = showBurgerMenu =>
-    setShowBurgerMenu(!showBurgerMenu);
+  const handelClickBurgerButton = () => setShowBurgerMenu(!showBurgerMenu);
+
+  useEffect(() => {
+    const closeOnESC = event => {
+      // console.log('event.code : ', event.code);
+      if (event.code === 'Escape') {
+        setShowBurgerMenu(!showBurgerMenu);
+      }
+    };
+    window.addEventListener('keydown', closeOnESC);
+    return () => {
+      window.removeEventListener('keydown', closeOnESC);
+    };
+  }, [showBurgerMenu]);
+
   return (
     <div className={styles.headerNavigationWrapper}>
       <Logo />
@@ -18,9 +31,11 @@ const HeaderNavigation = ({ windowWidth }) => {
         <NavList />
       ) : (
         <button
+          aria-label=" navigation menu"
+          tabIndex="0"
           className={styles.burgerButton}
           type="button"
-          onClick={() => handelClickBurgerButton(showBurgerMenu)}
+          onClick={handelClickBurgerButton}
         >
           <BurgerIcon />
         </button>
