@@ -47,10 +47,14 @@ const Hero = () => {
         </h1>
       </div>
       <div className={styles.HeroEvent}>
-        <div>
-          <p>афіша</p>
-          <a href="www.google.com" rel="link">
-            дивитись всі події
+        <div className={styles.HeroEventTop}>
+          <p className={styles.HeroEventName}>афіша</p>
+          <a
+            href="https://www.google.com.ua/"
+            rel="link"
+            className={styles.HeroEventLink}
+          >
+            Дивитись всі події
           </a>
         </div>
         <h3 className={styles.HeroEventTitle}>
