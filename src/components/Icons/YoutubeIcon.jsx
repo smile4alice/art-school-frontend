@@ -1,8 +1,7 @@
-
 import styles from './Icons.module.scss';
 
 const YoutubeIcon = ({ type }) => {
-  console.log(type);
+  // console.log(type);
   return (
     <svg
       className={styles.youtubeIcon}

@@ -15,7 +15,7 @@ const HeaderNavigation = ({ windowWidth }) => {
     const closeOnESC = event => {
       // console.log('event.code : ', event.code);
       if (event.code === 'Escape') {
-        setShowBurgerMenu(!showBurgerMenu);
+        setShowBurgerMenu(false);
       }
     };
     window.addEventListener('keydown', closeOnESC);

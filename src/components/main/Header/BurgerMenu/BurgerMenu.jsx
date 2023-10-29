@@ -4,7 +4,7 @@ import CloseIcon from '@/components/Icons/CloseIcon';
 import clsx from 'clsx';
 import SocialList from '../SosialList/SocialList';
 const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
-  console.log('showBurgerMenu: ', showBurgerMenu);
+  // console.log('showBurgerMenu: ', showBurgerMenu);
 
   const handelClickBurgerButton = showBurgerMenu =>
     setShowBurgerMenu(!showBurgerMenu);

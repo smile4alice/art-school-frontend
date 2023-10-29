@@ -3,7 +3,7 @@ import styles from './DropDown.module.scss';
 import { Link } from 'react-router-dom';
 
 const DropDownMenu = ({ type, items, handleClick, open }) => {
-  console.log('open: ', open);
+  // console.log('open: ', open);
 
   return (
     <div className={styles.dropDown}>
