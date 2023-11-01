@@ -54,7 +54,7 @@ const Hero = () => {
             rel="link"
             className={styles.HeroEventLink}
           >
-            Дивитись всі події
+            Дивитися всі події
           </a>
         </div>
         <h3 className={styles.HeroEventTitle}>
