@@ -1,5 +1,16 @@
 .dropDown {
   position: relative;
+
+  &:focus-within {
+    .menu {
+      opacity: 1;
+      visibility: visible;
+    }
+    .dropDownName {
+      font-weight: 800;
+      border-bottom: 1px solid $accent;
+    }
+  }
 }
 .dropDownNameWrapper {
   display: flex;
@@ -14,6 +25,12 @@
   letter-spacing: 0.19px;
   color: $black;
 
+  &:hover,
+  &:focus {
+    font-weight: 800;
+    border-bottom: 1px solid $accent;
+  }
+
   @media screen and (min-width: 1280px) {
     width: max-content;
 
@@ -22,12 +39,28 @@
   }
 }
 
-.dropDown_icon {
+.dropDownName.open {
+  font-weight: 800;
+}
+
+.dropDown_iconDown {
   width: 8px;
   height: 8px;
   border-top: 1px solid $black;
   border-right: 1px solid $black;
   transform: rotate(135deg);
+  @media screen and (min-width: 1280px) {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+.dropDown_iconUp {
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid $black;
+  border-right: 1px solid $black;
+  transform: rotate(-47deg);
   @media screen and (min-width: 1280px) {
     width: 4px;
     height: 4px;
@@ -83,6 +116,11 @@
   @include font(18px, 600, 1);
 
   color: $white;
+
+  &:focus {
+    font-size: 20px;
+    outline: 1px solid $white;
+  }
 }
 
 .menu.open {

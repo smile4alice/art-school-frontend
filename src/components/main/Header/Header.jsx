@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  console.log('windowWidth: ', windowWidth);
+
   useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);

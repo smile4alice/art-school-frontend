@@ -8,7 +8,7 @@ import EmailIcon from '@/components/Icons/EmailIcon';
 import styles from './Header.module.scss';
 import SocialList from './SosialList/SocialList';
 
-const HeaderContacts = ({ windowWidth }) => {
+const HeaderContacts = () => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -63,7 +63,7 @@ const HeaderContacts = ({ windowWidth }) => {
           </a>
         </li>
       </ul>
-      <SocialList />
+      <SocialList type="headerIcon " />
     </div>
   );
 };

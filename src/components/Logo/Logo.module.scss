@@ -2,20 +2,21 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  // height: 94px;
-  // padding: 16px;
 
   svg {
     width: 56px;
     height: 54px;
   }
 
+  &:focus {
+    outline: 1px solid $accent;
+  }
   @media screen and (min-width: 1280px) {
     padding-right: 0px;
     padding-bottom: 0px;
     svg {
-      width: 82px;
-      height: 76px;
+      width: 75px;
+      height: 70px;
     }
   }
 }
@@ -32,7 +33,10 @@
     width: 218px;
     font-size: 15px;
     font-weight: 800;
+    padding-top: 15px;
+    padding-bottom: 18px;
     span {
+      @include font(14px, 800, 1);
       font-size: 15px;
       font-weight: 800;
     }
