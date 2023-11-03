@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Hero from '@/components/main/Hero/Hero';
 import Gallery from '@/components/main/Gallery/Gallery';
 import Achievements from '@/components/main/Achievements/Achievements';
@@ -7,6 +8,10 @@ import Map from '@/components/main/Map/Map';
 import News from '@/components/main/News/News';
 
 const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <main>
