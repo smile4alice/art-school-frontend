@@ -17,7 +17,7 @@ export const aboutUs = [
 
 export const navItems = [
   { name: 'Наші події', to: '/' },
-  { name: 'Афіша', to: '/' },
+  { name: 'Афіша', to: '/posters' },
   { name: 'Галерея', to: '/' },
   { name: 'Співпраця', to: '/' },
   { name: 'Контакти', to: '/' },
