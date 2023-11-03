@@ -26,7 +26,7 @@ const HeaderNavigation = ({ windowWidth }) => {
 
   return (
     <div className={styles.headerNavigationWrapper}>
-      <Logo />
+      <Logo className='header_logo' />
       {windowWidth > 1280 ? (
         <NavList />
       ) : (
