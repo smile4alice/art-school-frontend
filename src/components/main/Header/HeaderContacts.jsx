@@ -50,10 +50,7 @@ const HeaderContacts = () => {
 
           <div className={styles.contactsListItem_PhoneWrapper}>
             <a className={styles.contactsListLink} href="tel:+380972907940">
-              +38(097)290-79-40
-            </a>
-            <a className={styles.contactsListLink} href="tel:+380934560838">
-              +38(093)456 08 38
+              044 272-00-30
             </a>
           </div>
         </li>
