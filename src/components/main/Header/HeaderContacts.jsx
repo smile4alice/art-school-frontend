@@ -37,7 +37,7 @@ const HeaderContacts = () => {
         <li className={styles.contactsListItem}>
           <a
             className={styles.contactsListLink}
-            href="https://www.google.com.ua/maps/place/Kiev+Art+School/@50.4685751,30.3658169,12z/data=!4m10!1m2!2m1!1z0YXRg9C00L7QttC90Y8g0YjQutC-0LTQsCDQstC10YDQvdC40LrRltCy0YHRjNC60L7Qs9C-!3m6!1s0x40d4ce5df69f9943:0x18b52a2948c8f340!8m2!3d50.4543277!4d30.5043019!15sCjTRhdGD0LTQvtC20L3RjyDRiNC60L7Qu9CwINCy0LXRgNC40LrRltCy0YHRjNC60L7Qs9C-kgEKYXJ0X3NjaG9vbOABAA!16s%2Fg%2F121jyvxp?entry=ttuпше "
+            href="https://maps.app.goo.gl/jv2N9vFL6ZiJhosc6"
             target="_blank"
             rel="noopener noreferrer nofollow"
           >

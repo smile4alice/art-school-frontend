@@ -6,13 +6,13 @@
 }
 
 .footerWrap {
-  @extend%aligncenter;
+  display: flex;
   flex-direction: column;
   background-color: $black;
   color: $white;
   width: 1180px;
   padding: 30px 0;  
-  gap: 20px;  
+  gap: 50px;  
 }
 
 .footerContentWrap {
@@ -22,9 +22,11 @@
 }
 
 .footerContent {
-  display: flex;
+display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
 }
 
 .footerLogo {
@@ -39,10 +41,10 @@
 }
 
 .footerLinksRules {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;  
-  font-size: 14px;
+  display: flex;  
+  align-items: flex-end;
+  gap: 20px;  
+  font-size: 11px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -56,7 +58,7 @@
 
 .footerLinksSection {
   display: flex;
-  gap: 60px;
+  gap: 109px;
 
   font-size: 16px;
   font-style: normal;
@@ -75,15 +77,15 @@
 .footerLinksColumn a:hover {
   text-decoration: underline;
 }
-.contactsListButton{
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
+// .contactsListButton{
+//     display: flex;
+//     flex-direction: column;
+//     gap: 24px;
+// }
 .contactsList {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 }
 
 .contactsListItem {

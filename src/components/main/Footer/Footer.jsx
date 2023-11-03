@@ -40,17 +40,8 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <div className={styles.footerLinksRules}>
-              <a href="#" target="_blank">
-                Офіційна інформація
-              </a>
-              <a href="#" target="_blank">
-                Політика конфіденційності
-              </a>
-              <a href="#" target="_blank">
-                Правила користування сайтом
-              </a>
-            </div>
+            <DownloadButton link="#" text="Завантажити заяву" />
+
           </div>
           <div className={styles.footerLinksSection}>
             <div className={styles.footerLinksColumn}>
@@ -72,12 +63,12 @@ const Footer = () => {
               <Link to="/visual-arts-department">Образотворче відділення</Link>
               <Link to="/theater-department">Театральне відділення</Link>
             </div>
-            <div className={styles.contactsListButton}>
+          </div>
               <ul className={styles.contactsList}>
                 <li className={styles.contactsListItem}>
                   <LocationIcon />
                   <a
-                    href="https://www.google.com.ua/maps/place/Kiev+Art+School/@50.4685751,30.3658169,12z/data=!4m10!1m2!2m1!1z0YXRg9C00L7QttC90Y8g0YjQutC-0LTQsCDQstC10YDQvdC40LrRltCy0YHRjNC60L7Qs9C-"
+                    href="https://maps.app.goo.gl/jv2N9vFL6ZiJhosc6"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >
@@ -101,16 +92,24 @@ const Footer = () => {
                   <a href="mailto:Shkola_2@ukr.net">Shkola_2@ukr.net</a>
                 </li>
               </ul>
-              <DownloadButton link="#" text="Завантажити заяву" />
-            </div>
-          </div>
         </div>
-        <div className={styles.footerSecurity}>
-          © Розробка{' '}
-          <a href="https://baza-trainee.tech/" rel="noreferrer" target="_blank">
-            Baza Trainee Ukraine,{' '}
-          </a>
-          2023
+        <div className={styles.footerLinksRules}>
+              <div className={styles.footerSecurity}>
+                © Розробка{' '}
+                <a href="https://baza-trainee.tech/" rel="noreferrer" target="_blank">
+                  Baza Trainee Ukraine,{' '}
+                </a>
+                2023
+            </div>
+            <a href="#" target="_blank">
+              Офіційна інформація
+            </a>
+            <a href="#" target="_blank">
+              Політика конфіденційності
+            </a>
+            <a href="#" target="_blank">
+              Правила користування сайтом
+            </a>
         </div>
       </div>
     </div>
