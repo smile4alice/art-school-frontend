@@ -6,7 +6,7 @@ import {
   navItems,
   aboutUs,
   departmemts,
-} from '../../../../constants/headerdata';
+} from '@/constants/headerdata';
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
@@ -52,7 +52,7 @@ const NavList = () => {
         />
         <DropDownMenu
           aria-label="about us menu"
-          type="Про нас"
+          type="Наша Школа"
           items={aboutUs}
           open={showAboutUs}
           handleClick={handleClickAboutUs}

@@ -7,6 +7,7 @@ import FacebookIcon from '@/components/Icons/FacebookIcon';
 import YoutubeIcon from '@/components/Icons/YoutubeIcon';
 import DownloadButton from '@/components/ui/Buttons/DownloadButton';
 import styles from './Footer.module.scss';
+import ClockIcon from '@/components/Icons/ClockIcon';
 
 const Footer = () => {
   return (
@@ -23,6 +24,7 @@ const Footer = () => {
                   className={styles.socialLink}
                   href="https://www.facebook.com/KyivArtsSchool/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <FacebookIcon width="32" height="32" />
                 </a>
@@ -32,6 +34,7 @@ const Footer = () => {
                   className={styles.socialLink}
                   href="https://www.youtube.com/c/ArtSchoolVerykivskogo"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <YoutubeIcon width="40" height="32" />
                 </a>
@@ -48,7 +51,6 @@ const Footer = () => {
                 Правила користування сайтом
               </a>
             </div>
-            
           </div>
           <div className={styles.footerLinksSection}>
             <div className={styles.footerLinksColumn}>
@@ -71,31 +73,36 @@ const Footer = () => {
               <Link to="/theater-department">Театральне відділення</Link>
             </div>
             <div className={styles.contactsListButton}>
-                   <ul className={styles.contactsList}>
-              <li className={styles.contactsListItem}>
-                <LocationIcon />
-                <a
-                  href="https://www.google.com.ua/maps/place/Kiev+Art+School/@50.4685751,30.3658169,12z/data=!4m10!1m2!2m1!1z0YXRg9C00L7QttC90Y8g0YjQutC-0LTQsCDQstC10YDQvdC40LrRltCy0YHRjNC60L7Qs9C-"
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                >
-                  вул. Бульварно-Кудрявська, 2.
-                </a>
-              </li>
-              <li className={styles.contactsListItem}>
-                <PhoneIcon />
-                <div className={styles.contactsListItem_PhoneWrapper}>
-                  <a href="tel:+380972907940">+38(097)290-79-40</a>
-                  <a href="tel:+380934560838">+38(093)456 08 38</a>
-                </div>
-              </li>
-              <li className={styles.contactsListItem}>
-                <EmailIcon />
-                <a href="mailto:Shkola_2@ukr.net">Shkola_2@ukr.net</a>
-              </li>
-            </ul>
-            <DownloadButton link="#" text="Завантажити заяву" />
-            </div>       
+              <ul className={styles.contactsList}>
+                <li className={styles.contactsListItem}>
+                  <LocationIcon />
+                  <a
+                    href="https://www.google.com.ua/maps/place/Kiev+Art+School/@50.4685751,30.3658169,12z/data=!4m10!1m2!2m1!1z0YXRg9C00L7QttC90Y8g0YjQutC-0LTQsCDQstC10YDQvdC40LrRltCy0YHRjNC60L7Qs9C-"
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                  >
+                    вул. Бульварно-Кудрявська, 2.
+                  </a>
+                </li>
+                <li className={styles.contactsListItem}>
+                  <ClockIcon />
+                  <div className={styles.contactsListItem_PhoneWrapper}>
+                    <span>Пн-Пт 10:00-17:00</span>
+                  </div>
+                </li>
+                <li className={styles.contactsListItem}>
+                  <PhoneIcon />
+                  <div className={styles.contactsListItem_PhoneWrapper}>
+                    <a href="tel:+380972907940">044 272 00 30</a>
+                  </div>
+                </li>
+                <li className={styles.contactsListItem}>
+                  <EmailIcon />
+                  <a href="mailto:Shkola_2@ukr.net">Shkola_2@ukr.net</a>
+                </li>
+              </ul>
+              <DownloadButton link="#" text="Завантажити заяву" />
+            </div>
           </div>
         </div>
         <div className={styles.footerSecurity}>
