@@ -1,13 +1,17 @@
 .wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 358px;
+  width: 288px;
   height: 218px;
   border-radius: 20px;
   background-color: $lightgray;
+  padding: 24px 16px;
   @media screen and (min-width: 768px) {
+    width: 360px;
+    height: 218px;
+    
   }
   @media screen and (min-width: 1280px) {
     width: 370px;
@@ -16,15 +20,21 @@
 
   .info {
     width: 50%;
-    background-color: lig;
+        
     .cardTitle {
-      color: $title-card-department;
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 20px;
-      font-style: normal;
-      margin-bottom: 68.5px;
-      text-align: center;
+      margin-bottom: 41.5px;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 40px;
+        color: $title-card-department;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 140%;
+        font-style: normal;
+        text-align: center;
+      }
+      @media screen and (min-width: 1280px) {
+        margin-bottom: 68.5px;
+      }
     }
 
     .knowMore {
@@ -41,12 +51,18 @@
     }
 
     .linkKnowMore {
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 19px;
-      color: $black;
-      margin: 0px 4.5px;
+      @media screen and (min-width: 768px) {
+        color: $gray;
+        margin: 0px 4px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+      }
+      @media screen and (min-width: 1280px) {
+        color: $black;
+        margin: 0px 4.5px;
+      }
     }
   }
 }
@@ -54,13 +70,22 @@
 .picture {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: end;
   align-items: center;
-  width: 50%;
   overflow: hidden;
+  width: 50%;
 
   & img {
     background-repeat: no-repeat;
     border-radius: 5px;
+    
+    @media screen and (min-width: 768px) {
+      width: 160px;
+      height: 170px;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 170px;
+      height: 170px;
+    }
   }
 }
