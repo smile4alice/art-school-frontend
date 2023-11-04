@@ -1,11 +1,9 @@
 .wrapper {
   display: grid;
   justify-content: center;
-  @media screen and (min-width: 768px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, auto);
-    margin-bottom: 40px;
-  }
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
+  margin-bottom: 40px;
   @media screen and (min-width: 1280px) {
     grid-template-columns: 50% 50%;
     grid-template-rows: auto auto;
@@ -16,10 +14,8 @@
     display: grid;
     justify-items: start;
     align-items: start;
-    @media screen and (min-width: 768px) {
-      grid-column: 1/2;
-      grid-row: 1/2;
-    }
+    grid-column: 1/2;
+    grid-row: 1/2;
     @media screen and (min-width: 1280px) {
       grid-column: 1/2;
       grid-row: 1/2;
@@ -28,16 +24,16 @@
 
   .buttonContainer {
     display: grid;
-    justify-items: end;
-    align-items: start;
-    @media screen and (min-width: 768px) {
-      grid-column: 1/2;
-      grid-row: 3/4;
-    }
+    justify-items: center;
+    align-items: center;
+    grid-column: 1/2;
+    grid-row: 3/4;
     @media screen and (min-width: 1280px) {
       grid-column: 2/3;
       grid-row: 1/2;
       margin: 20px 0px 24px;
+      justify-items: end;
+      align-items: start;
     }
   }
 
@@ -51,9 +47,7 @@
     font-size: 1rem; //16px
     font-weight: 700;
     line-height: normal;
-    @media screen and (min-width: 768px) {
-      width: 100%;
-    }
+    width: 100%;
     @media screen and (min-width: 1280px) {
       width: 280px;
     }
@@ -67,14 +61,16 @@
     display: grid;
     justify-items: center;
     align-items: center;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    margin: 1rem 0;
+    gap: 16px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
 
     @media screen and (min-width: 768px) {
-      grid-column: 1/2;
-      grid-row: 2/3;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(3, 1fr);
-      gap: 16px;
-      margin: 1rem 0;
     }
     @media screen and (min-width: 1280px) {
       grid-column: 1/3;
