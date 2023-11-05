@@ -15,7 +15,7 @@ const fetchFakeData = () => {
 }
 
 const Achievements = () => {
-  const isLaptop = useMediaQuery({ minWidth: 768});
+  const isLaptop = useMediaQuery({ minWidth: 1024});
   const data = fetchFakeData();
   const swiperRef = useRef();
 
@@ -44,7 +44,7 @@ const Achievements = () => {
                 spaceBetween={20}
                 slidesPerView={1}
                 breakpoints={{
-                  768: {
+                  576: {
                     slidesPerView: 2,
                   },
                   1024: {
