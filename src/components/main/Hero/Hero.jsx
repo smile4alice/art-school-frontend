@@ -81,7 +81,7 @@ const Hero = () => {
           Київська дитяча школа мистецтв №2
           <span className={styles.HeroSecondaryTitle}>
             {' '}
-            імені Михайла Вериківського
+            ім. M. I. Вериківського
           </span>
         </h1>
       </div>

@@ -23,11 +23,12 @@
 
   @include font(16px, 400, 2);
   letter-spacing: 0.19px;
-  color: $black;
+  color: $gray;
+  border-bottom: 1px solid transparent;
 
   &:hover,
   &:focus {
-    font-weight: 800;
+    color: $black;
     border-bottom: 1px solid $accent;
   }
 
