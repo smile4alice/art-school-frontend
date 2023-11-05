@@ -1,14 +1,42 @@
 .logoWrapper {
-  @extend%aligncenter;
+  display: flex;
+  align-items: center;
   gap: 10px;
-  height: 94px;
 
-  a {
-    padding-left: 10px;
+  svg {
+    width: 56px;
+    height: 54px;
+  }
+
+  &:focus {
+    outline: 1px solid $accent;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-right: 0px;
+    padding-bottom: 0px;
+    svg {
+      width: 75px;
+      height: 70px;
+    }
   }
 }
 
 .logoText {
-  width: 218px;
-  @include font(16px, 700, 1.25);
+  width: 192px;
+  @include font(14px, 800, 1.4);
+  span {
+    display: block;
+    @include font(12px, 600, 1.4);
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 181px;
+    font-size: 15px;
+    font-weight: 800;
+    span {
+      @include font(14px, 800, 1);
+      font-size: 15px;
+      font-weight: 800;
+    }
+  }
 }

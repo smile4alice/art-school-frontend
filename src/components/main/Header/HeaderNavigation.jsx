@@ -1,77 +1,50 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Logo from '../../Logo/Logo';
 
 import styles from './Header.module.scss';
+import NavList from './NavList/NavList';
+import BurgerMenu from './BurgerMenu/BurgerMenu';
+import BurgerIcon from '@/components/Icons/BurgerIcon';
 
-import { aboutUs, departmemts } from './dropDownItems';
-import DropDownMenu from './DropDown/DropDownMenu';
-import { useEffect, useState } from 'react';
+const HeaderNavigation = ({ windowWidth }) => {
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
-const HeaderNavigation = () => {
-  const items = [
-    { name: 'Наші події', to: '/events' },
-    { name: 'Афіша', to: '/poster' },
-    { name: 'Галерея', to: '/gallery' },
-    { name: 'Співпраця', to: '/cooperation' },
-    { name: 'Контакти', to: '/contacts' },
-  ];
-
-  const [showDepartment, setShowDepartment] = useState(false);
-  const [showAboutUs, setShowAboutUs] = useState(false);
-
-  const handleClickDepartment = () => {
-    setShowDepartment(!showDepartment);
-    setShowAboutUs(false);
-  };
-  const handleClickAboutUs = () => {
-    setShowDepartment(false);
-    setShowAboutUs(!showAboutUs);
-  };
+  const handelClickBurgerButton = () => setShowBurgerMenu(!showBurgerMenu);
 
   useEffect(() => {
-    const func = e => {
-      const target = e.target.getAttribute('data-element-id');
-      if (target !== 'dropdown') {
-        setShowDepartment(false);
-        setShowAboutUs(false);
+    const closeOnESC = event => {
+      // console.log('event.code : ', event.code);
+      if (event.code === 'Escape') {
+        setShowBurgerMenu(false);
       }
     };
+    window.addEventListener('keydown', closeOnESC);
+    return () => {
+      window.removeEventListener('keydown', closeOnESC);
+    };
+  }, [showBurgerMenu]);
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('click', func);
-      return () => {
-        window.removeEventListener('click', func);
-      };
-    }
-  }, []);
   return (
     <div className={styles.headerNavigationWrapper}>
-      <Logo />
-      <nav className={styles.nav}>
-        <div className={styles.navSelectMenu}>
-          <DropDownMenu
-            type="Відділення"
-            items={departmemts}
-            open={showDepartment}
-            handleClick={handleClickDepartment}
-          />
-          <DropDownMenu
-            type="Про нас"
-            items={aboutUs}
-            open={showAboutUs}
-            handleClick={handleClickAboutUs}
-          />
-        </div>
-        <ul className={styles.navList}>
-          {items.map(({ name, to }) => (
-            <li key={name}>
-              <Link key={name} to={to}>
-                {name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <Logo className='header_logo' />
+      {windowWidth > 1280 ? (
+        <NavList />
+      ) : (
+        <button
+          aria-label=" navigation menu"
+          tabIndex="0"
+          className={styles.burgerButton}
+          type="button"
+          onClick={handelClickBurgerButton}
+        >
+          <BurgerIcon />
+        </button>
+      )}
+
+      <BurgerMenu
+        showBurgerMenu={showBurgerMenu}
+        setShowBurgerMenu={setShowBurgerMenu}
+      />
     </div>
   );
 };

@@ -5,3 +5,9 @@
 main {
   margin-top: 169px;
 }
+body {
+  min-height: 100vh;
+}
+*:focus {
+  outline: 1px solid $accent;
+}
