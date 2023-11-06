@@ -136,7 +136,7 @@
 
 // ------TABLET-------------------------------------------------
 
-@media (min-width: $breackpoint_laptop) {
+@media (min-width: 768px) {
   .HeroSection {
   // margin: 0 auto;
   // padding: 0;
@@ -258,7 +258,7 @@
 // -----DESKTOP----------------------------------------------
 
 
-@media (min-width: $breackpoint_desktop) {
+@media (min-width: 768px) {
   .HeroSection {
   margin: 0 auto;
   padding: 0;
