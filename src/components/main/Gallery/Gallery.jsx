@@ -1,16 +1,7 @@
 import Container from '@/components/Container/Container';
 import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
+import { images } from '@/constants/gallery';
 import styles from './Gallery.module.scss';
-
-const images = [
-  'images/gallery/gallery-img-1.jpg',
-  'images/gallery/gallery-img-2.jpg',
-  'images/gallery/gallery-img-3.jpg',
-  'images/gallery/gallery-img-4.jpg',
-  'images/gallery/gallery-img-5.jpg',
-  'images/gallery/gallery-img-6.jpg',
-  'images/gallery/gallery-img-7.jpg',
-];
 
 const Gallery = () => {
   return (
@@ -23,12 +14,9 @@ const Gallery = () => {
           <NavLinkButton title={'Переглянути всі фото'} href={'/'} />
         </div>
         <div className={styles.gallery}>
-          {images.map((image, index) => (
-            <div
-              key={`item${index + 1}`}
-              className={styles.item}
-            >
-              <img src={image} alt={`Image ${index + 1}`} />
+          {images.slice(0, 7).map((image, index) => (
+            <div key={image.date} className={styles.item}>
+              <img src={image.url} alt={`Image ${index + 1}`} />
             </div>
           ))}
         </div>
