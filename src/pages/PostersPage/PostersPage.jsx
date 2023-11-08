@@ -1,76 +1,79 @@
-import Container from '@/components/Container/Container'
+import Container from '@/components/Container/Container';
 
 import styles from './PostersPage.module.scss';
-import {posters} from '@/constants/posters';
-import { useEffect, useRef, useState } from 'react';
-
+import { posters } from '@/constants/posters';
+import { useEffect, useState } from 'react';
+import Modal from './Modal';
 
 const PostersPage = () => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [postersPerPage ,setPostersPerPage] = useState(12);
- 
-const imgRef= useRef()
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [postersPerPage, setPostersPerPage] = useState(12);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImg, setSelectedImg] = useState({});
+  console.log('selectedImg: ', selectedImg);
 
-const handelImageClick=()=>{
-    
-    imgRef.current.style.scale=1.75;
-    
-    
-}
+  const setActiveImgUrl = id => {
+    const selectImg = posters.find(poster => poster.id === id);
+    setSelectedImg(selectImg);
+  };
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
+  const viewMore = () => setPostersPerPage(prev => prev + postersPerPage);
 
-const viewMore=()=>setPostersPerPage((prev)=>prev+postersPerPage )
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
 
-    useEffect(() => {
-      function handleResize() {
-        setWindowWidth(window.innerWidth);
-      }
-  
-      window.addEventListener('resize', handleResize);
-  
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }, []);
+    window.addEventListener('resize', handleResize);
 
-    useEffect(()=>{
-   
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-if (windowWidth <=320){
-
-    setPostersPerPage(4)
-}
-
-    },[windowWidth])
+  useEffect(() => {
+    if (windowWidth <= 320) {
+      setPostersPerPage(4);
+    }
+  }, [windowWidth]);
   return (
     <Container>
-      <section className={styles.contentWrapper }>
+      <section className={styles.contentWrapper}>
         <h1 className={styles.pageTitle}>Афіша</h1>
-       
-      
+
         <ul className={styles.postersList}>
           {posters.slice(0, postersPerPage).map((poster, index) => (
-            <li ref={imgRef} key={index }  className={styles.postersListItem}       >
-              <img    className={styles.posterImg} src={poster.url} alt={`Афіша  ${poster. title}`} 
-         onClick={handelImageClick}
+            <li key={index} className={styles.postersListItem}>
+              <img
+                className={styles.posterImg}
+                src={poster.url}
+                alt={`Афіша  ${poster.title}`}
+                onClick={() => {
+                  setActiveImgUrl(poster.id);
+                  toggleModal();
+                }}
               />
               <p>{poster.title}</p>
             </li>
           ))}
         </ul>
-        <button
-            className={styles.buttonViewMore}
-           
-            onClick={viewMore}
-          >
-            Дивитися Більше 
-             <div className={styles.icon_more}>
+        {showModal && (
+          <Modal toggleModal={toggleModal}>
+            <img src={selectedImg.url} alt={`Афіша  ${selectedImg.title}`} />
+          </Modal>
+        )}
+        <button className={styles.buttonViewMore} onClick={viewMore}>
+          Дивитися Більше
+          <div className={styles.icon_more}>
             <span></span>
-            </div>
-          </button>
+          </div>
+        </button>
       </section>
     </Container>
-  )
-}
+  );
+};
 
-export default PostersPage
+export default PostersPage;
