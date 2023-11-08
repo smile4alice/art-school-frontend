@@ -131,7 +131,7 @@ const Gallery = () => {
             onMouseLeave={() => setUpHovered(false)}
             onClick={viewLess}
           >
-            Дивитися Меньше <ArrowUp hovered={upHovered} />
+            Дивитися Менше <ArrowUp hovered={upHovered} />
           </button>
         )}
       </section>
