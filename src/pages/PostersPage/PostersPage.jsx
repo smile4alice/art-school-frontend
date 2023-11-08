@@ -10,6 +10,7 @@ const PostersPage = () => {
   const [postersPerPage, setPostersPerPage] = useState(12);
   const [showModal, setShowModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState({});
+  const isMaxAmount = postersPerPage >= posters.length - 1;
 
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
@@ -64,12 +65,14 @@ const PostersPage = () => {
             <img src={selectedImg.url} alt={`Афіша  ${selectedImg.title}`} />
           </Modal>
         )}
-        <button className={styles.buttonViewMore} onClick={viewMore}>
-          Дивитися Більше
-          <div className={styles.iconMore}>
-            <span></span>
-          </div>
-        </button>
+        {!isMaxAmount && (
+          <button className={styles.buttonViewMore} onClick={viewMore}>
+            Дивитися Більше
+            <div className={styles.iconMore}>
+              <span></span>
+            </div>
+          </button>
+        )}
       </section>
     </Container>
   );
