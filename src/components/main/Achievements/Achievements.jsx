@@ -15,7 +15,7 @@ const fetchFakeData = () => {
 };
 
 const Achievements = () => {
-  const isLaptop = useMediaQuery({ minWidth: 768 });
+  const isLaptop = useMediaQuery({ minWidth: 1024});
   const data = fetchFakeData();
   const swiperRef = useRef();
 

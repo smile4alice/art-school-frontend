@@ -5,10 +5,12 @@ import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 const Page404 = () => {
   return (
     <div className={styles.NotFound}>
+      {/* <div className={styles.test}>test</div> */}
       <div className={styles.wrapper}>
         <Icon404 />
         <p>
           Ой, тут має бути шедевр, але здається, ми його забули на виставці!
+          <br />
           Повертайтесь на головну сторінку та вибирайте із нашої мистецької
           скарбниці.
         </p>

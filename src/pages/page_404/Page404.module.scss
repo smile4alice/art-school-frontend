@@ -1,18 +1,18 @@
 .NotFound {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+
   .wrapper {
     width: 50%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    padding: 1rem;
-    margin-top: 25vh;
-    p{
+    margin: 100px auto;
+    p {
       text-align: center;
       margin: 2rem auto;
     }
