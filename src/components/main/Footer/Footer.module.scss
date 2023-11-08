@@ -275,4 +275,7 @@
   .footerLinksRulesWrap {
     color: $white;
   }
+  .footerContent::after {
+display: none;
+  }
 }
