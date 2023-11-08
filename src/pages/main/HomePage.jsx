@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-// import Hero from '@/components/main/Hero/Hero';
+import Hero from '@/components/main/Hero/Hero';
 import Gallery from '@/components/main/Gallery/Gallery';
 import Achievements from '@/components/main/Achievements/Achievements';
 import History from '@/components/main/History/History';
@@ -15,7 +15,7 @@ const HomePage = () => {
   return (
     <>
       <main>
-        {/* <Hero /> */}
+        <Hero />
         <History />
         <Departments />
         <News />
