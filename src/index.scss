@@ -22,6 +22,11 @@ p {
   margin: 0;
 }
 
+img {
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -81,7 +86,7 @@ iframe {
 
 .sectionTitle {
   color: $black;
-  font-size: 1.125rem;  //18px
+  font-size: 1.125rem; //18px
   font-style: normal;
   font-weight: 700;
   line-height: 140%;

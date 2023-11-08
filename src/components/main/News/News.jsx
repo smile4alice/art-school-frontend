@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
 import { news } from '@/constants/news.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,31 +11,74 @@ import 'swiper/css/pagination';
 import 'swiper/css';
 
 const News = () => {
+  const swiperRef = useRef();
+  const isLaptop = useMediaQuery({ minWidth: 1024 });
+  const isMobile = useMediaQuery({ maxWidth: 678 });
   return (
     <Container>
       <section className={styles.News}>
         <h1>Новини</h1>
-        <div className={styles.ButtonContainer}>
-          <NavLinkButton title={'Переглянути всі новини'} href={'/'} />
+        {isLaptop && (
+          <div className={styles.ButtonContainer}>
+            <NavLinkButton title={'Переглянути всі новини'} href={'/'} />
+          </div>
+        )}
+        <div className={styles.wrapper}>
+          <Swiper
+            className={styles.Slider}
+            spaceBetween={50}
+            slidesPerView={1}
+            modules={[Pagination]}
+            pagination={{ clickable: true }}
+            loop={true}
+            onSwiper={swiper => {
+              swiperRef.current = swiper;
+            }}
+          >
+            {news.map((slide, index) => (
+              <SwiperSlide key={index} className={styles.Slide}>
+                <img src={slide.img} alt={slide.title} />
+                <div className={styles.Text}>
+                  <span>{slide.date}</span>
+                  <p>{slide.title}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          {!isMobile && (
+            <>
+              <button
+                className={styles.prevSlide}
+                onClick={() => swiperRef.current.slidePrev()}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  viewBox="0 0 320 512"
+                >
+                  <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                </svg>
+              </button>
+              <button
+                className={styles.nextSlide}
+                onClick={() => swiperRef.current.slideNext()}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="1em"
+                  viewBox="0 0 320 512"
+                >
+                  <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                </svg>
+              </button>
+            </>
+          )}
         </div>
-        <Swiper
-          className={styles.Slider}
-          spaceBetween={10}
-          slidesPerView={1}
-          modules={[Pagination]}
-          pagination={{ clickable: true }}
-          loop={true}
-        >
-          {news.map((slide, index) => (
-            <SwiperSlide key={index} className={styles.Slide}>
-              <img src={slide.img} alt={slide.title} />
-              <div className={styles.Text}>
-                <span>{slide.date}</span>
-                <p>{slide.title}</p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {!isLaptop && (
+          <div className={styles.ButtonContainer}>
+            <NavLinkButton title={'Переглянути всі новини'} href={'/'} />
+          </div>
+        )}
       </section>
     </Container>
   );
