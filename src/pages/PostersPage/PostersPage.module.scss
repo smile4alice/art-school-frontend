@@ -1,106 +1,96 @@
 .contentWrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.pageTitle{
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 14px;
-        @media screen and (min-width: 768px) {
-        font-size: 32px;
-        font-weight: 700;
-        margin-bottom: 24px;
-          } 
-       }
-.postersList{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    row-gap: 24px;
-    @media screen and (min-width: 768px) {
-        flex-direction: row;
-        gap: 60px;
-      } 
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  @media screen and (min-width: 768px) {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+}
+.postersList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 24px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 60px;
+  }
 }
 
-.postersListItem{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap:8px;
-   
-    p{  
-        width: 288px;
-        font-size: 16px;
-        font-weight: 700;
-        color: $black;
-        text-align: center;
-    }
+.postersListItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-
- @media screen and (min-width: 768px) {
-gap:12px;
-
- p{
-    width: 326px;
-    font-size: 24px;
-}
-}
-.posterImg{
+  p {
     width: 288px;
-    height: 366px;
-    border-radius: 5px;  
-   
- @media screen and (min-width: 768px) {
+    font-size: 16px;
+    font-weight: 700;
+    color: $black;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    gap: 12px;
+
+    p {
+      width: 326px;
+      font-size: 24px;
+    }
+  }
+}
+.posterImg {
+  width: 288px;
+  height: 366px;
+  border-radius: 5px;
+
+  @media screen and (min-width: 768px) {
     width: 330px;
     width: 100%;
-    height: 420px;  
-    }   
+    height: 420px;
+  }
 }
 
-.buttonViewMore{
+.buttonViewMore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 40px auto;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    font-size: 18px;
-    font-weight: 400;
-    margin: 40px auto;
+  &:hover .iconMore span {
+    border-top: 2px solid $accent;
+    border-right: 2px solid $accent;
+  }
 
-    @media screen and (min-width: 768px) {
-          font-size: 24px;
-        }
-    
-
-    &:hover{
-        .icon_more  span{
-            border-top: 2px solid $accent;
-            border-right: 2px solid $accent;  
-        }
-    }
-
-
-   
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  }
 }
 
-.icon_more{
-    width: 32px;
-    height: 32px;
-    @extend%aligncenter;
+.iconMore {
+  width: 32px;
+  height: 32px;
+  @extend%aligncenter;
 
-    
-span{
+  span {
     width: 9px;
     height: 9px;
     border-top: 2px solid $black;
     border-right: 2px solid $black;
     transform: rotate(135deg);
-    }
-}
+  }
 }

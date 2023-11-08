@@ -10,7 +10,6 @@ const PostersPage = () => {
   const [postersPerPage, setPostersPerPage] = useState(12);
   const [showModal, setShowModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState({});
-  console.log('selectedImg: ', selectedImg);
 
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
@@ -67,7 +66,7 @@ const PostersPage = () => {
         )}
         <button className={styles.buttonViewMore} onClick={viewMore}>
           Дивитися Більше
-          <div className={styles.icon_more}>
+          <div className={styles.iconMore}>
             <span></span>
           </div>
         </button>
