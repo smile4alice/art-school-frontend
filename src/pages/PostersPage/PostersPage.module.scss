@@ -1,7 +1,7 @@
 .contentWrapper {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  //   align-items: flex-start;
   flex-direction: column;
 }
 
@@ -34,14 +34,6 @@
   flex-direction: column;
   gap: 8px;
 
-  p {
-    width: 288px;
-    font-size: 16px;
-    font-weight: 700;
-    color: $black;
-    text-align: center;
-  }
-
   @media screen and (min-width: 768px) {
     gap: 12px;
 
@@ -51,7 +43,7 @@
     }
   }
 }
-.posterImg {
+.postersListItemImg {
   width: 288px;
   height: 366px;
   border-radius: 5px;
@@ -62,6 +54,18 @@
   }
 }
 
+.postersListItemText {
+  width: 288px;
+  font-size: 16px;
+  font-weight: 700;
+  color: $black;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    width: 326px;
+    font-size: 24px;
+  }
+}
 .buttonViewMore {
   display: flex;
   justify-content: center;

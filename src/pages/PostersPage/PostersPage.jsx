@@ -48,7 +48,7 @@ const PostersPage = () => {
           {posters.slice(0, postersPerPage).map((poster, index) => (
             <li key={index} className={styles.postersListItem}>
               <img
-                className={styles.posterImg}
+                className={styles.postersListItemImg}
                 src={poster.url}
                 alt={`Афіша  ${poster.title}`}
                 onClick={() => {
@@ -56,7 +56,7 @@ const PostersPage = () => {
                   toggleModal();
                 }}
               />
-              <p>{poster.title}</p>
+              <p className={styles.postersListItemText}>{poster.title}</p>
             </li>
           ))}
         </ul>
