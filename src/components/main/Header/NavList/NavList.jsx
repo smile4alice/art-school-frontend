@@ -2,16 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import {
-  navItems,
-  aboutUs,
-  departmemts,
-} from '@/constants/headerdata';
+import { navItems, aboutUs, departmemts } from '@/constants/headerdata';
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
 
-const NavList = () => {
+const NavList = ({ toggleBurgerMenu }) => {
   const [showDepartment, setShowDepartment] = useState(false);
   const [showAboutUs, setShowAboutUs] = useState(false);
 
@@ -62,7 +58,12 @@ const NavList = () => {
       <ul className={styles.navList}>
         {navItems.map(({ name, to }) => (
           <li className={styles.navList_item} key={name}>
-            <Link className={styles.navList_link} key={name} to={to}>
+            <Link
+              className={styles.navList_link}
+              key={name}
+              to={to}
+              onClick={toggleBurgerMenu}
+            >
               {name}
             </Link>
           </li>

@@ -6,8 +6,7 @@ import SocialList from '../SosialList/SocialList';
 const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
   // console.log('showBurgerMenu: ', showBurgerMenu);
 
-  const handelClickBurgerButton = showBurgerMenu =>
-    setShowBurgerMenu(!showBurgerMenu);
+  const toggleBurgerMenu = () => setShowBurgerMenu(!showBurgerMenu);
   return (
     <div
       className={clsx(
@@ -21,11 +20,11 @@ const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
           tabIndex="0"
           type="button"
           className={styles.burgerMenuCloseButton}
-          onClick={() => handelClickBurgerButton(showBurgerMenu)}
+          onClick={toggleBurgerMenu}
         >
           <CloseIcon />
         </button>
-        <NavList />
+        <NavList toggleBurgerMenu= {toggleBurgerMenu}  />
       </div>
       <SocialList type="burgerMenuIcon" />
     </div>
