@@ -12,6 +12,8 @@ const PostersPage = () => {
   const [selectedImg, setSelectedImg] = useState({});
   const isMaxAmount = postersPerPage >= posters.length - 1;
 
+  console.log('  postersPerPage: ', postersPerPage);
+
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
     setSelectedImg(selectImg);
@@ -35,8 +37,14 @@ const PostersPage = () => {
   }, []);
 
   useEffect(() => {
-    if (windowWidth <= 320) {
+    if (windowWidth <= 768) {
       setPostersPerPage(4);
+    }
+    if (windowWidth >= 768 && windowWidth <= 1279) {
+      setPostersPerPage(8);
+    }
+    if (windowWidth >= 1280) {
+      setPostersPerPage(12);
     }
   }, [windowWidth]);
   return (
