@@ -22,7 +22,11 @@ const PostersPage = () => {
     setShowModal(!showModal);
   };
 
-  const viewMore = () => setPostersPerPage(prev => prev + postersPerPage);
+  const viewMore = () => setPostersPerPage( prev => prev + postersPerPage );
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   useEffect(() => {
     function handleResize() {
