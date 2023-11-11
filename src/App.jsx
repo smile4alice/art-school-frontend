@@ -5,7 +5,7 @@ import Page404 from './pages/page_404/Page404';
 import Contacts from './pages/main/contacts/Contacts';
 import Gallery from './pages/main/gallery/Gallery';
 import AllNews from './pages/main/allnews/AllNews';
-import OneNews from './pages/main/news/OneNews';
+import OneNews from './pages/main/onenews/OneNews';
 
 const App = () => {
   return (

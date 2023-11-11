@@ -20,10 +20,10 @@ const OneNews = ({ newsTitle, newsImgArr, newsText }) => {
         </div>
         <p className={`${styles.title} sectionTitle`}>{newsTitle}</p>
         <Swiper
-          spaceBetween={0}
+          spaceBetween={2}
           slidesPerView={1}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={swiper => console.log(swiper)}
+          //onSlideChange={() => console.log('slide change')}
+          //onSwiper={swiper => console.log(swiper)}
           navigation={true}
           modules={[Navigation]}
           className={styles.swiper}

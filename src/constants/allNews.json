@@ -1,0 +1,83 @@
+[
+    {
+      "name": "Элемент 1",
+      "date": "2023-11-07",
+      "image": "/images/news/allNews.jpg"
+    },
+    {
+      "name": "Элемент 2",
+      "date": "2023-11-07",
+      "image": "/images/news/allNews.jpg"
+    },
+    {
+      "name": "Элемент 3",
+      "date": "2023-11-07",
+      "image": "/images/news/allNews.jpg"
+    },
+    {
+      "name": "Элемент 4",
+      "date": "2023-11-07",
+      "image": "/images/news/allNews.jpg"
+    },
+    {
+      "name": "Элемент 5",
+      "date": "2023-11-07",
+      "image": "/images/news/allNews.jpg"
+    },
+    {
+      "name": "Элемент 6",
+      "date": "2023-11-07",
+      "image": "/images/news/allNews.jpg"
+    },
+    {
+      "name": "Элемент 7",
+      "date": "2023-11-07",
+      "image": "/images/news/allNews.jpg"
+    },
+    {
+      "name": "Элемент 8",
+      "date": "2023-11-07",
+      "image": "/images/news/allNews.jpg"
+    },
+    {
+        "name": "Элемент 1",
+        "date": "2023-11-07",
+        "image": "https://example.com/image1.jpg"
+      },
+      {
+        "name": "Элемент 2",
+        "date": "2023-11-07",
+        "image": "https://example.com/image2.jpg"
+      },
+      {
+        "name": "Элемент 3",
+        "date": "2023-11-07",
+        "image": "https://example.com/image3.jpg"
+      },
+      {
+        "name": "Элемент 4",
+        "date": "2023-11-07",
+        "image": "https://example.com/image4.jpg"
+      },
+      {
+        "name": "Элемент 5",
+        "date": "2023-11-07",
+        "image": "https://example.com/image5.jpg"
+      },
+      {
+        "name": "Элемент 6",
+        "date": "2023-11-07",
+        "image": "https://example.com/image6.jpg"
+      },
+      {
+        "name": "Элемент 7",
+        "date": "2023-11-07",
+        "image": "https://example.com/image7.jpg"
+      },
+      {
+        "name": "Элемент 8",
+        "date": "2023-11-07",
+        "image": "https://example.com/image8.jpg"
+      }
+  ]
+  
