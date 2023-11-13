@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Container from '@/components/Container/Container';
 import { Icon } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -11,7 +10,6 @@ const Contacts = () => {
     iconSize: [45, 42],
   });
   return (
-    <Container>
       <div className={s.contacts}>
         <h2>Наші контакти</h2>
         <ul className="list">
@@ -46,7 +44,6 @@ const Contacts = () => {
           </MapContainer>
         </div>
       </div>
-    </Container>
   );
 };
 
