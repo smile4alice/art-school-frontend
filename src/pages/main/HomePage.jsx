@@ -14,7 +14,6 @@ const HomePage = () => {
 
   return (
     <>
-      <main>
         <Hero />
         <History />
         <Departments />
@@ -22,7 +21,6 @@ const HomePage = () => {
         <Gallery />
         <Achievements />
         <Map />
-      </main>
     </>
   );
 };

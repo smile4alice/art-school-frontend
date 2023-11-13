@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/main/HomePage';
 import Page404 from './pages/page_404/Page404';
-import Contacts from './pages/main/contacts/Contacts';
-import Gallery from './pages/main/gallery/Gallery';
+import Contacts from './pages/contacts/Contacts';
+import Gallery from './pages/gallery/Gallery';
 
 const App = () => {
   return (
