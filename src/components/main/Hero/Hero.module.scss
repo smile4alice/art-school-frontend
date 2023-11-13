@@ -1,8 +1,7 @@
 .HeroSection {
   margin: 0 auto;
   padding: 0;
-  width: 100vw;
-  max-width: 1280px;
+  width: 100%;
   margin-bottom: 10vh;
   position:relative;
 
@@ -23,6 +22,7 @@
     .SlideStyle {
       width: 100%;
       height: 100%;
+      // height: 470px;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
@@ -30,7 +30,8 @@
 
       .HeroImage{
         width: 100%;
-        object-fit: cover;
+        height: 470px;
+        object-fit: fill;
       }
     }
   }
@@ -54,7 +55,7 @@
       color: $black;
       font-size: 1rem;
       font-weight: 700;
-      line-height: 1.4rem; /* 111.111% */
+      line-height: 1.4rem;
       margin-bottom: 0;
     }
 
@@ -62,61 +63,41 @@
       color: $black;
       font-size: 0.75rem;
       font-weight: 700;
-      line-height: 1.05rem; /* 100% */
+      line-height: 1.05rem;
       margin-top: 0;
     }
   }
 
 
     .HeroEvent {
-    width: 1080px;
+    display:flex;
+    flex-direction: column;
+    row-gap: 13.5px;
+    width: 288px;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.80);
     font-style: normal;
     font-family: Mulish;
     position: absolute;
     z-index: 10;
-    top: 400px;
-    left: 100px;
-    padding: 16px 24px;
-    
-    
-    .HeroEventTop{
-      display:flex;
-      justify-content: space-between;
-      margin-bottom: 25px;
-    }
+    top: 175px;
+    left: 16px;
+    padding: 16px 16px;
 
     .HeroEventName{
-      position:relative;
-      color: $black;
-      font-size: 1rem;
+      color: $gray;
+      font-size: 14px;
       font-weight: 700;
-      line-height: normal;
+      line-height: 19.6px;
       text-transform: uppercase;
-      top:12px;
-    }
-
-    .HeroEventLink{
-
-      color: $black;
-      font-size: 1.125rem;
-      font-weight: 400;
-      line-height: normal;
-      border-bottom: 1px solid black;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      
     }
 
     .HeroEventTitle {
       color: $black;
       text-align: left;
-      font-size: 2rem;
+      font-size: 18px;
       font-weight: 700;
-      line-height: normal;
-      // line-height: 50px; /* 111.111% */
-      // margin-bottom: 0;
+      line-height: 25.2px;
       text-transform: uppercase;
       
     }
@@ -124,10 +105,21 @@
     .HeroEventInfo {
       color: $accent;
       text-align: left;
-      font-size: 1.5rem;
+      font-size: 16px;
       font-weight: 700;
-      line-height: normal;
+      line-height: 22.4px;
       text-transform: uppercase;
+    }
+
+    .HeroEventLink{
+      color: $gray;
+      width: 141px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22.4px;
+      text-decoration-line: underline;
+      text-decoration-skip-ink: none;
+      margin-left: auto;
     }
   }
 }
@@ -138,16 +130,10 @@
 
 @media (min-width: 768px) {
   .HeroSection {
-  // margin: 0 auto;
-  // padding: 0;
-  
-  // width: 100vw;
-  // max-width: 1280px;
-  // margin-bottom: 10vh;
-  // position:relative;
-  // @media screen and (max-width: 450px) {
-  //  padding: 1rem;
-  // }
+  margin: 0 auto;
+  padding: 0;
+  margin-bottom: 10vh;
+  position:relative;
 
 
   .SliderStyle {
@@ -168,7 +154,8 @@
 
       .HeroImage{
         width: 100%;
-        object-fit: cover;
+        height: 890px;
+        object-fit: fill;
       }
     }
   }
@@ -179,76 +166,42 @@
     .HeroPrimaryTitle {
       width: 560px;
       font-size: 1.875rem;
-      line-height: 42px; /* 111.111% */
+      line-height: 42px;
     }
 
     .HeroSecondaryTitle {
       font-size: 1.5rem;
-      line-height: 1.75rem; /* 100% */
+      line-height: 1.75rem;
     }
   }
 
 
     .HeroEvent {
-    width: 1080px;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.80);
-    font-style: normal;
-    font-family: Mulish;
-    position: absolute;
-    z-index: 10;
-    top: 400px;
-    left: 100px;
-    padding: 16px 24px;
-    
-    
-    .HeroEventTop{
-      display:flex;
-      justify-content: space-between;
-      margin-bottom: 25px;
-    }
+    display: flex;
+    flex-direction: column;
+    row-gap: 14.5px;
+    width: 736px;
+    top: 545px;
 
     .HeroEventName{
-      position:relative;
-      color: $black;
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: uppercase;
-      top:12px;
-    }
-
-    .HeroEventLink{
-
-      color: $black;
-      font-size: 1.125rem;
-      font-weight: 400;
-      line-height: normal;
-      border-bottom: 1px solid black;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      
+      font-size: 20px;
+      line-height: 28px;
     }
 
     .HeroEventTitle {
-      color: $black;
-      text-align: left;
       font-size: 2rem;
-      font-weight: 700;
-      line-height: normal;
-      // line-height: 50px; /* 111.111% */
-      // margin-bottom: 0;
-      text-transform: uppercase;
-      
+      line-height: 44.8px;
     }
 
     .HeroEventInfo {
-      color: $accent;
-      text-align: left;
       font-size: 1.5rem;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: uppercase;
+      line-height: 33.6px;
+    }
+        
+    .HeroEventLink{
+      width: 211px;
+      font-size: 1.5rem;
+      line-height: 33.6px;
     }
   }
 }
@@ -258,17 +211,14 @@
 // -----DESKTOP----------------------------------------------
 
 
-@media (min-width: 768px) {
+@media (min-width: 1280px) {
   .HeroSection {
   margin: 0 auto;
   padding: 0;
-  width: 100vw;
   max-width: 1280px;
   margin-bottom: 10vh;
   position:relative;
-  // @media screen and (max-width: 450px) {
-  //  padding: 1rem;
-  // }
+
 
   .prevSlide,
   .nextSlide {
@@ -306,6 +256,32 @@
       fill: $accent;
     }
 
+
+
+  .SliderStyle {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3rem;
+  
+  .SlideStyle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+
+    .HeroImage{
+      width: 100%;
+      height: 615px;
+      object-fit: cover;
+    }
+  }
+  }
+
     .HeroTitle {
     border-radius: 1.875rem;
     top: 125px;
@@ -330,100 +306,42 @@
 
 
     .HeroEvent {
+    display: block;
     width: 1080px;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.80);
-    font-style: normal;
-    font-family: Mulish;
-    position: absolute;
-    z-index: 10;
     top: 400px;
     left: 100px;
-    padding: 16px 24px;
-    
-    
-    .HeroEventTop{
-      display:flex;
-      justify-content: space-between;
-      margin-bottom: 25px;
-    }
+    padding: 22px 24px 24px 24px;
 
     .HeroEventName{
-      position:relative;
       color: $black;
       font-size: 1rem;
-      font-weight: 700;
       line-height: normal;
-      text-transform: uppercase;
-      top:12px;
+      margin-bottom: 15px;
+    }
+
+    .HeroEventTitle {
+      margin-bottom: 6px;
+      line-height: normal;
+    }
+
+    .HeroEventInfo {
+      line-height: normal;
     }
 
     .HeroEventLink{
-
+      position:absolute;
+      width: 190px;
       color: $black;
       font-size: 1.125rem;
-      font-weight: 400;
       line-height: normal;
       border-bottom: 1px solid black;
       padding-left: 1rem;
       padding-right: 1rem;
-      
-    }
-
-    .HeroEventTitle {
-      color: $black;
-      text-align: left;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: normal;
-      // line-height: 50px; /* 111.111% */
-      // margin-bottom: 0;
-      text-transform: uppercase;
-      
-    }
-
-    .HeroEventInfo {
-      color: $accent;
-      text-align: left;
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: uppercase;
+      text-decoration: none;
+      top: 16px;
+      right: 24px;
     }
   }
   }
 }
-
-
-
-
-
-
-//   .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
-//     content: '';
-// }
-  
-//   .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
-//     content: '';
-// }
-
-
-// .swiper-button-prev:after {
-//   background-color: transparent;
-//   border: 1px solid #51ff00; /* Border color */
-//   color: #ff0000; /* Text color */
-//   border-radius: 50%; /* Make it circular */
-//   padding: 10px; /* Padding size */
-//   font-size: 24px; /* Font size */
-// }
-
-
-// .swiper-button-next:after, .swiper-container-rtl .swiper-button-prev:after {
-//     background-color: transparent;
-//     border: 1px solid #ff00aa; /* Border color */
-//     color: #00ff00; /* Text color */
-//     border-radius: 50%; /* Make it circular */
-//     padding: 10px; /* Padding size */
-//     font-size:  70px !important;
-//   }
   
