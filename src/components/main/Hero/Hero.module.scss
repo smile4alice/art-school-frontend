@@ -3,12 +3,11 @@
   padding: 0;
   width: 100%;
   margin-bottom: 10vh;
-  position:relative;
-
+  position: relative;
 
   .prevSlide,
   .nextSlide {
-    display:none;
+    display: none;
   }
 
   .SliderStyle {
@@ -18,7 +17,7 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 3rem;
-    
+
     .SlideStyle {
       width: 100%;
       height: 100%;
@@ -28,7 +27,7 @@
       align-items: flex-start;
       flex-direction: column;
 
-      .HeroImage{
+      .HeroImage {
         width: 100%;
         height: 470px;
         object-fit: fill;
@@ -38,7 +37,7 @@
 
   .HeroTitle {
     border-radius: 1.25rem;
-    background: rgba(255, 255, 255, 0.40);
+    background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(1.219rem);
     font-style: normal;
     font-family: Mulish;
@@ -47,8 +46,6 @@
     top: 16px;
     left: 16px;
     padding: 16px 24px;
-
-
 
     .HeroPrimaryTitle {
       width: 162px;
@@ -68,14 +65,13 @@
     }
   }
 
-
-    .HeroEvent {
-    display:flex;
+  .HeroEvent {
+    display: flex;
     flex-direction: column;
     row-gap: 13.5px;
     width: 288px;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.80);
+    background: rgba(255, 255, 255, 0.8);
     font-style: normal;
     font-family: Mulish;
     position: absolute;
@@ -83,8 +79,12 @@
     top: 175px;
     left: 16px;
     padding: 16px 16px;
+    @media screen and (max-width: 1280px) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-    .HeroEventName{
+    .HeroEventName {
       color: $gray;
       font-size: 14px;
       font-weight: 700;
@@ -99,7 +99,6 @@
       font-weight: 700;
       line-height: 25.2px;
       text-transform: uppercase;
-      
     }
 
     .HeroEventInfo {
@@ -111,7 +110,7 @@
       text-transform: uppercase;
     }
 
-    .HeroEventLink{
+    .HeroEventLink {
       color: $gray;
       width: 141px;
       font-size: 16px;
@@ -124,121 +123,113 @@
   }
 }
 
-
-
 // ------TABLET-------------------------------------------------
 
 @media (min-width: 768px) {
   .HeroSection {
-  margin: 0 auto;
-  padding: 0;
-  margin-bottom: 10vh;
-  position:relative;
+    margin: 0 auto;
+    padding: 0;
+    margin-bottom: 10vh;
+    position: relative;
 
-
-  .SliderStyle {
-    width: 100%;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 3rem;
-    
-    .SlideStyle {
+    .SliderStyle {
       width: 100%;
-      height: 100%;
+      background-color: #fff;
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 3rem;
 
-      .HeroImage{
+      .SlideStyle {
         width: 100%;
-        height: 890px;
-        object-fit: fill;
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+
+        .HeroImage {
+          width: 100%;
+          height: 890px;
+          object-fit: fill;
+        }
+      }
+    }
+
+    .HeroTitle {
+      padding: 16px 16px;
+
+      .HeroPrimaryTitle {
+        width: 560px;
+        font-size: 1.875rem;
+        line-height: 42px;
+      }
+
+      .HeroSecondaryTitle {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+      }
+    }
+
+    .HeroEvent {
+      display: flex;
+      flex-direction: column;
+      row-gap: 14.5px;
+      width: 736px;
+      top: 545px;
+
+      .HeroEventName {
+        font-size: 20px;
+        line-height: 28px;
+      }
+
+      .HeroEventTitle {
+        font-size: 2rem;
+        line-height: 44.8px;
+      }
+
+      .HeroEventInfo {
+        font-size: 1.5rem;
+        line-height: 33.6px;
+      }
+
+      .HeroEventLink {
+        width: 211px;
+        font-size: 1.5rem;
+        line-height: 33.6px;
       }
     }
   }
-
-  .HeroTitle {
-    padding: 16px 16px;
-
-    .HeroPrimaryTitle {
-      width: 560px;
-      font-size: 1.875rem;
-      line-height: 42px;
-    }
-
-    .HeroSecondaryTitle {
-      font-size: 1.5rem;
-      line-height: 1.75rem;
-    }
-  }
-
-
-    .HeroEvent {
-    display: flex;
-    flex-direction: column;
-    row-gap: 14.5px;
-    width: 736px;
-    top: 545px;
-
-    .HeroEventName{
-      font-size: 20px;
-      line-height: 28px;
-    }
-
-    .HeroEventTitle {
-      font-size: 2rem;
-      line-height: 44.8px;
-    }
-
-    .HeroEventInfo {
-      font-size: 1.5rem;
-      line-height: 33.6px;
-    }
-        
-    .HeroEventLink{
-      width: 211px;
-      font-size: 1.5rem;
-      line-height: 33.6px;
-    }
-  }
 }
-}
-
 
 // -----DESKTOP----------------------------------------------
 
-
 @media (min-width: 1280px) {
   .HeroSection {
-  margin: 0 auto;
-  padding: 0;
-  max-width: 1280px;
-  margin-bottom: 10vh;
-  position:relative;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1280px;
+    margin-bottom: 10vh;
+    position: relative;
 
+    .prevSlide,
+    .nextSlide {
+      position: absolute;
+      top: 50%;
+      padding: 0.625rem 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.4);
+      outline: none;
 
-  .prevSlide,
-  .nextSlide {
-    position: absolute;
-    top: 50%;
-    padding: 0.625rem 0.875rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.40);
-    outline: none;
-
-
-    svg {
-      width: 0.772rem;
-      height: 1.25rem;
-      fill: $graylight;
-      transition: all linear 0.25s;
+      svg {
+        width: 0.772rem;
+        height: 1.25rem;
+        fill: $graylight;
+        transition: all linear 0.25s;
       }
     }
     .prevSlide {
@@ -256,92 +247,85 @@
       fill: $accent;
     }
 
-
-
-  .SliderStyle {
-    width: 100%;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 3rem;
-  
-  .SlideStyle {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-
-    .HeroImage{
+    .SliderStyle {
       width: 100%;
-      height: 615px;
-      object-fit: cover;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 3rem;
+
+      .SlideStyle {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+
+        .HeroImage {
+          width: 100%;
+          height: 615px;
+          object-fit: cover;
+        }
+      }
     }
-  }
-  }
 
     .HeroTitle {
-    border-radius: 1.875rem;
-    top: 125px;
-    left: 100px;
-    padding: 16px 24px;
+      border-radius: 1.875rem;
+      top: 125px;
+      left: 100px;
+      padding: 16px 24px;
 
+      .HeroPrimaryTitle {
+        width: 455px;
+        font-size: 2.813rem;
+        line-height: 50px; /* 111.111% */
+      }
 
-
-    .HeroPrimaryTitle {
-      width: 455px;
-      font-size: 2.813rem;
-      line-height: 50px; /* 111.111% */
+      .HeroSecondaryTitle {
+        color: $black;
+        font-size: 1.25rem;
+        line-height: 24px; /* 100% */
+      }
     }
-
-    .HeroSecondaryTitle {
-      color: $black;
-      font-size: 1.25rem;
-      line-height: 24px; /* 100% */
-
-    }
-  }
-
 
     .HeroEvent {
-    display: block;
-    width: 1080px;
-    top: 400px;
-    left: 100px;
-    padding: 22px 24px 24px 24px;
+      display: block;
+      width: 1080px;
+      top: 400px;
+      left: 100px;
+      padding: 22px 24px 24px 24px;
 
-    .HeroEventName{
-      color: $black;
-      font-size: 1rem;
-      line-height: normal;
-      margin-bottom: 15px;
-    }
+      .HeroEventName {
+        color: $black;
+        font-size: 1rem;
+        line-height: normal;
+        margin-bottom: 15px;
+      }
 
-    .HeroEventTitle {
-      margin-bottom: 6px;
-      line-height: normal;
-    }
+      .HeroEventTitle {
+        margin-bottom: 6px;
+        line-height: normal;
+      }
 
-    .HeroEventInfo {
-      line-height: normal;
-    }
+      .HeroEventInfo {
+        line-height: normal;
+      }
 
-    .HeroEventLink{
-      position:absolute;
-      width: 190px;
-      color: $black;
-      font-size: 1.125rem;
-      line-height: normal;
-      border-bottom: 1px solid black;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      text-decoration: none;
-      top: 16px;
-      right: 24px;
+      .HeroEventLink {
+        position: absolute;
+        width: 190px;
+        color: $black;
+        font-size: 1.125rem;
+        line-height: normal;
+        border-bottom: 1px solid black;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        text-decoration: none;
+        top: 16px;
+        right: 24px;
+      }
     }
-  }
   }
 }
-  
