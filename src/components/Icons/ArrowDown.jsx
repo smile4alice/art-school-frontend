@@ -1,7 +1,7 @@
 const ArrowDown = ({ hovered }) => {
   return (
     <svg
-      width="24"
+      width="20"
       height="15"
       viewBox="0 0 24 15"
       fill="none"

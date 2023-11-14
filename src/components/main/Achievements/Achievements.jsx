@@ -8,6 +8,7 @@ import s from './Achievements.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import Container from '@/components/Container/Container';
 
 const fetchFakeData = () => {
   return fakeDataAchievements;
@@ -19,6 +20,7 @@ const Achievements = () => {
   const swiperRef = useRef();
 
   return (
+    <Container>
       <section className={s.achievements}>
         <h2>Наші досягнення</h2>
 
@@ -81,6 +83,7 @@ const Achievements = () => {
           </Swiper>
         </div>
       </section>
+    </Container>
   );
 };
 
