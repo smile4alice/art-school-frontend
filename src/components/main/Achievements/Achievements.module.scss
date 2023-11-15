@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 1280px;
   background-color: inherit;
-  padding: 1rem;
+  padding: 0.5rem;
   overflow: hidden;
   h2 {
     font-size: 1.3rem;
@@ -18,7 +18,7 @@
       overflow: hidden;
       .slideContent {
         padding-bottom: 2rem;
-        .slidePhoto{
+        .slidePhoto {
           width: 100%;
           height: 470px;
           border-radius: 5px;
@@ -34,7 +34,7 @@
         .slideText {
           font-size: 0.875rem;
           font-weight: 500;
-          padding: 1rem 0 .5rem;
+          padding: 1rem 0 0.5rem;
         }
       }
     }
@@ -71,22 +71,22 @@
       .slider {
         width: 86%;
         .slideContent {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          padding-bottom: 2rem;
+          .slidePhoto {
+            width: 100%;
+            height: 470px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            padding-bottom: 2rem;
-            .slidePhoto{
-              width: 100%;
-              height: 470px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              border-radius: 5px;
-              overflow: hidden;
-              img {
-                height: auto; 
-              }  
+            border-radius: 5px;
+            overflow: hidden;
+            img {
+              height: auto;
+            }
           }
           .slideText {
             padding: 0.65rem 0;
@@ -107,7 +107,7 @@
           height: 1.5rem;
           fill: $graylight;
           transition: all linear 0.25s;
-          }
+        }
       }
       .prevSlide {
         transform: translateY(-150%);
@@ -124,5 +124,3 @@
     }
   }
 }
-
-
