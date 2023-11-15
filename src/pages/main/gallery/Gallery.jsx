@@ -22,6 +22,10 @@ const Gallery = () => {
   const [sortedImages, setSortedImages] = useState(images);
   const isMaxAmount = itemsPerPage >= images.length - 1;
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const replaceUrl = url => {
     return url.replace('watch?v=', 'embed/');
   };
