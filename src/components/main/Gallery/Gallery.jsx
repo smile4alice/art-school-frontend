@@ -6,6 +6,7 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { images } from '@/constants/gallery';
 import styles from './Gallery.module.scss';
+import { Link } from 'react-router-dom';
 
 const Gallery = () => {
   const swiperRef = useRef();
@@ -22,7 +23,9 @@ const Gallery = () => {
         </div>
         {isLaptop && (
           <div className={styles.ButtonContainer}>
-            <NavLinkButton title={'Дивитися більше'} href={'/'} />
+            <Link to={'/gallery'}>
+              <NavLinkButton title={'Дивитися більше'} />
+            </Link>
           </div>
         )}
         {isLaptop && (
@@ -54,7 +57,10 @@ const Gallery = () => {
               ))}
             </Swiper>
             <div className={styles.ButtonContainer}>
-              <NavLinkButton title={'Дивитися більше'} href={'/'} />
+              {/* <NavLinkButton title={'Дивитися більше'} href={'/gallery'} /> */}
+              <Link to="/gallery" className={styles.NavLinkButton}>
+                more
+              </Link>
             </div>
           </>
         )}
