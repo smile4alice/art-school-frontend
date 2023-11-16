@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { aboutUs, departmemts } from '@/constants/dropDownItems.js';
 import { navItems } from '@/constants/navList.js';
+console.log('departmemts : ', departmemts);
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
@@ -13,17 +14,15 @@ const NavList = ({ toggleBurgerMenu }) => {
   console.log('showDepartment: ', showDepartment);
   const [showAboutUs, setShowAboutUs] = useState(false);
 
-  const handleClickDepartment = () => {
+  const handleClickDepartment = showDepartment => {
     setShowDepartment(!showDepartment);
     setShowAboutUs(false);
   };
-  const handleClickAboutUs = () => {
+  const handleClickAboutUs = showAboutUs => {
     setShowDepartment(false);
     setShowAboutUs(!showAboutUs);
   };
 
-
-  // закривати dropDown menu по кліку  НЕ НА КНОПКУ НАВІГАЦІЇ 
   useEffect(() => {
     const func = e => {
       const target = e.target.getAttribute('data-element-id');
@@ -49,6 +48,7 @@ const NavList = ({ toggleBurgerMenu }) => {
           items={departmemts}
           open={showDepartment}
           handleClick={handleClickDepartment}
+          toggleBurgerMenu={toggleBurgerMenu}
         />
         <DropDownMenu
           aria-label="about us menu"
@@ -56,6 +56,7 @@ const NavList = ({ toggleBurgerMenu }) => {
           items={aboutUs}
           open={showAboutUs}
           handleClick={handleClickAboutUs}
+          toggleBurgerMenu={toggleBurgerMenu}
         />
       </div>
 
