@@ -19,6 +19,28 @@ export const theaterDepartmentInfo = [
   },
 ];
 
+export const theaterDepartmentImages = [
+  {
+    id: 1,
+    url: '/defaultImg.png',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
+  },
+  {
+    id: 2,
+    url: '/defaultImg.png',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
+  },
+  {
+    id: 3,
+    url: '/defaultImg.png',
+    text: 'Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, . ',
+  },
+  {
+    id: 4,
+    url: '/defaultImg.png',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
+  },
+];
 export const theaterDepartmentAchivments = [
   {
     id: 1,

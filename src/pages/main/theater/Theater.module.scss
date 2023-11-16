@@ -1,13 +1,223 @@
-.contentWrapper {
+.theater_contentWrapper {
   outline: 1px solid red;
   min-height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend%aligncenter;
+  align-items: flex-start;
   flex-direction: column;
-  padding-top: 40px;
-  padding-bottom: 192px;
+
+  @include tablet {
+  }
+  @include desktop {
+    padding-top: 40px;
+    padding-bottom: 192px;
+  }
 }
 
+.theater_list {
+  width: 100%;
+  @extend%aligncenter;
+  flex-direction: column;
 
+  @include tablet {
+  }
+  @include desktop {
+    gap: 120px;
+  }
+}
+
+.theater_list_listItem {
+  width: 100%;
+
+  @include tablet {
+  }
+  @include desktop {
+  }
+}
+
+.theater_list_listItem_content {
+  width: 100%;
+  @extend%aligncenter;
+  text-align: justify;
+  flex-direction: column-reverse;
+
+  @include tablet {
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px;
+  }
+  @include desktop {
+  }
+}
+.theater_list_listItem:nth-child(even) {
+  .theater_list_listItem_content {
+    flex-direction: row-reverse;
+  }
+}
+
+.theater_list_listItem_content_text {
+  width: 100%;
+  @include tablet {
+    width: 420px;
+  }
+  @include desktop {
+    width: 520px;
+    @include font(18px, 400, 1.33);
+  }
+}
+.theater_list_listItem_content_img {
+  width: 440px;
+  height: 330px;
+  @include tablet {
+    width: 440px;
+    height: 330px;
+  }
+  @include desktop {
+    width: 640px;
+    height: 430px;
+  }
+}
+
+.departmentImage {
+  width: 100%;
+}
+.departmentImage_contentWrapper {
+  width: 100%;
+  @include tablet {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  @include desktop {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
+
+.departmentAchivments {
+  width: 100%;
+}
+.departmentAchivments_contentWrapper {
+  width: 100%;
+  @extend%aligncenter;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  @include tablet {
+  }
+  @include desktop {
+  }
+}
+
+// slider
+.slidersContainer {
+  padding-top: 1rem;
+  width: 100%;
+  .slider {
+    outline: 1px solid blue;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+    .slideContent {
+      outline: 1px solid red;
+      padding-bottom: 1.5rem;
+      .slidePhoto {
+        width: 100%;
+        height: 250px;
+        border-radius: 5px;
+        overflow: hidden;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 5px;
+        }
+      }
+      .slideText {
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 1rem 0 0.5rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .slidersContainer {
+    .slider {
+      width: 80%;
+      .slideContent {
+        .slideText {
+          padding: 1rem 0;
+          font-size: 1rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .slidersContainer {
+    position: relative;
+    .slider {
+      width: 75.7%;
+      .slideContent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-bottom: 2rem;
+        .slidePhoto {
+          width: 280px;
+          height: 350px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 5px;
+          overflow: hidden;
+          img {
+            width: 280px;
+            height: 350px;
+            // height: auto;
+            // object-fit: cover;
+          }
+        }
+        .slideText {
+          width: 280px;
+          padding: 0.65rem 0;
+        }
+      }
+    }
+
+    // navigation
+    .prevSlide,
+    .nextSlide {
+      position: absolute;
+      top: 50%;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $graylight;
+        transition: all linear 0.25s;
+      }
+    }
+    .prevSlide {
+      transform: translateY(-150%);
+      left: 73px;
+    }
+    .nextSlide {
+      transform: rotate(180deg) translateY(150%);
+      right: 73px;
+    }
+    .prevSlide:hover svg,
+    .nextSlide:hover svg {
+      fill: $accent;
+    }
+  }
+}
