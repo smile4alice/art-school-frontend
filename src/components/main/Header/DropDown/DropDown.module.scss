@@ -1,6 +1,6 @@
 .dropDown {
   position: relative;
-
+  cursor: pointer;
   &:focus-within,
   &:hover {
     .menu {
