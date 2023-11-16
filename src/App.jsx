@@ -6,6 +6,7 @@ import Contacts from '@/pages/main/contacts/Contacts';
 import Gallery from '@/pages/main/gallery/Gallery';
 import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
+import Theater from './pages/main/theater/Theater';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/posters" element={<PostersPage />} />
           <Route path="/cooperation" element={<Cooperation />} />
+          <Route path="/theater/_department" element={<Theater />} />
         </Route>
       </Routes>
     </Router>

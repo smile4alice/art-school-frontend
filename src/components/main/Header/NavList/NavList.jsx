@@ -2,24 +2,28 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { navItems, aboutUs, departmemts } from '@/constants/headerdata';
+import { aboutUs, departmemts } from '@/constants/dropDownItems.js';
+import { navItems } from '@/constants/navList.js';
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
 
 const NavList = ({ toggleBurgerMenu }) => {
   const [showDepartment, setShowDepartment] = useState(false);
+  console.log('showDepartment: ', showDepartment);
   const [showAboutUs, setShowAboutUs] = useState(false);
 
-  const handleClickDepartment = showDepartment => {
+  const handleClickDepartment = () => {
     setShowDepartment(!showDepartment);
     setShowAboutUs(false);
   };
-  const handleClickAboutUs = showAboutUs => {
+  const handleClickAboutUs = () => {
     setShowDepartment(false);
     setShowAboutUs(!showAboutUs);
   };
 
+
+  // закривати dropDown menu по кліку  НЕ НА КНОПКУ НАВІГАЦІЇ 
   useEffect(() => {
     const func = e => {
       const target = e.target.getAttribute('data-element-id');

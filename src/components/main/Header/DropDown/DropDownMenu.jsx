@@ -3,14 +3,12 @@ import styles from './DropDown.module.scss';
 import { Link } from 'react-router-dom';
 
 const DropDownMenu = ({ type, items, handleClick, open }) => {
-  // console.log('open: ', open);
-
   return (
     <div className={styles.dropDown}>
       <div
         data-element-id="dropdown"
         className={styles.dropDownNameWrapper}
-        onClick={() => handleClick(open)}
+        onClick={() => handleClick(true)}
       >
         <span
           className={clsx(styles.dropDownName, open ? styles.open : '')}
@@ -31,25 +29,28 @@ const DropDownMenu = ({ type, items, handleClick, open }) => {
         )}
       </div>
 
-      <ul
-        className={clsx(
-          styles.menu,
-          open ? styles.open : '',
-          type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
-        )}
-      >
-        {items.map(({ name, to }) => (
-          <li className={styles.menuItem} key={name}>
-            <Link
-              className={clsx(styles.menulink, open ? styles.open : '')}
-              key={name}
-              to={to}
-            >
-              {name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {open && (
+        <ul
+          className={clsx(
+            styles.menu,
+            open ? styles.open : '',
+            type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
+          )}
+        >
+          {items.map(({ name, to }) => (
+            <li className={styles.menuItem} key={name}>
+              <Link
+                className={clsx(styles.menulink, open ? styles.open : '')}
+                key={name}
+                to={to}
+              
+              >
+                {name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
