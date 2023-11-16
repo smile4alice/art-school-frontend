@@ -1,7 +1,8 @@
 .dropDown {
   position: relative;
 
-  &:focus-within {
+  &:focus-within,
+  &:hover {
     .menu {
       opacity: 1;
       visibility: visible;
