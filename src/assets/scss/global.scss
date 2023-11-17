@@ -8,9 +8,9 @@ main {
 body {
   min-height: 100vh;
 }
-*:focus {
-  outline: 1px solid $accent;
-}
+// *:focus {
+//   outline: 1px solid $accent;
+// }
 @media (min-width: 1280px) {
   main {
     margin-top: 169px;
