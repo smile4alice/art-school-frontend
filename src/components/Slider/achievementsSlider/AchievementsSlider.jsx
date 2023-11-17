@@ -4,7 +4,7 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from './AchievementsSlider.module.scss';
 const AchievementsSlider = ({ data }) => {
-  const isLaptop = useMediaQuery({ minWidth: 1280 });
+  const isLaptop = useMediaQuery({ minWidth: 1240 });
   const swiperRef = useRef();
   return (
     <div className={styles.slidersContainer}>
@@ -48,7 +48,7 @@ const AchievementsSlider = ({ data }) => {
           768: {
             slidesPerView: 2,
           },
-          1280: {
+          1240: {
             slidesPerView: 3,
           },
         }}
@@ -57,12 +57,10 @@ const AchievementsSlider = ({ data }) => {
       >
         {data.map(item => (
           <SwiperSlide className={styles.slideContent} key={item.id}>
-        
-              <div className={styles.slidePhoto}>
-                <img src={item.url} alt="Фото" />
-              </div>
-              <p className={styles.slideText}>{item.text}</p>
-       
+            <div className={styles.slidePhoto}>
+              <img src={item.url} alt="Фото" />
+            </div>
+            <p className={styles.slideText}>{item.text}</p>
           </SwiperSlide>
         ))}
       </Swiper>

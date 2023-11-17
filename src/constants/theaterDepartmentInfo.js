@@ -27,17 +27,27 @@ export const theaterDepartmentImages = [
   },
   {
     id: 2,
-    url: '/defaultImg.png',
+    url: '/defaultImg2.jpg',
     text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
   },
   {
     id: 3,
-    url: '/defaultImg.png',
+    url: '/defaultImg3.jpg',
     text: 'Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit amet consectetur, . ',
   },
   {
     id: 4,
-    url: '/defaultImg.png',
+    url: '/defaultImg3.jpg',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
+  },
+  {
+    id: 5,
+    url: '/defaultImg2.jpg',
+    text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
+  },
+  {
+    id: 6,
+    url: '/defaultImg3.jpg',
     text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
   },
 ];

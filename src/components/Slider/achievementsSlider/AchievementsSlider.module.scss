@@ -2,12 +2,13 @@
   padding-top: 1rem;
   width: 100%;
   .slider {
-    outline: 1px solid blue;
+    
+
     margin: 0 auto;
     width: 100%;
     overflow: hidden;
     .slideContent {
-      outline: 1px solid red;
+      
       padding-bottom: 1.5rem;
       .slidePhoto {
         width: 100%;
@@ -81,8 +82,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      outline: none;
-      svg {
+
+      
         width: 1.5rem;
         height: 1.5rem;
         fill: $graylight;
@@ -102,4 +103,4 @@
       fill: $accent;
     }
   }
-}
+

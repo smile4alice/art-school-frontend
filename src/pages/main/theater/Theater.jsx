@@ -1,5 +1,6 @@
-import { SwiperSlide, Swiper } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
+
+import { SwiperSlide, Swiper } from 'swiper/react';
 
 import { useMediaQuery } from 'react-responsive';
 import { useRef } from 'react';
@@ -13,6 +14,7 @@ import Container from '@/components/Container/Container';
 import AchievementsSlider from '@/components/Slider/achievementsSlider/achievementsSlider';
 
 import styles from './Theater.module.scss';
+
 
 const Theater = () => {
   const isLaptop = useMediaQuery({ minWidth: 1280 });
