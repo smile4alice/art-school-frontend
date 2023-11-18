@@ -30,32 +30,37 @@ const AllNews = () => {
     <Container>
       <section className={styles.wrapper}>
         <div className={styles.newsWrapper}>
-            {Data.slice(0, itemsPerPage).map((item, index) => (
-              <Link to={item.id} key={index}>
-                <OneItem imgSrc={item.image[0]} date={item.date} title={item.name}  />
-              </Link>
-            ))}
+          {Data.slice(0, itemsPerPage).map((item, index) => (
+            <Link to={item.id} key={index}>
+              <OneItem
+                imgSrc={item.image[1]}
+                date={item.date}
+                title={item.title}
+              />
+            </Link>
+          ))}
         </div>
-
-        {!isMaxAmount ? (
-          <button
-            className={styles.viewMore}
-            onMouseEnter={() => setDownHovered(true)}
-            onMouseLeave={() => setDownHovered(false)}
-            onClick={viewMore}
-          >
-            Дивитися Більше <ArrowDown hovered={downHovered} />
-          </button>
-        ) : (
-          <button
-            className={styles.viewMore}
-            onMouseEnter={() => setUpHovered(true)}
-            onMouseLeave={() => setUpHovered(false)}
-            onClick={viewLess}
-          >
-            Дивитися Менше <ArrowUp hovered={upHovered} />
-          </button>
-        )}
+        <div className={styles.buttonContainer}>
+          {!isMaxAmount ? (
+            <button
+              className={styles.viewMore}
+              onMouseEnter={() => setDownHovered(true)}
+              onMouseLeave={() => setDownHovered(false)}
+              onClick={viewMore}
+            >
+              Дивитися більше <ArrowDown hovered={downHovered} />
+            </button>
+          ) : (
+            <button
+              className={styles.viewMore}
+              onMouseEnter={() => setUpHovered(true)}
+              onMouseLeave={() => setUpHovered(false)}
+              onClick={viewLess}
+            >
+              Дивитися менше <ArrowUp hovered={upHovered} />
+            </button>
+          )}
+        </div>
       </section>
     </Container>
   );

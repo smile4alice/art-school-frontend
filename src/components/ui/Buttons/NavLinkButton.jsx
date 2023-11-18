@@ -1,7 +1,12 @@
+import React from 'react';
 import styles from './NavLinkButton.module.scss';
 
-function NavLinkButton({ title }) {
-  return <button className={styles.NavLinkButton}>{title}</button>;
-}
+const NavLinkButton = ({ link, text }) => {
+  return (
+    <a href={link} target="_blank" className={styles.NavLinkButton}>
+      {text}
+    </a>
+  );
+};
 
 export default NavLinkButton;

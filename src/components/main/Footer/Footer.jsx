@@ -5,7 +5,7 @@ import PhoneIcon from '@/components/Icons/PhoneIcon';
 import EmailIcon from '@/components/Icons/EmailIcon';
 import FacebookIcon from '@/components/Icons/FacebookIcon';
 import YoutubeIcon from '@/components/Icons/YoutubeIcon';
-import DownloadButton from '@/components/ui/Buttons/DownloadButton';
+import DownloadButton from '@/components/ui/Buttons/NavLinkButton';
 import styles from './Footer.module.scss';
 import ClockIcon from '@/components/Icons/ClockIcon';
 
