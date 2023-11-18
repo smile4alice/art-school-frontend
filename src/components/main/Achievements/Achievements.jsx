@@ -1,6 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
 import { useRef } from 'react';
-import Container from '@/components/Container/Container';
 import fakeDataAchievements from './achievements-fake-data.json';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -9,13 +8,14 @@ import s from './Achievements.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import Container from '@/components/Container/Container';
 
 const fetchFakeData = () => {
   return fakeDataAchievements;
 };
 
 const Achievements = () => {
-  const isLaptop = useMediaQuery({ minWidth: 1024});
+  const isLaptop = useMediaQuery({ minWidth: 1280 });
   const data = fetchFakeData();
   const swiperRef = useRef();
 
@@ -59,13 +59,13 @@ const Achievements = () => {
             }}
             className={s.slider}
             modules={[Pagination]}
-            spaceBetween={20}
+            spaceBetween={16}
             slidesPerView={1}
             breakpoints={{
               768: {
                 slidesPerView: 2,
               },
-              1024: {
+              1280: {
                 slidesPerView: 3,
               },
             }}
@@ -73,7 +73,7 @@ const Achievements = () => {
             loop={true}
           >
             {data.map(item => (
-              <SwiperSlide className={s.sliderContent} key={item.id}>
+              <SwiperSlide className={s.slideContent} key={item.id}>
                 <div className={s.slidePhoto}>
                   <img src={item.url} alt="Фото" />
                 </div>

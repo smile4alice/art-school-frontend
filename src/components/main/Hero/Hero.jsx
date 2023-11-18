@@ -86,22 +86,20 @@ const Hero = () => {
         </h1>
       </div>
       <div className={styles.HeroEvent}>
-        <div className={styles.HeroEventTop}>
-          <p className={styles.HeroEventName}>афіша</p>
-          <a
-            href="https://www.google.com.ua/"
-            rel="link"
-            className={styles.HeroEventLink}
-          >
-            Дивитися всі події
-          </a>
-        </div>
+        <p className={styles.HeroEventName}>афіша</p>
         <h3 className={styles.HeroEventTitle}>
           документальна вистава “обличчя кольору війни”
         </h3>
         <p className={styles.HeroEventInfo}>
           благодійний показ на підтримку зсу. вистава відбудеться 14.10 О 16:00
         </p>
+        <a
+          href="https://www.google.com.ua/"
+          rel="link"
+          className={styles.HeroEventLink}
+        >
+          Дивитися всі події
+        </a>
       </div>
     </section>
   );

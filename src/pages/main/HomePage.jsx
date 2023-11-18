@@ -14,15 +14,13 @@ const HomePage = () => {
 
   return (
     <>
-      <main>
-        <Hero />
-        <History />
-        <Departments />
-        <News />
-        <Gallery />
-        <Achievements />
-        <Map />
-      </main>
+      <Hero />
+      <History />
+      <Departments />
+      <News />
+      <Gallery />
+      <Achievements />
+      <Map />
     </>
   );
 };

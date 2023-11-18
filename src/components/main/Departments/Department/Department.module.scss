@@ -55,9 +55,9 @@
       color: $black;
       font-size: 0.75rem; // 12px;
       font-style: normal;
-        font-weight: 400;
-        line-height: 140%;
-        margin: 0px 8px;
+      font-weight: 400;
+      line-height: 140%;
+      margin: 0px 8px;
       @media screen and (min-width: 768px) {
         color: $gray;
         margin: 0px 4px;
@@ -77,7 +77,7 @@
   justify-content: end;
   align-items: center;
   overflow: hidden;
-  
+
   width: 50%;
 
   & img {
