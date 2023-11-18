@@ -16,8 +16,8 @@ const App = () => {
           <Route path="*" element={<Page404 />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/allnews" element={<AllNews />} />
-          <Route path="/onenews" element={<OneNews />} />
+          <Route path="/news" element={<AllNews />} />
+          <Route path="/news/:id" element={<OneNews />} />
         </Route>
       </Routes>
     </Router>

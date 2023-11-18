@@ -1,4 +1,5 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import OneItem from './oneItem/oneItem';
 import Container from '@/components/Container/Container';
@@ -25,16 +26,14 @@ const AllNews = () => {
     }
   };
 
-  const showOneNews = (e) => {
-    console.log('event', e.target);
-  };
-
   return (
     <Container>
       <section className={styles.wrapper}>
-        <div className={styles.newsWrapper} onClick={showOneNews}>
+        <div className={styles.newsWrapper}>
             {Data.slice(0, itemsPerPage).map((item, index) => (
-                <OneItem imgSrc={item.image} date={item.date} title={item.name} key={index} />
+              <Link to={item.id} key={index}>
+                <OneItem imgSrc={item.image[0]} date={item.date} title={item.name}  />
+              </Link>
             ))}
         </div>
 
