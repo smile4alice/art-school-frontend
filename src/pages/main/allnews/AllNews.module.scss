@@ -1,24 +1,33 @@
 .wrapper {
-  @media screen and (min-width: 768px) {
-  }
-
+  margin: 0px 16px 40px;
+  
   @media screen and (min-width: 1280px) {
     margin: 24px 90px 82px; //110px - 20 px Container
-    padding-top: 10px;
+    //padding-top: 10px;
+  }
+
+  .title {
+    @media screen and (min-width: 1280px) {
+    }
   }
 
   .newsWrapper {
     display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: repeat(4, auto);
+    justify-self: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, auto);
+    margin: 24px 0 40px;
+    row-gap: 40px;
 
     @media screen and (min-width: 768px) {
+      grid-template-columns: auto auto;
+      grid-template-rows: repeat(4, auto);
+      column-gap: 16px;
     }
 
     @media screen and (min-width: 1280px) {
       column-gap: 60px;
-      row-gap: 40px;
-      margin-bottom: 60px;
+      margin: 32px 0 60px;
     }
   }
 
@@ -28,9 +37,12 @@
   }
 
   .viewMore {
-    font-size: 24px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    @media screen and (min-width: 1280px) {
+      font-size: 24px;
+    }
   }
 }

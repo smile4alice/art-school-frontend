@@ -29,6 +29,7 @@ const AllNews = () => {
   return (
     <Container>
       <section className={styles.wrapper}>
+        <p className={`${styles.title} sectionTitle`}>Новини</p>
         <div className={styles.newsWrapper}>
           {Data.slice(0, itemsPerPage).map((item, index) => (
             <Link to={item.id} key={index}>
