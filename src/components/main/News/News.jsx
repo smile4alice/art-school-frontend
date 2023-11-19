@@ -4,7 +4,7 @@ import { Pagination } from 'swiper/modules';
 import { news } from '@/constants/news.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
+import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
 import styles from './News.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
