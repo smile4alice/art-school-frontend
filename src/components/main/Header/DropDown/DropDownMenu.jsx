@@ -47,6 +47,7 @@ const DropDownMenu = ({ type, items, handleClick, open, toggleBurgerMenu }) => {
                 to={to}
                 onClick={() => {
                   toggleBurgerMenu();
+
                   handleClick(open);
                 }}
               >
