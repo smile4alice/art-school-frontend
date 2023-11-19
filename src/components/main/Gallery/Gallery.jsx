@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
+import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { images } from '@/constants/gallery';

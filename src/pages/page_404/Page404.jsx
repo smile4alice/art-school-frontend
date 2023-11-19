@@ -1,5 +1,5 @@
 import styles from './Page404.module.scss';
-import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
+import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
 
 const Page404 = () => {
   return (
