@@ -31,25 +31,27 @@ const DropDownMenu = ({ type, items, handleClick, open }) => {
         )}
       </div>
 
-      <ul
-        className={clsx(
-          styles.menu,
-          open ? styles.open : '',
-          type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
-        )}
-      >
-        {items.map(({ name, to }) => (
-          <li className={styles.menuItem} key={name}>
-            <Link
-              className={clsx(styles.menulink, open ? styles.open : '')}
-              key={name}
-              to={to}
-            >
-              {name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {open && (
+        <ul
+          className={clsx(
+            styles.menu,
+            open ? styles.open : '',
+            type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
+          )}
+        >
+          {items.map(({ name, to }) => (
+            <li className={styles.menuItem} key={name}>
+              <Link
+                className={clsx(styles.menulink, open ? styles.open : '')}
+                key={name}
+                to={to}
+              >
+                {name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
