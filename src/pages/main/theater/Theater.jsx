@@ -15,7 +15,6 @@ import AchievementsSlider from '@/components/Slider/achievementsSlider/achieveme
 
 import styles from './Theater.module.scss';
 
-
 const Theater = () => {
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const theaterDepartmentSwiperRef = useRef();
@@ -81,11 +80,12 @@ const Theater = () => {
                   }}
                   className={styles.slider}
                   modules={[Pagination]}
-                  spaceBetween={24}
+                  spaceBetween={48}
                   slidesPerView={1}
                   breakpoints={{
                     768: {
                       slidesPerView: 2,
+                      spaceBetween: 24,
                     },
                     1280: {
                       slidesPerView: 3,
@@ -108,7 +108,7 @@ const Theater = () => {
           </section>
           <section className={styles.departmentAchivments}>
             <div className={styles.departmentAchivments_contentWrapper}>
-              <h2 className="department_title ">Наші досягнення</h2>
+              <h2 className="department_title ">Досягнення відділу</h2>
               <AchievementsSlider data={theaterDepartmentAchivments} />
             </div>
           </section>

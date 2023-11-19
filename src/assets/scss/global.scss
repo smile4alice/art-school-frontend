@@ -1,7 +1,7 @@
 @import '_variables';
 @import '_mixins';
 @import '_placeholders';
-@import"./common/title";
+@import './common/title';
 
 main {
   margin-top: 87px;
@@ -12,5 +12,10 @@ body {
 @media (min-width: 1280px) {
   main {
     margin-top: 188px;
+  }
+}
+@media (min-width: 768px) {
+  main {
+    margin-top: 135px;
   }
 }
