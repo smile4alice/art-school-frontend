@@ -4,7 +4,9 @@
   @extend%aligncenter;
   align-items: flex-start;
   flex-direction: column;
-
+  h2 {
+    margin-bottom: 12px;
+  }
   @include tablet {
   }
   @include desktop {

@@ -39,7 +39,7 @@ const Theater = () => {
               </li>
             ))}
           </ul>
-          <section className={styles.departmentImage}>
+          <div className={styles.departmentImage}>
             <div className={styles.departmentImage_contentWrapper}>
               <div className={styles.slidersContainer}>
                 {isLaptop && (
@@ -105,13 +105,13 @@ const Theater = () => {
                 </Swiper>
               </div>
             </div>
-          </section>
-          <section className={styles.departmentAchivments}>
+          </div>
+          <div className={styles.departmentAchivments}>
             <div className={styles.departmentAchivments_contentWrapper}>
               <h2 className="department_title ">Досягнення відділу</h2>
               <AchievementsSlider data={theaterDepartmentAchivments} />
             </div>
-          </section>
+          </div>
         </div>
       </Container>
     </section>
