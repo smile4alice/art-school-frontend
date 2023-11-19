@@ -1,5 +1,5 @@
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
+import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
 
 import styles from './History.module.scss';
 

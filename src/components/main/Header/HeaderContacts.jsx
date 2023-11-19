@@ -49,7 +49,7 @@ const HeaderContacts = () => {
           <PhoneIcon />
 
           <div className={styles.contactsListItem_PhoneWrapper}>
-            <a className={styles.contactsListLink} href="tel:+380972907940">
+            <a className={styles.contactsListLink} href="tel:+380442720030">
               044 272 00 30
             </a>
           </div>
