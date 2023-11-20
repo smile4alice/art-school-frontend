@@ -11,9 +11,9 @@ import {
 } from '@/constants/theaterDepartmentInfo';
 
 import Container from '@/components/Container/Container';
-import AchievementsSlider from '@/components/Slider/achievementsSlider/achievementsSlider';
 
 import styles from './Theater.module.scss';
+import AchievementsSlider from '@/components/Slider/achievementsSlider/AchievementsSlider';
 
 const Theater = () => {
   const isLaptop = useMediaQuery({ minWidth: 1280 });
