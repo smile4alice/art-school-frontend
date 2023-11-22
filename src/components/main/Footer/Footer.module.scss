@@ -2,7 +2,7 @@
   @extend%aligncenter;
   flex-direction: column;
   background-color: $black;
-  width: 100%; 
+  width: 100%;
 }
 
 .footerWrap {
@@ -11,22 +11,21 @@
   background-color: $black;
   color: $white;
   width: 288px;
-  padding: 16px 0 40px 0;  
-  gap: 16px;  
+  padding: 16px 0 40px 0;
+  gap: 16px;
 }
 
 .footerContentWrap {
   display: flex;
-  flex-direction: column;   
+  flex-direction: column;
   row-gap: 32px;
-  
 }
 
-.footerLinksSectionWrap{
+.footerLinksSectionWrap {
   display: flex;
-  flex-direction: column-reverse;  
+  flex-direction: column-reverse;
   row-gap: 32px;
-  column-gap: 60px;  
+  column-gap: 60px;
 }
 
 .footerContent {
@@ -45,24 +44,24 @@
 }
 
 .social,
-.socialAdaptive  {
+.socialAdaptive {
   display: flex;
   gap: 8px;
 }
 
-.socialAdaptive{
+.socialAdaptive {
   justify-content: center;
   padding-top: 16px;
   padding-bottom: 16px;
-  border-top: 1px solid rgba(102, 99, 99, 0.50);
-  border-bottom: 1px solid rgba(102, 99, 99, 0.50);
+  border-top: 1px solid rgba(102, 99, 99, 0.5);
+  border-bottom: 1px solid rgba(102, 99, 99, 0.5);
 }
 
-.social{
+.social {
   display: none;
 }
 
-.footerLinksRulesWrap{
+.footerLinksRulesWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,8 +69,8 @@
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal; 
-  color: #ABABAB;
+  line-height: normal;
+  color: #ababab;
   transition: color 0.3s;
 }
 
@@ -101,18 +100,18 @@
   flex-direction: column;
   gap: 14px;
   transition: color 0.3s;
- }
+}
 
- .footerLinksColumnDepartment{
+.footerLinksColumnDepartment {
   width: 136px;
- }
+}
 
 .footerLinksColumn a:hover,
-.footerLinksColumnDepartment a:hover  {
+.footerLinksColumnDepartment a:hover {
   text-decoration: underline;
 }
 
-.contactsListWrap{
+.contactsListWrap {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -125,7 +124,7 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 140%;  
+  line-height: 140%;
 }
 
 .contactsListItem {
@@ -145,30 +144,30 @@
 }
 
 .footerSecurity {
-  text-align: center;  
+  text-align: center;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  }
+}
 
-.footerButton{
+.footerButton {
   display: none;
 }
 
-.footerButtonAdaptive{
+.footerButtonAdaptive {
   display: block;
 }
 
 .footerContent::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -16px;
   display: block;
   width: 100%;
   height: 1px;
-  background: rgba(102, 99, 99, 0.50);
+  background: rgba(102, 99, 99, 0.5);
 }
 
 @media (min-width: 768px) {
@@ -179,8 +178,8 @@
   }
 
   .footerContentWrap {
-    align-self: stretch;  
-    row-gap: 48px;    
+    align-self: stretch;
+    row-gap: 48px;
   }
 
   .footerLinksSection {
@@ -188,7 +187,7 @@
     font-size: 18px;
   }
 
-  .contactsListWrap{
+  .contactsListWrap {
     gap: 47px;
   }
 
@@ -197,8 +196,8 @@
   }
 
   .footerLinksColumnDepartment {
-     width: 228px;
-   }
+    width: 228px;
+  }
 
   .footerLinksSectionWrap {
     display: flex;
@@ -214,10 +213,10 @@
     flex-direction: row;
     align-items: start;
   }
-  .footerContent::after {    
+  .footerContent::after {
     bottom: -24px;
   }
-  .socialAdaptive {    
+  .socialAdaptive {
     padding-top: 24px;
     padding-bottom: 24px;
   }
@@ -243,8 +242,8 @@
     column-gap: 109px;
   }
 
-  .footerLinksSection {      
-    gap: 109px;  
+  .footerLinksSection {
+    gap: 109px;
     font-size: 16px;
   }
 
@@ -276,6 +275,6 @@
     color: $white;
   }
   .footerContent::after {
-display: none;
+    display: none;
   }
 }

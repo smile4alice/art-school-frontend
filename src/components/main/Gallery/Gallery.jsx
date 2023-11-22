@@ -57,9 +57,8 @@ const Gallery = () => {
               ))}
             </Swiper>
             <div className={styles.ButtonContainer}>
-              {/* <NavLinkButton title={'Дивитися більше'} href={'/gallery'} /> */}
-              <Link to="/gallery" className={styles.NavLinkButton}>
-                more
+              <Link to={'/gallery'}>
+                <NavLinkButton title={'Дивитися більше'} />
               </Link>
             </div>
           </>
