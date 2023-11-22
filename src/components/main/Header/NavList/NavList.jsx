@@ -2,13 +2,16 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { navItems, aboutUs, departmemts } from '@/constants/headerdata';
+import { aboutUs, departmemts } from '@/constants/dropDownItems.js';
+import { navItems } from '@/constants/navList.js';
+console.log('departmemts : ', departmemts);
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
 
 const NavList = ({ toggleBurgerMenu }) => {
   const [showDepartment, setShowDepartment] = useState(false);
+  console.log('showDepartment: ', showDepartment);
   const [showAboutUs, setShowAboutUs] = useState(false);
 
   const handleClickDepartment = showDepartment => {
@@ -45,6 +48,7 @@ const NavList = ({ toggleBurgerMenu }) => {
           items={departmemts}
           open={showDepartment}
           handleClick={handleClickDepartment}
+          toggleBurgerMenu={toggleBurgerMenu}
         />
         <DropDownMenu
           aria-label="about us menu"
@@ -52,6 +56,7 @@ const NavList = ({ toggleBurgerMenu }) => {
           items={aboutUs}
           open={showAboutUs}
           handleClick={handleClickAboutUs}
+          toggleBurgerMenu={toggleBurgerMenu}
         />
       </div>
 

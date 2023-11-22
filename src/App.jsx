@@ -8,6 +8,7 @@ import AllNews from './pages/main/allnews/AllNews';
 import OneNews from './pages/main/onenews/OneNews';
 import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
+import Theater from './pages/main/theater/Theater';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/news/:id" element={<OneNews />} />
           <Route path="/posters" element={<PostersPage />} />
           <Route path="/cooperation" element={<Cooperation />} />
+          <Route path="/theater/_department" element={<Theater />} />
         </Route>
       </Routes>
     </Router>

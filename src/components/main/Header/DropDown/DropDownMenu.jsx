@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import styles from './DropDown.module.scss';
 import { Link } from 'react-router-dom';
 
-const DropDownMenu = ({ type, items, handleClick, open }) => {
+const DropDownMenu = ({ type, items, handleClick, open, toggleBurgerMenu }) => {
   // console.log('open: ', open);
 
   return (
@@ -45,6 +45,11 @@ const DropDownMenu = ({ type, items, handleClick, open }) => {
                 className={clsx(styles.menulink, open ? styles.open : '')}
                 key={name}
                 to={to}
+                onClick={() => {
+                  toggleBurgerMenu();
+
+                  handleClick(open);
+                }}
               >
                 {name}
               </Link>
