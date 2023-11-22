@@ -6,7 +6,12 @@ const SocialList = ({ type }) => {
     <div>
       <ul className={styles.social}>
         <li>
-          <a className={styles.socialLink} href="#">
+          <a
+            className={styles.socialLink}
+            href="https://www.facebook.com/KyivArtsSchool/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FacebookIcon type={type} />
           </a>
         </li>
