@@ -11,7 +11,12 @@ const SocialList = ({ type }) => {
           </a>
         </li>
         <li>
-          <a className={styles.socialLink} href="#">
+          <a
+            className={styles.socialLink}
+            href="https://www.youtube.com/@ArtSchoolVerykivskogo"
+            target="_blank"
+            rel="noreferrer"
+          >
             <YoutubeIcon type={type} />
           </a>
         </li>
