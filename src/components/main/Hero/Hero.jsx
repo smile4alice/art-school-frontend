@@ -2,10 +2,12 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRef } from 'react';
 import {
-  // Navigation,
+  // EffectFade,
+  Autoplay,
   Pagination,
   Keyboard,
 } from 'swiper/modules';
+// import { Autoplay } from 'swiper';
 import Data from '@/constants/hero.json';
 
 import 'swiper/css';
@@ -54,17 +56,21 @@ const Hero = () => {
         onSwiper={swiper => {
           swiperRef.current = swiper;
         }}
-        // navigation={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
         pagination={{ clickable: true }}
-        // navigation={{
-        //   prevEl: '.swiper-button-prev',
-        //   nextEl: '.swiper-button-next',
-        // }}
         keyboard={true}
         slidesPerView={1}
         spaceBetween={2}
+        loop={true}
+        speed={1500}
+        // effect={'fade'}
+        // fadeEffect={{ crossFade: true }}
         modules={[
-          // Navigation,
+          // EffectFade,
+          Autoplay,
           Pagination,
           Keyboard,
         ]}
@@ -86,20 +92,20 @@ const Hero = () => {
         </h1>
       </div>
       <div className={styles.HeroEvent}>
-        <p className={styles.HeroEventName}>афіша</p>
+        <p className={styles.HeroEventName}>подія</p>
         <h3 className={styles.HeroEventTitle}>
           документальна вистава “обличчя кольору війни”
         </h3>
         <p className={styles.HeroEventInfo}>
           благодійний показ на підтримку зсу. вистава відбудеться 14.10 О 16:00
         </p>
-        <a
+        {/* <a
           href="https://www.google.com.ua/"
           rel="link"
           className={styles.HeroEventLink}
         >
           Дивитися всі події
-        </a>
+        </a> */}
       </div>
     </section>
   );
