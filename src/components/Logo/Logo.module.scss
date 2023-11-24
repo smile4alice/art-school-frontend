@@ -8,11 +8,11 @@
     height: 54px;
   }
 
-  &:focus {
-    outline: 1px solid $accent;
-  }
+  // &:focus {
+  //   outline: 1px solid $accent;
+  // }
 
-  @media screen and (min-width: 1280px) { 
+  @media screen and (min-width: 1280px) {
     svg {
       width: 75px;
       height: 70px;
@@ -22,15 +22,15 @@
 
 .logoText {
   width: 169px;
-  @include font(14px, 700, normal); 
+  @include font(14px, 700, normal);
 
   @media screen and (min-width: 768px) {
     width: 341px;
-    @include font(17px, 700, normal); 
+    @include font(17px, 700, normal);
   }
 
   @media screen and (min-width: 1280px) {
-    width: 181px; 
+    width: 181px;
     @include font(15px, 700, normal);
   }
 }

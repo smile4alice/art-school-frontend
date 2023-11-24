@@ -5,7 +5,7 @@ import PhoneIcon from '@/components/Icons/PhoneIcon';
 import EmailIcon from '@/components/Icons/EmailIcon';
 import FacebookIcon from '@/components/Icons/FacebookIcon';
 import YoutubeIcon from '@/components/Icons/YoutubeIcon';
-import DownloadButton from '@/components/ui/Buttons/DownloadButton';
+import DownloadButton from '@/components/ui/Buttons/NavLinkButton';
 import styles from './Footer.module.scss';
 import ClockIcon from '@/components/Icons/ClockIcon';
 
@@ -42,8 +42,8 @@ const Footer = () => {
             </ul>
             <div className={styles.footerButton}>
               <DownloadButton link="#" text="Завантажити заяву" />
-            </div>            
-          </div>          
+            </div>
+          </div>
           <div className={styles.footerLinksSectionWrap}>
             <div className={styles.footerLinksSection}>
               <div className={styles.footerLinksColumn}>
@@ -62,7 +62,9 @@ const Footer = () => {
                 <Link to="/choreographic-department">
                   Хореографічне відділення
                 </Link>
-                <Link to="/visual-arts-department">Образотворче відділення</Link>
+                <Link to="/visual-arts-department">
+                  Образотворче відділення
+                </Link>
                 <Link to="/theater-department">Театральне відділення</Link>
               </div>
             </div>
@@ -96,12 +98,12 @@ const Footer = () => {
                 </li>
               </ul>
               <div className={styles.footerButtonAdaptive}>
-              <DownloadButton link="#" text="Завантажити заяву" />
+                <DownloadButton link="#" text="Завантажити заяву" />
               </div>
             </div>
           </div>
         </div>
-        
+
         <ul className={styles.socialAdaptive}>
           <li>
             <a
@@ -125,24 +127,28 @@ const Footer = () => {
           </li>
         </ul>
 
-        <div className={styles.footerLinksRulesWrap}>            
+        <div className={styles.footerLinksRulesWrap}>
           <div className={styles.footerSecurity}>
-              © Розробка{' '}
-              <a href="https://baza-trainee.tech/" rel="noreferrer" target="_blank">
-                Baza Trainee Ukraine,{' '}
-              </a>
-              2023
-          </div>          
-          <div className={styles.footerLinksRules}>          
-              <a href="#" target="_blank">
-                Офіційна інформація
-              </a>
-              <a href="#" target="_blank">
-                Політика конфіденційності
-              </a>
-              <a href="#" target="_blank">
-                Правила користування сайтом
-              </a>
+            © Розробка{' '}
+            <a
+              href="https://baza-trainee.tech/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Baza Trainee Ukraine,{' '}
+            </a>
+            2023
+          </div>
+          <div className={styles.footerLinksRules}>
+            <a href="#" target="_blank">
+              Офіційна інформація
+            </a>
+            <a href="#" target="_blank">
+              Політика конфіденційності
+            </a>
+            <a href="#" target="_blank">
+              Правила користування сайтом
+            </a>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { clsx } from 'clsx';
 import styles from './DropDown.module.scss';
 import { Link } from 'react-router-dom';
 
-const DropDownMenu = ({ type, items, handleClick, open }) => {
+const DropDownMenu = ({ type, items, handleClick, open, toggleBurgerMenu }) => {
   // console.log('open: ', open);
 
   return (
@@ -31,25 +31,32 @@ const DropDownMenu = ({ type, items, handleClick, open }) => {
         )}
       </div>
 
-      <ul
-        className={clsx(
-          styles.menu,
-          open ? styles.open : '',
-          type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
-        )}
-      >
-        {items.map(({ name, to }) => (
-          <li className={styles.menuItem} key={name}>
-            <Link
-              className={clsx(styles.menulink, open ? styles.open : '')}
-              key={name}
-              to={to}
-            >
-              {name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {open && (
+        <ul
+          className={clsx(
+            styles.menu,
+            open ? styles.open : '',
+            type === 'Відділення' ? styles.departmentsMenu : styles.aboutUsMenu
+          )}
+        >
+          {items.map(({ name, to }) => (
+            <li className={styles.menuItem} key={name}>
+              <Link
+                className={clsx(styles.menulink, open ? styles.open : '')}
+                key={name}
+                to={to}
+                onClick={() => {
+                  toggleBurgerMenu();
+
+                  handleClick(open);
+                }}
+              >
+                {name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -1,18 +1,21 @@
 @import '_variables';
 @import '_mixins';
 @import '_placeholders';
+@import './common/title';
 
 main {
-  margin-top: 86px;
+  margin-top: 87px;
 }
 body {
   min-height: 100vh;
 }
-*:focus {
-  outline: 1px solid $accent;
-}
 @media (min-width: 1280px) {
   main {
-    margin-top: 169px;
+    margin-top: 188px;
+  }
+}
+@media (min-width: 768px) {
+  main {
+    margin-top: 134px;
   }
 }

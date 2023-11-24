@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
+import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { images } from '@/constants/gallery';
@@ -57,9 +57,8 @@ const Gallery = () => {
               ))}
             </Swiper>
             <div className={styles.ButtonContainer}>
-              {/* <NavLinkButton title={'Дивитися більше'} href={'/gallery'} /> */}
-              <Link to="/gallery" className={styles.NavLinkButton}>
-                more
+              <Link to={'/gallery'}>
+                <NavLinkButton title={'Дивитися більше'} />
               </Link>
             </div>
           </>
