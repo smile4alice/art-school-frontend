@@ -28,6 +28,9 @@
 }
 
 .burgerMenuCloseButton {
+  position: absolute;
+  top: 40px;
+  right: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +38,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  margin-bottom: 16px;
+  background: rgba(18, 0, 0, 0.05);
   &:hover,
   &:focus {
     background: rgba(214, 102, 0, 0.2);
