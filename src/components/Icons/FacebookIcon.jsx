@@ -1,9 +1,13 @@
+import clsx from 'clsx';
 import styles from './Icons.module.scss';
 
 const FacebookIcon = ({ type }) => {
   return (
     <svg
-      className={styles.facebookIcon}
+      className={clsx(
+        styles.facebookIcon,
+        type === 'burgerMenuIcon' ? styles.burgerMenuIcon : ''
+      )}
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"

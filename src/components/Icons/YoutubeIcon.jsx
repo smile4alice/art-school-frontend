@@ -1,10 +1,14 @@
+import clsx from 'clsx';
 import styles from './Icons.module.scss';
 
 const YoutubeIcon = ({ type }) => {
   // console.log(type);
   return (
     <svg
-      className={styles.youtubeIcon}
+    className={clsx(
+        styles.youtubeIcon,
+        type === 'burgerMenuIcon' ? styles.burgerMenuIcon : ''
+      )}
       xmlns="http://www.w3.org/2000/svg"
       width="40"
       height="32"
