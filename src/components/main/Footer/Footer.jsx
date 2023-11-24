@@ -48,7 +48,7 @@ const Footer = () => {
             <div className={styles.footerLinksSection}>
               <div className={styles.footerLinksColumn}>
                 <Link to="/">Головна</Link>
-                <Link to="/about">Про нас</Link>
+                <Link to="/about">Наша школа</Link>
                 <Link to="/events">Наші події</Link>
                 <Link to="/schedule">Афіша</Link>
                 <Link to="/gallery">Галерея</Link>
@@ -66,6 +66,7 @@ const Footer = () => {
                   Образотворче відділення
                 </Link>
                 <Link to="/theater-department">Театральне відділення</Link>
+                <Link to="#">Дошкільне та підготовче відділення</Link>
               </div>
             </div>
             <div className={styles.contactsListWrap}>
