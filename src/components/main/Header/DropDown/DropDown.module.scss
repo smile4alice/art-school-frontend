@@ -1,18 +1,25 @@
 .dropDown {
+  width: 160px;
   position: relative;
   cursor: pointer;
+  border-bottom: 1px solid $burgerMenuBorderColor;
   &:focus,
   &:hover {
     outline: none;
     border-bottom: 1px solid $accent;
   }
+
+  @include desktop {
+    width: max-content;
+    border-bottom: none;
+  }
 }
+
 .dropDownNameWrapper {
-  width: 160px;
   display: flex;
   align-items: center;
   gap: 10px;
-  border-bottom: 1px solid $burgerMenuBorderColor;
+
   justify-content: center;
 }
 .dropDownName {
