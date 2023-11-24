@@ -14,7 +14,7 @@ const DropDownMenu = ({
   handleClickAboutSchool,
   handleCloseAll,
 }) => {
-  const isDesktop = useMediaQuery({ minWidth: 1240 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
 
   return (
     <>
@@ -61,7 +61,7 @@ const DropDownMenu = ({
                   key={name}
                   to={to}
                   onClick={() => {
-                    toggleBurgerMenu();
+                    !isDesktop && toggleBurgerMenu();
                   }}
                 >
                   {name}
@@ -108,7 +108,7 @@ const DropDownMenu = ({
                   key={name}
                   to={to}
                   onClick={() => {
-                    toggleBurgerMenu();
+                    !isDesktop && toggleBurgerMenu();
                   }}
                 >
                   {name}

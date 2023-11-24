@@ -1,17 +1,6 @@
 .dropDown {
   position: relative;
   cursor: pointer;
-  &:focus-within,
-  &:hover {
-    .menu {
-      opacity: 1;
-      visibility: visible;
-    }
-    .dropDownName {
-      color: $black;
-      border-bottom: 1px solid $accent;
-    }
-  }
 }
 .dropDownNameWrapper {
   display: flex;
@@ -39,10 +28,6 @@
     padding-bottom: 0px;
     padding-top: 0px;
   }
-}
-
-.dropDownName.open {
-  font-weight: 800;
 }
 
 .dropDown_iconDown {
