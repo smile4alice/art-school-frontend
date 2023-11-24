@@ -1,26 +1,28 @@
 .dropDown {
   position: relative;
   cursor: pointer;
+  &:focus,
+  &:hover {
+    outline: none;
+    border-bottom: 1px solid $accent;
+  }
 }
 .dropDownNameWrapper {
+  width: 160px;
   display: flex;
   align-items: center;
   gap: 10px;
+  border-bottom: 1px solid $burgerMenuBorderColor;
+  justify-content: center;
 }
 .dropDownName {
   padding-bottom: 5px;
   padding-top: 5px;
 
-  @include font(16px, 400, 2);
+  @include font(18px, 400, 2);
   letter-spacing: 0.19px;
-  color: $gray;
+  color: $linkColor;
   border-bottom: 1px solid transparent;
-
-  &:hover,
-  &:focus {
-    color: $black;
-    border-bottom: 1px solid $accent;
-  }
 
   @media screen and (min-width: 1280px) {
     width: max-content;
