@@ -11,7 +11,7 @@ import styles from './NavList.module.scss';
 
 const NavList = ({ toggleBurgerMenu }) => {
   const [showDepartment, setShowDepartment] = useState(false);
-  console.log('showDepartment: ', showDepartment);
+
   const [showAboutUs, setShowAboutUs] = useState(false);
 
   const handleClickDepartment = showDepartment => {
