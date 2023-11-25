@@ -16,6 +16,7 @@ const Departments = () => {
   const choreografyDepartment = 'Хореографічне відділення';
   const theaterDepartment = 'Театральне відділення';
   const vocalDepartment = 'Вокально-хорове відділення';
+  const preschoolPreparatoryDepartment = 'Дошкільне та підготовче відділення';
 
   const downloadFile = async () => {};
 
@@ -31,10 +32,10 @@ const Departments = () => {
         <div className={styles.departmentsContainer}>
           <Department title={musicDepartment} link={link} img={musicImg} />
           <Department title={vocalDepartment} link={link} img={vocalImg} />
-          <Department title={choreografyDepartment} link={link} img={choreografyImg}
-          />
+          <Department title={choreografyDepartment} link={link} img={choreografyImg} />
           <Department title={artDepartment} link={link} img={artImg} />
           <Department title={theaterDepartment} link={link} img={theaterImg} />
+          <Department title={preschoolPreparatoryDepartment} link={link} img={theaterImg} />
         </div>
       </div>
     </Container>
