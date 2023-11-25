@@ -3,13 +3,13 @@ export const departmemts = [
   { name: 'Вокально-хорове відділення', to: '/vocal_choral_department' },
   { name: 'Хореографічне відділення', to: '/сhoreographic_department' },
   { name: 'Образотворче відділення', to: '/fine_arts_epartment' },
-  { name: 'Театральне відділення', to: '/theater/_department' },
+  { name: 'Театральне відділення', to: '/theater_department' },
   { name: 'Дошкільне та підготовче відділення', to: '/' },
 ];
 
 export const aboutUs = [
-  { name: 'Історія Школи', to: '/historyOfSchool' },
+  { name: 'Історія Школи', to: '/about_school_history' },
   { name: 'Про нас', to: '/about_school' },
-  { name: 'Музей', to: '/museum' },
-  { name: 'Адміністрація', to: '/administration' },
+  { name: 'Музей', to: '/about_school_museum' },
+  { name: 'Адміністрація', to: '/about_school_administration' },
 ];

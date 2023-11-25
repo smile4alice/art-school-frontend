@@ -54,8 +54,14 @@ const App = () => {
           <Route path="/news/:id" element={<OneNews />} />
           <Route path="/posters" element={<PostersPage />} />
           <Route path="/cooperation" element={<Cooperation />} />
-          <Route path="/theater/_department" element={<Theater />} />
+          <Route path="/theater_department" element={<Theater />} />
           <Route path="/about_school" element={<AboutSchool />} />
+          <Route path="/about_school_history'" element={<AboutSchool />} />
+          <Route path="/about_school_museum" element={<AboutSchool />} />
+          <Route
+            path="/about_school_administration"
+            element={<AboutSchool />}
+          />
         </Route>
 
         {/*         <Route path="/login" element={<LoginLayout />}>
