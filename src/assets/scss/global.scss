@@ -2,20 +2,20 @@
 @import '_mixins';
 @import '_placeholders';
 @import './common/title';
-
-main {
-  margin-top: 87px;
-}
 body {
   min-height: 100vh;
 }
-@media (min-width: 1280px) {
-  main {
-    margin-top: 188px;
+
+main {
+  margin-top: 87px;
+  @media (min-width: 768px) {
+    & {
+      margin-top: 135px;
+    }
   }
-}
-@media (min-width: 768px) {
-  main {
-    margin-top: 165px;
+  @media (min-width: 1280px) {
+    & {
+      margin-top: 188px;
+    }
   }
 }
