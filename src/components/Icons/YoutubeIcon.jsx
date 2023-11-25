@@ -1,10 +1,14 @@
+import clsx from 'clsx';
 import styles from './Icons.module.scss';
 
 const YoutubeIcon = ({ type }) => {
   // console.log(type);
   return (
     <svg
-      className={styles.youtubeIcon}
+      className={clsx(
+        styles.youtubeIcon,
+        type === 'burgerMenuIcon' ? styles.burgerMenuIcon : ''
+      )}
       xmlns="http://www.w3.org/2000/svg"
       width="40"
       height="32"
@@ -15,8 +19,8 @@ const YoutubeIcon = ({ type }) => {
       <path
         className="path"
         d="M18.6661 16L13.9994 18.6667V13.3334L18.6661 16Z"
-        fill={type === 'burgerMenuIcon' ? '#e8e8e8' : '#120000'}
-        stroke={type === 'burgerMenuIcon' ? '#e8e8e8' : '#120000'}
+        fill={type === 'burgerMenuIcon' ? ' #fffcfc' : '#120000'}
+        stroke={type === 'burgerMenuIcon' ? '# #fffcfc' : '#120000'}
         strokeWidth="1.25"
         strokeLinecap="round"
         strokeLinejoin="round"

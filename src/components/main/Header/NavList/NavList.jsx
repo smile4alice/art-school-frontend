@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -8,59 +8,48 @@ console.log('departmemts : ', departmemts);
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
+import clsx from 'clsx';
+import { useMediaQuery } from 'react-responsive';
 
 const NavList = ({ toggleBurgerMenu }) => {
   const [showDepartment, setShowDepartment] = useState(false);
 
   const [showAboutUs, setShowAboutUs] = useState(false);
 
-  const handleClickDepartment = showDepartment => {
+  const isDesktop = useMediaQuery({ minWidth: 1240 });
+
+  const handleClickDepartment = () => {
     setShowDepartment(!showDepartment);
     setShowAboutUs(false);
   };
-  const handleClickAboutUs = showAboutUs => {
+  const handleClickAboutSchool = () => {
     setShowDepartment(false);
     setShowAboutUs(!showAboutUs);
   };
+  const handleCloseAll = () => {
+    setShowDepartment(false);
+    setShowAboutUs(false);
+  };
 
-  useEffect(() => {
-    const func = e => {
-      const target = e.target.getAttribute('data-element-id');
-      if (target !== 'dropdown') {
-        setShowDepartment(false);
-        setShowAboutUs(false);
-      }
-    };
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener('click', func);
-      return () => {
-        window.removeEventListener('click', func);
-      };
-    }
-  }, []);
   return (
     <nav className={styles.nav}>
       <div className={styles.navSelectMenu}>
         <DropDownMenu
-          aria-label="departmemts menu"
-          type="Відділення"
-          items={departmemts}
+          departmemts={departmemts}
+          aboutSchool={aboutUs}
           open={showDepartment}
-          handleClick={handleClickDepartment}
+          handleClickDepartment={handleClickDepartment}
           toggleBurgerMenu={toggleBurgerMenu}
-        />
-        <DropDownMenu
-          aria-label="about us menu"
-          type="Наша Школа"
-          items={aboutUs}
-          open={showAboutUs}
-          handleClick={handleClickAboutUs}
-          toggleBurgerMenu={toggleBurgerMenu}
+          handleClickAboutSchool={handleClickAboutSchool}
+          showDepartment={showDepartment}
+          showAboutUs={showAboutUs}
+          handleCloseAll={handleCloseAll}
         />
       </div>
 
-      <ul className={styles.navList}>
+      <ul
+        className={clsx(styles.navList, !isDesktop ? styles.navListMobile : '')}
+      >
         {navItems.map(({ name, to }) => (
           <li className={styles.navList_item} key={name}>
             <Link

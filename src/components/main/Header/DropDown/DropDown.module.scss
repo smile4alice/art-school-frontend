@@ -1,37 +1,35 @@
 .dropDown {
+  width: 160px;
   position: relative;
   cursor: pointer;
-  &:focus-within,
+  border-bottom: 1px solid $burgerMenuBorderColor;
+  &:focus,
   &:hover {
-    .menu {
-      opacity: 1;
-      visibility: visible;
-    }
-    .dropDownName {
-      color: $black;
-      border-bottom: 1px solid $accent;
-    }
+    outline: none;
+    border-bottom: 1px solid $accent;
+  }
+
+  @include desktop {
+    width: max-content;
+    border-bottom: none;
   }
 }
+
 .dropDownNameWrapper {
   display: flex;
   align-items: center;
   gap: 10px;
+
+  justify-content: center;
 }
 .dropDownName {
   padding-bottom: 5px;
   padding-top: 5px;
 
-  @include font(16px, 400, 2);
+  @include font(18px, 400, 2);
   letter-spacing: 0.19px;
-  color: $gray;
+  color: $linkColor;
   border-bottom: 1px solid transparent;
-
-  &:hover,
-  &:focus {
-    color: $black;
-    border-bottom: 1px solid $accent;
-  }
 
   @media screen and (min-width: 1280px) {
     width: max-content;
@@ -39,10 +37,6 @@
     padding-bottom: 0px;
     padding-top: 0px;
   }
-}
-
-.dropDownName.open {
-  font-weight: 800;
 }
 
 .dropDown_iconDown {

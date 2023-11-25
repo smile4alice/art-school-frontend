@@ -21,7 +21,7 @@ const Departments = () => {
 
   return (
     <Container>
-      <div className={styles.wrapper}>
+      <div id="departmens" className={styles.wrapper}>
         <p className={`${styles.title} sectionTitle`}>Відділення</p>
         <div className={styles.buttonContainer}>
           <button onClick={downloadFile} className={styles.buttonStyle}>

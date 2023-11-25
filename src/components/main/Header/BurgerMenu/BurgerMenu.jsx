@@ -15,17 +15,17 @@ const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
       )}
     >
       <div className={styles.burgerMenuContent}>
-        <button
-          aria-label=" menu close button"
-          tabIndex="0"
-          type="button"
-          className={styles.burgerMenuCloseButton}
-          onClick={toggleBurgerMenu}
-        >
-          <CloseIcon />
-        </button>
-        <NavList toggleBurgerMenu= {toggleBurgerMenu}  />
+        <NavList toggleBurgerMenu={toggleBurgerMenu} />
       </div>
+      <button
+        aria-label=" menu close button"
+        tabIndex="0"
+        type="button"
+        className={styles.burgerMenuCloseButton}
+        onClick={toggleBurgerMenu}
+      >
+        <CloseIcon />
+      </button>
       <SocialList type="burgerMenuIcon" />
     </div>
   );
