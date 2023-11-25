@@ -55,11 +55,13 @@ const App = () => {
           <Route path="/cooperation" element={<Cooperation />} />
           <Route path="/theater/_department" element={<Theater />} />
         </Route>
+
+{/*         <Route path="/login" element={<LoginLayout />}>
           <Route index element={<Login />} />
           <Route path="forget-password" element={<ForgetPassword />} />
           <Route path="renew/*" element={<RenewPassword />} />
           <Route path="successful-renew" element={<SuccessfullRenew />} />
-{/*         <Route path="/login" element={<LoginLayout />}></Route> */}
+        </Route> */}
       </Routes>
     </Router>
   );
