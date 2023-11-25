@@ -9,7 +9,7 @@ export const departmemts = [
 
 export const aboutUs = [
   { name: 'Історія Школи', to: '/historyOfSchool' },
-  { name: 'Про нас', to: '/aboutUs' },
+  { name: 'Про нас', to: '/about_school' },
   { name: 'Музей', to: '/museum' },
   { name: 'Адміністрація', to: '/administration' },
 ];

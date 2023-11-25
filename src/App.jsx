@@ -9,6 +9,7 @@ import OneNews from './pages/main/onenews/OneNews';
 import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
 import Theater from './pages/main/theater/Theater';
+import AboutSchool from './pages/main/aboutSchool/AboutSchool';
 
 // import SignInPageAdmin from './pages/admin-pages/LoginAdmin/SignInAdmin/SignInPageAdmin';
 
@@ -54,9 +55,10 @@ const App = () => {
           <Route path="/posters" element={<PostersPage />} />
           <Route path="/cooperation" element={<Cooperation />} />
           <Route path="/theater/_department" element={<Theater />} />
+          <Route path="/about_school" element={<AboutSchool />} />
         </Route>
 
-{/*         <Route path="/login" element={<LoginLayout />}>
+        {/*         <Route path="/login" element={<LoginLayout />}>
           <Route index element={<Login />} />
           <Route path="forget-password" element={<ForgetPassword />} />
           <Route path="renew/*" element={<RenewPassword />} />
