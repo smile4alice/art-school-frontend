@@ -32,7 +32,7 @@ const Departments = () => {
           <Department
             title={musicDepartment}
             link="/music_department"
-            mentimg={musicImg}
+            img={musicImg}
           />
           <Department
             title={vocalDepartment}
