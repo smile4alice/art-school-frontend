@@ -27,7 +27,7 @@ const DropDownMenu = ({
           if (isDesktop) {
             el.scrollIntoView({
               behavior: 'smooth',
-              block: 'end',
+              block: 'center',
             });
           }
         }}
@@ -74,7 +74,7 @@ const DropDownMenu = ({
 
       <Link
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
-        to="/aboutSchool"
+        to="/about_school"
         onClick={handleClickAboutSchool}
         onMouseEnter={handleClickAboutSchool}
         onMouseLeave={handleCloseAll}
@@ -82,7 +82,7 @@ const DropDownMenu = ({
         <div className={styles.dropDownNameWrapper}>
           <span className={clsx(styles.dropDownName, open ? styles.open : '')}>
             {/* {type} */}
-            Про школу
+            Наша школа
           </span>
 
           {!showAboutUs ? (
