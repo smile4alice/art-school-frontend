@@ -10,7 +10,6 @@ import vocalImg from '/departments/vocal.png';
 import styles from './Departments.module.scss';
 
 const Departments = () => {
-  const link = 'https://example.com';
   const musicDepartment = 'Музичне відділення';
   const artDepartment = 'Образотворче відділення';
   const choreografyDepartment = 'Хореографічне відділення';
@@ -30,12 +29,36 @@ const Departments = () => {
           </button>
         </div>
         <div className={styles.departmentsContainer}>
-          <Department title={musicDepartment} link={link} img={musicImg} />
-          <Department title={vocalDepartment} link={link} img={vocalImg} />
-          <Department title={choreografyDepartment} link={link} img={choreografyImg} />
-          <Department title={artDepartment} link={link} img={artImg} />
-          <Department title={theaterDepartment} link={link} img={theaterImg} />
-          <Department title={preschoolPreparatoryDepartment} link={link} img={theaterImg} />
+          <Department
+            title={musicDepartment}
+            link="/music_department"
+            img={musicImg}
+          />
+          <Department
+            title={vocalDepartment}
+            link="/vocal_choral_department"
+            img={vocalImg}
+          />
+          <Department
+            title={choreografyDepartment}
+            link="/сhoreographic_department"
+            img={choreografyImg}
+          />
+          <Department
+            title={artDepartment}
+            link="/fine_arts_epartment"
+            img={artImg}
+          />
+          <Department
+            title={theaterDepartment}
+            link="/theater_department"
+            img={theaterImg}
+          />
+          <Department
+            title={preschoolPreparatoryDepartment}
+            link="/"
+            img={theaterImg}
+          />
         </div>
       </div>
     </Container>

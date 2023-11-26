@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
 import styles from './Cooperation.module.scss';
 
 const Cooperation = () => {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
     <div className={styles.Cooperation}>
       <div className={styles.wrapper}>

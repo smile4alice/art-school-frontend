@@ -3,12 +3,17 @@ import { Icon } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import s from './Contacts.module.scss';
+import { useEffect } from 'react';
 
 const Contacts = () => {
   const customIcon = new Icon({
     iconUrl: '/icons/location1.png',
     iconSize: [45, 42],
-  });
+  } );
+  
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
       <div className={s.contacts}>
         <h2>Наші контакти</h2>

@@ -20,7 +20,7 @@ const Header = () => {
   }, []);
   return (
     <header className={styles.headerWrapper}>
-      {windowWidth > 1280 && <HeaderContacts />}
+      {windowWidth >= 1280 && <HeaderContacts />}
       <HeaderNavigation windowWidth={windowWidth} />
     </header>
   );
