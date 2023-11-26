@@ -1,0 +1,87 @@
+ .InputLiable {
+   color: var(--admin-text-main, #152340);
+   font-family: Montserrat;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+ }
+
+ .SmInput {
+   display: flex;
+   width: 478px;
+   height: 45px;
+   padding: 10px;
+   align-items: center;
+
+   border-radius: 6px;
+   border: 1px solid #D5D9F2;
+   background: #FFF;
+
+   color: var(--admin-text-main, #152340);
+   font-family: Montserrat;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+
+
+    &::placeholder {
+   color: #A3A3A3;
+   font-family: Montserrat;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+
+       &:focus {
+          outline: none;
+       }
+    }
+ }
+
+ .InputLink {
+   display: flex;
+   width: 478px;
+   height: 45px;
+   padding: 10px;
+   align-items: center;
+   
+   border-radius: 6px;
+      border: 1px solid #D5D9F2;
+      background: #FFF;
+
+
+    &::placeholder {
+   color: var(--admin-link, #0335E6);
+      font-family: Montserrat;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;       
+    }
+ }
+
+
+.CommonTextStyle {
+   font-family: Montserrat;
+   font-size: 12px;
+   font-style: normal;
+   line-height: normal;
+   margin-top: 10px;
+}
+
+.ErrorMessage {
+   color: #FF3232;
+   font-weight: 500;
+}
+
+.HintText {
+   color: var(--admin-green, #707E8C);
+   font-weight: 400;
+}
+
+.ErrorMessage,
+.HintText {
+   @extend .CommonTextStyle;
+}
