@@ -11,6 +11,8 @@ import Cooperation from './pages/main/cooperation/Cooperation';
 import Theater from './pages/main/theater/Theater';
 import AboutSchool from './pages/main/aboutSchool/AboutSchool';
 
+import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout'
+
 // import SignInPageAdmin from './pages/admin-pages/LoginAdmin/SignInAdmin/SignInPageAdmin';
 
 // import AccountPageAdmin from './pages/admin-pages/AccountAdmin/AccountPageAdmin';
@@ -64,12 +66,12 @@ const App = () => {
           />
         </Route>
 
-        {/*         <Route path="/login" element={<LoginLayout />}>
-          <Route index element={<Login />} />
+        <Route path="/login" element={<LoginLayout />}>
+          {/* <Route index element={<Login />} />
           <Route path="forget-password" element={<ForgetPassword />} />
           <Route path="renew/*" element={<RenewPassword />} />
-          <Route path="successful-renew" element={<SuccessfullRenew />} />
-        </Route> */}
+          <Route path="successful-renew" element={<SuccessfullRenew />} /> */}
+        </Route>
       </Routes>
     </Router>
   );

@@ -1,3 +1,5 @@
+import styles from "./InputSm.module.scss";
+
 export const InputSm = ({ value, label, setSmInput, placeholder, isLink = false, isEmptyInput, onChange, error, showHint, hint, emptyInputMessage }) => {
    const inputClassName = isLink ? styles.InputLink : styles.SmInput;
    const commonClassName = isEmptyInput ? `${inputClassName} ${styles.EmptyInput}` : inputClassName;
