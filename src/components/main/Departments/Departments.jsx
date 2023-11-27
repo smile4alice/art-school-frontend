@@ -1,4 +1,4 @@
-import Department from './Department/Department';
+import Department from '../Hero/Department/Department';
 import Container from '@/components/Container/Container';
 
 import musicImg from '/departments/music.png';
@@ -56,7 +56,7 @@ const Departments = () => {
           />
           <Department
             title={preschoolPreparatoryDepartment}
-            link="/"
+            link="/preschool_department"
             img={theaterImg}
           />
         </div>
