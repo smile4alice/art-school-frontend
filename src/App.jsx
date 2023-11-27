@@ -10,6 +10,7 @@ import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
 import Theater from './pages/main/theater/Theater';
 import AboutSchool from './pages/main/aboutSchool/AboutSchool';
+import MusicDepartment from './pages/music_department/MusicDepartment';
 
 // import SignInPageAdmin from './pages/admin-pages/LoginAdmin/SignInAdmin/SignInPageAdmin';
 
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/about_school" element={<AboutSchool />} />
           <Route path="/about_school_history'" element={<AboutSchool />} />
           <Route path="/about_school_museum" element={<AboutSchool />} />
+          <Route path="/music_department" element={<MusicDepartment />} />
           <Route
             path="/about_school_administration"
             element={<AboutSchool />}
