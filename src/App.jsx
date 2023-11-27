@@ -13,6 +13,18 @@ import AboutSchool from './pages/main/aboutSchool/AboutSchool';
 
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
 import AdminSharedLayout from './components/admin-components/AdminSharedLayout/AdminSharedLayout';
+import AdminDashboard from './components/admin-components/AdminDashboard/AdminDashboard';
+
+import SlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/SlidersPageAdmin';
+import NewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
+import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
+import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryAdmin/GalleryPageAdmin';
+import DepartmentsPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
+import OurAchievementsPageAdmin from './pages/admin-pages/OurAchievementsAdmin/OurAchievementsPageAdmin';
+import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrationAdmin/SchoolAdministrationPageAdmin';
+import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
+import ChangePasswordPageAdmin from './pages/admin-pages/Change password/ChangePasswordPageAdmin';
+
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
 
 const App = () => {
@@ -42,9 +54,19 @@ const App = () => {
         </Route>
         
         <Route path="/admin" element={<AdminSharedLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="sliders" element={<SlidersPageAdmin/>} />
+          <Route path="news" element={<NewsPageAdmin />} />
+          <Route path="posters" element={<PostersPageAdmin />} />
+          <Route path="gallery" element={<GalleryPageAdmin />} />
+          <Route path="departments" element={<DepartmentsPageAdmin />} />
+          <Route path="achievements" element={<OurAchievementsPageAdmin />} />
+          <Route path="administration" element={<SchoolAdministrationPageAdmin />} />
+          <Route path="contacts" element={<ContactsPageAdmin />} />
+          <Route path="password" element={<ChangePasswordPageAdmin />} />
         </Route>
         
-         <Route path="/admin/*"element={<NotFoundAdmin/>}/>
+         <Route path="/admin/*" element={<NotFoundAdmin />} />
       </Routes>
     </Router>
   );

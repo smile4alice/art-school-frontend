@@ -1,7 +1,7 @@
-const NewsPage = () => {
+const NewsPageAdmin = () => {
   return (
-    <div>NewsPage</div>
+    <div>NewsPageAdmin</div>
   );
 };
 
-export default NewsPage;
+export default NewsPageAdmin;

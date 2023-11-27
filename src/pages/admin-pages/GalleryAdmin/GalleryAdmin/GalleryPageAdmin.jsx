@@ -1,7 +1,7 @@
-const GalleryPage = () => {
+const GalleryPageAdmin = () => {
   return (
-    <div>GalleryPage</div>
+    <div>Gallery Page Admin</div>
   );
 };
 
-export default GalleryPage;
+export default GalleryPageAdmin;
