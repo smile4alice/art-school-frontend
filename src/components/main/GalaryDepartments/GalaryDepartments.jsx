@@ -11,16 +11,18 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 
-const GalaryDepartments = ({ url, showSelect, selectOptions }) => {
+const GalaryDepartments = ({
+  url,
+  departmentId,
+  changeDepartment,
+  showSelect,
+  selectOptions,
+}) => {
   const { getDepartmentAchievements } = useServicesStore();
   const isLaptop = useMediaQuery({ minWidth: 1280 });
-  const swiperRef = useRef();
-  const [achievementsData, setAchievementsData] = useState([]);
-  const [departmentId, setDepartmenId] = useState(
-    selectOptions ? selectOptions[0].id : ''
-  );
+  const swiperGalaryRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
-
+  const [galaryData, setGalaryData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       setLoadingState('loading');
@@ -30,7 +32,7 @@ const GalaryDepartments = ({ url, showSelect, selectOptions }) => {
           showSelect,
           departmentId
         );
-        setAchievementsData(result);
+        setGalaryData(result);
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
@@ -38,10 +40,6 @@ const GalaryDepartments = ({ url, showSelect, selectOptions }) => {
     };
     fetchData();
   }, [getDepartmentAchievements, url, showSelect, departmentId]);
-
-  const changeDepartment = url => {
-    setDepartmenId(url);
-  };
 
   return (
     <Container>
@@ -57,18 +55,18 @@ const GalaryDepartments = ({ url, showSelect, selectOptions }) => {
           <div className={s.errorData}>Louding...</div>
         )}
         {loadingState === 'success' &&
-        achievementsData &&
-        achievementsData.length > 0 ? (
+        setGalaryData &&
+        setGalaryData.length > 0 ? (
           <div className={s.slidersContainer}>
             {isLaptop && (
               <SwiperButtons
-                onPrevClick={() => swiperRef.current.slidePrev()}
-                onNextClick={() => swiperRef.current.slideNext()}
+                onPrevClick={() => swiperGalaryRef.current.slidePrev()}
+                onNextClick={() => swiperGalaryRef.current.slideNext()}
               />
             )}
             <Swiper
               onSwiper={swiper => {
-                swiperRef.current = swiper;
+                swiperGalaryRef.current = swiper;
               }}
               className={s.slider}
               modules={[Pagination]}
@@ -85,7 +83,7 @@ const GalaryDepartments = ({ url, showSelect, selectOptions }) => {
               pagination={{ clickable: true }}
               loop={true}
             >
-              {achievementsData.map(item => (
+              {galaryData.map(item => (
                 <SwiperSlide className={s.slideContent} key={item.id}>
                   <div className={s.slidePhoto}>
                     <img src={item.media} alt="achievement photo" />

@@ -11,16 +11,20 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 
-const Achievements = ({ title, url, showSelect, selectOptions }) => {
+const Achievements = ({
+  title,
+  url,
+  departmentId,
+  changeDepartment,
+  showSelect,
+  selectOptions,
+}) => {
   const { getDepartmentAchievements } = useServicesStore();
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const swiperRef = useRef();
   const [achievementsData, setAchievementsData] = useState([]);
-  const [departmentId, setDepartmentId] = useState(
-    selectOptions ? selectOptions[0].id : ''
-  );
   const [loadingState, setLoadingState] = useState('loading');
-
+  console.log(departmentId);
   useEffect(() => {
     const fetchData = async () => {
       setLoadingState('loading');
@@ -38,10 +42,6 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
     };
     fetchData();
   }, [getDepartmentAchievements, url, showSelect, departmentId]);
-
-  const changeDepartment = url => {
-    setDepartmentId(url);
-  };
 
   return (
     <Container>
