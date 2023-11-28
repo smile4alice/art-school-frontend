@@ -6,17 +6,17 @@ import Container from '@/components/Container/Container';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import Select from '@/components/ui/Select/Select';
 import useServicesStore from '@/store/serviseStore';
-import s from './Achievements.module.scss';
+import s from './GalaryDepartments.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 
-const Achievements = ({ title, url, showSelect, selectOptions }) => {
+const GalaryDepartments = ({ url, showSelect, selectOptions }) => {
   const { getDepartmentAchievements } = useServicesStore();
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const swiperRef = useRef();
   const [achievementsData, setAchievementsData] = useState([]);
-  const [departmentId, setDepartmentId] = useState(
+  const [departmentId, setDepartmenId] = useState(
     selectOptions ? selectOptions[0].id : ''
   );
   const [loadingState, setLoadingState] = useState('loading');
@@ -40,13 +40,12 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
   }, [getDepartmentAchievements, url, showSelect, departmentId]);
 
   const changeDepartment = url => {
-    setDepartmentId(url);
+    setDepartmenId(url);
   };
 
   return (
     <Container>
-      <section className={s.achievements}>
-        <h2>{title}</h2>
+      <section className={s.galary}>
         {showSelect && isLaptop && (
           <Select
             title="Обрати відділ"
@@ -104,4 +103,4 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
   );
 };
 
-export default Achievements;
+export default GalaryDepartments;
