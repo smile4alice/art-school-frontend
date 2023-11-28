@@ -8,9 +8,10 @@ import AllNews from './pages/main/allnews/AllNews';
 import OneNews from './pages/main/onenews/OneNews';
 import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
-import Theater from './pages/main/theater_department/Theater';
+//import Theater from './pages/main/theater/Theater';
 import AboutSchool from './pages/main/aboutSchool/AboutSchool';
-import MusicDepartment from './pages/main/music_department/MusicDepartment';
+import DepartmentPage from './pages/department_page/DepartmentPage';
+
 
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
 import AdminSharedLayout from './components/admin-components/AdminSharedLayout/AdminSharedLayout';
@@ -41,15 +42,17 @@ const App = () => {
           <Route path="/news/:id" element={<OneNews />} />
           <Route path="/posters" element={<PostersPage />} />
           <Route path="/cooperation" element={<Cooperation />} />
-          <Route path="/theater_department" element={<Theater />} />
           <Route path="/about_school" element={<AboutSchool />} />
           <Route path="/about_school_history'" element={<AboutSchool />} />
           <Route path="/about_school_museum" element={<AboutSchool />} />
-          <Route path="/music_department" element={<MusicDepartment />} />
-          <Route
-            path="/about_school_administration"
-            element={<AboutSchool />}
-          />
+          <Route path="/music_department" element={<DepartmentPage id={'1'} title={'Музичне відділення'}/>} />
+          <Route path="/vocal_choral_department" element={<DepartmentPage id={'2'} title={'Вокально-хорове відділення'}/>} />
+          <Route path="/сhoreographic_department" element={<DepartmentPage id={'3'} title={'Хореографічне відділення'}/>} />
+          <Route path="/theater_department" element={<DepartmentPage id={'4'} title={'Образотворче відділення'}/>}/>
+          <Route path="/fine_arts_department" element={<DepartmentPage id={'5'} title={'Театральне відділення'}/>}/>
+          <Route path="/preschool_preparatory_department" element={<DepartmentPage id={'6'} title={'Дошкільне та підготовче відділення'}/>}/>
+          <Route path="/about_school_administration"element={<AboutSchool />}/>
+          {/*<Route path="/theater_department" element={<Theater />} />*/}
         </Route>
 
         <Route path="/login" element={<LoginLayout />}></Route>

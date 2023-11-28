@@ -4,7 +4,7 @@ export const departmemts = [
   { name: 'Хореографічне відділення', to: '/сhoreographic_department' },
   { name: 'Образотворче відділення', to: '/fine_arts_department' },
   { name: 'Театральне відділення', to: '/theater_department' },
-  { name: 'Дошкільне та підготовче відділення', to: 'preschool_department' },
+  { name: 'Дошкільне та підготовче відділення', to: '/preschool_preparatory_department' },
 ];
 
 export const aboutUs = [
