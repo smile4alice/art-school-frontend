@@ -8,7 +8,7 @@ import AllNews from './pages/main/allnews/AllNews';
 import OneNews from './pages/main/onenews/OneNews';
 import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
-import Theater from './pages/main/theater/Theater';
+import Theater from './pages/main/theater_department/Theater';
 import AboutSchool from './pages/main/aboutSchool/AboutSchool';
 import MusicDepartment from './pages/main/music_department/MusicDepartment';
 
@@ -62,6 +62,7 @@ const App = () => {
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />
+          git
           <Route
             path="administration"
             element={<SchoolAdministrationPageAdmin />}

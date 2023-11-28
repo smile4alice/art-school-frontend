@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import OneItem from './oneItem/oneItem';
@@ -26,6 +26,9 @@ const AllNews = () => {
     }
   };
 
+     useEffect(() => {
+       window.scrollTo(0, 0);
+     }, []);
   return (
     <Container>
       <section className={styles.wrapper}>
