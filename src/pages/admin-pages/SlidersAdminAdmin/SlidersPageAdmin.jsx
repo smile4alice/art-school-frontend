@@ -1,7 +1,7 @@
-const SlidersPage = () => {
+const SlidersPageAdmin = () => {
   return (
-    <div>SlidersPage</div>
+    <div>Sliders Page Admin</div>
   );
 };
 
-export default SlidersPage;
+export default SlidersPageAdmin;
