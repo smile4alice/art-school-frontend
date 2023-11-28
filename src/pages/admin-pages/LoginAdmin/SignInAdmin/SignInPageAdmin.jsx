@@ -1,6 +1,9 @@
+
+import SignIn from '../../../../components/admin-components/Login/SignIn/SignIn';
+
 const SignInPage = () => {
   return (
-    <div>SignInPage</div>
+    <SignIn/>
   );
 };
 

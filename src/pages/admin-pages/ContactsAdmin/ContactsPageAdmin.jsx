@@ -1,6 +1,6 @@
 const ContactsPageAdmin = () => {
   return (
-    <div>ContactsPageAdmin</div>
+    <div>Contacts Page Admin</div>
   );
 };
 

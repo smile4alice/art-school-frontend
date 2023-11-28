@@ -1,6 +1,6 @@
 const AddOurAchievementsPage = () => {
   return (
-    <div>AddOurAchievementsPage</div>
+    <div>Add Our Achievements Page</div>
   );
 };
 

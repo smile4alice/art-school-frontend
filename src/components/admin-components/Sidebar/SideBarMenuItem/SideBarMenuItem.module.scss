@@ -1,0 +1,57 @@
+.sidebarMenuItem {
+   display: flex;
+   width: 204px;
+   padding: 10px 10px 10px 30px;
+   align-items: center;
+   gap: 10px;
+   border-radius: 0px 7px 7px 0px;
+   background: transparent;
+   color: var(--admin-text-main, #152340);
+   font-family: Montserrat;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+
+   &:hover {
+      background: var(--admin-white, #FFF);
+      .icon {
+         fill: var(--admin-green, #707E8C);
+         }
+   }
+
+   &.active {
+      background: transparent;
+      color: var(--admin-blue, #6A65FF);
+      font-weight: 600;
+   }
+
+   .icon {   
+      fill: var(--admin-purple-2, #BFC8FC);
+      width: 15px;
+      height: 15px;
+
+      &:hover {
+         fill: var(--admin-green, #707E8C);
+      }
+   
+      &.active {
+         fill: var(--admin-blue, #6A65FF);
+      }
+   }
+ 
+   &.filledIcon {
+      .icon {
+         fill: var(--admin-blue, #6A65FF);
+         stroke: none;
+      }
+   }
+
+   &.strokedIcon {
+      .icon {
+         fill: none;
+         stroke: var(--admin-blue, #6A65FF);
+         stroke-width: 1.6px;
+      }
+   }
+}

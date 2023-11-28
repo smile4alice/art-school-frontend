@@ -1,6 +1,6 @@
 const AddNewsPage = () => {
   return (
-    <div>AddNewsPage</div>
+    <div>Add News Page</div>
   );
 };
 
