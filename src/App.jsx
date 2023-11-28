@@ -10,7 +10,7 @@ import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
 import Theater from './pages/main/theater/Theater';
 import AboutSchool from './pages/main/aboutSchool/AboutSchool';
-import MusicDepartment from './pages/music_department/MusicDepartment';
+import MusicDepartment from './pages/main/music_department/MusicDepartment';
 
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
 import AdminSharedLayout from './components/admin-components/AdminSharedLayout/AdminSharedLayout';
@@ -52,23 +52,25 @@ const App = () => {
           />
         </Route>
 
-        <Route path="/login" element={<LoginLayout />}>
-        </Route>
-        
+        <Route path="/login" element={<LoginLayout />}></Route>
+
         <Route path="/admin" element={<AdminSharedLayout />}>
           <Route index element={<AdminDashboard />} />
-          <Route path="sliders" element={<SlidersPageAdmin/>} />
+          <Route path="sliders" element={<SlidersPageAdmin />} />
           <Route path="news" element={<NewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />
-          <Route path="administration" element={<SchoolAdministrationPageAdmin />} />
+          <Route
+            path="administration"
+            element={<SchoolAdministrationPageAdmin />}
+          />
           <Route path="contacts" element={<ContactsPageAdmin />} />
           <Route path="password" element={<ChangePasswordPageAdmin />} />
         </Route>
-        
-         <Route path="/admin/*" element={<NotFoundAdmin />} />
+
+        <Route path="/admin/*" element={<NotFoundAdmin />} />
       </Routes>
     </Router>
   );
