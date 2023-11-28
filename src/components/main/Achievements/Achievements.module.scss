@@ -3,7 +3,8 @@
   width: 100%;
   max-width: 1280px;
   background-color: inherit;
-  padding: 0.5rem;
+  padding: 0 1rem;
+  margin: 1rem auto;
   h2 {
     font-size: 1.3rem;
     font-weight: 700;
@@ -67,7 +68,6 @@
 
 @media (min-width: 1280px) {
   .achievements {
-    margin: 2rem auto 5rem;
     h2 {
       font-size: 2rem;
     }

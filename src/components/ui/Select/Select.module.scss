@@ -1,7 +1,7 @@
 .selectContainer {
-  width: 280px;
-  margin-left: calc(100% - 280px);
+  width: 100%;
   position: relative;
+  margin-top: .5rem;
 
   .selectButton {
     width: 100%;
@@ -36,8 +36,15 @@
     .option:last-child {
       border-bottom: none;
     }
-     .option:hover {
-    box-shadow: 0px 4px 15px 0px rgba(18, 0, 0, 0.15);
+    .option:hover {
+      box-shadow: 0px 4px 15px 0px rgba(18, 0, 0, 0.15);
+    }
   }
+}
+@media (min-width: 1280px) {
+  .selectContainer {
+    width: 280px;
+    margin-left: calc(100% - 280px);
+    margin-top: 0;
   }
 }

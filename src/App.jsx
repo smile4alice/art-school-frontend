@@ -32,12 +32,12 @@ const App = () => {
           <Route path="/about_school" element={<AboutSchool />} />
           <Route path="/about_school_history'" element={<AboutSchool />} />
           <Route path="/about_school_museum" element={<AboutSchool />} />
-          <Route path="/music_department" element={<DepartmentPage id={'1'} title={'Музичне відділення'}/>} />
-          <Route path="/vocal_choral_department" element={<DepartmentPage id={'2'} title={'Вокально-хорове відділення'}/>} />
-          <Route path="/сhoreographic_department" element={<DepartmentPage id={'3'} title={'Хореографічне відділення'}/>} />
-          <Route path="/theater_department" element={<DepartmentPage id={'4'} title={'Образотворче відділення'}/>}/>
-          <Route path="/fine_arts_department" element={<DepartmentPage id={'5'} title={'Театральне відділення'}/>}/>
-          <Route path="/preschool_preparatory_department" element={<DepartmentPage id={'6'} title={'Дошкільне та підготовче відділення'}/>}/>
+          <Route path="/music_department" element={<DepartmentPage id={'1'} showSelect={true} title={'Музичне відділення'}/>} />
+          <Route path="/vocal_choral_department" element={<DepartmentPage id={'2'} showSelect={true} title={'Вокально-хорове відділення'}/>} />
+          <Route path="/сhoreographic_department" element={<DepartmentPage id={'3'} showSelect={true} title={'Хореографічне відділення'}/>} />
+          <Route path="/theater_department" element={<DepartmentPage id={'4'} showSelect={false} title={'Образотворче відділення'}/>}/>
+          <Route path="/fine_arts_department" element={<DepartmentPage id={'5'} showSelect={true} title={'Театральне відділення'}/>}/>
+          <Route path="/preschool_preparatory_department" element={<DepartmentPage id={'6'} showSelect={false} title={'Дошкільне та підготовче відділення'}/>}/>
           <Route path="/about_school_administration"element={<AboutSchool />}/>
           {/*<Route path="/theater_department" element={<Theater />} />*/}
         </Route>
