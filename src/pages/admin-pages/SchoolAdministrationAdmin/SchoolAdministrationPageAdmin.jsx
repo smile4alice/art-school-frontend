@@ -1,6 +1,6 @@
 const SchoolAdministrationPage = () => {
   return (
-    <div>SchoolAdministrationPage</div>
+    <div>School Administration Page</div>
   );
 };
 

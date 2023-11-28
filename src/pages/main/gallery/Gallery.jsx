@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel } from 'swiper/modules';
+import { useMediaQuery } from 'react-responsive';
 
 import { images, videos } from '@/constants/gallery';
 
@@ -21,6 +22,9 @@ const Gallery = () => {
   const [sorting, setSorting] = useState(false);
   const [sortedImages, setSortedImages] = useState(images);
   const isMaxAmount = itemsPerPage >= images.length - 1;
+  const isLaptop = useMediaQuery({ minWidth: 1280 });
+  const isTablet = useMediaQuery({ minWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,55 +59,141 @@ const Gallery = () => {
         <div className={styles.galleryHeading}>
           <h1>Галерея</h1>
         </div>
-        <div className={styles.videoWrapper}>
-          <div className="video">
-            <iframe
-              src={replaceUrl(videos[0])}
-              width="742"
-              height="400"
-              allowFullScreen
-            ></iframe>
-          </div>
-
-          <div className={styles.videos}>
-            <button
-              onClick={() => swiperRef.current.slidePrev()}
-              onMouseEnter={() => setUpHovered(true)}
-              onMouseLeave={() => setUpHovered(false)}
-              className={styles.arrowUp}
+        <div className={styles.youtubeLink}>
+          <p>
+            Дивитися більше відео {isMobile && <br />} на нашому
+            <a
+              href="https://www.youtube.com/@ArtSchoolVerykivskogo"
+              target="_blank"
+              rel="noreferrer"
             >
-              <ArrowUp hovered={upHovered} />
-            </button>
-            <button
-              onClick={() => swiperRef.current.slideNext()}
-              onMouseEnter={() => setDownHovered(true)}
-              onMouseLeave={() => setDownHovered(false)}
-              className={styles.arrowDown}
-            >
-              <ArrowDown hovered={downHovered} />
-            </button>
-            <Swiper
-              direction={'vertical'}
-              slidesPerView={2}
-              spaceBetween={25}
-              mousewheel={true}
-              modules={[Mousewheel]}
-              onSwiper={swiper => (swiperRef.current = swiper)}
-              className={styles.swiper}
-            >
-              {videos.slice(1).map((video, index) => (
-                <SwiperSlide className={styles.slide} key={index}>
-                  <iframe
-                    src={replaceUrl(video)}
-                    width="382"
-                    height="190"
-                    allowFullScreen
-                  ></iframe>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+              <img src="/icons/youtube-icon.svg" alt="youtube" />
+            </a>
+          </p>
         </div>
+        {isLaptop && (
+          <div className={styles.videoWrapper}>
+            <div className={styles.video}>
+              <iframe src={replaceUrl(videos[0])} allowFullScreen></iframe>
+            </div>
+
+            <div className={styles.videos}>
+              <button
+                onClick={() => swiperRef.current.slidePrev()}
+                onMouseEnter={() => setUpHovered(true)}
+                onMouseLeave={() => setUpHovered(false)}
+                className={styles.arrowUp}
+              >
+                <ArrowUp hovered={upHovered} />
+              </button>
+              <button
+                onClick={() => swiperRef.current.slideNext()}
+                onMouseEnter={() => setDownHovered(true)}
+                onMouseLeave={() => setDownHovered(false)}
+                className={styles.arrowDown}
+              >
+                <ArrowDown hovered={downHovered} />
+              </button>
+              <Swiper
+                direction={'vertical'}
+                slidesPerView={2}
+                spaceBetween={15}
+                mousewheel={true}
+                modules={[Mousewheel]}
+                onSwiper={swiper => (swiperRef.current = swiper)}
+                className={styles.swiper}
+              >
+                {videos.slice(1).map((video, index) => (
+                  <SwiperSlide className={styles.slide} key={index}>
+                    <iframe
+                      src={replaceUrl(video)}
+                      width="382"
+                      height="190"
+                      allowFullScreen
+                    ></iframe>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        )}
+
+        {isTablet && !isLaptop && (
+          <div className={styles.videoWrapper}>
+            <div className={styles.videos}>
+              <button
+                onClick={() => swiperRef.current.slidePrev()}
+                onMouseEnter={() => setUpHovered(true)}
+                onMouseLeave={() => setUpHovered(false)}
+                className={styles.arrowUp}
+              >
+                <ArrowUp hovered={upHovered} />
+              </button>
+              <button
+                onClick={() => swiperRef.current.slideNext()}
+                onMouseEnter={() => setDownHovered(true)}
+                onMouseLeave={() => setDownHovered(false)}
+                className={styles.arrowDown}
+              >
+                <ArrowDown hovered={downHovered} />
+              </button>
+              <Swiper
+                direction={'vertical'}
+                slidesPerView={1}
+                spaceBetween={25}
+                mousewheel={true}
+                modules={[Mousewheel]}
+                onSwiper={swiper => (swiperRef.current = swiper)}
+                className={styles.swiper}
+              >
+                {videos.map((video, index) => (
+                  <SwiperSlide className={styles.slide} key={index}>
+                    <iframe src={replaceUrl(video)} allowFullScreen></iframe>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        )}
+
+        {isMobile && (
+          <div className={styles.videoWrapper}>
+            <div className={styles.videos}>
+              <button
+                onClick={() => swiperRef.current.slidePrev()}
+                onMouseEnter={() => setUpHovered(true)}
+                onMouseLeave={() => setUpHovered(false)}
+                className={styles.arrowUp}
+              >
+                <ArrowUp hovered={upHovered} />
+              </button>
+              <button
+                onClick={() => swiperRef.current.slideNext()}
+                onMouseEnter={() => setDownHovered(true)}
+                onMouseLeave={() => setDownHovered(false)}
+                className={styles.arrowDown}
+              >
+                <ArrowDown hovered={downHovered} />
+              </button>
+              <Swiper
+                direction={'horizontal'}
+                slidesPerView={1}
+                spaceBetween={25}
+                mousewheel={true}
+                modules={[Mousewheel]}
+                onSwiper={swiper => (swiperRef.current = swiper)}
+                className={styles.swiper}
+              >
+                {videos.map((video, index) => (
+                  <SwiperSlide className={styles.slide} key={index}>
+                    <iframe src={replaceUrl(video)} allowFullScreen></iframe>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        )}
+
         <div className={styles.sort}>
           <button onClick={() => setSorting(!sorting)}>
             <SortIcon />

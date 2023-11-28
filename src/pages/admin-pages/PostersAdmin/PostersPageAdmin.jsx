@@ -1,7 +1,7 @@
-const PostersPage = () => {
+const PostersPageAdmin= () => {
   return (
-    <div>PostersPage</div>
+    <div>Posters Page Admin</div>
   );
 };
 
-export default PostersPage;
+export default PostersPageAdmin;
