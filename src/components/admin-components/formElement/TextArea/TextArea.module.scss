@@ -1,4 +1,4 @@
-.inputWrapper {
+.textAreaWrapper {
    display: inline-flex;
    flex-direction: column;
    justify-content: center;
@@ -12,13 +12,13 @@
    font-size: 14px;
    font-style: normal;
    font-weight: 500;
-   line-height: normal; 
+   line-height: normal;
 }
 
-.input {
+.textArea {
    display: flex;
    width: 478px;
-   height: 45px;
+   height: 197px;
    padding: 10px;
    align-items: flex-start;
    border-radius: 6px;
@@ -84,6 +84,3 @@
 .redText {
    color: var(--admin-red, #FF3232);
 }
-
-
-

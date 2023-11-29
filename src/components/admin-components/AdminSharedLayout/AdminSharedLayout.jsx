@@ -9,7 +9,9 @@ const AdminSharedLayout = () => {
          <div className={styles.adminBackdrop}>
             <Sidebar />
             <Suspense fallback={<div>Loading...</div>}>
-               <Outlet />
+               <div className={styles.rightContent}>
+                  <Outlet />
+               </div>               
             </Suspense>
          </div>
       </main>

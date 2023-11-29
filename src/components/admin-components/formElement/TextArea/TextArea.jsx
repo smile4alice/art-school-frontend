@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./InputSm.module.scss";
+import styles from "./TextArea.module.scss";
 
-const InputSm = ({ label, maxLength, errorText, showCharacterCount }) => {
+const TextArea = ({ label, maxLength, errorMessage }) => {
   const [text, setText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
@@ -42,48 +42,47 @@ const InputSm = ({ label, maxLength, errorText, showCharacterCount }) => {
   };
 
   return (
-    <div className={styles.inputWrapper}>
-      <label htmlFor="text-input" className={styles.inputLabel}>
+    <div className={styles.textAreaWrapper}>
+      <label htmlFor="text-area" className={styles.inputLabel}>
         {label}
       </label>
-      <input
-        id="text-input"
-        className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
+      <textarea
+        id="text-area"
+        className={`${styles.textArea} ${getBorderColor()} ${getInputState()}`}
         value={text}
         onChange={handleInputChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
-      {showCharacterCount && (
-        <div className={styles.commentsWrapper}>
-          <div className={styles.errorWrap}>
-            {text.length > maxLength && (
-              <p className={styles.errorMessage}>{errorText}</p>
-            )}
-          </div>
-          <p
-            className={`${styles.counterMessage} ${
-              text.length > maxLength ? styles.redText : ""
-            }`}
-          >
-            {`${text.length}/${maxLength}`}
-          </p>
+      <div className={styles.commentsWrapper}>
+        <div className={styles.errorWrap}>
+          {text.length > maxLength && (
+            <p className={styles.errorMessage}>{errorMessage}</p>
+          )}
         </div>
-      )}
+        <p
+          className={`${styles.counterMessage} ${
+            text.length > maxLength ? styles.redText : ""
+          }`}
+        >
+          {`${text.length}/${maxLength}`}
+        </p>
+      </div>
     </div>
   );
 };
 
-InputSm.propTypes = {
+TextArea.propTypes = {
   label: PropTypes.string.isRequired,
   maxLength: PropTypes.number.isRequired,
-  errorText: PropTypes.string,
-  showCharacterCount: PropTypes.bool,
+  errorMessage: PropTypes.string,
 };
 
-InputSm.defaultProps = {
-  errorText: "Текст перевищує вказану кількість символів",
-  showCharacterCount: true,
+TextArea.defaultProps = {
+   label: "Текст*",
+  maxLength: 2000,
+  errorMessage: `Текст перевищує вказану кількість символів`,
 };
 
-export default InputSm;
+export default TextArea;
+
