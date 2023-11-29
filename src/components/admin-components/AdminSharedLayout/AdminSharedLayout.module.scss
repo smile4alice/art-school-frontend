@@ -8,6 +8,15 @@
 }
 .adminBackdrop{
    display: flex;
+   justify-content: center;
    padding: 12px;   
    align-self: stretch;
+}
+.rightContent {
+   display: flex;
+   width: 100vw;
+   padding: 0px 0px 12px 12px;
+   flex-direction: column;
+   flex: 1 0 0;
+   align-self: stretch;  
 }

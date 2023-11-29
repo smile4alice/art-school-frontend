@@ -1,6 +1,24 @@
+import React from 'react';
+import PageTitle from '../../../components/admin-components/PageTitle/PageTitle';
+import ButtonSubmit from '../../../components/admin-components/Buttons/SubmitButton/ButtonSubmit';
+import Table from '../../../components/admin-components/Table/Table'
 const AddSlidersPage = () => {
   return (
-    <div>AddSlidersPage</div>
+    <div>
+       <PageTitle
+        title="Додати cлайдер"
+        showBackButton={true}    
+        backButtonLink="/admin/sliders"
+        showActionButton={false}
+      />  
+      <Table/>
+
+      <ButtonSubmit
+        nameButton="Зберегти зміни"
+        isActive={true}
+        isRight={true}
+      />     
+    </div>
   );
 };
 

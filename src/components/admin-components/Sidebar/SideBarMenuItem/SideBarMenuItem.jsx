@@ -6,6 +6,10 @@ import styles from './SideBarMenuItem.module.scss';
 const SideBarMenuItem = ({ title, link, iconClass, isFilled }) => {
    const location = useLocation();
 
+   console.log("location.pathname:", location.pathname);
+   console.log("link:", link);
+   console.log("isActive:", location.pathname === link);
+
    return (
       <Link
          to={link}
