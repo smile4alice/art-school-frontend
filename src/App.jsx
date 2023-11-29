@@ -56,24 +56,24 @@ const App = () => {
           {/*<Route path="/theater_department" element={<Theater />} />*/}
         </Route>
 
-        <Route path="/login" element={<LoginLayout />}></Route>
-
+        <Route path="/login" element={<LoginLayout />}>
+        </Route>
+        
         <Route path="/admin" element={<AdminSharedLayout />}>
           <Route index element={<AdminDashboard />} />
+          <Route path="sliders" element={<SlidersPageAdmin />} />
+          <Route path="sliders-add" element={<AddSlidersPageAdmin />} />
           <Route path="news" element={<NewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
-    
-          <Route
-            path="administration"
-            element={<SchoolAdministrationPageAdmin />}
-          />
+          <Route path="achievements" element={<OurAchievementsPageAdmin />} />
+          <Route path="administration" element={<SchoolAdministrationPageAdmin />} />
           <Route path="contacts" element={<ContactsPageAdmin />} />
           <Route path="password" element={<ChangePasswordPageAdmin />} />
         </Route>
-
-        <Route path="/admin/*" element={<NotFoundAdmin />} />
+        
+         <Route path="/admin/*" element={<NotFoundAdmin />} />
       </Routes>
     </Router>
   );
