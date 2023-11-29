@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import Container from '@/components/Container/Container';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import Select from '@/components/ui/Select/Select';
 import useServicesStore from '@/store/serviseStore';
@@ -19,7 +18,7 @@ const GalaryDepartments = ({
   selectOptions,
 }) => {
   const { getDepartmentAchievements } = useServicesStore();
-  const isLaptop = useMediaQuery({ minWidth: 1280 });
+  const isDextop = useMediaQuery({ minWidth: 1280 });
   const swiperGalaryRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
   const [galaryData, setGalaryData] = useState([]);
@@ -42,9 +41,8 @@ const GalaryDepartments = ({
   }, [getDepartmentAchievements, url, showSelect, departmentId]);
 
   return (
-    <Container>
       <section className={s.galary}>
-        {showSelect && isLaptop && (
+        {showSelect && isDextop && (
           <Select
             title="Обрати відділ"
             options={selectOptions}
@@ -54,11 +52,10 @@ const GalaryDepartments = ({
         {loadingState === 'loading' && (
           <div className={s.errorData}>Louding...</div>
         )}
-        {loadingState === 'success' &&
-        setGalaryData &&
-        setGalaryData.length > 0 ? (
+        {loadingState === 'success' ? (
+          galaryData && galaryData.length > 0 ? (
           <div className={s.slidersContainer}>
-            {isLaptop && (
+            {isDextop && (
               <SwiperButtons
                 onPrevClick={() => swiperGalaryRef.current.slidePrev()}
                 onNextClick={() => swiperGalaryRef.current.slideNext()}
@@ -86,18 +83,30 @@ const GalaryDepartments = ({
               {galaryData.map(item => (
                 <SwiperSlide className={s.slideContent} key={item.id}>
                   <div className={s.slidePhoto}>
-                    <img src={item.media} alt="achievement photo" />
+                    <img src={item.media} alt={item.description} />
                   </div>
                   <p className={s.slideText}>{item.description}</p>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
-        ) : (
+         ) : (
           <div className={s.errorData}>Дані тимчасово відсутні</div>
+        )
+      ) : (
+        loadingState === 'error' && (
+          <div className={s.errorData}>Дані тимчасово відсутні</div>
+        )
+      )}
+      {showSelect && !isDextop && (
+          <Select
+            title="Обрати відділ"
+            options={selectOptions}
+            changeDepartment={changeDepartment}
+          />
         )}
       </section>
-    </Container>
+
   );
 };
 
