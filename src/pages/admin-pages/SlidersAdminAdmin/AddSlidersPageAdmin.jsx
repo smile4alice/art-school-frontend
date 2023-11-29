@@ -2,7 +2,7 @@ import React from 'react';
 import PageTitle from '../../../components/admin-components/PageTitle/PageTitle';
 import ButtonSubmit from '../../../components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import Table from '../../../components/admin-components/Frame/Frame'
-const AddSlidersPage = () => {
+const AddSlidersPageAdmin = () => {
   return (
     <div>
        <PageTitle
@@ -22,4 +22,4 @@ const AddSlidersPage = () => {
   );
 };
 
-export default AddSlidersPage;
+export default AddSlidersPageAdmin;
