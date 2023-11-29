@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import InputSm from '../../admin-components/formElement/Inputs/InputSm';
+import InputSm from '../formElement/Inputs/InputSm';
 import TextArea from '../formElement/TextArea/TextArea';
-import styles from './Table.module.scss';
+import styles from './Frame.module.scss';
 
 
 const Table = () => {

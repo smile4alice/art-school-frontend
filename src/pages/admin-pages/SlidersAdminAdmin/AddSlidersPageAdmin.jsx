@@ -1,7 +1,7 @@
 import React from 'react';
 import PageTitle from '../../../components/admin-components/PageTitle/PageTitle';
 import ButtonSubmit from '../../../components/admin-components/Buttons/SubmitButton/ButtonSubmit';
-import Table from '../../../components/admin-components/Table/Table'
+import Table from '../../../components/admin-components/Frame/Frame'
 const AddSlidersPage = () => {
   return (
     <div>
