@@ -78,19 +78,22 @@ const Hero = () => {
       >
         {Data.map((slide, index) => (
           <SwiperSlide key={index} className={styles.SlideStyle}>
-            <img src={slide.img} alt="hero" className={styles.HeroImage} />
+            <img src={slide.img} alt={Data.alt} className={styles.HeroImage} />
+            {index === 0 && (
+              <div className={styles.HeroTitle}>
+                <h1 className={styles.HeroPrimaryTitle}>
+                  Київська дитяча школа мистецтв №2
+                  <span className={styles.HeroSecondaryTitle}>
+                    {' '}
+                    ім. M. I. Вериківського
+                  </span>
+                </h1>
+              </div>
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className={styles.HeroTitle}>
-        <h1 className={styles.HeroPrimaryTitle}>
-          Київська дитяча школа мистецтв №2
-          <span className={styles.HeroSecondaryTitle}>
-            {' '}
-            ім. M. I. Вериківського
-          </span>
-        </h1>
-      </div>
+
       <div className={styles.HeroEvent}>
         <p className={styles.HeroEventName}>подія</p>
         <h3 className={styles.HeroEventTitle}>

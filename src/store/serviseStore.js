@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 const useServicesStore = create((set, get) => ({
   server: 'https://art-school-backend.vercel.app/api/v1/',
@@ -14,7 +14,8 @@ const useServicesStore = create((set, get) => ({
 
   getDepartmentAchievements: async (url, showSelect, departmentId) => {
     const response = await fetch(
-      `${get().server}${url}${showSelect ? departmentId : ''}?page=1&size=7`);
+      `${get().server}${url}${showSelect ? departmentId : ''}?page=1&size=7`
+    );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }

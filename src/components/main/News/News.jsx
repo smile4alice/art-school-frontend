@@ -13,7 +13,7 @@ import 'swiper/css';
 const News = () => {
   const swiperRef = useRef();
   const isLaptop = useMediaQuery({ minWidth: 1024 });
-  const isMobile = useMediaQuery({ maxWidth: 678 });
+
   return (
     <Container>
       <section className={styles.News}>
@@ -45,7 +45,7 @@ const News = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          {!isMobile && (
+          {isLaptop && (
             <>
               <button
                 className={styles.prevSlide}
