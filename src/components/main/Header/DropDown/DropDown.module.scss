@@ -26,16 +26,22 @@
   padding-bottom: 5px;
   padding-top: 5px;
 
-  @include font(18px, 400, 2);
+  @include font(18px, 600, 1.4);
   letter-spacing: 0.19px;
   color: $linkColor;
-  border-bottom: 1px solid transparent;
+
+  @include tablet {
+    @include font(20px, 600, 1.4);
+  }
 
   @media screen and (min-width: 1280px) {
     width: max-content;
 
     padding-bottom: 0px;
     padding-top: 0px;
+
+    @include font(16px, 400, 2);
+    letter-spacing: 0.19px;
   }
 }
 
@@ -67,7 +73,7 @@
   opacity: 0;
 
   position: absolute;
-  top: 44px; // same as your nav height
+  top: 54px; // same as your nav height
   left: 0;
   z-index: 10;
   background: $accent;
@@ -81,7 +87,8 @@
   transition: all 500ms ease;
 
   @media screen and (min-width: 1280px) {
-    top: 32px; // same as your nav height
+    top: 42px; // same as your nav height
+    left: 0;
   }
 }
 .departmentsMenu {
@@ -109,7 +116,7 @@
   text-align: center;
 
   cursor: pointer;
-  @include font(18px, 600, 1);
+  @include font(18px, 500, 1);
 
   color: $white;
 

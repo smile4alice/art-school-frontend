@@ -3,7 +3,7 @@ import { Pagination } from 'swiper/modules';
 import { SwiperSlide, Swiper } from 'swiper/react';
 
 import { useMediaQuery } from 'react-responsive';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   theaterDepartmentInfo,
   theaterDepartmentAchivments,
@@ -18,6 +18,9 @@ import AchievementsSlider from '@/components/Slider/achievementsSlider/Achieveme
 const Theater = () => {
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const theaterDepartmentSwiperRef = useRef();
+     useEffect(() => {
+       window.scrollTo(0, 0);
+     }, []);
   return (
     <section className={styles.theater}>
       <Container>

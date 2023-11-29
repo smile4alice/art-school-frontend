@@ -84,11 +84,12 @@
   @extend%aligncenter;
   background-color: #fff;
   justify-content: space-between;
-  padding-top: 32px;
-  padding-bottom: 16px;
+  gap: 29px;
+  padding: 32px 16px 16px;
+
   @media screen and (min-width: 768px) {
-    padding: 40px 0;
-    gap: 2rem;
+    padding: 40px 16px;
+    gap: 0;
   }
   @media screen and (min-width: 1280px) {
     padding: 10px 0;

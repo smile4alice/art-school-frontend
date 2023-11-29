@@ -90,7 +90,7 @@ const Footer = () => {
                 <li className={styles.contactsListItem}>
                   <PhoneIcon />
                   <div className={styles.contactsListItem_PhoneWrapper}>
-                    <a href="tel:+380972907940">044 272 00 30</a>
+                    <a href="tel:+380442720030">044 272 00 30</a>
                   </div>
                 </li>
                 <li className={styles.contactsListItem}>
