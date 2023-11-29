@@ -60,6 +60,7 @@ const App = () => {
 
         <Route path="/admin" element={<AdminSharedLayout />}>
           <Route index element={<AdminDashboard />} />
+          <Route path="sliders" element={<SlidersPageAdmin />} />
           <Route path="news" element={<NewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
