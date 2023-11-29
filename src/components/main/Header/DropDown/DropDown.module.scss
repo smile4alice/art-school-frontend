@@ -29,7 +29,6 @@
   @include font(18px, 600, 1.4);
   letter-spacing: 0.19px;
   color: $linkColor;
-  border-bottom: 1px solid transparent;
 
   @include tablet {
     @include font(20px, 600, 1.4);

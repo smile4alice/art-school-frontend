@@ -1,14 +1,18 @@
 [
   {
-    "img": "hero/building.jpg"
+    "img": "hero/building.jpg",
+    "alt": "БУДІВЛЯ ШКОЛИ"
   },
   {
-    "img": "hero/art-building.jpg"
+    "img": "hero/art-building.jpg",
+    "alt": "БУДІВЛЯ ШКОЛИ"
   },
   {
-    "img": "hero/platform.jpg"
+    "img": "hero/platform.jpg",
+    "alt": "ДОКУМЕНТАЛЬНА ВИСТАВА “ОБЛИЧЧЯ КОЛЬОРУ ВІЙНИ"
   },
   {
-    "img": "hero/building.jpg"
+    "img": "hero/building.jpg",
+    "alt": "БУДІВЛЯ ШКОЛИ"
   }
 ]

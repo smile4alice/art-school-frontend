@@ -30,9 +30,9 @@ const Gallery = () => {
         )}
         {isLaptop && (
           <div className={styles.gallery}>
-            {images.slice(0, 7).map((image, index) => (
+            {images.slice(0, 7).map(image => (
               <div key={image.date} className={styles.item}>
-                <img src={image.url} alt={`Image ${index + 1}`} />
+                <img src={image.url} alt={image.alt} />
               </div>
             ))}
           </div>
