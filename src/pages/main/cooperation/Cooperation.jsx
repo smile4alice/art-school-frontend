@@ -1,7 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import {
+  concertHallImages,
+  soundRecordImages,
+  expoHallImages,
+} from './cooperationData';
 import styles from './Cooperation.module.scss';
 
 const Cooperation = () => {
+  const swiperRef = useRef();
+  const isLaptop = useMediaQuery({ minWidth: 1024 });
+  const isTablet = useMediaQuery({ minWidth: 678 });
+  const isMobile = useMediaQuery({ maxWidth: 678 });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -20,24 +32,111 @@ const Cooperation = () => {
         </p>
         <div className={styles.container}>
           <h2>Концертна зала</h2>
-          <div className={styles.images}>
-            <img src="/cooperation/concert1.png" alt="" />
-            <img src="/cooperation/concert2.png" alt="" />
-          </div>
+          {isLaptop && (
+            <div className={styles.images}>
+              {concertHallImages.map((image, index) => (
+                <img key={index} src={image.url} alt={image.alt} />
+              ))}
+            </div>
+          )}
+          {isTablet && !isLaptop && (
+            <Swiper
+              className={styles.Slider}
+              spaceBetween={10}
+              slidesPerView={2}
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              loop={true}
+              onSwiper={swiper => {
+                swiperRef.current = swiper;
+              }}
+            >
+              {concertHallImages.map((slide, index) => (
+                <SwiperSlide key={index} className={styles.Slide}>
+                  <img src={slide.url} alt={slide.alt} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+          {isMobile && (
+            <div className={styles.mobile_images}>
+              {concertHallImages.map((image, index) => (
+                <img key={index} src={image.url} alt={image.alt} />
+              ))}
+            </div>
+          )}
         </div>
         <div className={styles.container}>
           <h2>Студія звукозапису</h2>
-          <div className={styles.images}>
-            <img src="/cooperation/studio1.png" alt="" />
-            <img src="/cooperation/studio2.png" alt="" />
-          </div>
+          {isLaptop && (
+            <div className={styles.images}>
+              {soundRecordImages.map((image, index) => (
+                <img key={index} src={image.url} alt={image.alt} />
+              ))}
+            </div>
+          )}
+          {isTablet && !isLaptop && (
+            <Swiper
+              className={styles.Slider}
+              spaceBetween={10}
+              slidesPerView={2}
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              loop={true}
+              onSwiper={swiper => {
+                swiperRef.current = swiper;
+              }}
+            >
+              {soundRecordImages.map((slide, index) => (
+                <SwiperSlide key={index} className={styles.Slide}>
+                  <img src={slide.url} alt={slide.alt} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+          {isMobile && (
+            <div className={styles.mobile_images}>
+              {soundRecordImages.map((image, index) => (
+                <img key={index} src={image.url} alt={image.alt} />
+              ))}
+            </div>
+          )}
         </div>
         <div className={styles.container}>
           <h2>Виставкова зала</h2>
-          <div className={styles.images}>
-            <img src="/cooperation/expo1.png" alt="" />
-            <img src="/cooperation/expo2.png" alt="" />
-          </div>
+          {isLaptop && (
+            <div className={styles.images}>
+              {expoHallImages.map((image, index) => (
+                <img key={index} src={image.url} alt={image.alt} />
+              ))}
+            </div>
+          )}
+          {isTablet && !isLaptop && (
+            <Swiper
+              className={styles.Slider}
+              spaceBetween={10}
+              slidesPerView={2}
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              loop={true}
+              onSwiper={swiper => {
+                swiperRef.current = swiper;
+              }}
+            >
+              {expoHallImages.map((slide, index) => (
+                <SwiperSlide key={index} className={styles.Slide}>
+                  <img src={slide.url} alt={slide.alt} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+          {isMobile && (
+            <div className={styles.mobile_images}>
+              {expoHallImages.map((image, index) => (
+                <img key={index} src={image.url} alt={image.alt} />
+              ))}
+            </div>
+          )}
         </div>
         <div className={styles.container}>
           <h2>За детальною інформацією звертайтесь:</h2>

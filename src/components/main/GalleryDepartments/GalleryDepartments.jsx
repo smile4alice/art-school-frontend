@@ -5,12 +5,12 @@ import { Pagination } from 'swiper/modules';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import Select from '@/components/ui/Select/Select';
 import useServicesStore from '@/store/serviseStore';
-import s from './GalaryDepartments.module.scss';
+import s from './GalleryDepartments.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 
-const GalaryDepartments = ({
+const GalleryDepartments = ({
   url,
   departmentId,
   changeDepartment,
@@ -41,19 +41,19 @@ const GalaryDepartments = ({
   }, [getDepartmentAchievements, url, showSelect, departmentId]);
 
   return (
-      <section className={s.galary}>
-        {showSelect && isDextop && (
-          <Select
-            title="Обрати відділ"
-            options={selectOptions}
-            changeDepartment={changeDepartment}
-          />
-        )}
-        {loadingState === 'loading' && (
-          <div className={s.errorData}>Louding...</div>
-        )}
-        {loadingState === 'success' ? (
-          galaryData && galaryData.length > 0 ? (
+    <section className={s.galary}>
+      {showSelect && isDextop && (
+        <Select
+          title="Обрати відділ"
+          options={selectOptions}
+          changeDepartment={changeDepartment}
+        />
+      )}
+      {loadingState === 'loading' && (
+        <div className={s.errorData}>Louding...</div>
+      )}
+      {loadingState === 'success' ? (
+        galaryData && galaryData.length > 0 ? (
           <div className={s.slidersContainer}>
             {isDextop && (
               <SwiperButtons
@@ -90,7 +90,7 @@ const GalaryDepartments = ({
               ))}
             </Swiper>
           </div>
-         ) : (
+        ) : (
           <div className={s.errorData}>Дані тимчасово відсутні</div>
         )
       ) : (
@@ -99,15 +99,14 @@ const GalaryDepartments = ({
         )
       )}
       {showSelect && !isDextop && (
-          <Select
-            title="Обрати відділ"
-            options={selectOptions}
-            changeDepartment={changeDepartment}
-          />
-        )}
-      </section>
-
+        <Select
+          title="Обрати відділ"
+          options={selectOptions}
+          changeDepartment={changeDepartment}
+        />
+      )}
+    </section>
   );
 };
 
-export default GalaryDepartments;
+export default GalleryDepartments;
