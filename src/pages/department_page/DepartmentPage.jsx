@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import Container from '@/components/Container/Container';
 import Achievements from '@/components/main/Achievements/Achievements';
-import GalaryDepartments from '@/components/main/GalaryDepartments/GalaryDepartments';
+import GalleryDepartments from '@/components/main/GalleryDepartments/GalleryDepartments';
 import useServicesStore from '@/store/serviseStore';
-import s from './DepartmentPage.module.scss'
+import s from './DepartmentPage.module.scss';
 
-const DepartmentPage = ({ id, title, showSelect}) => {
+const DepartmentPage = ({ id, title, showSelect }) => {
   const { getDepartments } = useServicesStore();
   const [subDepartments, setSubDepartments] = useState([]);
   const [departmentId, setDepartmentId] = useState('');
@@ -36,7 +36,7 @@ const DepartmentPage = ({ id, title, showSelect}) => {
       <h2 className={s.title}>{title}</h2>
       {subDepartments && subDepartments.length > 0 && (
         <>
-          <GalaryDepartments
+          <GalleryDepartments
             showSelect={showSelect}
             selectOptions={subDepartments}
             url={'departments/sub_department_gallery/'}

@@ -11,10 +11,11 @@ import { Link } from 'react-router-dom';
 const Gallery = () => {
   const swiperRef = useRef();
   const isLaptop = useMediaQuery({ minWidth: 1024 });
-  const isTablet = useMediaQuery({ maxWidth: 1024 });
+  const isTablet = useMediaQuery({ maxWidth: 1023 });
   const isMobile = useMediaQuery({ maxWidth: 678 });
 
   const slidesLength = isMobile ? 1 : 2;
+
   return (
     <Container>
       <section className={styles.Gallery}>
