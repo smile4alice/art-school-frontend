@@ -67,9 +67,6 @@ const Administration = () => {
             >
               {administrationData.map(item => (
                 <SwiperSlide className={s.slideContent} key={item.id}>
-                  <div
-                    style={{ width: 300, height: 300, background: 'red' }}
-                  ></div>
                   <div className={s.slidePhoto}>
                     <img src={item.photo} alt={item.description} />
                   </div>
