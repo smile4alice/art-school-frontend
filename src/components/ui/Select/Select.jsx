@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useClickOutside } from '@/hooks/hooks';
 import s from './Select.module.scss';
 
-const Select = ({title, options, changeDepartment }) => {
+const Select = ({ title, options, changeDepartment }) => {
   const [isOptionsVisible, setOptionsVisible] = useState(false);
   const toggleOptions = () => {
     setOptionsVisible(!isOptionsVisible);
@@ -22,7 +22,7 @@ const Select = ({title, options, changeDepartment }) => {
         onClick={toggleOptions}
         ref={selectRef}
       >
-       {title}
+        {title}
       </button>
       {isOptionsVisible && (
         <div className={s.optionsContainer} ref={selectOptionsRef}>

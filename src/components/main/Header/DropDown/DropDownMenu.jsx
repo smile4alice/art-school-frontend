@@ -34,7 +34,12 @@ const DropDownMenu = ({
         to="/#departmens"
       >
         <div className={styles.dropDownNameWrapper}>
-          <span className={clsx(styles.dropDownName, open ? styles.open : '')}>
+          <span
+            className={clsx(
+              styles.dropDownName,
+              showDepartment ? styles.open : ''
+            )}
+          >
             {/* {type} */}
             Відділення
           </span>
@@ -50,7 +55,7 @@ const DropDownMenu = ({
           <ul
             className={clsx(
               styles.menu,
-              open ? styles.open : '',
+              showDepartment ? styles.open : '',
               styles.departmentsMenu
             )}
           >
@@ -63,6 +68,7 @@ const DropDownMenu = ({
                   onClick={() => {
                     !isDesktop && toggleBurgerMenu();
                   }}
+                  onMouseEnter={handleClickAboutSchool}
                 >
                   {name}
                 </Link>
@@ -96,7 +102,7 @@ const DropDownMenu = ({
           <ul
             className={clsx(
               styles.menu,
-              open ? styles.open : '',
+              showAboutUs ? styles.open : '',
 
               styles.aboutUsMenu
             )}
@@ -110,6 +116,7 @@ const DropDownMenu = ({
                   onClick={() => {
                     !isDesktop && toggleBurgerMenu();
                   }}
+                  onMouseEnter={handleClickAboutSchool}
                 >
                   {name}
                 </Link>

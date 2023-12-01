@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { aboutUs, departmemts } from '@/constants/dropDownItems.js';
 import { navItems } from '@/constants/navList.js';
-console.log('departmemts : ', departmemts);
+
 import DropDownMenu from '../DropDown/DropDownMenu';
 
 import styles from './NavList.module.scss';
@@ -37,7 +37,6 @@ const NavList = ({ toggleBurgerMenu }) => {
         <DropDownMenu
           departmemts={departmemts}
           aboutSchool={aboutUs}
-          open={showDepartment}
           handleClickDepartment={handleClickDepartment}
           toggleBurgerMenu={toggleBurgerMenu}
           handleClickAboutSchool={handleClickAboutSchool}
