@@ -28,6 +28,7 @@ import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdm
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
+import SchoolHistory from './pages/school_history/SchoolHistory';
 
 const App = () => {
   return (
@@ -43,7 +44,7 @@ const App = () => {
           <Route path="/posters" element={<PostersPage />} />
           <Route path="/cooperation" element={<Cooperation />} />
           <Route path="/about_school" element={<AboutSchool />} />
-          <Route path="/about_school_history'" element={<AboutSchool />} />
+          <Route path="/about_school_history" element={<SchoolHistory />} />
           <Route path="/about_school_museum" element={<AboutSchool />} />
           <Route
             path="/music_department"

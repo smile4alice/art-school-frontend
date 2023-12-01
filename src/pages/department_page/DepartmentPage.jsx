@@ -60,7 +60,7 @@ const DepartmentPage = ({ id, title, showSelect }) => {
       default:
       // code block
     }
-  }, [departmentId]);
+  }, [departmentId,id]);
 
   return (
     <Container>
