@@ -31,7 +31,7 @@ const HeaderNavigation = ({ windowWidth }) => {
         <NavList />
       ) : (
         <button
-          aria-label=" navigation menu"
+          aria-label="navigation menu"
           tabIndex="0"
           className={styles.burgerButton}
           type="button"
