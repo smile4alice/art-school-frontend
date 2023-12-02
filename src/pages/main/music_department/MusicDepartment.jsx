@@ -5,7 +5,8 @@ import DropDownsList from '@/components/ui/DropDownsList/DropDownsList';
 //import s from './MusicDepartment.module.scss'
 
 const MusicDepartment = () => {
- 
+
+
 
   const musicSubDepartments = [
     {
@@ -81,7 +82,7 @@ const MusicDepartment = () => {
         url={'departments/sub_department_achievement/'}
       />
 
-      <DropDownsList />
+      <DropDownsList departmentId={'1'} />
     </Container>
   );
 };

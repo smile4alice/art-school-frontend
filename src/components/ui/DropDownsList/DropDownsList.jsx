@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
 import DropDown from './DropDown';
+import { useState, useEffect } from 'react';
 
-const DropDownsList = () => {
+const DropDownsList = ({departmentId}) => {
+
   const [department, setDepartment] = useState([]);
   const [loadingState, setLoadingState] = useState('loading');
 
   useEffect(() => {
-    const server = `https://art-school-backend.vercel.app/api/v1/departments/1`;
+    const server = `https://art-school-backend.vercel.app/api/v1/departments/${departmentId}`;
 
     const fetchData = async () => {
       setLoadingState('loading');
@@ -29,6 +30,8 @@ const DropDownsList = () => {
 
     fetchData();
   }, []);
+ 
+
 
   return (
     <div>
