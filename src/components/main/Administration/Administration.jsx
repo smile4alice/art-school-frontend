@@ -71,7 +71,7 @@ const Administration = () => {
                     <img src={item.photo} alt={item.description} />
                   </div>
                   <p className={s.slideText}>{item.full_name}</p>
-                  <p className={s.slideText}>{item.position}</p>[ ]
+                  <p className={s.slideText}>{item.position}</p>
                 </SwiperSlide>
               ))}
             </Swiper>

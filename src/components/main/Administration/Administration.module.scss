@@ -1,4 +1,4 @@
-.galary{
+.galary {
   margin: 0 auto;
   width: 100%;
   max-width: 1280px;
@@ -10,7 +10,6 @@
     font-weight: 700;
   }
   .slidersContainer {
-    padding-top: 1rem;
     width: 100%;
     .slider {
       margin: 0 auto;
@@ -20,7 +19,7 @@
         padding-bottom: 2rem;
         .slidePhoto {
           width: 100%;
-          height: 470px;
+          height: 420px;
           border-radius: 5px;
           overflow: hidden;
           img {
@@ -32,14 +31,13 @@
           }
         }
         .slideText {
-          font-size: 0.875rem;
-          font-weight: 500;
-          padding: 1rem 0 0.5rem;
+          @include font(14px, 400, 1.42);
+          text-align: center;
         }
       }
     }
   }
-  .errorData{
+  .errorData {
     text-align: center;
     padding: 2rem 1rem;
     font-size: 1.2rem;

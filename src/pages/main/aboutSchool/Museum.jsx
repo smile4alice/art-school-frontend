@@ -24,9 +24,9 @@ const Museum = ({ museumData }) => {
         {museumData.map(item => (
           <SwiperSlide className={styles.slideContent} key={item.id}>
             <div className={styles.slidePhoto}>
+            <p className={styles.slideText}>{item.description}</p>
               <img src={item.media} alt={item.description} />
             </div>
-            {/* <p className={styles.slideText}>{item.description}</p> */}
           </SwiperSlide>
         ))}
       </Swiper>

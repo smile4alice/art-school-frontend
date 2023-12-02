@@ -183,22 +183,31 @@
   @include font(14px, 400, 1.85);
 }
 
+// museum
+.museum_contentWrapper {
+  outline: 1px solid rgb(238, 0, 255);
+  padding: 0 16px;
+  @extend%aligncenter;
+  flex-direction: column;
+  gap: 10px;
+}
 .slidersContainer {
-  padding-top: 1rem;
   width: 100%;
+
   .slider {
     margin: 0 auto;
     width: 100%;
     overflow: hidden;
     .slideContent {
-      padding-bottom: 2rem;
       .slidePhoto {
         width: 100%;
-        height: 470px;
+        @extend%aligncenter;
+        flex-direction: column;
+        gap: 6px;
         border-radius: 5px;
         overflow: hidden;
         img {
-          height: 100%;
+          height: 230px;
           width: 100%;
           object-fit: cover;
           object-position: center;
@@ -206,9 +215,8 @@
         }
       }
       .slideText {
-        font-size: 0.875rem;
-        font-weight: 500;
-        padding: 1rem 0 0.5rem;
+        @include font(14px, 400, 1.42);
+        text-align: center;
       }
     }
   }
