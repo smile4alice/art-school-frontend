@@ -22,8 +22,8 @@ const AboutSchool = () => {
 
   return (
     <>
-      {/* <h1 className=''>про школу </h1> */}
-      {/* <section className={styles.history}>
+      {/* <h1 className=''>про школу </h1> */}|
+      <section className={styles.history}>
         <Container>
           <div className={styles.history_contentWrapper}>
             <h2 className="department_title ">Історія школи</h2>
@@ -83,7 +83,7 @@ const AboutSchool = () => {
             </div>
           </div>
         </Container>
-      </section> */}
+      </section>
       <section className={styles.museum}>
         <Container>
           <div className={styles.museum_contentWrapper}>

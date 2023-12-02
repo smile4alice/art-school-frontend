@@ -6,9 +6,9 @@ import styles from './AboutSchool.module.scss';
 import { useMediaQuery } from 'react-responsive';
 
 const Museum = ({ museumData }) => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
   const museumRef = useRef();
-  return isMobile ? (
+  return !isDesktop ? (
     <div className={styles.slidersContainer}>
       <Swiper
         onSwiper={swiper => {
@@ -24,7 +24,7 @@ const Museum = ({ museumData }) => {
         {museumData.map(item => (
           <SwiperSlide className={styles.slideContent} key={item.id}>
             <div className={styles.slidePhoto}>
-            <p className={styles.slideText}>{item.description}</p>
+              <p className={styles.slideText}>{item.description}</p>
               <img src={item.media} alt={item.description} />
             </div>
           </SwiperSlide>
