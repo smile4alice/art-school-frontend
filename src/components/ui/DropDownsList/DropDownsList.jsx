@@ -30,7 +30,6 @@ const DropDownsList = ({departmentId}) => {
 
     fetchData();
   }, []);
- 
 
 
   return (

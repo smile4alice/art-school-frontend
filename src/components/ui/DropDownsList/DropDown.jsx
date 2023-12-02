@@ -4,8 +4,6 @@ import s from './DropDown.module.scss';
 
 const DropDown =({subDep}) => {
   const [isOpen, setOpen] = useState(false);
-  console.log(subDep);
-  console.log(subDep.sub_department_name);
   return (
     <div className={s.dropdown}>
       <div className={s.dropdownHead}>
