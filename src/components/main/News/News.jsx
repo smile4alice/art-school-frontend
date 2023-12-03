@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
-// import { news } from '@/constants/news.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { formatDate } from '@/utils/formatDate';
 import useNewsStore from '@/store/newsStore';
@@ -50,7 +49,7 @@ const News = () => {
             slidesPerView={1}
             modules={[Pagination]}
             pagination={{ clickable: true }}
-            loop={true}
+            // loop={true}
             onSwiper={swiper => {
               swiperRef.current = swiper;
             }}
@@ -66,7 +65,8 @@ const News = () => {
                     ) : (
                       <img src={slide.photo} alt={slide.title} />
                     )}
-                    {!news.length && (
+                    {!news.items.length && (
+
                       <div className={styles.errorData}>
                         Дані тимчасово відсуті
                       </div>
