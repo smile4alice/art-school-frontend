@@ -10,7 +10,7 @@ import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
 
 import AboutSchool from './pages/main/aboutSchool/AboutSchool';
-import DepartmentPage from './pages/department_page/DepartmentPage';
+import DepartmentPage from './pages/departments/DepartmentPage';
 
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
 import AdminSharedLayout from './components/admin-components/AdminSharedLayout/AdminSharedLayout';

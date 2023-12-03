@@ -21,7 +21,8 @@ const GalleryDepartments = ({
   const isDextop = useMediaQuery({ minWidth: 1280 });
   const swiperGalaryRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
-  const [galaryData, setGalaryData] = useState([]);
+  const [galleryData, setGalleryData] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoadingState('loading');
@@ -31,7 +32,7 @@ const GalleryDepartments = ({
           showSelect,
           departmentId
         );
-        setGalaryData(result);
+        setGalleryData(result);
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
@@ -53,7 +54,7 @@ const GalleryDepartments = ({
         <div className={s.errorData}>Louding...</div>
       )}
       {loadingState === 'success' ? (
-        galaryData && galaryData.length > 0 ? (
+        galleryData && galleryData.length > 0 ? (
           <div className={s.slidersContainer}>
             {isDextop && (
               <SwiperButtons
@@ -80,7 +81,7 @@ const GalleryDepartments = ({
               pagination={{ clickable: true }}
               loop={true}
             >
-              {galaryData.map(item => (
+              {galleryData.map(item => (
                 <SwiperSlide className={s.slideContent} key={item.id}>
                   <div className={s.slidePhoto}>
                     <img src={item.media} alt={item.description} />
