@@ -22,28 +22,31 @@ const AboutSchool = () => {
 
   return (
     <>
-      {/* <h1 className=''>про школу </h1> */}|
+      {/* <h1 className=''>про школу </h1> */}
       <section className={styles.history}>
         <Container>
-          <div className={styles.history_contentWrapper}>
+          <div className={styles.history_wrapper}>
             <h2 className="department_title ">Історія школи</h2>
-            <div className={styles.history_titleWrapper}>
-              <p className={styles.history_text}>{historyData.description}</p>
-              {isDesktop && (
-                <Link
-                  className={styles.readMoreButton}
-                  to="/about_school_history"
-                >
-                  Читати більше
-                </Link>
-              )}
+            <div className={styles.history_contentWrapper}>
+              <div className={styles.history_textWrapper}>
+                <p className={styles.history_content_text}>
+                  {historyData.description}
+                </p>
+                {isDesktop && (
+                  <Link
+                    className={styles.readMoreButton}
+                    to="/about_school_history"
+                  >
+                    Читати більше
+                  </Link>
+                )}
+              </div>
+              <img
+                className={styles.history_content_img}
+                src={historyData.media}
+                alt=" scholl building  "
+              />
             </div>
-
-            <img
-              className={styles.img}
-              src={historyData.media}
-              alt=" scholl building  "
-            />
 
             {!isDesktop && (
               <Link
@@ -59,27 +62,35 @@ const AboutSchool = () => {
       <section className={styles.aboutUs}>
         <Container>
           <div className={styles.aboutUs_wrapper}>
-            <div>
-              <h2 className="department_title">Про нас </h2>
-              <div className={styles.aboutUs_contentWrapper}>
-                <p>{aboutUsData.description1}</p>
+            <h2 className="department_title">Про нас </h2>
+
+            <div className={styles.aboutUs_contentWrapper}>
+              <div className={styles.aboutUs}>
+                <p className={styles.aboutUs_text}>
+                  {aboutUsData.description1}
+                </p>
                 <img
                   className={styles.aboutUs_img}
                   src={aboutUsData.media}
                   alt=""
                 />
               </div>
-            </div>
 
-            <div className={styles.benefits}>
-              <ul className={styles.benefits_list}>
-                {aboutUsData.benefits.map((benefit, index) => (
-                  <li key={index} className={styles.benefits_listItem}>
-                    <p className={styles.benefits_listItem_text}> {benefit}</p>
-                  </li>
-                ))}
-              </ul>
-              <p>{aboutUsData.description2}</p>
+              <div className={styles.benefits}>
+                <ul className={styles.benefits_list}>
+                  {aboutUsData.benefits.map((benefit, index) => (
+                    <li key={index} className={styles.benefits_listItem}>
+                      <p className={styles.benefits_listItem_text}>
+                        {' '}
+                        {benefit}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+                <p className={styles.aboutUs_text}>
+                  {aboutUsData.description2}
+                </p>
+              </div>
             </div>
           </div>
         </Container>
@@ -95,7 +106,6 @@ const AboutSchool = () => {
       </section>
       <section className={styles.administration}>
         <Container>
-          <h2 className="department_title">Адміністрація школи</h2>
           <Administration />
         </Container>
       </section>

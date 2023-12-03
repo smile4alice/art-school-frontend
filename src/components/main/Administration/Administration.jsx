@@ -33,58 +33,65 @@ const Administration = () => {
   }, [getAdministrationData]);
 
   return (
-    <section className={s.galary}>
-      {loadingState === 'loading' && (
-        <div className={s.errorData}>Loading...</div>
-      )}
-      {loadingState === 'success' ? (
-        administrationData && administrationData.length > 0 ? (
-          <div className={s.slidersContainer}>
-            {isDextop && (
-              <SwiperButtons
-                onPrevClick={() => swiperAdministrationRef.current.slidePrev()}
-                onNextClick={() => swiperAdministrationRef.current.slideNext()}
-              />
-            )}
-            <Swiper
-              onSwiper={swiper => {
-                swiperAdministrationRef.current = swiper;
-              }}
-              className={s.slider}
-              modules={[Pagination]}
-              spaceBetween={16}
-              slidesPerView={1}
-              breakpoints={{
-                768: {
-                  slidesPerView: 2,
-                },
-                1280: {
-                  slidesPerView: 3,
-                },
-              }}
-              pagination={{ clickable: true }}
-              loop={true}
-            >
-              {administrationData.map(item => (
-                <SwiperSlide className={s.slideContent} key={item.id}>
-                  <div className={s.slidePhoto}>
-                    <img src={item.photo} alt={item.description} />
-                  </div>
-                  <p className={s.slideText}>{item.full_name}</p>
-                  <p className={s.slideText}>{item.position}</p>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+    <div className={s.administration_contentWrapper}>
+      <h2 className="department_title">Адміністрація школи</h2>
+      <div className={s.slidersContainer}>
+        {loadingState === 'loading' && (
+          <div className={s.errorData}>Loading...</div>
+        )}
+        {loadingState === 'success' ? (
+          administrationData && administrationData.length > 0 ? (
+            <div className={s.slidersContainer}>
+              {isDextop && (
+                <SwiperButtons
+                  onPrevClick={() =>
+                    swiperAdministrationRef.current.slidePrev()
+                  }
+                  onNextClick={() =>
+                    swiperAdministrationRef.current.slideNext()
+                  }
+                />
+              )}
+              <Swiper
+                onSwiper={swiper => {
+                  swiperAdministrationRef.current = swiper;
+                }}
+                className={s.slider}
+                modules={[Pagination]}
+                spaceBetween={16}
+                slidesPerView={1.2}
+                breakpoints={{
+                  768: {
+                    slidesPerView: 2.1,
+                  },
+                  1280: {
+                    slidesPerView: 3,
+                  },
+                }}
+                pagination={{ clickable: true }}
+                loop={true}
+              >
+                {administrationData.map(item => (
+                  <SwiperSlide className={s.slideContent} key={item.id}>
+                    <div className={s.slidePhoto}>
+                      <img src={item.photo} alt={item.description} />
+                    </div>
+                    <p className={s.slideText_name}>{item.full_name}</p>
+                    <p className={s.slideText_position}>{item.position}</p>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          ) : (
+            <div className={s.errorData}>Дані тимчасово відсутні</div>
+          )
         ) : (
-          <div className={s.errorData}>Дані тимчасово відсутні</div>
-        )
-      ) : (
-        loadingState === 'error' && (
-          <div className={s.errorData}>Дані тимчасово відсутні</div>
-        )
-      )}
-    </section>
+          loadingState === 'error' && (
+            <div className={s.errorData}>Дані тимчасово відсутні</div>
+          )
+        )}
+      </div>
+    </div>
   );
 };
 

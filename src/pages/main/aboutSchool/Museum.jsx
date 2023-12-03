@@ -32,13 +32,17 @@ const Museum = ({ museumData }) => {
       </Swiper>
     </div>
   ) : (
-    <ul>
+    <ul className={styles.museumList}>
       {museumData.map(item => (
-        <li key={item.id}>
-          <div>
-            <img src={item.media} alt={item.description} width="300" />
+        <li key={item.id} className={styles.museumList_item}>
+          <div className={styles.museum_content}>
+            <p className={styles.museum_content_text}>{item.description}</p>
+            <img
+              src={item.media}
+              alt={item.description}
+              className={styles.museum_content_img}
+            />
           </div>
-          <p>{item.description}</p>
         </li>
       ))}
     </ul>
