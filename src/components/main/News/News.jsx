@@ -37,7 +37,9 @@ const News = () => {
           >
             {news.map((slide, index) => (
               <SwiperSlide key={index} className={styles.Slide}>
-                <img src={slide.img} alt={slide.title} />
+                <div className={styles.image}>
+                  <img src={slide.img} alt={slide.title} />
+                </div>
                 <div className={styles.Text}>
                   <span>{slide.date}</span>
                   <p>{slide.title}</p>
