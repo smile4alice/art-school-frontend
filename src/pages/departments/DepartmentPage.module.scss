@@ -1,0 +1,16 @@
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 0 1rem;
+  @media screen and (max-width: 678px) {
+    font-size: 24px;
+  }
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  @media screen and (max-width: 678px) {
+    gap: 20px;
+  }
+}

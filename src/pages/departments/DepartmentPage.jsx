@@ -1,20 +1,31 @@
 import { useState, useEffect } from 'react';
 import Container from '@/components/Container/Container';
 import Achievements from '@/components/main/Achievements/Achievements';
-import GalleryDepartments from '@/components/main/GalleryDepartments/GalleryDepartments';
+import GalleryDepartments from '@/components/departments/GalleryDepartments/GalleryDepartments';
+import DropDownsList from '@/components/ui/DropDownsList/DropDownsList';
 import useServicesStore from '@/store/serviseStore';
+import Article from '@/components/departments/article/Article';
+import { articles } from '@/constants/articles';
 import s from './DepartmentPage.module.scss';
 
 const DepartmentPage = ({ id, title, showSelect }) => {
   const { getDepartments } = useServicesStore();
   const [subDepartments, setSubDepartments] = useState([]);
   const [departmentId, setDepartmentId] = useState('');
+  const [articlesLength, setArticlesLength] = useState(1);
 
   const changeDepartment = url => {
     setDepartmentId(url);
   };
 
   useEffect(() => {
+    setArticlesLength(1);
+    if (id === '4') {
+      setArticlesLength(3);
+    }
+    if (id === '6') {
+      setArticlesLength(2);
+    }
     const fetchData = async () => {
       try {
         const result = await getDepartments(id);
@@ -35,12 +46,20 @@ const DepartmentPage = ({ id, title, showSelect }) => {
     <Container>
       <h2 className={s.title}>{title}</h2>
       {subDepartments && subDepartments.length > 0 && (
-        <>
+        <div className={s.wrapper}>
+          {articles &&
+            Array.isArray(articles) &&
+            articles
+              .slice(0, articlesLength)
+              .map((article, index) => (
+                <Article key={index} index={index} article={article} />
+              ))}
+          <DropDownsList departmentId={id} />
           <GalleryDepartments
             showSelect={showSelect}
             selectOptions={subDepartments}
             url={'departments/sub_department_gallery/'}
-            departmentId={departmentId}
+            departmentId={'1'}
             changeDepartment={changeDepartment}
           />
           <Achievements
@@ -48,10 +67,10 @@ const DepartmentPage = ({ id, title, showSelect }) => {
             showSelect={showSelect}
             selectOptions={subDepartments}
             url={'departments/sub_department_achievement/'}
-            departmentId={departmentId}
+            departmentId={'1'}
             changeDepartment={changeDepartment}
           />
-        </>
+        </div>
       )}
     </Container>
   );
