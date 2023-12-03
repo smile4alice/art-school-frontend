@@ -1,4 +1,4 @@
-import Department from '../Hero/Department/Department';
+import Department from '../../Department/Department';
 import Container from '@/components/Container/Container';
 
 import musicImg from '/departments/music.png';

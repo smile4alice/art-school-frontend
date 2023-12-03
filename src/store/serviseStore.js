@@ -9,6 +9,7 @@ const useServicesStore = create((set, get) => ({
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const result = await response.json();
+    console.log('result: ', result);
     return result;
   },
 
@@ -21,6 +22,14 @@ const useServicesStore = create((set, get) => ({
     }
     const result = await response.json();
     return showSelect ? result : result.items;
+  },
+  getAdministrationData: async () => {
+    const response = await fetch(`${get().server}school_administration`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
   },
 }));
 

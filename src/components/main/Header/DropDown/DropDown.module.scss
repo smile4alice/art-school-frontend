@@ -7,6 +7,10 @@
   &:hover {
     outline: none;
     border-bottom: 1px solid $accent;
+
+    // .menu {
+    //   opacity: 1;
+    // }
   }
 
   @include desktop {

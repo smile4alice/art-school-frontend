@@ -8,7 +8,7 @@ import AllNews from './pages/main/allnews/AllNews';
 import OneNews from './pages/main/onenews/OneNews';
 import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
-//import Theater from './pages/main/theater/Theater';
+
 import AboutSchool from './pages/main/aboutSchool/AboutSchool';
 import DepartmentPage from './pages/departments/DepartmentPage';
 
@@ -28,6 +28,7 @@ import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdm
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
+import SchoolHistory from './pages/school_history/SchoolHistory';
 
 const App = () => {
   return (
@@ -43,7 +44,7 @@ const App = () => {
           <Route path="/posters" element={<PostersPage />} />
           <Route path="/cooperation" element={<Cooperation />} />
           <Route path="/about_school" element={<AboutSchool />} />
-          <Route path="/about_school_history'" element={<AboutSchool />} />
+          <Route path="/about_school_history" element={<SchoolHistory />} />
           <Route path="/about_school_museum" element={<AboutSchool />} />
           <Route
             path="/music_department"
@@ -80,7 +81,7 @@ const App = () => {
             element={
               <DepartmentPage
                 id={'4'}
-                showSelect={true}
+                showSelect={false}
                 title={'Театральне відділення'}
               />
             }
@@ -109,7 +110,6 @@ const App = () => {
             path="/about_school_administration"
             element={<AboutSchool />}
           />
-          {/*<Route path="/theater_department" element={<Theater />} />*/}
         </Route>
 
         <Route path="/login" element={<LoginLayout />}></Route>

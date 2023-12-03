@@ -1,4 +1,4 @@
-.theater_contentWrapper {
+.desctiption_contentWrapper {
   min-height: 100vh;
   width: 100%;
   @extend%aligncenter;
@@ -15,7 +15,7 @@
   }
 }
 
-.theater_list {
+.desctiption_list {
   width: 100%;
   @extend%aligncenter;
   flex-direction: column;
@@ -27,7 +27,7 @@
   }
 }
 
-.theater_list_listItem {
+.desctiption_list_listItem {
   width: 100%;
 
   @include tablet {
@@ -36,11 +36,11 @@
   }
 }
 
-.theater_list_listItem_content {
+.desctiption_list_listItem_content {
   width: 100%;
   @extend%aligncenter;
   text-align: justify;
-  flex-direction: column-reverse;
+  flex-direction: column;
 
   @include tablet {
     flex-direction: row;
@@ -50,9 +50,9 @@
   @include desktop {
   }
 }
-.theater_list_listItem:nth-child(even) {
-  .theater_list_listItem_content {
-    flex-direction: column-reverse;
+.desctiption_list_listItem:nth-child(even) {
+  .desctiption_list_listItem_content {
+    flex-direction: column;
 
     @include tablet {
       flex-direction: row-reverse;
@@ -62,17 +62,19 @@
   }
 }
 
-.theater_list_listItem_content_text {
-  width: 100%;
+.desctiption_list_listItem_content_text {
+  width: 288px;
+  text-align: left;
+  margin-bottom: 16px;
 
   @include desktop {
     width: 520px;
     @include font(18px, 400, 1.33);
   }
 }
-.theater_list_listItem_content_img {
+.desctiption_list_listItem_content_img {
   border-radius: 8px;
-  width: 300px;
+  width: 100%;
   height: 280px;
   @include tablet {
     width: 350px;
