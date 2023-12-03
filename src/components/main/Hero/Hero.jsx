@@ -1,6 +1,6 @@
 // import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import {
   // EffectFade,
   Autoplay,
@@ -17,6 +17,12 @@ import styles from './Hero.module.scss';
 
 const Hero = () => {
   const swiperRef = useRef();
+  // const [showTitle, setShowTitle] = useState(true);
+
+  // const handleSlideChange = swiper => {
+  //   const shouldShowTitle = swiper.activeIndex % 2 === 0;
+  //   setShowTitle(shouldShowTitle);
+  // };
 
   return (
     <section className={styles.HeroSection}>
@@ -56,6 +62,7 @@ const Hero = () => {
         onSwiper={swiper => {
           swiperRef.current = swiper;
         }}
+        // onSlideChange={swiper => handleSlideChange(swiper)}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
@@ -66,50 +73,46 @@ const Hero = () => {
         spaceBetween={2}
         loop={true}
         speed={1500}
-        // effect={'fade'}
-        // fadeEffect={{ crossFade: true }}
-        modules={[
-          // EffectFade,
-          Autoplay,
-          Pagination,
-          Keyboard,
-        ]}
+        modules={[Autoplay, Pagination, Keyboard]}
         className={styles.SliderStyle}
       >
         {Data.map((slide, index) => (
           <SwiperSlide key={index} className={styles.SlideStyle}>
+            {/* {showTitle && <h3>Title 1</h3>} */}
             <img src={slide.img} alt={Data.alt} className={styles.HeroImage} />
             {index === 0 && (
               <div className={styles.HeroTitle}>
-                <h1 className={styles.HeroPrimaryTitle}>
+                <p className={styles.HeroPrimaryTitle}>
                   Київська дитяча школа мистецтв №2
-                  <span className={styles.HeroSecondaryTitle}>
-                    {' '}
-                    ім. M. I. Вериківського
-                  </span>
-                </h1>
+                </p>
+                <span className={styles.HeroSecondaryTitle}>
+                  {' '}
+                  ім. M. I. Вериківського
+                </span>
               </div>
             )}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      <div className={styles.HeroEvent}>
-        <p className={styles.HeroEventName}>подія</p>
-        <h3 className={styles.HeroEventTitle}>
-          документальна вистава “обличчя кольору війни”
-        </h3>
-        <p className={styles.HeroEventInfo}>
-          благодійний показ на підтримку зсу. вистава відбудеться 14.10 О 16:00
-        </p>
-        {/* <a
+            {index >= 2 && (
+              <div className={styles.HeroEvent}>
+                <p className={styles.HeroEventName}>подія</p>
+                <h3 className={styles.HeroEventTitle}>
+                  документальна вистава “обличчя кольору війни”
+                </h3>
+                <p className={styles.HeroEventInfo}>
+                  благодійний показ на підтримку зсу. вистава відбудеться 14.10
+                  О 16:00
+                </p>
+                {/* <a
           href="https://www.google.com.ua/"
           rel="link"
           className={styles.HeroEventLink}
         >
           Дивитися всі події
         </a> */}
-      </div>
+              </div>
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 };
