@@ -2,7 +2,7 @@ import Container from '@/components/Container/Container';
 
 import { useEffect } from 'react';
 
-//temp data will come from backend
+
 import aboutUsData from '@/constants/aboutSchool/aboutUs.js';
 import historyData from '@/constants/aboutSchool/history.js';
 import museumData from '@/constants/aboutSchool/museum.json';
