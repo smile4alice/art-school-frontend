@@ -1,8 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
-import { news } from '@/constants/news.js';
+// import { news } from '@/constants/news.js';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { formatDate } from '@/utils/formatDate';
+import useNewsStore from '@/store/newsStore';
 import Container from '@/components/Container/Container';
 import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
 import styles from './News.module.scss';
@@ -13,11 +15,29 @@ import 'swiper/css';
 const News = () => {
   const swiperRef = useRef();
   const isLaptop = useMediaQuery({ minWidth: 1024 });
+  const { getNews } = useNewsStore();
+  const [news, setNews] = useState([]);
+  const [loadingState, setLoadingState] = useState('loading');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoadingState('loading');
+      try {
+        const result = await getNews();
+        setNews(result);
+        setLoadingState('success');
+      } catch (error) {
+        setLoadingState('error');
+      }
+    };
+    fetchData();
+  }, [getNews]);
 
   return (
     <Container>
       <section className={styles.News}>
         <h1>Новини</h1>
+
         {isLaptop && (
           <div className={styles.ButtonContainer}>
             <NavLinkButton title={'Переглянути всі новини'} href={'/'} />
@@ -30,22 +50,34 @@ const News = () => {
             slidesPerView={1}
             modules={[Pagination]}
             pagination={{ clickable: true }}
-            loop={true}
+            // loop={true}
             onSwiper={swiper => {
               swiperRef.current = swiper;
             }}
           >
-            {news.map((slide, index) => (
-              <SwiperSlide key={index} className={styles.Slide}>
-                <div className={styles.image}>
-                  <img src={slide.img} alt={slide.title} />
-                </div>
-                <div className={styles.Text}>
-                  <span>{slide.date}</span>
-                  <p>{slide.title}</p>
-                </div>
-              </SwiperSlide>
-            ))}
+            {loadingState === 'success' &&
+              news.items &&
+              Array.isArray(news.items) &&
+              news.items.map((slide, index) => (
+                <SwiperSlide key={index} className={styles.Slide}>
+                  <div className={styles.image}>
+                    {loadingState === 'loading' ? (
+                      <div className={styles.errorData}>Завантаження...</div>
+                    ) : (
+                      <img src={slide.photo} alt={slide.title} />
+                    )}
+                    {!news.items.length && (
+                      <div className={styles.errorData}>
+                        Дані тимчасово відсуті
+                      </div>
+                    )}
+                  </div>
+                  <div className={styles.Text}>
+                    <span>{formatDate(slide.created_at)}</span>
+                    <p>{slide.title}</p>
+                  </div>
+                </SwiperSlide>
+              ))}
           </Swiper>
           {isLaptop && (
             <>
