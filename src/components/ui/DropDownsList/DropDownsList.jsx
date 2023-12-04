@@ -1,8 +1,7 @@
 import DropDown from './DropDown';
 import { useState, useEffect } from 'react';
 
-const DropDownsList = ({departmentId}) => {
-
+const DropDownsList = ({ departmentId }) => {
   const [department, setDepartment] = useState([]);
   const [loadingState, setLoadingState] = useState('loading');
 
@@ -18,8 +17,6 @@ const DropDownsList = ({departmentId}) => {
         }
         const result = await response.json();
 
-        console.log('result', result);
-
         setLoadingState('success');
         setDepartment(result);
       } catch (error) {
@@ -29,8 +26,7 @@ const DropDownsList = ({departmentId}) => {
     };
 
     fetchData();
-  }, []);
-
+  }, [departmentId]);
 
   return (
     <div>

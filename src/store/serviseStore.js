@@ -23,6 +23,7 @@ const useServicesStore = create((set, get) => ({
     const result = await response.json();
     return showSelect ? result : result.items;
   },
+
   getAdministrationData: async () => {
     const response = await fetch(`${get().server}school_administration`);
     if (!response.ok) {
