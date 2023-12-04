@@ -51,7 +51,7 @@ const GalleryDepartments = ({
         />
       )}
       {loadingState === 'loading' && (
-        <div className={s.errorData}>Louding...</div>
+        <div className={s.errorData}>Завантаження...</div>
       )}
       {loadingState === 'success' ? (
         galleryData && galleryData.length > 0 ? (

@@ -23,7 +23,7 @@ const News = () => {
       setLoadingState('loading');
       try {
         const result = await getNews();
-        setNews(result);
+        setNews(result.items);
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
@@ -54,10 +54,8 @@ const News = () => {
               swiperRef.current = swiper;
             }}
           >
-            {loadingState === 'success' &&
-              news.items &&
-              Array.isArray(news.items) &&
-              news.items.map((slide, index) => (
+            {loadingState === 'success' && news && Array.isArray(news) ? (
+              news.map((slide, index) => (
                 <SwiperSlide key={index} className={styles.Slide}>
                   <div className={styles.image}>
                     {loadingState === 'loading' && (
@@ -66,18 +64,16 @@ const News = () => {
                     {loadingState === 'success' && (
                       <img src={slide.photo} alt={slide.title} />
                     )}
-                    {!news.items.length && (
-                      <div className={styles.errorData}>
-                        Дані тимчасово відсуті
-                      </div>
-                    )}
                   </div>
                   <div className={styles.Text}>
                     <span>{formatDate(slide.created_at)}</span>
                     <p>{slide.title}</p>
                   </div>
                 </SwiperSlide>
-              ))}
+              ))
+            ) : (
+              <div className={styles.errorData}>Дані тимчасово відсуті</div>
+            )}
           </Swiper>
           {isLaptop && (
             <>
