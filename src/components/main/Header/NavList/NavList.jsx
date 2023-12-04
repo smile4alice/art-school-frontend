@@ -12,24 +12,10 @@ import clsx from 'clsx';
 import { useMediaQuery } from 'react-responsive';
 
 const NavList = ({ toggleBurgerMenu }) => {
-  const [showDepartment, setShowDepartment] = useState(false);
-
-  const [showAboutUs, setShowAboutUs] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentId, setCurrentId] = useState('');
 
   const isDesktop = useMediaQuery({ minWidth: 1240 });
-
-  const handleClickDepartment = () => {
-    setShowDepartment(!showDepartment);
-    setShowAboutUs(false);
-  };
-  const handleClickAboutSchool = () => {
-    setShowDepartment(false);
-    setShowAboutUs(!showAboutUs);
-  };
-  const handleCloseAll = () => {
-    setShowDepartment(false);
-    setShowAboutUs(false);
-  };
 
   return (
     <nav className={styles.nav}>
@@ -37,12 +23,11 @@ const NavList = ({ toggleBurgerMenu }) => {
         <DropDownMenu
           departmemts={departmemts}
           aboutSchool={aboutUs}
-          handleClickDepartment={handleClickDepartment}
+          isOpen={isOpen}
+          currentId={currentId}
+          setIsOpen={setIsOpen}
+          setCurrentId={setCurrentId}
           toggleBurgerMenu={toggleBurgerMenu}
-          handleClickAboutSchool={handleClickAboutSchool}
-          showDepartment={showDepartment}
-          showAboutUs={showAboutUs}
-          handleCloseAll={handleCloseAll}
         />
       </div>
 

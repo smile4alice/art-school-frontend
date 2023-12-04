@@ -5,14 +5,13 @@ import { useMediaQuery } from 'react-responsive';
 import { HashLink } from 'react-router-hash-link';
 
 const DropDownMenu = ({
-  showDepartment,
   departmemts,
   aboutSchool,
-  showAboutUs,
   toggleBurgerMenu,
-  handleClickDepartment,
-  handleClickAboutSchool,
-  handleCloseAll,
+  isOpen,
+  currentId,
+  setCurrentId,
+  setIsOpen,
 }) => {
   const isDesktop = useMediaQuery({ minWidth: 1280 });
 
@@ -20,9 +19,15 @@ const DropDownMenu = ({
     <>
       <HashLink
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
-        onClick={handleClickDepartment}
-        onMouseEnter={handleClickDepartment}
-        onMouseLeave={handleCloseAll}
+        onClick={() => {
+          setIsOpen(!isOpen), setCurrentId(isOpen ? 'departments' : '');
+        }}
+        onMouseEnter={() => {
+          setIsOpen(true), setCurrentId('departments');
+        }}
+        onMouseLeave={() => {
+          setIsOpen(false), setCurrentId('');
+        }}
         scroll={el => {
           if (isDesktop) {
             el.scrollIntoView({
@@ -37,25 +42,25 @@ const DropDownMenu = ({
           <span
             className={clsx(
               styles.dropDownName,
-              showDepartment ? styles.open : ''
+              isOpen && currentId === 'departments' ? styles.open : ''
             )}
           >
             {/* {type} */}
             Відділення
           </span>
 
-          {!showDepartment ? (
-            <span className={styles.dropDown_iconDown}></span>
-          ) : (
+          {isOpen && currentId === 'departments' ? (
             <span className={styles.dropDown_iconUp}></span>
+          ) : (
+            <span className={styles.dropDown_iconDown}></span>
           )}
         </div>
 
-        {showDepartment && (
+        {isOpen && currentId === 'departments' && (
           <ul
             className={clsx(
               styles.menu,
-              showDepartment ? styles.open : '',
+              isOpen && currentId === 'departments' ? styles.open : '',
               styles.departmentsMenu
             )}
           >
@@ -68,7 +73,6 @@ const DropDownMenu = ({
                   onClick={() => {
                     !isDesktop && toggleBurgerMenu();
                   }}
-                  onMouseEnter={handleClickAboutSchool}
                 >
                   {name}
                 </Link>
@@ -81,9 +85,15 @@ const DropDownMenu = ({
       <Link
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
         to="/about_school"
-        onClick={handleClickAboutSchool}
-        onMouseEnter={handleClickAboutSchool}
-        onMouseLeave={handleCloseAll}
+        onMouseEnter={() => {
+          setIsOpen(true), setCurrentId('about_school');
+        }}
+        onMouseLeave={() => {
+          setIsOpen(false), setCurrentId('');
+        }}
+        onClick={() => {
+          setIsOpen(!isOpen), setCurrentId(isOpen ? 'about_school' : '');
+        }}
       >
         <div className={styles.dropDownNameWrapper}>
           <span className={clsx(styles.dropDownName, open ? styles.open : '')}>
@@ -91,19 +101,18 @@ const DropDownMenu = ({
             Наша школа
           </span>
 
-          {!showAboutUs ? (
-            <span className={styles.dropDown_iconDown}></span>
-          ) : (
+          {isOpen && currentId === 'about_school' ? (
             <span className={styles.dropDown_iconUp}></span>
+          ) : (
+            <span className={styles.dropDown_iconDown}></span>
           )}
         </div>
 
-        {showAboutUs && (
+        {isOpen && currentId === 'about_school' && (
           <ul
             className={clsx(
               styles.menu,
-              showAboutUs ? styles.open : '',
-
+              isOpen && currentId === 'about_school' ? styles.open : '',
               styles.aboutUsMenu
             )}
           >
@@ -116,7 +125,6 @@ const DropDownMenu = ({
                   onClick={() => {
                     !isDesktop && toggleBurgerMenu();
                   }}
-                  onMouseEnter={handleClickAboutSchool}
                 >
                   {name}
                 </Link>

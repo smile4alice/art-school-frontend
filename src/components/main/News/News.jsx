@@ -60,13 +60,13 @@ const News = () => {
               news.items.map((slide, index) => (
                 <SwiperSlide key={index} className={styles.Slide}>
                   <div className={styles.image}>
-                    {loadingState === 'loading' ? (
+                    {loadingState === 'loading' && (
                       <div className={styles.errorData}>Завантаження...</div>
-                    ) : (
+                    )}
+                    {loadingState === 'success' && (
                       <img src={slide.photo} alt={slide.title} />
                     )}
                     {!news.items.length && (
-
                       <div className={styles.errorData}>
                         Дані тимчасово відсуті
                       </div>
