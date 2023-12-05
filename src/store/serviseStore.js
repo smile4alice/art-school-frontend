@@ -9,19 +9,18 @@ const useServicesStore = create((set, get) => ({
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const result = await response.json();
-    console.log('result: ', result);
     return result;
   },
 
-  getDepartmentAchievements: async (url, showSelect, departmentId) => {
+  getDepartmentAchievements: async (url, departmentId) => {
     const response = await fetch(
-      `${get().server}${url}${showSelect ? departmentId : ''}?page=1&size=7`
+      `${get().server}${url}${url !== 'achievements' ? departmentId : ''}?page=1&size=7`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const result = await response.json();
-    return showSelect ? result : result.items;
+    return url !== 'achievements' ? result : result.items;
   },
 
   getAdministrationData: async () => {

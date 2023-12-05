@@ -5,6 +5,8 @@ import { Pagination } from 'swiper/modules';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import Select from '@/components/ui/Select/Select';
 import useServicesStore from '@/store/serviseStore';
+import Spinner from '@/components/ui/Spinner/Spinner';
+import Placeholder from '@/components/ui/Placeholder/placeholder';
 import s from './Achievements.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -28,11 +30,7 @@ const Achievements = ({
     const fetchData = async () => {
       setLoadingState('loading');
       try {
-        const result = await getDepartmentAchievements(
-          url,
-          showSelect,
-          departmentId
-        );
+        const result = await getDepartmentAchievements(url, departmentId);
         setAchievementsData(result);
         setLoadingState('success');
       } catch (error) {
@@ -40,7 +38,7 @@ const Achievements = ({
       }
     };
     fetchData();
-  }, [getDepartmentAchievements, url, showSelect, departmentId]);
+  }, [getDepartmentAchievements, url, departmentId]);
 
   return (
     <section className={s.achievements}>
@@ -53,7 +51,9 @@ const Achievements = ({
         />
       )}
       {loadingState === 'loading' && (
-        <div className={s.errorData}>Loading...</div>
+        <div className={s.errorData}>
+          <Spinner />
+        </div>
       )}
       {loadingState === 'success' ? (
         achievementsData && achievementsData.length > 0 ? (
@@ -94,12 +94,10 @@ const Achievements = ({
             </Swiper>
           </div>
         ) : (
-          <div className={s.errorData}>Дані тимчасово відсутні</div>
+          <Placeholder />
         )
       ) : (
-        loadingState === 'error' && (
-          <div className={s.errorData}>Дані тимчасово відсутні</div>
-        )
+        loadingState === 'error' && <Placeholder />
       )}
       {showSelect && !isDesktop && (
         <Select

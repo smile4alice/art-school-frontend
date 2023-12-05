@@ -5,6 +5,8 @@ import { Pagination } from 'swiper/modules';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import Select from '@/components/ui/Select/Select';
 import useServicesStore from '@/store/serviseStore';
+import Spinner from '@/components/ui/Spinner/Spinner';
+import Placeholder from '@/components/ui/Placeholder/placeholder';
 import s from './GalleryDepartments.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -27,11 +29,7 @@ const GalleryDepartments = ({
     const fetchData = async () => {
       setLoadingState('loading');
       try {
-        const result = await getDepartmentAchievements(
-          url,
-          showSelect,
-          departmentId
-        );
+        const result = await getDepartmentAchievements(url, departmentId);
         setGalleryData(result);
         setLoadingState('success');
       } catch (error) {
@@ -39,7 +37,7 @@ const GalleryDepartments = ({
       }
     };
     fetchData();
-  }, [getDepartmentAchievements, url, showSelect, departmentId]);
+  }, [getDepartmentAchievements, url, departmentId]);
 
   return (
     <section className={s.galary}>
@@ -51,7 +49,9 @@ const GalleryDepartments = ({
         />
       )}
       {loadingState === 'loading' && (
-        <div className={s.errorData}>Завантаження...</div>
+        <div className={s.errorData}>
+          <Spinner />
+        </div>
       )}
       {loadingState === 'success' ? (
         galleryData && galleryData.length > 0 ? (
@@ -92,12 +92,10 @@ const GalleryDepartments = ({
             </Swiper>
           </div>
         ) : (
-          <div className={s.errorData}>Дані тимчасово відсутні</div>
+          <Placeholder />
         )
       ) : (
-        loadingState === 'error' && (
-          <div className={s.errorData}>Дані тимчасово відсутні</div>
-        )
+        loadingState === 'error' && <Placeholder />
       )}
       {showSelect && !isDextop && (
         <Select

@@ -59,7 +59,7 @@ const DepartmentPage = ({ id, title, showSelect }) => {
             showSelect={showSelect}
             selectOptions={subDepartments}
             url={'departments/sub_department_gallery/'}
-            departmentId={'1'}
+            departmentId={departmentId}
             changeDepartment={changeDepartment}
           />
           <Achievements
@@ -67,7 +67,7 @@ const DepartmentPage = ({ id, title, showSelect }) => {
             showSelect={showSelect}
             selectOptions={subDepartments}
             url={'departments/sub_department_achievement/'}
-            departmentId={'1'}
+            departmentId={departmentId}
             changeDepartment={changeDepartment}
           />
         </div>
