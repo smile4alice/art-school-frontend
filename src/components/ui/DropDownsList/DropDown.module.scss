@@ -19,4 +19,11 @@
   &Content {
     margin-top: 15px;
   }
+  .icon{
+    transition: all linear .2s;
+  }
+  .rotateIcon {
+    transition: all linear .2s;
+    transform: rotate(-90deg);
+  }
 }
