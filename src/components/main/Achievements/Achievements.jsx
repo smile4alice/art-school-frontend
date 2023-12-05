@@ -6,7 +6,7 @@ import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import Select from '@/components/ui/Select/Select';
 import useServicesStore from '@/store/serviseStore';
 import Spinner from '@/components/ui/Spinner/Spinner';
-import Placeholder from '@/components/ui/Placeholder/placeholder';
+import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import s from './Achievements.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
