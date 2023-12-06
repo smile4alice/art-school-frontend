@@ -1,5 +1,6 @@
 import React from 'react';
 import PageTitle from '../../../components/admin-components/PageTitle/PageTitle';
+import SlidersTable from './../../../components/admin-components/Sliders/SlidersTable/SlidersTable'
 
 const SlidersPageAdmin = () => {
   return (
@@ -11,7 +12,8 @@ const SlidersPageAdmin = () => {
         actionButtonLink="/admin/sliders-add"
         isActionButtonDisabled={false} 
         actionButtonLabel="Додати слайдер"
-      />     
+      />    
+      <SlidersTable/>
      
     </div>
   );
