@@ -1,0 +1,231 @@
+.contentWrap{
+   display: flex;
+   min-width: 296px;
+   flex-direction: column;
+   align-items: flex-start;
+   align-self: stretch;
+
+   border-radius: 8px;
+   border: 1px solid var(--admin-purple, #C4B9FD);
+
+   overflow: hidden;
+}
+.tableHeader{
+   display: flex;
+   padding: 3px 5px;
+   // justify-content: space-between;
+   gap: 0px;
+   align-items: center;
+   align-self: stretch;
+   border-bottom: 1px solid var(--admin-purple, #C4B9FD);
+   background: #E5E9FD;
+
+}
+.cellSlideyHeader{
+   display: flex;
+   width: 61px;
+   align-items: center;
+   // flex: 1 0 0;
+   color: var(--admin-text-main, #152340);
+   text-align: center;
+   font-family: Montserrat;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+
+}
+.cellHeadingHeader{
+   display: flex;
+   width: 260px;
+   padding-left: 20px;
+   align-items: flex-start;
+
+
+   color: var(--admin-text-main, #152340);
+   font-family: Montserrat;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+
+   overflow: hidden;
+
+}
+.cellTextHeader{
+   display: flex;
+   padding-left: 20px;
+   align-items: flex-start;
+
+   flex: 1 0 0;
+   color: var(--admin-text-main, #152340);
+   font-family: Montserrat;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+
+   overflow: hidden;
+
+}
+.cellPhotoHeader{
+   display: flex;
+   width: 77px;
+   padding: 0px 10px;
+   justify-content: center;
+   align-items: flex-start;
+
+
+   color: var(--admin-text-main, #152340);
+   text-align: center;
+   font-family: Montserrat;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+
+}
+.cellActionHeader{
+   display: flex;
+   width: 76px;
+   height: 40px;
+   justify-content: center;
+   align-items: center;
+
+
+   // flex: 1 0 0;
+   color: var(--admin-text-main, #152340);
+   text-align: center;
+   font-family: Montserrat;
+   font-size: 15px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+
+}
+.tableRow{
+   display: flex;
+   padding: 7px 5px;
+   // justify-content: space-between;
+   gap: 0px;
+   align-items: center;
+   align-self: stretch;
+
+   border-bottom: 1px solid var(--admin-purple, #C4B9FD);
+   background: #F7F8FE;
+   
+}
+.cellSliderRow {
+   display: flex;
+   width: 61px;
+   justify-content: center;
+   align-items: center;
+
+   color: var(--admin-text-main, #152340);
+   text-align: center;
+   font-family: Montserrat;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+}
+
+.cellHeadingRow {
+   display: flex;
+   width: 260px;
+   height: 17px;
+   padding-left: 20px;
+   align-items: flex-start;
+
+   color: var(--admin-text-main, #152340);
+   font-family: Montserrat;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;  
+
+   overflow: hidden;
+}
+
+.cellTextRow {
+   display: flex;
+   height: 17px;
+   padding-left: 20px;
+   align-items: flex-start;
+   flex: 1 0 0;
+
+   color: var(--admin-text-main, #152340);
+   font-family: Montserrat;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+   
+   overflow: hidden;
+}
+
+.cellPhotoRow {
+   display: flex;
+   width: 77px;
+   height: 36px;
+   padding: 0px 10px;
+   flex-direction: column;
+   align-items: center;
+}
+
+
+.contentElementImg{
+   display: flex;
+   width: 57px;
+   height: 36px;
+   padding: 5px 0px;
+   justify-content: center;
+   align-items: center;
+   flex-shrink: 0;
+
+   border-radius: 3px;
+   border: 1px solid var(--admin-light-purple, #ECEFFF);
+   background: var(--admin-light-purple, #ECEFFF);
+}
+
+.cellActionRow {
+   display: flex;
+   width: 76px;
+   // gap: 18px;
+   justify-content: center;
+   align-items: center;
+}
+.cellActionContainer{
+   width: 38px;
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+}
+
+.iconTrash{
+   display: flex;
+   width: 20px;
+   height: 20px;
+   justify-content: center;
+   align-items: center;
+   flex-shrink: 0;
+   border-radius: 2px;
+
+   stroke-width: 1.5px;
+   stroke: var(--admin-red, #FF3232);
+   fill: transparent;
+}
+
+.iconEdit{
+      display: flex;
+      width: 20px;
+      height: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      border-radius: 2px;   
+
+      fill: #9BA6AF;
+}
