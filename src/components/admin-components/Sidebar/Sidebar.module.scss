@@ -7,10 +7,10 @@
    justify-content: space-between;   
 
    border-radius: 0px 20px 20px 0px;
-   border: 1px solid #F2F3F4;
+   border: 1px solid var(--admin-purple, #C4B9FD);
    background: var(--admin-light-purple, #ECEFFF);
  
-   box-shadow: 0px 4.25px 21.25px 0px rgba(51, 63, 162, 0.15);
+   
 }
 
 .sidebarContent{
@@ -21,13 +21,13 @@
 
 .copyright{
    display: flex;
-   padding: 10px 10px 0px 30px;
+   padding: 10px 10px 10px 30px;
    justify-content: flex-end;          
    align-self: stretch;
 
    color: var(--admin-text-main, #152340);
    font-family: Montserrat;
-   font-size: 6px;
+   font-size: 9px;
    font-style: normal;
    font-weight: 400;
    line-height: normal;
