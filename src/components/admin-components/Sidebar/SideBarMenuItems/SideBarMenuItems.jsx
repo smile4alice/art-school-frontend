@@ -16,7 +16,7 @@ const SideBarMenuItems = ({ title, link, isFilled, iconClass }) => {
       {iconClass && (
         <span
           className={`${styles.icon} icon ${
-            location.pathName === link ? styles.activeIcon : styles.hoverIcon
+            pathName === link ? styles.activeIcon : styles.hoverIcon
           } ${isFilled ? styles.filledIcon : styles.strokedIcon}`}
         >
           <svg className="icon">
