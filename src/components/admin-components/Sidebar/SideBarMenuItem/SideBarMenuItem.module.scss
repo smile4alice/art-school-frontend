@@ -6,37 +6,38 @@
    gap: 10px;
    border-radius: 0px 7px 7px 0px;
    background: transparent;
-   color: var(--admin-text-main, #152340);
+   color: var(--admin-blue, #6A65FF);
    font-family: Montserrat;
    font-size: 14px;
    font-style: normal;
-   font-weight: 500;
+   font-weight: 400;
    line-height: normal;
 
    &:hover {
-      background: var(--admin-white, #FFF);
+      color: var(--admin-link, #006EFF);
+      font-weight: 500;
+      // background: var(--admin-white, #FFF);
       .icon {
-         fill: var(--admin-green, #707E8C);
+         fill: var(--admin-link, #006EFF);
          }
    }
 
-   &.active {
-      background: transparent;
-      color: var(--admin-blue, #6A65FF);
-      font-weight: 600;
+   &.active {   
+      border-left: 1px solid var(--admin-accent, #0047FF);
+      color: var(--admin-accent, #0047FF);
    }
 
    .icon {   
-      fill: var(--admin-purple-2, #BFC8FC);
+      fill: var(--admin-blue, #6A65FF);
       width: 15px;
       height: 15px;
 
       &:hover {
-         fill: var(--admin-green, #707E8C);
+         fill: var(--admin-link, #006EFF);
       }
    
       &.active {
-         fill: var(--admin-blue, #6A65FF);
+         fill: var(--admin-accent, #0047FF);
       }
    }
  
