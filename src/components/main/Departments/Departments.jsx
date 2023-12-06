@@ -45,7 +45,7 @@ const Departments = () => {
           />
           <Department
             title={artDepartment}
-            link="/fine_arts_epartment"
+            link="/fine_arts_department"
             img={artImg}
           />
           <Department
