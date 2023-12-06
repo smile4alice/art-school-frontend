@@ -14,18 +14,17 @@
    line-height: normal;
 
    &:hover {
-      color: var(--admin-accent, #0047FF);
+      color: var(--admin-link, #006EFF);
       font-weight: 500;
       // background: var(--admin-white, #FFF);
       .icon {
-         fill: var(--admin-accent, #0047FF);
+         fill: var(--admin-link, #006EFF);
          }
    }
 
-   &.active {      
-      color: var(--admin-white, #FFF);
-      background: #205EFF;
-      font-weight: 500;
+   &.active {   
+      border-left: 1px solid var(--admin-accent, #0047FF);
+      color: var(--admin-accent, #0047FF);
    }
 
    .icon {   
@@ -34,11 +33,11 @@
       height: 15px;
 
       &:hover {
-         fill: var(--admin-accent, #0047FF);
+         fill: var(--admin-link, #006EFF);
       }
    
       &.active {
-         fill: var(--admin-white, #FFF);
+         fill: var(--admin-accent, #0047FF);
       }
    }
  
