@@ -14,6 +14,10 @@ const DepartmentPage = ({ id, title, showSelect }) => {
   const [departmentId, setDepartmentId] = useState('');
   const [articlesLength, setArticlesLength] = useState(1);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const changeDepartment = url => {
     setDepartmentId(url);
   };

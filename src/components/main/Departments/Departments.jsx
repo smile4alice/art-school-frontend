@@ -1,4 +1,5 @@
-import Department from '../../Department/Department';
+import { Link } from 'react-router-dom';
+import Department from './Department/Department';
 import Container from '@/components/Container/Container';
 
 import musicImg from '/departments/music.png';
@@ -17,16 +18,14 @@ const Departments = () => {
   const vocalDepartment = 'Вокально-хорове відділення';
   const preschoolPreparatoryDepartment = 'Дошкільне та підготовче відділення';
 
-  const downloadFile = async () => {};
-
   return (
     <Container>
       <div id="departmens" className={styles.wrapper}>
         <p className={`${styles.title} sectionTitle`}>Відділення</p>
         <div className={styles.buttonContainer}>
-          <button onClick={downloadFile} className={styles.buttonStyle}>
-            завантажити заяву
-          </button>
+          <Link to="/statement">
+            <button className={styles.buttonStyle}>завантажити заяву</button>
+          </Link>
         </div>
         <div className={styles.departmentsContainer}>
           <Department

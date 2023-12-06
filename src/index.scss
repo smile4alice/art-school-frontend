@@ -102,3 +102,12 @@ iframe {
     font-size: 2rem; //32px
   }
 }
+#header-bar {
+  min-height: 10px;
+}
+#pdf-page-wrapper {
+  margin: 0;
+}
+#pdf-controls {
+  background-color: $accent;
+}
