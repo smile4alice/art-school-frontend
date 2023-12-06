@@ -40,8 +40,11 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+
             <div className={styles.footerButton}>
-              <DownloadButton link="#" text="Завантажити заяву" />
+              <Link to="/statement">
+                <DownloadButton link="#" text="Завантажити заяву" />
+              </Link>
             </div>
           </div>
           <div className={styles.footerLinksSectionWrap}>

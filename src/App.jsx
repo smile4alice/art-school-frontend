@@ -8,6 +8,7 @@ import AllNews from './pages/main/allnews/AllNews';
 import OneNews from './pages/main/onenews/OneNews';
 import PostersPage from '@/pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
+import StatementPage from './pages/main/statement/StatementPage';
 
 import AboutSchool from './pages/main/aboutSchool/AboutSchool';
 import DepartmentPage from './pages/departments/DepartmentPage';
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/news/:id" element={<OneNews />} />
           <Route path="/posters" element={<PostersPage />} />
           <Route path="/cooperation" element={<Cooperation />} />
+          <Route path="/statement" element={<StatementPage />} />
           <Route path="/about_school" element={<AboutSchool />} />
           <Route path="/about_school_history" element={<SchoolHistory />} />
           <Route path="/about_school_museum" element={<AboutSchool />} />
