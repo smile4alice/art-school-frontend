@@ -1,20 +1,18 @@
-import React from 'react';
-import PageTitle from '../../../components/admin-components/PageTitle/PageTitle';
-import SlidersTable from './../../../components/admin-components/Sliders/SlidersTable/SlidersTable'
+import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
+import SlidersTable from '@/components/admin-components/Sliders/SlidersTable/SlidersTable';
 
 const SlidersPageAdmin = () => {
   return (
     <div>
-       <PageTitle
+      <PageTitle
         title="Слайдери"
-        showBackButton={false}         
-        showActionButton={true} 
+        showBackButton={false}
+        showActionButton={true}
         actionButtonLink="/admin/sliders-add"
-        isActionButtonDisabled={false} 
+        isActionButtonDisabled={false}
         actionButtonLabel="Додати слайдер"
-      />    
-      <SlidersTable/>
-     
+      />
+      <SlidersTable />
     </div>
   );
 };

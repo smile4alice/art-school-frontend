@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./TextArea.module.scss";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import styles from './TextArea.module.scss';
 
 const TextArea = ({ label, maxLength, errorMessage }) => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = event => {
     const inputValue = event.target.value;
     setText(inputValue);
   };
@@ -37,7 +37,7 @@ const TextArea = ({ label, maxLength, errorMessage }) => {
     } else if (text.length > 0 && !isFocused) {
       return styles.entered;
     } else {
-      return "";
+      return '';
     }
   };
 
@@ -62,7 +62,7 @@ const TextArea = ({ label, maxLength, errorMessage }) => {
         </div>
         <p
           className={`${styles.counterMessage} ${
-            text.length > maxLength ? styles.redText : ""
+            text.length > maxLength ? styles.redText : ''
           }`}
         >
           {`${text.length}/${maxLength}`}
@@ -79,10 +79,9 @@ TextArea.propTypes = {
 };
 
 TextArea.defaultProps = {
-   label: "Текст*",
+  label: 'Текст*',
   maxLength: 2000,
   errorMessage: `Текст перевищує вказану кількість символів`,
 };
 
 export default TextArea;
-

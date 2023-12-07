@@ -19,7 +19,8 @@ import AdminDashboard from './components/admin-components/AdminDashboard/AdminDa
 
 import SlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/SlidersPageAdmin';
 import AddSlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/AddSlidersPageAdmin';
-import NewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
+import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
+import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
 import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
 import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryAdmin/GalleryPageAdmin';
 import DepartmentsPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
@@ -121,6 +122,7 @@ const App = () => {
           <Route path="sliders" element={<SlidersPageAdmin />} />
           <Route path="sliders-add" element={<AddSlidersPageAdmin />} />
           <Route path="news" element={<NewsPageAdmin />} />
+          <Route path="news/add" element={<AddNewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
