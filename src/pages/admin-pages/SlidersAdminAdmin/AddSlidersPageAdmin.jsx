@@ -1,23 +1,22 @@
-import React from 'react';
-import PageTitle from '../../../components/admin-components/PageTitle/PageTitle';
-import ButtonSubmit from '../../../components/admin-components/Buttons/SubmitButton/ButtonSubmit';
-import Table from '../../../components/admin-components/Frame/Frame'
+import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
+import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
+import Table from '@/components/admin-components/Frame/Frame';
 const AddSlidersPageAdmin = () => {
   return (
     <div>
-       <PageTitle
+      <PageTitle
         title="Додати cлайдер"
-        showBackButton={true}    
+        showBackButton={true}
         backButtonLink="/admin/sliders"
         showActionButton={false}
-      />  
-      <Table/>
+      />
+      <Table />
 
       <ButtonSubmit
         nameButton="Зберегти зміни"
         isActive={true}
         isRight={true}
-      />     
+      />
     </div>
   );
 };
