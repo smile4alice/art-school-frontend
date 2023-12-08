@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone';
 import { AiOutlinePlus } from 'react-icons/ai';
 import styles from './FileInput.module.scss';
 
-const FileInput = label => {
+const FileInput = ({ label }) => {
   const [image, setImage] = useState('');
   const [videoName, setVideoName] = useState('');
 

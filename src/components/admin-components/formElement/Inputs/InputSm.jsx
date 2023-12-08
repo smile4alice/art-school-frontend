@@ -1,12 +1,12 @@
-import  { useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./InputSm.module.scss";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import styles from './InputSm.module.scss';
 
 const InputSm = ({ label, maxLength, errorText, showCharacterCount }) => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = event => {
     const inputValue = event.target.value;
     setText(inputValue);
   };
@@ -37,7 +37,7 @@ const InputSm = ({ label, maxLength, errorText, showCharacterCount }) => {
     } else if (text.length > 0 && !isFocused) {
       return styles.entered;
     } else {
-      return "";
+      return '';
     }
   };
 
@@ -63,7 +63,7 @@ const InputSm = ({ label, maxLength, errorText, showCharacterCount }) => {
           </div>
           <p
             className={`${styles.counterMessage} ${
-              text.length > maxLength ? styles.redText : ""
+              text.length > maxLength ? styles.redText : ''
             }`}
           >
             {`${text.length}/${maxLength}`}
@@ -82,7 +82,7 @@ InputSm.propTypes = {
 };
 
 InputSm.defaultProps = {
-  errorText: "Текст перевищує вказану кількість символів",
+  errorText: 'Текст перевищує вказану кількість символів',
   showCharacterCount: true,
 };
 
