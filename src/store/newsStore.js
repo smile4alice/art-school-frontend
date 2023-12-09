@@ -11,6 +11,21 @@ const useNewsStore = create((set, get) => ({
     const result = await response.json();
     return result;
   },
+  addPost: async data => {
+    const newPost = {
+      title: data.title,
+      text: data.text,
+      photo: data.image,
+    };
+    const response = await fetch(`${get().server}/news`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: newPost,
+    });
+    return response.json();
+  },
 }));
 
 export default useNewsStore;
