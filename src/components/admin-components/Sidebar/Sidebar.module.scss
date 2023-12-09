@@ -1,16 +1,15 @@
 .sidebarWrapper{
    display: flex;
    width: 215px;
-   height: 100vh;   
+   height: 100vh; 
+   // min-height: 623px;  
    padding: 10px 0px 5px 0px;
    flex-direction: column;
    justify-content: space-between;   
 
-   border-radius: 0px 20px 20px 0px;
+   border-radius: 0px 10px 10px 0px;
    border: 1px solid var(--admin-purple, #C4B9FD);
-   background: var(--admin-light-purple, #ECEFFF);
- 
-   
+   background: #E5E9FD;
 }
 
 .sidebarContent{
@@ -21,8 +20,9 @@
 
 .copyright{
    display: flex;
-   padding: 10px 10px 10px 30px;
-   justify-content: flex-end;          
+   padding: 10px;
+   justify-content: center;
+   align-items: flex-start;     
    align-self: stretch;
 
    color: var(--admin-text-main, #152340);

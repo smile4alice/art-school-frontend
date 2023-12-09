@@ -1,5 +1,4 @@
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
-import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import Table from '@/components/admin-components/Frame/Frame';
 const AddSlidersPageAdmin = () => {
   return (
@@ -11,12 +10,6 @@ const AddSlidersPageAdmin = () => {
         showActionButton={false}
       />
       <Table />
-
-      <ButtonSubmit
-        nameButton="Зберегти зміни"
-        isActive={true}
-        isRight={true}
-      />
     </div>
   );
 };
