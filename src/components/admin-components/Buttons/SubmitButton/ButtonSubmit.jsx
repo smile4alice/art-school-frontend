@@ -11,6 +11,7 @@ export const ButtonSubmit = ({
 
   return (
     <button
+      type="submit"
       onClick={isActive ? handlerSubmitButton : null}
       className={`${styles.button} ${buttonClass} ${additionalClass}`}
     >

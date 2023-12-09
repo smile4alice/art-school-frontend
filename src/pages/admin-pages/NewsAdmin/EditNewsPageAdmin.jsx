@@ -1,38 +1,58 @@
-import { useFormik } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
+import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
+
+import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
+// import FormikContainer from '@/components/admin-components/formik/FormikContainer';
+
+const validationSchema = Yup.object({
+  // title: Yup.string().required('Yup Required').max(10),
+});
+
+const initialValues = {
+  title: '',
+  text: '',
+  image: [],
+};
 
 const EditNewsPage = () => {
-  const formik = useFormik({
-    initialValues: {
-      title: '',
-    },
-    onSubmit: values => {
-      console.log(values);
-    },
-    validate: values => {
-      let errors = {};
-      if (!values.title) {
-        errors.title = 'Required';
-      }
-      return errors;
-    },
-  });
-
+  const onSubmit = values => {
+    console.log(values);
+  };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div className="formControl">
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          onChange={formik.handleChange}
-          value={formik.values.title}
-        />
-        {formik.errors.title && <p>{formik.errors.title}</p>}
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    // <FormikContainer />
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        <div className="formControl">
+          <Field
+            name="title"
+            id="title"
+            placeholder="Title"
+            component={TextInput}
+            maxLength={10}
+            showCharacterCount={true}
+          />
+        </div>
+        <div className="formControl">
+          <Field
+            name="text"
+            id="title"
+            placeholder="Title"
+            component={TextArea}
+          />
+        </div>
+        <div className="formControl">
+          <Field name="image" id="image" component={FileInput} />
+        </div>
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
   );
 };
 

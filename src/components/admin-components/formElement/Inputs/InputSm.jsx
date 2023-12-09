@@ -2,8 +2,15 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './InputSm.module.scss';
 
-const InputSm = ({ label, maxLength, errorText, showCharacterCount }) => {
-  const [text, setText] = useState('');
+const InputSm = ({
+  label,
+  maxLength,
+  errorText,
+  showCharacterCount,
+  text,
+  setText,
+}) => {
+  // const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
   const handleInputChange = event => {
