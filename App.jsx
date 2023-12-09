@@ -127,7 +127,7 @@ const App = () => {
           <Route path="news/add" element={<AddNewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
           <Route path="posters/add" element={<AddPostersPage />} />
-          <Route path="posters/edit" element={<EditPostersPage />} />
+          <Route path="posters/edit/:id" element={<EditPostersPage />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />

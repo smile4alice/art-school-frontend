@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TextArea.module.scss';
 
-const TextArea = ({ label, maxLength, errorMessage }) => {
+const TextArea = ({ label, maxLength, errorMessage, prevtext }) => {
   const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -49,7 +49,7 @@ const TextArea = ({ label, maxLength, errorMessage }) => {
       <textarea
         id="text-area"
         className={`${styles.textArea} ${getBorderColor()} ${getInputState()}`}
-        value={text}
+        value={text || prevtext}
         onChange={handleInputChange}
         onFocus={handleFocus}
         onBlur={handleBlur}

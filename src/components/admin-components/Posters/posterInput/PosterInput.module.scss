@@ -1,9 +1,10 @@
 .layout {
   outline: 1px solid red;
+  
+  height: 249px;
   display: flex;
   @extend%aligncenter;
   padding: 20px;
-  height: 249px;
 
   gap: 33px;
   margin-bottom: 20px;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './PostersList.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
@@ -36,9 +37,11 @@ const PostersList = ({ data }) => {
             <div className={styles.cellActionRow}></div>
 
             <div className={styles.cellActionContainer}>
-              <svg className={styles.iconEdit}>
-                <use href={`${sprite}#icon-edit`} width="20" height="20" />
-              </svg>
+              <Link to={`edit/${item.id}`}>
+                <svg className={styles.iconEdit}>
+                  <use href={`${sprite}#icon-edit`} width="20" height="20" />
+                </svg>
+              </Link>
             </div>
             <div className={styles.cellActionContainer}>
               <svg className={styles.iconTrash}>

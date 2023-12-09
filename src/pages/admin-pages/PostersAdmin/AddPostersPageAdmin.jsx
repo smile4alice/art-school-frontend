@@ -11,7 +11,7 @@ const AddPostersPage = () => {
         backButtonLink="/admin/sliders"
         showActionButton={false}
       />
-     <PostersInput/>
+      <PostersInput label="Фото" />
       <ButtonSubmit
         nameButton="Зберегти зміни"
         isActive={true}

@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone';
 import { AiOutlinePlus } from 'react-icons/ai';
 import styles from './FileInput.module.scss';
 
-const FileInput = ({ label }) => {
+const FileInput = ({ label, prevImage }) => {
   const [image, setImage] = useState('');
   const [videoName, setVideoName] = useState('');
 
@@ -36,9 +36,9 @@ const FileInput = ({ label }) => {
           <section>
             <div className={styles.dropzone} {...getRootProps()}>
               <input {...getInputProps()} />
-              {image ? (
+              {image || prevImage ? (
                 <div className={styles.imagePreview}>
-                  <img src={image} />
+                  <img src={image || prevImage} />
                 </div>
               ) : null}
               {!videoName && (
