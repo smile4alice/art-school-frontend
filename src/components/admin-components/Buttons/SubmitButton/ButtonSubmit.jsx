@@ -1,12 +1,17 @@
-import React from "react";
-import styles from "./ButtonSubmit.module.scss";
+import styles from './ButtonSubmit.module.scss';
 
-export const ButtonSubmit = ({ handlerSubmitButton, nameButton, isActive, isRight }) => {
+export const ButtonSubmit = ({
+  handlerSubmitButton,
+  nameButton,
+  isActive,
+  isRight,
+}) => {
   const buttonClass = isActive ? styles.activeButton : styles.inactiveButton;
   const additionalClass = isRight ? styles.rightButton : '';
 
   return (
     <button
+      type="submit"
       onClick={isActive ? handlerSubmitButton : null}
       className={`${styles.button} ${buttonClass} ${additionalClass}`}
     >
@@ -16,4 +21,3 @@ export const ButtonSubmit = ({ handlerSubmitButton, nameButton, isActive, isRigh
 };
 
 export default ButtonSubmit;
-

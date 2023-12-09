@@ -3,7 +3,12 @@ import Dropzone from 'react-dropzone';
 import { AiOutlinePlus } from 'react-icons/ai';
 import styles from './FileInput.module.scss';
 
-const FileInput = ({ label, setImage }) => {
+const FileInput = ({
+  label,
+  field,
+  form: { errors, setFieldValue },
+  ...props
+}) => {
   const [imagePreview, setImagePreview] = useState('');
 
   const setFileToBase64 = file => {
@@ -15,8 +20,8 @@ const FileInput = ({ label, setImage }) => {
   };
 
   const onDrop = async files => {
+    setFieldValue('image', files);
     const file = files[0];
-    setImage(file);
     setFileToBase64(file);
   };
 
@@ -30,6 +35,8 @@ const FileInput = ({ label, setImage }) => {
         multiple={false}
         maxSize={8000000000}
         id="dropzone"
+        {...field}
+        {...props}
       >
         {({ getRootProps, getInputProps }) => (
           <section>
@@ -50,6 +57,11 @@ const FileInput = ({ label, setImage }) => {
           </section>
         )}
       </Dropzone>
+      <div className={styles.errorWrap}>
+        {errors?.[field.name] && (
+          <p className={styles.errorMessage}>{errors?.[field.name]}</p>
+        )}
+      </div>
     </div>
   );
 };
