@@ -1,36 +1,38 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/layout/Layout';
-import HomePage from './pages/main/HomePage';
-import Page404 from './pages/page_404/Page404';
-import Contacts from './pages/main/contacts/Contacts';
-import Gallery from './pages/main/gallery/Gallery';
-import AllNews from './pages/main/allnews/AllNews';
-import OneNews from './pages/main/onenews/OneNews';
+import Layout from './src/components/layout/Layout';
+import HomePage from './src/pages/main/HomePage';
+import Page404 from './src/pages/page_404/Page404';
+import Contacts from './src/pages/main/contacts/Contacts';
+import Gallery from './src/pages/main/gallery/Gallery';
+import AllNews from './src/pages/main/allnews/AllNews';
+import OneNews from './src/pages/main/onenews/OneNews';
 import PostersPage from '@/pages/main/posters/PostersPage';
-import Cooperation from './pages/main/cooperation/Cooperation';
-import StatementPage from './pages/main/statement/StatementPage';
+import Cooperation from './src/pages/main/cooperation/Cooperation';
+import StatementPage from './src/pages/main/statement/StatementPage';
 
-import AboutSchool from './pages/main/aboutSchool/AboutSchool';
-import DepartmentPage from './pages/departments/DepartmentPage';
+import AboutSchool from './src/pages/main/aboutSchool/AboutSchool';
+import DepartmentPage from './src/pages/departments/DepartmentPage';
 
-import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
-import AdminSharedLayout from './components/admin-components/AdminSharedLayout/AdminSharedLayout';
-import AdminDashboard from './components/admin-components/AdminDashboard/AdminDashboard';
+import LoginLayout from './src/components/admin-components/Login/LoginLayout/LoginLayout';
+import AdminSharedLayout from './src/components/admin-components/AdminSharedLayout/AdminSharedLayout';
+import AdminDashboard from './src/components/admin-components/AdminDashboard/AdminDashboard';
 
-import SlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/SlidersPageAdmin';
-import AddSlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/AddSlidersPageAdmin';
-import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
-import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
-import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
-import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryAdmin/GalleryPageAdmin';
-import DepartmentsPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
-import OurAchievementsPageAdmin from './pages/admin-pages/OurAchievementsAdmin/OurAchievementsPageAdmin';
-import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrationAdmin/SchoolAdministrationPageAdmin';
-import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
-import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
+import SlidersPageAdmin from './src/pages/admin-pages/SlidersAdminAdmin/SlidersPageAdmin';
+import AddSlidersPageAdmin from './src/pages/admin-pages/SlidersAdminAdmin/AddSlidersPageAdmin';
+import NewsPageAdmin from './src/pages/admin-pages/NewsAdmin/NewsPageAdmin';
+import AddNewsPageAdmin from './src/pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
+import PostersPageAdmin from './src/pages/admin-pages/PostersAdmin/PostersPageAdmin';
+import GalleryPageAdmin from './src/pages/admin-pages/GalleryAdmin/GalleryAdmin/GalleryPageAdmin';
+import DepartmentsPageAdmin from './src/pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
+import OurAchievementsPageAdmin from './src/pages/admin-pages/OurAchievementsAdmin/OurAchievementsPageAdmin';
+import SchoolAdministrationPageAdmin from './src/pages/admin-pages/SchoolAdministrationAdmin/SchoolAdministrationPageAdmin';
+import ContactsPageAdmin from './src/pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
+import ChangePasswordPageAdmin from './src/pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 
-import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
-import SchoolHistory from './pages/school_history/SchoolHistory';
+import NotFoundAdmin from './src/components/admin-components/NotFound/NotFoundAdmin';
+import SchoolHistory from './src/pages/school_history/SchoolHistory';
+import AddPostersPage from '@/pages/admin-pages/PostersAdmin/AddPostersPageAdmin';
+import EditPostersPage from '@/pages/admin-pages/PostersAdmin/EditPostersPageAdmin';
 
 const App = () => {
   return (
@@ -124,6 +126,8 @@ const App = () => {
           <Route path="news" element={<NewsPageAdmin />} />
           <Route path="news/add" element={<AddNewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
+          <Route path="posters/add" element={<AddPostersPage />} />
+          <Route path="posters/edit" element={<EditPostersPage />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />
