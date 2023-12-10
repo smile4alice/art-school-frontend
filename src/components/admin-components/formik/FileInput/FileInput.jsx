@@ -9,7 +9,7 @@ const FileInput = ({
   form: { errors, setFieldValue },
   ...props
 }) => {
-  const [imagePreview, setImagePreview] = useState('');
+  const [imagePreview, setImagePreview] = useState();
 
   const setFileToBase64 = file => {
     const reader = new FileReader();

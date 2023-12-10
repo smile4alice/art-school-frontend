@@ -1,11 +1,28 @@
 import { Link } from 'react-router-dom';
 import styles from './PostersList.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
+import usePostersStore from '@/store/posterStore';
+import { useConfirmDelete } from '@/store/confirmDelete';
+import { useModal } from '@/store/modalStore';
+
+import ConfirmDeleteModal from '../../ConfirmDeleteModal/ConfirmDeleteModal';
 
 const PostersList = ({ data }) => {
-  // const subString = str => {
-  //   return str.split(' ').slice(0, 8).join(' ');
-  // };
+  const { deletePostersById } = usePostersStore();
+  const { isDeleteConfirm } = useConfirmDelete();
+  const { isModalOpen, openModal, closeModal } = useModal();
+  console.log('isDeleteConfirm : ', isDeleteConfirm);
+  const handelDelete = async id => {
+    if (isDeleteConfirm) {
+      try {г
+        await deletePostersById(id);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      closeModal();
+    }
+  };
 
   return (
     <div className={styles.contentWrap}>
@@ -43,7 +60,7 @@ const PostersList = ({ data }) => {
                 </svg>
               </Link>
             </div>
-            <div className={styles.cellActionContainer}>
+            <div className={styles.cellActionContainer} onClick={openModal}>
               <svg className={styles.iconTrash}>
                 <use href={`${sprite}#icon-trash`} width="20" height="20" />
               </svg>
@@ -51,6 +68,8 @@ const PostersList = ({ data }) => {
           </div>
         </div>
       ))}
+
+      {isModalOpen && <ConfirmDeleteModal handelDelete={handelDelete} />}
     </div>
   );
 };

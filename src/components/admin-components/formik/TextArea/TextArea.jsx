@@ -66,7 +66,7 @@ const TextArea = ({
               field.value?.length > maxLength ? styles.redText : ''
             }`}
           >
-            {`${field.value?.length}/${maxLength}`}
+            {field.value && `${field.value?.length}/${maxLength}`}
           </p>
         </div>
       )}

@@ -1,22 +1,78 @@
-import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
+import { Formik, Form, Field } from 'formik';
+
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
-import PostersInput from '@/components/admin-components/Posters/posterInput/PostesInput';
+import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
+
+import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
+import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
+import styles from './PostersAdmin.module.scss';
+import usePostersStore from '@/store/posterStore';
+import AdminHome from '@/components/Icons/AdminHome';
+import AdminArrow from '@/components/Icons/AdminArrow';
+
+const initialValues = {
+  title: ' ',
+  image: [],
+};
 
 const AddPostersPage = () => {
+  const { addPoster } = usePostersStore();
+
+  const onSubmit = async values => {
+    console.log('values: ', values);
+    try {
+      await addPoster(values);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
+      <div className={styles.header}>
+        <AdminHome />
+        <AdminArrow />
+        <span>Афіші</span>
+        <AdminArrow />
+        <span>Додати афішу</span>
+      </div>
       <PageTitle
-        title="Додати афішу"
+        title="Додати Афішу"
         showBackButton={true}
-        backButtonLink="/admin/sliders"
+        backButtonLink="/admin/posters"
         showActionButton={false}
       />
-      <PostersInput label="Фото" />
-      <ButtonSubmit
-        nameButton="Зберегти зміни"
-        isActive={true}
-        isRight={true}
-      />
+      <Formik
+        initialValues={initialValues}
+        // validationSchema={newsValidation}
+        onSubmit={onSubmit}
+      >
+        <Form>
+          <div className={styles.layout}>
+            <div className={styles.inputWrapper}>
+              <Field
+                name="title"
+                id="text"
+                placeholder="Title"
+                component={TextArea}
+                maxLength={120}
+                showCharacterCount={true}
+              />
+
+              <Field name="image" id="image" component={FileInput} />
+            </div>
+
+            <div className={styles.button}>
+              <ButtonSubmit
+                nameButton="Зберегти зміни"
+                isActive={true}
+                isRight={true}
+                handlerSubmitButton={onSubmit}
+              />
+            </div>
+          </div>
+        </Form>
+      </Formik>
     </div>
   );
 };

@@ -20,6 +20,45 @@ const usePostersStore = create((set, get) => ({
     const result = await response.json();
     return result;
   },
+  addPoster: async data => {
+    const newPost = {
+      title: data.title,
+      photo: data.image,
+    };
+    const response = await fetch(`${get().server}posters`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: newPost,
+    });
+    const result = await response.json();
+    return result;
+  },
+  updatePoster: async (data, id) => {
+    const newPost = {
+      title: data.title,
+      photo: data.image,
+    };
+    const response = await fetch(`${get().server}posters/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: newPost,
+    });
+
+    const result = await response.json();
+    return result;
+  },
+
+  deletePostersById: async id => {
+    const response = await fetch(`${get().server}posters/${id}`, {
+      method: 'DELETE',
+    });
+    const result = await response.json();
+    return result;
+  },
 }));
 
 export default usePostersStore;

@@ -7,14 +7,17 @@ import FileInput from '@/components/admin-components/formik/FileInput/FileInput'
 import { useEffect, useState } from 'react';
 import usePostersStore from '@/store/posterStore';
 import { useParams } from 'react-router';
-// import FormikContainer from '@/components/admin-components/formik/FormikContainer';
+import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 
+import styles from './PostersAdmin.module.scss';
+import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
+import AdminHome from '@/components/Icons/AdminHome';
+import AdminArrow from '@/components/Icons/AdminArrow';
 const validationSchema = Yup.object({
   // title: Yup.string().required('Yup Required').max(10),
 });
 
 const initialValues = {
-  title: '',
   text: '',
   image: [],
 };
@@ -22,18 +25,15 @@ const initialValues = {
 const EditPostersPage = () => {
   const { id } = useParams();
   const { getPostersById } = usePostersStore();
-  const [poster, setPoster] = useState();
-  console.log('poster: ', poster);
-
+  const { updatePoster } = usePostersStore();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getPostersById(id);
+        console.log('result: ', result);
 
-        setPoster(result);
-
-        initialValues.title = result.title;
-        initialValues.photo = result.photo;
+        initialValues.text = result.title;
+        initialValues.image = result.photo;
       } catch (error) {
         console.log(error);
       }
@@ -41,46 +41,61 @@ const EditPostersPage = () => {
     fetchData();
   }, [getPostersById, id]);
 
-  // useEffect(() => {
-  //   initialValues.title = poster.title;
-  //   initialValues.photo = poster.photo;
-  // }, [poster]);
-  const onSubmit = values => {
-    console.log(values);
+  const onSubmit = async values => {
+    console.log('values: ', values);
+    try {
+      await updatePoster(values, id);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    // <FormikContainer />
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
-      <Form>
-        <div className="formControl">
-          <Field
-            name="title"
-            id="title"
-            placeholder="Title"
-            component={TextInput}
-            maxLength={10}
-            showCharacterCount={true}
-          />
-        </div>
-        <div className="formControl">
-          <Field
-            name="text"
-            id="title"
-            placeholder="Title"
-            component={TextArea}
-          />
-        </div>
-        <div className="formControl">
-          <Field name="image" id="image" component={FileInput} />
-        </div>
-        <button type="submit">Submit</button>
-      </Form>
-    </Formik>
+    <>
+      <div className={styles.header}>
+        <AdminHome />
+        <AdminArrow />
+        <span>Афіші</span>
+        <AdminArrow />
+        <span>Редагувати афішу</span>
+      </div>
+      <PageTitle
+        title="Редагуватти Афішу"
+        showBackButton={true}
+        backButtonLink="/admin/posters"
+        showActionButton={false}
+      />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        <Form className={styles.layout}>
+          <div className={styles.inputWrapper}>
+            <Field
+              name="text"
+              id="text"
+              placeholder="Title"
+              component={TextArea}
+              autofocuse={true}
+              maxLength={120}
+              showCharacterCount={true}
+            />
+
+            <Field name="image" id="image" component={FileInput} />
+          </div>
+
+          <div className={styles.button}>
+            <ButtonSubmit
+              nameButton="Зберегти зміни"
+              isActive={true}
+              isRight={true}
+              handlerSubmitButton={onSubmit}
+            />
+          </div>
+        </Form>
+      </Formik>
+    </>
   );
 };
 
