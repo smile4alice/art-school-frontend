@@ -6,16 +6,19 @@ import { useEffect, useState } from 'react';
 
 import styles from './PostersAdmin.module.scss';
 import AdminArrow from '@/components/Icons/AdminArrow';
+import Spinner from '@/components/ui/Spinner/Spinner';
 
 const PostersPageAdmin = () => {
   const { getPosters } = usePostersStore();
   const [posters, setPosters] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const result = await getPosters();
         setPosters(result.items);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -38,7 +41,7 @@ const PostersPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати афішу"
       />
-      <PostersList data={posters} />
+      {!isLoading ? <PostersList data={posters} /> : <Spinner />}
     </>
   );
 };

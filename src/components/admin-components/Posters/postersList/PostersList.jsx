@@ -5,7 +5,7 @@ import usePostersStore from '@/store/posterStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { useModal } from '@/store/modalStore';
 
-import ConfirmDeleteModal from '../../ConfirmDeleteModal/ConfirmDeleteModal';
+import ConfirmDeleteModal from '../../../ui/ConfirmDeleteModal/ConfirmDeleteModal';
 
 const PostersList = ({ data }) => {
   const { deletePostersById } = usePostersStore();
