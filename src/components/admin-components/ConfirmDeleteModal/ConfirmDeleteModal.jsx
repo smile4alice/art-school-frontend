@@ -9,7 +9,10 @@ const ConfirmDeleteModal = ({ handelDelete }) => {
   return (
     <div className={styles.deleteModal}>
       <div className={styles.contentWrapper}>
-        <CloseIcon onClick={closeModal} />
+        <div onClick={() => closeModal()}>
+          <CloseIcon />
+        </div>
+
         <p>Ви дійсно бажаєте видалити?</p>
         <div className={styles.buttonsWrapper}>
           <button
