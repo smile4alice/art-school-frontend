@@ -18,10 +18,16 @@ export const sideBarList = [
     iconClass: 'icon-posters',
   },
   {
-    title: 'Галерея',
+    title: 'Фотогалерея',
     link: 'gallery',
     isFilled: true,
     iconClass: 'icon-gallery',
+  },
+    {
+    title: 'Відеогалерея',
+    link: 'video',
+    isFilled: true,
+    iconClass: 'icon-video',
   },
   {
     title: 'Відділення',

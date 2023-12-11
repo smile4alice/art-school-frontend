@@ -7,8 +7,8 @@ const InputSm = ({
   maxLength,
   errorText,
   showCharacterCount,
-  text,
-  setText,
+  text = '', 
+  setText = () => {}, 
 }) => {
   // const [text, setText] = useState('');
   const [isFocused, setIsFocused] = useState(false);
