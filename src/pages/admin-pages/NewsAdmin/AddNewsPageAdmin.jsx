@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import useNewsStore from '@/store/newsStore';
 import { newsValidation } from './validationSchema';
+import useNewsStore from '@/store/newsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
-import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
 import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
+import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import styles from './NewsAdmin.module.scss';
 
 const initialValues = {
@@ -16,10 +17,13 @@ const initialValues = {
 
 const AddNewsPage = () => {
   const { addPost } = useNewsStore();
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const onSubmit = async values => {
     try {
+      setIsProcessing(true);
       await addPost(values);
+      setIsProcessing(false);
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +34,7 @@ const AddNewsPage = () => {
       <PageTitle
         title="Додати новину"
         showBackButton={true}
-        backButtonLink="/admin/sliders"
+        backButtonLink="/admin/news"
         showActionButton={false}
       />
       <Formik
@@ -38,37 +42,49 @@ const AddNewsPage = () => {
         validationSchema={newsValidation}
         onSubmit={onSubmit}
       >
-        <Form>
-          <div className={styles.layout}>
-            <Field
-              name="title"
-              id="title"
-              placeholder="Title"
-              component={TextInput}
-              maxLength={120}
-              showCharacterCount={true}
-            />
-            <div className={styles.secondRow}>
-              <Field
-                name="text"
-                id="text"
-                placeholder="Title"
-                component={TextArea}
-                maxLength={2000}
-                showCharacterCount={true}
-              />
-              <Field name="image" id="image" component={FileInput} />
-            </div>
-            <div className={styles.button}>
-              <ButtonSubmit
-                nameButton="Зберегти зміни"
-                isActive={true}
-                isRight={true}
-                handlerSubmitButton={onSubmit}
-              />
-            </div>
-          </div>
-        </Form>
+        {formik => {
+          return (
+            <Form>
+              <div className={styles.layout}>
+                <Field
+                  name="title"
+                  id="title"
+                  placeholder="Title"
+                  component={TextInput}
+                  maxLength={120}
+                  showCharacterCount={true}
+                  label="Заголовок Новини"
+                />
+                <div className={styles.secondRow}>
+                  <Field
+                    name="text"
+                    id="text"
+                    placeholder="Title"
+                    component={TextArea}
+                    maxLength={2000}
+                    showCharacterCount={true}
+                    label="Текст Новини"
+                  />
+                  <Field
+                    name="image"
+                    id="image"
+                    component={FileInput}
+                    label="Фото"
+                  />
+                </div>
+                <div className={styles.button}>
+                  <ButtonSubmit
+                    nameButton="Зберегти зміни"
+                    isActive={formik.isValid}
+                    isRight={true}
+                    handlerSubmitButton={onSubmit}
+                    isProcessing={isProcessing}
+                  />
+                </div>
+              </div>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );

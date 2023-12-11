@@ -1,30 +1,45 @@
-import { useState } from 'react';
-import { capitalizeString } from '@/utils/capitalizeString';
+import { useEffect, useState } from 'react';
 import styles from './TextInput.module.scss';
 
 const TextInput = ({
   id,
   field,
-  form: { errors },
+  text,
+  label,
+  form: { errors, handleBlur, touched, setFieldValue },
   maxLength,
   showCharacterCount,
 }) => {
+  const isFieldTouched = touched[field.name];
+  const valueLength = field.value && field.value?.length;
   const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    if (!text) return;
+    setFieldValue('title', text);
+  }, [text, setFieldValue]);
 
   const handleFocus = () => {
     setIsFocused(true);
   };
 
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
+  useEffect(() => {
+    if (isFieldTouched && valueLength > 0) {
+      setIsFocused(false);
+    }
+  }, [isFieldTouched, valueLength]);
 
   const getBorderColor = () => {
-    if (field.value?.length > maxLength) {
+    if (valueLength > maxLength) {
       return styles.redBorder;
-    } else if (isFocused) {
+    }
+    if (isFocused) {
       return styles.blueBorder;
-    } else if (field.value?.length > 0 && !isFocused) {
+    }
+    if (valueLength === 0 && isFieldTouched) {
+      return styles.redBorder;
+    }
+    if (valueLength > 0 && !isFocused) {
       return styles.greenBorder;
     } else {
       return styles.grayBorder;
@@ -32,9 +47,9 @@ const TextInput = ({
   };
 
   const getInputState = () => {
-    if (field.value?.length > maxLength) {
+    if (valueLength > maxLength) {
       return styles.error;
-    } else if (field.value?.length > 0 && !isFocused) {
+    } else if (valueLength > 0 && !isFocused) {
       return styles.entered;
     } else {
       return '';
@@ -44,7 +59,7 @@ const TextInput = ({
   return (
     <div className={styles.inputWrapper}>
       <label htmlFor={id} className={styles.inputLabel}>
-        {capitalizeString(field.name)}
+        {label}
       </label>
       <input
         id={id}
@@ -52,21 +67,22 @@ const TextInput = ({
         className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onClick={() => setIsFocused(true)}
         {...field}
       />
       {showCharacterCount && (
         <div className={styles.commentsWrapper}>
           <div className={styles.errorWrap}>
-            {errors?.[field.name] && (
+            {errors?.[field.name] && isFieldTouched && (
               <p className={styles.errorMessage}>{errors?.[field.name]}</p>
             )}
           </div>
           <p
             className={`${styles.counterMessage} ${
-              field.value?.length > maxLength ? styles.redText : ''
+              valueLength > maxLength ? styles.redText : ''
             }`}
           >
-            {`${field.value?.length}/${maxLength}`}
+            {`${valueLength}/${maxLength}`}
           </p>
         </div>
       )}

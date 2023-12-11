@@ -124,7 +124,7 @@ const App = () => {
           <Route path="sliders-add" element={<AddSlidersPageAdmin />} />
           <Route path="news" element={<NewsPageAdmin />} />
           <Route path="news/add" element={<AddNewsPageAdmin />} />
-          <Route path="news/edit" element={<EditNewsPageAdmin />} />
+          <Route path="news/edit/:id" element={<EditNewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
