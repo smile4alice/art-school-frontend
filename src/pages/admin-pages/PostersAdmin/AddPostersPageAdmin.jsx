@@ -9,6 +9,7 @@ import styles from './PostersAdmin.module.scss';
 import usePostersStore from '@/store/posterStore';
 import AdminHome from '@/components/Icons/AdminHome';
 import AdminArrow from '@/components/Icons/AdminArrow';
+import { posterValidation } from './validationSchema';
 
 const initialValues = {
   title: ' ',
@@ -44,34 +45,44 @@ const AddPostersPage = () => {
       />
       <Formik
         initialValues={initialValues}
-        // validationSchema={newsValidation}
+        validationSchema={posterValidation}
         onSubmit={onSubmit}
       >
-        <Form>
-          <div className={styles.layout}>
-            <div className={styles.inputWrapper}>
-              <Field
-                name="title"
-                id="text"
-                placeholder="Title"
-                component={TextArea}
-                maxLength={120}
-                showCharacterCount={true}
-              />
+        {formik => {
+          return (
+            <Form>
+              <div className={styles.layout}>
+                <div className={styles.inputWrapper}>
+                  <Field
+                    name="title"
+                    id="text"
+                    placeholder="Title"
+                    component={TextArea}
+                    maxLength={120}
+                    showCharacterCount={true}
+                    label="Заголовок"
+                  />
 
-              <Field name="image" id="image" component={FileInput} />
-            </div>
+                  <Field
+                    name="image"
+                    id="image"
+                    component={FileInput}
+                    // label="Фото"
+                  />
+                </div>
 
-            <div className={styles.button}>
-              <ButtonSubmit
-                nameButton="Зберегти зміни"
-                isActive={true}
-                isRight={true}
-                handlerSubmitButton={onSubmit}
-              />
-            </div>
-          </div>
-        </Form>
+                <div className={styles.button}>
+                  <ButtonSubmit
+                    nameButton="Зберегти зміни"
+                    isActive={formik.isValid}
+                    isRight={true}
+                    handlerSubmitButton={onSubmit}
+                  />
+                </div>
+              </div>
+            </Form>
+          );
+        }}
       </Formik>
     </div>
   );

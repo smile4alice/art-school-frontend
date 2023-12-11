@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { AiOutlinePlus } from 'react-icons/ai';
 import styles from './FileInput.module.scss';
@@ -6,10 +6,21 @@ import styles from './FileInput.module.scss';
 const FileInput = ({
   label,
   field,
+  photo,
   form: { errors, setFieldValue },
   ...props
 }) => {
-  const [imagePreview, setImagePreview] = useState();
+  const [imagePreview, setImagePreview] = useState('');
+  const fieldValue = field.value;
+
+  useEffect(() => {
+    if (!photo) return;
+    setFieldValue('image', [new File([], photo, { type: 'for-url' })]);
+  }, [photo, setFieldValue]);
+
+  useEffect(() => {
+    setImagePreview(fieldValue[0]?.name);
+  }, [fieldValue]);
 
   const setFileToBase64 = file => {
     const reader = new FileReader();

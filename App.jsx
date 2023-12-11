@@ -21,6 +21,7 @@ import SlidersPageAdmin from './src/pages/admin-pages/SlidersAdminAdmin/SlidersP
 import AddSlidersPageAdmin from './src/pages/admin-pages/SlidersAdminAdmin/AddSlidersPageAdmin';
 import NewsPageAdmin from './src/pages/admin-pages/NewsAdmin/NewsPageAdmin';
 import AddNewsPageAdmin from './src/pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
+import EditNewsPageAdmin from './src/pages/admin-pages/NewsAdmin/EditNewsPageAdmin';
 import PostersPageAdmin from './src/pages/admin-pages/PostersAdmin/PostersPageAdmin';
 import GalleryPageAdmin from './src/pages/admin-pages/GalleryAdmin/GalleryAdmin/GalleryPageAdmin';
 import DepartmentsPageAdmin from './src/pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
@@ -125,6 +126,7 @@ const App = () => {
           <Route path="sliders-add" element={<AddSlidersPageAdmin />} />
           <Route path="news" element={<NewsPageAdmin />} />
           <Route path="news/add" element={<AddNewsPageAdmin />} />
+          <Route path="news/edit/:id" element={<EditNewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
           <Route path="posters/add" element={<AddPostersPage />} />
           <Route path="posters/edit/:id" element={<EditPostersPage />} />

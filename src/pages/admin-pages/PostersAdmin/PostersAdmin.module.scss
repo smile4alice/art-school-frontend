@@ -9,6 +9,7 @@
   border: 1px solid #daddf1;
 
   .inputWrapper {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,6 +17,10 @@
   }
   .button {
     width: 100%;
+  }
+
+  & label {
+    top: 30px;
   }
 }
 

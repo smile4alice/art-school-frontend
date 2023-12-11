@@ -1,9 +1,21 @@
+import { Link } from 'react-router-dom';
+import useNewsStore from '@/store/newsStore';
 import styles from './NewsTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
 const NewsTable = ({ data }) => {
+  const { deletePost } = useNewsStore();
+
   const subString = str => {
     return str.split(' ').slice(0, 8).join(' ');
+  };
+
+  const removePost = async id => {
+    try {
+      await deletePost(id);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -28,16 +40,22 @@ const NewsTable = ({ data }) => {
             />
           </div>
           <div className={styles.cellActionRow}>
-            <div className={styles.cellActionContainer}>
-              <svg className={styles.iconEdit}>
-                <use href={`${sprite}#icon-edit`} width="20" height="20" />
-              </svg>
-            </div>
-            <div className={styles.cellActionContainer}>
+            <Link to={`edit/${item.id}`}>
+              <div className={styles.cellActionContainer}>
+                <svg className={styles.iconEdit}>
+                  <use href={`${sprite}#icon-edit`} width="20" height="20" />
+                </svg>
+              </div>
+            </Link>
+
+            <button
+              onClick={() => removePost(item.id)}
+              className={styles.cellActionContainer}
+            >
               <svg className={styles.iconTrash}>
                 <use href={`${sprite}#icon-trash`} width="20" height="20" />
               </svg>
-            </div>
+            </button>
           </div>
         </div>
       ))}

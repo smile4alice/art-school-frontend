@@ -10,7 +10,7 @@ const LogoAdmin = () => {
          to="/"
          className={styles.logoWrapper}
       >
-         <svg className={styles.logoIcon} width="25" height="25">
+         <svg className={styles.logoIcon} width="42" height="42">
             <use href={`${sprite}#icon-logo`} />
          </svg>
          

@@ -1,6 +1,6 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
+
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
 
 import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
@@ -14,9 +14,7 @@ import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import AdminHome from '@/components/Icons/AdminHome';
 import AdminArrow from '@/components/Icons/AdminArrow';
 import Spinner from '@/components/ui/Spinner/Spinner';
-const validationSchema = Yup.object({
-  // title: Yup.string().required('Yup Required').max(10),
-});
+import { posterValidation } from './validationSchema';
 
 const initialValues = {
   text: '',
@@ -28,15 +26,14 @@ const EditPostersPage = () => {
   const { getPostersById } = usePostersStore();
   const { updatePoster } = usePostersStore();
   const [isLoading, setIsLoading] = useState(false);
+  const [post, setPost] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
         const result = await getPostersById(id);
-        //console.log('result: ', result);
-        initialValues.text = result.title;
-        initialValues.image = result.photo;
+        setPost(result);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -73,33 +70,45 @@ const EditPostersPage = () => {
           />
           <Formik
             initialValues={initialValues}
-            validationSchema={validationSchema}
+            validationSchema={posterValidation}
             onSubmit={onSubmit}
           >
-            <Form className={styles.layout}>
-              <div className={styles.inputWrapper}>
-                <Field
-                  name="text"
-                  id="text"
-                  placeholder="Title"
-                  component={TextArea}
-                  autofocuse={true}
-                  maxLength={120}
-                  showCharacterCount={true}
-                />
-
-                <Field name="image" id="image" component={FileInput} />
-              </div>
-
-              <div className={styles.button}>
-                <ButtonSubmit
-                  nameButton="Зберегти зміни"
-                  isActive={true}
-                  isRight={true}
-                  handlerSubmitButton={onSubmit}
-                />
-              </div>
-            </Form>
+            {formik => {
+              return (
+                <Form>
+                  <div className={styles.layout}>
+                    <div className={styles.inputWrapper}>
+                      <Field
+                        name="text"
+                        id="text"
+                        placeholder="Title"
+                        component={TextArea}
+                        maxLength={2000}
+                        showCharacterCount={true}
+                        text={post?.title}
+                        label="Заголовок"
+                      />
+                      <Field
+                        name="image"
+                        id="image"
+                        component={FileInput}
+                        photo={post?.photo}
+                        // label="Фото"
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.button}>
+                    <ButtonSubmit
+                      nameButton="Зберегти зміни"
+                      isActive={formik.isValid}
+                      isRight={true}
+                      handlerSubmitButton={onSubmit}
+                      isProcessing={isLoading}
+                    />
+                  </div>
+                </Form>
+              );
+            }}
           </Formik>
         </div>
       ) : (

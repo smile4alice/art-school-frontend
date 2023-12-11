@@ -14,7 +14,7 @@ const PostersList = ({ data }) => {
   console.log('isDeleteConfirm : ', isDeleteConfirm);
   const handelDelete = async id => {
     if (isDeleteConfirm) {
-      try {г
+      try {
         await deletePostersById(id);
       } catch (error) {
         console.log(error);

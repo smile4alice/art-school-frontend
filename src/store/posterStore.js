@@ -5,7 +5,8 @@ const usePostersStore = create((set, get) => ({
   server: 'https://art-school-backend.vercel.app/api/v1/',
 
   getPosters: async () => {
-    const response = await fetch(`${get().server}posters`);
+    //const response = await fetch( `${ get().server }posters` );
+    const response = await fetch(`${get().server}news`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -13,7 +14,8 @@ const usePostersStore = create((set, get) => ({
     return result;
   },
   getPostersById: async id => {
-    const response = await fetch(`${get().server}posters/${id}`);
+    //const response = await fetch(`${get().server}posters/${id}`);
+    const response = await fetch(`${get().server}news/${id}`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
