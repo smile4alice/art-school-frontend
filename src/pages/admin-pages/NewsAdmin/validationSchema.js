@@ -21,7 +21,7 @@ export const newsValidation = Yup.object().shape({
     .min(2)
     .max(120)
     .matches(
-      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
+      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’`.,:;"()!?-]+$/,
       'Введіть коректну назву'
     ),
   text: Yup.string()
@@ -29,19 +29,27 @@ export const newsValidation = Yup.object().shape({
     .min(2)
     .max(2000)
     .matches(
-      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!-]+$/,
+      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’`.,:;"()!-]+$/,
       'Введіть коректний текст'
     ),
   image: Yup.mixed()
-    .required('Required')
+    .test(
+      'is-value',
+      'Додайте коректне зображення',
+      value => value && value.length > 0
+    )
+    .test('is-image-from-db', 'Додайте зображення', value => {
+      value && value[0]?.size === 0 && value[0]?.type === 'for-url';
+      return true;
+    })
     .test(
       'is-valid-type',
       'Зображення має бути в форматі .jpg, .png або .webp',
-      value => isValidFileType(value && value[0].type)
+      value => isValidFileType(value && value[0]?.type)
     )
     .test(
       'is-valid-size',
       `Максимальний розмір зображення ${formatBytes(sizeLimit)}`,
-      value => value && value[0].size <= sizeLimit
+      value => value && value[0]?.size <= sizeLimit
     ),
 });

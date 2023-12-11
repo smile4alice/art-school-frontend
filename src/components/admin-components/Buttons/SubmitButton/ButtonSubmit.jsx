@@ -5,6 +5,7 @@ export const ButtonSubmit = ({
   nameButton,
   isActive,
   isRight,
+  isProcessing,
 }) => {
   const buttonClass = isActive ? styles.activeButton : styles.inactiveButton;
   const additionalClass = isRight ? styles.rightButton : '';
@@ -15,7 +16,7 @@ export const ButtonSubmit = ({
       onClick={isActive ? handlerSubmitButton : null}
       className={`${styles.button} ${buttonClass} ${additionalClass}`}
     >
-      {nameButton}
+      {isProcessing ? 'Обробка запиту...' : nameButton}
     </button>
   );
 };
