@@ -24,7 +24,7 @@ const TextArea = ({
   };
 
   useEffect(() => {
-    if (isFieldTouched && valueLength > 0) {
+    if (isFieldTouched && valueLength >= 0) {
       setIsFocused(false);
     }
   }, [isFieldTouched, valueLength]);

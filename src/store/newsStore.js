@@ -11,6 +11,7 @@ const useNewsStore = create((set, get) => ({
     const result = await response.json();
     return result;
   },
+  
   getOnePost: async id => {
     const response = await fetch(`${get().server}/news/${id}`);
     if (!response.ok) {
@@ -19,6 +20,7 @@ const useNewsStore = create((set, get) => ({
     const result = await response.json();
     return result;
   },
+
   addPost: async data => {
     const newPost = {
       title: data.title,
@@ -34,12 +36,22 @@ const useNewsStore = create((set, get) => ({
     });
     return response.json();
   },
+
   editPost: async (id, data) => {
-    const newPost = {
-      title: data.title,
-      text: data.text,
-      photo: data.image,
-    };
+    let newPost = {};
+    if (data.image[0].size === 0) {
+      newPost = {
+        title: data.title,
+        text: data.text,
+        photo: data.image[0].name,
+      };
+    } else {
+      newPost = {
+        title: data.title,
+        text: data.text,
+        photo: data.image,
+      };
+    }
     const response = await fetch(`${get().server}/news/${id}`, {
       method: 'PATCH',
       headers: {
@@ -49,6 +61,7 @@ const useNewsStore = create((set, get) => ({
     });
     return response.json();
   },
+
   deletePost: async id => {
     const response = await fetch(`${get().server}/news/${id}`, {
       method: 'DELETE',
