@@ -20,13 +20,16 @@ const DropDownMenu = ({
       <HashLink
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
         onClick={() => {
-          setIsOpen(!isOpen), setCurrentId(isOpen ? 'departments' : '');
+          setIsOpen(!isOpen);
+          setCurrentId('departments');
         }}
         onMouseEnter={() => {
-          setIsOpen(true), setCurrentId('departments');
+          setIsOpen(true);
+          setCurrentId('');
         }}
         onMouseLeave={() => {
-          setIsOpen(false), setCurrentId('');
+          setIsOpen(false);
+          setCurrentId('');
         }}
         scroll={el => {
           if (isDesktop) {
@@ -86,13 +89,16 @@ const DropDownMenu = ({
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
         to="/about_school"
         onMouseEnter={() => {
-          setIsOpen(true), setCurrentId('about_school');
+          setCurrentId('about_school');
+          setIsOpen(true);
         }}
         onMouseLeave={() => {
-          setIsOpen(false), setCurrentId('');
+          setIsOpen(false);
+          setCurrentId('');
         }}
         onClick={() => {
-          setIsOpen(!isOpen), setCurrentId(isOpen ? 'about_school' : '');
+          setIsOpen(!isOpen);
+          setCurrentId('about_school');
         }}
       >
         <div className={styles.dropDownNameWrapper}>
