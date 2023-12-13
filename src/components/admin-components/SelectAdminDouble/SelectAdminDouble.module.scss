@@ -1,0 +1,92 @@
+.selectContainer {
+  width: 17rem;
+  position: relative;
+
+  .selectButton {
+    position: relative;
+    width: 100%;
+    padding: 0.5rem 0.62rem 0.5rem 2.2rem;
+    font-size: 0.875rem;
+    background-color: $white;
+    border: 1px solid $white;
+    color: $admin-text-main;
+    border-radius: 0.3125rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span::before {
+      content: '';
+      background: url('/icons/filter.svg');
+      position: absolute;
+      left: 0.62rem;
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      
+    }
+    
+    img{
+        svg{
+          color: currentColor;
+        }
+    }
+    
+  }
+  .selectButton.active {
+    background-color: #E5E9FD;
+    border: 1px solid $admin-purple;
+    transition: all linear .3s;
+    img{
+      transform: rotate(-180deg);
+    }
+  }
+
+  .optionsContainer {
+    width: 100%;
+    position: absolute;
+    z-index: 11;
+    top: calc(100%);
+    border: 1px solid $admin-purple;
+    background-color: aqua;
+    border-radius: 0.3125rem;
+    overflow: hidden;
+
+    .option {
+      background-color: #E5E9FD;
+      background-color: $white;
+      border-bottom: 1px solid $admin-purple;
+      cursor: pointer;
+      >button{
+        width: 100%;
+        padding: .5rem 0.5rem;
+        text-align: left;
+      }
+    }
+    .option.active {
+      background-color: #E5E9FD;
+      button{
+        border-bottom: 1px solid $admin-purple;
+      }
+      button:last-child{
+        border-bottom: none;
+      }
+    }
+   
+  }
+  .secondOptionsContainer{
+    background-color: #E5E9FD;
+    .secondOption{
+      padding: .2rem;
+      font-size: .75rem;
+      border-radius: 0.3125rem;
+      >button{
+        width: 100%;
+        padding: .2rem 0.5rem;
+        text-align: left;
+      }
+    }
+    .secondOption:hover{
+      background-color: $admin-purple;
+    }
+  }
+}

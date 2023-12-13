@@ -1,0 +1,82 @@
+.table {
+  width: 100%;
+  border: 1px solid $admin-purple;
+  border-radius: 8px;
+  font-weight: 500;
+  .row {
+    display: flex;
+    border-bottom: 1px solid $admin-purple;
+    div {
+      padding: 0.5rem 0.2rem;
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+    }
+    .num {
+      width: 6rem;
+    }
+    .description {
+      width: calc(100% - 15rem);
+      justify-content: left;
+    }
+    .photo,
+    .action {
+      width: 5rem;
+    }
+  }
+  .row:last-child {
+    border-bottom: none;
+  }
+  .thead {
+    background-color: #E5E9FD;
+    border-radius: 8px 8px 0 0;
+    color: $admin-text-main;
+    font-size: 0.9375;
+  }
+  .tbody {
+    font-size: 0.75rem;
+    .photo {
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $admin-light-purple;
+        img {
+          width: 3.5rem;
+          height: 2.25rem;
+        }
+      }
+    }
+    .action {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 4px;
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      .edit {
+        color: $admin-gray-text;
+      }
+      .edit:hover {
+        background-color: rgba(60, 66, 66, 0.1);
+        border: 1px solid rgba(60, 66, 66, 0.5);
+      }
+      .delete {
+        color: $admin-red;
+      }
+      .delete:hover {
+        background-color: rgba(255, 50, 50, 0.1);
+        border: 1px solid rgba(255, 50, 50, 0.5);
+      }
+    }
+  }
+}

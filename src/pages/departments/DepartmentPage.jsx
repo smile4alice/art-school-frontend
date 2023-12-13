@@ -9,7 +9,7 @@ import { articles } from '@/constants/articles';
 import s from './DepartmentPage.module.scss';
 
 const DepartmentPage = ({ id, title, showSelect }) => {
-  const { getDepartments } = useServicesStore();
+  const { getSubDepartments } = useServicesStore();
   const [subDepartments, setSubDepartments] = useState([]);
   const [departmentId, setDepartmentId] = useState('');
   const [articlesLength, setArticlesLength] = useState(1);
@@ -32,7 +32,7 @@ const DepartmentPage = ({ id, title, showSelect }) => {
     }
     const fetchData = async () => {
       try {
-        const result = await getDepartments(id);
+        const result = await getSubDepartments(id);
         setSubDepartments(result);
         setDepartmentId(result[0].id);
       } catch (error) {
@@ -40,7 +40,7 @@ const DepartmentPage = ({ id, title, showSelect }) => {
       }
     };
     fetchData();
-  }, [id, getDepartments]);
+  }, [id, getSubDepartments]);
 
   useEffect(() => {
     changeDepartment(departmentId);
