@@ -22,7 +22,7 @@ const Administration = () => {
       setLoadingState('loading');
       try {
         const result = await getAdministrationData();
-        console.log('result : ', result);
+
         setAdministrationData(result);
         setLoadingState('success');
       } catch (error) {

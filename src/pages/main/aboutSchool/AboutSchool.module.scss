@@ -2,14 +2,14 @@
   @extend%aligncenter;
   flex-direction: column;
   gap: 16px;
-  padding: 8px 0 44px;
+  padding: 8px 16px 44px;
 
   h2 {
     align-self: flex-start;
   }
   @include desktop {
     gap: 30px;
-    padding: 80px 0 120px;
+    padding: 80px 16px 120px;
   }
 }
 
@@ -98,6 +98,7 @@
   @extend%aligncenter;
   flex-direction: column;
   gap: 10px;
+  padding: 0 16px;
   h2 {
     align-self: flex-start;
   }
@@ -246,7 +247,7 @@
 
 // museum
 .museum_contentWrapper {
-  padding: 40px 0;
+  padding: 40px 16px;
   @extend%aligncenter;
   flex-direction: column;
   gap: 10px;
@@ -286,7 +287,7 @@
 
         @extend%aligncenter;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 6px;
         border-radius: 5px;
         overflow: hidden;
