@@ -1,22 +1,33 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+/* main */
 import Layout from './components/layout/Layout';
 import HomePage from './pages/main/HomePage';
-import Page404 from './pages/page_404/Page404';
+import Page404 from './pages/main/page_404/Page404';
 import Contacts from './pages/main/contacts/Contacts';
 import Gallery from './pages/main/gallery/Gallery';
-import AllNews from './pages/main/allnews/AllNews';
-import OneNews from './pages/main/onenews/OneNews';
-import PostersPage from '@/pages/main/posters/PostersPage';
+import AllNews from './pages/main/news/AllNews';
+import OneNews from './pages/main/news/news_post/NewsPost';
+import PostersPage from './pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
 import StatementPage from './pages/main/statement/StatementPage';
 
-import AboutSchool from './pages/main/aboutSchool/AboutSchool';
-import DepartmentPage from './pages/departments/DepartmentPage';
-
+/* login */
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
+
+/* departments */
+import PreschoolDepartment from './pages/main/departments/PreschoolDepartment';
+import MusicDepartment from './pages/main/departments/MusicDepartment';
+import VocalDepartment from './pages/main/departments/VocalDepartment';
+import ChoreographicDepartment from './pages/main/departments/ChoreographicDepartment';
+import TheaterDepartment from './pages/main/departments/TheaterDepartment';
+import FineArtsDepartment from './pages/main/departments/FineArtsDepartment';
+import SchoolHistory from './pages/main/school_history/SchoolHistory';
+import AboutSchool from './pages/main/about_school/AboutSchool';
+
+/* admin */
 import AdminSharedLayout from './components/admin-components/AdminSharedLayout/AdminSharedLayout';
 import AdminDashboard from './components/admin-components/AdminDashboard/AdminDashboard';
-
 import SlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/SlidersPageAdmin';
 import AddSlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/AddSlidersPageAdmin';
 import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
@@ -31,14 +42,15 @@ import EditOurAchievementsPage from './pages/admin-pages/OurAchievementsAdmin/Ed
 import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrationAdmin/SchoolAdministrationPageAdmin';
 import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
-
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
-import SchoolHistory from './pages/school_history/SchoolHistory';
+import AddPostersPage from './pages/admin-pages/PostersAdmin/AddPostersPageAdmin';
+import EditPostersPage from './pages/admin-pages/PostersAdmin/EditPostersPageAdmin';
 
 const App = () => {
   return (
     <Router>
       <Routes>
+        {/* main */}
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="*" element={<Page404 />} />
@@ -52,65 +64,22 @@ const App = () => {
           <Route path="/about_school" element={<AboutSchool />} />
           <Route path="/about_school_history" element={<SchoolHistory />} />
           <Route path="/about_school_museum" element={<AboutSchool />} />
-          <Route
-            path="/music_department"
-            element={
-              <DepartmentPage
-                id={'1'}
-                showSelect={true}
-                title={'Музичне відділення'}
-              />
-            }
-          />
-          <Route
-            path="/vocal_choral_department"
-            element={
-              <DepartmentPage
-                id={'2'}
-                showSelect={true}
-                title={'Вокально-хорове відділення'}
-              />
-            }
-          />
+
+          {/* departments */}
+          <Route path="/music_department" element={<MusicDepartment />} />
+          <Route path="/vocal_department" element={<VocalDepartment />} />
           <Route
             path="/сhoreographic_department"
-            element={
-              <DepartmentPage
-                id={'3'}
-                showSelect={true}
-                title={'Хореографічне відділення'}
-              />
-            }
+            element={<ChoreographicDepartment />}
           />
-          <Route
-            path="/theater_department"
-            element={
-              <DepartmentPage
-                id={'4'}
-                showSelect={false}
-                title={'Театральне відділення'}
-              />
-            }
-          />
+          <Route path="/theater_department" element={<TheaterDepartment />} />
           <Route
             path="/fine_arts_department"
-            element={
-              <DepartmentPage
-                id={'5'}
-                showSelect={true}
-                title={'Образотворче відділення'}
-              />
-            }
+            element={<FineArtsDepartment />}
           />
           <Route
-            path="/preschool_preparatory_department"
-            element={
-              <DepartmentPage
-                id={'6'}
-                showSelect={false}
-                title={'Дошкільне та підготовче відділення'}
-              />
-            }
+            path="/preschool_department"
+            element={<PreschoolDepartment />}
           />
           <Route
             path="/about_school_administration"
@@ -118,27 +87,31 @@ const App = () => {
           />
         </Route>
 
+        {/* login */}
         <Route path="/login" element={<LoginLayout />}></Route>
 
+        {/* admin */}
         <Route path="/admin" element={<AdminSharedLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="sliders" element={<SlidersPageAdmin />} />
           <Route path="sliders-add" element={<AddSlidersPageAdmin />} />
           <Route path="news" element={<NewsPageAdmin />} />
           <Route path="news/add" element={<AddNewsPageAdmin />} />
-          <Route path="news/edit" element={<EditNewsPageAdmin />} />
+          <Route path="news/edit/:id" element={<EditNewsPageAdmin />} />
           <Route path="posters" element={<PostersPageAdmin />} />
+          <Route path="posters/add" element={<AddPostersPage />} />
+          <Route path="posters/edit/:id" element={<EditPostersPage />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />
           <Route path="achievements/add" element={<AddOurAchievementsPage />} />
-          <Route path="achievements/edit" element={<EditOurAchievementsPage/>} />
+          <Route path="achievements/edit/:id" element={<EditOurAchievementsPage />} />
+          <Route path="contacts" element={<ContactsPageAdmin />} />
+          <Route path="password" element={<ChangePasswordPageAdmin />} />
           <Route
             path="administration"
             element={<SchoolAdministrationPageAdmin />}
           />
-          <Route path="contacts" element={<ContactsPageAdmin />} />
-          <Route path="password" element={<ChangePasswordPageAdmin />} />
         </Route>
 
         <Route path="/admin/*" element={<NotFoundAdmin />} />

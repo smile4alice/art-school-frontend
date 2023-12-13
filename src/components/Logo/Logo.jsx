@@ -15,7 +15,7 @@ const Logo = () => {
     >
       <LogoIcon />
       <h1 className={styles.logoText}>
-        Київська дитяча школа мистецтв №2
+        Київська дитяча школа мистецтв №2 <br />
         <span> ім. М. I. Вериківського</span>
       </h1>
     </Link>

@@ -1,9 +1,10 @@
+import { useEffect, useState } from 'react';
+import { posters } from '@/data/posters';
+
+import Modal from './Modal';
 import Container from '@/components/Container/Container';
 
 import styles from './PostersPage.module.scss';
-import { posters } from '@/constants/posters';
-import { useEffect, useState } from 'react';
-import Modal from './Modal';
 
 const PostersPage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -11,8 +12,6 @@ const PostersPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState({});
   const isMaxAmount = postersPerPage >= posters.length - 1;
-
-  console.log('  postersPerPage: ', postersPerPage);
 
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
@@ -22,11 +21,11 @@ const PostersPage = () => {
     setShowModal(!showModal);
   };
 
-  const viewMore = () => setPostersPerPage( prev => prev + postersPerPage );
-  
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
+  const viewMore = () => setPostersPerPage(prev => prev + postersPerPage);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     function handleResize() {

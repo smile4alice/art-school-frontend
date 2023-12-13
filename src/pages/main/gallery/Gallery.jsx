@@ -3,16 +3,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
 
-import { images, videos } from '@/constants/gallery';
+import { images, videos } from '@/data/gallery.json';
 
 import Container from '@/components/Container/Container';
 import ArrowUp from '@/components/Icons/ArrowUp';
 import ArrowDown from '@/components/Icons/ArrowDown';
 import SortIcon from '@/components/Icons/SortIcon';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
 import styles from './Gallery.module.scss';
+import 'swiper/css/pagination';
+import 'swiper/css';
 
 const Gallery = () => {
   const swiperRef = useRef(null);
@@ -22,6 +22,7 @@ const Gallery = () => {
   const [sorting, setSorting] = useState(false);
   const [sortedImages, setSortedImages] = useState(images);
   const isMaxAmount = itemsPerPage >= images.length - 1;
+
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const isTablet = useMediaQuery({ minWidth: 768 });
   const isMobile = useMediaQuery({ maxWidth: 767 });

@@ -1,0 +1,63 @@
+.deleteModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+
+  width: 400px;
+  // height: 160px;
+
+  border-radius: 6px;
+  background: $admin-white;
+}
+
+.contentWrapper {
+  @extend%aligncenter;
+  flex-direction: column;
+  gap: 45px;
+  padding: 45px 35px;
+  p {
+    color: $admin-text-main;
+    text-align: center;
+    font-family: 'Montserra' t;
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  svg {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+  }
+}
+
+.buttonsWrapper {
+  @extend%aligncenter;
+  gap: 80px;
+
+  button {
+    display: flex;
+    width: 125px;
+    padding: 9px 43px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: 1px solid $admin-purple;
+    background: $admin-light-purple;
+    color: $admin-blue;
+
+    font-family: 'Montserrat';
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: capitalize;
+
+    &:hover {
+      border: 1px solid $admin-accent;
+      background: $admin-accent;
+      color: $admin-white;
+    }
+  }
+}

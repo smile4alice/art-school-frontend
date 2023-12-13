@@ -1,0 +1,40 @@
+import CloseIcon from '@/components/Icons/CloseIcon';
+import { useConfirmDelete } from '@/store/confirmDelete';
+import { useModal } from '@/store/modalStore';
+import styles from './ConfirmDeleteModa.module.scss';
+
+const ConfirmDeleteModal = ({ handelDelete }) => {
+  const { confirmDelete } = useConfirmDelete();
+  const { closeModal } = useModal();
+  return (
+    <div className={styles.deleteModal}>
+      <div className={styles.contentWrapper}>
+        <div onClick={() => closeModal()}>
+          <CloseIcon />
+        </div>
+
+        <p>Ви дійсно бажаєте видалити?</p>
+        <div className={styles.buttonsWrapper}>
+          <button
+            onClick={() => {
+              confirmDelete();
+              handelDelete();
+              closeModal();
+            }}
+          >
+            Так
+          </button>
+          <button
+            onClick={() => {
+              closeModal();
+            }}
+          >
+            Ні
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ConfirmDeleteModal;

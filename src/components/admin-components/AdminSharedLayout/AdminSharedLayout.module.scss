@@ -1,22 +1,23 @@
-.mainWrapper{
-   display: flex;
-   width: 100vw;
-   height: 100vh;
-   flex-direction: column;  
-   background: var(--admin-background, #F6F7FF);
-   margin: 0;
+.mainWrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  background: var(--admin-background, #f6f7ff);
+  margin: 0;
 }
-.adminBackdrop{
-   display: flex;
-   justify-content: center;
-   margin: 12px;   
-   align-self: stretch;
+.adminBackdrop {
+  display: flex;
+  justify-content: center;
+  margin: 12px;
+  align-self: stretch;
 }
 .rightContent {
-   display: flex;
-   width: 100vw;
-   margin: 0px 12px 12px 12px;
-   flex-direction: column;
-   flex: 1 0 0;
-   align-self: stretch;  
+  position: relative;
+  display: flex;
+  width: 100vw;
+  margin: 0px 12px 12px 12px;
+  flex-direction: column;
+  flex: 1 0 0;
+  align-self: stretch;
 }

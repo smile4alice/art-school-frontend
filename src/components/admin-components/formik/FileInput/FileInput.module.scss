@@ -12,6 +12,7 @@
     color: $admin-text-main;
     font-size: 14px;
     font-weight: 500;
+    font-family: 'Montserrat';
   }
   .dropzone {
     display: flex;
@@ -62,4 +63,7 @@
     font-size: 12px;
     font-weight: 500;
   }
+}
+.borderGreen {
+  border: 2px dashed $admin-green;
 }

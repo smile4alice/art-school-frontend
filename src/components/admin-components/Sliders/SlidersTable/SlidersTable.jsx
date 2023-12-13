@@ -22,16 +22,24 @@ const SlidersTable = () => {
         <div className={styles.cellPhotoRow}>
           <img src="#" alt="Фото" className={styles.contentElementImg}></img>
         </div>
+
         <div className={styles.cellActionRow}>
+
           <div className={styles.cellActionContainer}>
-            <svg className={styles.iconEdit}>
-              <use href={`${sprite}#icon-edit`} width="20" height="20" />
-            </svg>
+
+            <div class={styles.iconWrapperEdit}>
+              <svg className={styles.iconEdit}>
+                <use href={`${sprite}#icon-edit`} width="15" height="15" />
+              </svg>              
+            </div>
           </div>
+
           <div className={styles.cellActionContainer}>
-            <svg className={styles.iconTrash}>
-              <use href={`${sprite}#icon-trash`} width="20" height="20" />
-            </svg>
+            <div class= {styles.iconWrapperRemove}>
+              <svg className={styles.iconTrash}>
+                <use href={`${sprite}#icon-trash`} width="15" height="15" />
+              </svg>
+              </div>
           </div>
         </div>
       </div>

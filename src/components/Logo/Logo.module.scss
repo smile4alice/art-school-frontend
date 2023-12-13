@@ -21,16 +21,29 @@
 }
 
 .logoText {
-  width: 169px;
-  @include font(14px, 700, normal);
+  width: 170px;
+  font-family: 'Mulish';
+  @include font(16px, 800, 1.2);
 
   @media screen and (min-width: 768px) {
-    width: 341px;
-    @include font(17px, 700, normal);
+    width: 616px;
+    @include font(24px, 800, 1.2);
   }
 
   @media screen and (min-width: 1280px) {
     width: 181px;
-    @include font(15px, 700, normal);
+    @include font(15px, 700, 1.2);
+  }
+}
+.logoText span {
+  font-family: 'Mulish';
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  @media screen and (min-width: 768px) {
+    @include font(20px, 700, 1.2);
+  }
+  @media screen and (min-width: 1280px) {
+    @include font(15px, 700, 1.2);
   }
 }

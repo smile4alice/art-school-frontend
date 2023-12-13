@@ -1,12 +1,12 @@
 export const departmemts = [
   { name: 'Музичне відділення', to: '/music_department' },
-  { name: 'Вокально-хорове відділення', to: '/vocal_choral_department' },
+  { name: 'Вокально-хорове відділення', to: '/vocal_department' },
   { name: 'Хореографічне відділення', to: '/сhoreographic_department' },
   { name: 'Образотворче відділення', to: '/fine_arts_department' },
   { name: 'Театральне відділення', to: '/theater_department' },
   {
     name: 'Дошкільне та підготовче відділення',
-    to: '/preschool_preparatory_department',
+    to: '/preschool_department',
   },
 ];
 

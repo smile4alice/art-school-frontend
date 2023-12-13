@@ -5,7 +5,7 @@ import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmi
 import s from './SelectAdminDouble.module.scss';
 
 const SelectAdminDouble = ({ changeDepartment }) => {
-  const { getMainDepartments, getDepartments } = useServicesStore();
+  const { getMainDepartments, getSubDepartments } = useServicesStore();
   const [mainDepartmentsList, setMainDepartmentsList] = useState([]);
   const [subDepartmentsList, setSubDepartmentsList] = useState([]);
   const [optionsVisible, setOptionsVisible] = useState(false);
@@ -48,7 +48,7 @@ const SelectAdminDouble = ({ changeDepartment }) => {
       const fetchData = async () => {
         setLoadingState('loading');
         try {
-          const result = await getDepartments(selectedOptionId);
+          const result = await getSubDepartments(selectedOptionId);
           setSubDepartmentsList(result);
           setLoadingState('success');
         } catch (error) {
@@ -58,7 +58,7 @@ const SelectAdminDouble = ({ changeDepartment }) => {
       };
       fetchData();
     }
-  }, [selectedOptionId, getDepartments, secondOptionsVisible]);
+  }, [selectedOptionId, getSubDepartments, secondOptionsVisible]);
 
   return (
     <div className={s.selectContainer}>

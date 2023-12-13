@@ -1,6 +1,6 @@
 // import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import {
   // EffectFade,
   Autoplay,
@@ -8,7 +8,7 @@ import {
   Keyboard,
 } from 'swiper/modules';
 // import { Autoplay } from 'swiper';
-import Data from '@/constants/hero.json';
+import Data from '@/data/hero.json';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
