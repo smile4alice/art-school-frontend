@@ -2,11 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {
-  concertHallImages,
-  soundRecordImages,
-  expoHallImages,
-} from './cooperationData';
+import data from '@/data/cooperation.json';
 import styles from './Cooperation.module.scss';
 
 const Cooperation = () => {
@@ -34,7 +30,7 @@ const Cooperation = () => {
           <h2>Концертна зала</h2>
           {isLaptop && (
             <div className={styles.images}>
-              {concertHallImages.map((image, index) => (
+              {data.concertHallImages.map((image, index) => (
                 <img key={index} src={image.url} alt={image.alt} />
               ))}
             </div>
@@ -51,7 +47,7 @@ const Cooperation = () => {
                 swiperRef.current = swiper;
               }}
             >
-              {concertHallImages.map((slide, index) => (
+              {data.concertHallImages.map((slide, index) => (
                 <SwiperSlide key={index} className={styles.Slide}>
                   <img src={slide.url} alt={slide.alt} />
                 </SwiperSlide>
@@ -60,7 +56,7 @@ const Cooperation = () => {
           )}
           {isMobile && (
             <div className={styles.mobile_images}>
-              {concertHallImages.map((image, index) => (
+              {data.concertHallImages.map((image, index) => (
                 <img key={index} src={image.url} alt={image.alt} />
               ))}
             </div>
@@ -70,7 +66,7 @@ const Cooperation = () => {
           <h2>Студія звукозапису</h2>
           {isLaptop && (
             <div className={styles.images}>
-              {soundRecordImages.map((image, index) => (
+              {data.soundRecordImages.map((image, index) => (
                 <img key={index} src={image.url} alt={image.alt} />
               ))}
             </div>
@@ -87,7 +83,7 @@ const Cooperation = () => {
                 swiperRef.current = swiper;
               }}
             >
-              {soundRecordImages.map((slide, index) => (
+              {data.soundRecordImages.map((slide, index) => (
                 <SwiperSlide key={index} className={styles.Slide}>
                   <img src={slide.url} alt={slide.alt} />
                 </SwiperSlide>
@@ -96,7 +92,7 @@ const Cooperation = () => {
           )}
           {isMobile && (
             <div className={styles.mobile_images}>
-              {soundRecordImages.map((image, index) => (
+              {data.soundRecordImages.map((image, index) => (
                 <img key={index} src={image.url} alt={image.alt} />
               ))}
             </div>
@@ -106,7 +102,7 @@ const Cooperation = () => {
           <h2>Виставкова зала</h2>
           {isLaptop && (
             <div className={styles.images}>
-              {expoHallImages.map((image, index) => (
+              {data.expoHallImages.map((image, index) => (
                 <img key={index} src={image.url} alt={image.alt} />
               ))}
             </div>
@@ -123,7 +119,7 @@ const Cooperation = () => {
                 swiperRef.current = swiper;
               }}
             >
-              {expoHallImages.map((slide, index) => (
+              {data.expoHallImages.map((slide, index) => (
                 <SwiperSlide key={index} className={styles.Slide}>
                   <img src={slide.url} alt={slide.alt} />
                 </SwiperSlide>
@@ -132,7 +128,7 @@ const Cooperation = () => {
           )}
           {isMobile && (
             <div className={styles.mobile_images}>
-              {expoHallImages.map((image, index) => (
+              {data.expoHallImages.map((image, index) => (
                 <img key={index} src={image.url} alt={image.alt} />
               ))}
             </div>

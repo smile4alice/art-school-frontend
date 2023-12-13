@@ -5,11 +5,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { formatDate } from '@/utils/formatDate';
 import useNewsStore from '@/store/newsStore';
 import Container from '@/components/Container/Container';
+import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
+import Navigation from './Navigation/Navigation';
 import styles from './News.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import { Link } from 'react-router-dom';
 
 const News = () => {
   const swiperRef = useRef();
@@ -36,72 +39,53 @@ const News = () => {
     <Container>
       <section className={styles.News}>
         <h1>Новини</h1>
-
         {isLaptop && (
-          <div className={styles.ButtonContainer}>
-            <NavLinkButton title={'Переглянути всі новини'} href={'/'} />
-          </div>
+          <Link to="/news" className={styles.ButtonContainer}>
+            <NavLinkButton title={'Переглянути всі новини'} href={'/news'} />
+          </Link>
         )}
         <div className={styles.wrapper}>
-          <Swiper
-            className={styles.Slider}
-            spaceBetween={50}
-            slidesPerView={1}
-            modules={[Pagination]}
-            pagination={{ clickable: true }}
-            loop={true}
-            onSwiper={swiper => {
-              swiperRef.current = swiper;
-            }}
-          >
-            {loadingState === 'success' && news && Array.isArray(news) ? (
-              news.map((slide, index) => (
-                <SwiperSlide key={index} className={styles.Slide}>
-                  <div className={styles.image}>
-                    {loadingState === 'loading' && (
-                      <div className={styles.errorData}>Завантаження...</div>
-                    )}
-                    {loadingState === 'success' && (
-                      <img src={slide.photo} alt={slide.title} />
-                    )}
-                  </div>
-                  <div className={styles.Text}>
-                    <span>{formatDate(slide.created_at)}</span>
-                    <p>{slide.title}</p>
-                  </div>
-                </SwiperSlide>
-              ))
-            ) : (
-              <div className={styles.errorData}>Дані тимчасово відсуті</div>
-            )}
-          </Swiper>
-          {isLaptop && (
-            <>
-              <button
-                className={styles.prevSlide}
-                onClick={() => swiperRef.current.slidePrev()}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="1em"
-                  viewBox="0 0 320 512"
-                >
-                  <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                </svg>
-              </button>
-              <button
-                className={styles.nextSlide}
-                onClick={() => swiperRef.current.slideNext()}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="1em"
-                  viewBox="0 0 320 512"
-                >
-                  <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                </svg>
-              </button>
-            </>
+          {loadingState === 'success' ? (
+            <Swiper
+              className={styles.Slider}
+              spaceBetween={50}
+              slidesPerView={1}
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              loop={true}
+              onSwiper={swiper => {
+                swiperRef.current = swiper;
+              }}
+            >
+              {news &&
+                Array.isArray(news) &&
+                news.map((slide, index) => (
+                  <SwiperSlide key={index} className={styles.Slide}>
+                    <div className={styles.image}>
+                      {loadingState === 'loading' && (
+                        <div className={styles.errorData}>Завантаження...</div>
+                      )}
+                      {loadingState === 'success' && (
+                        <img src={slide.photo} alt={slide.title} />
+                      )}
+                    </div>
+                    <div className={styles.Text}>
+                      <span>{formatDate(slide.created_at)}</span>
+                      <p>{slide.title}</p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              {isLaptop && (
+                <Navigation
+                  onPrevClick={() => swiperRef.current.slidePrev()}
+                  onNextClick={() => swiperRef.current.slideNext()}
+                />
+              )}
+            </Swiper>
+          ) : (
+            <div className={styles.errorData}>
+              <Placeholder />
+            </div>
           )}
         </div>
         {!isLaptop && (

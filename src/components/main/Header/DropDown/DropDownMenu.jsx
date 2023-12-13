@@ -25,7 +25,7 @@ const DropDownMenu = ({
         }}
         onMouseEnter={() => {
           setIsOpen(true);
-          setCurrentId('');
+          setCurrentId('departments');
         }}
         onMouseLeave={() => {
           setIsOpen(false);

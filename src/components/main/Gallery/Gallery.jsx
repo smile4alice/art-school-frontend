@@ -4,7 +4,7 @@ import Container from '@/components/Container/Container';
 import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { images } from '@/constants/gallery';
+import { images } from '@/data/gallery.json';
 import styles from './Gallery.module.scss';
 import { Link } from 'react-router-dom';
 
