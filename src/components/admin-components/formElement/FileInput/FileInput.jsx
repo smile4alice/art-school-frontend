@@ -16,7 +16,7 @@ const FileInput = ({ label, setImage }) => {
 
   const onDrop = async files => {
     const file = files[0];
-    setImage(file);
+    setImagePreview(file);
     setFileToBase64(file);
   };
 

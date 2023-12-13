@@ -27,6 +27,7 @@
 }
 
 .commentsWrapper {
+  position: relative;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -35,6 +36,9 @@
 }
 
 .counterMessage {
+  position: absolute;
+  top: 0;
+  right: 0;
   color: $admin-gray;
   text-align: right;
   font-size: 12px;

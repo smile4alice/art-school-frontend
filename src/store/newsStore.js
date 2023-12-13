@@ -11,7 +11,7 @@ const useNewsStore = create((set, get) => ({
     const result = await response.json();
     return result;
   },
-  
+
   getOnePost: async id => {
     const response = await fetch(`${get().server}/news/${id}`);
     if (!response.ok) {

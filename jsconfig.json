@@ -5,5 +5,11 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/hooks", "src/HomePage.jsx", "src/hooks/hooks.js"]
+  "include": [
+    "src",
+    "src/hooks",
+    "src/HomePage.jsx",
+    "src/hooks/hooks.js",
+    "App.jsx"
+  ]
 }
