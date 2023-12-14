@@ -3,7 +3,7 @@ import { useConfirmDelete } from '@/store/confirmDelete';
 import { useModal } from '@/store/modalStore';
 import styles from './ConfirmDeleteModa.module.scss';
 
-const ConfirmDeleteModal = ({ handelDelete }) => {
+const ConfirmDeleteModal = ({ handleDelete }) => {
   const { confirmDelete } = useConfirmDelete();
   const { closeModal } = useModal();
   return (
@@ -18,7 +18,7 @@ const ConfirmDeleteModal = ({ handelDelete }) => {
           <button
             onClick={() => {
               confirmDelete();
-              handelDelete();
+              handleDelete();
               closeModal();
             }}
           >

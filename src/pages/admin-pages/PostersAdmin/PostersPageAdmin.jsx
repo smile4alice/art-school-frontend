@@ -12,6 +12,7 @@ const PostersPageAdmin = () => {
   const { getPosters } = usePostersStore();
   const [posters, setPosters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

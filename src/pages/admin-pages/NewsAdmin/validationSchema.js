@@ -33,11 +33,7 @@ export const newsValidation = Yup.object().shape({
       'Введіть коректний текст'
     ),
   image: Yup.mixed()
-    .test(
-      'is-value',
-      'Додайте коректне зображення',
-      value => value && value.length > 0
-    )
+    .test('is-value', 'Додайте зображення', value => value && value.length > 0)
     .test('is-image-from-db', 'Додайте зображення', value => {
       value && value[0]?.size === 0 && value[0]?.type === 'for-url';
       return true;
