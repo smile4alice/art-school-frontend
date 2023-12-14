@@ -21,24 +21,25 @@ const useServicesStore = create((set, get) => ({
     return result;
   },
 
+
+
+
   
   //admin Achievements
   //всі досягнення
-  getAllAchievements: async (page, pageSize) => {
+  getAllAchievements: async () => {
     const response = await fetch(
-      `${get().server}achievements?page=${page}&size=${pageSize}`
+      `${get().server}achievements`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const result = await response.json();
-    return result;
+    return result.items;
   },
-  getAchievements: async (url, departmentId, page, pageSize) => {
-    console.log(url);
-    console.log(departmentId);
-    console.log(page);
-    console.log(pageSize);
+
+  //досягнення головної сторінки переробити
+  getMainAchievements: async (url, departmentId, page, pageSize) => {
     const response = await fetch(
       `${get().server}${url}${url !== 'achievements' ? departmentId : ''}?page=${page}&size=${pageSize}`
     );
@@ -48,8 +49,22 @@ const useServicesStore = create((set, get) => ({
     const result = await response.json();
     return url !== 'achievements' ? result : result.items;
   },
+  //досягнення відділу по id
+  getDepartmentAchievementsId: async ( id, page, pageSize ) => {
+    const response = await fetch(`${get().server}departments/sub_department_achievement/${id}?page=${page}&size=${pageSize}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+  },
+
+
+
+
+
   //додати досягнення треба переробити, оскільки досягнення додаються на головну сторінку та в відділ
-  addAchievements: async data => {
+  addAchievement: async data => {///api/v1/achievements
     const achievementPost = {
       title: data.title,
       text: data.text,
@@ -65,7 +80,9 @@ const useServicesStore = create((set, get) => ({
     return response.json();
   },
 
-  // для компоненту досягнення основної сторінки та в відділеннях --- потрібно переробити
+
+
+  // для компоненту досягнення основної сторінки та в відділеннях --- потрібно переробити?
   getDepartmentAchievements: async (url, departmentId) => {
     const response = await fetch(
       `${get().server}${url}${url !== 'achievements' ? departmentId : ''}?page=1&size=12`

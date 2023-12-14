@@ -1,12 +1,12 @@
 .container{
   width: 100%;
   max-width: 1280px;
+  max-height: 1000px;
   margin: 0 auto;
 }
-
+//ourAchievements
 .selectsContainer{
   position: relative;
-  padding-bottom: 1rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -38,7 +38,20 @@
   color: $admin-accent;
   font-size: 0.875rem;
   font-weight: 600;
+  margin: 0.75rem auto;
 }
+
+//addOurAchievements
+.selectBlock{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem;
+}
+
+
+
+/*
 .layout {
   display: flex;
   padding: 20px 40px;
@@ -62,3 +75,4 @@
   }
 }
 
+*/

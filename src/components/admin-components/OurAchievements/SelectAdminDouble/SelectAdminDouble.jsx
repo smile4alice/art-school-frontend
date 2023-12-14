@@ -21,7 +21,7 @@ const SelectAdminDouble = ({ changeDepartment }) => {
     setSecondOptionsVisible(!secondOptionsVisible);
     setSelectedOptionId(prevId => (prevId === optionId ? '' : optionId));
   };
-  //заривання select при кліку поза компонентом
+  //закривання select при кліку поза компонентом
   const selectRef = useRef(null);
   const selectOptionsRef = useRef(null);
   useClickOutside([selectRef, selectOptionsRef], () => {
