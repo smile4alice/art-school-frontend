@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import styles from './TextArea.module.scss';
+import { useEffect, useState } from 'react';
+import styles from './TextInput.module.scss';
 
-const TextArea = ({
+const TextInput = ({
   id,
   field,
   text,
@@ -11,12 +11,12 @@ const TextArea = ({
   showCharacterCount,
 }) => {
   const isFieldTouched = touched[field.name];
-  const valueLength = field.value?.length;
+  const valueLength = field.value.length;
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (!text) return;
-    setFieldValue('text', text);
+    setFieldValue('title', text);
   }, [text, setFieldValue]);
 
   const handleFocus = () => {
@@ -54,13 +54,14 @@ const TextArea = ({
   };
 
   return (
-    <div className={styles.textAreaWrapper}>
+    <div className={styles.inputWrapper}>
       <label htmlFor={id} className={styles.inputLabel}>
         {label}
       </label>
-      <textarea
+      <input
         id={id}
-        className={`${styles.textArea} ${getBorderColor()} ${getInputState()}`}
+        type="text"
+        className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onClick={() => setIsFocused(true)}
@@ -73,17 +74,17 @@ const TextArea = ({
               <p className={styles.errorMessage}>{errors?.[field.name]}</p>
             )}
           </div>
-          <div
+          <p
             className={`${styles.counterMessage} ${
               valueLength > maxLength ? styles.redText : ''
             }`}
           >
             {`${valueLength}/${maxLength}`}
-          </div>
+          </p>
         </div>
       )}
     </div>
   );
 };
 
-export default TextArea;
+export default TextInput;

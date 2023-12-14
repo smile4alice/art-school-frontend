@@ -73,13 +73,13 @@ const TextArea = ({
               <p className={styles.errorMessage}>{errors?.[field.name]}</p>
             )}
           </div>
-          <div
+          <p
             className={`${styles.counterMessage} ${
               valueLength > maxLength ? styles.redText : ''
             }`}
           >
             {`${valueLength}/${maxLength}`}
-          </div>
+          </p>
         </div>
       )}
     </div>

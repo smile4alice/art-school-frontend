@@ -1,0 +1,62 @@
+.textAreaWrapper {
+  width: 100%;
+}
+
+.inputLabel {
+  color: $admin-text-main;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.textArea {
+  width: 100%;
+  height: 197px;
+  padding: 10px;
+  align-items: flex-start;
+  border-radius: 6px;
+  border: 1px solid $admin-input-outline;
+  background: $white;
+  color: $admin-text-main;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.counterMessage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $admin-gray;
+  text-align: right;
+  font-size: 12px;
+}
+
+.errorWrap {
+  width: 422px;
+  height: 4rem;
+}
+
+.errorMessage {
+  color: $admin-red;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.redBorder {
+  border: 1px solid $admin-red;
+}
+
+.greenBorder {
+  border: 1px solid $admin-green;
+}
+
+.blueBorder {
+  border: 1px solid $admin-accent;
+}
+
+.grayBorder {
+  border: 1px solid $admin-input-outline;
+}
+
+.redText {
+  color: $admin-red;
+}

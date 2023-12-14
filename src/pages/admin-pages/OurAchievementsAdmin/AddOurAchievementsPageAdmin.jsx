@@ -3,7 +3,6 @@ import { Formik, Form, Field } from 'formik';
 import { newsValidation } from './validationSchema';
 import useServicesStore from '@/store/serviseStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
-import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
 import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
@@ -43,7 +42,7 @@ const AddOurAchievementsPage = () => {
   };
 
   return (
-    <div>
+    <div className={s.container}>
       <PageTitle
         title="Додати досягнення"
         showBackButton={true}
@@ -62,17 +61,8 @@ const AddOurAchievementsPage = () => {
         {formik => {
           return (
             <Form>
-              <div className={s.layout}>
-                <Field
-                  name="title"
-                  id="title"
-                  placeholder="Title"
-                  component={TextInput}
-                  maxLength={120}
-                  showCharacterCount={true}
-                  label="Заголовок Новини"
-                />
-                <div className={s.secondRow}>
+              <div className={s.form}>
+                <div className={s.fieldSection}>
                   <Field
                     name="text"
                     id="text"
@@ -80,13 +70,13 @@ const AddOurAchievementsPage = () => {
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}
-                    label="Текст Новини"
+                    label="Опис"
                   />
                   <Field
                     name="image"
                     id="image"
                     component={FileInput}
-                    label="Фото"
+                    label="Фото*"
                   />
                 </div>
                 <div className={s.button}>
