@@ -1,12 +1,11 @@
-import AdminHome from '@/components/Icons/AdminHome';
+import { useEffect, useState } from 'react';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import PostersList from '@/components/admin-components/Posters/postersList/PostersList';
 import usePostersStore from '@/store/posterStore';
-import { useEffect, useState } from 'react';
-
-import styles from './PostersAdmin.module.scss';
-import AdminArrow from '@/components/Icons/AdminArrow';
 import Spinner from '@/components/ui/Spinner/Spinner';
+import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+
+const breadcrumbs = ['Афіші'];
 
 const PostersPageAdmin = () => {
   const { getPosters } = usePostersStore();
@@ -28,12 +27,8 @@ const PostersPageAdmin = () => {
   }, [getPosters]);
 
   return (
-    <>
-      <div className={styles.header}>
-        <AdminHome />
-        <AdminArrow />
-        <span>Афіші</span>
-      </div>
+    <div>
+      <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
         title="Афіші"
         showBackButton={false}
@@ -43,7 +38,7 @@ const PostersPageAdmin = () => {
         actionButtonLabel="Додати афішу"
       />
       {!isLoading ? <PostersList data={posters} /> : <Spinner />}
-    </>
+    </div>
   );
 };
 

@@ -28,8 +28,9 @@ import AboutSchool from './pages/main/about_school/AboutSchool';
 /* admin */
 import AdminSharedLayout from './components/admin-components/AdminSharedLayout/AdminSharedLayout';
 import AdminDashboard from './components/admin-components/AdminDashboard/AdminDashboard';
-import SlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/SlidersPageAdmin';
-import AddSlidersPageAdmin from './pages/admin-pages/SlidersAdminAdmin/AddSlidersPageAdmin';
+import SlidersPageAdmin from './pages/admin-pages/SlidersAdmin/SlidersPageAdmin';
+import AddSlidersPage from './pages/admin-pages/SlidersAdmin/AddSlidersPageAdmin';
+import EditSlidersPage from './pages/admin-pages/SlidersAdmin/EditSlidersPageAdmin';
 import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
 import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
 import EditNewsPageAdmin from './pages/admin-pages/NewsAdmin/EditNewsPageAdmin';
@@ -92,7 +93,8 @@ const App = () => {
         <Route path="/admin" element={<AdminSharedLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="sliders" element={<SlidersPageAdmin />} />
-          <Route path="sliders-add" element={<AddSlidersPageAdmin />} />
+          <Route path="sliders/add" element={<AddSlidersPage />} />
+          <Route path="sliders/edit/:id" element={<EditSlidersPage />} />
           <Route path="news" element={<NewsPageAdmin />} />
           <Route path="news/add" element={<AddNewsPageAdmin />} />
           <Route path="news/edit/:id" element={<EditNewsPageAdmin />} />
