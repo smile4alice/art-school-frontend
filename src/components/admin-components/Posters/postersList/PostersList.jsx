@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useConfirmDelete } from '@/store/confirmDelete';
+import { useModal } from '@/store/modalStore';
 import styles from './PostersList.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 import usePostersStore from '@/store/posterStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
-import { useModal } from '@/store/modalStore';
 
-import ConfirmDeleteModal from '../../../ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
 
 const PostersList = ({ data }) => {
   const { deletePostersById } = usePostersStore();
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
-  console.log('isDeleteConfirm : ', isDeleteConfirm);
-  const handelDelete = async id => {
+
+  const handleDelete = async id => {
     if (isDeleteConfirm) {
       try {
         await deletePostersById(id);
@@ -27,7 +27,6 @@ const PostersList = ({ data }) => {
   return (
     <div className={styles.contentWrap}>
       <div className={styles.tableHeader}>
-        {/* <li className={styles.cellSlideyHeader}>Новини</li> */}
         <p className={styles.cellHeadingHeader}>Заголовок</p>
         <div className={styles.cellActionWrapper}>
           <p className={styles.cellPhotoHeader}>Фото</p>
@@ -39,8 +38,6 @@ const PostersList = ({ data }) => {
           <div className={styles.cellTextWrapper}>
             <div className={styles.cellSliderRow}>{index + 1}</div>
             <div className={styles.cellHeadingRow}>{item.title}</div>
-
-            {/* <div className={styles.cellTextRow}>{subString(item.text)}</div> */}
           </div>
 
           <div className={styles.cellPosterWrapper}>
@@ -69,7 +66,7 @@ const PostersList = ({ data }) => {
         </div>
       ))}
 
-      {isModalOpen && <ConfirmDeleteModal handelDelete={handelDelete} />}
+      {isModalOpen && <ConfirmDeleteModal handleDelete={handleDelete} />}
     </div>
   );
 };

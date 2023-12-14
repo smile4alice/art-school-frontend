@@ -1,20 +1,29 @@
 import { Link } from 'react-router-dom';
 import useNewsStore from '@/store/newsStore';
+import { useModal } from '@/store/modalStore';
+import { useConfirmDelete } from '@/store/confirmDelete';
 import styles from './NewsTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
+import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
 
 const NewsTable = ({ data }) => {
   const { deletePost } = useNewsStore();
+  const { isDeleteConfirm } = useConfirmDelete();
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const subString = str => {
     return str.split(' ').slice(0, 8).join(' ');
   };
 
   const removePost = async id => {
-    try {
-      await deletePost(id);
-    } catch (error) {
-      console.log(error);
+    if (isDeleteConfirm) {
+      try {
+        await deletePost(id);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      closeModal();
     }
   };
 
@@ -48,10 +57,7 @@ const NewsTable = ({ data }) => {
               </div>
             </Link>
 
-            <button
-              onClick={() => removePost(item.id)}
-              className={styles.cellActionContainer}
-            >
+            <button onClick={openModal} className={styles.cellActionContainer}>
               <svg className={styles.iconTrash}>
                 <use href={`${sprite}#icon-trash`} width="20" height="20" />
               </svg>
@@ -59,6 +65,7 @@ const NewsTable = ({ data }) => {
           </div>
         </div>
       ))}
+      {isModalOpen && <ConfirmDeleteModal handleDelete={removePost} />}
     </div>
   );
 };
