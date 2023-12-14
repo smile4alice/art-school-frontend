@@ -11,7 +11,7 @@ const TextArea = ({
   showCharacterCount,
 }) => {
   const isFieldTouched = touched[field.name];
-  const valueLength = field.value.length;
+  const valueLength = field.value?.length;
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
@@ -35,9 +35,6 @@ const TextArea = ({
     }
     if (isFocused) {
       return styles.blueBorder;
-    }
-    if (valueLength === 0 && isFieldTouched) {
-      return styles.redBorder;
     }
     if (valueLength > 0 && !isFocused) {
       return styles.greenBorder;

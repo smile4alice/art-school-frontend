@@ -7,7 +7,10 @@ import TextInput from '@/components/admin-components/formik/TextInput/TextInput'
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
 import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
+import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import styles from './NewsAdmin.module.scss';
+
+const breadcrumbs = ['Новини', 'Додати новину'];
 
 const initialValues = {
   title: '',
@@ -31,6 +34,7 @@ const AddNewsPage = () => {
 
   return (
     <div>
+      <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
         title="Додати новину"
         showBackButton={true}

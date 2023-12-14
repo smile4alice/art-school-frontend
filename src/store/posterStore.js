@@ -1,12 +1,10 @@
 import { create } from 'zustand';
 
 const usePostersStore = create((set, get) => ({
-  // server: import.meta.env.VITE_APP_API_URL,
-  server: 'https://art-school-backend.vercel.app/api/v1/',
+  server: import.meta.env.VITE_APP_API_URL,
 
   getPosters: async () => {
-    //const response = await fetch( `${ get().server }posters` );
-    const response = await fetch(`${get().server}news`);
+    const response = await fetch(`${get().server}/posters`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -14,8 +12,7 @@ const usePostersStore = create((set, get) => ({
     return result;
   },
   getPostersById: async id => {
-    //const response = await fetch(`${get().server}posters/${id}`);
-    const response = await fetch(`${get().server}news/${id}`);
+    const response = await fetch(`${get().server}/posters/${id}`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -27,7 +24,7 @@ const usePostersStore = create((set, get) => ({
       title: data.title,
       photo: data.image,
     };
-    const response = await fetch(`${get().server}posters`, {
+    const response = await fetch(`${get().server}/posters`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +39,7 @@ const usePostersStore = create((set, get) => ({
       title: data.title,
       photo: data.image,
     };
-    const response = await fetch(`${get().server}posters/${id}`, {
+    const response = await fetch(`${get().server}/posters/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +52,7 @@ const usePostersStore = create((set, get) => ({
   },
 
   deletePostersById: async id => {
-    const response = await fetch(`${get().server}posters/${id}`, {
+    const response = await fetch(`${get().server}/posters/${id}`, {
       method: 'DELETE',
     });
     const result = await response.json();

@@ -3,7 +3,7 @@ import DocViewer, { PDFRenderer } from '@cyntler/react-doc-viewer';
 import styles from './StatementPage.module.scss';
 
 const StatementPage = () => {
-  const docs = [{ uri: '/privacy_policy.pdf' }];
+  const docs = [{ uri: '/documents/privacy_policy.pdf' }];
 
   useEffect(() => {
     window.scrollTo(0, 0);

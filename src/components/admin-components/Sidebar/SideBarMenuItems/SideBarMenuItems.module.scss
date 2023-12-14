@@ -25,6 +25,7 @@
   &.active {
     border-left: 1px solid var(--admin-accent, #0047ff);
     color: var(--admin-accent, #0047ff);
+    font-weight: bold;
   }
 
   .icon {

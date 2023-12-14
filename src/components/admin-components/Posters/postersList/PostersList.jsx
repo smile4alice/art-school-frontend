@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { useModal } from '@/store/modalStore';
@@ -11,11 +12,12 @@ const PostersList = ({ data }) => {
   const { deletePostersById } = usePostersStore();
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
+  const [currentId, setCurrentId] = useState('');
 
-  const handleDelete = async id => {
+  const handleDelete = async () => {
     if (isDeleteConfirm) {
       try {
-        await deletePostersById(id);
+        await deletePostersById(currentId);
       } catch (error) {
         console.log(error);
       }
@@ -36,7 +38,6 @@ const PostersList = ({ data }) => {
       {data.map((item, index) => (
         <div className={styles.tableRow} key={index}>
           <div className={styles.cellTextWrapper}>
-            <div className={styles.cellSliderRow}>{index + 1}</div>
             <div className={styles.cellHeadingRow}>{item.title}</div>
           </div>
 
@@ -58,7 +59,10 @@ const PostersList = ({ data }) => {
               </Link>
             </div>
             <div className={styles.cellActionContainer} onClick={openModal}>
-              <svg className={styles.iconTrash}>
+              <svg
+                className={styles.iconTrash}
+                onClick={() => setCurrentId(item.id)}
+              >
                 <use href={`${sprite}#icon-trash`} width="20" height="20" />
               </svg>
             </div>
