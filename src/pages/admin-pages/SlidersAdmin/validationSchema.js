@@ -15,7 +15,7 @@ function isValidFileType(fileType) {
   return fileTypes.includes(fileType);
 }
 
-export const posterValidation = Yup.object().shape({
+export const slidersValidation = Yup.object().shape({
   title: Yup.string()
     .min(2)
     .max(120)
@@ -23,13 +23,15 @@ export const posterValidation = Yup.object().shape({
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’`.,:;"()!?-]+$/,
       'Введіть коректну назву'
     ),
-
+  text: Yup.string()
+    .min(2)
+    .max(2000)
+    .matches(
+      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’`.,:;"()!-]+$/,
+      'Введіть коректний текст'
+    ),
   image: Yup.mixed()
-    .test(
-      'is-value',
-      'Додайте коректне зображення',
-      value => value && value.length > 0
-    )
+    .test('is-value', 'Додайте зображення', value => value && value.length > 0)
     .test('is-image-from-db', 'Додайте зображення', value => {
       value && value[0]?.size === 0 && value[0]?.type === 'for-url';
       return true;

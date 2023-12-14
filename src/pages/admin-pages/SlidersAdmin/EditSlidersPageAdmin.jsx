@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useParams } from 'react-router-dom';
-import useNewsStore from '@/store/newsStore';
-import { newsValidation } from './validationSchema';
+import useSlidersStore from '@/store/slidersStore';
+import { slidersValidation } from './validationSchema';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
 import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
-import styles from './NewsAdmin.module.scss';
+import styles from './SlidersAdmin.module.scss';
 
-const breadcrumbs = ['Новини', 'Редагувати новину'];
+const breadcrumbs = ['Слайдери', 'Редагувати слайд'];
 
 const initialValues = {
   title: '',
@@ -19,28 +19,28 @@ const initialValues = {
   image: [],
 };
 
-const EditNewsPage = () => {
+const EditSlidersPage = () => {
   const { id } = useParams();
-  const { getOnePost, editPost } = useNewsStore();
+  const { getSlides, editSlide } = useSlidersStore();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [post, setPost] = useState({});
+  const [slide, setSlide] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getOnePost(id);
-        setPost(result);
+        const result = await getSlides();
+        setSlide(result.find(item => item.id == id));
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [id, getOnePost]);
+  }, [id, getSlides]);
 
   const onSubmit = async values => {
     try {
       setIsProcessing(true);
-      await editPost(id, values);
+      await editSlide(id, values);
       setIsProcessing(false);
     } catch (error) {
       console.log(error);
@@ -52,14 +52,14 @@ const EditNewsPage = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Редагувати новину"
+        title="Редагувати слайд"
         showBackButton={true}
-        backButtonLink="/admin/news"
+        backButtonLink="/admin/sliders"
         showActionButton={false}
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={newsValidation}
+        validationSchema={slidersValidation}
         onSubmit={onSubmit}
       >
         {formik => {
@@ -69,29 +69,27 @@ const EditNewsPage = () => {
                 <Field
                   name="title"
                   id="title"
-                  placeholder="Title"
                   component={TextInput}
                   maxLength={120}
                   showCharacterCount={true}
-                  text={post?.title}
-                  label="Заголовок Новини"
+                  text={slide?.title}
+                  label="Заголовок Слайду"
                 />
                 <div className={styles.secondRow}>
                   <Field
                     name="text"
                     id="text"
-                    placeholder="Title"
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}
-                    text={post.text}
-                    label="Текст Новини"
+                    text={slide?.description}
+                    label="Опис слайду"
                   />
                   <Field
                     name="image"
                     id="image"
                     component={FileInput}
-                    photo={post.photo}
+                    photo={slide?.photo}
                     label="Фото"
                   />
                 </div>
@@ -113,4 +111,4 @@ const EditNewsPage = () => {
   );
 };
 
-export default EditNewsPage;
+export default EditSlidersPage;

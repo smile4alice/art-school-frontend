@@ -1,22 +1,25 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import sprite from '@/assets/icons/sprite-admin.svg';
 import styles from './SideBarMenuItems.module.scss';
 
-const SideBarMenuItems = ({ title, link, isFilled, iconClass }) => {
-  const location = useLocation();
-  const pathName = location.pathname.split('/').pop();
-
+const SideBarMenuItems = ({
+  title,
+  link,
+  isFilled,
+  iconClass,
+  isLinkActive,
+}) => {
   return (
     <Link
       to={link}
       className={`${styles.sidebarMenuItem} ${
-        pathName === link ? styles.active : ''
+        isLinkActive ? styles.active : ''
       }`}
     >
       {iconClass && (
         <span
           className={`${styles.icon} icon ${
-            pathName === link ? styles.activeIcon : styles.hoverIcon
+            isLinkActive ? styles.activeIcon : styles.hoverIcon
           } ${isFilled ? styles.filledIcon : styles.strokedIcon}`}
         >
           <svg className="icon">

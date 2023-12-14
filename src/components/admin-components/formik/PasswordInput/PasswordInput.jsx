@@ -1,23 +1,26 @@
-import { useState, useEffect } from 'react';
-import styles from './TextArea.module.scss';
+import { useEffect, useState } from 'react';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
+import styles from './PasswordInput.module.scss';
 
-const TextArea = ({
+const PasswordInput = ({
   id,
   field,
-  text,
   label,
-  form: { errors, handleBlur, touched, setFieldValue },
+  form: { errors, handleBlur, touched },
   maxLength,
   showCharacterCount,
 }) => {
   const isFieldTouched = touched[field.name];
-  const valueLength = field.value?.length;
+  const valueLength = field.value.length;
   const [isFocused, setIsFocused] = useState(false);
+  const [inputType, setInputType] = useState('password-hide');
 
-  useEffect(() => {
-    if (!text) return;
-    setFieldValue('text', text);
-  }, [text, setFieldValue]);
+  const handleInputType = e => {
+    e.preventDefault();
+    setInputType(prev =>
+      prev === 'password-show' ? 'password-hide' : 'password-show'
+    );
+  };
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -36,6 +39,9 @@ const TextArea = ({
     if (isFocused) {
       return styles.blueBorder;
     }
+    if (valueLength === 0 && isFieldTouched) {
+      return styles.redBorder;
+    }
     if (valueLength > 0 && !isFocused) {
       return styles.greenBorder;
     } else {
@@ -52,20 +58,23 @@ const TextArea = ({
       return '';
     }
   };
-
   return (
-    <div className={styles.textAreaWrapper}>
+    <div className={styles.inputWrapper}>
       <label htmlFor={id} className={styles.inputLabel}>
         {label}
       </label>
-      <textarea
+      <input
         id={id}
-        className={`${styles.textArea} ${getBorderColor()} ${getInputState()}`}
+        type={inputType === 'password-hide' ? 'password' : 'text'}
+        className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onClick={() => setIsFocused(true)}
         {...field}
       />
+      <button className={styles.icon} onClick={handleInputType}>
+        {inputType === 'password-hide' ? <FaRegEyeSlash /> : <FaRegEye />}
+      </button>
       {showCharacterCount && (
         <div className={styles.commentsWrapper}>
           <div className={styles.errorWrap}>
@@ -86,4 +95,4 @@ const TextArea = ({
   );
 };
 
-export default TextArea;
+export default PasswordInput;

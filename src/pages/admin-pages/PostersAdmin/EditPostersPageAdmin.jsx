@@ -1,20 +1,17 @@
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-
-import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
-
-import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import { useEffect, useState } from 'react';
-import usePostersStore from '@/store/posterStore';
 import { useParams } from 'react-router';
-import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
-
-import styles from './PostersAdmin.module.scss';
-import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
-import AdminHome from '@/components/Icons/AdminHome';
-import AdminArrow from '@/components/Icons/AdminArrow';
-import Spinner from '@/components/ui/Spinner/Spinner';
+import { Formik, Form, Field } from 'formik';
+import usePostersStore from '@/store/posterStore';
 import { posterValidation } from './validationSchema';
+import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
+import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
+import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
+import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
+import Spinner from '@/components/ui/Spinner/Spinner';
+import styles from './PostersAdmin.module.scss';
+
+const breadcrumbs = ['Афіші', 'Редагувати афішу'];
 
 const initialValues = {
   text: '',
@@ -52,14 +49,8 @@ const EditPostersPage = () => {
   };
 
   return (
-    <>
-      <div className={styles.header}>
-        <AdminHome />
-        <AdminArrow />
-        <span>Афіші</span>
-        <AdminArrow />
-        <span>Редагувати афішу</span>
-      </div>
+    <div>
+      <BreadCrumbs breadcrumbs={breadcrumbs} />
       {!isLoading ? (
         <div>
           <PageTitle
@@ -114,7 +105,7 @@ const EditPostersPage = () => {
       ) : (
         <Spinner />
       )}
-    </>
+    </div>
   );
 };
 

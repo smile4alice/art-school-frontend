@@ -1,27 +1,32 @@
+import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import usePostersStore from '@/store/posterStore';
-import { posterValidation } from './validationSchema';
+import { slidersValidation } from './validationSchema';
+import useSlidersStore from '@/store/slidersStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
-import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
+import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
 import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
+import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
-import styles from './PostersAdmin.module.scss';
+import styles from './SlidersAdmin.module.scss';
 
-const breadcrumbs = ['Афіші', 'Додати афішу'];
+const breadcrumbs = ['Слайдери', 'Додати слайд'];
 
 const initialValues = {
-  title: ' ',
+  title: '',
+  text: '',
   image: [],
 };
 
-const AddPostersPage = () => {
-  const { addPoster } = usePostersStore();
+const AddSlidersPage = () => {
+  const { addSlide } = useSlidersStore();
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const onSubmit = async values => {
-    console.log('values: ', values);
     try {
-      await addPoster(values);
+      setIsProcessing(true);
+      await addSlide(values);
+      setIsProcessing(false);
     } catch (error) {
       console.log(error);
     }
@@ -31,45 +36,51 @@ const AddPostersPage = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Додати Афішу"
+        title="Додати слайд"
         showBackButton={true}
-        backButtonLink="/admin/posters"
+        backButtonLink="/admin/sliders"
         showActionButton={false}
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={posterValidation}
+        validationSchema={slidersValidation}
         onSubmit={onSubmit}
       >
         {formik => {
           return (
             <Form>
               <div className={styles.layout}>
-                <div className={styles.inputWrapper}>
+                <Field
+                  name="title"
+                  id="title"
+                  component={TextInput}
+                  maxLength={120}
+                  showCharacterCount={true}
+                  label="Заголовок Слайду"
+                />
+                <div className={styles.secondRow}>
                   <Field
-                    name="title"
+                    name="text"
                     id="text"
-                    placeholder="Title"
                     component={TextArea}
-                    maxLength={120}
+                    maxLength={2000}
                     showCharacterCount={true}
-                    label="Заголовок"
+                    label="Опис слайду"
                   />
-
                   <Field
                     name="image"
                     id="image"
                     component={FileInput}
-                    // label="Фото"
+                    label="Фото"
                   />
                 </div>
-
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
                     isActive={formik.isValid}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
+                    isProcessing={isProcessing}
                   />
                 </div>
               </div>
@@ -81,4 +92,4 @@ const AddPostersPage = () => {
   );
 };
 
-export default AddPostersPage;
+export default AddSlidersPage;

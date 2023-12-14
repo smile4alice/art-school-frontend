@@ -1,232 +1,181 @@
-.contentWrap{
-   display: flex;
-   min-width: 296px;
-   flex-direction: column;
-   align-items: flex-start;
-   align-self: stretch;
-
-   border-radius: 8px;
-   border: 1px solid var(--admin-purple, #C4B9FD);
-
-   overflow: hidden;
-}
-.tableHeader{
-   display: flex;
-   padding: 3px 5px;   
-   align-items: center;
-   align-self: stretch;
-   border-bottom: 1px solid var(--admin-purple, #C4B9FD);
-   background: #E5E9FD;
-
-}
-.cellSlideyHeader{
-   display: flex;
-   width: 87px;
-   padding-left: 20px;
-   align-items: center; 
-   color: var(--admin-text-main, #152340);
-   text-align: center;
-   font-family: Montserrat;
-   font-size: 15px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;
+.contentWrap {
+  display: flex;
+  min-width: 296px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid $admin-purple;
+  overflow: hidden;
 }
 
-.cellHeadingHeader{
-   display: flex;
-   width: 260px;
-   padding-left: 20px;   
-   color: var(--admin-text-main, #152340);
-   font-family: Montserrat;
-   font-size: 15px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;
-   overflow: hidden;
+.tableHeader {
+  display: flex;
+  padding: 3px 5px;
+  gap: 0px;
+  align-items: center;
+  align-self: stretch;
+  border-bottom: 1px solid $admin-purple;
+  background: #e5e9fd;
 }
 
-.cellTextHeader{
-   display: flex;
-   padding-left: 20px; 
-   flex: 1 0 0;
-   color: var(--admin-text-main, #152340);
-   font-family: Montserrat;
-   font-size: 15px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;
-   overflow: hidden;
+.cellSlideyHeader {
+  display: flex;
+  width: 61px;
+  align-items: center;
+  color: $admin-text-main;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
 }
 
-.cellPhotoHeader{
-   display: flex;
-   width: 77px;
-   padding: 0px 10px;
-   justify-content: center;
-   align-items: flex-start;
-   color: var(--admin-text-main, #152340);
-   text-align: center;
-   font-family: Montserrat;
-   font-size: 15px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;
+.cellHeadingHeader {
+  display: flex;
+  width: 260px;
+  padding-left: 20px;
+  align-items: flex-start;
+  color: $admin-text-main;
+  font-size: 15px;
+  font-weight: 500;
+  overflow: hidden;
 }
 
-.cellActionHeader{
-   display: flex;
-   width: 76px;
-   height: 40px;
-   justify-content: center;
-   align-items: center;
-   color: var(--admin-text-main, #152340);
-   text-align: center;
-   font-family: Montserrat;
-   font-size: 15px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;
+.cellTextHeader {
+  display: flex;
+  padding-left: 20px;
+  align-items: flex-start;
+  flex: 1 0 0;
+  color: $admin-text-main;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-weight: 500;
+  overflow: hidden;
 }
 
-.tableRow{
-   display: flex;
-   padding: 7px 5px;
-   align-items: center;
-   align-self: stretch;
-   border-bottom: 1px solid var(--admin-purple, #C4B9FD);
-   background: #F7F8FE;   
+.cellPhotoHeader {
+  display: flex;
+  width: 77px;
+  padding: 0px 10px;
+  justify-content: center;
+  align-items: flex-start;
+  color: $admin-text-main;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
 }
 
+.cellActionHeader {
+  display: flex;
+  width: 76px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  color: $admin-text-main;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+.tableRow {
+  display: flex;
+  padding: 7px 5px;
+  gap: 0px;
+  align-items: center;
+  align-self: stretch;
+  border-bottom: 1px solid $admin-purple;
+  background: #f7f8fe;
+}
 .cellSliderRow {
-   display: flex;
-   width: 87px;
-   padding-left: 20px;
-   justify-content: center;
-   align-items: center;
-   color: var(--admin-text-main, #152340);
-   text-align: center;
-   font-family: Montserrat;
-   font-size: 12px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;
+  display: flex;
+  width: 61px;
+  justify-content: center;
+  align-items: center;
+  color: $admin-text-main;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .cellHeadingRow {
-   display: flex;
-   width: 260px;
-   height: 17px;
-   padding-left: 20px;
-   align-items: flex-start;
-   color: var(--admin-text-main, #152340);
-   font-family: Montserrat;
-   font-size: 12px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;
-   overflow: hidden;
+  display: flex;
+  width: 260px;
+  height: 17px;
+  padding-left: 20px;
+  align-items: flex-start;
+  color: $admin-text-main;
+  font-size: 12px;
+  font-weight: 500;
+  overflow: hidden;
 }
 
 .cellTextRow {
-   display: flex;
-   height: 17px;
-   padding-left: 20px;
-   align-items: flex-start;
-   flex: 1 0 0;
-   color: var(--admin-text-main, #152340);
-   font-family: Montserrat;
-   font-size: 12px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;   
-   overflow: hidden;
+  display: flex;
+  height: 17px;
+  padding-left: 20px;
+  align-items: flex-start;
+  flex: 1 0 0;
+  color: $admin-text-main;
+  font-size: 12px;
+  font-weight: 500;
+  overflow: hidden;
 }
 
 .cellPhotoRow {
-   display: flex;
-   width: 77px;
-   height: 36px;
-   padding: 0px 10px;
-   flex-direction: column;
-   align-items: center;
+  display: flex;
+  width: 77px;
+  height: 36px;
+  padding: 0px 10px;
+  flex-direction: column;
+  align-items: center;
 }
 
-
-.contentElementImg{
-   display: flex;
-   width: 57px;
-   height: 36px;
-   padding: 5px 0px;
-   justify-content: center;
-   align-items: center;
-   flex-shrink: 0;
-   border-radius: 3px;
-   border: 1px solid var(--admin-light-purple, #ECEFFF);
-   background: var(--admin-light-purple, #ECEFFF);
+.contentElementImg {
+  display: flex;
+  width: 57px;
+  height: 36px;
+  padding: 5px 0px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 3px;
+  border: 1px solid $admin-light-purple;
+  background: $admin-light-purple;
 }
 
 .cellActionRow {
-   display: flex;
-   width: 76px;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  width: 76px;
+  justify-content: center;
+  align-items: center;
 }
 
 .cellActionContainer {
-   width: 38px;
-   height: 30px;
-   display: flex;
-   align-items: center;
-   justify-content: center;   
+  width: 38px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.iconWrapperRemove{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 21px;
-   height: 21px;
-   border-radius: 2px;
-   border: 1px;  
-   &:hover{  
-      border: 1px solid #F9BFBF;
-      background: #FFEBEB;
-      cursor: pointer;  
-   } 
-}
-
-.iconWrapperEdit {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 21px;
-   height: 21px;
-   border-radius: 2px;
-   border: 1px;
-   &:hover {
-      border: 1px solid #D1D8FF;
-      background: var(--admin-light-purple, #ECEFFF);
-      cursor: pointer;
-      }
-}
-
-.iconTrash {   
-   width: 15px;
-   height: 15px;
-   stroke-width: 3px;
-   stroke-width: 1.5px;
-   stroke: var(--admin-red, #FF3232);
-   fill: transparent;
-   border: 1px;   
+.iconTrash {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 2px;
+  stroke-width: 1.5px;
+  stroke: $admin-red;
+  fill: transparent;
 }
 
 .iconEdit {
-   width: 15px;
-   height: 15px;
-   fill: #3C4242;
-   &:hover {
-      fill: var(--admin-accent, #0047FF);
-
-   }
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 2px;
+  fill: #9ba6af;
 }

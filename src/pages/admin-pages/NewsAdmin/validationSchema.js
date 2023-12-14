@@ -17,7 +17,6 @@ function isValidFileType(fileType) {
 
 export const newsValidation = Yup.object().shape({
   title: Yup.string()
-    .required('Введіть назву новини')
     .min(2)
     .max(120)
     .matches(
@@ -25,7 +24,6 @@ export const newsValidation = Yup.object().shape({
       'Введіть коректну назву'
     ),
   text: Yup.string()
-    .required('Введіть текст новини')
     .min(2)
     .max(2000)
     .matches(
@@ -33,11 +31,7 @@ export const newsValidation = Yup.object().shape({
       'Введіть коректний текст'
     ),
   image: Yup.mixed()
-    .test(
-      'is-value',
-      'Додайте коректне зображення',
-      value => value && value.length > 0
-    )
+    .test('is-value', 'Додайте зображення', value => value && value.length > 0)
     .test('is-image-from-db', 'Додайте зображення', value => {
       value && value[0]?.size === 0 && value[0]?.type === 'for-url';
       return true;
