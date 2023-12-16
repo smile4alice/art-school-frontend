@@ -11,7 +11,8 @@ import 'swiper/css';
 
 const GalleryVideo = ({ videos }) => {
   const swiperRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isUpHovered, setIsUpHovered] = useState(false);
+  const [isDownHovered, setIsDownHovered] = useState(false);
 
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const isTablet = useMediaQuery({ minWidth: 768 });
@@ -35,19 +36,19 @@ const GalleryVideo = ({ videos }) => {
           <div className={styles.videos}>
             <button
               onClick={() => swiperRef.current.slidePrev()}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsUpHovered(true)}
+              onMouseLeave={() => setIsUpHovered(false)}
               className={styles.arrowUp}
             >
-              <Arrow isHovered={isHovered} direction="up" />
+              <Arrow isHovered={isUpHovered} direction="up" />
             </button>
             <button
               onClick={() => swiperRef.current.slideNext()}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsDownHovered(true)}
+              onMouseLeave={() => setIsDownHovered(false)}
               className={styles.arrowDown}
             >
-              <Arrow isHovered={isHovered} direction="down" />
+              <Arrow isHovered={isDownHovered} direction="down" />
             </button>
             <Swiper
               direction={'vertical'}
@@ -78,19 +79,19 @@ const GalleryVideo = ({ videos }) => {
           <div className={styles.videos}>
             <button
               onClick={() => swiperRef.current.slidePrev()}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsUpHovered(true)}
+              onMouseLeave={() => setIsUpHovered(false)}
               className={styles.arrowUp}
             >
-              <Arrow isHovered={isHovered} />
+              <Arrow isHovered={isUpHovered} direction="up" />
             </button>
             <button
               onClick={() => swiperRef.current.slideNext()}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsDownHovered(true)}
+              onMouseLeave={() => setIsDownHovered(false)}
               className={styles.arrowDown}
             >
-              <Arrow isHovered={isHovered} />
+              <Arrow isHovered={isDownHovered} direction="down" />
             </button>
             <Swiper
               direction={'vertical'}
@@ -116,19 +117,19 @@ const GalleryVideo = ({ videos }) => {
           <div className={styles.videos}>
             <button
               onClick={() => swiperRef.current.slidePrev()}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsUpHovered(true)}
+              onMouseLeave={() => setIsUpHovered(false)}
               className={styles.arrowUp}
             >
-              <Arrow isHovered={isHovered} />
+              <Arrow isHovered={isUpHovered} direction="left" />
             </button>
             <button
               onClick={() => swiperRef.current.slideNext()}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setIsDownHovered(true)}
+              onMouseLeave={() => setIsDownHovered(false)}
               className={styles.arrowDown}
             >
-              <Arrow isHovered={isHovered} />
+              <Arrow isHovered={isDownHovered} direction="right" />
             </button>
             <Swiper
               direction={'horizontal'}
