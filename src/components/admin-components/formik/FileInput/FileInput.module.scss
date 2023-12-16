@@ -1,7 +1,14 @@
 .wrapper {
-  width: 100%;
-  height: auto;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+
   .inputLabel {
+    position: absolute;
+    top: 0;
+    left: 0;
     color: $admin-text-main;
     font-size: 14px;
     font-weight: 500;
@@ -12,7 +19,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 478px;
     height: 197px;
     border: 2px dashed $admin-blue;
     margin: 0 auto;
@@ -37,7 +44,7 @@
       }
     }
     .imagePreview {
-      width: 100%;
+      width: 458px;
       height: 177px;
       img {
         width: 100%;
@@ -47,7 +54,7 @@
     }
   }
   .errorWrap {
-    width: 100%;
+    width: 422px;
     margin-bottom: 2rem;
   }
 

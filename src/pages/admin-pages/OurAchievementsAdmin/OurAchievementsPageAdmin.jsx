@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import useServicesStore from '@/store/serviseStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
+import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
 import AchievementsTable from '@/components/admin-components/OurAchievements/AchievementsTable/AchievementsTable';
-import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
+
 import s from './AchievementsAdmin.module.scss';
 const OurAchievementsPage = () => {
   const { getAllAchievements, getMainAchievements, getDepartmentAchievementsId } = useServicesStore();

@@ -1,0 +1,21 @@
+.container{
+    width: 22rem;
+    .title{
+        margin-bottom: 2rem;
+        color: $admin-text-add;
+        font-family: Montserrat;
+        font-size: 0.875rem;
+    }
+    .radioList{
+        border: 1px solid black;
+        width: 22rem;
+        height: 8rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        .radioContainer{
+            height: 1.95rem;
+        }
+    }
+}

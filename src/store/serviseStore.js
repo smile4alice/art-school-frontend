@@ -93,6 +93,19 @@ const useServicesStore = create((set, get) => ({
     const result = await response.json();
     return url !== 'achievements' ? result : result.items;
   },
+
+  getAchievementsPositions: async () => {
+    const response = await fetch(`${get().server}achievements/positions`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+  },
+
+
+
+
   getAdministrationData: async () => {
     const response = await fetch(`${get().server}school_administration`);
     if (!response.ok) {
