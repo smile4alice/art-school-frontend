@@ -4,7 +4,7 @@ import Achievements from '@/components/main/Achievements/Achievements';
 import GalleryDepartments from '@/components/departments/GalleryDepartments/GalleryDepartments';
 import DropDownsList from '@/components/ui/DropDownsList/DropDownsList';
 import useServicesStore from '@/store/serviseStore';
-import Article from '../DepartmentArticle/Article';
+import Articles from '../DepartmentArticles/Articles';
 import styles from './DepartmentPage.module.scss';
 
 const DepartmentPage = ({ id, title, showSelect, articles }) => {
@@ -42,11 +42,8 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
       <h2 className={styles.title}>{title}</h2>
       {subDepartments && subDepartments.length > 0 && (
         <div className={styles.wrapper}>
-          {articles &&
-            Array.isArray(articles) &&
-            articles.map((article, index) => (
-              <Article key={index} index={index} article={article} />
-            ))}
+          <Articles articles={articles} />
+
           <DropDownsList departmentId={id} />
           <GalleryDepartments
             showSelect={showSelect}

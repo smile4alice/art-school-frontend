@@ -1,15 +1,8 @@
-/* .image-slider .swiper-button-prev::after,
-.image-slider .swiper-button-next::after {
-    color: $accent;
-    //font-size: 80px;
-} */
-
 .wrapper {
   display: grid;
-  //justify-content: center;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, auto);
-  margin: 0px 16px -60px; // // 40px margin-bottom - 100px Container
+  margin: 50px auto;
   padding-top: 24px;
 
   .buttonContainer {
@@ -102,10 +95,8 @@
       grid-row: 5/6;
       justify-self: center;
       max-width: 939px;
-      margin: 40px 0 -10px 0; // 90px margin-bottom - 100px Container
       font-size: 24px;
       line-height: 125%;
     }
   }
-
 }

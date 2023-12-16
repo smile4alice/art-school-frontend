@@ -67,6 +67,7 @@ const AboutSchool = () => {
               <div className={styles.aboutUs}>
                 <p className={styles.aboutUs_text}>
                   {aboutUsData.description1}
+                  hello
                 </p>
                 <img
                   className={styles.aboutUs_img}
@@ -98,7 +99,6 @@ const AboutSchool = () => {
         <Container>
           <div className={styles.museum_contentWrapper}>
             <h2 className="department_title">Музей Михайла Вериківського</h2>
-
             <Museum museumData={museumData} />
           </div>
         </Container>
