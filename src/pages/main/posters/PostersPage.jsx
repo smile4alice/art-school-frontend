@@ -5,6 +5,7 @@ import Modal from './Modal';
 import Container from '@/components/Container/Container';
 
 import styles from './PostersPage.module.scss';
+import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 
 const PostersPage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -21,7 +22,16 @@ const PostersPage = () => {
     setShowModal(!showModal);
   };
 
-  const viewMore = () => setPostersPerPage(prev => prev + postersPerPage);
+  const viewMore = () => {
+    if (!isMaxAmount) {
+      setPostersPerPage(prev => prev + 12);
+    }
+  };
+
+  const viewLess = () => {
+    setPostersPerPage(12);
+    window.scrollTo(0, 0);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,6 +60,7 @@ const PostersPage = () => {
       setPostersPerPage(12);
     }
   }, [windowWidth]);
+
   return (
     <Container>
       <section className={styles.contentWrapper}>
@@ -76,14 +87,11 @@ const PostersPage = () => {
             <img src={selectedImg.url} alt={`Афіша  ${selectedImg.title}`} />
           </Modal>
         )}
-        {!isMaxAmount && (
-          <button className={styles.buttonViewMore} onClick={viewMore}>
-            Дивитися Більше
-            <div className={styles.iconMore}>
-              <span></span>
-            </div>
-          </button>
-        )}
+        <ViewButton
+          isMaxAmount={isMaxAmount}
+          viewMore={viewMore}
+          viewLess={viewLess}
+        />
       </section>
     </Container>
   );
