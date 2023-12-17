@@ -93,7 +93,12 @@
 }
 
 // about us
-
+.aboutUs {
+  scroll-margin-top: 102px;
+  @include tablet {
+    scroll-margin-top: 137px;
+  }
+}
 .aboutUs_wrapper {
   @extend%aligncenter;
   flex-direction: column;
@@ -123,7 +128,7 @@
     gap: 120px;
   }
 }
-.aboutUs {
+.content {
   @extend%aligncenter;
   flex-direction: column;
   gap: 10px;
@@ -246,6 +251,12 @@
 }
 
 // museum
+.museum {
+  scroll-margin-top: 102px;
+  @include tablet {
+    scroll-margin-top: 137px;
+  }
+}
 .museum_contentWrapper {
   padding: 40px 16px;
   @extend%aligncenter;
@@ -354,4 +365,11 @@
   width: 520px;
   @include font(18px, 400, 1.85);
   text-align: center;
+}
+
+.administration {
+  scroll-margin-top: 102px;
+  @include tablet {
+    scroll-margin-top: 137px;
+  }
 }

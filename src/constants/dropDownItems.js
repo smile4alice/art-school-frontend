@@ -11,8 +11,8 @@ export const departmemts = [
 ];
 
 export const aboutUs = [
-  { name: 'Історія Школи', to: '/about_school_history' },
-  { name: 'Про нас', to: '/about_school' },
-  { name: 'Музей', to: '/about_school_museum' },
-  { name: 'Адміністрація', to: '/about_school_administration' },
+  // { name: 'Історія Школи', to: '/about_school_history' },
+  { name: 'Про нас', to: '/about_school#about_us' },
+  { name: 'Музей', to: '/about_school#museum' },
+  { name: 'Адміністрація', to: '/about_school#administration' },
 ];

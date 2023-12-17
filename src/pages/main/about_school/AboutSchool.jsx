@@ -58,13 +58,13 @@ const AboutSchool = () => {
           </div>
         </Container>
       </section>
-      <section className={styles.aboutUs}>
+      <section className={styles.aboutUs} id="about_us">
         <Container>
           <div className={styles.aboutUs_wrapper}>
             <h2 className="department_title">Про нас </h2>
 
             <div className={styles.aboutUs_contentWrapper}>
-              <div className={styles.aboutUs}>
+              <div className={styles.content}>
                 <p className={styles.aboutUs_text}>
                   {aboutUsData.description1}
                   hello
@@ -95,7 +95,7 @@ const AboutSchool = () => {
           </div>
         </Container>
       </section>
-      <section className={styles.museum}>
+      <section className={styles.museum} id="museum">
         <Container>
           <div className={styles.museum_contentWrapper}>
             <h2 className="department_title">Музей Михайла Вериківського</h2>
@@ -103,7 +103,7 @@ const AboutSchool = () => {
           </div>
         </Container>
       </section>
-      <section className={styles.administration}>
+      <section className={styles.administration} id="administration">
         <Container>
           <Administration />
         </Container>

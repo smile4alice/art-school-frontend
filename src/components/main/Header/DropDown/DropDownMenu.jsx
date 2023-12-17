@@ -122,18 +122,36 @@ const DropDownMenu = ({
               styles.aboutUsMenu
             )}
           >
+            <li className={styles.menuItem} key={name}>
+              <Link
+                className={clsx(styles.menulink, open ? styles.open : '')}
+                key={name}
+                to="/about_school_history"
+                onClick={() => {
+                  !isDesktop && toggleBurgerMenu();
+                }}
+              >
+                Історія Школи
+              </Link>
+            </li>
             {aboutSchool.map(({ name, to }) => (
               <li className={styles.menuItem} key={name}>
-                <Link
+                <HashLink
                   className={clsx(styles.menulink, open ? styles.open : '')}
                   key={name}
                   to={to}
                   onClick={() => {
                     !isDesktop && toggleBurgerMenu();
                   }}
+                  scroll={el => {
+                    el.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start',
+                    });
+                  }}
                 >
                   {name}
-                </Link>
+                </HashLink>
               </li>
             ))}
           </ul>
