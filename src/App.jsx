@@ -39,6 +39,8 @@ import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryAdmin/Gall
 import DepartmentsPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
 import OurAchievementsPageAdmin from './pages/admin-pages/OurAchievementsAdmin/OurAchievementsPageAdmin';
 import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrationAdmin/SchoolAdministrationPageAdmin';
+import AddSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/AddSchoolAdministrationPageAdmin';
+import EditSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/EditSchoolAdministrationPageAdmin';
 import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
@@ -109,6 +111,14 @@ const App = () => {
           <Route
             path="administration"
             element={<SchoolAdministrationPageAdmin />}
+          />
+          <Route
+            path="administration/add"
+            element={<AddSchoolAdministrationPage />}
+          />
+          <Route
+            path="administration/edit/:id"
+            element={<EditSchoolAdministrationPage />}
           />
         </Route>
 
