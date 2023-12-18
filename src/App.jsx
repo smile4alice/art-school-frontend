@@ -64,7 +64,6 @@ const App = () => {
           <Route path="/statement" element={<StatementPage />} />
           <Route path="/about_school" element={<AboutSchool />} />
           <Route path="/about_school_history" element={<SchoolHistory />} />
-          <Route path="/about_school_museum" element={<AboutSchool />} />
 
           {/* departments */}
           <Route path="/music_department" element={<MusicDepartment />} />

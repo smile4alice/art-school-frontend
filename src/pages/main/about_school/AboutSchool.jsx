@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
 import Container from '@/components/Container/Container';
-import Administration from '@/components/main/Administration/Administration';
+import Administration from '@/pages/main/about_school/Administration/Administration';
 import Museum from './Museum';
 
 import aboutUsData from '@/data/about/about.json';
@@ -29,7 +29,7 @@ const AboutSchool = () => {
             <div className={styles.history_contentWrapper}>
               <div className={styles.history_textWrapper}>
                 <p className={styles.history_content_text}>
-                  {historyData.description}
+                  {historyData[0].description}
                 </p>
                 {isDesktop && (
                   <Link
@@ -42,7 +42,7 @@ const AboutSchool = () => {
               </div>
               <img
                 className={styles.history_content_img}
-                src={historyData.media}
+                src={historyData[0].media}
                 alt=" scholl building  "
               />
             </div>
