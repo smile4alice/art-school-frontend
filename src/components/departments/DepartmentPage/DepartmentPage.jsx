@@ -49,7 +49,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
           <GalleryDepartments
             showSelect={showSelect}
             selectOptions={subDepartments}
-            url={'departments/sub_department_gallery/'}
+            url={'sub_department_gallery/'}
             departmentId={departmentId}
             changeDepartment={changeDepartment}
           />
@@ -57,7 +57,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
             title={'Досягнення відділу'}
             showSelect={showSelect}
             selectOptions={subDepartments}
-            url={'departments/sub_department_achievement/'}
+            url={'sub_department_achievement/'}
             departmentId={departmentId}
             changeDepartment={changeDepartment}
           />

@@ -15,24 +15,16 @@ function isValidFileType(fileType) {
   return fileTypes.includes(fileType);
 }
 
-export const newsValidation = Yup.object().shape({
-  title: Yup.string()
-    .required('Введіть назву новини')
+export const achievementsValidation = Yup.object().shape({
+  description: Yup.string()
+    .required('Введіть опис досягнення')
     .min(2)
-    .max(120)
+    .max(100)
     .matches(
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
-      'Введіть коректну назву'
+      'Введіть коректний опис'
     ),
-  text: Yup.string()
-    .required('Введіть текст новини')
-    .min(2)
-    .max(2000)
-    .matches(
-      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!-]+$/,
-      'Введіть коректний текст'
-    ),
-  image: Yup.mixed()
+  media: Yup.mixed()
     .required('Required')
     .test(
       'is-valid-type',

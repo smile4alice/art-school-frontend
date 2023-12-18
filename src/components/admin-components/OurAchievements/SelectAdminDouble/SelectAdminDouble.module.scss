@@ -4,6 +4,7 @@
 
   .selectButton {
     position: relative;
+    cursor: pointer;
     width: 100%;
     padding: 0.5rem 0.62rem 0.5rem 2.2rem;
     font-size: 0.875rem;
@@ -56,7 +57,7 @@
       background-color: $white;
       border-bottom: 1px solid $admin-purple;
       cursor: pointer;
-      >button{
+      >.button{
         width: 100%;
         padding: .5rem 0.5rem;
         text-align: left;

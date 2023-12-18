@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { AiOutlinePlus } from 'react-icons/ai';
 import styles from './FileInput.module.scss';
@@ -6,22 +6,10 @@ import styles from './FileInput.module.scss';
 const FileInput = ({
   label,
   field,
-  photo,
   form: { errors, setFieldValue },
   ...props
 }) => {
   const [imagePreview, setImagePreview] = useState('');
-  const fieldValue = field.value;
-
-  useEffect(() => {
-    if (!photo) return;
-    setFieldValue('image', [new File([], photo, { type: 'for-url' })]);
-  }, [photo, setFieldValue]);
-
-  useEffect(() => {
-    setImagePreview(fieldValue[0]?.name);
-  }, [fieldValue]);
-
   const setFileToBase64 = file => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -29,9 +17,15 @@ const FileInput = ({
       setImagePreview(reader.result);
     };
   };
+  useEffect(() => {
+    if (!field.value) return;
+
+    const file = field.value[0];
+    setFileToBase64(file);
+  }, [field.value, setFieldValue]);
 
   const onDrop = async files => {
-    setFieldValue('image', files);
+    setFieldValue(field.name, files);
     const file = files[0];
     setFileToBase64(file);
   };
@@ -55,7 +49,7 @@ const FileInput = ({
               <input {...getInputProps()} />
               {imagePreview ? (
                 <div className={styles.imagePreview}>
-                  <img src={imagePreview} />
+                  <img src={imagePreview} alt="Preview" />
                 </div>
               ) : null}
               {!imagePreview && (

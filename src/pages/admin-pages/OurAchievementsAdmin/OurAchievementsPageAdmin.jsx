@@ -6,14 +6,16 @@ import SelectAdminDouble from '@/components/admin-components/OurAchievements/Sel
 import AchievementsTable from '@/components/admin-components/OurAchievements/AchievementsTable/AchievementsTable';
 
 import s from './AchievementsAdmin.module.scss';
+const url = 'sub_department_achievement/';
 const OurAchievementsPage = () => {
-  const { getAllAchievements, getMainAchievements, getDepartmentAchievementsId } = useServicesStore();
+  const { getAllAchievements, getMainAchievements, getDepartmentAchievements } =
+    useServicesStore();
   const [achievements, setAchievements] = useState([]);
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState('Всі досягнення');
-  const [typeOfAchievements, setTypeOfAchievements] = useState('allAchievements');//allAchievements
-  // const url = ''; ///departments/sub_department_achievement/';                 //mainAchievements
-  const page = '1';                                                               //departmentAchievements
+  const [typeOfAchievements, setTypeOfAchievements] =
+    useState('allAchievements');
+  const page = '1';
   const pageSize = '20';
 
   //встановлення id відділу через select, якщо все вірно
@@ -21,13 +23,10 @@ const OurAchievementsPage = () => {
     if (id !== undefined && id !== null) {
       setDepartmentId(id);
       setTitle(title);
-      setTypeOfAchievements('departmentAchievements')
+      setTypeOfAchievements('departmentAchievements');
     }
   };
-  useEffect(() => {
-    // console.log(departmentId);
-  }, [departmentId]);
-  // achievements?page=1&size=50'
+  useEffect(() => {}, [departmentId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,19 +35,26 @@ const OurAchievementsPage = () => {
         if (typeOfAchievements === 'allAchievements') {
           result = await getAllAchievements(page, pageSize);
         } else if (typeOfAchievements === 'mainAchievements') {
-          result = await getMainAchievements('achievements', departmentId, page, pageSize);
-        }else if (typeOfAchievements === 'departmentAchievements') {
-          result = await getDepartmentAchievementsId(departmentId, page, pageSize);
+          result = await getMainAchievements('achievements', departmentId);
+        } else if (typeOfAchievements === 'departmentAchievements') {
+          result = await getDepartmentAchievements(url, departmentId);
         }
         setAchievements(result);
       } catch (error) {
         console.error(error);
       }
     };
-  
+
     fetchData();
-  }, [getAllAchievements, getMainAchievements, getDepartmentAchievementsId, typeOfAchievements, departmentId, page, pageSize]);
-  
+  }, [
+    getAllAchievements,
+    getMainAchievements,
+    getDepartmentAchievements,
+    typeOfAchievements,
+    departmentId,
+    page,
+    pageSize,
+  ]);
 
   return (
     <div className={s.container}>
@@ -72,7 +78,9 @@ const OurAchievementsPage = () => {
             Сторінка Наші досягнення
           </button>
           <button
-            className={typeOfAchievements === 'mainAchievements' ? s.active : ''}
+            className={
+              typeOfAchievements === 'mainAchievements' ? s.active : ''
+            }
             onClick={() => {
               setTypeOfAchievements('mainAchievements');
             }}
@@ -82,16 +90,17 @@ const OurAchievementsPage = () => {
         </div>
         {typeOfAchievements !== 'mainAchievements' && (
           <div className={s.selectDepartments}>
-            <SelectAdminDouble
-              changeDepartment={changeDepartment}
-            />
+            <SelectAdminDouble changeDepartment={changeDepartment} />
           </div>
         )}
       </div>
       {typeOfAchievements !== 'mainAchievements' && (
-        <CustomTitle title={title}/>
+        <CustomTitle title={title} />
       )}
-      <AchievementsTable data={achievements} typeOfAchievements={typeOfAchievements}/>
+      <AchievementsTable
+        data={achievements}
+        typeOfAchievements={typeOfAchievements}
+      />
     </div>
   );
 };

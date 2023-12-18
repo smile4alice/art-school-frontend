@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import s from './AchievementPositions.module.scss';
 
-const AchievementPositions = ({ data, title }) => {
-  const [selectedPosition, setSelectedPosition] = useState(null);
+const AchievementPositions = ({ data, title, formik}) => {
 
-  useEffect(() => {
-    // Тут можна використовувати значення selectedPosition
-    console.log(selectedPosition);
-  }, [selectedPosition]);
+useEffect(() => {
+  // Тут можна використовувати значення formik.values.pinned_position
+  console.log(formik.values.pinned_position);
+}, [formik.values.pinned_position]);
 
   const renderRadios = () => {
     const radios = [];
@@ -27,8 +26,8 @@ const AchievementPositions = ({ data, title }) => {
             id={`radio-${i}`}
             name="position"
             disabled={isTaken}
-            checked={selectedPosition === i}
-            onChange={() => setSelectedPosition(i)}
+            checked={formik.values.pinned_position === i}
+            onChange={() => formik.setFieldValue('pinned_position', i)}
           />
           
         </div>

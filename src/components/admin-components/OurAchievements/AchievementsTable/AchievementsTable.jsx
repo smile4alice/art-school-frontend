@@ -1,7 +1,32 @@
+import { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import useServicesStore from '@/store/serviseStore';
+import { useModal } from '@/store/modalStore';
+import { useConfirmDelete } from '@/store/confirmDelete';
+import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
 import s from './AchievementsTable.module.scss';
 
 const AchievementsTable = ({ data, typeOfAchievements }) => {
-  console.log(data);
+  const { deleteAchievement } = useServicesStore();
+  const { isDeleteConfirm } = useConfirmDelete();
+  const { isModalOpen, openModal, closeModal } = useModal();
+  const [currentId, setCurrentId] = useState('');
+  useEffect(()=>{
+
+  }, [data, currentId])
+
+  const removePost = async () => {
+    console.log(currentId);
+    if (isDeleteConfirm) {
+      try {
+        await deleteAchievement(currentId);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      closeModal();
+    }
+  };
 
   return (
     <div className={s.table}>
@@ -27,16 +52,23 @@ const AchievementsTable = ({ data, typeOfAchievements }) => {
                 </div>
               </div>
               <div className={s.action}>
-                <button className={s.edit}>
-                  <img src="/icons/edit.svg" alt="edit icon" />
-                </button>
-                <button className={s.delete}>
+                <Link to={`edit/${item.id}`}>
+                  <button className={s.edit}>
+                    <img src="/icons/edit.svg" alt="edit icon" />
+                  </button>
+                </Link>
+                <button className={s.delete}
+                  onClick={() =>{
+                    setCurrentId(item.id);
+                    openModal();
+                  }}>
                   <img src="/icons/delete.svg" alt="delete icon" />
                 </button>
               </div>
             </div>
           ))}
       </div>
+      {isModalOpen && <ConfirmDeleteModal handleDelete={removePost} />}
     </div>
   );
 };

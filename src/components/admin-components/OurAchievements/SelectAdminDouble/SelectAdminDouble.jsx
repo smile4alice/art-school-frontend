@@ -62,14 +62,14 @@ const SelectAdminDouble = ({ changeDepartment }) => {
 
   return (
     <div className={s.selectContainer}>
-      <button
+      <div
         className={`${s.selectButton} ${optionsVisible ? s.active : ''}`}
         onClick={toggleOptionsVisible}
         ref={selectRef}
       >
         <span>Виберіть відділ</span>
         <img className={s.arrow} src="/icons/arrow.svg" alt="filter" />
-      </button>
+      </div>
       {optionsVisible && (
         <div className={s.optionsContainer} ref={selectOptionsRef}>
           {mainDepartmentsList.map(option => (
@@ -82,7 +82,7 @@ const SelectAdminDouble = ({ changeDepartment }) => {
                 toggleSecondOptionsVisible(option.id);
               }}
             >
-              <button> {option.department_name}</button>
+              <div className={s.button}> {option.department_name}</div>
 
               {selectedOptionId === option.id &&
                 (loadingState !== 'loading' ? (
@@ -96,7 +96,7 @@ const SelectAdminDouble = ({ changeDepartment }) => {
                           toggleOptionsVisible();
                         }}
                       >
-                        <button> {item.sub_department_name}</button>
+                        <div className={s.button}>{item.sub_department_name}</div>
                       </div>
                     ))}
                   </div>
