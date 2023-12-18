@@ -1,6 +1,5 @@
 import { Formik, Form, Field } from 'formik';
 
-import BasicContainerLogin from '../BasicContainerLogin/BasicContainerLogin';
 import Heading from '../Heading/Heading';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
 import PasswordInput from '../../formik/PasswordInput/PasswordInput';
@@ -20,7 +19,7 @@ const SignIn = () => {
   };
 
   return (
-    <BasicContainerLogin>
+    <>
       <Heading title="Увійти в акаунт" />
       <Formik
         initialValues={initialValues}
@@ -36,7 +35,7 @@ const SignIn = () => {
                   id="email"
                   component={TextInput}
                   showCharacterCount={false}
-                  label="Електронна Пошта"
+                  label="Електронна пошта*"
                   placeholder="name@mail.com"
                 />
                 <Field
@@ -44,7 +43,7 @@ const SignIn = () => {
                   id="password"
                   component={PasswordInput}
                   showCharacterCount={false}
-                  label="Пароль"
+                  label="Пароль*"
                   placeholder="Введіть 6 символів і більше"
                 />
 
@@ -65,7 +64,7 @@ const SignIn = () => {
       <Link to="/login/password-recovery" className={styles.link}>
         Забули пароль?
       </Link>
-    </BasicContainerLogin>
+    </>
   );
 };
 export default SignIn;

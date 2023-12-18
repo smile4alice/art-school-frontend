@@ -13,7 +13,7 @@ const TextInput = ({
 }) => {
   const name = field.name;
   const isFieldTouched = touched[field.name];
-  const valueLength = field.value.length;
+  const valueLength = field.value?.length;
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {

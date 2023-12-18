@@ -48,6 +48,7 @@ import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrat
 import AddSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/AddSchoolAdministrationPageAdmin';
 import EditSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/EditSchoolAdministrationPageAdmin';
 import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
+import EditContactsPageAdmin from './pages/admin-pages/ContactsAdmin/EditContactsPageAdmin';
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
 import AddPostersPage from './pages/admin-pages/PostersAdmin/AddPostersPageAdmin';
@@ -70,7 +71,6 @@ const App = () => {
           <Route path="/statement" element={<StatementPage />} />
           <Route path="/about_school" element={<AboutSchool />} />
           <Route path="/about_school_history" element={<SchoolHistory />} />
-          <Route path="/about_school_museum" element={<AboutSchool />} />
 
           {/* departments */}
           <Route path="/music_department" element={<MusicDepartment />} />
@@ -126,6 +126,10 @@ const App = () => {
           <Route path="achievements/add" element={<AddOurAchievementsPage />} />
           <Route path="achievements/edit/:id" element={<EditOurAchievementsPage />} />
           <Route path="contacts" element={<ContactsPageAdmin />} />
+          <Route
+            path="contacts/edit/:key"
+            element={<EditContactsPageAdmin />}
+          />
           <Route path="password" element={<ChangePasswordPageAdmin />} />
           <Route
             path="administration"

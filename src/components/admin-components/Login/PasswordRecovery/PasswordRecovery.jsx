@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { recoveryValidation } from './validationSchema';
-import BasicContainerLogin from '../BasicContainerLogin/BasicContainerLogin';
 import Heading from '../Heading/Heading';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
@@ -17,7 +16,7 @@ const PasswordRecovery = () => {
   };
 
   return (
-    <BasicContainerLogin>
+    <>
       <Heading title="Відновлення паролю" />
       <p className={styles.message}>
         Введіть email, пов’язаний з вашим акаунтом Якщо у вас є акаунт, вам на
@@ -37,7 +36,7 @@ const PasswordRecovery = () => {
                   id="email"
                   component={TextInput}
                   showCharacterCount={false}
-                  label="Електронна Пошта"
+                  label="Електронна пошта*"
                   placeholder="name@mail.com"
                 />
                 <div className={styles.button}>
@@ -57,7 +56,7 @@ const PasswordRecovery = () => {
       <Link to="/login" className={styles.link}>
         Я згадав пароль!
       </Link>
-    </BasicContainerLogin>
+    </>
   );
 };
 export default PasswordRecovery;
