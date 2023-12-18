@@ -46,6 +46,7 @@ import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrat
 import AddSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/AddSchoolAdministrationPageAdmin';
 import EditSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/EditSchoolAdministrationPageAdmin';
 import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
+import EditContactsPageAdmin from './pages/admin-pages/ContactsAdmin/EditContactsPageAdmin';
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
 import AddPostersPage from './pages/admin-pages/PostersAdmin/AddPostersPageAdmin';
@@ -122,6 +123,10 @@ const App = () => {
           <Route path="departments" element={<DepartmentsPageAdmin />} />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />
           <Route path="contacts" element={<ContactsPageAdmin />} />
+          <Route
+            path="contacts/edit/:key"
+            element={<EditContactsPageAdmin />}
+          />
           <Route path="password" element={<ChangePasswordPageAdmin />} />
           <Route
             path="administration"
