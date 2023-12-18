@@ -1,7 +1,7 @@
+import PasswordRecovery from '@/components/admin-components/Login/PasswordRecovery/PasswordRecovery';
+
 const PasswordRecoveryPage = () => {
-  return (
-    <div>PasswordRecoveryPage</div>
-  );
+  return <PasswordRecovery />;
 };
 
 export default PasswordRecoveryPage;

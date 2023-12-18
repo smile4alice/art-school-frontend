@@ -9,6 +9,7 @@ const TextInput = ({
   form: { errors, handleBlur, touched, setFieldValue },
   maxLength,
   showCharacterCount,
+  placeholder,
 }) => {
   const name = field.name;
   const isFieldTouched = touched[field.name];
@@ -32,6 +33,9 @@ const TextInput = ({
 
   const getBorderColor = () => {
     if (valueLength > maxLength) {
+      return styles.redBorder;
+    }
+    if (errors?.[field.name]) {
       return styles.redBorder;
     }
     if (isFocused) {
@@ -66,15 +70,11 @@ const TextInput = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         onClick={() => setIsFocused(true)}
+        placeholder={placeholder ? placeholder : ''}
         {...field}
       />
       {showCharacterCount && (
         <div className={styles.commentsWrapper}>
-          <div className={styles.errorWrap}>
-            {errors?.[field.name] && isFieldTouched && (
-              <p className={styles.errorMessage}>{errors?.[field.name]}</p>
-            )}
-          </div>
           <p
             className={`${styles.counterMessage} ${
               valueLength > maxLength ? styles.redText : ''
@@ -82,6 +82,15 @@ const TextInput = ({
           >
             {`${valueLength}/${maxLength}`}
           </p>
+        </div>
+      )}
+      {errors?.[field.name] && (
+        <div className={styles.commentsWrapper}>
+          <div className={styles.errorWrap}>
+            {errors?.[field.name] && isFieldTouched && (
+              <p className={styles.errorMessage}>{errors?.[field.name]}</p>
+            )}
+          </div>
         </div>
       )}
     </div>

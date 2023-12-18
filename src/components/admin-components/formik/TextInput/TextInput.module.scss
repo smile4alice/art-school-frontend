@@ -23,6 +23,9 @@
   color: $admin-text-main;
   font-size: 15px;
   line-height: normal;
+  &::placeholder {
+    color: $admin-gray;
+  }
 }
 .commentsWrapper {
   display: flex;
