@@ -1,7 +1,7 @@
+import CompletePasswordRecovery from '@/components/admin-components/Login/CompletePasswordRecovery/CompletePasswordRecovery';
+
 const CompletePasswordRecoveryPage = () => {
-  return (
-    <div>CompletePasswordRecoveryPage</div>
-  );
+  return <CompletePasswordRecovery />;
 };
 
 export default CompletePasswordRecoveryPage;

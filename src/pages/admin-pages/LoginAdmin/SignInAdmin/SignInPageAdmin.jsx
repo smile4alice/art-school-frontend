@@ -1,10 +1,7 @@
-
-import SignIn from '../../../../components/admin-components/Login/SignIn/SignIn';
+import SignIn from '@/components/admin-components/Login/SignIn/SignIn';
 
 const SignInPage = () => {
-  return (
-    <SignIn/>
-  );
+  return <SignIn />;
 };
 
 export default SignInPage;
