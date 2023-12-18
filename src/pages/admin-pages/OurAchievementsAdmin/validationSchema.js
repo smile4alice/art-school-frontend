@@ -25,7 +25,7 @@ export const achievementsValidation = Yup.object().shape({
       'Введіть коректний опис'
     ),
   media: Yup.mixed()
-    .required('Required')
+    .required('Додайте зображення')
     .test(
       'is-valid-type',
       'Зображення має бути в форматі .jpg, .png або .webp',

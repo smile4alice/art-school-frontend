@@ -40,10 +40,6 @@
         flex-wrap: wrap;
         gap: 2.5rem;
 
-        // @media screen and (max-width: 1280px) {
-        //   flex-wrap: wrap;
-        //   gap: 50px;
-        // }
         img {
           width: 510px;
           @media screen and (max-width: 1280px) {
@@ -77,6 +73,9 @@
           position: relative;
           margin-bottom: 1.25rem;
           padding-left: 1.75rem;
+          &:hover {
+            color: $accent;
+          }
         }
         li::before {
           content: '';

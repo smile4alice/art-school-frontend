@@ -11,6 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <>
       <Hero />
@@ -18,7 +19,11 @@ const HomePage = () => {
       <Departments />
       <News />
       <Gallery />
-      <Achievements title={'Наші досягнення'} url={'achievements'} showSelect={false}/>
+      <Achievements
+        title={'Наші досягнення'}
+        url={'achievements'}
+        showSelect={false}
+      />
       <Map />
     </>
   );

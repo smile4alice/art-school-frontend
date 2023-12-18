@@ -14,6 +14,10 @@ import StatementPage from './pages/main/statement/StatementPage';
 
 /* login */
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
+import SignInPage from './pages/admin-pages/LoginAdmin/SignInAdmin/SignInPageAdmin';
+import PasswordRecoveryPage from './pages/admin-pages/LoginAdmin/PasswordRecoveryAdmin/PasswordRecoveryPageAdmin';
+import CompletePasswordRecoveryPage from './pages/admin-pages/LoginAdmin/CompletePasswordRecoveryAdmin/CompletePasswordRecoveryPageAdmin';
+import SuccessPage from './pages/admin-pages/LoginAdmin/SuccessAdmin/SuccessPageAdmin';
 
 /* departments */
 import PreschoolDepartment from './pages/main/departments/PreschoolDepartment';
@@ -41,6 +45,8 @@ import OurAchievementsPageAdmin from './pages/admin-pages/OurAchievementsAdmin/O
 import AddOurAchievementsPage from './pages/admin-pages/OurAchievementsAdmin/AddOurAchievementsPageAdmin';
 import EditOurAchievementsPage from './pages/admin-pages/OurAchievementsAdmin/EditOurAchievementsPageAdmin';
 import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrationAdmin/SchoolAdministrationPageAdmin';
+import AddSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/AddSchoolAdministrationPageAdmin';
+import EditSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/EditSchoolAdministrationPageAdmin';
 import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
@@ -89,7 +95,18 @@ const App = () => {
         </Route>
 
         {/* login */}
-        <Route path="/login" element={<LoginLayout />}></Route>
+        <Route path="/login" element={<LoginLayout />}>
+          <Route index element={<SignInPage />} />
+          <Route path="password-recovery" element={<PasswordRecoveryPage />} />
+          <Route
+            path="complete-password-recovery"
+            element={<CompletePasswordRecoveryPage />}
+          />
+          <Route
+            path="complete-password-recovery-success"
+            element={<SuccessPage />}
+          />
+        </Route>
 
         {/* admin */}
         <Route path="/admin" element={<AdminSharedLayout />}>
@@ -113,6 +130,14 @@ const App = () => {
           <Route
             path="administration"
             element={<SchoolAdministrationPageAdmin />}
+          />
+          <Route
+            path="administration/add"
+            element={<AddSchoolAdministrationPage />}
+          />
+          <Route
+            path="administration/edit/:id"
+            element={<EditSchoolAdministrationPage />}
           />
         </Route>
 

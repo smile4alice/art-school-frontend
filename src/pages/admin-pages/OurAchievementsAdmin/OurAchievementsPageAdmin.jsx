@@ -4,8 +4,10 @@ import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
 import AchievementsTable from '@/components/admin-components/OurAchievements/AchievementsTable/AchievementsTable';
-
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
+import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
 import s from './AchievementsAdmin.module.scss';
+
 const url = 'sub_department_achievement/';
 const OurAchievementsPage = () => {
   const { getAllAchievements, getMainAchievements, getDepartmentAchievements } =
@@ -15,6 +17,7 @@ const OurAchievementsPage = () => {
   const [title, setTitle] = useState('Всі досягнення');
   const [typeOfAchievements, setTypeOfAchievements] =
     useState('allAchievements');
+  const [loadingState, setLoadingState] = useState('loading');
   const page = '1';
   const pageSize = '20';
 
@@ -32,6 +35,7 @@ const OurAchievementsPage = () => {
     const fetchData = async () => {
       try {
         let result;
+        setLoadingState('loading');
         if (typeOfAchievements === 'allAchievements') {
           result = await getAllAchievements(page, pageSize);
         } else if (typeOfAchievements === 'mainAchievements') {
@@ -40,8 +44,10 @@ const OurAchievementsPage = () => {
           result = await getDepartmentAchievements(url, departmentId);
         }
         setAchievements(result);
+        setLoadingState('success');
       } catch (error) {
         console.error(error);
+        setLoadingState('error');
       }
     };
 
@@ -85,7 +91,7 @@ const OurAchievementsPage = () => {
               setTypeOfAchievements('mainAchievements');
             }}
           >
-            Головна сторінка
+            Закріпленні досягнення
           </button>
         </div>
         {typeOfAchievements !== 'mainAchievements' && (
@@ -97,10 +103,18 @@ const OurAchievementsPage = () => {
       {typeOfAchievements !== 'mainAchievements' && (
         <CustomTitle title={title} />
       )}
-      <AchievementsTable
-        data={achievements}
-        typeOfAchievements={typeOfAchievements}
-      />
+      {loadingState === 'loading' && (
+        <div className={s.errorData}>
+          <SpinnerAdmin />
+        </div>
+      )}
+      {loadingState === 'success' && (
+        <AchievementsTable
+          data={achievements}
+          typeOfAchievements={typeOfAchievements}
+        />
+      )}
+      {loadingState === 'error' && <PlaceholderAdmin />}
     </div>
   );
 };

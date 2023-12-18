@@ -1,6 +1,6 @@
-import s from './Placeholder.module.scss';
+import s from './PlaceholderAdmin.module.scss';
 
-const Placeholder = () => {
+const PlaceholderAdmin = () => {
   return (
     <div className={s.placeholder}>
       <p>Дані тимчасово відсутні</p>
@@ -8,4 +8,4 @@ const Placeholder = () => {
   );
 };
 
-export default Placeholder;
+export default PlaceholderAdmin;

@@ -53,15 +53,25 @@ const useServicesStore = create((set, get) => ({
     const result = await response.json();
     return result;
   },
+  //конкретне досягнення по id
+  getAchievemenById: async (url, id) => {
+    const response = await fetch(
+      `${get().server}${url}${id}`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result;
+  },
   // додати досягнення      achievements?pinned_position=1&sub_department=1&description=descrition4
-
   addAchievement: async data => {
-    const achievementData = new FormData();
-    achievementData.append('pinned_position', data.pinned_position);
-    achievementData.append('sub_department', data.sub_department);
-    achievementData.append('description', data.description);
-    achievementData.append('media', data.media);
-
+    const newAchievement = {
+      pinned_position: data.pinned_position,
+      sub_department: data.sub_department,
+      description: data.description,
+      media: data.media
+    }
     const queryParams = new URLSearchParams();
     if (data.pinned_position !== '') {
       queryParams.append('pinned_position', data.pinned_position);
@@ -76,7 +86,11 @@ const useServicesStore = create((set, get) => ({
         `${get().server}achievements?${queryParams.toString()}`,
         {
           method: 'POST',
-          body: achievementData,
+          header: {
+            'accept': 'application/json', 
+            'Content-Type': 'multipart/form-data'
+          },
+          body: JSON.stringify(newAchievement),
         }
       );
 
@@ -91,41 +105,6 @@ const useServicesStore = create((set, get) => ({
     }
   },
 
-  /*
-  addAchievement: async data => {
-    const achievementData = new FormData();
-    achievementData.append('pinned_position', data.pinned_position);
-    achievementData.append('sub_department', data.sub_department);
-    achievementData.append('description', data.description);
-    achievementData.append('media', data.media); 
-
-    try {
-      const response = await fetch(
-        `${get().server}achievements?${
-          data.pinned_position !== ''
-            ? `pinned_position=${encodeURIComponent(data.pinned_position)}&`
-            : ''
-        }${
-          data.sub_department !== ''
-            ? `sub_department=${encodeURIComponent(data.sub_department)}&`
-            : ''
-        }description=${encodeURI(data.description)}`,
-        {
-          method: 'POST',
-          body: achievementData,
-        }
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log('Achievement added successfully:', result);
-    } catch (error) {
-      console.error('Error adding achievement:', error);
-    }
-  },
-*/
   //видалення досягнення
   deleteAchievement: async id => {
     const response = await fetch(`${get().server}/achievements/${id}`, {
@@ -136,15 +115,47 @@ const useServicesStore = create((set, get) => ({
     });
     return response.json();
   },
+
   //зміна досягнення
-  putAchievement: async id => {
-    const response = await fetch(`${get().server}/achievements/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    return response.json();
+  editAchievement: async (id, data) => {
+    const newAchievement = {
+      pinned_position: data.pinned_position,
+      sub_department: data.sub_department,
+      description: data.description,
+      media: data.media
+    }
+    const queryParams = new URLSearchParams();
+    if (data.pinned_position !== '') {
+      queryParams.append('pinned_position', data.pinned_position);
+    }
+    if (data.sub_department !== '') {
+      queryParams.append('sub_department', data.sub_department);
+    }
+    queryParams.append('description', data.description);
+
+    try {
+      console.log(data);
+      const response = await fetch(
+        `${get().server}achievements/${id}?${queryParams.toString()}`,
+        {
+          method: 'PUT',
+          header: {
+            'accept': 'application/json', 
+            'Content-Type': 'multipart/form-data'
+          },
+          body: JSON.stringify(newAchievement),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('Achievement added successfully:', result);
+    } catch (error) {
+      console.error('Error adding achievement:', error);
+    }
   },
 
   getAchievementsPositions: async () => {
