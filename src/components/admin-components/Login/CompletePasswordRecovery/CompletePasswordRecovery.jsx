@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { completeRecoveryValidation } from './validationSchema';
-import BasicContainerLogin from '../BasicContainerLogin/BasicContainerLogin';
 import Heading from '../Heading/Heading';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
 import PasswordInput from '@/components/admin-components/formik/PasswordInput/PasswordInput';
@@ -18,7 +17,7 @@ const CompletePasswordRecovery = () => {
   };
 
   return (
-    <BasicContainerLogin>
+    <>
       <Heading title="Завершення відновлення паролю" />
       <Formik
         initialValues={initialValues}
@@ -34,7 +33,7 @@ const CompletePasswordRecovery = () => {
                   id="password"
                   component={PasswordInput}
                   showCharacterCount={false}
-                  label="Новий Пароль*"
+                  label="Новий пароль*"
                   placeholder="Введіть 6 символів і більше"
                 />
                 <Field
@@ -42,13 +41,13 @@ const CompletePasswordRecovery = () => {
                   id="confirm_password"
                   component={PasswordInput}
                   showCharacterCount={false}
-                  label="Повторіть Новий Пароль*"
+                  label="Повторити новий пароль*"
                   placeholder="Повторіть свій пароль"
                 />
                 <div className={styles.button}>
                   <ButtonSubmit
                     handlerSubmitButton={onSubmit}
-                    nameButton="Увійти"
+                    nameButton="Змінити пароль"
                     isActive={
                       formik.isValid && Object.keys(formik.touched).length
                     }
@@ -62,7 +61,7 @@ const CompletePasswordRecovery = () => {
       <Link to="/login" className={styles.link}>
         Я згадав пароль!
       </Link>
-    </BasicContainerLogin>
+    </>
   );
 };
 export default CompletePasswordRecovery;
