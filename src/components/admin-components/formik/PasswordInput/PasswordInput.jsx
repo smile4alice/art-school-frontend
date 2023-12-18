@@ -9,6 +9,7 @@ const PasswordInput = ({
   form: { errors, handleBlur, touched },
   maxLength,
   showCharacterCount,
+  placeholder,
 }) => {
   const isFieldTouched = touched[field.name];
   const valueLength = field.value.length;
@@ -34,6 +35,9 @@ const PasswordInput = ({
 
   const getBorderColor = () => {
     if (valueLength > maxLength) {
+      return styles.redBorder;
+    }
+    if (errors?.[field.name]) {
       return styles.redBorder;
     }
     if (isFocused) {
@@ -63,25 +67,24 @@ const PasswordInput = ({
       <label htmlFor={id} className={styles.inputLabel}>
         {label}
       </label>
-      <input
-        id={id}
-        type={inputType === 'password-hide' ? 'password' : 'text'}
-        className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        onClick={() => setIsFocused(true)}
-        {...field}
-      />
-      <button className={styles.icon} onClick={handleInputType}>
-        {inputType === 'password-hide' ? <FaRegEyeSlash /> : <FaRegEye />}
-      </button>
+      <div className={styles.wrapper}>
+        <input
+          id={id}
+          type={inputType === 'password-hide' ? 'password' : 'text'}
+          className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onClick={() => setIsFocused(true)}
+          placeholder={placeholder ? placeholder : ''}
+          {...field}
+        />
+        <button className={styles.icon} onClick={handleInputType}>
+          {inputType === 'password-hide' ? <FaRegEyeSlash /> : <FaRegEye />}
+        </button>
+      </div>
+
       {showCharacterCount && (
         <div className={styles.commentsWrapper}>
-          <div className={styles.errorWrap}>
-            {errors?.[field.name] && isFieldTouched && (
-              <p className={styles.errorMessage}>{errors?.[field.name]}</p>
-            )}
-          </div>
           <p
             className={`${styles.counterMessage} ${
               valueLength > maxLength ? styles.redText : ''
@@ -89,6 +92,15 @@ const PasswordInput = ({
           >
             {`${valueLength}/${maxLength}`}
           </p>
+        </div>
+      )}
+      {errors?.[field.name] && (
+        <div className={styles.commentsWrapper}>
+          <div className={styles.errorWrap}>
+            {errors?.[field.name] && isFieldTouched && (
+              <p className={styles.errorMessage}>{errors?.[field.name]}</p>
+            )}
+          </div>
         </div>
       )}
     </div>
