@@ -7,8 +7,9 @@ import useServicesStore from '@/store/serviseStore';
 import Articles from '../DepartmentArticles/Articles';
 import styles from './DepartmentPage.module.scss';
 
+
 const DepartmentPage = ({ id, title, showSelect, articles }) => {
-  const { getDepartments } = useServicesStore();
+  const { getSubDepartments } = useServicesStore();
   const [subDepartments, setSubDepartments] = useState([]);
   const [departmentId, setDepartmentId] = useState('');
 
@@ -23,7 +24,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getDepartments(id);
+        const result = await getSubDepartments(id);
         setSubDepartments(result);
         setDepartmentId(result[0].id);
       } catch (error) {
@@ -31,7 +32,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
       }
     };
     fetchData();
-  }, [id, getDepartments]);
+  }, [id, getSubDepartments]);
 
   useEffect(() => {
     changeDepartment(departmentId);
@@ -48,7 +49,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
           <GalleryDepartments
             showSelect={showSelect}
             selectOptions={subDepartments}
-            url={'departments/sub_department_gallery/'}
+            url={'sub_department_gallery/'}
             departmentId={departmentId}
             changeDepartment={changeDepartment}
           />
@@ -56,7 +57,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
             title={'Досягнення відділу'}
             showSelect={showSelect}
             selectOptions={subDepartments}
-            url={'departments/sub_department_achievement/'}
+            url={'sub_department_achievement/'}
             departmentId={departmentId}
             changeDepartment={changeDepartment}
           />

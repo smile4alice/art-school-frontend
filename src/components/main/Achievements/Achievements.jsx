@@ -20,7 +20,7 @@ const Achievements = ({
   showSelect,
   selectOptions,
 }) => {
-  const { getDepartmentAchievements } = useServicesStore();
+  const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
   const isDesktop = useMediaQuery({ minWidth: 1280 });
   const swiperRef = useRef();
   const [achievementsData, setAchievementsData] = useState([]);
@@ -28,9 +28,15 @@ const Achievements = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoadingState('loading');
       try {
-        const result = await getDepartmentAchievements(url, departmentId);
+        let result;
+        setLoadingState('loading');
+        if (url === 'achievements') {
+          result = await getMainAchievements();
+        }
+        else{
+          result = await getDepartmentAchievements(url, departmentId);
+        }
         setAchievementsData(result);
         setLoadingState('success');
       } catch (error) {
@@ -38,7 +44,7 @@ const Achievements = ({
       }
     };
     fetchData();
-  }, [getDepartmentAchievements, url, departmentId]);
+  }, [getMainAchievements, getDepartmentAchievements, url, departmentId]);
 
   return (
     <section className={s.achievements}>

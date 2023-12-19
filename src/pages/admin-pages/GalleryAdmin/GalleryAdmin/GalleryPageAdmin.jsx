@@ -1,7 +1,17 @@
-const GalleryPageAdmin = () => {
+import AchievementsGalleryPage from '@/components/admin-components/OurAchievements/AchievementsGalleryPage/AchievementsGalleryPage';
+
+const GalleryPage = () => {
   return (
-    <div>Gallery Page Admin</div>
+    <AchievementsGalleryPage
+      url="gallery"
+      pageTitle={'Фотогалерея'}
+      actionButtonLink="/admin/gallery/add"
+      actionButtonLabel='Додати Фото'
+      selectTitle="Всі фото"
+      buttonTitle1="Сторінка Галерея"
+      buttonTitle2="Закріпленні фотографії"
+    />
   );
 };
 
-export default GalleryPageAdmin;
+export default GalleryPage;

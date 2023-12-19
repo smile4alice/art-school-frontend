@@ -1,6 +1,14 @@
+import AddNewObjectPage from '@/components/admin-components/OurAchievements/AddNewObjectPage/AddNewObjectPage';
+
 const AddGalleryPage = () => {
   return (
-    <div>AddGalleryPage</div>
+    <AddNewObjectPage
+      pageTitle={'Додати фото'}
+      backButtonLink={'/admin/gallery'}
+      achievementPositionsTitle={'Закріпити в галерею головній сторінці'}
+      url="gallery"
+      selectTitle={'Всі фото'}
+    />
   );
 };
 
