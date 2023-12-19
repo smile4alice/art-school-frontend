@@ -1,24 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import s from './AchievementPositions.module.scss';
 
-const AchievementPositions = ({ data, title, selectedPosition, onPositionChange }) => {
+const AchievementPositions = ({
+  field,
+  title,
+  form: { setFieldValue },
+  activePosition,
+  achievementPositions,
+}) => {
+  const name = field.name;
+  const [isActivePosition, setIsActivePosition] = useState(activePosition);
+  const positionsCount = achievementPositions?.free_positions?.length + achievementPositions?.taken_positions?.length;
   useEffect(() => {
-    console.log(selectedPosition);
-  }, [ selectedPosition]);
+    if (!activePosition) return;
+    setFieldValue(`${name}`, activePosition);
+    setIsActivePosition(activePosition);
+  }, [setFieldValue, activePosition, name]);
 
   const renderRadios = () => {
     const radios = [];
 
-    for (let i = 1; i <= 12; i++) {
-      const isTaken = data?.taken_positions?.includes(i) || false;
-      const isActive = selectedPosition == i;
-      const inputClassName = isTaken
-        ? s.taken
-        : isActive
-        ? `${s.input} ${s.active}`
-        : s.free;
-       // console.log(`Position: ${i}, isActive: ${isActive}, isTaken: ${isTaken}`);
-
+    for (let i = 1; i <= positionsCount; i++) {
+      const isActive = isActivePosition === i;
+      const isTaken = (i === isActive || i === activePosition) ? false : achievementPositions?.taken_positions?.includes(i) || false;
+      let inputClassName;
+      if (isActive) {
+        inputClassName = s.active;
+      } else if (isTaken) {
+        inputClassName = s.taken;
+      } else {
+        inputClassName = s.free;
+      }
       radios.push(
         <div key={i} className={s.radioContainer}>
           <label htmlFor={`radio-${i}`} className={s.label}>
@@ -31,12 +43,14 @@ const AchievementPositions = ({ data, title, selectedPosition, onPositionChange 
             name="position"
             disabled={isTaken}
             checked={isActive}
-            onChange={() => onPositionChange(i)}
+            onChange={() => {
+              setFieldValue(`${name}`, i);
+              setIsActivePosition(i);
+            }}
           />
         </div>
       );
     }
-
     return radios;
   };
 
@@ -49,53 +63,3 @@ const AchievementPositions = ({ data, title, selectedPosition, onPositionChange 
 };
 
 export default AchievementPositions;
-
-/*
-import { useEffect } from 'react';
-import s from './AchievementPositions.module.scss';
-
-const AchievementPositions = ({ data, title, formik }) => {
-  useEffect(() => {
-    // Тут можна використовувати значення formik.values.pinned_position
-    console.log(formik.values.pinned_position);
-  }, [formik.values.pinned_position]);
-
-  const renderRadios = () => {
-    const radios = [];
-  
-    for (let i = 1; i <= 12; i++) {
-      const isTaken = data?.taken_positions?.includes(i) || false;
-      const isActive = formik.values.pinned_position === i;
-      const inputClassName = isTaken ? s.taken : isActive ? `${s.input} ${s.active}` : s.free;
-  
-      radios.push(
-        <div key={i} className={s.radioContainer}>
-          <label htmlFor={`radio-${i}`} className={s.label}>
-            Фото {i}
-          </label>
-          <input
-            className={inputClassName}
-            type="radio"
-            id={`radio-${i}`}
-            name="position"
-            disabled={isTaken}
-            checked={isActive}
-            onChange={() => formik.setFieldValue('pinned_position', i)}
-          />
-        </div>
-      );
-    }
-  
-    return radios;
-  };
-
-  return (
-    <div className={s.container}>
-      <h4 className={s.title}>{title}</h4>
-      <div className={s.radioList}>{renderRadios()}</div>
-    </div>
-  );
-};
-
-export default AchievementPositions;
-*/

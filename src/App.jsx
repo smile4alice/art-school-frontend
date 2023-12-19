@@ -39,7 +39,10 @@ import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
 import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
 import EditNewsPageAdmin from './pages/admin-pages/NewsAdmin/EditNewsPageAdmin';
 import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
+
 import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryAdmin/GalleryPageAdmin';
+import AddGalleryPage from './pages/admin-pages/GalleryAdmin/GalleryAdmin/AddGalleryPageAdmin';
+import EditGalleryPage from './pages/admin-pages/GalleryAdmin/GalleryAdmin/EditGalleryPageAdmin';
 import DepartmentsPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
 import OurAchievementsPageAdmin from './pages/admin-pages/OurAchievementsAdmin/OurAchievementsPageAdmin';
 import AddOurAchievementsPage from './pages/admin-pages/OurAchievementsAdmin/AddOurAchievementsPageAdmin';
@@ -121,6 +124,8 @@ const App = () => {
           <Route path="posters/add" element={<AddPostersPage />} />
           <Route path="posters/edit/:id" element={<EditPostersPage />} />
           <Route path="gallery" element={<GalleryPageAdmin />} />
+          <Route path="gallery/add" element={<AddGalleryPage />} />
+          <Route path="gallery/edit/:id" element={<EditGalleryPage />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />
           <Route path="achievements/add" element={<AddOurAchievementsPage />} />

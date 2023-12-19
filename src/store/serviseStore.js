@@ -21,9 +21,9 @@ const useServicesStore = create((set, get) => ({
     return result;
   },
   //всі досягнення
-  getAllAchievements: async (page, size) => {
+  getAllAchievements: async (url ,page, size) => {
     const response = await fetch(
-      `${get().server}achievements?page=${page}&size=${size}`
+      `${get().server}${url}?page=${page}&size=${size}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -32,9 +32,9 @@ const useServicesStore = create((set, get) => ({
     return result.items;
   },
   //досягнення головної сторінки
-  getMainAchievements: async () => {
+  getMainAchievements: async (url) => {
     const response = await fetch(
-      `${get().server}achievements?is_pinned=true&reverse=true&page=1&size=12`
+      `${get().server}${url}?is_pinned=true&reverse=true&page=1&size=12`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -45,7 +45,7 @@ const useServicesStore = create((set, get) => ({
   // досягнення відділу по id
   getDepartmentAchievements: async (url, departmentId) => {
     const response = await fetch(
-      `${get().server}departments/${url}${departmentId}?page=1&size=40`
+      `${get().server}departments/sub_department_${url === 'achievements'? 'achievement' : url}/${departmentId}?page=1&size=40`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -56,7 +56,7 @@ const useServicesStore = create((set, get) => ({
   //конкретне досягнення по id
   getAchievemenById: async (url, id) => {
     const response = await fetch(
-      `${get().server}${url}${id}`
+      `${get().server}${url}/${id}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -65,7 +65,7 @@ const useServicesStore = create((set, get) => ({
     return result;
   },
   // додати досягнення      achievements?pinned_position=1&sub_department=1&description=descrition4
-  addAchievement: async data => {
+  addAchievement: async (url, data) => {
     const newAchievement = {
       pinned_position: data.pinned_position,
       sub_department: data.sub_department,
@@ -83,7 +83,7 @@ const useServicesStore = create((set, get) => ({
 
     try {
       const response = await fetch(
-        `${get().server}achievements?${queryParams.toString()}`,
+        `${get().server}${url === 'gallery'? 'gallery/photo' : url}?${queryParams.toString()}`,
         {
           method: 'POST',
           header: {
@@ -106,8 +106,8 @@ const useServicesStore = create((set, get) => ({
   },
 
   //видалення досягнення
-  deleteAchievement: async id => {
-    const response = await fetch(`${get().server}/achievements/${id}`, {
+  deleteAchievement: async (url, id) => {
+    const response = await fetch(`${get().server}${url}/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const useServicesStore = create((set, get) => ({
   },
 
   //зміна досягнення
-  editAchievement: async (id, data) => {
+  editAchievement: async (url, id, data) => {
     const newAchievement = {
       pinned_position: data.pinned_position,
       sub_department: data.sub_department,
@@ -132,11 +132,10 @@ const useServicesStore = create((set, get) => ({
       queryParams.append('sub_department', data.sub_department);
     }
     queryParams.append('description', data.description);
-
     try {
-      console.log(data);
+    
       const response = await fetch(
-        `${get().server}achievements/${id}?${queryParams.toString()}`,
+        `${get().server}${url}/${id}?${queryParams.toString()}`,
         {
           method: 'PUT',
           header: {
@@ -158,8 +157,8 @@ const useServicesStore = create((set, get) => ({
     }
   },
 
-  getAchievementsPositions: async () => {
-    const response = await fetch(`${get().server}achievements/positions`);
+  getAchievementsPositions: async (url) => {
+    const response = await fetch(`${get().server}${url}/positions`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }

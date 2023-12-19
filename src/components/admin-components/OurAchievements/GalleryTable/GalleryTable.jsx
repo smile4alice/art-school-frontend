@@ -4,9 +4,9 @@ import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
-import s from './AchievementsTable.module.scss';
+import s from './GalleryTable.module.scss';
 
-const AchievementsTable = ({ data, typeOfAchievements, url }) => {
+const GalleryTable = ({ data, typeOfAchievements, url }) => {
   const { deleteAchievement } = useServicesStore();
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -16,7 +16,6 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
   }, [data, currentId])
 
   const removePost = async () => {
-   // console.log(currentId);
     if (isDeleteConfirm) {
       try {
         console.log(currentId);
@@ -74,4 +73,4 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
   );
 };
 
-export default AchievementsTable;
+export default GalleryTable;

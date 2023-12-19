@@ -24,16 +24,22 @@ export const achievementsValidation = Yup.object().shape({
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
       'Введіть коректний опис'
     ),
-  media: Yup.mixed()
-    .required('Додайте зображення')
+    media: Yup.mixed()
+    //.required('Додайте зображення')
+    .test('is-value', 'Додайте зображення', value => value && value.length > 0)
+    .test('is-image-from-db', 'Додайте зображення', value => {
+      value && value[0]?.size === 0 && value[0]?.type === 'for-url';
+      return true;
+    })
     .test(
       'is-valid-type',
       'Зображення має бути в форматі .jpg, .png або .webp',
-      value => isValidFileType(value && value[0].type)
+      value => isValidFileType(value && value[0]?.type)
     )
     .test(
       'is-valid-size',
       `Максимальний розмір зображення ${formatBytes(sizeLimit)}`,
-      value => value && value[0].size <= sizeLimit
+      value => value && value[0]?.size <= sizeLimit
     ),
+    pinned_position: Yup.mixed(),
 });
