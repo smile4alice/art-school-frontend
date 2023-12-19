@@ -4,7 +4,6 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import data from '@/data/cooperation.json';
 import styles from './Cooperation.module.scss';
-import { Link } from 'react-router-dom';
 
 const Cooperation = () => {
   const swiperRef = useRef();
@@ -139,7 +138,13 @@ const Cooperation = () => {
           <h2>За детальною інформацією звертайтесь:</h2>
           <ul className={styles.contacts}>
             <li>
-              <Link to="/contacts">вул. Бульварно-Кудрявська, 2</Link>
+              <a
+                href="https://maps.app.goo.gl/jv2N9vFL6ZiJhosc6"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+              >
+                вул. Бульварно-Кудрявська, 2.
+              </a>
             </li>
             <li>
               <a href="tel:+380442720030">044 272 00 30</a>

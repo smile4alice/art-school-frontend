@@ -25,6 +25,7 @@ const SlidersTable = ({ data }) => {
       closeModal();
     }
   };
+
   return (
     <div className={styles.contentWrap}>
       <ul className={styles.tableHeader}>

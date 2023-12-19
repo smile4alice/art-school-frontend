@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import useSlidersStore from '@/store/slidersStore';
 import { slidersValidation } from './validationSchema';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
@@ -21,6 +21,7 @@ const initialValues = {
 
 const EditSlidersPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { getSlides, editSlide } = useSlidersStore();
   const [isProcessing, setIsProcessing] = useState(false);
   const [slide, setSlide] = useState({});
@@ -39,9 +40,20 @@ const EditSlidersPage = () => {
 
   const onSubmit = async values => {
     try {
+      const formData = new FormData();
+      formData.append('title', values.title);
+      formData.append('description', values.text);
+
+      if (values.image[0].size === 0) {
+        formData.append('photo', '');
+      } else {
+        formData.append('photo', values.image[0]);
+      }
+
       setIsProcessing(true);
-      await editSlide(id, values);
+      await editSlide(id, formData);
       setIsProcessing(false);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }

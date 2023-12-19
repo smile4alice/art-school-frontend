@@ -97,7 +97,7 @@ const App = () => {
           <Route index element={<SignInPage />} />
           <Route path="password-recovery" element={<PasswordRecoveryPage />} />
           <Route
-            path="complete-password-recovery"
+            path="complete-password-recovery/:token"
             element={<CompletePasswordRecoveryPage />}
           />
           <Route

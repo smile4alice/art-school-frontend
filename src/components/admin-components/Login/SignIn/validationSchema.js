@@ -1,13 +1,16 @@
 import * as Yup from 'yup';
 
 export const loginValidation = Yup.object().shape({
-  password: Yup.string().required('Поле не може бути пустим').min(6).max(20),
+  password: Yup.string()
+    .required('Поле не може бути пустим')
+    .min(6, 'Пароль має бути мінімум 6 символів')
+    .max(20, 'Пароль має бути максимум 20 символів'),
   email: Yup.string()
     .required('Поле не може бути пустим')
-    .min(2)
-    .max(40)
+    .min(6, 'електронна адреса має бути мінімум 6 символів')
+    .max(20, 'електронна адреса має бути максимум 20 символів')
     .matches(
-      /^[a-zA-Z0-9._%+-]+@(?!.*\.(ru|by))[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      'Введіть email user@mail.com'
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      'Введіть коректну електронну адресу'
     ),
 });

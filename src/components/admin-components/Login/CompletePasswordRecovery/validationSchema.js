@@ -4,7 +4,7 @@ export const completeRecoveryValidation = Yup.object().shape({
   password: Yup.string()
     .required('Поле не може бути пустим')
     .min(6, 'Пароль має бути мінімум 6 символів')
-    .max(20),
+    .max(20, 'Пароль має бути максимум 20 символів'),
   confirm_password: Yup.string().test(
     'passwords-match',
     'Passwords must match',

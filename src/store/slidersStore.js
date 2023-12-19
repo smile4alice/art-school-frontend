@@ -1,66 +1,62 @@
 import { create } from 'zustand';
+import axios from '@/utils/axios';
+import { isDataValid } from '@/utils/formDataValidation';
 
 const useSlidersStore = create((set, get) => ({
-  server: import.meta.env.VITE_APP_API_URL,
+  slides: [],
 
   getSlides: async () => {
-    const response = await fetch(`${get().server}/slider_main`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+      const response = await axios.get(`/slider_main`);
+      set(() => {
+        return {
+          slides: response.data,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
-    const result = await response.json();
-    return result;
   },
 
   addSlide: async data => {
-    const newSlide = {
-      title: data.title,
-      description: data.text,
-      photo: data.image,
-    };
-    const response = await fetch(`${get().server}/slider_main`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newSlide),
-    });
-    return response.json();
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.post('/slider_main', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
 
   editSlide: async (id, data) => {
-    let newSlide = {};
-    if (data.image[0].size === 0) {
-      newSlide = {
-        title: data.title,
-        description: data.text,
-        photo: data.image[0].name,
-      };
-    } else {
-      newSlide = {
-        title: data.title,
-        description: data.text,
-        photo: data.image,
-      };
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.put(`/slider_main/${id}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
     }
-    const response = await fetch(`${get().server}/slider_main/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newSlide),
-    });
-    return response.json();
   },
 
   deleteSlide: async id => {
-    const response = await fetch(`${get().server}/slider_main/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    console.log(id);
+    const response = await axios.delete(`/slider_main/${id}`);
+    set(() => {
+      return {
+        slides: get().slides.filter(slide => slide.id !== id),
+      };
     });
-    return response.json();
+    return response;
   },
 }));
 
