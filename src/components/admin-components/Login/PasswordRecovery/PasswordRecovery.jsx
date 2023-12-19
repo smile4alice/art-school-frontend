@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { recoveryValidation } from './validationSchema';
+import useAuthStore from '@/store/authStore';
 import Heading from '../Heading/Heading';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
@@ -11,8 +12,13 @@ const initialValues = {
 };
 
 const PasswordRecovery = () => {
-  const onSubmit = () => {
-    console.log('Увійти');
+  const { sendMail } = useAuthStore();
+
+  const onSubmit = async values => {
+    const data = {
+      email: values.email,
+    };
+    await sendMail(data);
   };
 
   return (

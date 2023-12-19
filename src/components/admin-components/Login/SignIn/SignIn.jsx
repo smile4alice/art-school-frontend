@@ -1,5 +1,5 @@
 import { Formik, Form, Field } from 'formik';
-
+import useAuthStore from '@/store/authStore';
 import Heading from '../Heading/Heading';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
 import PasswordInput from '../../formik/PasswordInput/PasswordInput';
@@ -14,8 +14,13 @@ const initialValues = {
 };
 
 const SignIn = () => {
-  const onSubmit = () => {
-    console.log('Увійти');
+  const { login } = useAuthStore();
+
+  const onSubmit = async values => {
+    const formData = new FormData();
+    formData.append('password', values.password);
+    formData.append('username', values.email);
+    await login(formData);
   };
 
   return (

@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import useSlidersStore from '@/store/slidersStore';
+import { useModal } from '@/store/modalStore';
+
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import SlidersTable from '@/components/admin-components/Sliders/SlidersTable/SlidersTable';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
@@ -7,20 +9,20 @@ import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 const breadcrumbs = ['Слайдери'];
 
 const SlidersPageAdmin = () => {
+  const { isModalOpen } = useModal();
   const { getSlides } = useSlidersStore();
-  const [slides, setSlides] = useState([]);
+  const slides = useSlidersStore(state => state.slides);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getSlides();
-        setSlides(result);
+        await getSlides();
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [getSlides]);
+  }, [getSlides, isModalOpen]);
 
   return (
     <div>
@@ -31,7 +33,7 @@ const SlidersPageAdmin = () => {
         showActionButton={true}
         actionButtonLink="/admin/sliders/add"
         isActionButtonDisabled={false}
-        actionButtonLabel="Додати слайдер"
+        actionButtonLabel="Додати слайд"
       />
       <SlidersTable data={slides} />
     </div>
