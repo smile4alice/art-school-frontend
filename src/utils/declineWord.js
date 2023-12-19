@@ -1,16 +1,18 @@
 export const declineWord = string => {
-  let word = '';
   if (string === 'Адреса') {
-    word = 'Адресу';
+    return 'Адресу';
   }
   if (string === 'Карта') {
-    word = 'Карту';
+    return 'Карту';
+  }
+  if (string === 'Електронна пошта') {
+    return 'Електронну Пошту';
   }
   if (string === 'Інформація для вступу') {
-    word = 'Інформацію для вступу';
+    return 'Інформацію для вступу';
   }
   if (string === 'Юридична інформація') {
-    word = 'Юридичну інформацію';
+    return 'Юридичну інформацію';
   }
-  return word;
+  return string;
 };
