@@ -28,6 +28,7 @@ const useAuthStore = create(() => ({
     if (data.email !== undefined) {
       try {
         const response = await axios.post(`/auth/forgot-password`, data, {});
+        console.log(response);
         return response;
       } catch (error) {
         console.error(error);
