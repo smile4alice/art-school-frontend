@@ -1,27 +1,19 @@
 import { useState, useEffect } from 'react';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
-//import useVideoStore from '@/store/videoStore';
+import useVideoStore from '@/store/videoStore';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
 import VideoTable from '@/components/admin-components/Gallery/VideoTable/VideoTable';
 import s from './VideoPage.module.scss';
-const videos = [
-  { media: 'https://www.youtube.com/watch?v=wfe30X9jkQI', id:'1' },
-  { media: 'https://www.youtube.com/watch?v=jdCu1JDLLQU', id:'2' },
-  { media: 'https://www.youtube.com/watch?v=wfe30X9jkQI', id:'3' },
-  { media: 'https://www.youtube.com/watch?v=j-Ifvim9bHE', id:'4' },
-  { media: 'https://www.youtube.com/watch?v=wfe30X9jkQI', id:'5' },
-  { media:  'https://www.youtube.com/watch?v=twsX3imm6mo', id:'6' },
-];
 
 const breadcrumbs = ['Відеогалерея'];
 
 const VideoPageAdmin = () => {
-// const { getAllVideo } = useVideoStore();
-  const [videoData, setVideoData] = useState(videos);
-  const [loadingState, setLoadingState] = useState('success');
-/*
+  const { getAllVideo } = useVideoStore();
+  const [videoData, setVideoData] = useState([]);
+  const [loadingState, setLoadingState] = useState('loading');
+
   
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +30,7 @@ const VideoPageAdmin = () => {
     fetchData();
   }, [getAllVideo]);
 
-*/
+
   return (
     <div className={s.container}>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
