@@ -4,11 +4,11 @@ const GalleryPage = () => {
   return (
     <AchievementsGalleryPage
       url="gallery"
-      pageTitle={'Фотогалерея'}
+      pageTitle='Фотогалерея'
       actionButtonLink="/admin/gallery/add"
       actionButtonLabel='Додати Фото'
       selectTitle="Всі фото"
-      buttonTitle1="Сторінка Галерея"
+      buttonTitle1="Галерея"
       buttonTitle2="Закріпленні фотографії"
     />
   );

@@ -4,7 +4,7 @@ const OurAchievementsPage = () => {
   return(
      <AchievementsGalleryPage 
      url="achievements" 
-     pageTitle={'Наші досягнення'}
+     pageTitle='Наші досягнення'
      actionButtonLink='/admin/achievements/add'
      actionButtonLabel='Додати Досягнення'
      selectTitle='Всі досягнення'

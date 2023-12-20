@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 const useServicesStore = create((set, get) => ({
   server: 'https://art-school-backend.vercel.app/api/v1/',
+  //server: import.meta.env.VITE_APP_API_URL,
   //отримати всі основні відділення
   getMainDepartments: async () => {
     const response = await fetch(`${get().server}departments`);
@@ -34,7 +35,7 @@ const useServicesStore = create((set, get) => ({
   //досягнення головної сторінки
   getMainAchievements: async (url) => {
     const response = await fetch(
-      `${get().server}${url}?is_pinned=true&reverse=true&page=1&size=12`
+      `${get().server}${url}?is_pinned=true&reverse=true&page=1&size=20`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -45,7 +46,7 @@ const useServicesStore = create((set, get) => ({
   // досягнення відділу по id
   getDepartmentAchievements: async (url, departmentId) => {
     const response = await fetch(
-      `${get().server}departments/sub_department_${url === 'achievements'? 'achievement' : url}/${departmentId}?page=1&size=40`
+      `${get().server}departments/sub_department_${url === 'achievements' ? 'achievement' : url}/${departmentId}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

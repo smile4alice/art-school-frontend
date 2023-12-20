@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { achievementsValidation } from '@/components/admin-components/OurAchievements/validationSchema';
 import useServicesStore from '@/store/serviseStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
@@ -9,7 +10,8 @@ import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/But
 import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
 import AchievementPositions from '@/components/admin-components/OurAchievements/AchievementPositions/AchievementsPositions';
-import s from '../../../../pages/admin-pages/OurAchievementsAdmin/AchievementsAdmin.module.scss'
+import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+import s from '../../../../pages/admin-pages/OurAchievementsAdmin/AchievementsAdmin.module.scss';
 
 const initialValues = {
   pinned_position: '',
@@ -18,20 +20,37 @@ const initialValues = {
   media: null,
 };
 
-const AddNewObjectPage = ({pageTitle, backButtonLink, selectTitle, achievementPositionsTitle, url}) => {
+const AddNewObjectPage = ({
+  pageTitle,
+  backButtonLink,
+  selectTitle,
+  achievementPositionsTitle,
+  url,
+}) => {
+  const navigate = useNavigate();
   const { addAchievement, getAchievementsPositions } = useServicesStore();
   const [achievementPositions, setAchievementsPositions] = useState({});
   const [title, setTitle] = useState(selectTitle);
   const [isProcessing, setIsProcessing] = useState(false);
+  let breadcrumbs;
+  const setBreadcrumbs = url => {
+    if (url === 'achievements') {
+      breadcrumbs = ['Наші Досягнення', 'Додати досягнення'];
+    } else if (url === 'gallery') {
+      breadcrumbs = ['Фотогалерея', 'Додати фото в галерею'];
+    }
+    title !== selectTitle ? breadcrumbs.push(title): '';
+    return breadcrumbs;
+  };
+  setBreadcrumbs(url);
 
   const onSubmit = async (values, formikBag) => {
     try {
       setIsProcessing(true);
       await addAchievement(url, values);
       setIsProcessing(false);
-      const result = await getAchievementsPositions(url);
-      setAchievementsPositions(result);
       formikBag.resetForm();
+      navigate(`/admin/${url}`);
     } catch (error) {
       console.error(error);
       setIsProcessing(false);
@@ -52,6 +71,7 @@ const AddNewObjectPage = ({pageTitle, backButtonLink, selectTitle, achievementPo
 
   return (
     <div className={s.container}>
+      <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
         title={pageTitle}
         showBackButton={true}

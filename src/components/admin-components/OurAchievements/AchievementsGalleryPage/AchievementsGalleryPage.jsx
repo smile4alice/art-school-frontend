@@ -7,6 +7,7 @@ import AchievementsTable from '@/components/admin-components/OurAchievements/Ach
 import GalleryTable from '@/components/admin-components/OurAchievements/GalleryTable/GalleryTable';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
+import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import s from '../../../../pages/admin-pages/OurAchievementsAdmin/AchievementsAdmin.module.scss';
 
 const AchievementsGalleryPage = ({
@@ -27,8 +28,25 @@ const AchievementsGalleryPage = ({
     useState('allAchievements');
   const [loadingState, setLoadingState] = useState('loading');
   const page = '1';
-  const pageSize = '20';
-  //встановлення id відділу через select, якщо все вірно
+  const pageSize = '50';
+  let breadcrumbs;
+
+  const setBreadcrumbs = (url, title) => {
+    if(url === 'achievements'){
+      breadcrumbs = ['Наші Досягнення']
+    }else if(url === 'gallery'){
+      breadcrumbs = ['Фотогалерея']
+    }
+    if(title !== selectTitle && typeOfAchievements !== 'mainAchievements'){
+      breadcrumbs.push(title);
+    }
+    if(typeOfAchievements === 'mainAchievements'){
+      breadcrumbs.push( url === achievements ? 'Закріпленні досягнення' : 'Закріпленні фотографії');
+    }
+    return breadcrumbs;
+  };
+  setBreadcrumbs(url, title);
+
   const changeDepartment = (id, title) => {
     if (id !== undefined && id !== null) {
       setDepartmentId(id);
@@ -57,7 +75,6 @@ const AchievementsGalleryPage = ({
         setLoadingState('error');
       }
     };
-
     fetchData();
   }, [
     getAllAchievements,
@@ -72,6 +89,7 @@ const AchievementsGalleryPage = ({
 
   return (
     <div className={s.container}>
+      <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
         title={pageTitle}
         showBackButton={false}

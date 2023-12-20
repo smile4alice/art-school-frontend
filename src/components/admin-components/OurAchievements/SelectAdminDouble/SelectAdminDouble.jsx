@@ -68,7 +68,7 @@ const SelectAdminDouble = ({ changeDepartment }) => {
         ref={selectRef}
       >
         <span>Виберіть відділ</span>
-        <img className={s.arrow} src="/icons/arrow.svg" alt="filter" />
+        <img className={s.arrow} src="/icons/arrow.svg" alt="arrow icon" />
       </div>
       {optionsVisible && (
         <div className={s.optionsContainer} ref={selectOptionsRef}>
@@ -82,8 +82,8 @@ const SelectAdminDouble = ({ changeDepartment }) => {
                 toggleSecondOptionsVisible(option.id);
               }}
             >
-              <div className={s.button}> {option.department_name}</div>
-
+              <div className={s.button}> {option.department_name} <img className={s.arrow} src="/icons/arrow.svg" alt="arrow icon" /></div>
+             
               {selectedOptionId === option.id &&
                 (loadingState !== 'loading' ? (
                   <div className={s.secondOptionsContainer}>

@@ -1,38 +1,117 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
+import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { images } from '@/data/gallery.json';
-import styles from './Gallery.module.scss';
-import { Link } from 'react-router-dom';
+import useServicesStore from '@/store/serviseStore';
+import Spinner from '@/components/ui/Spinner/Spinner';
+import Placeholder from '@/components/ui/Placeholder/Placeholder';
+import s from './Gallery.module.scss';
 
 const Gallery = () => {
+  const { getMainAchievements } = useServicesStore();
   const swiperRef = useRef();
-  const isLaptop = useMediaQuery({ minWidth: 1024 });
-  const isTablet = useMediaQuery({ maxWidth: 1023 });
-  const isMobile = useMediaQuery({ maxWidth: 678 });
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  const [galleryData, setGalleryData] = useState([]);
+  const [loadingState, setLoadingState] = useState('loading');
 
-  const slidesLength = isMobile ? 1 : 2;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let result;
+        setLoadingState('loading');
+        result = await getMainAchievements('gallery');
+        setGalleryData(result);
+        setLoadingState('success');
+      } catch (error) {
+        setLoadingState('error');
+      }
+    };
+    fetchData();
+  }, [getMainAchievements]);
 
   return (
     <Container>
-      <section className={styles.Gallery}>
-        <div className={styles.galleryHeading}>
-          <h1>Галерея</h1>
-        </div>
+      <section className={s.gallerySection}>
+        <h2 className={s.title}>Галерея</h2>
+
+        {isDesktop && (
+          <div className={s.ButtonContainer}>
+            <NavLinkButton text={'Дивитися більше'} href={'/gallery'} />
+          </div>
+        )}
+        {loadingState === 'loading' && (
+          <div className={s.errorData}>
+            <Spinner />
+          </div>
+        )}
+        {loadingState === 'error' && (
+          <div className={s.errorData}>
+            <Placeholder />
+          </div>
+        )}
+        {loadingState === 'success' &&
+          galleryData?.length > 0 &&
+          (isDesktop ? (
+            <div className={s.gallery}>
+              {galleryData.map(image => (
+                <div key={image.date} className={s.item}>
+                  <img src={image.media} alt={image.description} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <Swiper
+              className={s.slider}
+              modules={[Pagination]}
+              spaceBetween={16}
+              slidesPerView={1}
+              breakpoints={{
+                768: {
+                  slidesPerView: 2,
+                },
+                1280: {
+                  slidesPerView: 3,
+                },
+              }}
+              pagination={{ clickable: true }}
+              loop={true}
+              onSwiper={swiper => {
+                swiperRef.current = swiper;
+              }}
+            >
+              {galleryData.map((slide, index) => (
+                <SwiperSlide key={index} className={s.slide}>
+                  <img src={slide.media} alt={slide.description} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ))}
+        {!isDesktop && (
+          <div className={s.ButtonContainer}>
+            <NavLinkButton text={'Дивитися більше'} href={'/gallery'} />
+          </div>
+        )}
+      </section>
+    </Container>
+  );
+};
+
+export default Gallery;
+
+/**
         {isLaptop && (
-          <div className={styles.ButtonContainer}>
+          <div className={s.ButtonContainer}>
             <Link to={'/gallery'}>
               <NavLinkButton title={'Дивитися більше'} />
             </Link>
           </div>
         )}
         {isLaptop && (
-          <div className={styles.gallery}>
-            {images.slice(0, 7).map(image => (
-              <div key={image.date} className={styles.item}>
+          <div className={s.gallery}>
+            {galleryData.map(image => (
+              <div key={image.date} className={s.item}>
                 <img src={image.url} alt={image.alt} />
               </div>
             ))}
@@ -41,7 +120,7 @@ const Gallery = () => {
         {isTablet && (
           <>
             <Swiper
-              className={styles.Slider}
+              className={s.Slider}
               spaceBetween={10}
               slidesPerView={slidesLength}
               modules={[Pagination]}
@@ -52,21 +131,17 @@ const Gallery = () => {
               }}
             >
               {images.slice(0, 5).map((slide, index) => (
-                <SwiperSlide key={index} className={styles.Slide}>
+                <SwiperSlide key={index} className={s.Slide}>
                   <img src={slide.url} alt={slide.title} />
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className={styles.ButtonContainer}>
+            <div className={s.ButtonContainer}>
               <Link to={'/gallery'}>
                 <NavLinkButton title={'Дивитися більше'} />
               </Link>
             </div>
           </>
         )}
-      </section>
-    </Container>
-  );
-};
-
-export default Gallery;
+        
+ */
