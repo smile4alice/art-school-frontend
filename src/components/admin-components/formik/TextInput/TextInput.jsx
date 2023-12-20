@@ -73,8 +73,14 @@ const TextInput = ({
         placeholder={placeholder ? placeholder : ''}
         {...field}
       />
-      {showCharacterCount && (
-        <div className={styles.commentsWrapper}>
+
+      <div className={styles.commentsWrapper}>
+        <div className={styles.errorWrap}>
+          {errors?.[field.name] && isFieldTouched && (
+            <p className={styles.errorMessage}>{errors?.[field.name]}</p>
+          )}
+        </div>
+        {showCharacterCount && (
           <p
             className={`${styles.counterMessage} ${
               valueLength > maxLength ? styles.redText : ''
@@ -82,17 +88,8 @@ const TextInput = ({
           >
             {`${valueLength}/${maxLength}`}
           </p>
-        </div>
-      )}
-      {errors?.[field.name] && (
-        <div className={styles.commentsWrapper}>
-          <div className={styles.errorWrap}>
-            {errors?.[field.name] && isFieldTouched && (
-              <p className={styles.errorMessage}>{errors?.[field.name]}</p>
-            )}
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

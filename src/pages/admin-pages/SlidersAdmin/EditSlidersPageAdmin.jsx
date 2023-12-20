@@ -24,13 +24,14 @@ const EditSlidersPage = () => {
   const navigate = useNavigate();
   const { getSlides, editSlide } = useSlidersStore();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [slide, setSlide] = useState({});
+  const slide = useSlidersStore(state =>
+    state.slides.find(item => item.id == id)
+  );
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getSlides();
-        setSlide(result.find(item => item.id == id));
+        await getSlides();
       } catch (error) {
         console.log(error);
       }

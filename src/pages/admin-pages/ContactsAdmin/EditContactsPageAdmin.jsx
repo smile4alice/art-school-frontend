@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { declineWord } from '@/utils/declineWord';
@@ -12,6 +12,7 @@ import styles from './ContactsAdmin.module.scss';
 
 const EditContactsPageAdmin = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { key, title, value } = location.state;
   const { editContact } = useContactsStore();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -24,6 +25,7 @@ const EditContactsPageAdmin = () => {
       setIsProcessing(true);
       await editContact(values);
       setIsProcessing(false);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }

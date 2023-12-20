@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import useAdministrationStore from '@/store/administrationStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import AdminTable from '@/components/admin-components/SchoolSdministration/AdminTable/AdminTable';
@@ -8,13 +8,14 @@ const breadcrumbs = ['Адміністрація школи'];
 
 const SchoolAdministrationPage = () => {
   const { getMembers } = useAdministrationStore();
-  const [members, setMembers] = useState([]);
+  const members = useAdministrationStore(state => state.members);
+
+  console.log(members);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getMembers();
-        setMembers(result);
+        await getMembers();
       } catch (error) {
         console.log(error);
       }

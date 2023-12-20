@@ -17,13 +17,16 @@ function isValidFileType(fileType) {
 
 export const administrationValidation = Yup.object().shape({
   full_name: Yup.string()
-    .min(2)
-    .max(120)
-    .matches(/^[а-яА-ЯҐґЄєІіЇї-]+$/, 'Введіть коректне ім’я'),
+    .min(2, 'Мінімальна довжина імені 2 символи')
+    .max(60, 'Максимальна довжина імені 60 символів')
+    .matches(/^[а-яА-ЯҐґЄєІіЇї\s'’`.,:;"()!?-]+$/i, 'Введіть коректне ім’я'),
   position: Yup.string()
-    .min(2)
-    .max(2000)
-    .matches(/^[а-яА-ЯҐґЄєІіЇї'.,:;"()-]+$/, 'Введіть коректну назву посади'),
+    .min(2, 'Мінімальна довжина поля 2 символи')
+    .max(120, 'Максимальна довжина поля 120 символів')
+    .matches(
+      /^[а-яА-ЯҐґЄєІіЇї\s\d'’`.,:;"()!?-]+$/i,
+      'Введіть коректну назву посади'
+    ),
   image: Yup.mixed()
     .test('is-value', 'Додайте зображення', value => value && value.length > 0)
     .test('is-image-from-db', 'Додайте зображення', value => {

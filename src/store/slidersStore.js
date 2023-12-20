@@ -49,7 +49,6 @@ const useSlidersStore = create((set, get) => ({
   },
 
   deleteSlide: async id => {
-    console.log(id);
     const response = await axios.delete(`/slider_main/${id}`);
     set(() => {
       return {

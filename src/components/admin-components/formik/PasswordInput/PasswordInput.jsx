@@ -34,9 +34,6 @@ const PasswordInput = ({
   }, [isFieldTouched, valueLength]);
 
   const getBorderColor = () => {
-    if (valueLength > maxLength) {
-      return styles.redBorder;
-    }
     if (errors?.[field.name]) {
       return styles.redBorder;
     }
@@ -67,7 +64,7 @@ const PasswordInput = ({
       <label htmlFor={id} className={styles.inputLabel}>
         {label}
       </label>
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper}`}>
         <input
           id={id}
           type={inputType === 'password-hide' ? 'password' : 'text'}

@@ -34,6 +34,9 @@ const TextArea = ({
     if (valueLength > maxLength) {
       return styles.redBorder;
     }
+    if (errors?.[field.name]) {
+      return styles.redBorder;
+    }
     if (isFocused) {
       return styles.blueBorder;
     }
@@ -67,13 +70,13 @@ const TextArea = ({
         onClick={() => setIsFocused(true)}
         {...field}
       />
-      {showCharacterCount && (
-        <div className={styles.commentsWrapper}>
-          <div className={styles.errorWrap}>
-            {errors?.[field.name] && isFieldTouched && (
-              <p className={styles.errorMessage}>{errors?.[field.name]}</p>
-            )}
-          </div>
+      <div className={styles.commentsWrapper}>
+        <div className={styles.errorWrap}>
+          {errors?.[field.name] && isFieldTouched && (
+            <p className={styles.errorMessage}>{errors?.[field.name]}</p>
+          )}
+        </div>
+        {showCharacterCount && (
           <p
             className={`${styles.counterMessage} ${
               valueLength > maxLength ? styles.redText : ''
@@ -81,8 +84,8 @@ const TextArea = ({
           >
             {`${valueLength}/${maxLength}`}
           </p>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

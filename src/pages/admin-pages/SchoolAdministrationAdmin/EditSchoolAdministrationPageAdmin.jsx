@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { administrationValidation } from './validationSchema';
 import useAdministrationStore from '@/store/administrationStore';
@@ -21,15 +21,15 @@ const initialValues = {
 
 const EditSchoolAdministrationPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { getOneMember, editMember } = useAdministrationStore();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [member, setMember] = useState({});
+  const member = useAdministrationStore(state => state.member);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getOneMember(id);
-        setMember(result);
+        await getOneMember(id);
       } catch (error) {
         console.log(error);
       }
@@ -39,9 +39,20 @@ const EditSchoolAdministrationPage = () => {
 
   const onSubmit = async values => {
     try {
+      const formData = new FormData();
+      formData.append('full_name', values.full_name);
+      formData.append('position', values.position);
+
+      if (values.image[0].size === 0) {
+        formData.append('photo', '');
+      } else {
+        formData.append('photo', values.image[0]);
+      }
+
       setIsProcessing(true);
-      await editMember(values);
+      await editMember(id, formData);
       setIsProcessing(false);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
@@ -69,20 +80,20 @@ const EditSchoolAdministrationPage = () => {
                   name="full_name"
                   id="full_name"
                   component={TextInput}
-                  maxLength={120}
+                  maxLength={60}
                   showCharacterCount={true}
                   label="ПІБ Працівника"
-                  text={member.full_name}
+                  text={member?.full_name}
                 />
                 <div className={styles.secondRow}>
                   <Field
                     name="position"
                     id="position"
                     component={TextArea}
-                    maxLength={2000}
+                    maxLength={120}
                     showCharacterCount={true}
                     label="Посада Працівника"
-                    text={member.position}
+                    text={member?.position}
                   />
                   <Field
                     name="image"

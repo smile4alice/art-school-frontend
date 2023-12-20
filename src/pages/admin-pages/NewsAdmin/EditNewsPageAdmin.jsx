@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import useNewsStore from '@/store/newsStore';
 import { newsValidation } from './validationSchema';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
@@ -21,15 +21,15 @@ const initialValues = {
 
 const EditNewsPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { getOnePost, editPost } = useNewsStore();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [post, setPost] = useState({});
+  const post = useNewsStore(state => state.post);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getOnePost(id);
-        setPost(result);
+        await getOnePost(id);
       } catch (error) {
         console.log(error);
       }
@@ -39,9 +39,20 @@ const EditNewsPage = () => {
 
   const onSubmit = async values => {
     try {
+      const formData = new FormData();
+      formData.append('title', values.title);
+      formData.append('text', values.text);
+
+      if (values.image[0].size === 0) {
+        formData.append('photo', '');
+      } else {
+        formData.append('photo', values.image[0]);
+      }
+
       setIsProcessing(true);
-      await editPost(id, values);
+      await editPost(id, formData);
       setIsProcessing(false);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
@@ -84,14 +95,14 @@ const EditNewsPage = () => {
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}
-                    text={post.text}
+                    text={post?.text}
                     label="Текст Новини"
                   />
                   <Field
                     name="image"
                     id="image"
                     component={FileInput}
-                    photo={post.photo}
+                    photo={post?.photo}
                     label="Фото"
                   />
                 </div>
