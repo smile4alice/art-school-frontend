@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import useContactsStore from '@/store/contactsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import ContactsTable from '@/components/admin-components/Сontacts/ContactsTable/ContactsTable';
@@ -8,13 +8,13 @@ const breadcrumbs = ['Контакти'];
 
 const ContactsPageAdmin = () => {
   const { getContacts } = useContactsStore();
-  const [contacts, setContacts] = useState({});
+
+  const contacts = useContactsStore(state => state.contacts);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getContacts();
-        setContacts(result);
+        await getContacts();
       } catch (error) {
         console.log(error);
       }

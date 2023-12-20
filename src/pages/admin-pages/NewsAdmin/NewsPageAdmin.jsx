@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import useNewsStore from '@/store/newsStore';
 import NewsTable from '@/components/admin-components/News/NewsTable/NewsTable';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
@@ -8,13 +8,12 @@ const breadcrumbs = ['Новини'];
 
 const NewsPageAdmin = () => {
   const { getNews } = useNewsStore();
-  const [news, setNews] = useState([]);
+  const news = useNewsStore(state => state.news);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getNews();
-        setNews(result.items);
+        await getNews();
       } catch (error) {
         console.log(error);
       }

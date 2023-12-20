@@ -1,75 +1,75 @@
 import { create } from 'zustand';
+import axios from '@/utils/axios';
+import { isDataValid } from '@/utils/formDataValidation';
 
 const useNewsStore = create((set, get) => ({
-  server: import.meta.env.VITE_APP_API_URL,
+  news: [],
+  post: {},
 
   getNews: async () => {
-    const response = await fetch(`${get().server}/news`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+      const response = await axios.get(`/news`);
+      set(() => {
+        return {
+          news: response.data.items,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
-    const result = await response.json();
-    return result;
   },
 
   getOnePost: async id => {
-    const response = await fetch(`${get().server}/news/${id}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+      const response = await axios.get(`/news/${id}`);
+      set(() => {
+        return {
+          post: response.data,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
-    const result = await response.json();
-    return result;
   },
 
   addPost: async data => {
-    const newPost = {
-      title: data.title,
-      text: data.text,
-      photo: data.image,
-    };
-    const response = await fetch(`${get().server}/news`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newPost),
-    });
-    return response.json();
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.post('/news', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
 
   editPost: async (id, data) => {
-    let newPost = {};
-    if (data.image[0].size === 0) {
-      newPost = {
-        title: data.title,
-        text: data.text,
-        photo: data.image[0].name,
-      };
-    } else {
-      newPost = {
-        title: data.title,
-        text: data.text,
-        photo: data.image,
-      };
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.patch(`/news/${id}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
     }
-    const response = await fetch(`${get().server}/news/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newPost),
-    });
-    return response.json();
   },
 
   deletePost: async id => {
-    const response = await fetch(`${get().server}/news/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const response = await axios.delete(`/news/${id}`);
+    set(() => {
+      return {
+        news: get().news.filter(post => post.id !== id),
+      };
     });
-    return response.json();
+    return response;
   },
 }));
 
