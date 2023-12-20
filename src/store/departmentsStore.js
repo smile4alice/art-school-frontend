@@ -2,16 +2,17 @@ import { create } from 'zustand';
 import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
-const useNewsStore = create((set, get) => ({
-  news: [],
-  post: {},
+const useDepartmentsStore = create((set, get) => ({
+  slides: [],
+  departments: [],
+  department: [],
 
-  getNews: async () => {
+  getDepartments: async () => {
     try {
-      const response = await axios.get(`/news`);
+      const response = await axios.get(`/departments`);
       set(() => {
         return {
-          news: response.data.items,
+          departments: response.data,
         };
       });
     } catch (error) {
@@ -19,12 +20,12 @@ const useNewsStore = create((set, get) => ({
     }
   },
 
-  getOnePost: async id => {
+  getOneDepartment: async id => {
     try {
-      const response = await axios.get(`/news/${id}`);
+      const response = await axios.get(`/departments/${id}`);
       set(() => {
         return {
-          post: response.data,
+          department: response.data,
         };
       });
     } catch (error) {
@@ -32,10 +33,10 @@ const useNewsStore = create((set, get) => ({
     }
   },
 
-  addPost: async data => {
+  addSlide: async data => {
     if (isDataValid(data)) {
       try {
-        const response = await axios.post('/news', data, {
+        const response = await axios.post('/slider_main', data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -47,10 +48,10 @@ const useNewsStore = create((set, get) => ({
     }
   },
 
-  editPost: async (id, data) => {
+  editSlide: async (id, data) => {
     if (isDataValid(data)) {
       try {
-        const response = await axios.patch(`/news/${id}`, data, {
+        const response = await axios.put(`/slider_main/${id}`, data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -62,15 +63,16 @@ const useNewsStore = create((set, get) => ({
     }
   },
 
-  deletePost: async id => {
-    const response = await axios.delete(`/news/${id}`);
+  deleteSlide: async id => {
+    console.log(id);
+    const response = await axios.delete(`/slider_main/${id}`);
     set(() => {
       return {
-        news: get().news.filter(post => post.id !== id),
+        slides: get().slides.filter(slide => slide.id !== id),
       };
     });
     return response;
   },
 }));
 
-export default useNewsStore;
+export default useDepartmentsStore;

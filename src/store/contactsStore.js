@@ -1,26 +1,30 @@
 import { create } from 'zustand';
+import axios from '@/utils/axios';
 
-const useContactsStore = create((set, get) => ({
-  server: import.meta.env.VITE_APP_API_URL,
+const useContactsStore = create(set => ({
+  contacts: {},
 
   getContacts: async () => {
-    const response = await fetch(`${get().server}/contacts`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+      const response = await axios.get(`/contacts`);
+      set(() => {
+        return {
+          contacts: response.data,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
-    const result = await response.json();
-    return result;
   },
 
   editContact: async data => {
-    const response = await fetch(`${get().server}/contacts`, {
-      method: 'PATCH',
+    const body = JSON.stringify(data);
+    const response = await axios.patch('/contacts', body, {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
     });
-    return response.json();
+    return response;
   },
 }));
 
