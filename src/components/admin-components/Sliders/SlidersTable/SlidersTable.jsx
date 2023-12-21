@@ -7,12 +7,14 @@ import { subString } from '@/utils/subString';
 import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './SlidersTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
+import SpinnerAdmin from '../../SpinnerAdmin/SpinnerAdmin';
 
 const SlidersTable = ({ data }) => {
   const { deleteSlide } = useSlidersStore();
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
+  const loading = useSlidersStore(state => state.loading);
 
   const removePost = async () => {
     if (isDeleteConfirm && data.length > 1) {
@@ -25,6 +27,8 @@ const SlidersTable = ({ data }) => {
       closeModal();
     }
   };
+
+  if (loading) return <SpinnerAdmin />;
 
   return (
     <div className={styles.contentWrap}>

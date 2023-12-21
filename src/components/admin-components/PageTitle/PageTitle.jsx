@@ -1,10 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import sprite from '../../../assets/icons/sprite-admin.svg';
 import styles from './PageTitle.module.scss';
 
 const PageTitle = ({
   title,
+  stateTitle,
+  stateId,
   showBackButton,
   backButtonLink,
   showActionButton,
@@ -13,21 +14,28 @@ const PageTitle = ({
   actionButtonLabel,
 }) => {
   return (
-     <div className={styles.pageTitle}>
-        <div className={styles.titleWrap}>
-            {showBackButton && (
-               <Link to={backButtonLink} className={styles.backButton}>
-                  <svg width="20" height="21">
-                  <use href={`${sprite}#icon-arrow-left`} className={styles.icon} />
-                  </svg>
-               </Link>
-               )}        
-           <div className={styles.headerTitle}>{title}</div>
-         </div>
+    <div className={styles.pageTitle}>
+      <div className={styles.titleWrap}>
+        {showBackButton && (
+          <Link
+            to={backButtonLink}
+            className={styles.backButton}
+            state={{ title: stateTitle, departmentId: stateId }}
+          >
+            <svg width="20" height="21">
+              <use href={`${sprite}#icon-arrow-left`} className={styles.icon} />
+            </svg>
+          </Link>
+        )}
+        <div className={styles.headerTitle}>{title}</div>
+      </div>
       {showActionButton && (
         <Link
           to={actionButtonLink}
-          className={`${styles.actionButton} ${isActionButtonDisabled ? styles.disabled : ''}`}
+          state={{ title: stateTitle, departmentId: stateId }}
+          className={`${styles.actionButton} ${
+            isActionButtonDisabled ? styles.disabled : ''
+          }`}
           disabled={isActionButtonDisabled}
         >
           <svg width="15" height="15">
@@ -41,7 +49,3 @@ const PageTitle = ({
 };
 
 export default PageTitle;
-
-
-
-

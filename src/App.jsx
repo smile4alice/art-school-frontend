@@ -44,7 +44,9 @@ import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryPageAdmin'
 import AddGalleryPage from './pages/admin-pages/GalleryAdmin/AddGalleryPageAdmin';
 import EditGalleryPage from './pages/admin-pages/GalleryAdmin/EditGalleryPageAdmin';
 import DepartmentsPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
-import DepartmentPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentPage';
+import DepartmentPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentPageAdmin';
+import AddSubDepartmentPage from './pages/admin-pages/DepartmentsAdmin/AddSubDepartmentPage';
+import EditSubDepartmentPage from './pages/admin-pages/DepartmentsAdmin/EditSubDepartmentPage';
 import OurAchievementsPageAdmin from './pages/admin-pages/OurAchievementsAdmin/OurAchievementsPageAdmin';
 import AddOurAchievementsPage from './pages/admin-pages/OurAchievementsAdmin/AddOurAchievementsPageAdmin';
 import EditOurAchievementsPage from './pages/admin-pages/OurAchievementsAdmin/EditOurAchievementsPageAdmin';
@@ -134,7 +136,15 @@ const App = () => {
           <Route path="video/add" element={<AddVideoPage />} />
           <Route path="video/edit/:id" element={<EditVideoPage />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
-          <Route path="department/:id" element={<DepartmentPageAdmin />} />
+          <Route path="departments/:id" element={<DepartmentPageAdmin />} />
+          <Route
+            path="departments/sub_department/add"
+            element={<AddSubDepartmentPage />}
+          />
+          <Route
+            path="departments/sub_department/edit/:id"
+            element={<EditSubDepartmentPage />}
+          />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />
           <Route path="achievements/add" element={<AddOurAchievementsPage />} />
           <Route
