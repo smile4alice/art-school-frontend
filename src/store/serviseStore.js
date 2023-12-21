@@ -2,18 +2,17 @@ import { create } from 'zustand';
 import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
-const useServicesStore = create((set, get) => ({
+const useServicesStore = create((set) => ({
   departments: [],
   subDepartments: [],
   achievements: [],
-  achievement: [],
+  gallery: [],
   achievementsPositions: [],
-  data: [],
-  object: {},
-
+  achievement: {},
+  
   //отримати всі основні відділення
   getMainDepartments: async () => {
-    const response = await axios.get('departments');
+    const response = await axios.get('/departments');
     try {
       set(() => {
         return {
@@ -26,7 +25,7 @@ const useServicesStore = create((set, get) => ({
   },
   //отримати всі відділи відділень по id основних відділень
   getSubDepartments: async id => {
-    const response = await axios.get(`departments/${id}`);
+    const response = await axios.get(`/departments/${id}`);
     try {
       set(() => {
         return {
@@ -39,12 +38,18 @@ const useServicesStore = create((set, get) => ({
   },
   //всі досягнення
   getAllAchievements: async (url, page, size) => {
-    const response = await axios.get(`/${url}?page=${page}&size=${size}`);
     try {
+      const response = await axios.get(`/${url}?page=${page}&size=${size}`);
       set(() => {
-        return {
-          achievements: response.data.items,
-        };
+        if(url === 'gallery'){
+          return {
+            gallery: response.data.items,
+          };
+        }else{
+          return {
+            achievements: response.data.items,
+          };
+        }
       });
     } catch (error) {
       throw new Error(error);
@@ -52,14 +57,20 @@ const useServicesStore = create((set, get) => ({
   },
   //досягнення головної сторінки
   getMainAchievements: async url => {
-    const response = await axios.get(
-      `/${url}?is_pinned=true&reverse=true&page=1&size=20`
-    );
     try {
+      const response = await axios.get(
+        `/${url}?is_pinned=true&reverse=true&page=1&size=20`
+      );
       set(() => {
-        return {
-          achievements: response.data.items,
-        };
+        if(url === 'gallery'){
+          return {
+            gallery: response.data.items,
+          };
+        }else{
+          return {
+            achievements: response.data.items,
+          };
+        }
       });
     } catch (error) {
       throw new Error(error);
@@ -67,16 +78,22 @@ const useServicesStore = create((set, get) => ({
   },
   // досягнення відділу по id
   getDepartmentAchievements: async (url, id) => {
-    const response = await axios.get(
-      `/departments/sub_department_${
-        url === 'achievements' ? 'achievement' : url
-      }/${id}`
-    );
     try {
+      const response = await axios.get(
+        `/departments/sub_department_${
+          url === 'achievements' ? 'achievement' : url
+        }/${id}`
+      );
       set(() => {
-        return {
-          achievements: response.data,
-        };
+        if(url === 'gallery'){
+          return {
+            gallery: response.data.items,
+          };
+        }else{
+          return {
+            achievements: response.data.items,
+          };
+        }
       });
     } catch (error) {
       throw new Error(error);
@@ -96,51 +113,23 @@ const useServicesStore = create((set, get) => ({
     }
   },
   // додати досягнення
-  addAchievement: async (url, achievements) => {
-    if (isDataValid(achievements)) {
-      const queryParams = new URLSearchParams();
-      if (achievements.pinned_position !== '') {
-        queryParams.append('pinned_position', achievements.pinned_position);
-      }
-      if (achievements.sub_department !== '') {
-        queryParams.append('sub_department', achievements.sub_department);
-      }
-      queryParams.append('description', achievements.description);
-      try {
+  addAchievement: async (url, data) => {
+    try {
+      if (isDataValid(data)) {
+        const queryParams = new URLSearchParams();
+        if (data.get('pinned_position') !== '') {
+          queryParams.append('pinned_position', data.get('pinned_position'));
+        }
+        if (data.get('sub_department') !== '') {
+          queryParams.append('sub_department', data.get('sub_department'));
+        }
+        if (data.get('description') !== '') {
+          queryParams.append('description', data.get('description'));
+        }
         const response = await axios.post(
           `/${
             url === 'gallery' ? 'gallery/photo' : url
           }?${queryParams.toString()}`,
-          achievements,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
-        return response;
-      } catch (error) {
-        throw new Error(error);
-      }
-    }
-  },
-  //зміна досягнення
-  editAchievement: async (url, id, data) => {
-    if (isDataValid(data)) {
-      const queryParams = new URLSearchParams();
-      if (data.pinned_position !== '') {
-        queryParams.append('pinned_position', data.pinned_position);
-      }
-      if (data.sub_department !== '') {
-        queryParams.append('sub_department', data.sub_department);
-      }
-      queryParams.append('description', data.description);
-
-      try {
-        const response = await axios.put(
-          `/${
-            url === 'gallery' ? 'gallery/photo' : url
-          }/${id}?${queryParams.toString()}`,
           data,
           {
             headers: {
@@ -149,25 +138,62 @@ const useServicesStore = create((set, get) => ({
           }
         );
         return response;
-      } catch (error) {
-        throw new Error(error);
       }
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  //зміна досягнення
+  editAchievement: async (url, id, data) => {
+    try {
+      if (isDataValid(data)) {
+        const queryParams = new URLSearchParams();
+        if (data.get('pinned_position') !== '') {
+          queryParams.append('pinned_position', data.get('pinned_position'));
+        } 
+        if (data.get('sub_department') !== '') {
+          queryParams.append('sub_department', data.get('sub_department'));
+        }
+        if (data.get('description') !== '') {
+          queryParams.append('description', data.get('description'));
+        }
+        const response = await axios.put(
+          `/${url === 'gallery' ? 'gallery/photo' : url}/${id}?${queryParams.toString()}`,
+          data,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        );
+        return response;
+      }
+    } catch (error) {
+      throw new Error(error);
     }
   },
   //видалення досягнення
   deleteAchievement: async (url, id) => {
-    const response = await axios.delete(`/${url}/${id}`);
-    set(() => {
-      return {
-        data: get().data.filter(object => object.id !== id),
-      };
-    });
-    return response;
+    try {
+      const response = await axios.delete(`/${url}/${id}`);
+      if(url === 'gallery'){
+        set(state => ({
+          gallery: state.gallery.filter(item => item.id !== id),
+        }));
+      }else{
+        set(state => ({
+          achievements: state.achievements.filter(item => item.id !== id),
+        }));
+      }
+      return response;
+    } catch (error) {
+      throw new Error(error);
+    }
   },
   //Позиції досягнень головної сторінки
   getAchievementsPositions: async url => {
-    const response = await axios.get(`/${url}/positions`);
     try {
+      const response = await axios.get(`/${url}/positions`);
       set(() => {
         return {
           achievementsPositions: response.data,

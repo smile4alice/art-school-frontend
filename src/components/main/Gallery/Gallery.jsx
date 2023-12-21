@@ -13,16 +13,14 @@ const Gallery = () => {
   const { getMainAchievements } = useServicesStore();
   const swiperRef = useRef();
   const isDesktop = useMediaQuery({ minWidth: 1024 });
-  const [galleryData, setGalleryData] = useState([]);
+  const gallery = useServicesStore(state => state.gallery);
   const [loadingState, setLoadingState] = useState('loading');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let result;
         setLoadingState('loading');
-        result = await getMainAchievements('gallery');
-        setGalleryData(result);
+        await getMainAchievements('gallery');
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
@@ -52,10 +50,10 @@ const Gallery = () => {
           </div>
         )}
         {loadingState === 'success' &&
-          galleryData?.length > 0 &&
+          gallery?.length > 0 &&
           (isDesktop ? (
             <div className={s.gallery}>
-              {galleryData.map(image => (
+              {gallery.map(image => (
                 <div key={image.date} className={s.item}>
                   <img src={image.media} alt={image.description} />
                 </div>
@@ -81,7 +79,7 @@ const Gallery = () => {
                 swiperRef.current = swiper;
               }}
             >
-              {galleryData.map((slide, index) => (
+              {gallery.map((slide, index) => (
                 <SwiperSlide key={index} className={s.slide}>
                   <img src={slide.media} alt={slide.description} />
                 </SwiperSlide>
@@ -99,49 +97,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-
-/**
-        {isLaptop && (
-          <div className={s.ButtonContainer}>
-            <Link to={'/gallery'}>
-              <NavLinkButton title={'Дивитися більше'} />
-            </Link>
-          </div>
-        )}
-        {isLaptop && (
-          <div className={s.gallery}>
-            {galleryData.map(image => (
-              <div key={image.date} className={s.item}>
-                <img src={image.url} alt={image.alt} />
-              </div>
-            ))}
-          </div>
-        )}
-        {isTablet && (
-          <>
-            <Swiper
-              className={s.Slider}
-              spaceBetween={10}
-              slidesPerView={slidesLength}
-              modules={[Pagination]}
-              pagination={{ clickable: true }}
-              loop={true}
-              onSwiper={swiper => {
-                swiperRef.current = swiper;
-              }}
-            >
-              {images.slice(0, 5).map((slide, index) => (
-                <SwiperSlide key={index} className={s.Slide}>
-                  <img src={slide.url} alt={slide.title} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <div className={s.ButtonContainer}>
-              <Link to={'/gallery'}>
-                <NavLinkButton title={'Дивитися більше'} />
-              </Link>
-            </div>
-          </>
-        )}
-        
- */

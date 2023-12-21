@@ -3,8 +3,8 @@ import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
 const useVideoStore = create((set, get) => ({
-  videos: [],
-  video: {},
+  photos: [],
+  photo: {},
 
   getAllVideo: async () => {
     const response = await axios.get(`/gallery/video?reverse=true&page=1&size=50`);

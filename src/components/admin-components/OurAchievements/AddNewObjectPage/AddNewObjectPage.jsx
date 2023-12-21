@@ -17,7 +17,7 @@ const initialValues = {
   pinned_position: '',
   sub_department: '',
   description: '',
-  media: null,
+  media: [],
 };
 
 const AddNewObjectPage = ({
@@ -29,7 +29,9 @@ const AddNewObjectPage = ({
 }) => {
   const navigate = useNavigate();
   const { addAchievement, getAchievementsPositions } = useServicesStore();
-  const achievementsPositions = useServicesStore(state => state.achievementsPositions);
+  const achievementsPositions = useServicesStore(
+    state => state.achievementsPositions
+  );
   const [title, setTitle] = useState(selectTitle);
   const [isProcessing, setIsProcessing] = useState(false);
   let breadcrumbs;
@@ -39,21 +41,18 @@ const AddNewObjectPage = ({
     } else if (url === 'gallery') {
       breadcrumbs = ['Фотогалерея', 'Додати фото в галерею'];
     }
-    title !== selectTitle ? breadcrumbs.push(title): '';
+    title !== selectTitle ? breadcrumbs.push(title) : '';
     return breadcrumbs;
   };
   setBreadcrumbs(url);
 
-  
   const onSubmit = async values => {
-    const formData = new FormData();
-    formData.append('description', values.description);
-    formData.append('pinned_position', values.pinned_position);
-    formData.append('sub_department', values.sub_department);
-    formData.append('media', values.media[0]);  
     try {
-      console.log(values);
-      console.log(formData);
+      const formData = new FormData();
+      formData.append('description', values.description);
+      formData.append('pinned_position', values.pinned_position);
+      formData.append('sub_department', values.sub_department);
+      formData.append('media', values.media[0]);
       setIsProcessing(true);
       await addAchievement(url, formData);
       setIsProcessing(false);
@@ -64,7 +63,7 @@ const AddNewObjectPage = ({
   };
   useEffect(() => {
     const fetchData = async () => {
-      try { 
+      try {
         await getAchievementsPositions(url);
       } catch (error) {
         console.error(error);
@@ -132,7 +131,7 @@ const AddNewObjectPage = ({
                   nameButton="Зберегти зміни"
                   isActive={formik.isValid}
                   isRight={true}
-                  handlerSubmitButton={formik.handleSubmit}
+                  handlerSubmitButton={onSubmit}
                   isProcessing={isProcessing}
                 />
               </div>

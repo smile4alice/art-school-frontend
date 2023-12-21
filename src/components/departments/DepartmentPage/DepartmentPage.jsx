@@ -8,11 +8,10 @@ import Articles from '../DepartmentArticles/Articles';
 import styles from './DepartmentPage.module.scss';
 
 
-const DepartmentPage = ({ id, title, showSelect, articles }) => {
+const DepartmentPage = ({ id, title, showSelect }) => {
+  const subDepartments = useServicesStore(state => state.subDepartments);
   const { getSubDepartments } = useServicesStore();
-  const [subDepartments, setSubDepartments] = useState([]);
-  const [departmentId, setDepartmentId] = useState('');
-
+  const [departmentId, setDepartmentId] = useState('1');
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -22,17 +21,20 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getSubDepartments(id);
-        setSubDepartments(result);
-        setDepartmentId(result[0].id);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-    fetchData();
+      const fetchData = async () => {
+        try {
+        await getSubDepartments(id);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+      fetchData();
   }, [id, getSubDepartments]);
+
+  useEffect(()=>{
+    console.log(subDepartments);
+    setDepartmentId(subDepartments?.[0]?.id);
+  }, [subDepartments])
 
   useEffect(() => {
     changeDepartment(departmentId);
@@ -41,10 +43,9 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
   return (
     <Container>
       <h2 className={styles.title}>{title}</h2>
-      {subDepartments && subDepartments.length > 0 && (
+      {subDepartments?.length > 0 && (
         <div className={styles.wrapper}>
-          <Articles articles={articles} />
-
+          <Articles subDepartments={subDepartments} />
           <DropDownsList departmentId={id} />
           <GalleryDepartments
             showSelect={showSelect}

@@ -19,13 +19,11 @@ const AchievementsGalleryPage = ({
   buttonTitle1,
   buttonTitle2,
 }) => {
-  const { getAllAchievements, getMainAchievements, getDepartmentAchievements } =
-    useServicesStore();
+  const { getAllAchievements, getMainAchievements, getDepartmentAchievements } = useServicesStore();
   const achievements = useServicesStore(state => state.achievements);
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
-  const [typeOfAchievements, setTypeOfAchievements] =
-    useState('allAchievements');
+  const [typeOfAchievements, setTypeOfAchievements] = useState('allAchievements');
   const [loadingState, setLoadingState] = useState('loading');
   const page = '1';
   const pageSize = '50';

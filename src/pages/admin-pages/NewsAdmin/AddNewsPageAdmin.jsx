@@ -30,6 +30,8 @@ const AddNewsPage = () => {
       formData.append('title', values.title);
       formData.append('text', values.text);
       formData.append('photo', values.image[0]);
+      console.log(values);
+      console.log(formData);
 
       setIsProcessing(true);
       await addPost(formData);

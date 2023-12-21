@@ -4,7 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const useVideoStore = create((set, get) => ({
   videos: [],
-  video: {},
+  media: {},
 
   getAllVideo: async () => {
     const response = await axios.get(`/gallery/video?reverse=true&page=1&size=50`);
@@ -31,12 +31,14 @@ const useVideoStore = create((set, get) => ({
       throw new Error(error);
     }
   },
-
+  
   addVideo: async data => {
     if (isDataValid(data)) {
       try {
+        const queryParams = new URLSearchParams();
+        queryParams.append('media', data.get('media'));
         const response = await axios.post(
-          `/gallery/video?media=${data.media}`,
+          `/gallery/video?${queryParams}`,
           data,
           {
             headers: {
@@ -53,8 +55,10 @@ const useVideoStore = create((set, get) => ({
   editVideo: async (id, data) => {
     if (isDataValid(data)) {
       try {
+        const queryParams = new URLSearchParams();
+        queryParams.append('media', data.media);
         const response = await axios.put(
-          `/gallery/video/${id}?media=${data.media}`,
+          `/gallery/video/${id}?${queryParams}`,
           data,
           {
             headers: {
