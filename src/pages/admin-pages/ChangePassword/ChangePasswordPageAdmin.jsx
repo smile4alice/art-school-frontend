@@ -5,12 +5,13 @@ import PasswordInput from '@/components/admin-components/formik/PasswordInput/Pa
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import { Field, Form, Formik } from 'formik';
 import styles from './ChangePassword.module.scss';
+import { passwordValidation } from './validationSchema';
 
 const breadcrumbs = ['Зміна паролю'];
 const initialValues = {
   oldPassword: '',
   newPassword: '',
-  confirmPassword: [],
+  confirmPassword: '',
 };
 const ChangePasswordPageAdmin = () => {
   return (
@@ -24,7 +25,7 @@ const ChangePasswordPageAdmin = () => {
 
       <Formik
         initialValues={initialValues}
-        // validationSchema={newsValidation}
+        validationSchema={passwordValidation}
         // onSubmit={onSubmit}
       >
         {formik => {
