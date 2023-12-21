@@ -3,10 +3,10 @@
   width: 100%;
   max-width: 1280px;
   background-color: inherit;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   margin: 1rem auto;
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 700;
   }
   .slidersContainer {
@@ -49,6 +49,7 @@
 
 @media (min-width: 768px) {
   .achievements {
+    padding: 0 2rem;
     h2 {
       font-size: 2rem;
     }
@@ -68,6 +69,7 @@
 
 @media (min-width: 1280px) {
   .achievements {
+    padding: 0 2.5rem;
     h2 {
       font-size: 2rem;
     }

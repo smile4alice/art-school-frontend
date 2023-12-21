@@ -21,18 +21,18 @@ const Achievements = ({
   selectOptions,
 }) => {
   const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
-  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
   const swiperRef = useRef();
   const [achievementsData, setAchievementsData] = useState([]);
   const [loadingState, setLoadingState] = useState('loading');
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         let result;
         setLoadingState('loading');
         if (url === 'achievements') {
-          result = await getMainAchievements();
+          result = await getMainAchievements(url);
         }
         else{
           result = await getDepartmentAchievements(url, departmentId);
@@ -61,8 +61,12 @@ const Achievements = ({
           <Spinner />
         </div>
       )}
-      {loadingState === 'success' ? (
-        achievementsData && achievementsData.length > 0 ? (
+      {loadingState === 'error' && (
+        <div className={s.errorData}>
+          <Placeholder />
+        </div>
+      )}
+      {loadingState === 'success' && achievementsData?.length > 0 && (
           <div className={s.slidersContainer}>
             {isDesktop && (
               <SwiperButtons
@@ -99,11 +103,6 @@ const Achievements = ({
               ))}
             </Swiper>
           </div>
-        ) : (
-          <Placeholder />
-        )
-      ) : (
-        loadingState === 'error' && <Placeholder />
       )}
       {showSelect && !isDesktop && (
         <Select

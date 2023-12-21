@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
@@ -11,12 +11,9 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  useEffect(()=>{
-
-  }, [data, currentId])
+  useEffect(() => {}, [data, currentId]);
 
   const removePost = async () => {
-   // console.log(currentId);
     if (isDeleteConfirm) {
       try {
         console.log(currentId);
@@ -58,11 +55,13 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
                     <img src="/icons/edit.svg" alt="edit icon" />
                   </button>
                 </Link>
-                <button className={s.delete}
-                  onClick={() =>{
+                <button
+                  className={s.delete}
+                  onClick={() => {
                     setCurrentId(item.id);
                     openModal();
-                  }}>
+                  }}
+                >
                   <img src="/icons/delete.svg" alt="delete icon" />
                 </button>
               </div>

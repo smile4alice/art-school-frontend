@@ -46,8 +46,7 @@
   padding: 1.25rem;
   .fieldSection{
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 1.5rem;
   }
 }

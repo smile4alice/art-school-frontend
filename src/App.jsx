@@ -40,9 +40,9 @@ import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
 import EditNewsPageAdmin from './pages/admin-pages/NewsAdmin/EditNewsPageAdmin';
 import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
 
-import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryAdmin/GalleryPageAdmin';
-import AddGalleryPage from './pages/admin-pages/GalleryAdmin/GalleryAdmin/AddGalleryPageAdmin';
-import EditGalleryPage from './pages/admin-pages/GalleryAdmin/GalleryAdmin/EditGalleryPageAdmin';
+import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryPageAdmin';
+import AddGalleryPage from './pages/admin-pages/GalleryAdmin/AddGalleryPageAdmin';
+import EditGalleryPage from './pages/admin-pages/GalleryAdmin/EditGalleryPageAdmin';
 import DepartmentsPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentsPageAdmin';
 import DepartmentPageAdmin from './pages/admin-pages/DepartmentsAdmin/DepartmentPage';
 import OurAchievementsPageAdmin from './pages/admin-pages/OurAchievementsAdmin/OurAchievementsPageAdmin';
@@ -57,6 +57,9 @@ import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePa
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
 import AddPostersPage from './pages/admin-pages/PostersAdmin/AddPostersPageAdmin';
 import EditPostersPage from './pages/admin-pages/PostersAdmin/EditPostersPageAdmin';
+import VideoPageAdmin from './pages/admin-pages/VideoAdmin/VideoPageAdmin';
+import AddVideoPage from './pages/admin-pages/VideoAdmin/AddVideoPageAdmin';
+import EditVideoPage from './pages/admin-pages/VideoAdmin/EditVideoPageAdmin';
 
 const App = () => {
   return (
@@ -127,6 +130,9 @@ const App = () => {
           <Route path="gallery" element={<GalleryPageAdmin />} />
           <Route path="gallery/add" element={<AddGalleryPage />} />
           <Route path="gallery/edit/:id" element={<EditGalleryPage />} />
+          <Route path="video" element={<VideoPageAdmin />} />
+          <Route path="video/add" element={<AddVideoPage />} />
+          <Route path="video/edit/:id" element={<EditVideoPage />} />
           <Route path="departments" element={<DepartmentsPageAdmin />} />
           <Route path="department/:id" element={<DepartmentPageAdmin />} />
           <Route path="achievements" element={<OurAchievementsPageAdmin />} />

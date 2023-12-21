@@ -3,11 +3,9 @@ import EditObjectPage from '@/components/admin-components/OurAchievements/EditOb
 const EditOurAchievementsPage = () => {
   return (
     <EditObjectPage
-      pageTitle={'Редагувати досягнення'}
-      backButtonLink={'/admin/achievements'}
-      achievementPositionsTitle={
-        'Закріпити в блок “Наші досягнення на головній сторінці'
-      }
+      pageTitle='Редагувати досягнення'
+      backButtonLink='/admin/achievements'
+      achievementPositionsTitle='Закріпити в блок “Наші досягнення на головній сторінці'
       url="achievements"
     />
   );

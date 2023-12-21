@@ -1,6 +1,11 @@
 .selectContainer {
   width: 17rem;
   position: relative;
+  img {
+    svg {
+      color: currentColor;
+    }
+  }
 
   .selectButton {
     position: relative;
@@ -23,21 +28,13 @@
       display: block;
       width: 1rem;
       height: 1rem;
-      
     }
-    
-    img{
-        svg{
-          color: currentColor;
-        }
-    }
-    
   }
   .selectButton.active {
-    background-color: #E5E9FD;
+    background-color: #e5e9fd;
     border: 1px solid $admin-purple;
-    transition: all linear .3s;
-    img{
+    transition: all linear 0.3s;
+    img {
       transform: rotate(-180deg);
     }
   }
@@ -51,43 +48,51 @@
     background-color: aqua;
     border-radius: 0.3125rem;
     overflow: hidden;
-
     .option {
-      background-color: #E5E9FD;
+      background-color: #e5e9fd;
       background-color: $white;
       border-bottom: 1px solid $admin-purple;
       cursor: pointer;
-      >.button{
+      > .button {
         width: 100%;
-        padding: .5rem 0.5rem;
+        padding: 0.5rem 0.5rem;
         text-align: left;
+        top: .5rem;
+        position: relative;
+        img{
+          position: absolute;
+          right: .6rem;
+          top: .7rem;
+        }
       }
     }
     .option.active {
-      background-color: #E5E9FD;
-      button{
+      background-color: #e5e9fd;
+      button {
         border-bottom: 1px solid $admin-purple;
       }
-      button:last-child{
+      button:last-child {
         border-bottom: none;
       }
+      img {
+        transform: rotate(-180deg);
+      }
     }
-   
   }
-  .secondOptionsContainer{
-    background-color: #E5E9FD;
-    .secondOption{
-      padding: .2rem;
-      font-size: .75rem;
+  .secondOptionsContainer {
+    background-color: #e5e9fd;
+    .secondOption {
+      padding: 0.2rem;
+      font-size: 0.75rem;
       border-radius: 0.3125rem;
-      >button{
+      > button {
         width: 100%;
-        padding: .2rem 0.5rem;
+        padding: 0.2rem 0.5rem;
         text-align: left;
       }
     }
-    .secondOption:hover{
-      background-color: $admin-purple;
+    .secondOption:hover {
+      background-color: #CCD4E0;
     }
   }
 }
