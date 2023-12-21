@@ -8,15 +8,15 @@ const useVideoStore = create((set, get) => ({
 
   getAllVideo: async () => {
     const response = await axios.get(`/gallery/video?reverse=true&page=1&size=50`);
-    try {
-      set(() => {
-        return {
-          videos: response.data.items,
-        };
-      });
-    } catch (error) {
-      throw new Error(error);
-    }
+    try{
+    set(() => {
+      return {
+        videos: response.data.items,
+      };
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
   },
 
   getOneVideo: async id => {
@@ -35,15 +35,11 @@ const useVideoStore = create((set, get) => ({
   addVideo: async data => {
     if (isDataValid(data)) {
       try {
-        const response = await axios.post(
-          `/gallery/video?media=${data.media}`,
-          data,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
+        const response = await axios.post(`/gallery/video?media=${data.media}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         return response;
       } catch (error) {
         throw new Error(error);
@@ -53,15 +49,11 @@ const useVideoStore = create((set, get) => ({
   editVideo: async (id, data) => {
     if (isDataValid(data)) {
       try {
-        const response = await axios.put(
-          `/gallery/video/${id}?media=${data.media}`,
-          data,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
+        const response = await axios.put(`/gallery/video/${id}?media=${data.media}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         return response;
       } catch (error) {
         throw new Error(error);

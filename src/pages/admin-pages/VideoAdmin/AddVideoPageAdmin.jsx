@@ -22,10 +22,10 @@ const AddVideoPage = () => {
 
   const onSubmit = async value => {
     const formData = new FormData();
-      formData.append('video', value);
+      formData.append('media', value);
     try {
       setIsProcessing(true);
-      await addVideo(value);
+      await addVideo(formData);
       setIsProcessing(false);
       navigate(-1);
     } catch (error) {

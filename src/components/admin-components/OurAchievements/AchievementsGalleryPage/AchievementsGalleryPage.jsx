@@ -21,7 +21,7 @@ const AchievementsGalleryPage = ({
 }) => {
   const { getAllAchievements, getMainAchievements, getDepartmentAchievements } =
     useServicesStore();
-  const [achievements, setAchievements] = useState([]);
+  const achievements = useServicesStore(state => state.achievements);
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
   const [typeOfAchievements, setTypeOfAchievements] =
@@ -32,16 +32,20 @@ const AchievementsGalleryPage = ({
   let breadcrumbs;
 
   const setBreadcrumbs = (url, title) => {
-    if(url === 'achievements'){
-      breadcrumbs = ['Наші Досягнення']
-    }else if(url === 'gallery'){
-      breadcrumbs = ['Фотогалерея']
+    if (url === 'achievements') {
+      breadcrumbs = ['Наші Досягнення'];
+    } else if (url === 'gallery') {
+      breadcrumbs = ['Фотогалерея'];
     }
-    if(title !== selectTitle && typeOfAchievements !== 'mainAchievements'){
+    if (title !== selectTitle && typeOfAchievements !== 'mainAchievements') {
       breadcrumbs.push(title);
     }
-    if(typeOfAchievements === 'mainAchievements'){
-      breadcrumbs.push( url === achievements ? 'Закріпленні досягнення' : 'Закріпленні фотографії');
+    if (typeOfAchievements === 'mainAchievements') {
+      breadcrumbs.push(
+        url === achievements
+          ? 'Закріпленні досягнення'
+          : 'Закріпленні фотографії'
+      );
     }
     return breadcrumbs;
   };
@@ -54,24 +58,21 @@ const AchievementsGalleryPage = ({
       setTypeOfAchievements('departmentAchievements');
     }
   };
-  useEffect(() => {}, [departmentId]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let result;
         setLoadingState('loading');
         if (typeOfAchievements === 'allAchievements') {
-          result = await getAllAchievements(url, page, pageSize);
+          await getAllAchievements(url, page, pageSize);
         } else if (typeOfAchievements === 'mainAchievements') {
-          result = await getMainAchievements(url);
+          await getMainAchievements(url);
         } else if (typeOfAchievements === 'departmentAchievements') {
-          result = await getDepartmentAchievements(url, departmentId);
+          await getDepartmentAchievements(url, departmentId);
         }
-        setAchievements(result);
         setLoadingState('success');
       } catch (error) {
-        console.error(error);
+        console.log(error);
         setLoadingState('error');
       }
     };

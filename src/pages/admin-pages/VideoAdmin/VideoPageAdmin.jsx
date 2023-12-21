@@ -11,7 +11,7 @@ const breadcrumbs = ['Відеогалерея'];
 
 const VideoPageAdmin = () => {
   const { getAllVideo } = useVideoStore();
-  const videos = useVideoStore(state => state.news);
+  const videos = useVideoStore(state => state.videos);
   const [loadingState, setLoadingState] = useState('loading');
 
   useEffect(() => {

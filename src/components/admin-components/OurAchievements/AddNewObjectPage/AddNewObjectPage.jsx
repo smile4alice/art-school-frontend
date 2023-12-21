@@ -29,7 +29,7 @@ const AddNewObjectPage = ({
 }) => {
   const navigate = useNavigate();
   const { addAchievement, getAchievementsPositions } = useServicesStore();
-  const [achievementPositions, setAchievementsPositions] = useState({});
+  const achievementsPositions = useServicesStore(state => state.achievementsPositions);
   const [title, setTitle] = useState(selectTitle);
   const [isProcessing, setIsProcessing] = useState(false);
   let breadcrumbs;
@@ -44,24 +44,28 @@ const AddNewObjectPage = ({
   };
   setBreadcrumbs(url);
 
-  const onSubmit = async (values, formikBag) => {
+  
+  const onSubmit = async values => {
+    const formData = new FormData();
+    formData.append('description', values.description);
+    formData.append('pinned_position', values.pinned_position);
+    formData.append('sub_department', values.sub_department);
+    formData.append('media', values.media[0]);  
     try {
+      console.log(values);
+      console.log(formData);
       setIsProcessing(true);
-      await addAchievement(url, values);
+      await addAchievement(url, formData);
       setIsProcessing(false);
-      formikBag.resetForm();
-      navigate(`/admin/${url}`);
+      navigate(-1);
     } catch (error) {
-      console.error(error);
-      setIsProcessing(false);
+      console.log(error);
     }
   };
-
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const result = await getAchievementsPositions(url);
-        setAchievementsPositions(result);
+      try { 
+        await getAchievementsPositions(url);
       } catch (error) {
         console.error(error);
       }
@@ -120,7 +124,7 @@ const AddNewObjectPage = ({
                 id="pinned_position"
                 component={AchievementPositions}
                 title={achievementPositionsTitle}
-                achievementPositions={achievementPositions}
+                achievementPositions={achievementsPositions}
               />
 
               <div className={s.button}>
