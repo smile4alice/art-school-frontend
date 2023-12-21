@@ -11,25 +11,22 @@ const breadcrumbs = ['Відеогалерея'];
 
 const VideoPageAdmin = () => {
   const { getAllVideo } = useVideoStore();
-  const [videoData, setVideoData] = useState([]);
+  const videos = useVideoStore(state => state.news);
   const [loadingState, setLoadingState] = useState('loading');
 
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoadingState('loading');
-        const result = await getAllVideo();
-        setVideoData(result);
+        await getAllVideo();
         setLoadingState('success');
       } catch (error) {
-        console.error(error);
+        console.log(error);
         setLoadingState('error');
       }
     };
     fetchData();
   }, [getAllVideo]);
-
 
   return (
     <div className={s.container}>
@@ -42,8 +39,8 @@ const VideoPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати відео"
       />
-      {loadingState === 'success' && videoData?.length > 0 && (
-        <VideoTable videos={videoData} url="video" />
+      {loadingState === 'success' && videos?.length > 0 && (
+        <VideoTable videos={videos} url="video" />
       )}
       {loadingState === 'loading' && (
         <div className={s.errorData}>
