@@ -18,14 +18,13 @@ const EditVideoPage = () => {
   const { getOneVideo, editVideo } = useVideoStore();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [video, setVideo] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
+  const video = useVideoStore(state => state.video);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getOneVideo(id);
-        setVideo(result);
+        await getOneVideo(id);
       } catch (error) {
         console.log(error);
       }
@@ -33,12 +32,14 @@ const EditVideoPage = () => {
     fetchData();
   }, [id, getOneVideo]);
 
-  const onSubmit = async value => {
+  const onSubmit = async values => {
     try {
+      const formData = new FormData();
+      formData.append('media', values.media);
       setIsProcessing(true);
-      await editVideo(id, value);
+      await editVideo(id, values);
       setIsProcessing(false);
-      navigate(`/admin/video`);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }

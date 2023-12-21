@@ -3,6 +3,7 @@ import { create } from 'zustand';
 const useServicesStore = create((set, get) => ({
   server: 'https://art-school-backend.vercel.app/api/v1/',
   //server: import.meta.env.VITE_APP_API_URL,
+  
   //отримати всі основні відділення
   getMainDepartments: async () => {
     const response = await fetch(`${get().server}departments`);

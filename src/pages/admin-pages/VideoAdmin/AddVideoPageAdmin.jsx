@@ -21,11 +21,13 @@ const AddVideoPage = () => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const onSubmit = async value => {
+    const formData = new FormData();
+      formData.append('video', value);
     try {
       setIsProcessing(true);
       await addVideo(value);
       setIsProcessing(false);
-      navigate(`/admin/video`);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }

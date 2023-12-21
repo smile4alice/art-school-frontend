@@ -1,63 +1,73 @@
 import { create } from 'zustand';
+import axios from '@/utils/axios';
+import { isDataValid } from '@/utils/formDataValidation';
 
 const useVideoStore = create((set, get) => ({
-  server: 'https://art-school-backend.vercel.app/api/v1',
+  videos: [],
+  video: {},
 
   getAllVideo: async () => {
-    const response = await fetch(`${get().server}/video?reverse=true&page=1&size=50`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const result = await response.json();
-    return result;
+    const response = await axios.get(`/gallery/video?reverse=true&page=1&size=50`);
+    try{
+    set(() => {
+      return {
+        videos: response.data.items,
+      };
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
   },
 
   getOneVideo: async id => {
-    const response = await fetch(`${get().server}/gallery/video/${id}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+      const response = await axios.get(`/gallery/video/${id}`);
+      set(() => {
+        return {
+          video: response.data,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
-    const result = await response.json();
-    return result;
   },
 
   addVideo: async data => {
-    const newVideo = {
-      media: data.media,
-    };
-    console.log(data);
-    const response = await fetch(`${get().server}/gallery/video?media=${data.media}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newVideo),
-    });
-    return response.json();
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.post(`/gallery/video?media=${data.media}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
-
-  editVideo: async (id, data) => {//передивитись
-    const newVideo = {
-        media: data.media,
-      }; 
-    const response = await fetch(`${get().server}/gallery/video/${id}?media=${data.media}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newVideo),
-    });
-    return response.json();
+  editVideo: async (id, data) => {
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.put(`/gallery/video/${id}?media=${data.media}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
-
   deleteVideo: async id => {
-    const response = await fetch(`${get().server}/gallery/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const response = await axios.delete(`/gallery/${id}`);
+    set(() => {
+      return {
+        videos: get().videos.filter(video => video.id !== id),
+      };
     });
-    return response.json();
+    return response;
   },
 }));
 
