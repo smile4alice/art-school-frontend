@@ -9,6 +9,7 @@ import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
 import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import styles from './NewsAdmin.module.scss';
 
 const breadcrumbs = ['Новини', 'Редагувати новину'];
@@ -25,6 +26,7 @@ const EditNewsPage = () => {
   const { getOnePost, editPost } = useNewsStore();
   const [isProcessing, setIsProcessing] = useState(false);
   const post = useNewsStore(state => state.post);
+  const loading = useNewsStore(state => state.loading);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +38,8 @@ const EditNewsPage = () => {
     };
     fetchData();
   }, [id, getOnePost]);
+
+  if (loading) return <SpinnerAdmin />;
 
   const onSubmit = async values => {
     try {

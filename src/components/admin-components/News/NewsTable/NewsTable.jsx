@@ -4,15 +4,17 @@ import useNewsStore from '@/store/newsStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
+import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import SpinnerAdmin from '../../SpinnerAdmin/SpinnerAdmin';
 import styles from './NewsTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
 
 const NewsTable = ({ data }) => {
   const { deletePost } = useNewsStore();
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
+  const loading = useNewsStore(state => state.loading);
 
   const removePost = async () => {
     if (isDeleteConfirm) {
@@ -25,6 +27,8 @@ const NewsTable = ({ data }) => {
       closeModal();
     }
   };
+
+  if (loading) return <SpinnerAdmin />;
 
   return (
     <div className={styles.contentWrap}>

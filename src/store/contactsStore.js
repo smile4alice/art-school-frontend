@@ -2,14 +2,25 @@ import { create } from 'zustand';
 import axios from '@/utils/axios';
 
 const useContactsStore = create(set => ({
+  loading: false,
   contacts: {},
 
   getContacts: async () => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/contacts`);
       set(() => {
         return {
           contacts: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {

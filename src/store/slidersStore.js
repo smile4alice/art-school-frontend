@@ -3,14 +3,25 @@ import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
 const useSlidersStore = create((set, get) => ({
+  loading: false,
   slides: [],
 
   getSlides: async () => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/slider_main`);
       set(() => {
         return {
           slides: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {

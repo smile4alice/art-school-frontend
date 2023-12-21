@@ -1,60 +1,65 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import { administrationValidation } from './validationSchema';
-import useAdministrationStore from '@/store/administrationStore';
+import { newsValidation } from './validationSchema';
+import { declineWord } from '@/utils/declineWord';
+import useDepartmentsStore from '@/store/departmentsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
-import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
-import styles from './SchoolAdministration.module.scss';
+import styles from './DepartmentsAdmin.module.scss';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
-const breadcrumbs = ['Адміністрація школи', 'Редагувати дані працівника'];
-
 const initialValues = {
-  full_name: '',
-  position: '',
-  image: [],
+  title: '',
+  text: '',
 };
 
-const EditSchoolAdministrationPage = () => {
+const EditSubDepartmentPage = () => {
   const { id } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
-  const { getOneMember, editMember } = useAdministrationStore();
+  const { title, departmentId } = location.state;
+  const { editDepartment, getOneSubDepartment } = useDepartmentsStore();
   const [isProcessing, setIsProcessing] = useState(false);
-  const member = useAdministrationStore(state => state.member);
-  const loading = useAdministrationStore(state => state.loading);
+  const loading = useDepartmentsStore(state => state.loading);
+  const subDepartment = useDepartmentsStore(state => state.sub_department);
+  const department = useDepartmentsStore(state =>
+    state.departments.find(department => department.id == departmentId)
+  );
+
+  const breadcrumbs = [
+    'Відділення',
+    `${title}`,
+    `Редагувати ${declineWord(title).toLowerCase()}`,
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getOneMember(id);
+        await getOneSubDepartment(id);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [id, getOneMember]);
+  }, [id, getOneSubDepartment]);
 
   const onSubmit = async values => {
     try {
-      const formData = new FormData();
-      formData.append('full_name', values.full_name);
-      formData.append('position', values.position);
-
-      if (values.image[0].size === 0) {
-        formData.append('photo', '');
-      } else {
-        formData.append('photo', values.image[0]);
-      }
-
+      const newSubDepartment = {
+        sub_department_name: values.title,
+        description: values.text,
+      };
       setIsProcessing(true);
-      await editMember(id, formData);
+      await editDepartment(id, newSubDepartment);
       setIsProcessing(false);
-      navigate(-1);
+      setTimeout(() => {
+        setIsProcessing(false);
+        navigate(`/admin/departments/${departmentId}`);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -66,45 +71,42 @@ const EditSchoolAdministrationPage = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Редагувати дані працівника"
+        title={`Редагувати ${declineWord(title).toLowerCase()}`}
         showBackButton={true}
-        backButtonLink="/admin/administration"
+        backButtonLink={`/admin/departments/${departmentId}`}
         showActionButton={false}
+        stateTitle={department?.department_name}
+        stateId={departmentId}
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={administrationValidation}
+        validationSchema={newsValidation}
         onSubmit={onSubmit}
       >
         {formik => {
           return (
             <Form>
               <div className={styles.layout}>
-                <Field
-                  name="full_name"
-                  id="full_name"
-                  component={TextInput}
-                  maxLength={60}
-                  showCharacterCount={true}
-                  label="ПІБ Працівника"
-                  text={member?.full_name}
-                />
                 <div className={styles.secondRow}>
                   <Field
-                    name="position"
-                    id="position"
-                    component={TextArea}
+                    name="title"
+                    id="title"
+                    placeholder="Title"
+                    component={TextInput}
                     maxLength={120}
                     showCharacterCount={true}
-                    label="Посада Працівника"
-                    text={member?.position}
+                    label="Назва Відділу*"
+                    text={subDepartment?.sub_department_name}
                   />
                   <Field
-                    name="image"
-                    id="image"
-                    component={FileInput}
-                    label="Фото"
-                    photo={member?.photo}
+                    name="text"
+                    id="text"
+                    placeholder="Title"
+                    component={TextArea}
+                    maxLength={2000}
+                    showCharacterCount={true}
+                    label="Опис*"
+                    text={subDepartment?.description}
                   />
                 </div>
                 <div className={styles.button}>
@@ -125,4 +127,4 @@ const EditSchoolAdministrationPage = () => {
   );
 };
 
-export default EditSchoolAdministrationPage;
+export default EditSubDepartmentPage;
