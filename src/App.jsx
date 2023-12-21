@@ -51,8 +51,8 @@ import EditOurAchievementsPage from './pages/admin-pages/OurAchievementsAdmin/Ed
 import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrationAdmin/SchoolAdministrationPageAdmin';
 import AddSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/AddSchoolAdministrationPageAdmin';
 import EditSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/EditSchoolAdministrationPageAdmin';
-import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
-import EditContactsPageAdmin from './pages/admin-pages/ContactsAdmin/EditContactsPageAdmin';
+import ContactsPageAdmin from './pages/admin-pages/DepartmentsAdmin/ContactsAdmin/ContactsPageAdmin';
+import EditContactsPageAdmin from './pages/admin-pages/DepartmentsAdmin/ContactsAdmin/EditContactsPageAdmin';
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
 import AddPostersPage from './pages/admin-pages/PostersAdmin/AddPostersPageAdmin';

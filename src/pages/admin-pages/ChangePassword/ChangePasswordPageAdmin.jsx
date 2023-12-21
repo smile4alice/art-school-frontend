@@ -6,6 +6,9 @@ import TextInput from '@/components/admin-components/formik/TextInput/TextInput'
 import { Field, Form, Formik } from 'formik';
 import styles from './ChangePassword.module.scss';
 import { passwordValidation } from './validationSchema';
+import useAuthStore from '@/store/authStore';
+import ConfirmModal from './ConfirmModal/ConfirmModal';
+import { useModal } from '@/store/modalStore';
 
 const breadcrumbs = ['Зміна паролю'];
 const initialValues = {
@@ -14,6 +17,21 @@ const initialValues = {
   confirmPassword: '',
 };
 const ChangePasswordPageAdmin = () => {
+  const { changePassword } = useAuthStore();
+    const { isModalOpen, openModal, } = useModal();
+  const onSubmit = async values => {
+    console.log('values: ', values);
+    const formData = new FormData();
+    formData.append('old_password', values.oldPassword);
+    formData.append('new_password', values.newPassword);
+    formData.append('new_password_confirm', values.confirmPassword);
+    const { detail } = await changePassword( formData );
+    if ( detail === "The password has been changed." ) {
+      openModal()
+    }
+    
+
+  };
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -26,7 +44,7 @@ const ChangePasswordPageAdmin = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={passwordValidation}
-        // onSubmit={onSubmit}
+        onSubmit={onSubmit}
       >
         {formik => {
           return (
@@ -68,6 +86,9 @@ const ChangePasswordPageAdmin = () => {
           );
         }}
       </Formik>
+
+      {/* {isModalOpen&&<ConfirmModal />} */}
+      {<ConfirmModal />}
     </div>
   );
 };
