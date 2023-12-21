@@ -1,23 +1,25 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import useNewsStore from '@/store/newsStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
+import useDepartmentsStore from '@/store/departmentsStore';
+import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import styles from './DepartmentsTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
 
-const DepartmentsTable = ({ data }) => {
-  const { deletePost } = useNewsStore();
+const DepartmentsTable = ({ data, departmentId }) => {
+  const { deleteSubDepartment } = useDepartmentsStore();
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
+  const loading = useDepartmentsStore(state => state.loading);
 
   const removePost = async () => {
     if (isDeleteConfirm) {
       try {
-        await deletePost(currentId);
+        await deleteSubDepartment(currentId);
       } catch (error) {
         console.log(error);
       }
@@ -25,6 +27,8 @@ const DepartmentsTable = ({ data }) => {
       closeModal();
     }
   };
+
+  if (loading) return <SpinnerAdmin />;
 
   return (
     <div className={styles.contentWrap}>
@@ -44,7 +48,13 @@ const DepartmentsTable = ({ data }) => {
               {subString(item.description)}
             </div>
             <div className={styles.cellActionRow}>
-              <Link to={`edit/${item.id}`}>
+              <Link
+                to={`/admin/departments/sub_department/edit/${item.id}`}
+                state={{
+                  title: item.sub_department_name,
+                  departmentId: departmentId,
+                }}
+              >
                 <div className={styles.cellActionContainer}>
                   <svg className={styles.iconEdit}>
                     <use href={`${sprite}#icon-edit`} width="20" height="20" />

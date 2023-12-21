@@ -16,6 +16,7 @@ const EditContactsPageAdmin = () => {
   const { key, title, value } = location.state;
   const { editContact } = useContactsStore();
   const [isProcessing, setIsProcessing] = useState(false);
+
   const breadcrumbs = [`${title}`, `Редагувати ${declineWord(title)}`];
 
   const initialValues = {};

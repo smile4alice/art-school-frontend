@@ -1,18 +1,28 @@
 import { create } from 'zustand';
 import axios from '@/utils/axios';
-import { isDataValid } from '@/utils/formDataValidation';
 
 const useDepartmentsStore = create((set, get) => ({
-  slides: [],
+  loading: false,
   departments: [],
   department: [],
+  sub_department: {},
 
   getDepartments: async () => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/departments`);
       set(() => {
         return {
           departments: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {
@@ -22,10 +32,20 @@ const useDepartmentsStore = create((set, get) => ({
 
   getOneDepartment: async id => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/departments/${id}`);
       set(() => {
         return {
           department: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {
@@ -33,45 +53,89 @@ const useDepartmentsStore = create((set, get) => ({
     }
   },
 
-  addSlide: async data => {
-    if (isDataValid(data)) {
-      try {
-        const response = await axios.post('/slider_main', data, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        return response;
-      } catch (error) {
-        throw new Error(error);
-      }
+  getOneSubDepartment: async id => {
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const response = await axios.get(`/departments/sub_department/${id}`);
+      set(() => {
+        return {
+          sub_department: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
   },
 
-  editSlide: async (id, data) => {
-    if (isDataValid(data)) {
-      try {
-        const response = await axios.put(`/slider_main/${id}`, data, {
+  addDepartment: async data => {
+    try {
+      if (!Object.values(data).includes(undefined)) {
+        const body = JSON.stringify(data);
+        const response = await axios.post('/departments/sub_department', body, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
           },
         });
         return response;
-      } catch (error) {
-        throw new Error(error);
       }
+    } catch (error) {
+      throw new Error(error);
     }
   },
 
-  deleteSlide: async id => {
-    console.log(id);
-    const response = await axios.delete(`/slider_main/${id}`);
-    set(() => {
-      return {
-        slides: get().slides.filter(slide => slide.id !== id),
-      };
-    });
-    return response;
+  editDepartment: async (id, data) => {
+    try {
+      if (!Object.values(data).includes(undefined)) {
+        const body = JSON.stringify(data);
+        const response = await axios.patch(
+          `/departments/sub_department/${id}`,
+          body,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        return response;
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  deleteSubDepartment: async id => {
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const response = await axios.delete(`/departments/sub_department/${id}`);
+      set(() => {
+        return {
+          department: get().department.filter(
+            sub_department => sub_department.id !== id
+          ),
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+      return response;
+    } catch (error) {
+      throw new Error(error);
+    }
   },
 }));
 

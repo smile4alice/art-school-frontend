@@ -1,62 +1,96 @@
 import { create } from 'zustand';
+import axios from '@/utils/axios';
+import { isDataValid } from '@/utils/formDataValidation';
 
 const usePostersStore = create((set, get) => ({
-  server: import.meta.env.VITE_APP_API_URL,
+  loading: false,
+  posters: [],
+  poster: {},
 
   getPosters: async () => {
-    const response = await fetch(`${get().server}/posters`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const response = await axios.get(`/posters`);
+      set(() => {
+        return {
+          posters: response.data.items,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
-    const result = await response.json();
-    return result;
   },
-  getPostersById: async id => {
-    const response = await fetch(`${get().server}/posters/${id}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const result = await response.json();
-    return result;
-  },
-  addPoster: async data => {
-    const newPost = {
-      title: data.title,
-      photo: data.image,
-    };
-    const response = await fetch(`${get().server}/posters`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: newPost,
-    });
-    const result = await response.json();
-    return result;
-  },
-  updatePoster: async (data, id) => {
-    const newPost = {
-      title: data.title,
-      photo: data.image,
-    };
-    const response = await fetch(`${get().server}/posters/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: newPost,
-    });
 
-    const result = await response.json();
-    return result;
+  getPostersById: async id => {
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const response = await axios.get(`/posters/${id}`);
+      set(() => {
+        return {
+          poster: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  addPoster: async data => {
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.post('/posters', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+  },
+
+  updatePoster: async (data, id) => {
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.patch(`/posters/${id}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
 
   deletePostersById: async id => {
-    const response = await fetch(`${get().server}/posters/${id}`, {
-      method: 'DELETE',
+    const response = await axios.delete(`/posters/${id}`);
+    set(() => {
+      return {
+        posters: get().posters.filter(poster => poster.id !== id),
+      };
     });
-    const result = await response.json();
-    return result;
+    return response;
   },
 }));
 
