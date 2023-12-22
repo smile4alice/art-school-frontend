@@ -38,8 +38,9 @@ const useServicesStore = create((set) => ({
   },
   //всі досягнення
   getAllAchievements: async (url, page, size) => {
+    const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
-      const response = await axios.get(`/${url}?page=${page}&size=${size}`);
+      const response = await axios.get(`/${newUrl}?page=${page}&size=${size}`);
       set(() => {
         if(url === 'gallery'){
           return {
@@ -57,10 +58,9 @@ const useServicesStore = create((set) => ({
   },
   //досягнення головної сторінки
   getMainAchievements: async url => {
+    const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
-      const response = await axios.get(
-        `/${url}?is_pinned=true&reverse=true&page=1&size=20`
-      );
+      const response = await axios.get(`/${newUrl}?is_pinned=true`);
       set(() => {
         if(url === 'gallery'){
           return {
@@ -78,20 +78,17 @@ const useServicesStore = create((set) => ({
   },
   // досягнення відділу по id
   getDepartmentAchievements: async (url, id) => {
+    const newUrl =  url === 'achievements' ? 'achievement' : url;
     try {
-      const response = await axios.get(
-        `/departments/sub_department_${
-          url === 'achievements' ? 'achievement' : url
-        }/${id}`
-      );
+      const response = await axios.get(`/departments/sub_department_${newUrl}/${id}`);
       set(() => {
         if(url === 'gallery'){
           return {
-            gallery: response.data.items,
+            gallery: response.data,
           };
         }else{
           return {
-            achievements: response.data.items,
+            achievements: response.data,
           };
         }
       });
@@ -101,8 +98,9 @@ const useServicesStore = create((set) => ({
   },
   //конкретне досягнення по id
   getAchievemenById: async (url, id) => {
+    const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
-      const response = await axios.get(`/${url}/${id}`);
+      const response = await axios.get(`/${newUrl}/${id}`);
       set(() => {
         return {
           achievement: response.data,
@@ -114,6 +112,7 @@ const useServicesStore = create((set) => ({
   },
   // додати досягнення
   addAchievement: async (url, data) => {
+    const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
       if (isDataValid(data)) {
         const queryParams = new URLSearchParams();
@@ -126,12 +125,7 @@ const useServicesStore = create((set) => ({
         if (data.get('description') !== '') {
           queryParams.append('description', data.get('description'));
         }
-        const response = await axios.post(
-          `/${
-            url === 'gallery' ? 'gallery/photo' : url
-          }?${queryParams.toString()}`,
-          data,
-          {
+        const response = await axios.post(`/${newUrl}?${queryParams.toString()}`, data, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
@@ -145,6 +139,7 @@ const useServicesStore = create((set) => ({
   },
   //зміна досягнення
   editAchievement: async (url, id, data) => {
+    const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
       if (isDataValid(data)) {
         const queryParams = new URLSearchParams();
@@ -157,10 +152,7 @@ const useServicesStore = create((set) => ({
         if (data.get('description') !== '') {
           queryParams.append('description', data.get('description'));
         }
-        const response = await axios.put(
-          `/${url === 'gallery' ? 'gallery/photo' : url}/${id}?${queryParams.toString()}`,
-          data,
-          {
+        const response = await axios.put(`/${newUrl}/${id}?${queryParams.toString()}`, data, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },

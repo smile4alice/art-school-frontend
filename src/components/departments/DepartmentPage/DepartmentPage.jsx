@@ -32,7 +32,6 @@ const DepartmentPage = ({ id, title, showSelect }) => {
   }, [id, getSubDepartments]);
 
   useEffect(()=>{
-    console.log(subDepartments);
     setDepartmentId(subDepartments?.[0]?.id);
   }, [subDepartments])
 

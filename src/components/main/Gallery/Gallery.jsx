@@ -53,8 +53,8 @@ const Gallery = () => {
           gallery?.length > 0 &&
           (isDesktop ? (
             <div className={s.gallery}>
-              {gallery.map(image => (
-                <div key={image.date} className={s.item}>
+              {gallery.map((image, i) => (
+                <div key={i} className={s.item}>
                   <img src={image.media} alt={image.description} />
                 </div>
               ))}

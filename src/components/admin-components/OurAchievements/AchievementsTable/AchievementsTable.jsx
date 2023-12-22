@@ -37,7 +37,7 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
         <div className={s.action}>Дія</div>
       </div>
       <div className={s.tbody}>
-        {data.length > 0 &&
+        {data?.length > 0 &&
           data.map((item, index) => (
             <div className={s.row} key={index}>
               {typeOfAchievements === 'mainAchievements' && (

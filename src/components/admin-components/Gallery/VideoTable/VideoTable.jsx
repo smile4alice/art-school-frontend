@@ -34,7 +34,7 @@ const VideoTable = ({ url, videos }) => {
 
   return (
     <div className={s.galleryTable}>
-      {videos.length > 0 &&
+      {videos?.length > 0 &&
         videos.map((item, i) => (
           <div className={s.photoContainer} key={i}>
             <div className={s.photo}>

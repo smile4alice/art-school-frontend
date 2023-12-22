@@ -52,7 +52,7 @@ const AddNewObjectPage = ({
       formData.append('description', values.description);
       formData.append('pinned_position', values.pinned_position);
       formData.append('sub_department', values.sub_department);
-      formData.append('media', values.media[0]);
+      formData.append('media', values.media);
       setIsProcessing(true);
       await addAchievement(url, formData);
       setIsProcessing(false);
