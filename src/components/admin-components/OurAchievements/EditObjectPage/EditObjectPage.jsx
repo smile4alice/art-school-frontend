@@ -68,7 +68,11 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
       formData.append('pinned_position', values.pinned_position);
       formData.append('sub_department', achievement.sub_department);
       formData.append('description', values.description);
-      formData.append('media', values.image?.[0]);
+      if (values.image?.[0].size === 0) {
+        formData.append('photo', '');
+      } else {
+        formData.append('photo', values.image[0]);
+      }
       setIsProcessing(true);
       await editAchievement(url, id, formData);
       setIsProcessing(false);
@@ -105,10 +109,10 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
                   name="description"
                   id="description"
                   component={TextArea}
-                  maxLength={120}
+                  maxLength={200}
                   showCharacterCount={true}
                   label="Опис"
-                  text={achievement.description}
+                  text={achievement?.description}
                 />
                  <Field
                     name="image"
@@ -124,7 +128,7 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
                 component={AchievementPositions}
                 title={achievementPositionsTitle}
                 achievementPositions={achievementsPositions}
-                activePosition={achievement.pinned_position}
+                activePosition={achievement?.pinned_position}
               />
               <div className={s.button}>
                 <ButtonSubmit

@@ -107,7 +107,7 @@ const AddNewObjectPage = ({
                   name="description"
                   id="description"
                   component={TextArea}
-                  maxLength={120}
+                  maxLength={200}
                   showCharacterCount={true}
                   label="Опис"
                 />
