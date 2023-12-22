@@ -19,12 +19,21 @@ const initialValues = {
   image: [],
 };
 
-const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTitle, selectTitle }) => {
+const EditObjectPage = ({
+  url,
+  pageTitle,
+  backButtonLink,
+  achievementPositionsTitle,
+  selectTitle,
+}) => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { getAchievementsPositions, getAchievemenById, editAchievement } = useServicesStore();
+  const { getAchievementsPositions, getAchievemenById, editAchievement } =
+    useServicesStore();
   const achievement = useServicesStore(state => state.achievement);
-  const achievementsPositions = useServicesStore(state => state.achievementsPositions);
+  const achievementsPositions = useServicesStore(
+    state => state.achievementsPositions
+  );
   const title = selectTitle;
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -61,9 +70,8 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
     fetchData();
   }, [getAchievemenById, id, url]);
 
-  const onSubmit = async (values) => {
+  const onSubmit = async values => {
     try {
-      console.log(values);
       const formData = new FormData();
       formData.append('pinned_position', values.pinned_position);
       formData.append('sub_department', achievement.sub_department);
@@ -114,13 +122,13 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
                   label="Опис"
                   text={achievement?.description}
                 />
-                 <Field
-                    name="image"
-                    id="image"
-                    component={FileInput}
-                    photo={achievement?.media}
-                    label="Фото"
-                  />
+                <Field
+                  name="image"
+                  id="image"
+                  component={FileInput}
+                  photo={achievement?.media}
+                  label="Фото"
+                />
               </div>
               <Field
                 name="pinned_position"

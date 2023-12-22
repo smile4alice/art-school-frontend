@@ -52,7 +52,6 @@ const EditNewsPage = () => {
       } else {
         formData.append('photo', values.image[0]);
       }
-
       setIsProcessing(true);
       await editPost(id, formData);
       setIsProcessing(false);
