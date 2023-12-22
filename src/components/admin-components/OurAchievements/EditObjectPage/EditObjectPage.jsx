@@ -5,7 +5,7 @@ import { achievementsValidation } from '@/components/admin-components/OurAchieve
 import useServicesStore from '@/store/serviseStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
-import MyFileInput from '@/components/admin-components/OurAchievements/FileInput/MyFileInput';
+import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import AchievementPositions from '@/components/admin-components/OurAchievements/AchievementPositions/AchievementsPositions'; // Замініть шлях на реальний
@@ -16,7 +16,7 @@ const initialValues = {
   pinned_position: '',
   sub_department: '',
   description: '',
-  media: [],
+  image: [],
 };
 
 const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTitle, selectTitle }) => {
@@ -61,7 +61,6 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
     fetchData();
   }, [getAchievemenById, id, url]);
 
-
   const onSubmit = async (values) => {
     try {
       console.log(values);
@@ -69,7 +68,7 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
       formData.append('pinned_position', values.pinned_position);
       formData.append('sub_department', achievement.sub_department);
       formData.append('description', values.description);
-      formData.append('media', values.media);
+      formData.append('media', values.image?.[0]);
       setIsProcessing(true);
       await editAchievement(url, id, formData);
       setIsProcessing(false);
@@ -106,18 +105,18 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
                   name="description"
                   id="description"
                   component={TextArea}
-                  maxLength={150}
+                  maxLength={120}
                   showCharacterCount={true}
                   label="Опис"
                   text={achievement.description}
                 />
-                <Field
-                  name="media"
-                  id="media"
-                  component={MyFileInput}
-                  label="Фото*"
-                  photo={achievement.media}
-                />
+                 <Field
+                    name="image"
+                    id="image"
+                    component={FileInput}
+                    photo={achievement?.media}
+                    label="Фото"
+                  />
               </div>
               <Field
                 name="pinned_position"

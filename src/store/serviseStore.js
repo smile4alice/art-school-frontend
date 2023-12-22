@@ -2,14 +2,14 @@ import { create } from 'zustand';
 import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
-const useServicesStore = create((set) => ({
+const useServicesStore = create(set => ({
   departments: [],
   subDepartments: [],
   achievements: [],
   gallery: [],
   achievementsPositions: [],
   achievement: {},
-  
+
   //отримати всі основні відділення
   getMainDepartments: async () => {
     const response = await axios.get('/departments');
@@ -42,11 +42,11 @@ const useServicesStore = create((set) => ({
     try {
       const response = await axios.get(`/${newUrl}?page=${page}&size=${size}`);
       set(() => {
-        if(url === 'gallery'){
+        if (url === 'gallery') {
           return {
             gallery: response.data.items,
           };
-        }else{
+        } else {
           return {
             achievements: response.data.items,
           };
@@ -62,11 +62,11 @@ const useServicesStore = create((set) => ({
     try {
       const response = await axios.get(`/${newUrl}?is_pinned=true`);
       set(() => {
-        if(url === 'gallery'){
+        if (url === 'gallery') {
           return {
             gallery: response.data.items,
           };
-        }else{
+        } else {
           return {
             achievements: response.data.items,
           };
@@ -78,15 +78,17 @@ const useServicesStore = create((set) => ({
   },
   // досягнення відділу по id
   getDepartmentAchievements: async (url, id) => {
-    const newUrl =  url === 'achievements' ? 'achievement' : url;
+    const newUrl = url === 'achievements' ? 'achievement' : url;
     try {
-      const response = await axios.get(`/departments/sub_department_${newUrl}/${id}`);
+      const response = await axios.get(
+        `/departments/sub_department_${newUrl}/${id}`
+      );
       set(() => {
-        if(url === 'gallery'){
+        if (url === 'gallery') {
           return {
             gallery: response.data,
           };
-        }else{
+        } else {
           return {
             achievements: response.data,
           };
@@ -111,10 +113,24 @@ const useServicesStore = create((set) => ({
     }
   },
   // додати досягнення
+  addPost: async data => {
+    if (isDataValid(data)) {
+      try {
+        const response = await axios.post('/news', data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+  },
   addAchievement: async (url, data) => {
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
-    try {
-      if (isDataValid(data)) {
+    if (isDataValid(data)) {
+      try {
         const queryParams = new URLSearchParams();
         if (data.get('pinned_position') !== '') {
           queryParams.append('pinned_position', data.get('pinned_position'));
@@ -125,16 +141,17 @@ const useServicesStore = create((set) => ({
         if (data.get('description') !== '') {
           queryParams.append('description', data.get('description'));
         }
-        const response = await axios.post(`/${newUrl}?${queryParams.toString()}`, data, {
+        const response = await axios.post(
+          `/${newUrl}?${queryParams.toString()}`, data, {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
           }
         );
         return response;
+      } catch (error) {
+        throw new Error(error);
       }
-    } catch (error) {
-      throw new Error(error);
     }
   },
   //зміна досягнення
@@ -145,14 +162,17 @@ const useServicesStore = create((set) => ({
         const queryParams = new URLSearchParams();
         if (data.get('pinned_position') !== '') {
           queryParams.append('pinned_position', data.get('pinned_position'));
-        } 
+        }
         if (data.get('sub_department') !== '') {
           queryParams.append('sub_department', data.get('sub_department'));
         }
         if (data.get('description') !== '') {
           queryParams.append('description', data.get('description'));
         }
-        const response = await axios.put(`/${newUrl}/${id}?${queryParams.toString()}`, data, {
+        const response = await axios.put(
+          `/${newUrl}/${id}?${queryParams.toString()}`,
+          data,
+          {
             headers: {
               'Content-Type': 'multipart/form-data',
             },
@@ -168,11 +188,11 @@ const useServicesStore = create((set) => ({
   deleteAchievement: async (url, id) => {
     try {
       const response = await axios.delete(`/${url}/${id}`);
-      if(url === 'gallery'){
+      if (url === 'gallery') {
         set(state => ({
           gallery: state.gallery.filter(item => item.id !== id),
         }));
-      }else{
+      } else {
         set(state => ({
           achievements: state.achievements.filter(item => item.id !== id),
         }));

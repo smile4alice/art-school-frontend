@@ -5,7 +5,7 @@ import { achievementsValidation } from '@/components/admin-components/OurAchieve
 import useServicesStore from '@/store/serviseStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
-import MyFileInput from '@/components/admin-components/OurAchievements/FileInput/MyFileInput';
+import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
@@ -17,7 +17,7 @@ const initialValues = {
   pinned_position: '',
   sub_department: '',
   description: '',
-  media: [],
+  image: [],
 };
 
 const AddNewObjectPage = ({
@@ -48,11 +48,12 @@ const AddNewObjectPage = ({
 
   const onSubmit = async values => {
     try {
+      console.log(values);
       const formData = new FormData();
       formData.append('description', values.description);
       formData.append('pinned_position', values.pinned_position);
       formData.append('sub_department', values.sub_department);
-      formData.append('media', values.media);
+      formData.append('media', values.image?.[0]);
       setIsProcessing(true);
       await addAchievement(url, formData);
       setIsProcessing(false);
@@ -106,16 +107,16 @@ const AddNewObjectPage = ({
                   name="description"
                   id="description"
                   component={TextArea}
-                  maxLength={150}
+                  maxLength={120}
                   showCharacterCount={true}
                   label="Опис"
                 />
                 <Field
-                  name="media"
-                  id="media"
-                  component={MyFileInput}
-                  label="Фото*"
-                />
+                    name="image"
+                    id="image"
+                    component={FileInput}
+                    label="Фото"
+                  />
               </div>
 
               <Field

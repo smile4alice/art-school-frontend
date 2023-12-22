@@ -19,13 +19,12 @@ export const achievementsValidation = Yup.object().shape({
   description: Yup.string()
     .required('Введіть опис досягнення')
     .min(2)
-    .max(100)
+    .max(120)
     .matches(
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
       'Введіть коректний опис'
     ),
-    media: Yup.mixed()
-    //.required('Додайте зображення')
+    image: Yup.mixed()
     .test('is-value', 'Додайте зображення', value => value && value.length > 0)
     .test('is-image-from-db', 'Додайте зображення', value => {
       value && value[0]?.size === 0 && value[0]?.type === 'for-url';
