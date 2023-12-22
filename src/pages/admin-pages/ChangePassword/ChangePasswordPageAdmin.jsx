@@ -9,6 +9,7 @@ import { passwordValidation } from './validationSchema';
 import useAuthStore from '@/store/authStore';
 import ConfirmModal from './ConfirmModal/ConfirmModal';
 import { useModal } from '@/store/modalStore';
+import { useState } from 'react';
 
 const breadcrumbs = ['Зміна паролю'];
 const initialValues = {
@@ -18,19 +19,20 @@ const initialValues = {
 };
 const ChangePasswordPageAdmin = () => {
   const { changePassword } = useAuthStore();
-    const { isModalOpen, openModal, } = useModal();
+  const { isModalOpen, openModal } = useModal();
+  const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async values => {
     console.log('values: ', values);
     const formData = new FormData();
     formData.append('old_password', values.oldPassword);
     formData.append('new_password', values.newPassword);
     formData.append('new_password_confirm', values.confirmPassword);
-    const { detail } = await changePassword( formData );
-    if ( detail === "The password has been changed." ) {
-      openModal()
+    setIsLoading(true);
+    const response = await changePassword(formData);
+    if (response.status === 200) {
+      setIsLoading(false);
+      openModal();
     }
-    
-
   };
   return (
     <div>
@@ -78,7 +80,7 @@ const ChangePasswordPageAdmin = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     // handlerSubmitButton={onSubmit}
-                    // isProcessing={isProcessing}
+                    isProcessing={isLoading}
                   />
                 </div>
               </div>
@@ -87,8 +89,7 @@ const ChangePasswordPageAdmin = () => {
         }}
       </Formik>
 
-      {/* {isModalOpen&&<ConfirmModal />} */}
-      {<ConfirmModal />}
+      {isModalOpen && <ConfirmModal />}
     </div>
   );
 };

@@ -39,14 +39,12 @@ const useAuthStore = create(() => ({
     try {
       if (isDataValid(data)) {
         const requestData = new URLSearchParams(data);
-        await axios
-          .post(`/auth/change-password`, requestData, {})
-          .then(response => {
-            return response;
-          })
-          .catch(error => {
-            console.error('Fetch error:', error);
-          });
+        const response = await axios.post(
+          `/auth/change-password`,
+          requestData,
+          {}
+        );
+        return response;
       }
     } catch (error) {
       console.error(error);
