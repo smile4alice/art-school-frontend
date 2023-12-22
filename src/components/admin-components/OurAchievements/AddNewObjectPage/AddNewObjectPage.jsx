@@ -48,7 +48,6 @@ const AddNewObjectPage = ({
 
   const onSubmit = async values => {
     try {
-      console.log(values);
       const formData = new FormData();
       formData.append('description', values.description);
       formData.append('pinned_position', values.pinned_position);
@@ -57,7 +56,9 @@ const AddNewObjectPage = ({
       setIsProcessing(true);
       await addAchievement(url, formData);
       setIsProcessing(false);
-      navigate(-1);
+      setTimeout(()=>{
+        navigate(`/admin/${url}`);
+      }, 1000)
     } catch (error) {
       console.log(error);
     }

@@ -74,7 +74,7 @@ const EditObjectPage = ({
     try {
       const formData = new FormData();
       formData.append('pinned_position', values.pinned_position);
-      formData.append('sub_department', achievement.sub_department);
+      formData.append('sub_department', achievement?.sub_department);
       formData.append('description', values.description);
       if (values.image?.[0].size === 0) {
         formData.append('media', '');
@@ -84,7 +84,9 @@ const EditObjectPage = ({
       setIsProcessing(true);
       await editAchievement(url, id, formData);
       setIsProcessing(false);
-      navigate(-1);
+      setTimeout(()=>{
+        navigate(`/admin/${url}`);
+      }, 1000)
     } catch (error) {
       console.error(error);
       setIsProcessing(false);

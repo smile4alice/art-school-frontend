@@ -16,7 +16,6 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
   const removePost = async () => {
     if (isDeleteConfirm) {
       try {
-        console.log(currentId);
         await deleteAchievement(url, currentId);
       } catch (error) {
         console.log(error);

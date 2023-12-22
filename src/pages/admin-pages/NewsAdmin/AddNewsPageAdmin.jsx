@@ -26,7 +26,6 @@ const AddNewsPage = () => {
 
   const onSubmit = async values => {
     try {
-      console.log(values);
       const formData = new FormData();
       formData.append('title', values.title);
       formData.append('text', values.text);
