@@ -3,15 +3,26 @@ import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
 const useNewsStore = create((set, get) => ({
+  loading: false,
   news: [],
   post: {},
 
   getNews: async () => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/news`);
       set(() => {
         return {
           news: response.data.items,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {
@@ -21,10 +32,20 @@ const useNewsStore = create((set, get) => ({
 
   getOnePost: async id => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/news/${id}`);
       set(() => {
         return {
           post: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {

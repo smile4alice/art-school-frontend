@@ -3,15 +3,26 @@ import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
 const useAdministrationStore = create((set, get) => ({
+  loading: false,
   members: [],
   member: {},
 
   getMembers: async () => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/school_administration`);
       set(() => {
         return {
           members: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {
@@ -21,10 +32,20 @@ const useAdministrationStore = create((set, get) => ({
 
   getOneMember: async id => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/school_administration/${id}`);
       set(() => {
         return {
           member: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {
