@@ -69,9 +69,9 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
       formData.append('sub_department', achievement.sub_department);
       formData.append('description', values.description);
       if (values.image?.[0].size === 0) {
-        formData.append('photo', '');
+        formData.append('media', '');
       } else {
-        formData.append('photo', values.image[0]);
+        formData.append('media', values.image[0]);
       }
       setIsProcessing(true);
       await editAchievement(url, id, formData);
