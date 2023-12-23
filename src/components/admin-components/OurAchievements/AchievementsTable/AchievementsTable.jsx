@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
@@ -11,12 +11,10 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  useEffect(() => {}, [data, currentId]);
-
+  
   const removePost = async () => {
     if (isDeleteConfirm) {
       try {
-        console.log(currentId);
         await deleteAchievement(url, currentId);
       } catch (error) {
         console.log(error);
@@ -37,7 +35,7 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
         <div className={s.action}>Дія</div>
       </div>
       <div className={s.tbody}>
-        {data.length > 0 &&
+        {data?.length > 0 &&
           data.map((item, index) => (
             <div className={s.row} key={index}>
               {typeOfAchievements === 'mainAchievements' && (

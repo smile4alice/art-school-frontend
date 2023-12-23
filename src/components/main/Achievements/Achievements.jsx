@@ -20,24 +20,22 @@ const Achievements = ({
   showSelect,
   selectOptions,
 }) => {
-  const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
   const swiperRef = useRef();
-  const [achievementsData, setAchievementsData] = useState([]);
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
+  const achievements = useServicesStore(state => state.achievements);
   const [loadingState, setLoadingState] = useState('loading');
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let result;
         setLoadingState('loading');
         if (url === 'achievements') {
-          result = await getMainAchievements(url);
+          await getMainAchievements(url);
         }
         else{
-          result = await getDepartmentAchievements(url, departmentId);
+          await getDepartmentAchievements(url, departmentId);
         }
-        setAchievementsData(result);
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
@@ -66,7 +64,7 @@ const Achievements = ({
           <Placeholder />
         </div>
       )}
-      {loadingState === 'success' && achievementsData?.length > 0 && (
+      {loadingState === 'success' && achievements?.length > 0 && (
           <div className={s.slidersContainer}>
             {isDesktop && (
               <SwiperButtons
@@ -93,7 +91,7 @@ const Achievements = ({
               pagination={{ clickable: true }}
               loop={true}
             >
-              {achievementsData.map(item => (
+              {achievements.map(item => (
                 <SwiperSlide className={s.slideContent} key={item.id}>
                   <div className={s.slidePhoto}>
                     <img src={item.media} alt={item.description} />

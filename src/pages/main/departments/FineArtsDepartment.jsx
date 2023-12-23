@@ -1,4 +1,3 @@
-import articles from '@/data/departments/finearts.json';
 import DepartmentPage from '@/components/departments/DepartmentPage/DepartmentPage';
 
 const FineArtsDepartment = () => {
@@ -7,7 +6,6 @@ const FineArtsDepartment = () => {
       id={'5'}
       showSelect={true}
       title={'Образотворче відділення'}
-      articles={articles}
     />
   );
 };

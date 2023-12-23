@@ -19,29 +19,32 @@ const AchievementsGalleryPage = ({
   buttonTitle1,
   buttonTitle2,
 }) => {
-  const { getAllAchievements, getMainAchievements, getDepartmentAchievements } =
-    useServicesStore();
-  const [achievements, setAchievements] = useState([]);
+  const { getAllAchievements, getMainAchievements, getDepartmentAchievements } = useServicesStore();
+  const achievements = useServicesStore(state => state.achievements);
+  const gallery = useServicesStore(state => state.gallery);
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
-  const [typeOfAchievements, setTypeOfAchievements] =
-    useState('allAchievements');
+  const [typeOfAchievements, setTypeOfAchievements] = useState('allAchievements');
   const [loadingState, setLoadingState] = useState('loading');
   const page = '1';
-  const pageSize = '50';
+  const pageSize = '20';
   let breadcrumbs;
 
   const setBreadcrumbs = (url, title) => {
-    if(url === 'achievements'){
-      breadcrumbs = ['Наші Досягнення']
-    }else if(url === 'gallery'){
-      breadcrumbs = ['Фотогалерея']
+    if (url === 'achievements') {
+      breadcrumbs = ['Наші Досягнення'];
+    } else if (url === 'gallery') {
+      breadcrumbs = ['Фотогалерея'];
     }
-    if(title !== selectTitle && typeOfAchievements !== 'mainAchievements'){
+    if (title !== selectTitle && typeOfAchievements !== 'mainAchievements') {
       breadcrumbs.push(title);
     }
-    if(typeOfAchievements === 'mainAchievements'){
-      breadcrumbs.push( url === achievements ? 'Закріпленні досягнення' : 'Закріпленні фотографії');
+    if (typeOfAchievements === 'mainAchievements') {
+      breadcrumbs.push(
+        url === achievements
+          ? 'Закріпленні досягнення'
+          : 'Закріпленні фотографії'
+      );
     }
     return breadcrumbs;
   };
@@ -54,24 +57,21 @@ const AchievementsGalleryPage = ({
       setTypeOfAchievements('departmentAchievements');
     }
   };
-  useEffect(() => {}, [departmentId]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let result;
         setLoadingState('loading');
         if (typeOfAchievements === 'allAchievements') {
-          result = await getAllAchievements(url, page, pageSize);
+          await getAllAchievements(url, page, pageSize);
         } else if (typeOfAchievements === 'mainAchievements') {
-          result = await getMainAchievements(url);
+          await getMainAchievements(url);
         } else if (typeOfAchievements === 'departmentAchievements') {
-          result = await getDepartmentAchievements(url, departmentId);
+          await getDepartmentAchievements(url, departmentId);
         }
-        setAchievements(result);
         setLoadingState('success');
       } catch (error) {
-        console.error(error);
+        console.log(error);
         setLoadingState('error');
       }
     };
@@ -134,16 +134,16 @@ const AchievementsGalleryPage = ({
           <SpinnerAdmin />
         </div>
       )}
-      {loadingState === 'success' && url === 'achievements' && (
+      {url === 'achievements' && loadingState === 'success' &&  (
         <AchievementsTable
           data={achievements}
           url={url}
           typeOfAchievements={typeOfAchievements}
         />
       )}
-      {loadingState === 'success' && url === 'gallery' && (
+      {url === 'gallery' && loadingState === 'success' &&  (
         <GalleryTable
-          data={achievements}
+          data={gallery}
           url={url}
           typeOfAchievements={typeOfAchievements}
         />

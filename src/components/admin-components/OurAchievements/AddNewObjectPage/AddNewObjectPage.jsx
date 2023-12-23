@@ -5,7 +5,7 @@ import { achievementsValidation } from '@/components/admin-components/OurAchieve
 import useServicesStore from '@/store/serviseStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
-import MyFileInput from '@/components/admin-components/OurAchievements/FileInput/MyFileInput';
+import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
@@ -17,7 +17,7 @@ const initialValues = {
   pinned_position: '',
   sub_department: '',
   description: '',
-  media: null,
+  image: [],
 };
 
 const AddNewObjectPage = ({
@@ -29,7 +29,9 @@ const AddNewObjectPage = ({
 }) => {
   const navigate = useNavigate();
   const { addAchievement, getAchievementsPositions } = useServicesStore();
-  const [achievementPositions, setAchievementsPositions] = useState({});
+  const achievementsPositions = useServicesStore(
+    state => state.achievementsPositions
+  );
   const [title, setTitle] = useState(selectTitle);
   const [isProcessing, setIsProcessing] = useState(false);
   let breadcrumbs;
@@ -39,29 +41,32 @@ const AddNewObjectPage = ({
     } else if (url === 'gallery') {
       breadcrumbs = ['Фотогалерея', 'Додати фото в галерею'];
     }
-    title !== selectTitle ? breadcrumbs.push(title): '';
+    title !== selectTitle ? breadcrumbs.push(title) : '';
     return breadcrumbs;
   };
   setBreadcrumbs(url);
 
-  const onSubmit = async (values, formikBag) => {
+  const onSubmit = async values => {
     try {
+      const formData = new FormData();
+      formData.append('description', values.description);
+      formData.append('pinned_position', values.pinned_position);
+      formData.append('sub_department', values.sub_department);
+      formData.append('media', values.image?.[0]);
       setIsProcessing(true);
-      await addAchievement(url, values);
+      await addAchievement(url, formData);
       setIsProcessing(false);
-      formikBag.resetForm();
-      navigate(`/admin/${url}`);
+      setTimeout(()=>{
+        navigate(`/admin/${url}`);
+      }, 2000)
     } catch (error) {
-      console.error(error);
-      setIsProcessing(false);
+      console.log(error);
     }
   };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getAchievementsPositions(url);
-        setAchievementsPositions(result);
+        await getAchievementsPositions(url);
       } catch (error) {
         console.error(error);
       }
@@ -103,16 +108,16 @@ const AddNewObjectPage = ({
                   name="description"
                   id="description"
                   component={TextArea}
-                  maxLength={150}
+                  maxLength={200}
                   showCharacterCount={true}
                   label="Опис"
                 />
                 <Field
-                  name="media"
-                  id="media"
-                  component={MyFileInput}
-                  label="Фото*"
-                />
+                    name="image"
+                    id="image"
+                    component={FileInput}
+                    label="Фото"
+                  />
               </div>
 
               <Field
@@ -120,7 +125,7 @@ const AddNewObjectPage = ({
                 id="pinned_position"
                 component={AchievementPositions}
                 title={achievementPositionsTitle}
-                achievementPositions={achievementPositions}
+                achievementPositions={achievementsPositions}
               />
 
               <div className={s.button}>
@@ -128,7 +133,7 @@ const AddNewObjectPage = ({
                   nameButton="Зберегти зміни"
                   isActive={formik.isValid}
                   isRight={true}
-                  handlerSubmitButton={formik.handleSubmit}
+                  handlerSubmitButton={onSubmit}
                   isProcessing={isProcessing}
                 />
               </div>

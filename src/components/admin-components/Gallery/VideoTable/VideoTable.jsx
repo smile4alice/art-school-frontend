@@ -12,7 +12,6 @@ const VideoTable = ({ url, videos }) => {
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  console.log(videos);
   const replaceUrl = videoUrl => {
     return videoUrl.replace('watch?v=', 'embed/');
   };
@@ -34,7 +33,7 @@ const VideoTable = ({ url, videos }) => {
 
   return (
     <div className={s.galleryTable}>
-      {videos.length > 0 &&
+      {videos?.length > 0 &&
         videos.map((item, i) => (
           <div className={s.photoContainer} key={i}>
             <div className={s.photo}>

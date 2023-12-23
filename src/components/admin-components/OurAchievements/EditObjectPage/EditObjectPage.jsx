@@ -5,7 +5,7 @@ import { achievementsValidation } from '@/components/admin-components/OurAchieve
 import useServicesStore from '@/store/serviseStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
-import MyFileInput from '@/components/admin-components/OurAchievements/FileInput/MyFileInput';
+import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import AchievementPositions from '@/components/admin-components/OurAchievements/AchievementPositions/AchievementsPositions'; // Замініть шлях на реальний
@@ -16,16 +16,24 @@ const initialValues = {
   pinned_position: '',
   sub_department: '',
   description: '',
-  media: null,
+  image: [],
 };
 
-const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTitle, selectTitle }) => {
+const EditObjectPage = ({
+  url,
+  pageTitle,
+  backButtonLink,
+  achievementPositionsTitle,
+  selectTitle,
+}) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { getAchievementsPositions, getAchievemenById, editAchievement } =
     useServicesStore();
-  const [achievementPositions, setAchievementsPositions] = useState({});
-  const [currentAchievement, setCurrentAchievement] = useState({});
+  const achievement = useServicesStore(state => state.achievement);
+  const achievementsPositions = useServicesStore(
+    state => state.achievementsPositions
+  );
   const title = selectTitle;
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -43,8 +51,7 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getAchievementsPositions(url);
-        setAchievementsPositions(result);
+        await getAchievementsPositions(url);
       } catch (error) {
         console.error(error);
       }
@@ -55,8 +62,7 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getAchievemenById(url, id);
-        setCurrentAchievement(result);
+        await getAchievemenById(url, id);
       } catch (error) {
         console.error(error);
       }
@@ -64,17 +70,23 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
     fetchData();
   }, [getAchievemenById, id, url]);
 
-  const onSubmit = async (values, formikBag) => {
+  const onSubmit = async values => {
     try {
-      const updatedValues = {
-        ...values,
-        sub_department: currentAchievement.sub_department,
-      };
+      const formData = new FormData();
+      formData.append('pinned_position', values.pinned_position);
+      formData.append('sub_department', achievement?.sub_department);
+      formData.append('description', values.description);
+      if (values.image?.[0].size === 0) {
+        formData.append('media', '');
+      } else {
+        formData.append('media', values.image[0]);
+      }
       setIsProcessing(true);
-      await editAchievement(url, id, updatedValues);
+      await editAchievement(url, id, formData);
       setIsProcessing(false);
-      formikBag.resetForm();
-      navigate(`/admin/${url}`);
+      setTimeout(()=>{
+        navigate(`/admin/${url}`);
+      }, 2000)
     } catch (error) {
       console.error(error);
       setIsProcessing(false);
@@ -107,17 +119,17 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
                   name="description"
                   id="description"
                   component={TextArea}
-                  maxLength={150}
+                  maxLength={200}
                   showCharacterCount={true}
                   label="Опис"
-                  text={currentAchievement.description}
+                  text={achievement?.description}
                 />
                 <Field
-                  name="media"
-                  id="media"
-                  component={MyFileInput}
-                  label="Фото*"
-                  photo={currentAchievement.media}
+                  name="image"
+                  id="image"
+                  component={FileInput}
+                  photo={achievement?.media}
+                  label="Фото"
                 />
               </div>
               <Field
@@ -125,8 +137,8 @@ const EditObjectPage = ({ url, pageTitle, backButtonLink, achievementPositionsTi
                 id="pinned_position"
                 component={AchievementPositions}
                 title={achievementPositionsTitle}
-                achievementPositions={achievementPositions}
-                activePosition={currentAchievement.pinned_position}
+                achievementPositions={achievementsPositions}
+                activePosition={achievement?.pinned_position}
               />
               <div className={s.button}>
                 <ButtonSubmit

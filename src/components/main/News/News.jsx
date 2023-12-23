@@ -27,6 +27,7 @@ const News = () => {
       try {
         const result = await getNews();
         setNews(result.items);
+        console.log(result.items);
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
