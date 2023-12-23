@@ -26,7 +26,8 @@ const AchievementsGalleryPage = ({
   const [title, setTitle] = useState(selectTitle);
   const [typeOfAchievements, setTypeOfAchievements] = useState('allAchievements');
   const [loadingState, setLoadingState] = useState('loading');
-  const page = '1';
+  const page = 1;
+  //const [page, setPage] = useState(1);
   const pageSize = '20';
   let breadcrumbs;
 
