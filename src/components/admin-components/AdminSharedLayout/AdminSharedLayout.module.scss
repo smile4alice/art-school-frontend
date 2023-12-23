@@ -12,12 +12,12 @@
   justify-content: center;
   margin: 12px;
   align-self: stretch;
+  gap: 12px;
 }
 .rightContent {
   position: relative;
   display: flex;
   width: calc(100% - 215px);
-  margin: 0px 12px 12px 12px;
   flex-direction: column;
   flex: 1 0 0;
   align-self: stretch;

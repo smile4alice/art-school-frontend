@@ -33,37 +33,38 @@ const VideoTable = ({ url, videos }) => {
 
   return (
     <div className={s.galleryTable}>
-      {videos?.length > 0 &&
-        videos.map((item, i) => (
-          <div className={s.photoContainer} key={i}>
-            <div className={s.photo}>
-              <iframe
-                src={replaceUrl(item.media)}
-                title={`Video ${i + 1}`}
-                width="250"
-                height="150"
-              ></iframe>
-            </div>
-            <div className={s.action}>
-              <Link to={`edit/${item.id}`}>
-                <button className={s.edit}>
-                  <img src="/icons/edit.svg" alt="edit icon" />
+      <div className={s.videos}>
+        {videos?.length > 0 &&
+          videos.map((item, i) => (
+            <div className={s.photoContainer} key={i}>
+              <div className={s.photo}>
+                <iframe
+                  src={replaceUrl(item.media)}
+                  title={`Video ${i + 1}`}
+                  width="150"
+                  height="95"
+                />
+              </div>
+              <div className={s.action}>
+                <Link to={`edit/${item.id}`}>
+                  <button className={s.edit}>
+                    <img src="/icons/edit.svg" alt="edit icon" />
+                  </button>
+                </Link>
+                <button
+                  className={s.delete}
+                  onClick={() => {
+                    setCurrentId(item.id);
+                    openModal();
+                  }}
+                >
+                  <img src="/icons/delete.svg" alt="delete icon" />
                 </button>
-              </Link>
-              <button
-                className={s.delete}
-                onClick={() => {
-                  setCurrentId(item.id);
-                  openModal();
-                  
-                }}
-              >
-                <img src="/icons/delete.svg" alt="delete icon" />
-              </button>
+              </div>
             </div>
-          </div>
-        ))}
-      {isModalOpen && <ConfirmDeleteModal handleDelete={removePost} />}
+          ))}
+        {isModalOpen && <ConfirmDeleteModal handleDelete={removePost} />}
+      </div>
     </div>
   );
 };
