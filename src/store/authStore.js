@@ -35,6 +35,21 @@ const useAuthStore = create(() => ({
       }
     }
   },
+  changePassword: async data => {
+    try {
+      if (isDataValid(data)) {
+        const requestData = new URLSearchParams(data);
+        const response = await axios.post(
+          `/auth/change-password`,
+          requestData,
+          {}
+        );
+        return response;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  },
 }));
 
 export default useAuthStore;
