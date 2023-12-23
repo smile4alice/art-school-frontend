@@ -86,7 +86,7 @@ const EditObjectPage = ({
       setIsProcessing(false);
       setTimeout(()=>{
         navigate(`/admin/${url}`);
-      }, 1000)
+      }, 2000)
     } catch (error) {
       console.error(error);
       setIsProcessing(false);

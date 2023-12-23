@@ -94,6 +94,7 @@ const useServicesStore = create(set => ({
           };
         }
       });
+    
     } catch (error) {
       throw new Error(error);
     }

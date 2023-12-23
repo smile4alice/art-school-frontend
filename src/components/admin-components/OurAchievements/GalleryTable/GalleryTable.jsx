@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
@@ -6,12 +6,12 @@ import { useConfirmDelete } from '@/store/confirmDelete';
 import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
 import s from './GalleryTable.module.scss';
 
-const GalleryTable = ({ url, data, typeOfAchievements }) => {
+const GalleryTable = ({ url, data,  typeOfAchievements }) => {
   const { deleteAchievement } = useServicesStore();
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  useEffect(() => {}, [data, currentId]);
+
   const removePost = async () => {
     if (isDeleteConfirm) {
       try {
@@ -26,7 +26,7 @@ const GalleryTable = ({ url, data, typeOfAchievements }) => {
 
   return (
     <div className={s.galleryTable}>
-      {data.length > 0 &&
+      {data?.length > 0 &&
         data.map((item, i) => (
           <div className={s.photoContainer} key={i}>
             <div className={s.photo}>

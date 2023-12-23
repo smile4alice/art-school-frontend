@@ -21,12 +21,13 @@ const AchievementsGalleryPage = ({
 }) => {
   const { getAllAchievements, getMainAchievements, getDepartmentAchievements } = useServicesStore();
   const achievements = useServicesStore(state => state.achievements);
+  const gallery = useServicesStore(state => state.gallery);
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
   const [typeOfAchievements, setTypeOfAchievements] = useState('allAchievements');
   const [loadingState, setLoadingState] = useState('loading');
   const page = '1';
-  const pageSize = '50';
+  const pageSize = '20';
   let breadcrumbs;
 
   const setBreadcrumbs = (url, title) => {
@@ -133,16 +134,16 @@ const AchievementsGalleryPage = ({
           <SpinnerAdmin />
         </div>
       )}
-      {loadingState === 'success' && url === 'achievements' && (
+      {url === 'achievements' && loadingState === 'success' &&  (
         <AchievementsTable
           data={achievements}
           url={url}
           typeOfAchievements={typeOfAchievements}
         />
       )}
-      {loadingState === 'success' && url === 'gallery' && (
+      {url === 'gallery' && loadingState === 'success' &&  (
         <GalleryTable
-          data={achievements}
+          data={gallery}
           url={url}
           typeOfAchievements={typeOfAchievements}
         />

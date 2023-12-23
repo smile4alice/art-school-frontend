@@ -58,7 +58,7 @@ const AddNewObjectPage = ({
       setIsProcessing(false);
       setTimeout(()=>{
         navigate(`/admin/${url}`);
-      }, 1000)
+      }, 2000)
     } catch (error) {
       console.log(error);
     }

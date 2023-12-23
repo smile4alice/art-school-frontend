@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
@@ -11,8 +11,7 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  useEffect(() => {}, [data, currentId]);
-
+  
   const removePost = async () => {
     if (isDeleteConfirm) {
       try {
