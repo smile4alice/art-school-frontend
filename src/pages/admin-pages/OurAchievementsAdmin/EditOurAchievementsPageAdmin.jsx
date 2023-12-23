@@ -7,6 +7,7 @@ const EditOurAchievementsPage = () => {
       backButtonLink='/admin/achievements'
       achievementPositionsTitle='Закріпити в блок “Наші досягнення на головній сторінці'
       url="achievements"
+      selectTitle='Всі досягнення'
     />
   );
 };

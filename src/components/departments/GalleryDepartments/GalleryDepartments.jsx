@@ -20,17 +20,16 @@ const GalleryDepartments = ({
   selectOptions,
 }) => {
   const { getDepartmentAchievements } = useServicesStore();
+  const gallery = useServicesStore(state => state.gallery);
   const isDextop = useMediaQuery({ minWidth: 1280 });
   const swiperGalaryRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
-  const [galleryData, setGalleryData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoadingState('loading');
       try {
-        const result = await getDepartmentAchievements(url, departmentId);
-        setGalleryData(result);
+        await getDepartmentAchievements(url, departmentId);
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
@@ -53,49 +52,48 @@ const GalleryDepartments = ({
           <Spinner />
         </div>
       )}
-      {loadingState === 'success' ? (
-        galleryData && galleryData.length > 0 ? (
-          <div className={s.slidersContainer}>
-            {isDextop && (
-              <SwiperButtons
-                onPrevClick={() => swiperGalaryRef.current.slidePrev()}
-                onNextClick={() => swiperGalaryRef.current.slideNext()}
-              />
-            )}
-            <Swiper
-              onSwiper={swiper => {
-                swiperGalaryRef.current = swiper;
-              }}
-              className={s.slider}
-              modules={[Pagination]}
-              spaceBetween={16}
-              slidesPerView={1}
-              breakpoints={{
-                768: {
-                  slidesPerView: 2,
-                },
-                1280: {
-                  slidesPerView: 3,
-                },
-              }}
-              pagination={{ clickable: true }}
-              loop={true}
-            >
-              {galleryData.map(item => (
-                <SwiperSlide className={s.slideContent} key={item.id}>
-                  <div className={s.slidePhoto}>
-                    <img src={item.media} alt={item.description} />
-                  </div>
-                  <p className={s.slideText}>{item.description}</p>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        ) : (
+      {loadingState === 'error' && (
+        <div className={s.errorData}>
           <Placeholder />
-        )
-      ) : (
-        loadingState === 'error' && <Placeholder />
+        </div>
+      )}
+      {loadingState === 'success' && gallery?.length > 0 && (
+        <div className={s.slidersContainer}>
+          {isDextop && (
+            <SwiperButtons
+              onPrevClick={() => swiperGalaryRef.current.slidePrev()}
+              onNextClick={() => swiperGalaryRef.current.slideNext()}
+            />
+          )}
+          <Swiper
+            onSwiper={swiper => {
+              swiperGalaryRef.current = swiper;
+            }}
+            className={s.slider}
+            modules={[Pagination]}
+            spaceBetween={16}
+            slidesPerView={1}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+              },
+              1280: {
+                slidesPerView: 3,
+              },
+            }}
+            pagination={{ clickable: true }}
+            loop={true}
+          >
+            {gallery.map(item => (
+              <SwiperSlide className={s.slideContent} key={item.id}>
+                <div className={s.slidePhoto}>
+                  <img src={item.media} alt={item.description} />
+                </div>
+                <p className={s.slideText}>{item.description}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       )}
       {showSelect && !isDextop && (
         <Select

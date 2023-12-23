@@ -6,7 +6,7 @@ import useNewsStore from '@/store/newsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
-import FileInput from '@/components/admin-components/OurAchievements/FileInput/MyFileInput';
+import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import styles from './NewsAdmin.module.scss';

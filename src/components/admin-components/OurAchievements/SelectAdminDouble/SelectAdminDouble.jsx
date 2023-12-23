@@ -5,9 +5,9 @@ import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmi
 import s from './SelectAdminDouble.module.scss';
 
 const SelectAdminDouble = ({ changeDepartment }) => {
+  const departments = useServicesStore(state => state.departments);
+  const subDepartments = useServicesStore(state => state.subDepartments);
   const { getMainDepartments, getSubDepartments } = useServicesStore();
-  const [mainDepartmentsList, setMainDepartmentsList] = useState([]);
-  const [subDepartmentsList, setSubDepartmentsList] = useState([]);
   const [optionsVisible, setOptionsVisible] = useState(false);
   const [secondOptionsVisible, setSecondOptionsVisible] = useState(false);
   const [selectedOptionId, setSelectedOptionId] = useState('');
@@ -34,10 +34,12 @@ const SelectAdminDouble = ({ changeDepartment }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getMainDepartments();
-        setMainDepartmentsList(result);
+        setLoadingState('loading');
+        await getMainDepartments();
+        setLoadingState('success');
       } catch (error) {
-        console.error('Error:', error);
+        console.log(error);
+        setLoadingState('error');
       }
     };
     fetchData();
@@ -46,13 +48,12 @@ const SelectAdminDouble = ({ changeDepartment }) => {
   useEffect(() => {
     if (secondOptionsVisible) {
       const fetchData = async () => {
-        setLoadingState('loading');
         try {
-          const result = await getSubDepartments(selectedOptionId);
-          setSubDepartmentsList(result);
+          setLoadingState('loading');
+          await getSubDepartments(selectedOptionId);
           setLoadingState('success');
         } catch (error) {
-          console.error('Error:', error);
+          console.log(error);
           setLoadingState('error');
         }
       };
@@ -72,7 +73,7 @@ const SelectAdminDouble = ({ changeDepartment }) => {
       </div>
       {optionsVisible && (
         <div className={s.optionsContainer} ref={selectOptionsRef}>
-          {mainDepartmentsList.map(option => (
+          {departments?.map(option => (
             <div
               key={option.id}
               className={`${s.option} ${
@@ -82,12 +83,20 @@ const SelectAdminDouble = ({ changeDepartment }) => {
                 toggleSecondOptionsVisible(option.id);
               }}
             >
-              <div className={s.button}> {option.department_name} <img className={s.arrow} src="/icons/arrow.svg" alt="arrow icon" /></div>
-             
+              <div className={s.button}>
+                {' '}
+                {option.department_name}{' '}
+                <img
+                  className={s.arrow}
+                  src="/icons/arrow.svg"
+                  alt="arrow icon"
+                />
+              </div>
+
               {selectedOptionId === option.id &&
                 (loadingState !== 'loading' ? (
                   <div className={s.secondOptionsContainer}>
-                    {subDepartmentsList.map(item => (
+                    {subDepartments?.map(item => (
                       <div
                         key={item.id}
                         className={s.secondOption}
@@ -96,7 +105,9 @@ const SelectAdminDouble = ({ changeDepartment }) => {
                           toggleOptionsVisible();
                         }}
                       >
-                        <div className={s.button}>{item.sub_department_name}</div>
+                        <div className={s.button}>
+                          {item.sub_department_name}
+                        </div>
                       </div>
                     ))}
                   </div>
