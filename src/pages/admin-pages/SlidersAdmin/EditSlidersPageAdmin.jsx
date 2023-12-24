@@ -93,7 +93,7 @@ const EditSlidersPage = () => {
                     name="text"
                     id="text"
                     component={TextArea}
-                    maxLength={2000}
+                    maxLength={300}
                     showCharacterCount={true}
                     text={slide?.description}
                     label="Опис слайду"

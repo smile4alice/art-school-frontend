@@ -1,28 +1,30 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useSlidersStore from '@/store/slidersStore';
-import { useModal } from '@/store/modalStore';
 
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import SlidersTable from '@/components/admin-components/Sliders/SlidersTable/SlidersTable';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
 const breadcrumbs = ['Слайдери'];
 
 const SlidersPageAdmin = () => {
-  const { isModalOpen } = useModal();
   const { getSlides } = useSlidersStore();
   const slides = useSlidersStore(state => state.slides);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         await getSlides();
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [getSlides, isModalOpen]);
+  }, [getSlides]);
 
   return (
     <div>
@@ -35,7 +37,7 @@ const SlidersPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати слайд"
       />
-      <SlidersTable data={slides} />
+      {loading ? <SpinnerAdmin /> : <SlidersTable data={slides} />}
     </div>
   );
 };

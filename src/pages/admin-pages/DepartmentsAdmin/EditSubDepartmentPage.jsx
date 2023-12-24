@@ -65,8 +65,6 @@ const EditSubDepartmentPage = () => {
     }
   };
 
-  if (loading) return <SpinnerAdmin />;
-
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -78,51 +76,55 @@ const EditSubDepartmentPage = () => {
         stateTitle={department?.department_name}
         stateId={departmentId}
       />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={newsValidation}
-        onSubmit={onSubmit}
-      >
-        {formik => {
-          return (
-            <Form>
-              <div className={styles.layout}>
-                <div className={styles.secondRow}>
-                  <Field
-                    name="title"
-                    id="title"
-                    placeholder="Title"
-                    component={TextInput}
-                    maxLength={120}
-                    showCharacterCount={true}
-                    label="Назва Відділу*"
-                    text={subDepartment?.sub_department_name}
-                  />
-                  <Field
-                    name="text"
-                    id="text"
-                    placeholder="Title"
-                    component={TextArea}
-                    maxLength={2000}
-                    showCharacterCount={true}
-                    label="Опис*"
-                    text={subDepartment?.description}
-                  />
+      {loading ? (
+        <SpinnerAdmin />
+      ) : (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={newsValidation}
+          onSubmit={onSubmit}
+        >
+          {formik => {
+            return (
+              <Form>
+                <div className={styles.layout}>
+                  <div className={styles.secondRow}>
+                    <Field
+                      name="title"
+                      id="title"
+                      placeholder="Title"
+                      component={TextInput}
+                      maxLength={120}
+                      showCharacterCount={true}
+                      label="Назва Відділу"
+                      text={subDepartment?.sub_department_name}
+                    />
+                    <Field
+                      name="text"
+                      id="text"
+                      placeholder="Title"
+                      component={TextArea}
+                      maxLength={2000}
+                      showCharacterCount={true}
+                      label="Опис"
+                      text={subDepartment?.description}
+                    />
+                  </div>
+                  <div className={styles.button}>
+                    <ButtonSubmit
+                      nameButton="Зберегти зміни"
+                      isActive={formik.isValid}
+                      isRight={true}
+                      handlerSubmitButton={onSubmit}
+                      isProcessing={isProcessing}
+                    />
+                  </div>
                 </div>
-                <div className={styles.button}>
-                  <ButtonSubmit
-                    nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
-                    isRight={true}
-                    handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
-                  />
-                </div>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+              </Form>
+            );
+          }}
+        </Formik>
+      )}
     </div>
   );
 };

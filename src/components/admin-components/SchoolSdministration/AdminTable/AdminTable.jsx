@@ -4,7 +4,6 @@ import useAdministrationStore from '@/store/administrationStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
-import SpinnerAdmin from '../../SpinnerAdmin/SpinnerAdmin';
 import styles from './AdminTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
@@ -13,7 +12,6 @@ const AdminTable = ({ data }) => {
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  const loading = useAdministrationStore(state => state.loading);
 
   const removeMember = async () => {
     if (isDeleteConfirm) {
@@ -26,8 +24,6 @@ const AdminTable = ({ data }) => {
       closeModal();
     }
   };
-
-  if (loading) return <SpinnerAdmin />;
 
   return (
     <div className={styles.contentWrap}>

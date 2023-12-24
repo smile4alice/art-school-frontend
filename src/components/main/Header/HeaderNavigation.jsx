@@ -1,13 +1,37 @@
 import { useEffect, useState } from 'react';
-import Logo from '../../Logo/Logo';
+import { clsx } from 'clsx';
 
-import styles from './Header.module.scss';
+import Logo from '../../Logo/Logo';
 import NavList from './NavList/NavList';
 import BurgerMenu from './BurgerMenu/BurgerMenu';
 import BurgerIcon from '@/components/Icons/BurgerIcon';
 
+import styles from './Header.module.scss';
+
 const HeaderNavigation = ({ windowWidth }) => {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        if (window.scrollY > lastScrollY) {
+          setShow(false); //  scroll down  hide header contacts l
+        } else {
+          setShow(true); // srroll up,  show header contacts again
+        }
+        setLastScrollY(window.scrollY); // scroll number
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
 
   const handelClickBurgerButton = () => setShowBurgerMenu(!showBurgerMenu);
 
@@ -25,7 +49,12 @@ const HeaderNavigation = ({ windowWidth }) => {
   }, [showBurgerMenu]);
 
   return (
-    <div className={styles.headerNavigationWrapper}>
+    <div
+      className={clsx(
+        styles.headerNavigationWrapper,
+        show ? '' : styles.hidden
+      )}
+    >
       <Logo className="header_logo" />
       {windowWidth >= 1280 ? (
         <NavList />

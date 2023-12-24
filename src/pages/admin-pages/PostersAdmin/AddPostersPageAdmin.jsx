@@ -65,12 +65,7 @@ const AddPostersPage = () => {
                     label="Заголовок"
                   />
 
-                  <Field
-                    name="image"
-                    id="image"
-                    component={FileInput}
-                    // label="Фото"
-                  />
+                  <Field name="image" id="image" component={FileInput} />
                 </div>
 
                 <div className={styles.button}>

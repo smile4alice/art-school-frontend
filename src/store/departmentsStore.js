@@ -9,20 +9,10 @@ const useDepartmentsStore = create((set, get) => ({
 
   getDepartments: async () => {
     try {
-      set(() => {
-        return {
-          loading: true,
-        };
-      });
       const response = await axios.get(`/departments`);
       set(() => {
         return {
           departments: response.data,
-        };
-      });
-      set(() => {
-        return {
-          loading: false,
         };
       });
     } catch (error) {
@@ -32,20 +22,10 @@ const useDepartmentsStore = create((set, get) => ({
 
   getOneDepartment: async id => {
     try {
-      set(() => {
-        return {
-          loading: true,
-        };
-      });
       const response = await axios.get(`/departments/${id}`);
       set(() => {
         return {
           department: response.data,
-        };
-      });
-      set(() => {
-        return {
-          loading: false,
         };
       });
     } catch (error) {
@@ -114,22 +94,12 @@ const useDepartmentsStore = create((set, get) => ({
 
   deleteSubDepartment: async id => {
     try {
-      set(() => {
-        return {
-          loading: true,
-        };
-      });
       const response = await axios.delete(`/departments/sub_department/${id}`);
       set(() => {
         return {
           department: get().department.filter(
             sub_department => sub_department.id !== id
           ),
-        };
-      });
-      set(() => {
-        return {
-          loading: false,
         };
       });
       return response;

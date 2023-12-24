@@ -17,19 +17,19 @@ const ConfirmDeleteModal = ({ handleDelete }) => {
         <div className={styles.buttonsWrapper}>
           <button
             onClick={() => {
+              closeModal();
+            }}
+          >
+            Відміна
+          </button>
+          <button
+            onClick={() => {
               confirmDelete();
               handleDelete();
               closeModal();
             }}
           >
-            Так
-          </button>
-          <button
-            onClick={() => {
-              closeModal();
-            }}
-          >
-            Ні
+            Видалити
           </button>
         </div>
       </div>

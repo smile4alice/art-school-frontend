@@ -60,60 +60,62 @@ const EditPostersPage = () => {
     }
   };
 
-  if (loading) return <SpinnerAdmin />;
-
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <div>
         <PageTitle
-          title="Редагуватти Афішу"
+          title="Редагувати Афішу"
           showBackButton={true}
           backButtonLink="/admin/posters"
           showActionButton={false}
         />
-        <Formik
-          initialValues={initialValues}
-          validationSchema={posterValidation}
-          onSubmit={onSubmit}
-        >
-          {formik => {
-            return (
-              <Form>
-                <div className={styles.layout}>
-                  <div className={styles.inputWrapper}>
-                    <Field
-                      name="title"
-                      id="title"
-                      placeholder="Title"
-                      component={TextArea}
-                      maxLength={2000}
-                      showCharacterCount={true}
-                      text={poster?.title}
-                      label="Заголовок"
-                    />
-                    <Field
-                      name="image"
-                      id="image"
-                      component={FileInput}
-                      photo={poster?.photo}
-                      // label="Фото"
+        {loading ? (
+          <SpinnerAdmin />
+        ) : (
+          <Formik
+            initialValues={initialValues}
+            validationSchema={posterValidation}
+            onSubmit={onSubmit}
+          >
+            {formik => {
+              return (
+                <Form>
+                  <div className={styles.layout}>
+                    <div className={styles.inputWrapper}>
+                      <Field
+                        name="title"
+                        id="title"
+                        placeholder="Title"
+                        component={TextArea}
+                        maxLength={120}
+                        showCharacterCount={true}
+                        text={poster?.title}
+                        label="Заголовок"
+                      />
+                      <Field
+                        name="image"
+                        id="image"
+                        component={FileInput}
+                        photo={poster?.photo}
+                        // label="Фото"
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.button}>
+                    <ButtonSubmit
+                      nameButton="Зберегти зміни"
+                      isActive={formik.isValid}
+                      isRight={true}
+                      handlerSubmitButton={onSubmit}
+                      isProcessing={isProcessing}
                     />
                   </div>
-                </div>
-                <div className={styles.button}>
-                  <ButtonSubmit
-                    nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
-                    isRight={true}
-                    handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
-                  />
-                </div>
-              </Form>
-            );
-          }}
-        </Formik>
+                </Form>
+              );
+            }}
+          </Formik>
+        )}
       </div>
     </div>
   );
