@@ -7,20 +7,34 @@ import TextInput from '../../formik/TextInput/TextInput';
 import styles from './SignIn.module.scss';
 import { Link } from 'react-router-dom';
 import { loginValidation } from './validationSchema';
-
+import { useAuthorizated } from '@/store/IsAuthorizatedStore';
+import { Navigate } from 'react-router';
 const initialValues = {
   password: '',
   email: '',
 };
 
 const SignIn = () => {
+  const { IsAuthorizated, setIsAuthorizated } = useAuthorizated();
   const { login } = useAuthStore();
+  if (IsAuthorizated) return <Navigate to="/admin" />;
 
+  const checkToken = key => {
+    // Get the value of the key from local storage
+    const value = localStorage.getItem(key);
+    // Check if the value is not null
+    const exists = value !== null;
+    // If the key exists, remove it
+    if (exists) {
+      setIsAuthorizated();
+    }
+  };
   const onSubmit = async values => {
     const formData = new FormData();
     formData.append('password', values.password);
     formData.append('username', values.email);
     await login(formData);
+    checkToken('access_token');
   };
 
   return (
