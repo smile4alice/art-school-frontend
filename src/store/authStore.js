@@ -3,6 +3,7 @@ import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
 const useAuthStore = create(() => ({
+
   login: async data => {
     try {
       if (isDataValid(data)) {

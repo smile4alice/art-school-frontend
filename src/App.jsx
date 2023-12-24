@@ -62,6 +62,7 @@ import EditPostersPage from './pages/admin-pages/PostersAdmin/EditPostersPageAdm
 import VideoPageAdmin from './pages/admin-pages/VideoAdmin/VideoPageAdmin';
 import AddVideoPage from './pages/admin-pages/VideoAdmin/AddVideoPageAdmin';
 import EditVideoPage from './pages/admin-pages/VideoAdmin/EditVideoPageAdmin';
+import PrivateRoute from './components/admin-components/PrivateRoute/PrivateRoute';
 
 const App = () => {
   return (
@@ -118,7 +119,14 @@ const App = () => {
         </Route>
 
         {/* admin */}
-        <Route path="/admin" element={<AdminSharedLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute>
+              <AdminSharedLayout redirectTo="/login" />
+            </PrivateRoute>
+          }
+        >
           <Route index element={<AdminDashboard />} />
           <Route path="sliders" element={<SlidersPageAdmin />} />
           <Route path="sliders/add" element={<AddSlidersPage />} />
