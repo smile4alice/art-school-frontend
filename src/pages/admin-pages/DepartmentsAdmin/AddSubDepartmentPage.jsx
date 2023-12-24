@@ -73,7 +73,7 @@ const AddSubDepartmentPage = () => {
                     component={TextInput}
                     maxLength={120}
                     showCharacterCount={true}
-                    label="Назва Відділу*"
+                    label="Назва Відділу"
                   />
                   <Field
                     name="text"
@@ -82,7 +82,7 @@ const AddSubDepartmentPage = () => {
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}
-                    label="Опис*"
+                    label="Опис"
                   />
                 </div>
                 <div className={styles.button}>

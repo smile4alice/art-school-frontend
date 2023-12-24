@@ -60,8 +60,6 @@ const EditSchoolAdministrationPage = () => {
     }
   };
 
-  if (loading) return <SpinnerAdmin />;
-
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -71,56 +69,60 @@ const EditSchoolAdministrationPage = () => {
         backButtonLink="/admin/administration"
         showActionButton={false}
       />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={administrationValidation}
-        onSubmit={onSubmit}
-      >
-        {formik => {
-          return (
-            <Form>
-              <div className={styles.layout}>
-                <Field
-                  name="full_name"
-                  id="full_name"
-                  component={TextInput}
-                  maxLength={60}
-                  showCharacterCount={true}
-                  label="ПІБ Працівника"
-                  text={member?.full_name}
-                />
-                <div className={styles.secondRow}>
+      {loading ? (
+        <SpinnerAdmin />
+      ) : (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={administrationValidation}
+          onSubmit={onSubmit}
+        >
+          {formik => {
+            return (
+              <Form>
+                <div className={styles.layout}>
                   <Field
-                    name="position"
-                    id="position"
-                    component={TextArea}
-                    maxLength={120}
+                    name="full_name"
+                    id="full_name"
+                    component={TextInput}
+                    maxLength={60}
                     showCharacterCount={true}
-                    label="Посада Працівника"
-                    text={member?.position}
+                    label="ПІБ Працівника"
+                    text={member?.full_name}
                   />
-                  <Field
-                    name="image"
-                    id="image"
-                    component={FileInput}
-                    label="Фото"
-                    photo={member?.photo}
-                  />
+                  <div className={styles.secondRow}>
+                    <Field
+                      name="position"
+                      id="position"
+                      component={TextArea}
+                      maxLength={120}
+                      showCharacterCount={true}
+                      label="Посада Працівника"
+                      text={member?.position}
+                    />
+                    <Field
+                      name="image"
+                      id="image"
+                      component={FileInput}
+                      label="Фото"
+                      photo={member?.photo}
+                    />
+                  </div>
+                  <div className={styles.button}>
+                    <ButtonSubmit
+                      nameButton="Зберегти зміни"
+                      isActive={formik.isValid}
+                      isRight={true}
+                      handlerSubmitButton={onSubmit}
+                      isProcessing={isProcessing}
+                    />
+                  </div>
                 </div>
-                <div className={styles.button}>
-                  <ButtonSubmit
-                    nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
-                    isRight={true}
-                    handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
-                  />
-                </div>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+              </Form>
+            );
+          }}
+        </Formik>
+      )}
     </div>
   );
 };

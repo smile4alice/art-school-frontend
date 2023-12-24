@@ -1,3 +1,4 @@
+import articles from '@/data/departments/music';
 import DepartmentPage from '@/components/departments/DepartmentPage/DepartmentPage';
 
 const MusicDepartment = () => {
@@ -6,6 +7,7 @@ const MusicDepartment = () => {
       id={'1'}
       showSelect={true}
       title={'Музичне відділення'}
+      articles={articles}
     />
   );
 };

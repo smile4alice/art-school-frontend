@@ -4,9 +4,9 @@ import { clsx } from 'clsx';
 import LocationIcon from '@/components/Icons/LocationIcon';
 import PhoneIcon from '@/components/Icons/PhoneIcon';
 import EmailIcon from '@/components/Icons/EmailIcon';
+import SocialList from './SosialList/SocialList';
 
 import styles from './Header.module.scss';
-import SocialList from './SosialList/SocialList';
 
 const HeaderContacts = () => {
   const [show, setShow] = useState(true);

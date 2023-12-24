@@ -6,6 +6,7 @@ import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import DepartmentsTable from '@/components/admin-components/Departments/DepartmentsTable/DepartmentsTable';
 import DepartmentsTabs from '@/components/admin-components/Departments/DepartmentsTabs/DepartmentsTabs';
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
 const DepartmentPageAdmin = () => {
   const { id } = useParams();
@@ -13,13 +14,16 @@ const DepartmentPageAdmin = () => {
   const { getOneDepartment, getDepartments } = useDepartmentsStore();
   const [thisDepartment, setThisdepartment] = useState([]);
   const [title, setTitle] = useState([]);
+  const [loading, setLoading] = useState(false);
   const department = useDepartmentsStore(state => state.department);
   const departments = useDepartmentsStore(state => state.departments);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         await getDepartments();
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -65,10 +69,14 @@ const DepartmentPageAdmin = () => {
         stateId={id}
       />
       <DepartmentsTabs departments={departments} />
-      <DepartmentsTable
-        data={department}
-        departmentId={thisDepartment[0]?.id}
-      />
+      {!loading ? (
+        <DepartmentsTable
+          data={department}
+          departmentId={thisDepartment[0]?.id}
+        />
+      ) : (
+        <SpinnerAdmin />
+      )}
     </div>
   );
 };

@@ -39,8 +39,6 @@ const EditNewsPage = () => {
     fetchData();
   }, [id, getOnePost]);
 
-  if (loading) return <SpinnerAdmin />;
-
   const onSubmit = async values => {
     try {
       const formData = new FormData();
@@ -71,58 +69,62 @@ const EditNewsPage = () => {
         backButtonLink="/admin/news"
         showActionButton={false}
       />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={newsValidation}
-        onSubmit={onSubmit}
-      >
-        {formik => {
-          return (
-            <Form>
-              <div className={styles.layout}>
-                <Field
-                  name="title"
-                  id="title"
-                  placeholder="Title"
-                  component={TextInput}
-                  maxLength={120}
-                  showCharacterCount={true}
-                  text={post?.title}
-                  label="Заголовок Новини"
-                />
-                <div className={styles.secondRow}>
+      {loading ? (
+        <SpinnerAdmin />
+      ) : (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={newsValidation}
+          onSubmit={onSubmit}
+        >
+          {formik => {
+            return (
+              <Form>
+                <div className={styles.layout}>
                   <Field
-                    name="text"
-                    id="text"
+                    name="title"
+                    id="title"
                     placeholder="Title"
-                    component={TextArea}
-                    maxLength={2000}
+                    component={TextInput}
+                    maxLength={120}
                     showCharacterCount={true}
-                    text={post?.text}
-                    label="Текст Новини"
+                    text={post?.title}
+                    label="Заголовок Новини"
                   />
-                  <Field
-                    name="image"
-                    id="image"
-                    component={FileInput}
-                    photo={post?.photo}
-                    label="Фото"
-                  />
+                  <div className={styles.secondRow}>
+                    <Field
+                      name="text"
+                      id="text"
+                      placeholder="Title"
+                      component={TextArea}
+                      maxLength={2000}
+                      showCharacterCount={true}
+                      text={post?.text}
+                      label="Текст Новини"
+                    />
+                    <Field
+                      name="image"
+                      id="image"
+                      component={FileInput}
+                      photo={post?.photo}
+                      label="Фото"
+                    />
+                  </div>
+                  <div className={styles.button}>
+                    <ButtonSubmit
+                      nameButton="Зберегти зміни"
+                      isActive={formik.isValid}
+                      isRight={true}
+                      handlerSubmitButton={onSubmit}
+                      isProcessing={isProcessing}
+                    />
+                  </div>
                 </div>
-                <div className={styles.button}>
-                  <ButtonSubmit
-                    nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
-                    isRight={true}
-                    handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
-                  />
-                </div>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+              </Form>
+            );
+          }}
+        </Formik>
+      )}
     </div>
   );
 };
