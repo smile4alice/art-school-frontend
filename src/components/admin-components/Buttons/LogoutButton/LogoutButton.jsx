@@ -5,10 +5,25 @@ import { useAuthorizated } from '@/store/IsAuthorizatedStore';
 
 const LogoutButton = () => {
   const { setUnAuthorizated } = useAuthorizated();
+  // Define a function to check and remove the key
+  const checkAndRemoveKey = key => {
+    // Get the value of the key from local storage
+    const value = localStorage.getItem(key);
+    // Check if the value is not null
+    const exists = value !== null;
+    // If the key exists, remove it
+    if (exists) {
+      localStorage.removeItem(key);
+    }
+  };
   return (
     <Link
       className={styles.logoutButtonLink}
-      onClick={() => setUnAuthorizated()}
+      onClick={() => {
+        setUnAuthorizated();
+        // Call the function with the key 'access_token'
+        checkAndRemoveKey('access_token');
+      }}
     >
       <p>Вихід</p>
       <svg width="16" height="16">
