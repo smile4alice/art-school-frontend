@@ -7,11 +7,11 @@ import useServicesStore from '@/store/serviseStore';
 import Articles from '../DepartmentArticles/Articles';
 import styles from './DepartmentPage.module.scss';
 
-
-const DepartmentPage = ({ id, title, showSelect }) => {
+const DepartmentPage = ({ id, title, showSelect, articles }) => {
   const subDepartments = useServicesStore(state => state.subDepartments);
   const { getSubDepartments } = useServicesStore();
   const [departmentId, setDepartmentId] = useState('1');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,19 +21,19 @@ const DepartmentPage = ({ id, title, showSelect }) => {
   };
 
   useEffect(() => {
-      const fetchData = async () => {
-        try {
+    const fetchData = async () => {
+      try {
         await getSubDepartments(id);
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      };
-      fetchData();
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+    fetchData();
   }, [id, getSubDepartments]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setDepartmentId(subDepartments?.[0]?.id);
-  }, [subDepartments])
+  }, [subDepartments]);
 
   useEffect(() => {
     changeDepartment(departmentId);
@@ -44,7 +44,7 @@ const DepartmentPage = ({ id, title, showSelect }) => {
       <h2 className={styles.title}>{title}</h2>
       {subDepartments?.length > 0 && (
         <div className={styles.wrapper}>
-          <Articles subDepartments={subDepartments} />
+          <Articles articles={articles} />
           <DropDownsList departmentId={id} />
           <GalleryDepartments
             showSelect={showSelect}

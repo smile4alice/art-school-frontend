@@ -149,11 +149,23 @@
 }
 
 .cellActionContainer {
-  width: 38px;
-  height: 30px;
+  width: 1.5rem;
+  height: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid transparent;
+  &:nth-child(1):hover {
+    fill: $admin-accent;
+    background: rgba(117, 139, 253, 0.3);
+    border: 1px solid rgba(117, 139, 253, 0.7);
+  }
+  &:nth-child(2):hover {
+    background-color: rgba(255, 50, 50, 0.2);
+    border: 1px solid $admin-red;
+  }
 }
 
 .iconTrash {
@@ -167,6 +179,7 @@
   stroke-width: 1.5px;
   stroke: $admin-red;
   fill: transparent;
+  transition: all 0.3s ease-in-out;
 }
 
 .iconEdit {
@@ -178,4 +191,8 @@
   flex-shrink: 0;
   border-radius: 2px;
   fill: #9ba6af;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    fill: $admin-accent;
+  }
 }
