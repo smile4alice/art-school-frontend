@@ -11,6 +11,7 @@
 //-----CONTACTS-----------
 .contactsWrapper {
   width: 100%;
+  height: 75px;
   @extend%aligncenter;
   gap: 10px;
   padding: 1.56rem 1rem 1.13rem 1rem;
@@ -79,6 +80,7 @@
   width: 100%;
 
   @extend%aligncenter;
+  height: 90px;
   background-color: #fff;
   justify-content: space-between;
   gap: 19px;
