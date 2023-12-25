@@ -65,6 +65,19 @@ import EditVideoPage from './pages/admin-pages/VideoAdmin/EditVideoPageAdmin';
 import PrivateRoute from './components/admin-components/PrivateRoute/PrivateRoute';
 
 const App = () => {
+  const hours = 1; // to clear the localStorage after 1 hour
+  // (if someone want to clear after 8hrs simply change hours=8)
+  const currentTime = new Date().getTime();
+  const setupTime = localStorage.getItem('setupTime');
+  if (setupTime == null) {
+    localStorage.setItem('setupTime', currentTime);
+  } else {
+    if (currentTime - setupTime > hours * 60 * 60 * 1000) {
+      localStorage.clear();
+      localStorage.setItem('setupTime', currentTime);
+    }
+  }
+
   return (
     <Router>
       <Routes>
@@ -122,8 +135,8 @@ const App = () => {
         <Route
           path="/admin"
           element={
-            <PrivateRoute>
-              <AdminSharedLayout redirectTo="/login" />
+            <PrivateRoute redirectTo="/login">
+              <AdminSharedLayout />
             </PrivateRoute>
           }
         >

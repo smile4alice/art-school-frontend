@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import sprite from '../../../../assets/icons/sprite-admin.svg';
 import styles from './LogoutButton.module.scss';
-import { useAuthorizated } from '@/store/IsAuthorizatedStore';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 
 const LogoutButton = () => {
-  const { setUnAuthorizated } = useAuthorizated();
+  const { setUnAuthorized } = useAuthorized();
   // Define a function to check and remove the key
   const checkAndRemoveKey = key => {
     // Get the value of the key from local storage
@@ -20,7 +20,7 @@ const LogoutButton = () => {
     <Link
       className={styles.logoutButtonLink}
       onClick={() => {
-        setUnAuthorizated();
+        setUnAuthorized();
         // Call the function with the key 'access_token'
         checkAndRemoveKey('access_token');
       }}
