@@ -1,12 +1,6 @@
 import { create } from 'zustand';
 import { persist, devtools } from 'zustand/middleware';
 
-// export const useAuthorized = create(set => ({
-//   isAuthorized: false,
-//   setIsAuthorized: () => set({ isAuthorized: true }),
-//   setUnAuthorized: () => set({ isAuthorized: false }),
-// }));
-
 export const useAuthorized = create()(
   devtools(
     persist(

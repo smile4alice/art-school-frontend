@@ -1,28 +1,29 @@
+import { useState } from 'react';
+import { useModal } from '@/store/modalStore';
+import { Field, Form, Formik } from 'formik';
+import { passwordValidation } from './validationSchema';
+import useAuthStore from '@/store/authStore';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import PasswordInput from '@/components/admin-components/formik/PasswordInput/PasswordInput';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
-import { Field, Form, Formik } from 'formik';
+import ConfirmModal from '@/components/admin-components/modals/ConfirmModal/ConfirmModal';
 import styles from './ChangePassword.module.scss';
-import { passwordValidation } from './validationSchema';
-import useAuthStore from '@/store/authStore';
-import ConfirmModal from './ConfirmModal/ConfirmModal';
-import { useModal } from '@/store/modalStore';
-import { useState } from 'react';
 
 const breadcrumbs = ['Зміна паролю'];
+
 const initialValues = {
   oldPassword: '',
   newPassword: '',
   confirmPassword: '',
 };
+
 const ChangePasswordPageAdmin = () => {
   const { changePassword } = useAuthStore();
   const { isModalOpen, openModal } = useModal();
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async values => {
-    console.log('values: ', values);
     const formData = new FormData();
     formData.append('old_password', values.oldPassword);
     formData.append('new_password', values.newPassword);
@@ -89,7 +90,7 @@ const ChangePasswordPageAdmin = () => {
         }}
       </Formik>
 
-      {isModalOpen && <ConfirmModal />}
+      {isModalOpen && <ConfirmModal message="Пароль успішно змінено" />}
     </div>
   );
 };

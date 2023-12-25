@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import s from './AchievementsTable.module.scss';
 
 const AchievementsTable = ({ data, typeOfAchievements, url }) => {
@@ -11,7 +11,7 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  
+
   const removePost = async () => {
     if (isDeleteConfirm) {
       try {

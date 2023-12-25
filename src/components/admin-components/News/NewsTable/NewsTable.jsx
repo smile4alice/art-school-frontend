@@ -4,7 +4,7 @@ import useNewsStore from '@/store/newsStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import SpinnerAdmin from '../../SpinnerAdmin/SpinnerAdmin';
 import styles from './NewsTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
