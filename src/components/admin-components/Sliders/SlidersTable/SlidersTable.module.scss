@@ -167,6 +167,11 @@
     background-color: rgba(255, 50, 50, 0.2);
     border: 1px solid $admin-red;
   }
+  &:nth-child(2):disabled:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    cursor: initial;
+  }
 }
 
 .iconTrash {
@@ -196,4 +201,8 @@
   &:hover {
     fill: $admin-accent;
   }
+}
+
+.disabled {
+  stroke: $admin-gray;
 }

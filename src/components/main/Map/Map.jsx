@@ -14,7 +14,11 @@ const Map = () => {
       <section className={styles.Map}>
         <h1>Наше Розташування</h1>
         <div className={styles.MapContainer}>
-          <MapContainer center={[50.45449, 30.50435]} zoom={18}>
+          <MapContainer
+            center={[50.45449, 30.50435]}
+            zoom={18}
+            scrollWheelZoom={false}
+          >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

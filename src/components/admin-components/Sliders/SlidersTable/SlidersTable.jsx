@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { clsx } from 'clsx';
 import { Link } from 'react-router-dom';
 import useSlidersStore from '@/store/slidersStore';
 import { useModal } from '@/store/modalStore';
@@ -64,9 +65,13 @@ const SlidersTable = ({ data }) => {
               <button
                 className={styles.cellActionContainer}
                 onClick={openModal}
+                disabled={index === 0}
               >
                 <svg
-                  className={styles.iconTrash}
+                  className={clsx(
+                    styles.iconTrash,
+                    index === 0 && styles.disabled
+                  )}
                   onClick={() => setCurrentId(item.id)}
                 >
                   <use href={`${sprite}#icon-trash`} width="20" height="20" />

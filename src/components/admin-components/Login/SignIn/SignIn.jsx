@@ -1,23 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router';
 import { Formik, Form, Field } from 'formik';
+import { loginValidation } from './validationSchema';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import useAuthStore from '@/store/authStore';
 import Heading from '../Heading/Heading';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
 import PasswordInput from '../../formik/PasswordInput/PasswordInput';
 import TextInput from '../../formik/TextInput/TextInput';
 import styles from './SignIn.module.scss';
-import { Link } from 'react-router-dom';
-import { loginValidation } from './validationSchema';
-import { useAuthorizated } from '@/store/IsAuthorizatedStore';
-import { Navigate } from 'react-router';
+
 const initialValues = {
   password: '',
   email: '',
 };
 
 const SignIn = () => {
-  const { IsAuthorizated, setIsAuthorizated } = useAuthorizated();
+  const { setIsAuthorized } = useAuthorized();
+  const isAuthorized = useAuthorized(state => state.isAuthorized);
   const { login } = useAuthStore();
-  if (IsAuthorizated) return <Navigate to="/admin" />;
 
   const checkToken = key => {
     // Get the value of the key from local storage
@@ -26,9 +29,16 @@ const SignIn = () => {
     const exists = value !== null;
     // If the key exists, remove it
     if (exists) {
-      setIsAuthorizated();
+      setIsAuthorized();
     }
   };
+
+  useEffect(() => {
+    checkToken('access_token');
+  }, []);
+
+  if (isAuthorized) return <Navigate to="/admin" />;
+
   const onSubmit = async values => {
     const formData = new FormData();
     formData.append('password', values.password);
