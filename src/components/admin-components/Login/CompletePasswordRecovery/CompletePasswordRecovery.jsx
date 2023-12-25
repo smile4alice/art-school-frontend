@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import { useModal } from '@/store/modalStore';
 import useAuthStore from '@/store/authStore';
 import { completeRecoveryValidation } from './validationSchema';
 import Heading from '../Heading/Heading';
-import ConfirmModal from '../../modals/ConfirmModal/ConfirmModal';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
 import PasswordInput from '@/components/admin-components/formik/PasswordInput/PasswordInput';
 import styles from './CompletePasswordRecovery.module.scss';
@@ -17,8 +15,8 @@ const initialValues = {
 
 const CompletePasswordRecovery = () => {
   const { token } = useParams();
+  const navigate = useNavigate();
   const { resetPassword } = useAuthStore();
-  const { isModalOpen, openModal } = useModal();
   const [isProcessing, setIsProcessing] = useState(false);
 
   const onSubmit = async values => {
@@ -30,7 +28,7 @@ const CompletePasswordRecovery = () => {
     const response = await resetPassword(data);
     if (response.status === 200) {
       setIsProcessing(false);
-      openModal();
+      navigate('/login/password-recovery-success');
     }
   };
 
@@ -80,7 +78,6 @@ const CompletePasswordRecovery = () => {
       <Link to="/login" className={styles.link}>
         Я згадав пароль!
       </Link>
-      {isModalOpen && <ConfirmModal message="Пароль успішно змінено" />}
     </>
   );
 };
