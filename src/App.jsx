@@ -65,8 +65,7 @@ import EditVideoPage from './pages/admin-pages/VideoAdmin/EditVideoPageAdmin';
 import PrivateRoute from './components/admin-components/PrivateRoute/PrivateRoute';
 
 const App = () => {
-  const hours = 1; // to clear the localStorage after 1 hour
-  // (if someone want to clear after 8hrs simply change hours=8)
+  const hours = 1;
   const currentTime = new Date().getTime();
   const setupTime = localStorage.getItem('setupTime');
   if (setupTime == null) {
@@ -122,13 +121,10 @@ const App = () => {
           <Route index element={<SignInPage />} />
           <Route path="password-recovery" element={<PasswordRecoveryPage />} />
           <Route
-            path="complete-password-recovery/:token"
+            path="password-recovery/:token"
             element={<CompletePasswordRecoveryPage />}
           />
-          <Route
-            path="complete-password-recovery-success"
-            element={<SuccessPage />}
-          />
+          <Route path="password-recovery-success" element={<SuccessPage />} />
         </Route>
 
         {/* admin */}

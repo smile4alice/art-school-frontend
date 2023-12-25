@@ -5,7 +5,7 @@ import useSlidersStore from '@/store/slidersStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './SlidersTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
