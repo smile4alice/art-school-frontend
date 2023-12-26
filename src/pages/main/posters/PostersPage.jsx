@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-
+import usePostersStore from '@/store/posterStore';
 import Modal from './Modal';
 import Container from '@/components/Container/Container';
-
-import styles from './PostersPage.module.scss';
 import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
-import usePostersStore from '@/store/posterStore';
 import Spinner from '@/components/ui/Spinner/Spinner';
+import styles from './PostersPage.module.scss';
 
 const PostersPage = () => {
   const { getPosters } = usePostersStore();
