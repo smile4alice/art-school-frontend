@@ -1,15 +1,13 @@
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Container from '@/components/Container/Container';
 import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 
-import data from '@/data/news.json';
-
 import styles from './NewsPost.module.scss';
 
 const NewsPost = () => {
-  const { id } = useParams();
-  const postData = data.find(item => item.id == id);
+  const location = useLocation();
+  const { post } = location.state;
 
   return (
     <Container>
@@ -17,12 +15,12 @@ const NewsPost = () => {
         <div className={styles.buttonContainer}>
           <NavLinkButton link={'/news'} text={'переглянути всі новини'} />
         </div>
-        <p className={`${styles.title} sectionTitle`}>{postData.title}</p>
-        <p className={styles.date}>{postData.date}</p>
+        <p className={`${styles.title} sectionTitle`}>{post.title}</p>
+        <p className={styles.date}>{post.date}</p>
         <div className={styles.img}>
-          <img src={postData.image[0]} alt="slide" />
+          <img src={post.photo} alt="slide" />
         </div>
-        <p className={styles.text}>{postData.text}</p>
+        <p className={styles.text}>{post.text}</p>
       </section>
     </Container>
   );

@@ -2,9 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel } from 'swiper/modules';
 import { useMediaQuery } from 'react-responsive';
-
 import Arrow from '@/components/Icons/Arrow/Arrow';
-
 import styles from './GalleryVideo.module.scss';
 import 'swiper/css/pagination';
 import 'swiper/css';
@@ -23,14 +21,22 @@ const GalleryVideo = ({ videos }) => {
   }, []);
 
   const replaceUrl = url => {
-    return url.replace('watch?v=', 'embed/');
+    if (url && url.length) {
+      return url?.replace('watch?v=', 'embed/');
+    }
   };
+
   return (
     <>
       {isLaptop && (
         <div className={styles.videoWrapper}>
           <div className={styles.video}>
-            <iframe src={replaceUrl(videos[0])} allowFullScreen></iframe>
+            {videos && Array.isArray(videos) && (
+              <iframe
+                src={replaceUrl(videos[0]?.media)}
+                allowFullScreen
+              ></iframe>
+            )}
           </div>
 
           <div className={styles.videos}>
@@ -59,16 +65,18 @@ const GalleryVideo = ({ videos }) => {
               onSwiper={swiper => (swiperRef.current = swiper)}
               className={styles.swiper}
             >
-              {videos.slice(1).map((video, index) => (
-                <SwiperSlide className={styles.slide} key={index}>
-                  <iframe
-                    src={replaceUrl(video)}
-                    width="382"
-                    height="190"
-                    allowFullScreen
-                  ></iframe>
-                </SwiperSlide>
-              ))}
+              {videos &&
+                Array.isArray(videos) &&
+                videos.slice(1).map((video, index) => (
+                  <SwiperSlide className={styles.slide} key={index}>
+                    <iframe
+                      src={replaceUrl(video?.media)}
+                      width="382"
+                      height="190"
+                      allowFullScreen
+                    ></iframe>
+                  </SwiperSlide>
+                ))}
             </Swiper>
           </div>
         </div>
@@ -102,11 +110,18 @@ const GalleryVideo = ({ videos }) => {
               onSwiper={swiper => (swiperRef.current = swiper)}
               className={styles.swiper}
             >
-              {videos.map((video, index) => (
-                <SwiperSlide className={styles.slide} key={index}>
-                  <iframe src={replaceUrl(video)} allowFullScreen></iframe>
-                </SwiperSlide>
-              ))}
+              {videos &&
+                Array.isArray(videos) &&
+                videos.map((video, index) => (
+                  <SwiperSlide className={styles.slide} key={index}>
+                    <iframe
+                      src={replaceUrl(video?.media)}
+                      width="382"
+                      height="190"
+                      allowFullScreen
+                    ></iframe>
+                  </SwiperSlide>
+                ))}
             </Swiper>
           </div>
         </div>
@@ -140,11 +155,18 @@ const GalleryVideo = ({ videos }) => {
               onSwiper={swiper => (swiperRef.current = swiper)}
               className={styles.swiper}
             >
-              {videos.map((video, index) => (
-                <SwiperSlide className={styles.slide} key={index}>
-                  <iframe src={replaceUrl(video)} allowFullScreen></iframe>
-                </SwiperSlide>
-              ))}
+              {videos &&
+                Array.isArray(videos) &&
+                videos.map((video, index) => (
+                  <SwiperSlide className={styles.slide} key={index}>
+                    <iframe
+                      src={replaceUrl(video?.media)}
+                      width="382"
+                      height="190"
+                      allowFullScreen
+                    ></iframe>
+                  </SwiperSlide>
+                ))}
             </Swiper>
           </div>
         </div>

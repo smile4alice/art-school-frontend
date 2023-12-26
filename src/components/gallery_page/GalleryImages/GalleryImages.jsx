@@ -5,28 +5,39 @@ import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 import styles from './GalleryImages.module.scss';
 
 const GalleryImages = ({ images }) => {
+  const ITEMS_PER_PAGE = 5;
   const [isHovered, setIsHovered] = useState(false);
-  const [itemsPerPage, setItemsPerPage] = useState(14);
+  const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE);
   const [sorting, setSorting] = useState(false);
   const [sortedImages, setSortedImages] = useState(images);
-  const isMaxAmount = itemsPerPage >= images?.length;
+  const isMaxAmount = images?.length <= itemsPerPage;
 
   const viewMore = () => {
     if (!isMaxAmount) {
-      setItemsPerPage(prev => prev + 14);
+      setItemsPerPage(prev => prev + ITEMS_PER_PAGE);
     }
   };
 
   const viewLess = () => {
-    setItemsPerPage(14);
+    setItemsPerPage(ITEMS_PER_PAGE);
     window.scrollTo(0, 0);
   };
 
   useEffect(() => {
     if (sorting) {
-      setSortedImages(images.sort((a, b) => b.date - a.date));
+      setSortedImages(
+        images.sort(
+          (a, b) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        )
+      );
     } else {
-      setSortedImages(images.sort((a, b) => a.date - b.date));
+      setSortedImages(
+        images.sort(
+          (a, b) =>
+            new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+        )
+      );
     }
   }, [setSortedImages, sorting, images]);
 
@@ -40,22 +51,26 @@ const GalleryImages = ({ images }) => {
             : ' Сортування від старіших до новіших'}
         </button>
       </div>
+
       <div className={styles.gallery}>
         {sortedImages &&
           Array.isArray(sortedImages) &&
           sortedImages.slice(0, itemsPerPage).map((image, index) => (
-            <div key={image.date} className={styles.item}>
-              <img src={image.url} alt={`Image ${index + 1}`} />
+            <div key={image.id} className={styles.item}>
+              <img src={image.media} alt={`Image ${index + 1}`} />
             </div>
           ))}
       </div>
-      <ViewButton
-        isHovered={isHovered}
-        setIsHovered={setIsHovered}
-        isMaxAmount={isMaxAmount}
-        viewMore={viewMore}
-        viewLess={viewLess}
-      />
+
+      {images.length > ITEMS_PER_PAGE && (
+        <ViewButton
+          isHovered={isHovered}
+          setIsHovered={setIsHovered}
+          isMaxAmount={isMaxAmount}
+          viewMore={viewMore}
+          viewLess={viewLess}
+        />
+      )}
     </>
   );
 };

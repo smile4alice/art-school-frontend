@@ -3,15 +3,28 @@ import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
 const useVideoStore = create((set, get) => ({
+  loading: false,
   videos: [],
   media: {},
 
   getAllVideo: async () => {
-    const response = await axios.get(`/gallery/video?reverse=true&page=1&size=50`);
+    const response = await axios.get(
+      `/gallery/video?reverse=true&page=1&size=50`
+    );
     try {
       set(() => {
         return {
+          loading: true,
+        };
+      });
+      set(() => {
+        return {
           videos: response.data.items,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {
@@ -31,7 +44,7 @@ const useVideoStore = create((set, get) => ({
       throw new Error(error);
     }
   },
-  
+
   addVideo: async data => {
     if (isDataValid(data)) {
       try {
