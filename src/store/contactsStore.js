@@ -13,29 +13,47 @@ const useContactsStore = create(set => ({
         };
       });
       const response = await axios.get(`/contacts`);
-      set(() => {
-        return {
-          contacts: response.data,
-        };
-      });
-      set(() => {
-        return {
-          loading: false,
-        };
-      });
+      if (response.status === 200) {
+        set(() => {
+          return {
+            contacts: response.data,
+          };
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+      }
+      return response;
     } catch (error) {
       throw new Error(error);
     }
   },
 
   editContact: async data => {
-    const body = JSON.stringify(data);
-    const response = await axios.patch('/contacts', body, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    return response;
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const body = JSON.stringify(data);
+      const response = await axios.patch('/contacts', body, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+
+      return response;
+    } catch (error) {
+      throw new Error(error);
+    }
   },
 }));
 

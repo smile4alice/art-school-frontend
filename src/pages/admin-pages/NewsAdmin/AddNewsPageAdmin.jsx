@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { newsValidation } from './validationSchema';
@@ -22,7 +21,7 @@ const initialValues = {
 const AddNewsPage = () => {
   const navigate = useNavigate();
   const { addPost } = useNewsStore();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const loading = useNewsStore(state => state.loading);
 
   const onSubmit = async values => {
     try {
@@ -31,9 +30,7 @@ const AddNewsPage = () => {
       formData.append('text', values.text);
       formData.append('photo', values.image[0]);
 
-      setIsProcessing(true);
       await addPost(formData);
-      setIsProcessing(false);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -90,7 +87,7 @@ const AddNewsPage = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
+                    isProcessing={loading}
                   />
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useParams, useNavigate } from 'react-router-dom';
 import useSlidersStore from '@/store/slidersStore';
@@ -23,7 +23,7 @@ const EditSlidersPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { getSlides, editSlide } = useSlidersStore();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const loading = useSlidersStore(state => state.loading);
   const slide = useSlidersStore(state =>
     state.slides.find(item => item.id == id)
   );
@@ -51,14 +51,11 @@ const EditSlidersPage = () => {
         formData.append('photo', values.image[0]);
       }
 
-      setIsProcessing(true);
       await editSlide(id, formData);
-      setIsProcessing(false);
       navigate(-1);
     } catch (error) {
       console.log(error);
     }
-    setIsProcessing(false);
   };
 
   return (
@@ -112,7 +109,7 @@ const EditSlidersPage = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
+                    isProcessing={loading}
                   />
                 </div>
               </div>

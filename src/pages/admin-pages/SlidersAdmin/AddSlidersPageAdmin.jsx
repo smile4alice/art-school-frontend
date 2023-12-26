@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { slidersValidation } from './validationSchema';
@@ -21,8 +20,7 @@ const initialValues = {
 
 const AddSlidersPage = () => {
   const navigate = useNavigate();
-  const { addSlide } = useSlidersStore();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const { addSlide, loading } = useSlidersStore();
 
   const onSubmit = async values => {
     try {
@@ -31,9 +29,7 @@ const AddSlidersPage = () => {
       formData.append('description', values.text);
       formData.append('photo', values.image[0]);
 
-      setIsProcessing(true);
       await addSlide(formData);
-      setIsProcessing(false);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -88,7 +84,7 @@ const AddSlidersPage = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
+                    isProcessing={loading}
                   />
                 </div>
               </div>

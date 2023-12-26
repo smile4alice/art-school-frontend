@@ -3,12 +3,14 @@ import useNewsStore from '@/store/newsStore';
 import NewsTable from '@/components/admin-components/News/NewsTable/NewsTable';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
 const breadcrumbs = ['Новини'];
 
 const NewsPageAdmin = () => {
   const { getNews } = useNewsStore();
   const news = useNewsStore(state => state.news);
+  const loading = useNewsStore(state => state.loading);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +34,7 @@ const NewsPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати новину"
       />
-      <NewsTable data={news} />
+      {loading ? <SpinnerAdmin /> : <NewsTable data={news} />}
     </div>
   );
 };

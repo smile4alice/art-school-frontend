@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import usePostersStore from '@/store/posterStore';
@@ -20,16 +19,14 @@ const initialValues = {
 const AddPostersPage = () => {
   const navigate = useNavigate();
   const { addPoster } = usePostersStore();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const loading = usePostersStore(state => state.loading);
 
   const onSubmit = async values => {
     try {
       const formData = new FormData();
       formData.append('title', values.title);
       formData.append('photo', values.image[0]);
-      setIsProcessing(true);
       await addPoster(formData);
-      setIsProcessing(false);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -74,7 +71,7 @@ const AddPostersPage = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
+                    isProcessing={loading}
                   />
                 </div>
               </div>

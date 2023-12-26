@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { newsValidation } from './validationSchema';
@@ -10,7 +10,6 @@ import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import styles from './DepartmentsAdmin.module.scss';
-import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
 const initialValues = {
   title: '',
@@ -23,9 +22,8 @@ const EditSubDepartmentPage = () => {
   const navigate = useNavigate();
   const { title, departmentId } = location.state;
   const { editDepartment, getOneSubDepartment } = useDepartmentsStore();
-  const [isProcessing, setIsProcessing] = useState(false);
-  const loading = useDepartmentsStore(state => state.loading);
   const subDepartment = useDepartmentsStore(state => state.sub_department);
+  const loading = useDepartmentsStore(state => state.loading);
   const department = useDepartmentsStore(state =>
     state.departments.find(department => department.id == departmentId)
   );
@@ -53,11 +51,8 @@ const EditSubDepartmentPage = () => {
         sub_department_name: values.title,
         description: values.text,
       };
-      setIsProcessing(true);
       await editDepartment(id, newSubDepartment);
-      setIsProcessing(false);
       setTimeout(() => {
-        setIsProcessing(false);
         navigate(`/admin/departments/${departmentId}`);
       }, 2000);
     } catch (error) {
@@ -76,55 +71,51 @@ const EditSubDepartmentPage = () => {
         stateTitle={department?.department_name}
         stateId={departmentId}
       />
-      {loading ? (
-        <SpinnerAdmin />
-      ) : (
-        <Formik
-          initialValues={initialValues}
-          validationSchema={newsValidation}
-          onSubmit={onSubmit}
-        >
-          {formik => {
-            return (
-              <Form>
-                <div className={styles.layout}>
-                  <div className={styles.secondRow}>
-                    <Field
-                      name="title"
-                      id="title"
-                      placeholder="Title"
-                      component={TextInput}
-                      maxLength={120}
-                      showCharacterCount={true}
-                      label="Назва Відділу"
-                      text={subDepartment?.sub_department_name}
-                    />
-                    <Field
-                      name="text"
-                      id="text"
-                      placeholder="Title"
-                      component={TextArea}
-                      maxLength={2000}
-                      showCharacterCount={true}
-                      label="Опис"
-                      text={subDepartment?.description}
-                    />
-                  </div>
-                  <div className={styles.button}>
-                    <ButtonSubmit
-                      nameButton="Зберегти зміни"
-                      isActive={formik.isValid}
-                      isRight={true}
-                      handlerSubmitButton={onSubmit}
-                      isProcessing={isProcessing}
-                    />
-                  </div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={newsValidation}
+        onSubmit={onSubmit}
+      >
+        {formik => {
+          return (
+            <Form>
+              <div className={styles.layout}>
+                <div className={styles.secondRow}>
+                  <Field
+                    name="title"
+                    id="title"
+                    placeholder="Title"
+                    component={TextInput}
+                    maxLength={120}
+                    showCharacterCount={true}
+                    label="Назва Відділу"
+                    text={subDepartment?.sub_department_name}
+                  />
+                  <Field
+                    name="text"
+                    id="text"
+                    placeholder="Title"
+                    component={TextArea}
+                    maxLength={2000}
+                    showCharacterCount={true}
+                    label="Опис"
+                    text={subDepartment?.description}
+                  />
                 </div>
-              </Form>
-            );
-          }}
-        </Formik>
-      )}
+                <div className={styles.button}>
+                  <ButtonSubmit
+                    nameButton="Зберегти зміни"
+                    isActive={formik.isValid}
+                    isRight={true}
+                    handlerSubmitButton={onSubmit}
+                    isProcessing={loading}
+                  />
+                </div>
+              </div>
+            </Form>
+          );
+        }}
+      </Formik>
     </div>
   );
 };

@@ -64,7 +64,10 @@ const SlidersTable = ({ data }) => {
 
               <button
                 className={styles.cellActionContainer}
-                onClick={openModal}
+                onClick={() => {
+                  setCurrentId(item.id);
+                  openModal();
+                }}
                 disabled={index === 0}
               >
                 <svg
@@ -72,7 +75,6 @@ const SlidersTable = ({ data }) => {
                     styles.iconTrash,
                     index === 0 && styles.disabled
                   )}
-                  onClick={() => setCurrentId(item.id)}
                 >
                   <use href={`${sprite}#icon-trash`} width="20" height="20" />
                 </svg>

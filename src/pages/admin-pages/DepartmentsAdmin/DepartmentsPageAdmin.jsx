@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useDepartmentsStore from '@/store/departmentsStore';
 import { useModal } from '@/store/modalStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
@@ -11,15 +11,13 @@ const breadcrumbs = ['Відділення'];
 const DepartmentsPageAdmin = () => {
   const { isModalOpen } = useModal();
   const { getDepartments } = useDepartmentsStore();
-  const [loading, setLoading] = useState(false);
   const departments = useDepartmentsStore(state => state.departments);
+  const loading = useDepartmentsStore(state => state.loading);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         await getDepartments();
-        setLoading(false);
       } catch (error) {
         console.log(error);
       }

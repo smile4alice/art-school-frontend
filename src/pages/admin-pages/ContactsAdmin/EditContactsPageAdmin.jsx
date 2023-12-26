@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { declineWord } from '@/utils/declineWord';
 import { contactsValidation } from './validationSchema';
@@ -15,7 +14,7 @@ const EditContactsPageAdmin = () => {
   const navigate = useNavigate();
   const { key, title, value } = location.state;
   const { editContact } = useContactsStore();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const loading = useContactsStore(state => state.loading);
 
   const breadcrumbs = [`${title}`, `Редагувати ${declineWord(title)}`];
 
@@ -23,14 +22,11 @@ const EditContactsPageAdmin = () => {
 
   const onSubmit = async values => {
     try {
-      setIsProcessing(true);
       await editContact(values);
-      setIsProcessing(false);
       navigate(-1);
     } catch (error) {
       console.log(error);
     }
-    setIsProcessing(false);
   };
 
   return (
@@ -65,7 +61,7 @@ const EditContactsPageAdmin = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
+                    isProcessing={loading}
                   />
                 </div>
               </div>
