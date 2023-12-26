@@ -3,13 +3,14 @@ import useContactsStore from '@/store/contactsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import ContactsTable from '@/components/admin-components/Сontacts/ContactsTable/ContactsTable';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
 const breadcrumbs = ['Контакти'];
 
 const ContactsPageAdmin = () => {
   const { getContacts } = useContactsStore();
-
   const contacts = useContactsStore(state => state.contacts);
+  const loading = useContactsStore(state => state.loading);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +31,7 @@ const ContactsPageAdmin = () => {
         showBackButton={false}
         showActionButton={false}
       />
-      <ContactsTable data={contacts} />
+      {loading ? <SpinnerAdmin /> : <ContactsTable data={contacts} />}
     </div>
   );
 };

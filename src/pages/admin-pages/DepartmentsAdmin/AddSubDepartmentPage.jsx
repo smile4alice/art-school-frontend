@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { newsValidation } from './validationSchema';
@@ -21,7 +20,7 @@ const AddSubDepartmentPage = () => {
   const navigate = useNavigate();
   const { title, departmentId } = location.state;
   const { addDepartment } = useDepartmentsStore();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const loading = useDepartmentsStore(state => state.loading);
 
   const breadcrumbs = [
     'Відділення',
@@ -36,10 +35,8 @@ const AddSubDepartmentPage = () => {
         description: values.text,
         main_department_id: departmentId,
       };
-      setIsProcessing(true);
       await addDepartment(newSubDepartment);
       setTimeout(() => {
-        setIsProcessing(false);
         navigate(`/admin/departments/${departmentId}`);
       }, 2000);
     } catch (error) {
@@ -91,7 +88,7 @@ const AddSubDepartmentPage = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
+                    isProcessing={loading}
                   />
                 </div>
               </div>

@@ -45,7 +45,7 @@ const useServicesStore = create(set => ({
     try {
       const response = await axios.get(`/${newUrl}?page=${page}&size=${size}`);
       set(() => {//state
-        console.log(response);
+       // console.log(response);
         if (url === 'gallery') {
           return {
             gallery: response.data.items,

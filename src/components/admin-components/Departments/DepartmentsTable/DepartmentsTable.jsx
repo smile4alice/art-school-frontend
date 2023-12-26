@@ -16,6 +16,7 @@ const DepartmentsTable = ({ data, departmentId }) => {
 
   const removePost = async () => {
     if (isDeleteConfirm) {
+      console.log(currentId);
       try {
         await deleteSubDepartment(currentId);
       } catch (error) {

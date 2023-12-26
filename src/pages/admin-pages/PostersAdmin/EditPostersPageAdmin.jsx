@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { Formik, Form, Field } from 'formik';
 import usePostersStore from '@/store/posterStore';
@@ -9,7 +9,6 @@ import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/But
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import styles from './PostersAdmin.module.scss';
-import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
 const breadcrumbs = ['Афіші', 'Редагувати афішу'];
 
@@ -23,7 +22,6 @@ const EditPostersPage = () => {
   const navigate = useNavigate();
   const { getPostersById } = usePostersStore();
   const { updatePoster } = usePostersStore();
-  const [isProcessing, setIsProcessing] = useState(false);
   const loading = usePostersStore(state => state.loading);
   const poster = usePostersStore(state => state.poster);
 
@@ -49,12 +47,8 @@ const EditPostersPage = () => {
         formData.append('photo', values.image[0]);
       }
 
-      setIsProcessing(true);
       await updatePoster(formData, id);
-      setTimeout(() => {
-        setIsProcessing(false);
-        navigate(-1);
-      }, 2000);
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
@@ -70,52 +64,47 @@ const EditPostersPage = () => {
           backButtonLink="/admin/posters"
           showActionButton={false}
         />
-        {loading ? (
-          <SpinnerAdmin />
-        ) : (
-          <Formik
-            initialValues={initialValues}
-            validationSchema={posterValidation}
-            onSubmit={onSubmit}
-          >
-            {formik => {
-              return (
-                <Form>
-                  <div className={styles.layout}>
-                    <div className={styles.inputWrapper}>
-                      <Field
-                        name="title"
-                        id="title"
-                        placeholder="Title"
-                        component={TextArea}
-                        maxLength={120}
-                        showCharacterCount={true}
-                        text={poster?.title}
-                        label="Заголовок"
-                      />
-                      <Field
-                        name="image"
-                        id="image"
-                        component={FileInput}
-                        photo={poster?.photo}
-                        // label="Фото"
-                      />
-                    </div>
-                  </div>
-                  <div className={styles.button}>
-                    <ButtonSubmit
-                      nameButton="Зберегти зміни"
-                      isActive={formik.isValid}
-                      isRight={true}
-                      handlerSubmitButton={onSubmit}
-                      isProcessing={isProcessing}
+        <Formik
+          initialValues={initialValues}
+          validationSchema={posterValidation}
+          onSubmit={onSubmit}
+        >
+          {formik => {
+            return (
+              <Form>
+                <div className={styles.layout}>
+                  <div className={styles.inputWrapper}>
+                    <Field
+                      name="title"
+                      id="title"
+                      placeholder="Title"
+                      component={TextArea}
+                      maxLength={120}
+                      showCharacterCount={true}
+                      text={poster?.title}
+                      label="Заголовок"
+                    />
+                    <Field
+                      name="image"
+                      id="image"
+                      component={FileInput}
+                      photo={poster?.photo}
                     />
                   </div>
-                </Form>
-              );
-            }}
-          </Formik>
-        )}
+                </div>
+                <div className={styles.button}>
+                  <ButtonSubmit
+                    nameButton="Зберегти зміни"
+                    isActive={formik.isValid}
+                    isRight={true}
+                    handlerSubmitButton={onSubmit}
+                    isProcessing={loading}
+                  />
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
       </div>
     </div>
   );

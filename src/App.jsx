@@ -53,8 +53,8 @@ import EditOurAchievementsPage from './pages/admin-pages/OurAchievementsAdmin/Ed
 import SchoolAdministrationPageAdmin from './pages/admin-pages/SchoolAdministrationAdmin/SchoolAdministrationPageAdmin';
 import AddSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/AddSchoolAdministrationPageAdmin';
 import EditSchoolAdministrationPage from './pages/admin-pages/SchoolAdministrationAdmin/EditSchoolAdministrationPageAdmin';
-import ContactsPageAdmin from './pages/admin-pages/DepartmentsAdmin/ContactsAdmin/ContactsPageAdmin';
-import EditContactsPageAdmin from './pages/admin-pages/DepartmentsAdmin/ContactsAdmin/EditContactsPageAdmin';
+import ContactsPageAdmin from './pages/admin-pages/ContactsAdmin/ContactsPageAdmin';
+import EditContactsPageAdmin from './pages/admin-pages/ContactsAdmin/EditContactsPageAdmin';
 import ChangePasswordPageAdmin from './pages/admin-pages/ChangePassword/ChangePasswordPageAdmin';
 import NotFoundAdmin from './components/admin-components/NotFound/NotFoundAdmin';
 import AddPostersPage from './pages/admin-pages/PostersAdmin/AddPostersPageAdmin';
@@ -65,18 +65,6 @@ import EditVideoPage from './pages/admin-pages/VideoAdmin/EditVideoPageAdmin';
 import PrivateRoute from './components/admin-components/PrivateRoute/PrivateRoute';
 
 const App = () => {
-  const hours = 1;
-  const currentTime = new Date().getTime();
-  const setupTime = localStorage.getItem('setupTime');
-  if (setupTime == null) {
-    localStorage.setItem('setupTime', currentTime);
-  } else {
-    if (currentTime - setupTime > hours * 60 * 60 * 1000) {
-      localStorage.clear();
-      localStorage.setItem('setupTime', currentTime);
-    }
-  }
-
   return (
     <Router>
       <Routes>

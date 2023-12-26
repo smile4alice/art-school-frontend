@@ -1,15 +1,10 @@
 import { Link } from 'react-router-dom';
 import { dataKeys } from './dataKeys';
-import useContactsStore from '@/store/contactsStore';
-import SpinnerAdmin from '../../SpinnerAdmin/SpinnerAdmin';
 import styles from './ContactsTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
 const ContactsTable = ({ data }) => {
-  const loading = useContactsStore(state => state.loading);
   const dataValues = Object.keys(data);
-
-  if (loading) return <SpinnerAdmin />;
 
   return (
     <div className={styles.contentWrap}>

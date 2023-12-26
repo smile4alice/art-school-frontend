@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { useModal } from '@/store/modalStore';
 import usePostersStore from '@/store/posterStore';
-import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './PostersList.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
@@ -13,7 +12,6 @@ const PostersList = ({ data }) => {
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  const loading = usePostersStore(state => state.loading);
 
   const handleDelete = async () => {
     if (isDeleteConfirm) {
@@ -26,8 +24,6 @@ const PostersList = ({ data }) => {
       closeModal();
     }
   };
-
-  if (loading) return <SpinnerAdmin />;
 
   return (
     <div className={styles.contentWrap}>

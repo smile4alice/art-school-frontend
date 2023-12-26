@@ -2,7 +2,9 @@ import { create } from 'zustand';
 import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
-const useAuthStore = create(() => ({
+const useAuthStore = create(set => ({
+  loading: false,
+
   login: async data => {
     try {
       if (isDataValid(data)) {
@@ -49,6 +51,11 @@ const useAuthStore = create(() => ({
 
   changePassword: async data => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       if (isDataValid(data)) {
         const requestData = new URLSearchParams(data);
         const response = await axios.post(
@@ -56,6 +63,11 @@ const useAuthStore = create(() => ({
           requestData,
           {}
         );
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
         return response;
       }
     } catch (error) {

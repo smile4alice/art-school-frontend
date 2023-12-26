@@ -56,10 +56,20 @@ const useAdministrationStore = create((set, get) => ({
   addMember: async data => {
     if (isDataValid(data)) {
       try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
         const response = await axios.post('/school_administration', data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         return response;
       } catch (error) {
@@ -71,6 +81,11 @@ const useAdministrationStore = create((set, get) => ({
   editMember: async (id, data) => {
     if (isDataValid(data)) {
       try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
         const response = await axios.patch(
           `/school_administration/${id}`,
           data,
@@ -80,6 +95,11 @@ const useAdministrationStore = create((set, get) => ({
             },
           }
         );
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
         return response;
       } catch (error) {
         throw new Error(error);
@@ -88,13 +108,29 @@ const useAdministrationStore = create((set, get) => ({
   },
 
   deleteMember: async id => {
-    const response = await axios.delete(`/school_administration/${id}`);
-    set(() => {
-      return {
-        members: get().members.filter(member => member.id !== id),
-      };
-    });
-    return response;
+    if (id) {
+      try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
+        const response = await axios.delete(`/school_administration/${id}`);
+        set(() => {
+          return {
+            members: get().members.filter(member => member.id !== id),
+          };
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
 }));
 

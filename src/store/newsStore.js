@@ -56,10 +56,20 @@ const useNewsStore = create((set, get) => ({
   addPost: async data => {
     if (isDataValid(data)) {
       try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
         const response = await axios.post('/news', data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         return response;
       } catch (error) {
@@ -71,10 +81,20 @@ const useNewsStore = create((set, get) => ({
   editPost: async (id, data) => {
     if (isDataValid(data)) {
       try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
         const response = await axios.patch(`/news/${id}`, data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         return response;
       } catch (error) {
@@ -84,13 +104,29 @@ const useNewsStore = create((set, get) => ({
   },
 
   deletePost: async id => {
-    const response = await axios.delete(`/news/${id}`);
-    set(() => {
-      return {
-        news: get().news.filter(post => post.id !== id),
-      };
-    });
-    return response;
+    if (id) {
+      try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
+        const response = await axios.delete(`/news/${id}`);
+        set(() => {
+          return {
+            news: get().news.filter(post => post.id !== id),
+          };
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
 }));
 

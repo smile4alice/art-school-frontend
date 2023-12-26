@@ -66,7 +66,6 @@ const SlidersTable = ({ data }) => {
                     </svg>
                   </div>
                 </Link>
-
                 <button
                   className={styles.cellActionContainer}
                   onClick={openModal}

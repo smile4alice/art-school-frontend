@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { administrationValidation } from './validationSchema';
@@ -10,7 +10,6 @@ import FileInput from '@/components/admin-components/formik/FileInput/FileInput'
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import styles from './SchoolAdministration.module.scss';
-import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
 const breadcrumbs = ['Адміністрація школи', 'Редагувати дані працівника'];
 
@@ -24,7 +23,6 @@ const EditSchoolAdministrationPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { getOneMember, editMember } = useAdministrationStore();
-  const [isProcessing, setIsProcessing] = useState(false);
   const member = useAdministrationStore(state => state.member);
   const loading = useAdministrationStore(state => state.loading);
 
@@ -51,9 +49,7 @@ const EditSchoolAdministrationPage = () => {
         formData.append('photo', values.image[0]);
       }
 
-      setIsProcessing(true);
       await editMember(id, formData);
-      setIsProcessing(false);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -69,60 +65,56 @@ const EditSchoolAdministrationPage = () => {
         backButtonLink="/admin/administration"
         showActionButton={false}
       />
-      {loading ? (
-        <SpinnerAdmin />
-      ) : (
-        <Formik
-          initialValues={initialValues}
-          validationSchema={administrationValidation}
-          onSubmit={onSubmit}
-        >
-          {formik => {
-            return (
-              <Form>
-                <div className={styles.layout}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={administrationValidation}
+        onSubmit={onSubmit}
+      >
+        {formik => {
+          return (
+            <Form>
+              <div className={styles.layout}>
+                <Field
+                  name="full_name"
+                  id="full_name"
+                  component={TextInput}
+                  maxLength={60}
+                  showCharacterCount={true}
+                  label="ПІБ Працівника"
+                  text={member?.full_name}
+                />
+                <div className={styles.secondRow}>
                   <Field
-                    name="full_name"
-                    id="full_name"
-                    component={TextInput}
-                    maxLength={60}
+                    name="position"
+                    id="position"
+                    component={TextArea}
+                    maxLength={120}
                     showCharacterCount={true}
-                    label="ПІБ Працівника"
-                    text={member?.full_name}
+                    label="Посада Працівника"
+                    text={member?.position}
                   />
-                  <div className={styles.secondRow}>
-                    <Field
-                      name="position"
-                      id="position"
-                      component={TextArea}
-                      maxLength={120}
-                      showCharacterCount={true}
-                      label="Посада Працівника"
-                      text={member?.position}
-                    />
-                    <Field
-                      name="image"
-                      id="image"
-                      component={FileInput}
-                      label="Фото"
-                      photo={member?.photo}
-                    />
-                  </div>
-                  <div className={styles.button}>
-                    <ButtonSubmit
-                      nameButton="Зберегти зміни"
-                      isActive={formik.isValid}
-                      isRight={true}
-                      handlerSubmitButton={onSubmit}
-                      isProcessing={isProcessing}
-                    />
-                  </div>
+                  <Field
+                    name="image"
+                    id="image"
+                    component={FileInput}
+                    label="Фото"
+                    photo={member?.photo}
+                  />
                 </div>
-              </Form>
-            );
-          }}
-        </Formik>
-      )}
+                <div className={styles.button}>
+                  <ButtonSubmit
+                    nameButton="Зберегти зміни"
+                    isActive={formik.isValid}
+                    isRight={true}
+                    handlerSubmitButton={onSubmit}
+                    isProcessing={loading}
+                  />
+                </div>
+              </div>
+            </Form>
+          );
+        }}
+      </Formik>
     </div>
   );
 };

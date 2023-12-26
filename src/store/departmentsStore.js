@@ -9,10 +9,20 @@ const useDepartmentsStore = create((set, get) => ({
 
   getDepartments: async () => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       const response = await axios.get(`/departments`);
       set(() => {
         return {
           departments: response.data,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
         };
       });
     } catch (error) {
@@ -58,12 +68,22 @@ const useDepartmentsStore = create((set, get) => ({
 
   addDepartment: async data => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       if (!Object.values(data).includes(undefined)) {
         const body = JSON.stringify(data);
         const response = await axios.post('/departments/sub_department', body, {
           headers: {
             'Content-Type': 'application/json',
           },
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         return response;
       }
@@ -74,6 +94,11 @@ const useDepartmentsStore = create((set, get) => ({
 
   editDepartment: async (id, data) => {
     try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
       if (!Object.values(data).includes(undefined)) {
         const body = JSON.stringify(data);
         const response = await axios.patch(
@@ -85,6 +110,11 @@ const useDepartmentsStore = create((set, get) => ({
             },
           }
         );
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
         return response;
       }
     } catch (error) {
@@ -93,18 +123,32 @@ const useDepartmentsStore = create((set, get) => ({
   },
 
   deleteSubDepartment: async id => {
-    try {
-      const response = await axios.delete(`/departments/sub_department/${id}`);
-      set(() => {
-        return {
-          department: get().department.filter(
-            sub_department => sub_department.id !== id
-          ),
-        };
-      });
-      return response;
-    } catch (error) {
-      throw new Error(error);
+    if (id) {
+      try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
+        const response = await axios.delete(
+          `/departments/sub_department/${id}`
+        );
+        set(() => {
+          return {
+            department: get().department.filter(
+              sub_department => sub_department.id !== id
+            ),
+          };
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
     }
   },
 }));

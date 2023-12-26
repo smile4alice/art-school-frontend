@@ -56,10 +56,20 @@ const usePostersStore = create((set, get) => ({
   addPoster: async data => {
     if (isDataValid(data)) {
       try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
         const response = await axios.post('/posters', data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         return response;
       } catch (error) {
@@ -71,10 +81,20 @@ const usePostersStore = create((set, get) => ({
   updatePoster: async (data, id) => {
     if (isDataValid(data)) {
       try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
         const response = await axios.patch(`/posters/${id}`, data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         return response;
       } catch (error) {
@@ -84,13 +104,29 @@ const usePostersStore = create((set, get) => ({
   },
 
   deletePostersById: async id => {
-    const response = await axios.delete(`/posters/${id}`);
-    set(() => {
-      return {
-        posters: get().posters.filter(poster => poster.id !== id),
-      };
-    });
-    return response;
+    if (id) {
+      try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
+        const response = await axios.delete(`/posters/${id}`);
+        set(() => {
+          return {
+            posters: get().posters.filter(poster => poster.id !== id),
+          };
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   },
 }));
 
