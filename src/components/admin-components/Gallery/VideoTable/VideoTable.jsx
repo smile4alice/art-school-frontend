@@ -4,6 +4,7 @@ import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
+import sprite from '@/assets/icons/sprite-admin.svg';
 import s from './VideoTable.module.scss';
 
 const VideoTable = ({ url, videos }) => {
@@ -48,7 +49,11 @@ const VideoTable = ({ url, videos }) => {
               <div className={s.action}>
                 <Link to={`edit/${item.id}`}>
                   <button className={s.edit}>
-                    <img src="/icons/edit.svg" alt="edit icon" />
+                  <svg>
+                      <use
+                        href={`${sprite}#icon-edit`}
+                      />
+                    </svg>
                   </button>
                 </Link>
                 <button
@@ -58,7 +63,11 @@ const VideoTable = ({ url, videos }) => {
                     openModal();
                   }}
                 >
-                  <img src="/icons/delete.svg" alt="delete icon" />
+                  <svg
+                  onClick={() => setCurrentId(item.id)}
+                >
+                  <use href={`${sprite}#icon-trash`}/>
+                </svg>
                 </button>
               </div>
             </div>

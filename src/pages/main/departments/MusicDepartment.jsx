@@ -1,5 +1,5 @@
-import articles from '@/data/departments/music';
 import DepartmentPage from '@/components/departments/DepartmentPage/DepartmentPage';
+import articles from '@/data/departments/music';
 
 const MusicDepartment = () => {
   return (

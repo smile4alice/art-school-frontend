@@ -33,6 +33,7 @@ const AdminTable = ({ data }) => {
         <li className={styles.cellPhotoHeader}>Фото</li>
         <li className={styles.cellActionHeader}>Дія</li>
       </ul>
+      <div className={styles.tbody}>
       {data &&
         Array.isArray(data) &&
         data.map((item, index) => (
@@ -69,6 +70,7 @@ const AdminTable = ({ data }) => {
             </div>
           </div>
         ))}
+        </div>
       {isModalOpen && <ConfirmDeleteModal handleDelete={removeMember} />}
     </div>
   );

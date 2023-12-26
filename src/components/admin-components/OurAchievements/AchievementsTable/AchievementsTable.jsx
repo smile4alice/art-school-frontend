@@ -4,6 +4,7 @@ import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
+import sprite from '@/assets/icons/sprite-admin.svg';
 import s from './AchievementsTable.module.scss';
 
 const AchievementsTable = ({ data, typeOfAchievements, url }) => {
@@ -50,7 +51,9 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
               <div className={s.action}>
                 <Link to={`edit/${item.id}`}>
                   <button className={s.edit}>
-                    <img src="/icons/edit.svg" alt="edit icon" />
+                  <svg>
+                      <use href={`${sprite}#icon-edit`} />
+                    </svg>
                   </button>
                 </Link>
                 <button
@@ -60,7 +63,9 @@ const AchievementsTable = ({ data, typeOfAchievements, url }) => {
                     openModal();
                   }}
                 >
-                  <img src="/icons/delete.svg" alt="delete icon" />
+                  <svg>
+                    <use href={`${sprite}#icon-trash`} />
+                  </svg>
                 </button>
               </div>
             </div>

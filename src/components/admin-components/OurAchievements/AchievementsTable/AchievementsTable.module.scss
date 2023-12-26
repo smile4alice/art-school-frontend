@@ -37,7 +37,7 @@
   }
   .tbody {
     font-size: 0.75rem;
-    height: 400px;
+    max-height: calc(100vh - 270px);
     overflow-y: scroll;
     &::-webkit-scrollbar {
       width: 0.3125rem;
@@ -79,24 +79,33 @@
         width: 1.5rem;
         height: 1.5rem;
         border-radius: 4px;
-        img {
+        svg {
           width: 20px;
           height: 20px;
         }
       }
       .edit {
-        color: $admin-gray-text;
+        svg{
+          fill: rgba(155, 166, 175, 1);
+        }
       }
       .edit:hover {
-        background-color: rgba(60, 66, 66, 0.1);
-        border: 1px solid rgba(60, 66, 66, 0.5);
+        background-color: $admin-light-purple;
+        border: 1px solid #D1D8FF;
+        svg{
+          fill: $admin-accent
+        }
       }
-      .delete {
-        color: $admin-red;
+      .delete{
+        svg{
+          stroke-width: 1.5px;
+          stroke: $admin-red;
+          fill: transparent;
+        }
       }
       .delete:hover {
-        background-color: rgba(255, 50, 50, 0.1);
-        border: 1px solid rgba(255, 50, 50, 0.5);
+        background-color:#FFEBEB;
+        border: 1px solid #F9BFBF;
       }
     }
   }

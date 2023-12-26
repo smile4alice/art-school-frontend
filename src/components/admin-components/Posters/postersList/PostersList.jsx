@@ -34,44 +34,42 @@ const PostersList = ({ data }) => {
           <p className={styles.cellActionHeader}>Дія</p>
         </div>
       </div>
-      {data.map((item, index) => (
-        <div className={styles.tableRow} key={index}>
-          <div className={styles.cellTextWrapper}>
-            <div className={styles.cellHeadingRow}>{item.title}</div>
-          </div>
-
-          <div className={styles.cellPosterWrapper}>
-            <div className={styles.cellPhotoRow}>
-              <img
-                src={item.photo}
-                alt="Фото"
-                className={styles.contentElementImg}
-              />
+      <div className={styles.tbody}>
+        {data.map((item, index) => (
+          <div className={styles.tableRow} key={index}>
+            <div className={styles.cellTextWrapper}>
+              <div className={styles.cellHeadingRow}>{item.title}</div>
             </div>
-            <div className={styles.cellActionRow}></div>
 
-            <div className={styles.cellActionContainer}>
-              <Link to={`edit/${item.id}`}>
-                <svg className={styles.iconEdit}>
-                  <use href={`${sprite}#icon-edit`} width="20" height="20" />
+            <div className={styles.cellPosterWrapper}>
+              <div className={styles.cellPhotoRow}>
+                <img
+                  src={item.photo}
+                  alt="Фото"
+                  className={styles.contentElementImg}
+                />
+              </div>
+              <div className={styles.cellActionRow}></div>
+
+              <div className={styles.cellActionContainer}>
+                <Link to={`edit/${item.id}`}>
+                  <svg className={styles.iconEdit}>
+                    <use href={`${sprite}#icon-edit`} width="20" height="20" />
+                  </svg>
+                </Link>
+              </div>
+              <div className={styles.cellActionContainer} onClick={openModal}>
+                <svg
+                  className={styles.iconTrash}
+                  onClick={() => setCurrentId(item.id)}
+                >
+                  <use href={`${sprite}#icon-trash`} width="20" height="20" />
                 </svg>
-              </Link>
-            </div>
-            <div
-              className={styles.cellActionContainer}
-              onClick={() => {
-                setCurrentId(item.id);
-                openModal();
-              }}
-            >
-              <svg className={styles.iconTrash}>
-                <use href={`${sprite}#icon-trash`} width="20" height="20" />
-              </svg>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-
+        ))}
+      </div>
       {isModalOpen && <ConfirmDeleteModal handleDelete={handleDelete} />}
     </div>
   );

@@ -22,14 +22,23 @@ const AchievementsGalleryPage = ({
   const { getAllAchievements, getMainAchievements, getDepartmentAchievements } = useServicesStore();
   const achievements = useServicesStore(state => state.achievements);
   const gallery = useServicesStore(state => state.gallery);
+  const achievementsPages = useServicesStore(state => state.achievementsPages);
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
   const [typeOfAchievements, setTypeOfAchievements] = useState('allAchievements');
   const [loadingState, setLoadingState] = useState('loading');
-  const page = 1;
-  //const [page, setPage] = useState(1);
-  const pageSize = '20';
+  const [page, setPage] = useState(1);
+  const [isFetching, setIsFetching] = useState('true')
+  const pageSize = '5';
   let breadcrumbs;
+
+  const changePage = () => {
+    if(page < achievementsPages){
+      setPage(page + 1);
+      setIsFetching(true);
+    }
+    
+  }
 
   const setBreadcrumbs = (url, title) => {
     if (url === 'achievements') {
@@ -59,13 +68,37 @@ const AchievementsGalleryPage = ({
     }
   };
 
+  useEffect(()=>{
+    console.log(page);
+    console.log(achievementsPages);
+    if(isFetching && typeOfAchievements === 'allAchievements'){
+      const fetchData = async () => {
+        try {
+          setLoadingState('loading');
+        
+            await getAllAchievements(url, page, pageSize);
+          setLoadingState('success');
+        
+        } catch (error) {
+          console.log(error);
+          setLoadingState('error');
+        }
+      };
+      fetchData();
+    }
+    
+  },[getAllAchievements,
+    typeOfAchievements,
+    page, achievementsPages,
+    pageSize,
+    url, isFetching])
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoadingState('loading');
-        if (typeOfAchievements === 'allAchievements') {
-          await getAllAchievements(url, page, pageSize);
-        } else if (typeOfAchievements === 'mainAchievements') {
+        if (typeOfAchievements === 'mainAchievements') {
           await getMainAchievements(url);
         } else if (typeOfAchievements === 'departmentAchievements') {
           await getDepartmentAchievements(url, departmentId);
@@ -78,13 +111,10 @@ const AchievementsGalleryPage = ({
     };
     fetchData();
   }, [
-    getAllAchievements,
     getMainAchievements,
     getDepartmentAchievements,
     typeOfAchievements,
     departmentId,
-    page,
-    pageSize,
     url,
   ]);
 
@@ -140,6 +170,8 @@ const AchievementsGalleryPage = ({
           data={achievements}
           url={url}
           typeOfAchievements={typeOfAchievements}
+          changePage={changePage}
+          page={page}
         />
       )}
       {url === 'gallery' && loadingState === 'success' &&  (

@@ -1,6 +1,7 @@
 .sidebarWrapper{
    display: flex;
    width: 215px;
+   min-height: 100vh;
    padding: 10px 0px 5px 0px;
    flex-direction: column;
    justify-content: space-between;   
