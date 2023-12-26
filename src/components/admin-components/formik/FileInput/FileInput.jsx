@@ -51,7 +51,7 @@ const FileInput = ({
         {...props}
       >
         {({ getRootProps, getInputProps }) => (
-          <section>
+          <section className={styles.section}>
             <div className={styles.dropzone} {...getRootProps()}>
               <input {...getInputProps()} />
               {imagePreview ? (

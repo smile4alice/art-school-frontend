@@ -1,4 +1,5 @@
 .textAreaWrapper {
+  width: 48%;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +15,8 @@
 
 .textArea {
   display: flex;
-  width: 478px;
+  width: 100%;
+  //width: 478px;
   height: 197px;
   padding: 10px;
   align-items: flex-start;
@@ -24,6 +26,7 @@
   color: $admin-text-main;
   font-size: 15px;
   font-family: 'Montserrat', sans-serif;
+  resize: none;
 }
 
 .commentsWrapper {

@@ -33,45 +33,51 @@ const DepartmentsTable = ({ data, departmentId }) => {
         <li className={styles.cellTextHeader}>Опис</li>
         <li className={styles.cellActionHeader}>Дія</li>
       </ul>
-      {data &&
-        Array.isArray(data) &&
-        data.map((item, index) => (
-          <div className={styles.tableRow} key={index}>
-            <div className={styles.cellHeadingRow}>
-              {item.sub_department_name}
-            </div>
-            <div className={styles.cellTextRow}>
-              {subString(item.description)}
-            </div>
-            <div className={styles.cellActionRow}>
-              <Link
-                to={`/admin/departments/sub_department/edit/${item.id}`}
-                state={{
-                  title: item.sub_department_name,
-                  departmentId: departmentId,
-                }}
-              >
-                <div className={styles.cellActionContainer}>
-                  <svg className={styles.iconEdit}>
-                    <use href={`${sprite}#icon-edit`} width="20" height="20" />
-                  </svg>
-                </div>
-              </Link>
-
-              <button
-                onClick={openModal}
-                className={styles.cellActionContainer}
-              >
-                <svg
-                  className={styles.iconTrash}
-                  onClick={() => setCurrentId(item.id)}
+      <div className={styles.tbody}>
+        {data &&
+          Array.isArray(data) &&
+          data.map((item, index) => (
+            <div className={styles.tableRow} key={index}>
+              <div className={styles.cellHeadingRow}>
+                {item.sub_department_name}
+              </div>
+              <div className={styles.cellTextRow}>
+                {subString(item.description)}
+              </div>
+              <div className={styles.cellActionRow}>
+                <Link
+                  to={`/admin/departments/sub_department/edit/${item.id}`}
+                  state={{
+                    title: item.sub_department_name,
+                    departmentId: departmentId,
+                  }}
                 >
-                  <use href={`${sprite}#icon-trash`} width="20" height="20" />
-                </svg>
-              </button>
+                  <div className={styles.cellActionContainer}>
+                    <svg className={styles.iconEdit}>
+                      <use
+                        href={`${sprite}#icon-edit`}
+                        width="20"
+                        height="20"
+                      />
+                    </svg>
+                  </div>
+                </Link>
+
+                <button
+                  onClick={openModal}
+                  className={styles.cellActionContainer}
+                >
+                  <svg
+                    className={styles.iconTrash}
+                    onClick={() => setCurrentId(item.id)}
+                  >
+                    <use href={`${sprite}#icon-trash`} width="20" height="20" />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
       {isModalOpen && <ConfirmDeleteModal handleDelete={removePost} />}
     </div>
   );
