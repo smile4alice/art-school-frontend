@@ -1,73 +1,64 @@
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import usePostersStore from '@/store/posterStore';
-import { posterValidation } from './validationSchema';
+import { declineWord } from '@/utils/declineWord';
+import { contactsValidation } from './validationSchema';
+import useContactsStore from '@/store/contactsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
+import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
-import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
-import FileInput from '@/components/admin-components/formik/FileInput/FileInput';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
-import styles from './PostersAdmin.module.scss';
+import styles from './ContactsAdmin.module.scss';
 
-const breadcrumbs = ['Афіші', 'Додати афішу'];
-
-const initialValues = {
-  title: ' ',
-  image: [],
-};
-
-const AddPostersPage = () => {
+const EditContactsPageAdmin = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const { addPoster } = usePostersStore();
+  const { key, title, value } = location.state;
+  const { editContact } = useContactsStore();
   const [isProcessing, setIsProcessing] = useState(false);
+
+  const breadcrumbs = [`${title}`, `Редагувати ${declineWord(title)}`];
+
+  const initialValues = {};
 
   const onSubmit = async values => {
     try {
-      const formData = new FormData();
-      formData.append('title', values.title);
-      formData.append('photo', values.image[0]);
       setIsProcessing(true);
-      await addPoster(formData);
+      await editContact(values);
       setIsProcessing(false);
       navigate(-1);
     } catch (error) {
       console.log(error);
     }
+    setIsProcessing(false);
   };
 
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Додати Афішу"
+        title={`Редагувати ${declineWord(title)}`}
         showBackButton={true}
-        backButtonLink="/admin/posters"
+        backButtonLink="/admin/contacts"
         showActionButton={false}
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={posterValidation}
+        validationSchema={contactsValidation}
         onSubmit={onSubmit}
       >
         {formik => {
           return (
             <Form>
               <div className={styles.layout}>
-                <div className={styles.inputWrapper}>
-                  <Field
-                    name="title"
-                    id="text"
-                    placeholder="Title"
-                    component={TextArea}
-                    maxLength={120}
-                    showCharacterCount={true}
-                    label="Заголовок"
-                  />
-
-                  <Field name="image" id="image" component={FileInput} />
-                </div>
-
+                <Field
+                  name={`${key.toLowerCase()}`}
+                  id={`${key.toLowerCase()}`}
+                  component={TextInput}
+                  showCharacterCount={false}
+                  text={value}
+                  label={`${title}`}
+                />
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
@@ -86,4 +77,4 @@ const AddPostersPage = () => {
   );
 };
 
-export default AddPostersPage;
+export default EditContactsPageAdmin;

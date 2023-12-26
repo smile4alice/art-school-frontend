@@ -1,3 +1,4 @@
+import articles from '@/data/departments/finearts';
 import DepartmentPage from '@/components/departments/DepartmentPage/DepartmentPage';
 
 const FineArtsDepartment = () => {
@@ -6,6 +7,7 @@ const FineArtsDepartment = () => {
       id={'5'}
       showSelect={true}
       title={'Образотворче відділення'}
+      articles={articles}
     />
   );
 };

@@ -16,7 +16,7 @@ const Map = () => {
         <div className={styles.MapContainer}>
           <MapContainer
             center={[50.45449, 30.50435]}
-            zoom={17}
+            zoom={18}
             scrollWheelZoom={false}
           >
             <TileLayer

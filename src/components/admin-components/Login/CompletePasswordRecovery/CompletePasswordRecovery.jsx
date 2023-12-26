@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
+import useAuthStore from '@/store/authStore';
 import { completeRecoveryValidation } from './validationSchema';
 import Heading from '../Heading/Heading';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
@@ -12,8 +14,22 @@ const initialValues = {
 };
 
 const CompletePasswordRecovery = () => {
-  const onSubmit = () => {
-    console.log('Увійти');
+  const { token } = useParams();
+  const navigate = useNavigate();
+  const { resetPassword } = useAuthStore();
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const onSubmit = async values => {
+    const data = {
+      token: token,
+      password: values.password,
+    };
+    setIsProcessing(true);
+    const response = await resetPassword(data);
+    if (response.status === 200) {
+      setIsProcessing(false);
+      navigate('/login/password-recovery-success');
+    }
   };
 
   return (
@@ -48,6 +64,7 @@ const CompletePasswordRecovery = () => {
                   <ButtonSubmit
                     handlerSubmitButton={onSubmit}
                     nameButton="Змінити пароль"
+                    isProcessing={isProcessing}
                     isActive={
                       formik.isValid && Object.keys(formik.touched).length
                     }

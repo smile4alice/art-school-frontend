@@ -4,8 +4,7 @@ import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
 import useDepartmentsStore from '@/store/departmentsStore';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
-import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
+import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './DepartmentsTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
@@ -14,7 +13,6 @@ const DepartmentsTable = ({ data, departmentId }) => {
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  const loading = useDepartmentsStore(state => state.loading);
 
   const removePost = async () => {
     if (isDeleteConfirm) {
@@ -27,8 +25,6 @@ const DepartmentsTable = ({ data, departmentId }) => {
       closeModal();
     }
   };
-
-  if (loading) return <SpinnerAdmin />;
 
   return (
     <div className={styles.contentWrap}>

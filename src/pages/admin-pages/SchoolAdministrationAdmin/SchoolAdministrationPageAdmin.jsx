@@ -3,14 +3,14 @@ import useAdministrationStore from '@/store/administrationStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import AdminTable from '@/components/admin-components/SchoolSdministration/AdminTable/AdminTable';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 
 const breadcrumbs = ['Адміністрація школи'];
 
 const SchoolAdministrationPage = () => {
   const { getMembers } = useAdministrationStore();
   const members = useAdministrationStore(state => state.members);
-
-  console.log(members);
+  const loading = useAdministrationStore(state => state.loading);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +34,7 @@ const SchoolAdministrationPage = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати працівника адміністрації"
       />
-      <AdminTable data={members} />
+      {loading ? <SpinnerAdmin /> : <AdminTable data={members} />}
     </div>
   );
 };

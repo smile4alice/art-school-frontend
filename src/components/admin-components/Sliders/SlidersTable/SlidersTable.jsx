@@ -1,20 +1,19 @@
 import { useState } from 'react';
+import { clsx } from 'clsx';
 import { Link } from 'react-router-dom';
 import useSlidersStore from '@/store/slidersStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './SlidersTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
-import SpinnerAdmin from '../../SpinnerAdmin/SpinnerAdmin';
 
 const SlidersTable = ({ data }) => {
   const { deleteSlide } = useSlidersStore();
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
-  const loading = useSlidersStore(state => state.loading);
 
   const removePost = async () => {
     if (isDeleteConfirm && data.length > 1) {
@@ -27,8 +26,6 @@ const SlidersTable = ({ data }) => {
       closeModal();
     }
   };
-
-  if (loading) return <SpinnerAdmin />;
 
   return (
     <div className={styles.contentWrap}>
@@ -68,9 +65,13 @@ const SlidersTable = ({ data }) => {
               <button
                 className={styles.cellActionContainer}
                 onClick={openModal}
+                disabled={index === 0}
               >
                 <svg
-                  className={styles.iconTrash}
+                  className={clsx(
+                    styles.iconTrash,
+                    index === 0 && styles.disabled
+                  )}
                   onClick={() => setCurrentId(item.id)}
                 >
                   <use href={`${sprite}#icon-trash`} width="20" height="20" />

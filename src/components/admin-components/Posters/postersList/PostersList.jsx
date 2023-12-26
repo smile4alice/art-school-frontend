@@ -4,7 +4,7 @@ import { useConfirmDelete } from '@/store/confirmDelete';
 import { useModal } from '@/store/modalStore';
 import usePostersStore from '@/store/posterStore';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './PostersList.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 

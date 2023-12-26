@@ -1,3 +1,4 @@
+import articles from '@/data/departments/vocal';
 import DepartmentPage from '@/components/departments/DepartmentPage/DepartmentPage';
 
 const VocalDepartment = () => {
@@ -6,6 +7,7 @@ const VocalDepartment = () => {
       id={'2'}
       showSelect={true}
       title={'Вокально-хорове відділення'}
+      articles={articles}
     />
   );
 };

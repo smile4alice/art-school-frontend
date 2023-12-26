@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
-import ConfirmDeleteModal from '@/components/ui/ConfirmDeleteModal/ConfirmDeleteModal';
+import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import s from './GalleryTable.module.scss';
 
 const GalleryTable = ({ url, data, typeOfAchievements }) => {

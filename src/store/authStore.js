@@ -28,11 +28,38 @@ const useAuthStore = create(() => ({
     if (data.email !== undefined) {
       try {
         const response = await axios.post(`/auth/forgot-password`, data, {});
-        console.log(response);
-        return response;
+        console.log(response.data);
+        return response.data;
       } catch (error) {
         console.error(error);
       }
+    }
+  },
+
+  resetPassword: async data => {
+    try {
+      if (!Object.values(data).includes(undefined)) {
+        const response = await axios.post(`/auth/reset-password`, data, {});
+        return response;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  changePassword: async data => {
+    try {
+      if (isDataValid(data)) {
+        const requestData = new URLSearchParams(data);
+        const response = await axios.post(
+          `/auth/change-password`,
+          requestData,
+          {}
+        );
+        return response;
+      }
+    } catch (error) {
+      console.error(error);
     }
   },
 }));
