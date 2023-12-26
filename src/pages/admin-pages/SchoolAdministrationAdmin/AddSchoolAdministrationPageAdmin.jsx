@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { administrationValidation } from './validationSchema';
@@ -22,7 +21,7 @@ const initialValues = {
 const AddSchoolAdministrationPage = () => {
   const navigate = useNavigate();
   const { addMember } = useAdministrationStore();
-  const [isProcessing, setIsProcessing] = useState(false);
+  const loading = useAdministrationStore(state => state.loading);
 
   const onSubmit = async values => {
     try {
@@ -31,9 +30,7 @@ const AddSchoolAdministrationPage = () => {
       formData.append('position', values.position);
       formData.append('photo', values.image[0]);
 
-      setIsProcessing(true);
       await addMember(formData);
-      setIsProcessing(false);
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -88,7 +85,7 @@ const AddSchoolAdministrationPage = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
-                    isProcessing={isProcessing}
+                    isProcessing={loading}
                   />
                 </div>
               </div>

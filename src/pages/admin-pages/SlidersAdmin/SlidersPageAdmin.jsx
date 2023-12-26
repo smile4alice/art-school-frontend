@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useSlidersStore from '@/store/slidersStore';
 
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
@@ -11,14 +11,12 @@ const breadcrumbs = ['Слайдери'];
 const SlidersPageAdmin = () => {
   const { getSlides } = useSlidersStore();
   const slides = useSlidersStore(state => state.slides);
-  const [loading, setLoading] = useState(false);
+  const loading = useSlidersStore(state => state.loading);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         await getSlides();
-        setLoading(false);
       } catch (error) {
         console.log(error);
       }

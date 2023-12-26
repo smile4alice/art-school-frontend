@@ -57,13 +57,12 @@ const AdminTable = ({ data }) => {
               </Link>
 
               <button
-                className={styles.cellActionContainer}
-                onClick={openModal}
+                onClick={() => {
+                  setCurrentId(item.id);
+                  openModal();
+                }}
               >
-                <svg
-                  className={styles.iconTrash}
-                  onClick={() => setCurrentId(item.id)}
-                >
+                <svg className={styles.iconTrash}>
                   <use href={`${sprite}#icon-trash`} width="20" height="20" />
                 </svg>
               </button>

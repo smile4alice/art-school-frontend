@@ -14,16 +14,14 @@ const DepartmentPageAdmin = () => {
   const { getOneDepartment, getDepartments } = useDepartmentsStore();
   const [thisDepartment, setThisdepartment] = useState([]);
   const [title, setTitle] = useState([]);
-  const [loading, setLoading] = useState(false);
   const department = useDepartmentsStore(state => state.department);
   const departments = useDepartmentsStore(state => state.departments);
+  const loading = useDepartmentsStore(state => state.loading);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         await getDepartments();
-        setLoading(false);
       } catch (error) {
         console.log(error);
       }

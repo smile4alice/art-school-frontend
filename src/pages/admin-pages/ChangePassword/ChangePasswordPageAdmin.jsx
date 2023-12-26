@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useModal } from '@/store/modalStore';
 import { Field, Form, Formik } from 'formik';
 import { passwordValidation } from './validationSchema';
@@ -22,19 +21,19 @@ const initialValues = {
 const ChangePasswordPageAdmin = () => {
   const { changePassword } = useAuthStore();
   const { isModalOpen, openModal } = useModal();
-  const [isLoading, setIsLoading] = useState(false);
+  const loading = useAuthStore(state => state.loading);
+
   const onSubmit = async values => {
     const formData = new FormData();
     formData.append('old_password', values.oldPassword);
     formData.append('new_password', values.newPassword);
     formData.append('new_password_confirm', values.confirmPassword);
-    setIsLoading(true);
     const response = await changePassword(formData);
     if (response.status === 200) {
-      setIsLoading(false);
       openModal();
     }
   };
+
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
@@ -81,7 +80,7 @@ const ChangePasswordPageAdmin = () => {
                     isActive={formik.isValid}
                     isRight={true}
                     // handlerSubmitButton={onSubmit}
-                    isProcessing={isLoading}
+                    isProcessing={loading}
                   />
                 </div>
               </div>

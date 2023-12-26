@@ -102,6 +102,14 @@ iframe {
     font-size: 2rem; //32px
   }
 }
+
+.errorMessage {
+  font-size: 1.2rem;
+  color: $admin-red;
+  text-align: center;
+  margin-top: 3rem;
+}
+
 #header-bar {
   min-height: 10px;
 }

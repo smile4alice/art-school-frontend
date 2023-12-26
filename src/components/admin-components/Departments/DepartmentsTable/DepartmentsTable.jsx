@@ -16,6 +16,7 @@ const DepartmentsTable = ({ data, departmentId }) => {
 
   const removePost = async () => {
     if (isDeleteConfirm) {
+      console.log(currentId);
       try {
         await deleteSubDepartment(currentId);
       } catch (error) {
@@ -57,15 +58,14 @@ const DepartmentsTable = ({ data, departmentId }) => {
                   </svg>
                 </div>
               </Link>
-
               <button
-                onClick={openModal}
+                onClick={() => {
+                  setCurrentId(item.id);
+                  openModal();
+                }}
                 className={styles.cellActionContainer}
               >
-                <svg
-                  className={styles.iconTrash}
-                  onClick={() => setCurrentId(item.id)}
-                >
+                <svg className={styles.iconTrash}>
                   <use href={`${sprite}#icon-trash`} width="20" height="20" />
                 </svg>
               </button>

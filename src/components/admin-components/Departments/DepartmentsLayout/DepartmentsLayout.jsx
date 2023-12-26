@@ -1,5 +1,4 @@
 import DepartmentCard from './DepartmentCard/DepartmentCard';
-
 import styles from './DepartmentsLayout.module.scss';
 
 const DepartmentsLayout = ({ data }) => {
