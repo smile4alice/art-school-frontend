@@ -9,7 +9,8 @@
     display: grid;
     gap: 1.12rem;
     grid-template-columns: repeat(5, 1fr);
-    max-height: 500px;
+    height: calc(100vh - 240px);
+   
     overflow-y: scroll;   
     &::-webkit-scrollbar {
       width: 0.3125rem;

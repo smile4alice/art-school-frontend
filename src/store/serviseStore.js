@@ -9,6 +9,7 @@ const useServicesStore = create(set => ({
   gallery: [],
   achievementsPositions: [],
   achievement: {},
+  achievementsPages: '',
 
   //отримати всі основні відділення
   getMainDepartments: async () => {
@@ -36,19 +37,25 @@ const useServicesStore = create(set => ({
       throw new Error(error);
     }
   },
+  
+
   //всі досягнення
   getAllAchievements: async (url, page, size) => {
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
       const response = await axios.get(`/${newUrl}?page=${page}&size=${size}`);
-      set(() => {
+      set(() => {//state
+        console.log(response);
         if (url === 'gallery') {
           return {
             gallery: response.data.items,
+        //gallery: [...state.gallery, ...response.data.items],
+            achievementsPages: response.data.pages,
           };
         } else {
           return {
             achievements: response.data.items,
+            achievementsPages: response.data.pages,
           };
         }
       });
