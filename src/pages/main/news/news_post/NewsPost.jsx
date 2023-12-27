@@ -8,12 +8,12 @@ import styles from './NewsPost.module.scss';
 const NewsPost = () => {
   const location = useLocation();
   const { post } = location.state;
-
+  const href = '/news';
   return (
     <Container>
       <section className={styles.wrapper}>
         <div className={styles.buttonContainer}>
-          <NavLinkButton link={'/news'} text={'переглянути всі новини'} />
+          <NavLinkButton href={href} text={'переглянути всі новини'} />
         </div>
         <p className={`${styles.title} sectionTitle`}>{post.title}</p>
         <p className={styles.date}>{post.date}</p>
