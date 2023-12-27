@@ -1,7 +1,7 @@
 .selectContainer {
   width: 100%;
   position: relative;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 
   .selectButton {
     width: 100%;
@@ -47,4 +47,8 @@
     margin-left: calc(100% - 280px);
     margin-top: 0;
   }
+}
+
+.isSelected {
+  background-color: white;
 }

@@ -18,6 +18,8 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
   }, []);
 
   const changeDepartment = url => {
+    console.log('url: ', url);
+
     setDepartmentId(url);
   };
 
