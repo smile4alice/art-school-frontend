@@ -40,9 +40,9 @@ const EditObjectPage = ({
   let breadcrumbs;
   const setBreadcrumbs = url => {
     if (url === 'achievements') {
-      breadcrumbs = ['Наші Досягнення', 'Редагувати _id'];
+      breadcrumbs = ['Наші Досягнення', 'Редагувати досягнення'];
     } else if (url === 'gallery') {
-      breadcrumbs = ['Фотогалерея', 'Редагувати _id'];
+      breadcrumbs = ['Фотогалерея', 'Редагувати фото'];
     }
     return breadcrumbs;
   };

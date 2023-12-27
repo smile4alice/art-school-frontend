@@ -2,15 +2,17 @@ import { create } from 'zustand';
 import axios from '@/utils/axios';
 import { isDataValid } from '@/utils/formDataValidation';
 
-const useServicesStore = create(set => ({
+const useServicesStore = create((set, get) => ({
   departments: [],
   subDepartments: [],
   achievements: [],
   gallery: [],
   achievementsPositions: [],
   achievement: {},
-  achievementsPages: '',
-
+  achievementPageCount: '',
+  galleryPageCount: '',
+  pageSize: 10,
+  loading: false,
   //отримати всі основні відділення
   getMainDepartments: async () => {
     const response = await axios.get('/departments');
@@ -37,29 +39,38 @@ const useServicesStore = create(set => ({
       throw new Error(error);
     }
   },
-  
 
   //всі досягнення
-  getAllAchievements: async (url, page, size) => {
+  getAllAchievements: async (url, page) => {
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
+    const size = get().pageSize;
     try {
-      const response = await axios.get(`/${newUrl}?page=${page}&size=${size}`);
-      set(() => {//state
-       // console.log(response);
-        if (url === 'gallery') {
-          return {
-            gallery: response.data.items,
-        //gallery: [...state.gallery, ...response.data.items],
-            achievementsPages: response.data.pages,
-          };
-        } else {
-          return {
-            achievements: response.data.items,
-            achievementsPages: response.data.pages,
-          };
-        }
+      set(() => {
+        return {
+          loading: 'loading',
+        };
       });
+      const response = await axios.get(`/${newUrl}?page=${page}&size=${size}`);
+      if (url === 'gallery') {
+        set(state => {
+          return {
+            ...state,
+            gallery: page === 1 ? response.data.items : [...state.gallery, ...response.data.items],
+            galleryPageCount: response.data.pages,
+          };
+        });
+      } else {
+        set(state => {
+          return {
+            ...state,
+            achievements:page === 1? response.data.items: [...state.achievements, ...response.data.items],
+            achievementPageCount: response.data.pages,
+          };
+        });
+      }
+      set(state => ({ ...state, loading: 'success'}));
     } catch (error) {
+      set(state => ({ ...state, loading: 'error'}));
       throw new Error(error);
     }
   },
@@ -67,6 +78,11 @@ const useServicesStore = create(set => ({
   getMainAchievements: async url => {
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
+      set(() => {
+        return {
+          loading: 'loading',
+        };
+      });
       const response = await axios.get(`/${newUrl}?is_pinned=true`);
       set(() => {
         if (url === 'gallery') {
@@ -78,8 +94,21 @@ const useServicesStore = create(set => ({
             achievements: response.data.items,
           };
         }
-      });
+      })
+      set(state => ({ ...state, loading: 'success'}));
     } catch (error) {
+      set(() => {
+        if (url === 'gallery') {
+          return {
+            gallery: [],
+          };
+        } else {
+          return {
+            achievements: [],
+          };
+        }
+      });
+      set(state => ({ ...state, loading: 'error'}));
       throw new Error(error);
     }
   },
@@ -87,6 +116,11 @@ const useServicesStore = create(set => ({
   getDepartmentAchievements: async (url, id) => {
     const newUrl = url === 'achievements' ? 'achievement' : url;
     try {
+      set(() => {
+        return {
+          loading: 'loading',
+        };
+      });
       const response = await axios.get(
         `/departments/sub_department_${newUrl}/${id}`
       );
@@ -94,15 +128,29 @@ const useServicesStore = create(set => ({
         if (url === 'gallery') {
           return {
             gallery: response.data,
+            loading: 'success',
           };
         } else {
           return {
             achievements: response.data,
+            loading: 'success',
           };
         }
       });
-    
     } catch (error) {
+      set(() => {
+        if (url === 'gallery') {
+          return {
+            gallery: [],
+            loading: 'error',
+          };
+        } else {
+          return {
+            achievements: [],
+            loading: 'error',
+          };
+        }
+      });
       throw new Error(error);
     }
   },
@@ -150,7 +198,9 @@ const useServicesStore = create(set => ({
           queryParams.append('description', data.get('description'));
         }
         const response = await axios.post(
-          `/${newUrl}?${queryParams.toString()}`, data, {
+          `/${newUrl}?${queryParams.toString()}`,
+          data,
+          {
             headers: {
               'Content-Type': 'multipart/form-data',
             },

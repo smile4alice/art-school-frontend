@@ -11,7 +11,7 @@ import styles from './Gallery.module.scss';
 
 const Gallery = () => {
   const { getAllVideo } = useVideoStore();
-  const { getMainAchievements } = useServicesStore();
+  const { getAllAchievements } = useServicesStore();
   const videos = useVideoStore(state => state.videos);
   const gallery = useServicesStore(state => state.gallery);
   const loading = useVideoStore(state => state.loading);
@@ -24,13 +24,13 @@ const Gallery = () => {
     const fetchVideo = async () => {
       try {
         await getAllVideo();
-        await getMainAchievements('gallery');
+        await getAllAchievements('gallery');
       } catch (error) {
         console.log(error);
       }
     };
     fetchVideo();
-  }, [getAllVideo, getMainAchievements]);
+  }, [getAllVideo, getAllAchievements]);
 
   return (
     <Container>
