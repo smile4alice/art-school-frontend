@@ -6,6 +6,7 @@ import DropDownsList from '@/components/ui/DropDownsList/DropDownsList';
 import useServicesStore from '@/store/serviseStore';
 import Articles from '../DepartmentArticles/Articles';
 import styles from './DepartmentPage.module.scss';
+import Spinner from '@/components/ui/Spinner/Spinner';
 
 const DepartmentPage = ({ id, title, showSelect, articles }) => {
   const subDepartments = useServicesStore(state => state.subDepartments);
@@ -42,7 +43,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
   return (
     <Container>
       <h2 className={styles.title}>{title}</h2>
-      {subDepartments?.length > 0 && (
+      {subDepartments?.length > 0?(
         <div className={styles.wrapper}>
           <Articles articles={articles} />
           <DropDownsList departmentId={id} />
@@ -62,7 +63,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
             changeDepartment={changeDepartment}
           />
         </div>
-      )}
+      ):<Spinner/>}
     </Container>
   );
 };
