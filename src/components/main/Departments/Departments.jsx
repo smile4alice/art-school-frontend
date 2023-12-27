@@ -55,7 +55,7 @@ const Departments = () => {
           />
           <Department
             title={preschoolPreparatoryDepartment}
-            link="/preschool_preparatory_department"
+            link="/preschool_department"
             img={theaterImg}
           />
         </div>
