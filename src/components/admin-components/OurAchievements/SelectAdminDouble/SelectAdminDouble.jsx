@@ -18,9 +18,20 @@ const SelectAdminDouble = ({ changeDepartment }) => {
   };
   //видимість додаткового select
   const toggleSecondOptionsVisible = optionId => {
-    setSecondOptionsVisible(!secondOptionsVisible);
-    setSelectedOptionId(prevId => (prevId === optionId ? '' : optionId));
+    if (!secondOptionsVisible) {
+      setSelectedOptionId(prevId => (prevId === optionId ? '' : optionId));
+      setSecondOptionsVisible(true);
+    } else if (secondOptionsVisible) {
+      if (optionId === selectedOptionId) {
+        setSelectedOptionId('');
+        setSecondOptionsVisible(false);
+      } else {
+        setSelectedOptionId(optionId);
+        setSecondOptionsVisible(true);
+      }
+    }
   };
+
   //закривання select при кліку поза компонентом
   const selectRef = useRef(null);
   const selectOptionsRef = useRef(null);
@@ -28,6 +39,7 @@ const SelectAdminDouble = ({ changeDepartment }) => {
     if (optionsVisible === true) {
       toggleOptionsVisible();
       toggleSecondOptionsVisible();
+      setSelectedOptionId('');
     }
   });
 
@@ -84,8 +96,8 @@ const SelectAdminDouble = ({ changeDepartment }) => {
               }}
             >
               <div className={s.button}>
-                {' '}
-                {option.department_name}{' '}
+                {option.department_name}
+                {''}
                 <img
                   className={s.arrow}
                   src="/icons/arrow.svg"

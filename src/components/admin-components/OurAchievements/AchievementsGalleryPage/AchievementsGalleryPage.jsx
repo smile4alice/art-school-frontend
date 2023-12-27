@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react';
-import useServicesStore from '@/store/serviseStore';
+import { useState } from 'react';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
 import AchievementsTable from '@/components/admin-components/OurAchievements/AchievementsTable/AchievementsTable';
 import GalleryTable from '@/components/admin-components/OurAchievements/GalleryTable/GalleryTable';
-import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
-import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import s from '../../../../pages/admin-pages/OurAchievementsAdmin/AchievementsAdmin.module.scss';
 
@@ -19,26 +16,12 @@ const AchievementsGalleryPage = ({
   buttonTitle1,
   buttonTitle2,
 }) => {
-  const { getAllAchievements, getMainAchievements, getDepartmentAchievements } = useServicesStore();
-  const achievements = useServicesStore(state => state.achievements);
-  const gallery = useServicesStore(state => state.gallery);
-  const achievementsPages = useServicesStore(state => state.achievementsPages);
+
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
-  const [typeOfAchievements, setTypeOfAchievements] = useState('allAchievements');
-  const [loadingState, setLoadingState] = useState('loading');
-  const [page, setPage] = useState(1);
-  const [isFetching, setIsFetching] = useState('true')
-  const pageSize = '5';
+  const [typeOfAchievements, setTypeOfAchievements] =
+    useState('allAchievements');
   let breadcrumbs;
-
-  const changePage = () => {
-    if(page < achievementsPages){
-      setPage(page + 1);
-      setIsFetching(true);
-    }
-    
-  }
 
   const setBreadcrumbs = (url, title) => {
     if (url === 'achievements') {
@@ -51,7 +34,7 @@ const AchievementsGalleryPage = ({
     }
     if (typeOfAchievements === 'mainAchievements') {
       breadcrumbs.push(
-        url === achievements
+        url === 'achievements'
           ? 'Закріпленні досягнення'
           : 'Закріпленні фотографії'
       );
@@ -59,7 +42,6 @@ const AchievementsGalleryPage = ({
     return breadcrumbs;
   };
   setBreadcrumbs(url, title);
-
   const changeDepartment = (id, title) => {
     if (id !== undefined && id !== null) {
       setDepartmentId(id);
@@ -67,56 +49,6 @@ const AchievementsGalleryPage = ({
       setTypeOfAchievements('departmentAchievements');
     }
   };
-
-  useEffect(()=>{
-    console.log(page);
-    console.log(achievementsPages);
-    if(isFetching && typeOfAchievements === 'allAchievements'){
-      const fetchData = async () => {
-        try {
-          setLoadingState('loading');
-        
-            await getAllAchievements(url, page, pageSize);
-          setLoadingState('success');
-        
-        } catch (error) {
-          console.log(error);
-          setLoadingState('error');
-        }
-      };
-      fetchData();
-    }
-    
-  },[getAllAchievements,
-    typeOfAchievements,
-    page, achievementsPages,
-    pageSize,
-    url, isFetching])
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoadingState('loading');
-        if (typeOfAchievements === 'mainAchievements') {
-          await getMainAchievements(url);
-        } else if (typeOfAchievements === 'departmentAchievements') {
-          await getDepartmentAchievements(url, departmentId);
-        }
-        setLoadingState('success');
-      } catch (error) {
-        console.log(error);
-        setLoadingState('error');
-      }
-    };
-    fetchData();
-  }, [
-    getMainAchievements,
-    getDepartmentAchievements,
-    typeOfAchievements,
-    departmentId,
-    url,
-  ]);
 
   return (
     <div className={s.container}>
@@ -160,28 +92,20 @@ const AchievementsGalleryPage = ({
       {typeOfAchievements !== 'mainAchievements' && (
         <CustomTitle title={title} />
       )}
-      {loadingState === 'loading' && (
-        <div className={s.errorData}>
-          <SpinnerAdmin />
-        </div>
-      )}
-      {url === 'achievements' && loadingState === 'success' &&  (
+      {url === 'achievements' && (
         <AchievementsTable
-          data={achievements}
           url={url}
           typeOfAchievements={typeOfAchievements}
-          changePage={changePage}
-          page={page}
+          departmentId={departmentId}
         />
       )}
-      {url === 'gallery' && loadingState === 'success' &&  (
+      {url === 'gallery' && (
         <GalleryTable
-          data={gallery}
           url={url}
           typeOfAchievements={typeOfAchievements}
+          departmentId={departmentId}
         />
       )}
-      {loadingState === 'error' && <PlaceholderAdmin />}
     </div>
   );
 };
