@@ -19,19 +19,19 @@ const AchievementsGalleryPage = ({
   buttonTitle1,
   buttonTitle2,
 }) => {
-  const { getAllAchievements, getMainAchievements, getDepartmentAchievements } = useServicesStore();
+  const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
   const achievements = useServicesStore(state => state.achievements);
   const gallery = useServicesStore(state => state.gallery);
-  const achievementsPages = useServicesStore(state => state.achievementsPages);
+ // const achievementsPages = useServicesStore(state => state.achievementsPages);
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
   const [typeOfAchievements, setTypeOfAchievements] = useState('allAchievements');
-  const [loadingState, setLoadingState] = useState('loading');
-  const [page, setPage] = useState(1);
-  const [isFetching, setIsFetching] = useState('true')
-  const pageSize = '5';
+  const [loadingState, setLoadingState] = useState('success');
+  //const [page, setPage] = useState(1);
+  //const [isFetching, setIsFetching] = useState('true')
+  //const pageSize = '5';
   let breadcrumbs;
-
+/*
   const changePage = () => {
     if(page < achievementsPages){
       setPage(page + 1);
@@ -39,7 +39,7 @@ const AchievementsGalleryPage = ({
     }
     
   }
-
+*/
   const setBreadcrumbs = (url, title) => {
     if (url === 'achievements') {
       breadcrumbs = ['Наші Досягнення'];
@@ -59,7 +59,6 @@ const AchievementsGalleryPage = ({
     return breadcrumbs;
   };
   setBreadcrumbs(url, title);
-
   const changeDepartment = (id, title) => {
     if (id !== undefined && id !== null) {
       setDepartmentId(id);
@@ -67,15 +66,14 @@ const AchievementsGalleryPage = ({
       setTypeOfAchievements('departmentAchievements');
     }
   };
-
+/*
   useEffect(()=>{
-    console.log(page);
-    console.log(achievementsPages);
+   // console.log(page);
+    //console.log(achievementsPages);
     if(isFetching && typeOfAchievements === 'allAchievements'){
       const fetchData = async () => {
         try {
           setLoadingState('loading');
-        
             await getAllAchievements(url, page, pageSize);
           setLoadingState('success');
         
@@ -92,7 +90,7 @@ const AchievementsGalleryPage = ({
     page, achievementsPages,
     pageSize,
     url, isFetching])
-
+*/
 
   useEffect(() => {
     const fetchData = async () => {
@@ -167,11 +165,11 @@ const AchievementsGalleryPage = ({
       )}
       {url === 'achievements' && loadingState === 'success' &&  (
         <AchievementsTable
-          data={achievements}
+          //data={achievements}
           url={url}
           typeOfAchievements={typeOfAchievements}
-          changePage={changePage}
-          page={page}
+         // changePage={changePage}
+         // page={page}
         />
       )}
       {url === 'gallery' && loadingState === 'success' &&  (

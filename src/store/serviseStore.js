@@ -44,17 +44,19 @@ const useServicesStore = create(set => ({
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
       const response = await axios.get(`/${newUrl}?page=${page}&size=${size}`);
-      set(() => {//state
-       // console.log(response);
+      set((state) => {
         if (url === 'gallery') {
           return {
-            gallery: response.data.items,
-        //gallery: [...state.gallery, ...response.data.items],
+           // gallery: response.data.items,
+           ...state,
+            gallery: [...state.gallery, ...response.data.items],
             achievementsPages: response.data.pages,
           };
         } else {
           return {
-            achievements: response.data.items,
+           // achievements: response.data.items,
+           ...state,
+           achievements: [...state.gallery, ...response.data.items],
             achievementsPages: response.data.pages,
           };
         }
