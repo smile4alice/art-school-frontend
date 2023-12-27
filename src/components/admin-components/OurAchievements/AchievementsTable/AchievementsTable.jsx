@@ -1,76 +1,29 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react'; //, useRef
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
 import { useConfirmDelete } from '@/store/confirmDelete';
+import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
+import PlaceholderAdmin from '../../PlaceholderAdmin/PlaceholderAdmin';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import AchievementsTableRow from './AchievementsTableRow';
 import s from './AchievementsTable.module.scss';
-import axios from '@/utils/axios';
 
-const AchievementsTable = ({ typeOfAchievements, url }) => {
-  const { deleteAchievement } = useServicesStore;
+const AchievementsTable = ({ typeOfAchievements, url, departmentId}) => {
+  const { deleteAchievement, getAllAchievements, getMainAchievements, getDepartmentAchievements  } = useServicesStore();
+  const achievements = useServicesStore(state => state.achievements);
+  const pageCount = useServicesStore(state => state.achievementPageCount);
+  const loading = useServicesStore(state => state.loading);
   const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
-  const [achievements, setAchievements] = useState([]);
   const [currentId, setCurrentId] = useState('');
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const tableRef = useRef();
-
-
-  const loadMoreData = async () => {
-    if (!loading) {
-      try {
-        setLoading(true);
-        const nextPage = page + 1;
-        const response = await axios.get(`${url}?page=${nextPage}`);
-        //return response
-        const newData = response.data; // Припустимо, що дані приходять у вигляді масиву
-
-        if (newData?.length > 0) {
-          setAchievements((prevData) => [...prevData, ...newData]);
-          setPage(nextPage);
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-  };
-
-  useEffect(()=>{
-    loadMoreData()
-  },[])
-
-
-  
-
-  useEffect(() => {
-    const tableObserver = new IntersectionObserver(
-      (entries) => {
-        const target = entries[0];
-        if (target.isIntersecting) {
-          // Дозавантаження нових даних при досягненні останнього рядка
-          loadMoreData();
-        }
-      },
-      { threshold: 1.0 }
-    );
-
-    if (tableRef.current) {
-      tableObserver.observe(tableRef.current);
-    }
-
-    // При видаленні компонента зупиняємо спостереження
-    return () => tableObserver.disconnect();
-  }, [tableRef]);
-
+  const triggerRef = useRef(null);
 
   const removePost = async () => {
     if (isDeleteConfirm) {
       try {
         await deleteAchievement(url, currentId);
+        setPage(1);
       } catch (error) {
         console.log(error);
       }
@@ -78,6 +31,51 @@ const AchievementsTable = ({ typeOfAchievements, url }) => {
       closeModal();
     }
   };
+
+  const fetchData = async () => {
+    try {
+      if(typeOfAchievements === 'allAchievements'){
+        await getAllAchievements(url, page);
+      }else if (typeOfAchievements === 'mainAchievements') {
+        await getMainAchievements(url);
+        setPage(1);
+      } else if (typeOfAchievements === 'departmentAchievements') {
+        await getDepartmentAchievements(url, departmentId);
+        setPage(1);
+      }
+    } catch (error) {
+      console.log(error);
+      setPage(1);
+    }
+  };
+
+  // Використовуємо IntersectionObserver для визначення, коли елемент потрапив у зону видимості
+  useEffect(() => {
+    if(typeOfAchievements === 'allAchievements'){
+    const observer = new IntersectionObserver(entries => {
+      const isIntersecting = entries[0]?.isIntersecting;
+      const canLoadMore = loading === 'success' && page < pageCount;
+      if (isIntersecting && canLoadMore) {
+        setPage(prevPage => prevPage + 1);
+      }
+    }, {});
+    const triggerElement = triggerRef.current;
+    if (triggerElement) {
+      observer.observe(triggerElement);
+    }
+    return () => {
+      if (triggerElement) {
+        observer.unobserve(triggerElement);
+      }
+    };
+  }
+    //eslint-disable-next-line
+  }, [loading]);
+
+  useEffect(() => {
+    fetchData()
+    //eslint-disable-next-line
+  }, [page,typeOfAchievements]);
 
   return (
     <div className={s.table}>
@@ -89,7 +87,7 @@ const AchievementsTable = ({ typeOfAchievements, url }) => {
         <div className={s.photo}>Фото</div>
         <div className={s.action}>Дія</div>
       </div>
-      <div className={s.tbody} ref={tableRef}>
+      <div className={s.tbody}>
         {Array.isArray(achievements) &&
           achievements.length > 0 &&
           achievements.map((item, index) => (
@@ -102,7 +100,9 @@ const AchievementsTable = ({ typeOfAchievements, url }) => {
               key={index}
             />
           ))}
-        {loading && <p>Loading...</p>}
+        {loading === 'loading' && <SpinnerAdmin />}
+        {loading === 'error' && <PlaceholderAdmin />}
+        <div className={s.trigger} ref={triggerRef}></div>
       </div>
       {isModalOpen && <ConfirmDeleteModal handleDelete={removePost} />}
     </div>
@@ -110,118 +110,3 @@ const AchievementsTable = ({ typeOfAchievements, url }) => {
 };
 
 export default AchievementsTable;
-
-/*
-import { useState, useEffect, useRef } from 'react';
-import useServicesStore from '@/store/serviseStore';
-import { useModal } from '@/store/modalStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
-import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
-import AchievementsTableRow from './AchievementsTableRow';
-import s from './AchievementsTable.module.scss';
-import axios from '@/utils/axios';
-
-const AchievementsTable = ({ typeOfAchievements, url }) => {
-  const { deleteAchievement } = useServicesStore;
-  const { isDeleteConfirm } = useConfirmDelete();
-  const { isModalOpen, openModal, closeModal } = useModal();
-  const [achievements, setAchievements] = useState([]);
-  const [currentId, setCurrentId] = useState('');
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const tableRef = useRef();
-
-
-  const loadMoreData = async () => {
-    if (!loading) {
-      try {
-        setLoading(true);
-        const nextPage = page + 1;
-        const response = await axios.get(`${url}?page=${nextPage}`);
-        //return response
-        const newData = response.data; // Припустимо, що дані приходять у вигляді масиву
-
-        if (newData?.length > 0) {
-          setAchievements((prevData) => [...prevData, ...newData]);
-          setPage(nextPage);
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-  };
-
-  useEffect(()=>{
-    loadMoreData()
-  },[])
-
-
-  
-
-  useEffect(() => {
-    const tableObserver = new IntersectionObserver(
-      (entries) => {
-        const target = entries[0];
-        if (target.isIntersecting) {
-          // Дозавантаження нових даних при досягненні останнього рядка
-          loadMoreData();
-        }
-      },
-      { threshold: 1.0 }
-    );
-
-    if (tableRef.current) {
-      tableObserver.observe(tableRef.current);
-    }
-
-    // При видаленні компонента зупиняємо спостереження
-    return () => tableObserver.disconnect();
-  }, [tableRef]);
-
-
-  const removePost = async () => {
-    if (isDeleteConfirm) {
-      try {
-        await deleteAchievement(url, currentId);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      closeModal();
-    }
-  };
-
-  return (
-    <div className={s.table}>
-      <div className={`${s.row} ${s.thead}`}>
-        {typeOfAchievements === 'mainAchievements' && (
-          <div className={s.num}>Слайди</div>
-        )}
-        <div className={s.description}>Опис</div>
-        <div className={s.photo}>Фото</div>
-        <div className={s.action}>Дія</div>
-      </div>
-      <div className={s.tbody} ref={tableRef}>
-        {Array.isArray(achievements) &&
-          achievements.length > 0 &&
-          achievements.map((item, index) => (
-            <AchievementsTableRow
-              typeOfAchievements={typeOfAchievements}
-              setCurrentId={setCurrentId}
-              openModal={openModal}
-              item={item}
-              index={index}
-              key={index}
-            />
-          ))}
-        {loading && <p>Loading...</p>}
-      </div>
-      {isModalOpen && <ConfirmDeleteModal handleDelete={removePost} />}
-    </div>
-  );
-};
-
-export default AchievementsTable;
-*/

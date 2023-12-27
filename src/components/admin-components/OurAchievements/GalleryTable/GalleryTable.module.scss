@@ -3,7 +3,9 @@
   width: 100%;
   border: 1px solid $admin-purple;
   border-radius: 8px;
- 
+  .trigger{
+    height: 5px;
+  }
   .gallary{
     padding: 1.25rem;
     display: grid;
