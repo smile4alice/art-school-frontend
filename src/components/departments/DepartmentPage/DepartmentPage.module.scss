@@ -6,8 +6,10 @@
     font-size: 24px;
   }
 }
+.contentWrapper {
+  min-height: 100vh;
+}
 .wrapper {
-
   display: flex;
   flex-direction: column;
   gap: 100px;
