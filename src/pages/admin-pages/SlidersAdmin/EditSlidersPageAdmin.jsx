@@ -90,17 +90,17 @@ const EditSlidersPage = () => {
                     name="text"
                     id="text"
                     component={TextArea}
-                    maxLength={300}
+                    maxLength={200}
                     showCharacterCount={true}
                     text={slide?.description}
-                    label="Опис слайду"
+                    label="Опис Слайду"
                   />
                   <Field
                     name="image"
                     id="image"
                     component={FileInput}
                     photo={slide?.photo}
-                    label="Фото"
+                    label="Фото*"
                   />
                 </div>
                 <div className={styles.button}>

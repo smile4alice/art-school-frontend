@@ -1,13 +1,6 @@
-// import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRef } from 'react';
-import {
-  // EffectFade,
-  Autoplay,
-  Pagination,
-  Keyboard,
-} from 'swiper/modules';
-// import { Autoplay } from 'swiper';
+import { Autoplay, Pagination, Keyboard } from 'swiper/modules';
 import Data from '@/data/hero.json';
 
 import 'swiper/css';
@@ -15,14 +8,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import styles from './Hero.module.scss';
 
+console.log(Data.length);
+
 const Hero = () => {
   const swiperRef = useRef();
-  // const [showTitle, setShowTitle] = useState(true);
-
-  // const handleSlideChange = swiper => {
-  //   const shouldShowTitle = swiper.activeIndex % 2 === 0;
-  //   setShowTitle(shouldShowTitle);
-  // };
 
   return (
     <section className={styles.HeroSection}>
@@ -62,10 +51,10 @@ const Hero = () => {
         onSwiper={swiper => {
           swiperRef.current = swiper;
         }}
-        // onSlideChange={swiper => handleSlideChange(swiper)}
         autoplay={{
           delay: 5000,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         }}
         pagination={{ clickable: true }}
         keyboard={true}
@@ -78,7 +67,6 @@ const Hero = () => {
       >
         {Data.map((slide, index) => (
           <SwiperSlide key={index} className={styles.SlideStyle}>
-            {/* {showTitle && <h3>Title 1</h3>} */}
             <img src={slide.img} alt={Data.alt} className={styles.HeroImage} />
             {index === 0 && (
               <div className={styles.HeroTitle}>
@@ -101,13 +89,6 @@ const Hero = () => {
                   благодійний показ на підтримку зсу. вистава відбудеться 14.10
                   О 16:00
                 </p>
-                {/* <a
-          href="https://www.google.com.ua/"
-          rel="link"
-          className={styles.HeroEventLink}
-        >
-          Дивитися всі події
-        </a> */}
               </div>
             )}
           </SwiperSlide>

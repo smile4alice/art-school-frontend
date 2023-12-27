@@ -82,7 +82,7 @@ const EditPostersPage = () => {
                       maxLength={120}
                       showCharacterCount={true}
                       text={poster?.title}
-                      label="Заголовок"
+                      label="Заголовок Афіші"
                     />
                     <Field
                       name="image"

@@ -67,15 +67,15 @@ const AddSlidersPage = () => {
                     name="text"
                     id="text"
                     component={TextArea}
-                    maxLength={300}
+                    maxLength={200}
                     showCharacterCount={true}
-                    label="Опис слайду"
+                    label="Опис Слайду"
                   />
                   <Field
                     name="image"
                     id="image"
                     component={FileInput}
-                    label="Фото"
+                    label="Фото*"
                   />
                 </div>
                 <div className={styles.button}>
