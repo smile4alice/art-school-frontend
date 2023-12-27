@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import styles from './NewsItem.module.scss';
+import { formatDate } from '@/utils/formatDate';
 
 const NewsItem = ({ imgSrc, date, title, id }) => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const NewsItem = ({ imgSrc, date, title, id }) => {
       <div className={styles.imgContainer}>
         <img src={imgSrc} alt="pictire" />
       </div>
-      <p className={styles.date}>{date}</p>
+      <p className={styles.date}>{formatDate(date)}</p>
       <p className={styles.title}>{title}</p>
     </div>
   );
