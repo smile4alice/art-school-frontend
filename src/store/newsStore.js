@@ -15,6 +15,7 @@ const useNewsStore = create((set, get) => ({
         };
       });
       const response = await axios.get(`/news`);
+      console.log(' response: ', response.data.items);
       set(() => {
         return {
           news: response.data.items,
