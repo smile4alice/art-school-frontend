@@ -3,44 +3,41 @@ import { useMediaQuery } from 'react-responsive';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
-
-import useServicesStore from '@/store/serviseStore';
+import Spinner from '@/components/ui/Spinner/Spinner';
+import useAdministrationStore from '@/store/administrationStore';
 import s from './Administration.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 
 const Administration = () => {
-  const { getAdministrationData } = useServicesStore();
+  const { getMembers } = useAdministrationStore();
   const isDextop = useMediaQuery({ minWidth: 1280 });
   const swiperAdministrationRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
-  const [administrationData, setAdministrationData] = useState([]);
+  const members = useAdministrationStore(state => state.members);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoadingState('loading');
       try {
-        const result = await getAdministrationData();
+        await getMembers();
 
-        setAdministrationData(result);
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
       }
     };
     fetchData();
-  }, [getAdministrationData]);
+  }, [getMembers]);
 
   return (
     <div className={s.administration_contentWrapper}>
       <h2 className="department_title">Адміністрація школи</h2>
       <div className={s.slidersContainer}>
-        {loadingState === 'loading' && (
-          <div className={s.errorData}>Loading...</div>
-        )}
+        {loadingState === 'loading' && <Spinner />}
         {loadingState === 'success' ? (
-          administrationData && administrationData.length > 0 ? (
+          members && members.length > 0 ? (
             <div className={s.slidersContainer}>
               {isDextop && (
                 <SwiperButtons
@@ -71,10 +68,10 @@ const Administration = () => {
                 pagination={{ clickable: true }}
                 loop={true}
               >
-                {administrationData.map(item => (
+                {members.map(item => (
                   <SwiperSlide className={s.slideContent} key={item.id}>
                     <div className={s.slidePhoto}>
-                      <img src={item.photo} alt={item.description} />
+                      <img src={item.photo} alt={item.full_name} />
                     </div>
                     <p className={s.slideText_name}>{item.full_name}</p>
                     <p className={s.slideText_position}>{item.position}</p>

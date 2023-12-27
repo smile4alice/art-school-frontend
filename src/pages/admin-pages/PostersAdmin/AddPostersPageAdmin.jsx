@@ -59,7 +59,7 @@ const AddPostersPage = () => {
                     component={TextArea}
                     maxLength={120}
                     showCharacterCount={true}
-                    label="Заголовок"
+                    label="Заголовок Афіші"
                   />
 
                   <Field name="image" id="image" component={FileInput} />

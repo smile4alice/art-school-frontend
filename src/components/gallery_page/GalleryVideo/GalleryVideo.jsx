@@ -34,7 +34,9 @@ const GalleryVideo = ({ videos }) => {
             {videos && Array.isArray(videos) && (
               <iframe
                 src={replaceUrl(videos[0]?.media)}
-                allowFullScreen
+                title="Відео з життя школи"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
               ></iframe>
             )}
           </div>
@@ -73,7 +75,9 @@ const GalleryVideo = ({ videos }) => {
                       src={replaceUrl(video?.media)}
                       width="382"
                       height="190"
-                      allowFullScreen
+                      title="Відео з життя школи"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
                     ></iframe>
                   </SwiperSlide>
                 ))}
@@ -118,7 +122,9 @@ const GalleryVideo = ({ videos }) => {
                       src={replaceUrl(video?.media)}
                       width="382"
                       height="190"
-                      allowFullScreen
+                      title="Відео з життя школи"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
                     ></iframe>
                   </SwiperSlide>
                 ))}

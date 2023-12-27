@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useFocused } from '@/store/focusStore';
 import styles from './TextArea.module.scss';
 
 const TextArea = ({
@@ -13,7 +14,7 @@ const TextArea = ({
   const name = field.name;
   const isFieldTouched = touched[field.name];
   const valueLength = field.value?.length;
-  const [isFocused, setIsFocused] = useState(false);
+  const { isFocused, setIsFocused } = useFocused();
 
   useEffect(() => {
     if (!text) return;
@@ -21,14 +22,8 @@ const TextArea = ({
   }, [text, setFieldValue, name]);
 
   const handleFocus = () => {
-    setIsFocused(true);
+    setIsFocused(name);
   };
-
-  useEffect(() => {
-    if (isFieldTouched && valueLength >= 0) {
-      setIsFocused(false);
-    }
-  }, [isFieldTouched, valueLength]);
 
   const getBorderColor = () => {
     if (valueLength > maxLength) {
@@ -37,10 +32,10 @@ const TextArea = ({
     if (errors?.[field.name]) {
       return styles.redBorder;
     }
-    if (isFocused) {
+    if (isFocused === name) {
       return styles.blueBorder;
     }
-    if (valueLength > 0 && !isFocused) {
+    if (valueLength > 0) {
       return styles.greenBorder;
     } else {
       return styles.grayBorder;
@@ -67,7 +62,7 @@ const TextArea = ({
         className={`${styles.textArea} ${getBorderColor()} ${getInputState()}`}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onClick={() => setIsFocused(true)}
+        onClick={() => setIsFocused(name)}
         {...field}
       />
       <div className={styles.commentsWrapper}>

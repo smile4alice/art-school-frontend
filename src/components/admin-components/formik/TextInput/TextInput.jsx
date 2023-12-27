@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useFocused } from '@/store/focusStore';
 import styles from './TextInput.module.scss';
 
 const TextInput = ({
@@ -14,7 +15,7 @@ const TextInput = ({
   const name = field.name;
   const isFieldTouched = touched[field.name];
   const valueLength = field.value?.length;
-  const [isFocused, setIsFocused] = useState(false);
+  const { isFocused, setIsFocused } = useFocused();
 
   useEffect(() => {
     if (!text) return;
@@ -22,14 +23,8 @@ const TextInput = ({
   }, [text, setFieldValue, name]);
 
   const handleFocus = () => {
-    setIsFocused(true);
+    setIsFocused(name);
   };
-
-  useEffect(() => {
-    if (isFieldTouched && valueLength >= 0) {
-      setIsFocused(false);
-    }
-  }, [isFieldTouched, valueLength]);
 
   const getBorderColor = () => {
     if (valueLength > maxLength) {
@@ -38,10 +33,10 @@ const TextInput = ({
     if (errors?.[field.name]) {
       return styles.redBorder;
     }
-    if (isFocused) {
+    if (isFocused === name) {
       return styles.blueBorder;
     }
-    if (valueLength > 0 && !isFocused) {
+    if (valueLength > 0) {
       return styles.greenBorder;
     } else {
       return styles.grayBorder;
@@ -69,7 +64,7 @@ const TextInput = ({
         className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onClick={() => setIsFocused(true)}
+        onClick={() => setIsFocused(name)}
         placeholder={placeholder ? placeholder : ''}
         {...field}
       />

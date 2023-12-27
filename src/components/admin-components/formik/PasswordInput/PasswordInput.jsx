@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useFocused } from '@/store/focusStore';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import styles from './PasswordInput.module.scss';
 
@@ -13,7 +14,7 @@ const PasswordInput = ({
 }) => {
   const isFieldTouched = touched[field.name];
   const valueLength = field.value.length;
-  const [isFocused, setIsFocused] = useState(false);
+  const { isFocused, setIsFocused } = useFocused();
   const [inputType, setInputType] = useState('password-hide');
 
   const handleInputType = e => {
@@ -24,26 +25,20 @@ const PasswordInput = ({
   };
 
   const handleFocus = () => {
-    setIsFocused(true);
+    setIsFocused(field.name);
   };
-
-  useEffect(() => {
-    if (isFieldTouched && valueLength >= 0) {
-      setIsFocused(false);
-    }
-  }, [isFieldTouched, valueLength]);
 
   const getBorderColor = () => {
     if (errors?.[field.name]) {
       return styles.redBorder;
     }
-    if (isFocused) {
+    if (isFocused === field.name) {
       return styles.blueBorder;
     }
     if (valueLength === 0 && isFieldTouched) {
       return styles.redBorder;
     }
-    if (valueLength > 0 && !isFocused) {
+    if (valueLength > 0) {
       return styles.greenBorder;
     } else {
       return styles.grayBorder;
@@ -71,7 +66,7 @@ const PasswordInput = ({
           className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          onClick={() => setIsFocused(true)}
+          onClick={() => setIsFocused(field.name)}
           placeholder={placeholder ? placeholder : ''}
           {...field}
         />
