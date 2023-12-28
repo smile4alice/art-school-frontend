@@ -3,6 +3,7 @@ import axios from '@/utils/axios';
 
 const useDepartmentsStore = create((set, get) => ({
   loading: false,
+  error: {},
   departments: [],
   department: [],
   sub_department: {},
@@ -26,6 +27,11 @@ const useDepartmentsStore = create((set, get) => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },

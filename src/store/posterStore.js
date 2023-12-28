@@ -4,6 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const usePostersStore = create((set, get) => ({
   loading: false,
+  error: {},
   posters: [],
   poster: {},
 
@@ -26,6 +27,11 @@ const usePostersStore = create((set, get) => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },

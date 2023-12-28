@@ -4,6 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const useAdministrationStore = create((set, get) => ({
   loading: false,
+  error: {},
   members: [],
   member: {},
 
@@ -26,6 +27,11 @@ const useAdministrationStore = create((set, get) => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },
@@ -49,6 +55,11 @@ const useAdministrationStore = create((set, get) => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },

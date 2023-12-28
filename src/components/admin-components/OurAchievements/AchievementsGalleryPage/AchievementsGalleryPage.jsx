@@ -5,7 +5,7 @@ import SelectAdminDouble from '@/components/admin-components/OurAchievements/Sel
 import AchievementsTable from '@/components/admin-components/OurAchievements/AchievementsTable/AchievementsTable';
 import GalleryTable from '@/components/admin-components/OurAchievements/GalleryTable/GalleryTable';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
-import s from '../../../../pages/admin-pages/OurAchievementsAdmin/AchievementsAdmin.module.scss';
+import s from '@/pages/admin-pages/OurAchievementsAdmin/AchievementsAdmin.module.scss';
 
 const AchievementsGalleryPage = ({
   url,
@@ -16,7 +16,6 @@ const AchievementsGalleryPage = ({
   buttonTitle1,
   buttonTitle2,
 }) => {
-
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
   const [typeOfAchievements, setTypeOfAchievements] =
