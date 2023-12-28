@@ -45,10 +45,10 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
   return (
     <Container>
       <div className={styles.contentWrapper}>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className="department_title ">{title}</h2>
         {subDepartments?.length > 0 ? (
           <div className={styles.wrapper}>
-            <Articles articles={articles} />
+            <Articles articles={articles} title={title} />
             <DropDownsList departmentId={id} />
             <GalleryDepartments
               showSelect={showSelect}
