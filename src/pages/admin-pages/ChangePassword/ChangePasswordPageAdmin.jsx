@@ -79,7 +79,7 @@ const ChangePasswordPageAdmin = () => {
                     nameButton="Зберегти зміни"
                     isActive={formik.isValid}
                     isRight={true}
-                    // handlerSubmitButton={onSubmit}
+                    handlerSubmitButton={onSubmit}
                     isProcessing={loading}
                   />
                 </div>
