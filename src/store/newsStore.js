@@ -4,6 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const useNewsStore = create((set, get) => ({
   loading: false,
+  error: {},
   news: [],
   post: {},
 
@@ -26,6 +27,11 @@ const useNewsStore = create((set, get) => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },

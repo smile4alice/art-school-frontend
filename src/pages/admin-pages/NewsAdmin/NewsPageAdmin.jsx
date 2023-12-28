@@ -4,6 +4,7 @@ import NewsTable from '@/components/admin-components/News/NewsTable/NewsTable';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
+import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
 
 const breadcrumbs = ['Новини'];
 
@@ -11,6 +12,7 @@ const NewsPageAdmin = () => {
   const { getNews } = useNewsStore();
   const news = useNewsStore(state => state.news);
   const loading = useNewsStore(state => state.loading);
+  const error = useNewsStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +36,12 @@ const NewsPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати новину"
       />
-      {loading ? <SpinnerAdmin /> : <NewsTable data={news} />}
+      {loading && !Object.keys(error).length ? (
+        <SpinnerAdmin />
+      ) : (
+        <NewsTable data={news} />
+      )}
+      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
     </div>
   );
 };

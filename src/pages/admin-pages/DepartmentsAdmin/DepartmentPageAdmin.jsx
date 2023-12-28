@@ -7,6 +7,7 @@ import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import DepartmentsTable from '@/components/admin-components/Departments/DepartmentsTable/DepartmentsTable';
 import DepartmentsTabs from '@/components/admin-components/Departments/DepartmentsTabs/DepartmentsTabs';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
+import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
 
 const DepartmentPageAdmin = () => {
   const { id } = useParams();
@@ -17,6 +18,7 @@ const DepartmentPageAdmin = () => {
   const department = useDepartmentsStore(state => state.department);
   const departments = useDepartmentsStore(state => state.departments);
   const loading = useDepartmentsStore(state => state.loading);
+  const error = useDepartmentsStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,14 +69,15 @@ const DepartmentPageAdmin = () => {
         stateId={id}
       />
       <DepartmentsTabs departments={departments} />
-      {!loading ? (
+      {loading && !Object.keys(error).length ? (
+        <SpinnerAdmin />
+      ) : (
         <DepartmentsTable
           data={department}
           departmentId={thisDepartment[0]?.id}
         />
-      ) : (
-        <SpinnerAdmin />
       )}
+      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
     </div>
   );
 };

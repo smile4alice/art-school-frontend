@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-const validatePassword = value => {
+export const validatePassword = value => {
   let errors = [];
   if (!/[a-z]/.test(value)) {
     errors.push('маленьку літеру');

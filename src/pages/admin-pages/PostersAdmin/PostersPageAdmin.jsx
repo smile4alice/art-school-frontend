@@ -4,6 +4,7 @@ import PostersList from '@/components/admin-components/Posters/postersList/Poste
 import usePostersStore from '@/store/posterStore';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
+import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
 
 const breadcrumbs = ['Афіші'];
 
@@ -11,6 +12,7 @@ const PostersPageAdmin = () => {
   const { getPosters } = usePostersStore();
   const posters = usePostersStore(state => state.posters);
   const loading = usePostersStore(state => state.loading);
+  const error = usePostersStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +36,12 @@ const PostersPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати афішу"
       />
-      {loading ? <SpinnerAdmin /> : <PostersList data={posters} />}
+      {loading && !Object.keys(error).length ? (
+        <SpinnerAdmin />
+      ) : (
+        <PostersList data={posters} />
+      )}
+      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
     </div>
   );
 };

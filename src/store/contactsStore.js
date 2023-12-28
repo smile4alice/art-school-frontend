@@ -3,6 +3,7 @@ import axios from '@/utils/axios';
 
 const useContactsStore = create(set => ({
   loading: false,
+  error: {},
   contacts: {},
 
   getContacts: async () => {
@@ -27,6 +28,11 @@ const useContactsStore = create(set => ({
       }
       return response;
     } catch (error) {
+      set(() => {
+        return {
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },

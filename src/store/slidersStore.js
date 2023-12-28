@@ -4,6 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const useSlidersStore = create((set, get) => ({
   loading: false,
+  error: {},
   slides: [],
 
   getSlides: async () => {
@@ -25,6 +26,11 @@ const useSlidersStore = create((set, get) => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },
