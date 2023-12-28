@@ -5,10 +5,12 @@ import Container from '@/components/Container/Container';
 import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
+import Placeholder from '@/components/ui/Placeholder/Placeholder';
 
 const PostersPage = () => {
   const { getPosters } = usePostersStore();
   const posters = usePostersStore(state => state.posters);
+  console.log('posters : ', posters);
   const loading = usePostersStore(state => state.loading);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [postersPerPage, setPostersPerPage] = useState(12);
@@ -76,42 +78,49 @@ const PostersPage = () => {
 
   return (
     <Container>
-      <section className={styles.contentWrapper}>
-        <h1 className={styles.pageTitle}>Афіша</h1>
-        {!loading ? (
-          <ul className={styles.postersList}>
-            {posters.slice(0, postersPerPage).map((poster, index) => (
-              <li key={index} className={styles.postersListItem}>
-                <img
-                  className={styles.postersListItemImg}
-                  src={poster.photo}
-                  alt={`Афіша  ${poster.title}`}
-                  onClick={() => {
-                    setActiveImgUrl(poster.id);
-                    toggleModal();
-                  }}
-                />
-                <p className={styles.postersListItemText}>{poster.title}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <Spinner />
-        )}
+      {!loading ? (
+        <section className={styles.contentWrapper}>
+          <h1 className={styles.pageTitle}>Афіша</h1>
+          {posters?.length > 0 ? (
+            <ul className={styles.postersList}>
+              {posters.slice(0, postersPerPage).map((poster, index) => (
+                <li key={index} className={styles.postersListItem}>
+                  <img
+                    className={styles.postersListItemImg}
+                    src={poster.photo}
+                    alt={`Афіша  ${poster.title}`}
+                    onClick={() => {
+                      setActiveImgUrl(poster.id);
+                      toggleModal();
+                    }}
+                  />
+                  <p className={styles.postersListItemText}>{poster.title}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <Placeholder />
+          )}
 
-        {showModal && (
-          <Modal toggleModal={toggleModal}>
-            <img src={selectedImg.photo} alt={`Афіша  ${selectedImg.title}`} />
-          </Modal>
-        )}
-        {posters.length > postersPerPage && (
-          <ViewButton
-            isMaxAmount={isMaxAmount}
-            viewMore={viewMore}
-            viewLess={viewLess}
-          />
-        )}
-      </section>
+          {showModal && (
+            <Modal toggleModal={toggleModal}>
+              <img
+                src={selectedImg.photo}
+                alt={`Афіша  ${selectedImg.title}`}
+              />
+            </Modal>
+          )}
+          {posters.length > postersPerPage && (
+            <ViewButton
+              isMaxAmount={isMaxAmount}
+              viewMore={viewMore}
+              viewLess={viewLess}
+            />
+          )}
+        </section>
+      ) : (
+        <Spinner />
+      )}
     </Container>
   );
 };
