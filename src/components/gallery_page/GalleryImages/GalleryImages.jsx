@@ -45,7 +45,7 @@ const GalleryImages = ({ images }) => {
     <>
       <div className={styles.sort}>
         <button onClick={() => setSorting(!sorting)}>
-          <SortIcon />
+          {images?.length > 0 && <SortIcon />}
           {!sorting
             ? ' Сортування від новіших до старіших'
             : ' Сортування від старіших до новіших'}

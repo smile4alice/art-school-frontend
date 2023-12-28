@@ -31,7 +31,7 @@ const GalleryVideo = ({ videos }) => {
       {isLaptop && (
         <div className={styles.videoWrapper}>
           <div className={styles.video}>
-            {videos && Array.isArray(videos) && (
+            {videos.length > 0 && Array.isArray(videos) && (
               <iframe
                 src={replaceUrl(videos[0]?.media)}
                 title="Відео з життя школи"
@@ -41,95 +41,99 @@ const GalleryVideo = ({ videos }) => {
             )}
           </div>
 
-          <div className={styles.videos}>
-            <button
-              onClick={() => swiperRef.current.slidePrev()}
-              onMouseEnter={() => setIsUpHovered(true)}
-              onMouseLeave={() => setIsUpHovered(false)}
-              className={styles.arrowUp}
-            >
-              <Arrow isHovered={isUpHovered} direction="up" />
-            </button>
-            <button
-              onClick={() => swiperRef.current.slideNext()}
-              onMouseEnter={() => setIsDownHovered(true)}
-              onMouseLeave={() => setIsDownHovered(false)}
-              className={styles.arrowDown}
-            >
-              <Arrow isHovered={isDownHovered} direction="down" />
-            </button>
-            <Swiper
-              direction={'vertical'}
-              slidesPerView={2}
-              spaceBetween={15}
-              mousewheel={true}
-              modules={[Mousewheel]}
-              onSwiper={swiper => (swiperRef.current = swiper)}
-              className={styles.swiper}
-            >
-              {videos &&
-                Array.isArray(videos) &&
-                videos.slice(1).map((video, index) => (
-                  <SwiperSlide className={styles.slide} key={index}>
-                    <iframe
-                      src={replaceUrl(video?.media)}
-                      width="382"
-                      height="190"
-                      title="Відео з життя школи"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                  </SwiperSlide>
-                ))}
-            </Swiper>
-          </div>
+          {videos.length > 0 && (
+            <div className={styles.videos}>
+              <button
+                onClick={() => swiperRef.current.slidePrev()}
+                onMouseEnter={() => setIsUpHovered(true)}
+                onMouseLeave={() => setIsUpHovered(false)}
+                className={styles.arrowUp}
+              >
+                <Arrow isHovered={isUpHovered} direction="up" />
+              </button>
+              <button
+                onClick={() => swiperRef.current.slideNext()}
+                onMouseEnter={() => setIsDownHovered(true)}
+                onMouseLeave={() => setIsDownHovered(false)}
+                className={styles.arrowDown}
+              >
+                <Arrow isHovered={isDownHovered} direction="down" />
+              </button>
+              <Swiper
+                direction={'vertical'}
+                slidesPerView={2}
+                spaceBetween={15}
+                mousewheel={true}
+                modules={[Mousewheel]}
+                onSwiper={swiper => (swiperRef.current = swiper)}
+                className={styles.swiper}
+              >
+                {videos &&
+                  Array.isArray(videos) &&
+                  videos.slice(1).map((video, index) => (
+                    <SwiperSlide className={styles.slide} key={index}>
+                      <iframe
+                        src={replaceUrl(video?.media)}
+                        width="382"
+                        height="190"
+                        title="Відео з життя школи"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                      ></iframe>
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+            </div>
+          )}
         </div>
       )}
 
       {isTablet && !isLaptop && (
         <div className={styles.videoWrapper}>
-          <div className={styles.videos}>
-            <button
-              onClick={() => swiperRef.current.slidePrev()}
-              onMouseEnter={() => setIsUpHovered(true)}
-              onMouseLeave={() => setIsUpHovered(false)}
-              className={styles.arrowUp}
-            >
-              <Arrow isHovered={isUpHovered} direction="up" />
-            </button>
-            <button
-              onClick={() => swiperRef.current.slideNext()}
-              onMouseEnter={() => setIsDownHovered(true)}
-              onMouseLeave={() => setIsDownHovered(false)}
-              className={styles.arrowDown}
-            >
-              <Arrow isHovered={isDownHovered} direction="down" />
-            </button>
-            <Swiper
-              direction={'vertical'}
-              slidesPerView={1}
-              spaceBetween={25}
-              mousewheel={true}
-              modules={[Mousewheel]}
-              onSwiper={swiper => (swiperRef.current = swiper)}
-              className={styles.swiper}
-            >
-              {videos &&
-                Array.isArray(videos) &&
-                videos.map((video, index) => (
-                  <SwiperSlide className={styles.slide} key={index}>
-                    <iframe
-                      src={replaceUrl(video?.media)}
-                      width="382"
-                      height="190"
-                      title="Відео з життя школи"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowfullscreen
-                    ></iframe>
-                  </SwiperSlide>
-                ))}
-            </Swiper>
-          </div>
+          {videos.length > 0 && (
+            <div className={styles.videos}>
+              <button
+                onClick={() => swiperRef.current.slidePrev()}
+                onMouseEnter={() => setIsUpHovered(true)}
+                onMouseLeave={() => setIsUpHovered(false)}
+                className={styles.arrowUp}
+              >
+                <Arrow isHovered={isUpHovered} direction="up" />
+              </button>
+              <button
+                onClick={() => swiperRef.current.slideNext()}
+                onMouseEnter={() => setIsDownHovered(true)}
+                onMouseLeave={() => setIsDownHovered(false)}
+                className={styles.arrowDown}
+              >
+                <Arrow isHovered={isDownHovered} direction="down" />
+              </button>
+              <Swiper
+                direction={'vertical'}
+                slidesPerView={1}
+                spaceBetween={25}
+                mousewheel={true}
+                modules={[Mousewheel]}
+                onSwiper={swiper => (swiperRef.current = swiper)}
+                className={styles.swiper}
+              >
+                {videos &&
+                  Array.isArray(videos) &&
+                  videos.map((video, index) => (
+                    <SwiperSlide className={styles.slide} key={index}>
+                      <iframe
+                        src={replaceUrl(video?.media)}
+                        width="382"
+                        height="190"
+                        title="Відео з життя школи"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                      ></iframe>
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+            </div>
+          )}
         </div>
       )}
 
