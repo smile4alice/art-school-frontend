@@ -1,5 +1,7 @@
 .wrapper {
   display: grid;
+
+  align-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, auto);
   margin-bottom: 40px;

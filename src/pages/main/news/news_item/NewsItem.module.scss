@@ -14,10 +14,11 @@
 
   .imgContainer {
     display: grid;
+    justify-items: center;
     overflow: hidden;
     border-radius: 5px;
     grid-row: 3/4;
-    width: 288px;
+    // width: 288px;
     height: 358px;
 
     @media screen and (min-width: 768px) {
