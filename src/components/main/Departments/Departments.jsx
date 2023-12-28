@@ -35,7 +35,7 @@ const Departments = () => {
           />
           <Department
             title={vocalDepartment}
-            link="/vocal_choral_department"
+            link="/vocal_department"
             img={vocalImg}
           />
           <Department
@@ -55,7 +55,7 @@ const Departments = () => {
           />
           <Department
             title={preschoolPreparatoryDepartment}
-            link="/preschool_preparatory_department"
+            link="/preschool_department"
             img={theaterImg}
           />
         </div>

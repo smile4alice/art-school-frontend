@@ -6,17 +6,20 @@ import DropDownsList from '@/components/ui/DropDownsList/DropDownsList';
 import useServicesStore from '@/store/serviseStore';
 import Articles from '../DepartmentArticles/Articles';
 import styles from './DepartmentPage.module.scss';
+import Spinner from '@/components/ui/Spinner/Spinner';
 
 const DepartmentPage = ({ id, title, showSelect, articles }) => {
   const subDepartments = useServicesStore(state => state.subDepartments);
   const { getSubDepartments } = useServicesStore();
-  const [departmentId, setDepartmentId] = useState('1');
+  const [departmentId, setDepartmentId] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const changeDepartment = url => {
+    console.log('url: ', url);
+
     setDepartmentId(url);
   };
 
@@ -41,28 +44,32 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
 
   return (
     <Container>
-      <h2 className={styles.title}>{title}</h2>
-      {subDepartments?.length > 0 && (
-        <div className={styles.wrapper}>
-          <Articles articles={articles} />
-          <DropDownsList departmentId={id} />
-          <GalleryDepartments
-            showSelect={showSelect}
-            selectOptions={subDepartments}
-            url={'gallery'}
-            departmentId={departmentId}
-            changeDepartment={changeDepartment}
-          />
-          <Achievements
-            title={'Досягнення відділу'}
-            showSelect={showSelect}
-            selectOptions={subDepartments}
-            url={'achievement'}
-            departmentId={departmentId}
-            changeDepartment={changeDepartment}
-          />
-        </div>
-      )}
+      <div className={styles.contentWrapper}>
+        <h2 className={styles.title}>{title}</h2>
+        {subDepartments?.length > 0 ? (
+          <div className={styles.wrapper}>
+            <Articles articles={articles} />
+            <DropDownsList departmentId={id} />
+            <GalleryDepartments
+              showSelect={showSelect}
+              selectOptions={subDepartments}
+              url={'gallery'}
+              departmentId={departmentId}
+              changeDepartment={changeDepartment}
+            />
+            <Achievements
+              title={'Досягнення відділу'}
+              showSelect={showSelect}
+              selectOptions={subDepartments}
+              url={'achievement'}
+              departmentId={departmentId}
+              changeDepartment={changeDepartment}
+            />
+          </div>
+        ) : (
+          <Spinner />
+        )}
+      </div>
     </Container>
   );
 };

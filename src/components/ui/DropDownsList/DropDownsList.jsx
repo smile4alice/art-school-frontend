@@ -8,6 +8,8 @@ const DropDownsList = () => {
   const handleDropDownClick = subDepId => {
     setSelectedSubDepId(prevId => (prevId === subDepId ? null : subDepId));
   };
+
+  console.log('  subDepartments: ',   subDepartments);
   return (
     <div>
       {subDepartments?.map(subDep => (
