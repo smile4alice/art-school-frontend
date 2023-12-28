@@ -25,15 +25,14 @@ const Achievements = ({
   const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
   const achievements = useServicesStore(state => state.achievements);
   const [loadingState, setLoadingState] = useState('loading');
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoadingState('loading');
         if (url === 'achievements') {
           await getMainAchievements(url);
-        }
-        else{
+        } else {
           await getDepartmentAchievements(url, departmentId);
         }
         setLoadingState('success');
@@ -65,42 +64,42 @@ const Achievements = ({
         </div>
       )}
       {loadingState === 'success' && achievements?.length > 0 && (
-          <div className={s.slidersContainer}>
-            {isDesktop && (
-              <SwiperButtons
-                onPrevClick={() => swiperRef.current.slidePrev()}
-                onNextClick={() => swiperRef.current.slideNext()}
-              />
-            )}
-            <Swiper
-              onSwiper={swiper => {
-                swiperRef.current = swiper;
-              }}
-              className={s.slider}
-              modules={[Pagination]}
-              spaceBetween={16}
-              slidesPerView={1}
-              breakpoints={{
-                768: {
-                  slidesPerView: 2,
-                },
-                1280: {
-                  slidesPerView: 3,
-                },
-              }}
-              pagination={{ clickable: true }}
-              loop={true}
-            >
-              {achievements.map(item => (
-                <SwiperSlide className={s.slideContent} key={item.id}>
-                  <div className={s.slidePhoto}>
-                    <img src={item.media} alt={item.description} />
-                  </div>
-                  <p className={s.slideText}>{item.description}</p>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+        <div className={s.slidersContainer}>
+          {isDesktop && (
+            <SwiperButtons
+              onPrevClick={() => swiperRef.current.slidePrev()}
+              onNextClick={() => swiperRef.current.slideNext()}
+            />
+          )}
+          <Swiper
+            onSwiper={swiper => {
+              swiperRef.current = swiper;
+            }}
+            className={s.slider}
+            modules={[Pagination]}
+            spaceBetween={16}
+            slidesPerView={1}
+            breakpoints={{
+              768: {
+                slidesPerView: 2,
+              },
+              1280: {
+                slidesPerView: 3,
+              },
+            }}
+            pagination={{ clickable: true }}
+            loop={true}
+          >
+            {achievements.map(item => (
+              <SwiperSlide className={s.slideContent} key={item.id}>
+                <div className={s.slidePhoto}>
+                  <img src={item.media} alt={item.description} />
+                </div>
+                <p className={s.slideText}>{item.description}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       )}
       {showSelect && !isDesktop && (
         <Select
