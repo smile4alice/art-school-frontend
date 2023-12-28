@@ -36,7 +36,6 @@ const EditObjectPage = ({
   );
   const title = selectTitle;
   const [isProcessing, setIsProcessing] = useState(false);
-
   let breadcrumbs;
   const setBreadcrumbs = url => {
     if (url === 'achievements') {
@@ -74,19 +73,19 @@ const EditObjectPage = ({
     try {
       const formData = new FormData();
       formData.append('pinned_position', values.pinned_position);
-      formData.append('sub_department', achievement?.sub_department);
       formData.append('description', values.description);
-      if (values.image?.[0].size === 0) {
-        formData.append('media', '');
-      } else {
-        formData.append('media', values.image[0]);
-      }
+      values.sub_department === ''
+        ? formData.append('sub_department', '')
+        : formData.append('sub_department', values.sub_department);
+      values.image?.[0].size === 0
+        ? formData.append('media', '')
+        : formData.append('media', values.image[0]);
       setIsProcessing(true);
       await editAchievement(url, id, formData);
       setIsProcessing(false);
-      setTimeout(()=>{
+      setTimeout(() => {
         navigate(`/admin/${url}`);
-      }, 2000)
+      }, 2000);
     } catch (error) {
       console.error(error);
       setIsProcessing(false);

@@ -188,10 +188,10 @@ const useServicesStore = create((set, get) => ({
     if (isDataValid(data)) {
       try {
         const queryParams = new URLSearchParams();
-        if (data.get('pinned_position') !== '') {
+        if (data.get('pinned_position') !== '' && data.get('pinned_position') !== null) {
           queryParams.append('pinned_position', data.get('pinned_position'));
         }
-        if (data.get('sub_department') !== '') {
+        if (data.get('sub_department') !== '' && data.get('sub_department') !== null) {
           queryParams.append('sub_department', data.get('sub_department'));
         }
         if (data.get('description') !== '') {
@@ -218,10 +218,10 @@ const useServicesStore = create((set, get) => ({
     try {
       if (isDataValid(data)) {
         const queryParams = new URLSearchParams();
-        if (data.get('pinned_position') !== '') {
+        if (data.get('pinned_position') !== '' && data.get('pinned_position') !== null) {
           queryParams.append('pinned_position', data.get('pinned_position'));
         }
-        if (data.get('sub_department') !== '') {
+        if (data.get('sub_department') !== '' && data.get('sub_department') !== null) {
           queryParams.append('sub_department', data.get('sub_department'));
         }
         if (data.get('description') !== '') {

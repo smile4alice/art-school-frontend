@@ -5,7 +5,7 @@ const AddOurAchievementsPage = () => {
     <AddNewObjectPage
       pageTitle='Додати досягнення'
       backButtonLink='/admin/achievements'
-      achievementPositionsTitle='Закріпити в блок “Наші досягнення на головній сторінці'
+      achievementPositionsTitle='Закріпити в  блок “Наші досягнення на головній сторінці”'
       url="achievements"
       selectTitle='Всі досягнення'
     />
