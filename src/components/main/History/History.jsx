@@ -18,7 +18,7 @@ const History = () => {
           <NavLinkButton title={buttonName} to={url} />
         </div>
         <div className={styles.img_container}>
-          <img src="/school.png" alt="school-building" />
+          <img src="/school.webp" alt="school-building" />
         </div>
       </div>
     </Container>

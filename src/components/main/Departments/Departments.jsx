@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import Department from './Department/Department';
 import Container from '@/components/Container/Container';
 
-import musicImg from '/departments/music.png';
-import artImg from '/departments/art.png';
-import choreografyImg from '/departments/horeografy.png';
-import theaterImg from '/departments/theater.png';
-import vocalImg from '/departments/vocal.png';
+import musicImg from '/departments/music.webp';
+import artImg from '/departments/art.webp';
+import choreografyImg from '/departments/horeografy.webp';
+import theaterImg from '/departments/theater.webp';
+import vocalImg from '/departments/vocal.webp';
 
 import styles from './Departments.module.scss';
 
