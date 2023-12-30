@@ -67,7 +67,11 @@ const News = () => {
                           </div>
                         )}
                         {!loading && (
-                          <img src={slide.photo} alt={slide.title} />
+                          <img
+                            src={slide.photo}
+                            alt={slide.title}
+                            loading="lazy"
+                          />
                         )}
                       </div>
                       <div className={styles.Text}>

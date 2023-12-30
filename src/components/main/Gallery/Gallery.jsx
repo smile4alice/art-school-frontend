@@ -55,7 +55,11 @@ const Gallery = () => {
             <div className={s.gallery}>
               {gallery.map((image, i) => (
                 <div key={i} className={s.item}>
-                  <img src={image.media} alt={image.description} />
+                  <img
+                    src={image.media}
+                    alt={image.description}
+                  
+                  />
                 </div>
               ))}
             </div>

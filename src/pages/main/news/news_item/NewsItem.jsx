@@ -10,7 +10,7 @@ const NewsItem = ({ imgSrc, date, title, id }) => {
   return (
     <div key={id} className={styles.wrapper}>
       <div className={styles.imgContainer}>
-        <img src={imgSrc} alt="pictire" />
+        <img src={imgSrc} alt={title} />
       </div>
       <p className={styles.date}>{formatDate(date)}</p>
       <p className={styles.title}>{title}</p>

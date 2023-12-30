@@ -30,6 +30,7 @@ const usePostersStore = create((set, get) => ({
       set(() => {
         return {
           error: error,
+          loading: false,
         };
       });
       throw new Error(error);
