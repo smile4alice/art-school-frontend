@@ -5,7 +5,7 @@ const AddGalleryPage = () => {
     <AddNewObjectPage
       pageTitle='Додати фото'
       backButtonLink='/admin/gallery'
-      achievementPositionsTitle='Закріпити в галерею головній сторінці'
+      achievementPositionsTitle='Закріпити в галерею на головній сторінці'
       url="gallery"
       selectTitle='Всі фото'
     />
