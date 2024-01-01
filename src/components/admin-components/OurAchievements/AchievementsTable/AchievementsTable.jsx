@@ -75,7 +75,7 @@ const AchievementsTable = ({ typeOfAchievements, url, departmentId}) => {
   useEffect(() => {
     fetchData()
     //eslint-disable-next-line
-  }, [page,typeOfAchievements]);
+  }, [page,typeOfAchievements, departmentId]);
 
   return (
     <div className={s.table}>

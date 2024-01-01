@@ -7,6 +7,9 @@
   .trigger{
     height: 5px;
   }
+  .row:nth-last-child(2){
+    border-bottom: 0;
+  }
   .row {
     display: flex;
     border-bottom: 1px solid $admin-purple;
