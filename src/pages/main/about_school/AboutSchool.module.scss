@@ -158,98 +158,6 @@
   }
 }
 
-.aboutUs_text {
-  @include font(14px, 400, 1.42);
-  text-align: center;
-  @include tablet {
-    width: 359px;
-  }
-  @include desktop {
-    width: 524px;
-    @include font(18px, 400, 1.42);
-    text-align: center;
-  }
-}
-
-.benefits {
-  @extend%aligncenter;
-  flex-direction: column;
-
-  gap: 10px;
-
-  @include tablet {
-    flex-direction: row;
-    gap: 24px;
-  }
-  @include desktop {
-    flex-direction: row;
-    gap: 88px;
-  }
-}
-.benefits_list {
-  @extend%aligncenter;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 19px;
-  @include desktop {
-    gap: 40px;
-  }
-}
-.benefits_list .benefits_listItem:nth-child(1) {
-  background-color: #feb003;
-}
-.benefits_list .benefits_listItem:nth-child(2) {
-  background-color: #cfff0f;
-
-  margin-left: 14px;
-  @include tablet {
-    margin-left: 32px;
-  }
-  @include desktop {
-    margin-left: 61px;
-  }
-}
-.benefits_list .benefits_listItem:nth-child(3) {
-  background-color: #fdd428;
-
-  margin-left: 28px;
-  @include tablet {
-    margin-left: 65px;
-  }
-  @include desktop {
-    margin-left: 161px;
-  }
-}
-.benefits_list .benefits_listItem:nth-child(4) {
-  background-color: #9ca6f4;
-
-  margin-left: 14px;
-  @include tablet {
-    margin-left: 32px;
-  }
-}
-.benefits_list .benefits_listItem:nth-child(5) {
-  background-color: #f68827;
-}
-.benefits_listItem {
-  width: 260px;
-  height: 32px;
-  @extend%aligncenter;
-  border-radius: 5px;
-
-  @include desktop {
-    width: 361px;
-    height: 45px;
-  }
-}
-.benefits_listItem_text {
-  @include font(14px, 400, 1.85);
-
-  @include desktop {
-    @include font(18px, 400, 1.85);
-  }
-}
-
 // museum
 .museum {
   scroll-margin-top: 102px;
@@ -258,7 +166,7 @@
   }
 }
 .museum_contentWrapper {
-  padding: 40px 0;
+  // padding: 40px 0;
   @extend%aligncenter;
   flex-direction: column;
   gap: 10px;
