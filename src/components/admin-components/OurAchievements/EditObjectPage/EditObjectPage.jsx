@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
-import { achievementsValidation } from '@/components/admin-components/OurAchievements/validationSchema';
+import { achievementsValidation, galleryValidation } from '@/components/admin-components/OurAchievements/achievementsValidationSchema';
 import useServicesStore from '@/store/serviseStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
@@ -25,6 +25,7 @@ const EditObjectPage = ({
   backButtonLink,
   achievementPositionsTitle,
   selectTitle,
+  maxSymbols,
 }) => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -103,7 +104,7 @@ const EditObjectPage = ({
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={achievementsValidation}
+        validationSchema={url === 'achievements' ? achievementsValidation : galleryValidation}
         onSubmit={onSubmit}
       >
         {formik => (
@@ -118,7 +119,7 @@ const EditObjectPage = ({
                   name="description"
                   id="description"
                   component={TextArea}
-                  maxLength={200}
+                  maxLength={maxSymbols}
                   showCharacterCount={true}
                   label="Опис"
                   text={achievement?.description}
