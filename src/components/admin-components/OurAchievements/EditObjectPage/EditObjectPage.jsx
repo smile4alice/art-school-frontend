@@ -167,7 +167,7 @@ const EditObjectPage = ({
                 component={AchievementPositions}
                 title={achievementPositionsTitle}
                 achievementPositions={achievementsPositions}
-                activePosition={achievement?.pinned_position}
+                activePosition={achievement.pinned_position}
               />
               <div className={s.button}>
                 <ButtonSubmit
