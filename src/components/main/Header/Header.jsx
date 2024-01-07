@@ -4,7 +4,7 @@ import HeaderNavigation from './HeaderNavigation';
 import styles from './Header.module.scss';
 import { useEffect, useState } from 'react';
 
-const Header = () => {
+const Header = ({ contacts }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Header = () => {
   }, []);
   return (
     <header className={styles.headerWrapper}>
-      {windowWidth >= 1280 && <HeaderContacts />}
+      {windowWidth >= 1280 && <HeaderContacts contacts={contacts} />}
       <HeaderNavigation windowWidth={windowWidth} />
     </header>
   );

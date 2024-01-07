@@ -8,9 +8,11 @@ import SocialList from './SosialList/SocialList';
 
 import styles from './Header.module.scss';
 
-const HeaderContacts = () => {
+const HeaderContacts = ({ contacts }) => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  console.log(contacts);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -37,30 +39,40 @@ const HeaderContacts = () => {
         <li className={styles.contactsListItem}>
           <a
             className={styles.contactsListLink}
-            href="https://maps.app.goo.gl/jv2N9vFL6ZiJhosc6"
+            href={contacts.map}
             target="_blank"
             rel="noopener noreferrer nofollow"
           >
             <LocationIcon />
-            вул. Бульварно-Кудрявська, 2.
+            {contacts && contacts.address}
           </a>
         </li>
         <li className={styles.contactsListItem}>
           <PhoneIcon />
 
           <div className={styles.contactsListItem_PhoneWrapper}>
-            <a className={styles.contactsListLink} href="tel:+380442720030">
-              044 272 00 30
+            <a
+              className={styles.contactsListLink}
+              href={`tel:${contacts.phone}`}
+            >
+              {contacts && contacts.phone}
             </a>
           </div>
         </li>
         <li className={styles.contactsListItem}>
-          <a className={styles.contactsListLink} href="mailto:Shkola_2@ukr.net">
-            <EmailIcon /> Shkola_2@ukr.net
+          <a
+            className={styles.contactsListLink}
+            href={`mailto:${contacts.email}`}
+          >
+            <EmailIcon /> {contacts && contacts.email}
           </a>
         </li>
       </ul>
-      <SocialList type="headerIcon " />
+      <SocialList
+        type="headerIcon"
+        facebook={contacts.facebook}
+        youtube={contacts.youtube}
+      />
     </div>
   );
 };
