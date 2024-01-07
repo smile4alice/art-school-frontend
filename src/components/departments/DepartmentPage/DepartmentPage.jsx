@@ -40,8 +40,6 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
     changeDepartment(departmentId);
   }, [departmentId]);
 
-  console.log(subDepartments);
-
   return (
     <Container>
       <div className={styles.contentWrapper}>

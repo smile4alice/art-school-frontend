@@ -1,14 +1,14 @@
 import FacebookIcon from '@/components/Icons/FacebookIcon';
 import YoutubeIcon from '@/components/Icons/YoutubeIcon';
 import styles from './SocialList.module.scss';
-const SocialList = ({ type }) => {
+const SocialList = ({ type, youtube, facebook }) => {
   return (
     <div>
       <ul className={styles.social}>
         <li>
           <a
             className={styles.socialLink}
-            href="https://www.facebook.com/KyivArtsSchool/"
+            href={facebook}
             target="_blank"
             rel="noreferrer"
           >
@@ -18,7 +18,7 @@ const SocialList = ({ type }) => {
         <li>
           <a
             className={styles.socialLink}
-            href="https://www.youtube.com/@ArtSchoolVerykivskogo"
+            href={youtube}
             target="_blank"
             rel="noreferrer"
           >

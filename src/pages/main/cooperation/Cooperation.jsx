@@ -2,17 +2,32 @@ import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import useContactsStore from '@/store/contactsStore';
 import data from '@/data/cooperation.json';
 import styles from './Cooperation.module.scss';
 
 const Cooperation = () => {
   const swiperRef = useRef();
+  const { getContacts } = useContactsStore();
+  const contacts = useContactsStore(state => state.contacts);
   const isLaptop = useMediaQuery({ minWidth: 1024 });
   const isTablet = useMediaQuery({ minWidth: 678 });
   const isMobile = useMediaQuery({ maxWidth: 678 });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        await getContacts();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchContacts();
+  }, [getContacts]);
+
   return (
     <div className={styles.Cooperation}>
       <div className={styles.wrapper}>
@@ -139,15 +154,15 @@ const Cooperation = () => {
           <ul className={styles.contacts}>
             <li>
               <a
-                href="https://maps.app.goo.gl/jv2N9vFL6ZiJhosc6"
+                href={contacts.map}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
-                вул. Бульварно-Кудрявська, 2.
+                {contacts && contacts.address}
               </a>
             </li>
             <li>
-              <a href="tel:+380442720030">044 272 00 30</a>
+              <a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
             </li>
           </ul>
         </div>

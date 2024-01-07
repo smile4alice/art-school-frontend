@@ -19,12 +19,18 @@
 
   &Content {
     margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.66;
+    @media screen and (min-width: 1280px) {
+      font-size: 18px;
+      line-height: 1.66;
+    }
   }
-  .icon{
-    transition: all linear .2s;
+  .icon {
+    transition: all linear 0.2s;
   }
   .rotateIcon {
-    transition: all linear .2s;
+    transition: all linear 0.2s;
     transform: rotate(-90deg);
   }
 }

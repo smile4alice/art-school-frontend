@@ -9,7 +9,7 @@ import DownloadButton from '@/components/ui/Buttons/NavLinkButton';
 import styles from './Footer.module.scss';
 import ClockIcon from '@/components/Icons/ClockIcon';
 
-const Footer = () => {
+const Footer = ({ contacts }) => {
   return (
     <div className={styles.footer}>
       <div className={styles.footerWrap}>
@@ -22,7 +22,7 @@ const Footer = () => {
               <li>
                 <a
                   className={styles.socialLink}
-                  href="https://www.facebook.com/KyivArtsSchool/"
+                  href={contacts.facebook}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -32,7 +32,7 @@ const Footer = () => {
               <li>
                 <a
                   className={styles.socialLink}
-                  href="https://www.youtube.com/c/ArtSchoolVerykivskogo"
+                  href={contacts.youtube}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -51,25 +51,23 @@ const Footer = () => {
             <div className={styles.footerLinksSection}>
               <div className={styles.footerLinksColumn}>
                 <Link to="/">Головна</Link>
-                <Link to="/about">Наша школа</Link>
-                <Link to="/events">Наші події</Link>
-                <Link to="/schedule">Афіша</Link>
+                <Link to="/about_school">Наша школа</Link>
+                <Link to="/news">Наші події</Link>
+                <Link to="/posters">Афіша</Link>
                 <Link to="/gallery">Галерея</Link>
-                <Link to="/partners">Співпраця</Link>
+                <Link to="/cooperation">Співпраця</Link>
               </div>
               <div className={styles.footerLinksColumnDepartment}>
-                <Link to="/music-department">Музичне відділення</Link>
-                <Link to="/vocal-choral-department">
-                  Вокально-хорове відділення
-                </Link>
-                <Link to="/choreographic-department">
+                <Link to="/music_department">Музичне відділення</Link>
+                <Link to="/vocal_department">Вокально-хорове відділення</Link>
+                <Link to="/choreographic_department">
                   Хореографічне відділення
                 </Link>
-                <Link to="/visual-arts-department">
-                  Образотворче відділення
+                <Link to="/fine_arts_department">Образотворче відділення</Link>
+                <Link to="/theater_department">Театральне відділення</Link>
+                <Link to="/preschool_department">
+                  Дошкільне та підготовче відділення
                 </Link>
-                <Link to="/theater-department">Театральне відділення</Link>
-                <Link to="#">Дошкільне та підготовче відділення</Link>
               </div>
             </div>
             <div className={styles.contactsListWrap}>
@@ -77,11 +75,11 @@ const Footer = () => {
                 <li className={styles.contactsListItem}>
                   <LocationIcon />
                   <a
-                    href="https://maps.app.goo.gl/jv2N9vFL6ZiJhosc6"
+                    href={contacts.map}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >
-                    вул. Бульварно-Кудрявська, 2.
+                    {contacts.address}
                   </a>
                 </li>
                 <li className={styles.contactsListItem}>
@@ -93,12 +91,12 @@ const Footer = () => {
                 <li className={styles.contactsListItem}>
                   <PhoneIcon />
                   <div className={styles.contactsListItem_PhoneWrapper}>
-                    <a href="tel:+380442720030">044 272 00 30</a>
+                    <a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
                   </div>
                 </li>
                 <li className={styles.contactsListItem}>
                   <EmailIcon />
-                  <a href="mailto:Shkola_2@ukr.net">Shkola_2@ukr.net</a>
+                  <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
                 </li>
               </ul>
               <div className={styles.footerButtonAdaptive}>
@@ -112,7 +110,7 @@ const Footer = () => {
           <li>
             <a
               className={styles.socialLink}
-              href="https://www.facebook.com/KyivArtsSchool/"
+              href={contacts.facebook}
               target="_blank"
               rel="noreferrer"
             >
@@ -122,7 +120,7 @@ const Footer = () => {
           <li>
             <a
               className={styles.socialLink}
-              href="https://www.youtube.com/c/ArtSchoolVerykivskogo"
+              href={contacts.youtube}
               target="_blank"
               rel="noreferrer"
             >
