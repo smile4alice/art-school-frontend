@@ -79,7 +79,7 @@ const EditPostersPage = () => {
                       id="title"
                       placeholder="Title"
                       component={TextArea}
-                      maxLength={60}
+                      maxLength={120}
                       showCharacterCount={true}
                       text={poster?.title}
                       label="Заголовок Афіші"
