@@ -80,7 +80,7 @@ const EditSchoolAdministrationPage = () => {
                   component={TextInput}
                   maxLength={60}
                   showCharacterCount={true}
-                  label="ПІБ Працівника"
+                  label="ПІБ працівника"
                   text={member?.full_name}
                 />
                 <div className={styles.secondRow}>
@@ -90,7 +90,7 @@ const EditSchoolAdministrationPage = () => {
                     component={TextArea}
                     maxLength={120}
                     showCharacterCount={true}
-                    label="Посада Працівника"
+                    label="Посада працівника"
                     text={member?.position}
                   />
                   <Field

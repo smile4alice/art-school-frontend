@@ -12,11 +12,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  overflow: hidden;
 
   &:hover {
     color: var(--admin-link, #006eff);
     font-weight: 500;
-    // background: var(--admin-white, #FFF);
+    background: var(--admin-white, #fff);
     .icon {
       fill: var(--admin-link, #006eff);
     }
@@ -29,7 +30,7 @@
   }
 
   .icon {
-    fill: var(--admin-blue, #6a65ff);
+    fill: var(--admin-accent, #6a65ff);
     width: 15px;
     height: 15px;
 
@@ -37,14 +38,14 @@
       fill: var(--admin-link, #006eff);
     }
 
-    &.active {
+    &_active {
       fill: var(--admin-accent, #0047ff);
     }
   }
 
   &.filledIcon {
     .icon {
-      fill: var(--admin-blue, #6a65ff);
+      fill: var(--admin-accent, #6a65ff);
       stroke: none;
     }
   }
@@ -52,7 +53,7 @@
   &.strokedIcon {
     .icon {
       fill: none;
-      stroke: var(--admin-blue, #6a65ff);
+      stroke: var(--admin-accent, #6a65ff);
       stroke-width: 1.6px;
     }
   }

@@ -1,7 +1,8 @@
 .sidebarMenuList {
-   display: flex;
-   padding-bottom: 10px;
-   flex-direction: column;
-   align-items: flex-start;
-   border-bottom: 1px solid var(--admin-purple, #C4B9FD);
+  display: flex;
+  padding-bottom: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--admin-purple, #c4b9fd);
+  overflow: hidden;
 }

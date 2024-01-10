@@ -49,22 +49,26 @@ const PostersList = ({ data }) => {
                   className={styles.contentElementImg}
                 />
               </div>
-              <div className={styles.cellActionRow}></div>
-
-              <div className={styles.cellActionContainer}>
-                <Link to={`edit/${item.id}`}>
-                  <svg className={styles.iconEdit}>
-                    <use href={`${sprite}#icon-edit`} width="20" height="20" />
+              <div className={styles.cellActionRow}>
+                <div className={styles.cellActionContainer}>
+                  <Link to={`edit/${item.id}`}>
+                    <svg className={styles.iconEdit}>
+                      <use
+                        href={`${sprite}#icon-edit`}
+                        width="20"
+                        height="20"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+                <div className={styles.cellActionContainer} onClick={openModal}>
+                  <svg
+                    className={styles.iconTrash}
+                    onClick={() => setCurrentId(item.id)}
+                  >
+                    <use href={`${sprite}#icon-trash`} width="20" height="20" />
                   </svg>
-                </Link>
-              </div>
-              <div className={styles.cellActionContainer} onClick={openModal}>
-                <svg
-                  className={styles.iconTrash}
-                  onClick={() => setCurrentId(item.id)}
-                >
-                  <use href={`${sprite}#icon-trash`} width="20" height="20" />
-                </svg>
+                </div>
               </div>
             </div>
           </div>

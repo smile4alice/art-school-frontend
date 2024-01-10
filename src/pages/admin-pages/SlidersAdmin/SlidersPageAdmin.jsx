@@ -34,7 +34,7 @@ const SlidersPageAdmin = () => {
         showBackButton={false}
         showActionButton={true}
         actionButtonLink="/admin/sliders/add"
-        isActionButtonDisabled={false}
+        isActionButtonDisabled={slides.length >= 8}
         actionButtonLabel="Додати слайд"
       />
       {loading && !Object.keys(error).length ? (

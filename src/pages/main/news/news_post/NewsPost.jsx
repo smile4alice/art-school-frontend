@@ -16,12 +16,17 @@ const NewsPost = () => {
         <div className={styles.buttonContainer}>
           <NavLinkButton href={'/news'} text={'переглянути всі новини'} />
         </div>
-        <p className={`${styles.title} sectionTitle`}>{post.title}</p>
-        <p className={styles.date}>{formatDate(post.created_at)}</p>
-        <div className={styles.img}>
-          <img src={post.photo} alt="slide" />
+
+        <div className={styles.card}>
+          <div className={styles.cardHeader}>
+            <p className={styles.date}>{formatDate(post.created_at)}</p>
+            <p className={`${styles.title} sectionTitle`}>{post.title}</p>
+          </div>
+          <div className={styles.img}>
+            <img src={post.photo} alt="slide" />
+          </div>
+          <p className={styles.text}>{post.text}</p>
         </div>
-        <p className={styles.text}>{post.text}</p>
       </section>
     </Container>
   );

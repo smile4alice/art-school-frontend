@@ -62,7 +62,7 @@ const AddNewsPage = () => {
                   component={TextInput}
                   maxLength={120}
                   showCharacterCount={true}
-                  label="Заголовок Новини"
+                  label="Заголовок"
                 />
                 <div className={styles.secondRow}>
                   <Field
@@ -72,7 +72,7 @@ const AddNewsPage = () => {
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}
-                    label="Текст Новини"
+                    label="Текст"
                   />
                   <Field
                     name="image"

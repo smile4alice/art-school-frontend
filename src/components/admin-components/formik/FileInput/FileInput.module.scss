@@ -1,4 +1,5 @@
 .wrapper {
+  font-family: 'Montserrat', sans-serif;
   width: 48%;
   position: relative;
   display: inline-flex;
@@ -15,7 +16,7 @@
     font-weight: 500;
     font-family: 'Montserrat';
   }
-  .section{
+  .section {
     width: 100%;
   }
   .dropzone {
@@ -23,7 +24,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    //width: 478px;
     width: 100%;
     height: 197px;
     border: 2px dashed $admin-blue;
@@ -49,13 +49,13 @@
       }
     }
     .imagePreview {
-      padding: .5rem;
+      padding: 0.5rem;
       width: 100%;
       height: 197px;
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
   }

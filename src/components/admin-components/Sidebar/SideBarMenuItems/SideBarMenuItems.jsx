@@ -22,7 +22,7 @@ const SideBarMenuItems = ({
             isLinkActive ? styles.activeIcon : styles.hoverIcon
           } ${isFilled ? styles.filledIcon : styles.strokedIcon}`}
         >
-          <svg className="icon">
+          <svg className={isLinkActive ? styles.icon_active : styles.icon}>
             <use href={`${sprite}#${iconClass}`} width="15" height="15" />
           </svg>
         </span>

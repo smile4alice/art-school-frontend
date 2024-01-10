@@ -6,34 +6,38 @@ import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
+import { Markup } from 'interweave';
 
 const PostersPage = () => {
+  const ITEMS_PER_PAGE = 6;
   const { getPosters } = usePostersStore();
   const posters = usePostersStore(state => state.posters);
-  console.log('posters : ', posters);
   const loading = usePostersStore(state => state.loading);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [postersPerPage, setPostersPerPage] = useState(12);
+  const [postersPerPage, setPostersPerPage] = useState(6);
   const [showModal, setShowModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState({});
-  const isMaxAmount = postersPerPage >= posters.length - 1;
+  const isMaxAmount = postersPerPage >= posters.length;
+
+  console.log(isMaxAmount);
 
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
     setSelectedImg(selectImg);
   };
+
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
   const viewMore = () => {
     if (!isMaxAmount) {
-      setPostersPerPage(prev => prev + 12);
+      setPostersPerPage(prev => prev + ITEMS_PER_PAGE);
     }
   };
 
   const viewLess = () => {
-    setPostersPerPage(12);
+    setPostersPerPage(ITEMS_PER_PAGE);
     window.scrollTo(0, 0);
   };
 
@@ -72,9 +76,11 @@ const PostersPage = () => {
       setPostersPerPage(8);
     }
     if (windowWidth >= 1280) {
-      setPostersPerPage(12);
+      setPostersPerPage(ITEMS_PER_PAGE);
     }
   }, [windowWidth]);
+
+  console.log(posters.length > postersPerPage);
 
   return (
     <Container>
@@ -94,7 +100,10 @@ const PostersPage = () => {
                       toggleModal();
                     }}
                   />
-                  <p className={styles.postersListItemText}>{poster.title}</p>
+                  <Markup
+                    className={styles.postersListItemText}
+                    content={poster.title}
+                  />
                 </li>
               ))}
             </ul>
@@ -110,7 +119,7 @@ const PostersPage = () => {
               />
             </Modal>
           )}
-          {posters.length > postersPerPage && (
+          {posters.length > ITEMS_PER_PAGE && (
             <ViewButton
               isMaxAmount={isMaxAmount}
               viewMore={viewMore}

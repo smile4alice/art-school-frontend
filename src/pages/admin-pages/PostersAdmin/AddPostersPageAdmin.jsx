@@ -12,7 +12,7 @@ import styles from './PostersAdmin.module.scss';
 const breadcrumbs = ['Афіші', 'Додати афішу'];
 
 const initialValues = {
-  title: ' ',
+  title: '',
   image: [],
 };
 
@@ -57,7 +57,7 @@ const AddPostersPage = () => {
                     id="text"
                     placeholder="Title"
                     component={TextArea}
-                    maxLength={120}
+                    maxLength={60}
                     showCharacterCount={true}
                     label="Заголовок Афіші"
                   />

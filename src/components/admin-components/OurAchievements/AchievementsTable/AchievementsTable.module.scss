@@ -4,16 +4,16 @@
   border: 1px solid $admin-purple;
   border-radius: 8px;
   font-weight: 500;
-  .trigger{
+  .trigger {
     height: 5px;
   }
-  .row:nth-last-child(2){
+  .row:nth-last-child(2) {
     border-bottom: 0;
   }
   .row {
     display: flex;
     border-bottom: 1px solid $admin-purple;
-    &:last-child{
+    &:last-child {
       border-bottom: 0;
     }
     div {
@@ -36,10 +36,11 @@
     }
   }
   .thead {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
     background-color: #e5e9fd;
     border-radius: 8px 8px 0 0;
     color: $admin-text-main;
-    font-size: 0.9375;
   }
   .tbody {
     font-size: 0.75rem;
@@ -51,17 +52,17 @@
     &::-webkit-scrollbar-track {
       background-color: $admin-light-purple;
       border-radius: 0 0 8px;
-      margin-bottom: .3rem;
+      margin-bottom: 0.3rem;
     }
     &::-webkit-scrollbar-thumb {
       background-color: $admin-blue;
       border-radius: 0.375rem;
-      border: .5px solid $admin-light-purple;
+      border: 0.5px solid $admin-light-purple;
     }
     &::-webkit-scrollbar-thumb:hover {
       background-color: rgba(117, 116, 252, 1);
     }
-    .photo { 
+    .photo {
       div {
         display: flex;
         align-items: center;
@@ -91,27 +92,27 @@
         }
       }
       .edit {
-        svg{
-          fill: rgba(155, 166, 175, 1);
+        svg {
+          fill: #3c4242;
         }
       }
       .edit:hover {
         background-color: $admin-light-purple;
-        border: 1px solid #D1D8FF;
-        svg{
-          fill: $admin-accent
+        border: 1px solid #d1d8ff;
+        svg {
+          fill: $admin-accent;
         }
       }
-      .delete{
-        svg{
+      .delete {
+        svg {
           stroke-width: 1.5px;
           stroke: $admin-red;
           fill: transparent;
         }
       }
       .delete:hover {
-        background-color:#FFEBEB;
-        border: 1px solid #F9BFBF;
+        background-color: #ffebeb;
+        border: 1px solid #f9bfbf;
       }
     }
   }

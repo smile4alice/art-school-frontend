@@ -1,4 +1,5 @@
 .textAreaWrapper {
+  font-family: 'Montserrat', sans-serif;
   width: 48%;
   display: inline-flex;
   flex-direction: column;
@@ -16,7 +17,7 @@
 .textArea {
   display: flex;
   width: 100%;
-  //width: 478px;
+  max-width: 478px;
   height: 197px;
   padding: 10px;
   align-items: flex-start;
