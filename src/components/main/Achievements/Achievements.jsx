@@ -11,6 +11,7 @@ import s from './Achievements.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import Container from '@/components/Container/Container';
 
 const Achievements = ({
   title,
@@ -44,70 +45,74 @@ const Achievements = ({
   }, [getMainAchievements, getDepartmentAchievements, url, departmentId]);
 
   return (
-    <section className={s.achievements}>
-      <h2>{title}</h2>
-      {showSelect && isDesktop && (
-        <Select
-          title="Обрати відділ"
-          options={selectOptions}
-          changeDepartment={changeDepartment}
-        />
-      )}
-      {loadingState === 'loading' && (
-        <div className={s.errorData}>
-          <Spinner />
-        </div>
-      )}
-      {loadingState === 'error' && (
-        <div className={s.errorData}>
-          <Placeholder />
-        </div>
-      )}
-      {loadingState === 'success' && achievements?.length > 0 && (
-        <div className={s.slidersContainer}>
-          {isDesktop && (
-            <SwiperButtons
-              onPrevClick={() => swiperRef.current.slidePrev()}
-              onNextClick={() => swiperRef.current.slideNext()}
+    <section className={`${s.achievements} section`}>
+      <Container>
+        <div className={s.achievementsWrapper}>
+          <h2>{title}</h2>
+          {showSelect && isDesktop && (
+            <Select
+              title="Обрати відділ"
+              options={selectOptions}
+              changeDepartment={changeDepartment}
             />
           )}
-          <Swiper
-            onSwiper={swiper => {
-              swiperRef.current = swiper;
-            }}
-            className={s.slider}
-            modules={[Pagination]}
-            spaceBetween={16}
-            slidesPerView={1}
-            breakpoints={{
-              768: {
-                slidesPerView: 2,
-              },
-              1280: {
-                slidesPerView: 3,
-              },
-            }}
-            pagination={{ clickable: true }}
-            loop={true}
-          >
-            {achievements.map(item => (
-              <SwiperSlide className={s.slideContent} key={item.id}>
-                <div className={s.slidePhoto}>
-                  <img src={item.media} alt={item.description} />
-                </div>
-                <p className={s.slideText}>{item.description}</p>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {loadingState === 'loading' && (
+            <div className={s.errorData}>
+              <Spinner />
+            </div>
+          )}
+          {loadingState === 'error' && (
+            <div className={s.errorData}>
+              <Placeholder />
+            </div>
+          )}
+          {loadingState === 'success' && achievements?.length > 0 && (
+            <div className={s.slidersContainer}>
+              {isDesktop && (
+                <SwiperButtons
+                  onPrevClick={() => swiperRef.current.slidePrev()}
+                  onNextClick={() => swiperRef.current.slideNext()}
+                />
+              )}
+              <Swiper
+                onSwiper={swiper => {
+                  swiperRef.current = swiper;
+                }}
+                className={s.slider}
+                modules={[Pagination]}
+                spaceBetween={16}
+                slidesPerView={1}
+                breakpoints={{
+                  768: {
+                    slidesPerView: 2,
+                  },
+                  1280: {
+                    slidesPerView: 3,
+                  },
+                }}
+                pagination={{ clickable: true }}
+                loop={true}
+              >
+                {achievements.map(item => (
+                  <SwiperSlide className={s.slideContent} key={item.id}>
+                    <div className={s.slidePhoto}>
+                      <img src={item.media} alt={item.description} />
+                    </div>
+                    <p className={s.slideText}>{item.description}</p>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          )}
+          {showSelect && !isDesktop && (
+            <Select
+              title="Обрати відділ"
+              options={selectOptions}
+              changeDepartment={changeDepartment}
+            />
+          )}
         </div>
-      )}
-      {showSelect && !isDesktop && (
-        <Select
-          title="Обрати відділ"
-          options={selectOptions}
-          changeDepartment={changeDepartment}
-        />
-      )}
+      </Container>
     </section>
   );
 };

@@ -35,7 +35,7 @@ const News = () => {
   }, [getNews]);
   return (
     <Container>
-      <section className={styles.News}>
+      <section className={`${styles.News} section`}>
         <h1>Новини</h1>
         {isLaptop && (
           <div className={styles.ButtonContainer}>

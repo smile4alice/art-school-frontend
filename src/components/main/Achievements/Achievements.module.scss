@@ -1,16 +1,21 @@
 .achievements {
   margin: 0 auto;
   width: 100%;
-  max-width: 1280px;
   background-color: inherit;
-  padding: 0 1.5rem;
-  margin: 1rem auto;
+
   h2 {
     font-size: 1.25rem;
     font-weight: 700;
   }
+
+  .achievementsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
   .slidersContainer {
-    padding-top: 1rem;
     width: 100%;
     .slider {
       margin: 0 auto;
@@ -39,7 +44,7 @@
       }
     }
   }
-  .errorData{
+  .errorData {
     text-align: center;
     padding: 2rem 1rem;
     font-size: 1.2rem;
@@ -49,7 +54,6 @@
 
 @media (min-width: 768px) {
   .achievements {
-    padding: 0 2rem;
     h2 {
       font-size: 2rem;
     }
@@ -69,7 +73,6 @@
 
 @media (min-width: 1280px) {
   .achievements {
-    padding: 0 2.5rem;
     h2 {
       font-size: 2rem;
     }
@@ -91,7 +94,6 @@
             justify-content: center;
             border-radius: 5px;
             overflow: hidden;
-           
           }
           .slideText {
             padding: 0.65rem 0;
