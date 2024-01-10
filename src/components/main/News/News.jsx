@@ -34,8 +34,8 @@ const News = () => {
     fetchData();
   }, [getNews]);
   return (
-    <Container>
-      <section className={`${styles.News} section`}>
+    <section className={`${styles.News} section`}>
+      <Container>
         <h1>Новини</h1>
         {isLaptop && (
           <div className={styles.ButtonContainer}>
@@ -50,7 +50,7 @@ const News = () => {
                 spaceBetween={50}
                 slidesPerView={1}
                 modules={[Pagination]}
-                pagination={{ clickable: true }}
+                // pagination={{ clickable: true }}
                 loop={true}
                 onSwiper={swiper => {
                   swiperRef.current = swiper;
@@ -102,8 +102,8 @@ const News = () => {
             <NavLinkButton text={'Переглянути всі новини'} href={'/news'} />
           </div>
         )}
-      </section>
-    </Container>
+      </Container>
+    </section>
   );
 };
 
