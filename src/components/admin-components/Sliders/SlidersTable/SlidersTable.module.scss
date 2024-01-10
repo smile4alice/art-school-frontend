@@ -10,6 +10,8 @@
 }
 
 .tableHeader {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
   display: flex;
   padding: 3px 5px;
   gap: 0px;
@@ -172,6 +174,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.7rem;
+  margin-left: 1rem;
 }
 
 .cellActionContainer {
@@ -221,7 +224,7 @@
   align-items: center;
   flex-shrink: 0;
   border-radius: 2px;
-  fill: #9ba6af;
+  fill: #3c4242;
   transition: all 0.3s ease-in-out;
   &:hover {
     fill: $admin-accent;

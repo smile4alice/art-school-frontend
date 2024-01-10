@@ -1,9 +1,12 @@
 .inputWrapper {
+  font-family: 'Montserrat', sans-serif;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
+  width: 100%;
+  max-width: 478px;
 }
 .inputLabel {
   color: $admin-text-main;
@@ -13,7 +16,8 @@
 
 .input {
   display: flex;
-  min-width: 478px;
+  width: 100%;
+  max-width: 478px;
   height: 45px;
   padding: 10px;
   align-items: flex-start;
