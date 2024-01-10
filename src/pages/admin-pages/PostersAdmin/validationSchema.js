@@ -18,7 +18,7 @@ function isValidFileType(fileType) {
 export const posterValidation = Yup.object().shape({
   title: Yup.string()
     .min(2, 'Мінімальна довжина заголовку 2 символи')
-    .max(60, 'Максимальна довжина заголовку 60 символів')
+    .max(120, 'Максимальна довжина заголовку 120 символів')
     .matches(
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’`.,:;"()!?-]+$/,
       'Введіть коректну назву'

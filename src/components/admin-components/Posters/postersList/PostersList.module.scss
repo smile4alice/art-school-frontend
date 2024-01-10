@@ -224,10 +224,12 @@
     fill: $admin-accent;
     background: rgba(117, 139, 253, 0.3);
     border: 1px solid rgba(117, 139, 253, 0.7);
+    cursor: pointer;
   }
   &:nth-child(2):hover {
     background-color: rgba(255, 50, 50, 0.2);
     border: 1px solid $admin-red;
+    cursor: pointer;
   }
 }
 

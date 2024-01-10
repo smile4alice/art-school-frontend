@@ -57,7 +57,7 @@ const AddPostersPage = () => {
                     id="text"
                     placeholder="Title"
                     component={TextArea}
-                    maxLength={60}
+                    maxLength={120}
                     showCharacterCount={true}
                     label="Заголовок Афіші"
                   />
