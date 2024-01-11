@@ -24,6 +24,7 @@
       justify-content: flex-start;
       align-items: flex-start;
       flex-direction: column;
+      overflow: hidden;
 
       .HeroImage {
         width: 100%;
@@ -75,6 +76,7 @@
     top: 175px;
     left: 16px;
     padding: 16px 16px;
+    overflow: hidden;
     @media screen and (max-width: 1280px) {
       left: 50%;
       transform: translateX(-50%);
@@ -86,6 +88,7 @@
       font-weight: 700;
       line-height: 19.6px;
       text-transform: uppercase;
+      overflow: hidden;
     }
 
     .HeroEventTitle {
@@ -95,6 +98,7 @@
       font-weight: 700;
       line-height: 25.2px;
       text-transform: uppercase;
+      overflow: hidden;
     }
 
     .HeroEventInfo {
@@ -104,6 +108,7 @@
       font-weight: 700;
       line-height: 22.4px;
       text-transform: uppercase;
+      overflow: hidden;
     }
 
     .HeroEventLink {
