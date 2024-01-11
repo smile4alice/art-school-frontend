@@ -9,7 +9,7 @@ const DropDownsList = () => {
     setSelectedSubDepId(prevId => (prevId === subDepId ? null : subDepId));
   };
   return (
-    <div>
+    <section className="section">
       {subDepartments?.map(subDep => (
         <DropDown
           key={subDep.id}
@@ -18,7 +18,7 @@ const DropDownsList = () => {
           onDropDownClick={() => handleDropDownClick(subDep.id)}
         />
       ))}
-    </div>
+    </section>
   );
 };
 
