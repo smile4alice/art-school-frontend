@@ -9,8 +9,10 @@
     margin-top: 7px;
     @include tablet {
       width: 100%;
-      max-width: 1070px;
       gap: 50px;
+    }
+    @include desktop {
+      max-width: 1070px;
       margin-top: 40px;
     }
 
