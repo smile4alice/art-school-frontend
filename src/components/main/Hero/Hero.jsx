@@ -12,7 +12,7 @@ const Hero = () => {
   const swiperRef = useRef();
 
   return (
-    <section className={`${styles.HeroSection} section`}>
+    <section className={styles.HeroSection}>
       <button
         className={styles.prevSlide}
         onClick={() => swiperRef.current.slidePrev()}

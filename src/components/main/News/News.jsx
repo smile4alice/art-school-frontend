@@ -50,7 +50,7 @@ const News = () => {
                 spaceBetween={50}
                 slidesPerView={1}
                 modules={[Pagination]}
-                // pagination={{ clickable: true }}
+                pagination={{ clickable: true }}
                 loop={true}
                 onSwiper={swiper => {
                   swiperRef.current = swiper;

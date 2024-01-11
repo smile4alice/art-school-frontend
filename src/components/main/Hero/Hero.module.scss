@@ -1,10 +1,9 @@
 .HeroSection {
-  outline: 1px solid red;
   margin: 0 auto;
   padding: 0;
   width: 100%;
   position: relative;
-
+  padding-bottom: 28px;
   .prevSlide,
   .nextSlide {
     display: none;
@@ -127,7 +126,7 @@
     margin: 0 auto;
     padding: 0;
     position: relative;
-
+    padding-bottom: 40px;
     .SliderStyle {
       width: 100%;
       background-color: #fff;
@@ -206,7 +205,7 @@
     margin: 0 auto;
     padding: 0;
     max-width: 1280px;
-
+    padding-bottom: 120px;
     position: relative;
 
     .prevSlide,

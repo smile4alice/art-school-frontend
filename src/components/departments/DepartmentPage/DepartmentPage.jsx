@@ -41,7 +41,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
   }, [departmentId]);
 
   return (
-    <Container>
+    <>
       <div className={styles.contentWrapper}>
         <h2 className="department_title ">{title}</h2>
         {subDepartments?.length > 0 ? (
@@ -68,7 +68,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
           <Spinner />
         )}
       </div>
-    </Container>
+    </>
   );
 };
 

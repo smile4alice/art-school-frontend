@@ -90,7 +90,7 @@ const Achievements = ({
                     slidesPerView: 3,
                   },
                 }}
-                // pagination={{ clickable: true }}
+                pagination={{ clickable: true }}
                 loop={true}
               >
                 {achievements.map(item => (
