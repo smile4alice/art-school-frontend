@@ -17,9 +17,7 @@ function isValidFileType(fileType) {
 
 export const achievementsValidation = Yup.object().shape({
   description: Yup.string()
-    .required('Введіть опис досягнення')
-    .min(2)
-    .max(120)
+    .max(200)
     .matches(
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
       'Введіть коректний опис'
