@@ -11,9 +11,10 @@ const Cooperation = () => {
   const swiperRef = useRef();
   const { getContacts } = useContactsStore();
   const contacts = useContactsStore(state => state.contacts);
-  const isLaptop = useMediaQuery({ minWidth: 1024 });
+  const isLaptop = useMediaQuery({ minWidth: 1280 });
   const isTablet = useMediaQuery({ minWidth: 678 });
   const isMobile = useMediaQuery({ maxWidth: 678 });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -45,7 +46,7 @@ const Cooperation = () => {
           </p>
           <div className={styles.imagegWrapper}>
             <h2>Концертна зала</h2>
-            {isLaptop && (
+            {(isMobile || isLaptop) && (
               <div className={styles.images}>
                 {data.concertHallImages.map((image, index) => (
                   <img key={index} src={image.url} alt={image.alt} />
@@ -56,7 +57,7 @@ const Cooperation = () => {
               <Swiper
                 className={styles.Slider}
                 spaceBetween={10}
-                slidesPerView={2}
+                slidesPerView={1.5}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
                 loop={true}
@@ -71,17 +72,10 @@ const Cooperation = () => {
                 ))}
               </Swiper>
             )}
-            {isMobile && (
-              <div className={styles.mobile_images}>
-                {data.concertHallImages.map((image, index) => (
-                  <img key={index} src={image.url} alt={image.alt} />
-                ))}
-              </div>
-            )}
           </div>
           <div className={styles.imagegWrapper}>
             <h2>Студія звукозапису</h2>
-            {isLaptop && (
+            {(isMobile || isLaptop) && (
               <div className={styles.images}>
                 {data.soundRecordImages.map((image, index) => (
                   <img key={index} src={image.url} alt={image.alt} />
@@ -92,7 +86,7 @@ const Cooperation = () => {
               <Swiper
                 className={styles.Slider}
                 spaceBetween={10}
-                slidesPerView={2}
+                slidesPerView={1.5}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
                 loop={true}
@@ -107,17 +101,11 @@ const Cooperation = () => {
                 ))}
               </Swiper>
             )}
-            {isMobile && (
-              <div className={styles.mobile_images}>
-                {data.soundRecordImages.map((image, index) => (
-                  <img key={index} src={image.url} alt={image.alt} />
-                ))}
-              </div>
-            )}
           </div>
           <div className={styles.imagegWrapper}>
             <h2>Виставкова зала</h2>
-            {isLaptop && (
+
+            {(isMobile || isLaptop) && (
               <div className={styles.images}>
                 {data.expoHallImages.map((image, index) => (
                   <img key={index} src={image.url} alt={image.alt} />
@@ -128,7 +116,7 @@ const Cooperation = () => {
               <Swiper
                 className={styles.Slider}
                 spaceBetween={10}
-                slidesPerView={2}
+                slidesPerView={1.5}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
                 loop={true}
@@ -142,13 +130,6 @@ const Cooperation = () => {
                   </SwiperSlide>
                 ))}
               </Swiper>
-            )}
-            {isMobile && (
-              <div className={styles.mobile_images}>
-                {data.expoHallImages.map((image, index) => (
-                  <img key={index} src={image.url} alt={image.alt} />
-                ))}
-              </div>
             )}
           </div>
           <div className={styles.contactsWrapper}>
