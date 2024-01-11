@@ -4,7 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const useSlidersStore = create((set, get) => ({
   loading: false,
-  error: {},
+  error: '',
   slides: [],
 
   getSlides: async () => {
@@ -48,6 +48,7 @@ const useSlidersStore = create((set, get) => ({
             'Content-Type': 'multipart/form-data',
           },
         });
+        console.log(response);
         set(() => {
           return {
             loading: false,
@@ -55,6 +56,20 @@ const useSlidersStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          if (error.code === 'ERR_BAD_REQUEST') {
+            return {
+              error: 'Слайд з цією назвою вже існує, спробуйте іншу назву',
+            };
+          }
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }
@@ -80,6 +95,20 @@ const useSlidersStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          if (error.code === 'ERR_BAD_REQUEST') {
+            return {
+              error: 'Слайд з цією назвою вже існує, спробуйте іншу назву',
+            };
+          }
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }

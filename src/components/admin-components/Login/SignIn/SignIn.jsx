@@ -21,6 +21,7 @@ const SignIn = () => {
   const { setIsAuthorized } = useAuthorized();
   const isAuthorized = useAuthorized(state => state.isAuthorized);
   const { login } = useAuthStore();
+  const error = useAuthStore(state => state.error);
 
   const checkToken = key => {
     // Get the value of the key from local storage
@@ -38,6 +39,8 @@ const SignIn = () => {
   }, []);
 
   if (isAuthorized) return <Navigate to="/admin" />;
+
+  console.log(error.code);
 
   const onSubmit = async values => {
     const formData = new FormData();
@@ -73,9 +76,9 @@ const SignIn = () => {
                   component={PasswordInput}
                   showCharacterCount={false}
                   label="Пароль*"
-                  placeholder="Введіть 6 символів і більше"
+                  placeholder="Введіть 8 символів і більше"
                 />
-
+                {error && <p className={styles.error}>{error}</p>}
                 <div className={styles.button}>
                   <ButtonSubmit
                     handlerSubmitButton={onSubmit}

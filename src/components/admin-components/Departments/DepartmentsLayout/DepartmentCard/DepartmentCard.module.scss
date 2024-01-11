@@ -7,6 +7,15 @@
   height: 205px;
   padding: 6px 13px;
   gap: 10px;
-  border: 2px solid $admin-gray;
+  font-size: 19px;
+  color: #35373f;
+  border: 1px solid $admin-gray;
   border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  &:hover {
+    border: 1px solid rgba(0, 71, 255, 0.5);
+    color: rgba(0, 71, 255, 0.5);
+    background: rgba(0, 71, 255, 0.1);
+  }
 }

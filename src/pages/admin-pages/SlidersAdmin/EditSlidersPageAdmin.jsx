@@ -24,6 +24,7 @@ const EditSlidersPage = () => {
   const navigate = useNavigate();
   const { getSlides, editSlide } = useSlidersStore();
   const loading = useSlidersStore(state => state.loading);
+  const error = useSlidersStore(state => state.error);
   const slide = useSlidersStore(state =>
     state.slides.find(item => item.id == id)
   );
@@ -67,6 +68,7 @@ const EditSlidersPage = () => {
         backButtonLink="/admin/sliders"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={slidersValidation}
@@ -83,7 +85,7 @@ const EditSlidersPage = () => {
                   maxLength={120}
                   showCharacterCount={true}
                   text={slide?.title}
-                  label="Заголовок Слайда"
+                  label="Заголовок*"
                 />
                 <div className={styles.secondRow}>
                   <Field
@@ -93,7 +95,7 @@ const EditSlidersPage = () => {
                     maxLength={200}
                     showCharacterCount={true}
                     text={slide?.description}
-                    label="Опис Слайда"
+                    label="Опис"
                   />
                   <Field
                     name="image"

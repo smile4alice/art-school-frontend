@@ -21,6 +21,7 @@ const initialValues = {
 const AddSlidersPage = () => {
   const navigate = useNavigate();
   const { addSlide, loading } = useSlidersStore();
+  const error = useSlidersStore(state => state.error);
 
   const onSubmit = async values => {
     try {
@@ -45,6 +46,7 @@ const AddSlidersPage = () => {
         backButtonLink="/admin/sliders"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={slidersValidation}
@@ -60,7 +62,7 @@ const AddSlidersPage = () => {
                   component={TextInput}
                   maxLength={120}
                   showCharacterCount={true}
-                  label="Заголовок Слайда"
+                  label="Заголовок*"
                 />
                 <div className={styles.secondRow}>
                   <Field
@@ -69,7 +71,7 @@ const AddSlidersPage = () => {
                     component={TextArea}
                     maxLength={200}
                     showCharacterCount={true}
-                    label="Опис Слайда"
+                    label="Опис"
                   />
                   <Field
                     name="image"
@@ -78,13 +80,15 @@ const AddSlidersPage = () => {
                     label="Фото*"
                   />
                 </div>
+
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
                     isActive={formik.isValid}
                     isRight={true}
+                    isError={error}
                     handlerSubmitButton={onSubmit}
-                    isProcessing={loading}
+                    isProcessing={loading && !error}
                   />
                 </div>
               </div>

@@ -4,7 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const useNewsStore = create((set, get) => ({
   loading: false,
-  error: {},
+  error: '',
   news: [],
   post: {},
 
@@ -16,7 +16,6 @@ const useNewsStore = create((set, get) => ({
         };
       });
       const response = await axios.get(`/news`);
-      console.log(' response: ', response.data.items);
       set(() => {
         return {
           news: response.data.items,
@@ -80,6 +79,20 @@ const useNewsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          if (error.code === 'ERR_BAD_REQUEST') {
+            return {
+              error: 'Новина з цією назвою вже існує, спробуйте іншу назву',
+            };
+          }
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }
@@ -105,6 +118,20 @@ const useNewsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          if (error.code === 'ERR_BAD_REQUEST') {
+            return {
+              error: 'Новина з цією назвою вже існує, спробуйте іншу назву',
+            };
+          }
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }

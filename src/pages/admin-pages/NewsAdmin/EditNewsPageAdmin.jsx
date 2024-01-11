@@ -25,6 +25,7 @@ const EditNewsPage = () => {
   const { getOnePost, editPost } = useNewsStore();
   const post = useNewsStore(state => state.post);
   const loading = useNewsStore(state => state.loading);
+  const error = useNewsStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,6 +65,7 @@ const EditNewsPage = () => {
         backButtonLink="/admin/news"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={newsValidation}
@@ -81,7 +83,7 @@ const EditNewsPage = () => {
                   maxLength={120}
                   showCharacterCount={true}
                   text={post?.title}
-                  label="Заголовок"
+                  label="Заголовок*"
                 />
                 <div className={styles.secondRow}>
                   <Field
@@ -92,14 +94,14 @@ const EditNewsPage = () => {
                     maxLength={2000}
                     showCharacterCount={true}
                     text={post?.text}
-                    label="Текст"
+                    label="Текст*"
                   />
                   <Field
                     name="image"
                     id="image"
                     component={FileInput}
                     photo={post?.photo}
-                    label="Фото"
+                    label="Фото*"
                   />
                 </div>
                 <div className={styles.button}>

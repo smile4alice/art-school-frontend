@@ -4,7 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const useAdministrationStore = create((set, get) => ({
   loading: false,
-  error: {},
+  error: '',
   members: [],
   member: {},
 
