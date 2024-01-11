@@ -83,7 +83,7 @@ const EditSlidersPage = () => {
                   maxLength={120}
                   showCharacterCount={true}
                   text={slide?.title}
-                  label="Заголовок Слайду"
+                  label="Заголовок Слайда"
                 />
                 <div className={styles.secondRow}>
                   <Field
@@ -93,7 +93,7 @@ const EditSlidersPage = () => {
                     maxLength={200}
                     showCharacterCount={true}
                     text={slide?.description}
-                    label="Опис Слайду"
+                    label="Опис Слайда"
                   />
                   <Field
                     name="image"

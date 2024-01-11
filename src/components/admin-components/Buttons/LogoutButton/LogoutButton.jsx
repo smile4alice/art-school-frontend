@@ -25,10 +25,10 @@ const LogoutButton = () => {
         checkAndRemoveKey('access_token');
       }}
     >
-      <p>Вихід</p>
       <svg width="16" height="16">
         <use href={`${sprite}#logout`} className={styles.icon} />
       </svg>
+      <p>Вихід</p>
     </Link>
   );
 };

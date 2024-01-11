@@ -12,7 +12,7 @@ import styles from './PostersAdmin.module.scss';
 const breadcrumbs = ['Афіші', 'Додати афішу'];
 
 const initialValues = {
-  title: ' ',
+  title: '',
   image: [],
 };
 

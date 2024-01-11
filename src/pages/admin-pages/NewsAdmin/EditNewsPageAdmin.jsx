@@ -81,7 +81,7 @@ const EditNewsPage = () => {
                   maxLength={120}
                   showCharacterCount={true}
                   text={post?.title}
-                  label="Заголовок Новини"
+                  label="Заголовок"
                 />
                 <div className={styles.secondRow}>
                   <Field
@@ -92,7 +92,7 @@ const EditNewsPage = () => {
                     maxLength={2000}
                     showCharacterCount={true}
                     text={post?.text}
-                    label="Текст Новини"
+                    label="Текст"
                   />
                   <Field
                     name="image"

@@ -60,7 +60,7 @@ const AddSlidersPage = () => {
                   component={TextInput}
                   maxLength={120}
                   showCharacterCount={true}
-                  label="Заголовок Слайду"
+                  label="Заголовок Слайда"
                 />
                 <div className={styles.secondRow}>
                   <Field
@@ -69,7 +69,7 @@ const AddSlidersPage = () => {
                     component={TextArea}
                     maxLength={200}
                     showCharacterCount={true}
-                    label="Опис Слайду"
+                    label="Опис Слайда"
                   />
                   <Field
                     name="image"

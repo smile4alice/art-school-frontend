@@ -6,6 +6,13 @@ import styles from './ConfirmDeleteModa.module.scss';
 const ConfirmDeleteModal = ({ handleDelete }) => {
   const { confirmDelete } = useConfirmDelete();
   const { closeModal } = useModal();
+
+  const handleDeleteClick = async () => {
+    await confirmDelete();
+    await handleDelete();
+    closeModal();
+  };
+
   return (
     <div className={styles.deleteModal}>
       <div className={styles.contentWrapper}>
@@ -22,15 +29,7 @@ const ConfirmDeleteModal = ({ handleDelete }) => {
           >
             Відміна
           </button>
-          <button
-            onClick={() => {
-              confirmDelete();
-              handleDelete();
-              closeModal();
-            }}
-          >
-            Видалити
-          </button>
+          <button onClick={handleDeleteClick}>Видалити</button>
         </div>
       </div>
     </div>

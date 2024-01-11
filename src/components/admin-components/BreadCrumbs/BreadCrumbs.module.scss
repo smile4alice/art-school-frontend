@@ -1,4 +1,5 @@
 .wrapper {
+  font-family: 'Montserrat', sans-serif;
   width: 100%;
   padding: 1rem 0.5rem;
   border-radius: 5px;
@@ -8,14 +9,17 @@
   gap: 0.5rem;
   .icon {
     font-size: 1.5rem;
-    color: $gray;
+    color: #57616b;
   }
   .crumb {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    color: $gray;
-    font-size: 13px;
+    color: #57616b;
+    font-size: 12px;
+    &:nth-child(3) {
+      color: #707e8c;
+    }
   }
 }

@@ -28,49 +28,53 @@ const AdminTable = ({ data }) => {
   return (
     <div className={styles.contentWrap}>
       <ul className={styles.tableHeader}>
-        <li className={styles.cellHeadingHeader}>ПІБ Працівника</li>
+        <li className={styles.cellHeadingHeader}>ПІБ працівника</li>
         <li className={styles.cellTextHeader}>Посада</li>
         <li className={styles.cellPhotoHeader}>Фото</li>
         <li className={styles.cellActionHeader}>Дія</li>
       </ul>
       <div className={styles.tbody}>
-      {data &&
-        Array.isArray(data) &&
-        data.map((item, index) => (
-          <div className={styles.tableRow} key={index}>
-            <div className={styles.cellHeadingRow}>{item.full_name}</div>
-            <div className={styles.cellTextRow}>{item.position}</div>
-            <div className={styles.cellPhotoRow}>
-              <img
-                src={item.photo}
-                alt={item.title}
-                className={styles.contentElementImg}
-              />
-            </div>
+        {data &&
+          Array.isArray(data) &&
+          data.map((item, index) => (
+            <div className={styles.tableRow} key={index}>
+              <div className={styles.cellHeadingRow}>{item.full_name}</div>
+              <div className={styles.cellTextRow}>{item.position}</div>
+              <div className={styles.cellPhotoRow}>
+                <img
+                  src={item.photo}
+                  alt={item.title}
+                  className={styles.contentElementImg}
+                />
+              </div>
 
-            <div className={styles.cellActionRow}>
-              <Link to={`edit/${item.id}`}>
-                <div className={styles.cellActionContainer}>
-                  <svg className={styles.iconEdit}>
-                    <use href={`${sprite}#icon-edit`} width="20" height="20" />
+              <div className={styles.cellActionRow}>
+                <Link to={`edit/${item.id}`}>
+                  <div className={styles.cellActionContainer}>
+                    <svg className={styles.iconEdit}>
+                      <use
+                        href={`${sprite}#icon-edit`}
+                        width="20"
+                        height="20"
+                      />
+                    </svg>
+                  </div>
+                </Link>
+
+                <button
+                  onClick={() => {
+                    setCurrentId(item.id);
+                    openModal();
+                  }}
+                >
+                  <svg className={styles.iconTrash}>
+                    <use href={`${sprite}#icon-trash`} width="20" height="20" />
                   </svg>
-                </div>
-              </Link>
-
-              <button
-                onClick={() => {
-                  setCurrentId(item.id);
-                  openModal();
-                }}
-              >
-                <svg className={styles.iconTrash}>
-                  <use href={`${sprite}#icon-trash`} width="20" height="20" />
-                </svg>
-              </button>
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-        </div>
+          ))}
+      </div>
       {isModalOpen && <ConfirmDeleteModal handleDelete={removeMember} />}
     </div>
   );
