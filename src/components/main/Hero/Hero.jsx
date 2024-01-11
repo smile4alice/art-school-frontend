@@ -78,11 +78,13 @@ const Hero = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index} className={styles.SlideStyle}>
-            <img
-              src={slide.photo}
-              alt={slide.title}
-              className={styles.HeroImage}
-            />
+            <div className={styles.slideImage}>
+              <img
+                src={slide.photo}
+                alt={slide.title}
+                className={styles.HeroImage}
+              />
+            </div>
             {index === 0 && (
               <div className={styles.HeroTitle}>
                 <p className={styles.HeroPrimaryTitle}>

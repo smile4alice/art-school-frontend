@@ -6,7 +6,6 @@ import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
-import { Markup } from 'interweave';
 
 const PostersPage = () => {
   const ITEMS_PER_PAGE = 6;
@@ -19,7 +18,7 @@ const PostersPage = () => {
   const [selectedImg, setSelectedImg] = useState({});
   const isMaxAmount = postersPerPage >= posters.length;
 
-  console.log(isMaxAmount);
+  //console.log(isMaxAmount);
 
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
@@ -80,7 +79,7 @@ const PostersPage = () => {
     }
   }, [windowWidth]);
 
-  console.log(posters.length > postersPerPage);
+  //console.log(posters.length > postersPerPage);
 
   return (
     <Container>
@@ -91,19 +90,19 @@ const PostersPage = () => {
             <ul className={styles.postersList}>
               {posters.slice(0, postersPerPage).map((poster, index) => (
                 <li key={index} className={styles.postersListItem}>
-                  <img
-                    className={styles.postersListItemImg}
-                    src={poster.photo}
-                    alt={`Афіша  ${poster.title}`}
-                    onClick={() => {
-                      setActiveImgUrl(poster.id);
-                      toggleModal();
-                    }}
-                  />
-                  <Markup
-                    className={styles.postersListItemText}
-                    content={poster.title}
-                  />
+                  <div className={styles.postersListItemImg}>
+                    <img
+                      className={styles.image}
+                      src={poster.photo}
+                      alt={`Афіша  ${poster.title}`}
+                      onClick={() => {
+                        setActiveImgUrl(poster.id);
+                        toggleModal();
+                      }}
+                    />
+                  </div>
+                  <div  className={styles.postersListItemText}>{poster.title}</div>
+                 
                 </li>
               ))}
             </ul>
@@ -135,3 +134,7 @@ const PostersPage = () => {
 };
 
 export default PostersPage;
+/* <Markup
+                    className={styles.postersListItemText}
+                    content={poster.title}
+                  /> */
