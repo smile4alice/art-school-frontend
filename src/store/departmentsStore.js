@@ -3,7 +3,7 @@ import axios from '@/utils/axios';
 
 const useDepartmentsStore = create((set, get) => ({
   loading: false,
-  error: {},
+  error: '',
   departments: [],
   department: [],
   sub_department: {},
@@ -91,9 +91,25 @@ const useDepartmentsStore = create((set, get) => ({
             loading: false,
           };
         });
+        console.log(response);
         return response;
       }
     } catch (error) {
+      set(() => {
+        if (error.code === 'ERR_BAD_REQUEST') {
+          return {
+            error:
+              'Відділ з такою назвою вже існує в цьому відділенні, спробуйте іншу назву',
+          };
+        }
+      });
+      setTimeout(() => {
+        set(() => {
+          return {
+            error: '',
+          };
+        });
+      }, 5000);
       throw new Error(error);
     }
   },
@@ -124,6 +140,20 @@ const useDepartmentsStore = create((set, get) => ({
         return response;
       }
     } catch (error) {
+      set(() => {
+        if (error.code === 'ERR_BAD_REQUEST') {
+          return {
+            error: 'Відділ з цією назвою вже існує, спробуйте іншу назву',
+          };
+        }
+      });
+      setTimeout(() => {
+        set(() => {
+          return {
+            error: '',
+          };
+        });
+      }, 5000);
       throw new Error(error);
     }
   },

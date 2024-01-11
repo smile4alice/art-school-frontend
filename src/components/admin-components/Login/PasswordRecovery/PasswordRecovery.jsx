@@ -40,7 +40,7 @@ const PasswordRecovery = () => {
     <>
       <Heading title="Відновлення паролю" />
       <p className={styles.message}>
-        Введіть електронну пошту, пов’язану з вашим акаунтом Якщо у вас є
+        Введіть електронну пошту, пов’язану з вашим акаунтом. Якщо у вас є
         акаунт, вам на електронну пошту буде надіслано посилання для відновлення
         паролю
       </p>
@@ -65,7 +65,7 @@ const PasswordRecovery = () => {
                   <ButtonSubmit
                     handlerSubmitButton={onSubmit}
                     nameButton="Надіслати"
-                    isActive={formik.isValid && formik.touched['email']}
+                    isActive={formik.isValid}
                   />
                 </div>
               </div>

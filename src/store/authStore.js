@@ -4,6 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const useAuthStore = create(set => ({
   loading: false,
+  error: '',
 
   login: async data => {
     try {
@@ -19,6 +20,20 @@ const useAuthStore = create(set => ({
           })
           .catch(error => {
             console.error('Fetch error:', error);
+            set(() => {
+              if (error.code === 'ERR_BAD_REQUEST') {
+                return {
+                  error: 'Невірні логін або пароль',
+                };
+              }
+            });
+            setTimeout(() => {
+              set(() => {
+                return {
+                  error: '',
+                };
+              });
+            }, 3000);
           });
       }
     } catch (error) {

@@ -24,6 +24,7 @@ const EditSubDepartmentPage = () => {
   const { editDepartment, getOneSubDepartment } = useDepartmentsStore();
   const subDepartment = useDepartmentsStore(state => state.sub_department);
   const loading = useDepartmentsStore(state => state.loading);
+  const error = useDepartmentsStore(state => state.error);
   const department = useDepartmentsStore(state =>
     state.departments.find(department => department.id == departmentId)
   );
@@ -51,10 +52,10 @@ const EditSubDepartmentPage = () => {
         sub_department_name: values.title,
         description: values.text,
       };
-      await editDepartment(id, newSubDepartment);
-      setTimeout(() => {
+      const response = await editDepartment(id, newSubDepartment);
+      if (response.status === 200) {
         navigate(`/admin/departments/${departmentId}`);
-      }, 2000);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -71,6 +72,7 @@ const EditSubDepartmentPage = () => {
         stateTitle={department?.department_name}
         stateId={departmentId}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={newsValidation}
@@ -88,7 +90,7 @@ const EditSubDepartmentPage = () => {
                     component={TextInput}
                     maxLength={120}
                     showCharacterCount={true}
-                    label="Назва Відділу"
+                    label="Назва*"
                     text={subDepartment?.sub_department_name}
                   />
                   <Field

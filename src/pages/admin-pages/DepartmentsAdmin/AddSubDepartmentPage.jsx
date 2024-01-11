@@ -21,6 +21,7 @@ const AddSubDepartmentPage = () => {
   const { title, departmentId } = location.state;
   const { addDepartment } = useDepartmentsStore();
   const loading = useDepartmentsStore(state => state.loading);
+  const error = useDepartmentsStore(state => state.error);
 
   const breadcrumbs = [
     'Відділення',
@@ -35,10 +36,11 @@ const AddSubDepartmentPage = () => {
         description: values.text,
         main_department_id: departmentId,
       };
-      await addDepartment(newSubDepartment);
-      setTimeout(() => {
+      const response = await addDepartment(newSubDepartment);
+      console.log(response.status);
+      if (response.status === 200) {
         navigate(`/admin/departments/${departmentId}`);
-      }, 2000);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -53,6 +55,7 @@ const AddSubDepartmentPage = () => {
         backButtonLink={`/admin/departments/${departmentId}`}
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={newsValidation}
@@ -70,7 +73,7 @@ const AddSubDepartmentPage = () => {
                     component={TextInput}
                     maxLength={120}
                     showCharacterCount={true}
-                    label="Назва Відділу"
+                    label="Назва*"
                   />
                   <Field
                     name="text"

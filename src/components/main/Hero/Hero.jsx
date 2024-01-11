@@ -93,7 +93,7 @@ const Hero = () => {
                 </span>
               </div>
             )}
-            {index >= 2 && (
+            {index >= 0 && (slide.title || slide.description) && (
               <div className={styles.HeroEvent}>
                 <p className={styles.HeroEventName}>подія</p>
                 <h3 className={styles.HeroEventTitle}>{slide.title}</h3>

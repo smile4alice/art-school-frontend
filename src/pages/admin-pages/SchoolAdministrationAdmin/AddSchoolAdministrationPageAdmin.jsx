@@ -61,7 +61,7 @@ const AddSchoolAdministrationPage = () => {
                   component={TextInput}
                   maxLength={120}
                   showCharacterCount={true}
-                  label="ПІБ працівника"
+                  label="ПІБ працівника*"
                 />
                 <div className={styles.secondRow}>
                   <Field
@@ -70,7 +70,7 @@ const AddSchoolAdministrationPage = () => {
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}
-                    label="Посада працівника"
+                    label="Посада*"
                   />
                   <Field
                     name="image"

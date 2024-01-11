@@ -43,6 +43,8 @@
     color: $admin-text-main;
   }
   .tbody {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
     font-size: 0.75rem;
     max-height: calc(100vh - 270px);
     overflow-y: scroll;

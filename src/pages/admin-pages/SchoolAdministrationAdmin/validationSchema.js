@@ -17,12 +17,24 @@ function isValidFileType(fileType) {
 
 export const administrationValidation = Yup.object().shape({
   full_name: Yup.string()
+    .required('Поле має бути заповнене')
     .min(2, 'Мінімальна довжина імені 2 символи')
     .max(60, 'Максимальна довжина імені 60 символів')
+    .test(
+      'is-value',
+      'Додайте ім’я працівника',
+      value => value && value.length > 0
+    )
     .matches(/^[а-яА-ЯҐґЄєІіЇї\s'’`.,:;"()!?-]+$/i, 'Введіть коректне ім’я'),
   position: Yup.string()
+    .required('Поле має бути заповнене')
     .min(2, 'Мінімальна довжина поля 2 символи')
     .max(120, 'Максимальна довжина поля 120 символів')
+    .test(
+      'is-value',
+      'Додайте посаду працівника',
+      value => value && value.length > 0
+    )
     .matches(
       /^[а-яА-ЯҐґЄєІіЇї\s\d'’`.,:;"()!?-]+$/i,
       'Введіть коректну назву посади'

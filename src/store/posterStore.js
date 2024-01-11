@@ -4,7 +4,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 
 const usePostersStore = create((set, get) => ({
   loading: false,
-  error: {},
+  error: '',
   posters: [],
   poster: {},
 
@@ -80,6 +80,20 @@ const usePostersStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          if (error.code === 'ERR_BAD_REQUEST') {
+            return {
+              error: 'Афіша з цією назвою вже існує, спробуйте іншу назву',
+            };
+          }
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }
@@ -105,6 +119,20 @@ const usePostersStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          if (error.code === 'ERR_BAD_REQUEST') {
+            return {
+              error: 'Афіша з цією назвою вже існує, спробуйте іншу назву',
+            };
+          }
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }

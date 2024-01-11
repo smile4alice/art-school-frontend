@@ -4,10 +4,11 @@ import styles from './DepartmentCard.module.scss';
 const DepartmentCard = ({ department }) => {
   return (
     <Link
+      className={styles.card}
       to={`/admin/departments/${department.id}`}
       state={{ title: department.department_name }}
     >
-      <div className={styles.card}>{department.department_name}</div>
+      <div>{department.department_name}</div>
     </Link>
   );
 };
