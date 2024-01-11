@@ -1,0 +1,7 @@
+.section {
+  padding-bottom: 40px;
+
+  @include desktop {
+    padding-bottom: 120px;
+  }
+}

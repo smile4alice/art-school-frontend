@@ -19,7 +19,6 @@ const GalleryDepartments = ({
   showSelect,
   selectOptions,
 }) => {
-  console.log('  selectOptions: ', selectOptions);
   const { getDepartmentAchievements } = useServicesStore();
   const gallery = useServicesStore(state => state.gallery);
   const isDextop = useMediaQuery({ minWidth: 1280 });
@@ -40,7 +39,7 @@ const GalleryDepartments = ({
   }, [getDepartmentAchievements, url, departmentId]);
 
   return (
-    <section className={s.galary}>
+    <section className={`${s.gallery} section`}>
       {showSelect && isDextop && (
         <Select
           title="Обрати відділ"
@@ -54,7 +53,7 @@ const GalleryDepartments = ({
         </div>
       )}
       {loadingState === 'error' && (
-        <div className={s.errorData}>
+        <div className="errorData">
           <Placeholder />
         </div>
       )}

@@ -10,25 +10,27 @@ const Map = () => {
     iconSize: [38, 38],
   });
   return (
-    <Container>
-      <section className={styles.Map}>
-        <h1>Наше Розташування</h1>
-        <div className={styles.MapContainer}>
-          <MapContainer
-            center={[50.45449, 30.50435]}
-            zoom={18}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              detectRetina={true}
-            />
-            <Marker position={[50.45449, 30.50435]} icon={customIcon} />
-          </MapContainer>
+    <section className={styles.Map}>
+      <Container>
+        <div className={styles.MapWrapper}>
+          <h1>Наше Розташування</h1>
+          <div className={styles.MapContainer}>
+            <MapContainer
+              center={[50.45449, 30.50435]}
+              zoom={18}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                detectRetina={true}
+              />
+              <Marker position={[50.45449, 30.50435]} icon={customIcon} />
+            </MapContainer>
+          </div>
         </div>
-      </section>
-    </Container>
+      </Container>
+    </section>
   );
 };
 

@@ -41,34 +41,38 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
   }, [departmentId]);
 
   return (
-    <Container>
-      <div className={styles.contentWrapper}>
-        <h2 className="department_title ">{title}</h2>
-        {subDepartments?.length > 0 ? (
-          <div className={styles.wrapper}>
-            <Articles articles={articles} title={title} />
-            <DropDownsList departmentId={id} />
-            <GalleryDepartments
-              showSelect={showSelect}
-              selectOptions={subDepartments}
-              url={'gallery'}
-              departmentId={departmentId}
-              changeDepartment={changeDepartment}
-            />
-            <Achievements
-              title={'Досягнення відділу'}
-              showSelect={showSelect}
-              selectOptions={subDepartments}
-              url={'achievement'}
-              departmentId={departmentId}
-              changeDepartment={changeDepartment}
-            />
+    <>
+      <section className={styles.departmentSection}>
+        <Container>
+          <div className={styles.contentWrapper}>
+            <h2 className="department_title ">{title}</h2>
+            {subDepartments?.length > 0 ? (
+              <div className={styles.wrapper}>
+                <Articles articles={articles} title={title} />
+                <DropDownsList departmentId={id} />
+                <GalleryDepartments
+                  showSelect={showSelect}
+                  selectOptions={subDepartments}
+                  url={'gallery'}
+                  departmentId={departmentId}
+                  changeDepartment={changeDepartment}
+                />
+                <Achievements
+                  title={'Досягнення відділу'}
+                  showSelect={showSelect}
+                  selectOptions={subDepartments}
+                  url={'achievement'}
+                  departmentId={departmentId}
+                  changeDepartment={changeDepartment}
+                />
+              </div>
+            ) : (
+              <Spinner />
+            )}
           </div>
-        ) : (
-          <Spinner />
-        )}
-      </div>
-    </Container>
+        </Container>
+      </section>
+    </>
   );
 };
 

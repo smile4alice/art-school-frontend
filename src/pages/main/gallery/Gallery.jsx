@@ -8,13 +8,15 @@ import GalleryImages from '@/components/gallery_page/GalleryImages/GalleryImages
 import PageTitle from '@/components/ui/PageTitle/PageTitle';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './Gallery.module.scss';
+import Placeholder from '@/components/ui/Placeholder/Placeholder';
 
 const Gallery = () => {
   const { getAllVideo } = useVideoStore();
   const { getAllImages } = useGalleryStore();
   const videos = useVideoStore(state => state.videos);
   const images = useGalleryStore(state => state.images);
-  const loading = useVideoStore(state => state.loading);
+  const videoLoading = useVideoStore(state => state.loading);
+  const imageLoading = useGalleryStore(state => state.loading);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,12 +39,18 @@ const Gallery = () => {
       <section className={styles.Gallery}>
         <PageTitle title="Галерея" />
         <YoutubeLink />
-        {loading ? (
+        {videoLoading || imageLoading ? (
           <Spinner />
         ) : (
           <>
-            <GalleryVideo videos={videos} />
-            <GalleryImages images={images} />
+            {videos?.length > 0 || images?.length > 0 ? (
+              <>
+                <GalleryVideo videos={videos} />
+                <GalleryImages images={images} />
+              </>
+            ) : (
+              <Placeholder />
+            )}
           </>
         )}
       </section>

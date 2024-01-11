@@ -30,8 +30,8 @@ const Gallery = () => {
   }, [getMainAchievements]);
 
   return (
-    <Container>
-      <section className={s.gallerySection}>
+    <section className={`${s.gallerySection} section`}>
+      <Container>
         <h2 className={s.title}>Галерея</h2>
 
         {isDesktop && (
@@ -45,7 +45,7 @@ const Gallery = () => {
           </div>
         )}
         {loadingState === 'error' && (
-          <div className={s.errorData}>
+          <div className="errorData">
             <Placeholder />
           </div>
         )}
@@ -55,11 +55,7 @@ const Gallery = () => {
             <div className={s.gallery}>
               {gallery.map((image, i) => (
                 <div key={i} className={s.item}>
-                  <img
-                    src={image.media}
-                    alt={image.description}
-                  
-                  />
+                  <img src={image.media} alt={image.description} />
                 </div>
               ))}
             </div>
@@ -95,8 +91,8 @@ const Gallery = () => {
             <NavLinkButton text={'Дивитися більше'} href={'/gallery'} />
           </div>
         )}
-      </section>
-    </Container>
+      </Container>
+    </section>
   );
 };
 

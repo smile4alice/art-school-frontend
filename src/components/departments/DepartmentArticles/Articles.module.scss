@@ -1,3 +1,13 @@
+.articleWrapper {
+  @extend%aligncenter;
+  flex-direction: column;
+  @include tablet {
+    gap: 40px;
+  }
+  @include desktop {
+    gap: 120px;
+  }
+}
 .article {
   width: 100%;
   display: flex;
@@ -12,6 +22,7 @@
   @media screen and (min-width: 1240px) {
     gap: 60px;
   }
+
   .textWrapper {
     display: flex;
     align-items: flex-start;

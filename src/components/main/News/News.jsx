@@ -34,8 +34,8 @@ const News = () => {
     fetchData();
   }, [getNews]);
   return (
-    <Container>
-      <section className={styles.News}>
+    <section className={`${styles.News} section`}>
+      <Container>
         <h1>Новини</h1>
         {isLaptop && (
           <div className={styles.ButtonContainer}>
@@ -58,6 +58,7 @@ const News = () => {
               >
                 {news &&
                   Array.isArray(news) &&
+                  news.length > 0 &&
                   news.map((slide, index) => (
                     <SwiperSlide key={index} className={styles.Slide}>
                       <div className={styles.image}>
@@ -88,7 +89,7 @@ const News = () => {
                 )}
               </Swiper>
             ) : (
-              <div className={styles.errorData}>
+              <div className="errorData">
                 <Placeholder />
               </div>
             )}
@@ -102,8 +103,8 @@ const News = () => {
             <NavLinkButton text={'Переглянути всі новини'} href={'/news'} />
           </div>
         )}
-      </section>
-    </Container>
+      </Container>
+    </section>
   );
 };
 

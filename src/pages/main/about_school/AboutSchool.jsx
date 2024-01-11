@@ -6,7 +6,6 @@ import Container from '@/components/Container/Container';
 import Administration from '@/pages/main/about_school/Administration/Administration';
 import Museum from './Museum';
 
-
 import historyData from '@/data/about/history.json';
 import museumData from '@/data/about/museum.json';
 
@@ -22,7 +21,7 @@ const AboutSchool = () => {
   return (
     <>
       {/* <h1 className=''>про школу </h1> */}
-      <section className={styles.history}>
+      <section className={`${styles.history} section`}>
         <Container>
           <div className={styles.history_wrapper}>
             <h2 className="department_title ">Історія школи</h2>
@@ -58,8 +57,8 @@ const AboutSchool = () => {
           </div>
         </Container>
       </section>
-    
-      <section className={styles.museum} id="museum">
+
+      <section className={`${styles.museum} section`} id="museum">
         <Container>
           <div className={styles.museum_contentWrapper}>
             <h2 className="department_title">Музей Михайла Вериківського</h2>

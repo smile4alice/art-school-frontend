@@ -3,7 +3,7 @@
   padding: 0;
   width: 100%;
   position: relative;
-
+  padding-bottom: 28px;
   .prevSlide,
   .nextSlide {
     display: none;
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 3rem;
+    //padding-bottom: 3rem;
 
     .SlideStyle {
       width: 100%;
@@ -130,16 +130,15 @@
   .HeroSection {
     margin: 0 auto;
     padding: 0;
-    margin-bottom: 10vh;
     position: relative;
-
+    padding-bottom: 40px;
     .SliderStyle {
       width: 100%;
       background-color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-bottom: 3rem;
+      //padding-bottom: 3rem;
 
       .SlideStyle {
         width: 100%;
@@ -211,7 +210,7 @@
     margin: 0 auto;
     padding: 0;
     max-width: 1280px;
-    margin-bottom: 10vh;
+    padding-bottom: 120px;
     position: relative;
 
     .prevSlide,
@@ -255,7 +254,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-bottom: 3rem;
+      //padding-bottom: 3rem;
 
       .SlideStyle {
         width: 100%;

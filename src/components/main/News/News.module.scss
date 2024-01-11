@@ -3,8 +3,6 @@
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  padding: 1rem;
-  max-width: 1280px;
 
   h1 {
     font-size: 2rem;
@@ -138,11 +136,5 @@
       right: 1rem;
     }
   }
-  .errorData {
-    width: 100%;
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
+  
 }

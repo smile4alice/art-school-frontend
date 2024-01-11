@@ -2,21 +2,20 @@
 @import '_mixins';
 @import '_placeholders';
 @import './common/title';
+@import './common/title';
+@import './common/section';
+@import './common/errorData';
 body {
   min-height: 100vh;
 }
 
 main {
-  min-height: 40vh;
+  min-height: 80vh;
   margin-top: 110px;
   @media only screen and (orientation: landscape) {
-    margin-top: 76px;
+    margin-top: 91px;
   }
-  @media (min-width: 768px) {
-    & {
-      margin-top: 135px;
-    }
-  }
+
   @media (min-width: 1280px) {
     & {
       margin-top: 167px;
