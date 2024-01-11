@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import useSlidersStore from '@/store/slidersStore';
 import { Autoplay, Pagination, Keyboard } from 'swiper/modules';
-import Data from '@/data/hero.json';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,6 +10,19 @@ import styles from './Hero.module.scss';
 
 const Hero = () => {
   const swiperRef = useRef();
+  const { getSlides } = useSlidersStore();
+  const slides = useSlidersStore(state => state.slides);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getSlides();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [getSlides]);
 
   return (
     <section className={styles.HeroSection}>
@@ -63,16 +76,19 @@ const Hero = () => {
         modules={[Autoplay, Pagination, Keyboard]}
         className={styles.SliderStyle}
       >
-        {Data.map((slide, index) => (
+        {slides.map((slide, index) => (
           <SwiperSlide key={index} className={styles.SlideStyle}>
-            <img src={slide.img} alt={Data.alt} className={styles.HeroImage} />
+            <img
+              src={slide.photo}
+              alt={slide.title}
+              className={styles.HeroImage}
+            />
             {index === 0 && (
               <div className={styles.HeroTitle}>
                 <p className={styles.HeroPrimaryTitle}>
                   Київська дитяча школа мистецтв №2
                 </p>
                 <span className={styles.HeroSecondaryTitle}>
-                  {' '}
                   ім. M. I. Вериківського
                 </span>
               </div>
@@ -80,13 +96,8 @@ const Hero = () => {
             {index >= 2 && (
               <div className={styles.HeroEvent}>
                 <p className={styles.HeroEventName}>подія</p>
-                <h3 className={styles.HeroEventTitle}>
-                  документальна вистава “обличчя кольору війни”
-                </h3>
-                <p className={styles.HeroEventInfo}>
-                  благодійний показ на підтримку зсу. вистава відбудеться 14.10
-                  О 16:00
-                </p>
+                <h3 className={styles.HeroEventTitle}>{slide.title}</h3>
+                <p className={styles.HeroEventInfo}>{slide.description}</p>
               </div>
             )}
           </SwiperSlide>
