@@ -5,6 +5,7 @@ const useGalleryStore = create(set => ({
   loading: false,
   images: [],
   media: {},
+  error: {},
 
   getAllImages: async () => {
     try {
@@ -25,6 +26,12 @@ const useGalleryStore = create(set => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },

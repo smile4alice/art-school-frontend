@@ -28,6 +28,12 @@ const useVideoStore = create((set, get) => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+          error: error,
+        };
+      });
       throw new Error(error);
     }
   },

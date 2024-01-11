@@ -58,6 +58,7 @@ const News = () => {
               >
                 {news &&
                   Array.isArray(news) &&
+                  news.length > 0 &&
                   news.map((slide, index) => (
                     <SwiperSlide key={index} className={styles.Slide}>
                       <div className={styles.image}>
@@ -88,7 +89,7 @@ const News = () => {
                 )}
               </Swiper>
             ) : (
-              <div className={styles.errorData}>
+              <div className="errorData">
                 <Placeholder />
               </div>
             )}

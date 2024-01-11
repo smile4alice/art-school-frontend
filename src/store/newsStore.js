@@ -30,6 +30,7 @@ const useNewsStore = create((set, get) => ({
     } catch (error) {
       set(() => {
         return {
+          loading: false,
           error: error,
         };
       });

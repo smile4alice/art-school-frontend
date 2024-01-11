@@ -1,4 +1,7 @@
 .section {
-  padding-bottom: 120px;
+  padding-bottom: 40px;
   outline: 1px solid blue;
+  @include desktop {
+    padding-bottom: 120px;
+  }
 }

@@ -7,6 +7,7 @@ import Container from '@/components/Container/Container';
 import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 
 import styles from './AllNews.module.scss';
+import Placeholder from '@/components/ui/Placeholder/Placeholder';
 
 const AllNews = () => {
   const ITEMS_PER_PAGE = 6;
@@ -45,8 +46,7 @@ const AllNews = () => {
           <Spinner />
         ) : (
           <div className={styles.newsWrapper}>
-            {news &&
-              Array.isArray(news) &&
+            {news && Array.isArray(news) && news.length > 0 ? (
               news.slice(0, itemsPerPage).map((item, index) => (
                 <Link
                   to={`/news/${item.id}`}
@@ -59,7 +59,10 @@ const AllNews = () => {
                     title={item.title}
                   />
                 </Link>
-              ))}
+              ))
+            ) : (
+              <Placeholder />
+            )}
           </div>
         )}
         <div className={styles.buttonContainer}>

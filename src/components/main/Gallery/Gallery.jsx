@@ -45,7 +45,7 @@ const Gallery = () => {
           </div>
         )}
         {loadingState === 'error' && (
-          <div className={s.errorData}>
+          <div className="errorData">
             <Placeholder />
           </div>
         )}
