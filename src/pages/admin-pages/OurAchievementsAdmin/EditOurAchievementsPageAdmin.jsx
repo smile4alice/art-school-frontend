@@ -8,7 +8,7 @@ const EditOurAchievementsPage = () => {
       achievementPositionsTitle='Закріпити в  блок “Наші досягнення на головній сторінці”'
       url="achievements"
       selectTitle='Всі досягнення'
-      maxSymbols={120}
+      maxSymbols={200}
     />
   );
 };

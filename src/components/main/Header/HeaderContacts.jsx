@@ -12,8 +12,6 @@ const HeaderContacts = ({ contacts }) => {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  console.log(contacts);
-
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
