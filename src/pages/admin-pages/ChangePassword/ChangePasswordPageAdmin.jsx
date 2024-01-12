@@ -52,28 +52,30 @@ const ChangePasswordPageAdmin = () => {
           return (
             <Form>
               <div className={styles.layout}>
-                <Field
-                  name="oldPassword"
-                  id="oldPassword"
-                  placeholder="Поточний пароль"
-                  component={TextInput}
-                  label="Поточний пароль*"
-                />
-                <Field
-                  name="newPassword"
-                  id="newPassword"
-                  placeholder="Новий пароль"
-                  component={PasswordInput}
-                  label="Новий пароль*"
-                />
-                <Field
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  placeholder="Повторити новий пароль"
-                  component={PasswordInput}
-                  label="Повторити новий пароль*"
-                />
-
+                <div className={styles.fieltTextInput}>
+                  <Field
+                    name="oldPassword"
+                    id="oldPassword"
+                    placeholder="Поточний пароль"
+                    component={TextInput}
+                    label="Поточний пароль*"
+                  />
+                  </div>
+                  <Field
+                    name="newPassword"
+                    id="newPassword"
+                    placeholder="Новий пароль"
+                    component={PasswordInput}
+                    label="Новий пароль*"
+                  />
+                  <Field
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    placeholder="Повторити новий пароль"
+                    component={PasswordInput}
+                    label="Повторити новий пароль*"
+                  />
+                
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
