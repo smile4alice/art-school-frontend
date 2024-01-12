@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from 'react'; //, useRef
+import { useState, useEffect, useRef } from 'react';
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
-//import { useConfirmDelete } from '@/store/confirmDelete';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import PlaceholderAdmin from '../../PlaceholderAdmin/PlaceholderAdmin';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
@@ -13,8 +12,7 @@ const AchievementsTable = ({ typeOfAchievements, url, departmentId}) => {
   const achievements = useServicesStore(state => state.achievements);
   const pageCount = useServicesStore(state => state.achievementPageCount);
   const loading = useServicesStore(state => state.loading);
-  //const { isDeleteConfirm } = useConfirmDelete();
-  const { isModalOpen, openModal} = useModal();//, closeModal 
+  const { isModalOpen, openModal} = useModal();
   const [currentId, setCurrentId] = useState('');
   const [page, setPage] = useState(1);
   const triggerRef = useRef(null);
