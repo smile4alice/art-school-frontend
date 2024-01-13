@@ -1,12 +1,6 @@
 .inputWrapper {
   font-family: 'Montserrat', sans-serif;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
   width: 100%;
-  max-width: 478px;
 }
 .inputLabel {
   color: $admin-text-main;
@@ -17,7 +11,6 @@
 .input {
   display: flex;
   width: 100%;
-  max-width: 478px;
   height: 45px;
   padding: 10px;
   align-items: flex-start;
@@ -27,11 +20,13 @@
   color: $admin-text-main;
   font-size: 15px;
   line-height: normal;
+  margin: 0.62rem 0;
   &::placeholder {
     color: $admin-gray;
   }
 }
 .commentsWrapper {
+  position: relative;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -40,6 +35,9 @@
 }
 
 .counterMessage {
+  position: absolute;
+  top: 0;
+  right: 0;
   color: $admin-gray;
   text-align: right;
   font-size: 12px;

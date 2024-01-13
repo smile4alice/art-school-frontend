@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from 'react'; //, useRef
+import { useState, useEffect, useRef } from 'react';
 import useServicesStore from '@/store/serviseStore';
 import { useModal } from '@/store/modalStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import PlaceholderAdmin from '../../PlaceholderAdmin/PlaceholderAdmin';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
@@ -13,23 +12,18 @@ const AchievementsTable = ({ typeOfAchievements, url, departmentId}) => {
   const achievements = useServicesStore(state => state.achievements);
   const pageCount = useServicesStore(state => state.achievementPageCount);
   const loading = useServicesStore(state => state.loading);
-  const { isDeleteConfirm } = useConfirmDelete();
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const { isModalOpen, openModal} = useModal();
   const [currentId, setCurrentId] = useState('');
   const [page, setPage] = useState(1);
   const triggerRef = useRef(null);
 
   const removePost = async () => {
-    if (isDeleteConfirm) {
       try {
         await deleteAchievement(url, currentId);
         setPage(1);
       } catch (error) {
         console.log(error);
       }
-    } else {
-      closeModal();
-    }
   };
 
   const fetchData = async () => {
@@ -75,7 +69,7 @@ const AchievementsTable = ({ typeOfAchievements, url, departmentId}) => {
   useEffect(() => {
     fetchData()
     //eslint-disable-next-line
-  }, [page,typeOfAchievements, departmentId]);
+  }, [page, typeOfAchievements, departmentId]);//, achievements
 
   return (
     <div className={s.table}>

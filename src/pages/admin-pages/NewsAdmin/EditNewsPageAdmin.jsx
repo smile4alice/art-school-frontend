@@ -75,6 +75,7 @@ const EditNewsPage = () => {
           return (
             <Form>
               <div className={styles.layout}>
+              <div className={styles.fieltTextInput}>
                 <Field
                   name="title"
                   id="title"
@@ -85,6 +86,7 @@ const EditNewsPage = () => {
                   text={post?.title}
                   label="Заголовок*"
                 />
+                </div>
                 <div className={styles.secondRow}>
                   <Field
                     name="text"

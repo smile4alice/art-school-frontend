@@ -78,15 +78,17 @@ const EditSlidersPage = () => {
           return (
             <Form>
               <div className={styles.layout}>
-                <Field
-                  name="title"
-                  id="title"
-                  component={TextInput}
-                  maxLength={120}
-                  showCharacterCount={true}
-                  text={slide?.title}
-                  label="Заголовок*"
-                />
+                <div className={styles.fieltTextInput}>
+                  <Field
+                    name="title"
+                    id="title"
+                    component={TextInput}
+                    maxLength={120}
+                    showCharacterCount={true}
+                    text={slide?.title}
+                    label="Заголовок*"
+                  />
+                </div>
                 <div className={styles.secondRow}>
                   <Field
                     name="text"

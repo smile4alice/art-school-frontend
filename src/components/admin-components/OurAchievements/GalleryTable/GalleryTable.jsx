@@ -4,7 +4,6 @@ import useServicesStore from '@/store/serviseStore';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import PlaceholderAdmin from '../../PlaceholderAdmin/PlaceholderAdmin';
 import { useModal } from '@/store/modalStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import sprite from '@/assets/icons/sprite-admin.svg';
 import s from './GalleryTable.module.scss';
@@ -19,23 +18,18 @@ const GalleryTable = ({ typeOfAchievements, url, departmentId }) => {
   const gallery = useServicesStore(state => state.gallery);
   const pageCount = useServicesStore(state => state.galleryPageCount);
   const loading = useServicesStore(state => state.loading);
-  const { isDeleteConfirm } = useConfirmDelete();
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const { isModalOpen, openModal } = useModal();
   const [currentId, setCurrentId] = useState('');
   const [page, setPage] = useState(1);
   const triggerRef = useRef(null);
 
   const removePost = async () => {
-    if (isDeleteConfirm) {
       try {
         await deleteAchievement(url, currentId);
         setPage(1);
       } catch (error) {
         console.log(error);
       }
-    } else {
-      closeModal();
-    }
   };
 
   const fetchData = async () => {

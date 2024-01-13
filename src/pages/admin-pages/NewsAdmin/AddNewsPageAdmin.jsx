@@ -57,15 +57,17 @@ const AddNewsPage = () => {
           return (
             <Form>
               <div className={styles.layout}>
-                <Field
-                  name="title"
-                  id="title"
-                  placeholder="Title"
-                  component={TextInput}
-                  maxLength={120}
-                  showCharacterCount={true}
-                  label="Заголовок*"
-                />
+                <div className={styles.fieltTextInput}>
+                  <Field
+                    name="title"
+                    id="title"
+                    placeholder="Title"
+                    component={TextInput}
+                    maxLength={120}
+                    showCharacterCount={true}
+                    label="Заголовок*"
+                  />
+                </div>
                 <div className={styles.secondRow}>
                   <Field
                     name="text"

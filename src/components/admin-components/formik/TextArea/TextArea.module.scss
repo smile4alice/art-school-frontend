@@ -1,11 +1,6 @@
 .textAreaWrapper {
   font-family: 'Montserrat', sans-serif;
-  width: 48%;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
+  width: 48.5%;
 }
 
 .inputLabel {
@@ -22,11 +17,12 @@
   align-items: flex-start;
   border-radius: 6px;
   border: 1px solid $admin-input-outline;
-  background: $white;
+  background: $admin-white;
   color: $admin-text-main;
   font-size: 15px;
   font-family: 'Montserrat', sans-serif;
   resize: none;
+  margin: 0.62rem 0;
 }
 
 .commentsWrapper {
