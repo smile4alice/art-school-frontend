@@ -142,15 +142,17 @@ const Footer = ({ contacts }) => {
             2023
           </div>
           <div className={styles.footerLinksRules}>
-            <a href="#" target="_blank">
+            {/* <a href="#" target="_blank">
               Офіційна інформація
-            </a>
-            <a href="#" target="_blank">
+            </a> */}
+            {/* <a href="#" target="_blank">
               Політика конфіденційності
-            </a>
-            <a href="#" target="_blank">
+            </a> */}
+            {/* <a href="#" target="_blank">
               Правила користування сайтом
-            </a>
+            </a> */}
+            <Link to="/statement">Політика конфідеційності</Link>
+            <Link to="/school_documents">Правила користування сайтом</Link>
           </div>
         </div>
       </div>
