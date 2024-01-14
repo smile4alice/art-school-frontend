@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import SEO from './components/SEO';
 
 /* main */
 import Layout from './components/layout/Layout';
@@ -65,120 +67,134 @@ import EditVideoPage from './pages/admin-pages/VideoAdmin/EditVideoPageAdmin';
 import PrivateRoute from './components/admin-components/PrivateRoute/PrivateRoute';
 
 const App = () => {
+  const helmetContext = {};
   return (
-    <Router>
-      <Routes>
-        {/* main */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="*" element={<Page404 />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/news" element={<AllNews />} />
-          <Route path="/news/:id" element={<OneNews />} />
-          <Route path="/posters" element={<PostersPage />} />
-          <Route path="/cooperation" element={<Cooperation />} />
-          <Route path="/statement" element={<StatementPage />} />
-          <Route path="/about_school" element={<AboutSchool />} />
-          <Route path="/about_school_history" element={<SchoolHistory />} />
+    <HelmetProvider context={helmetContext}>
+      <SEO
+        title="Київська дитяча школа мистецтв №2 ім. М.І.Вериківського"
+        description="У 2021-2022 навчальному році Київська дитяча школа мистецтв № 2 імені M. I. Вериківського відсвяткувала свій ювілей – 90 річницю від дня утворення. Нині на музичному, театральному, хореографічному, образотворчому та підготовчому відділеннях навчається близько 1000 учнів віком від 2,5 до 17 років."
+      />
 
-          {/* departments */}
-          <Route path="/music_department" element={<MusicDepartment />} />
-          <Route path="/vocal_department" element={<VocalDepartment />} />
-          <Route
-            path="/сhoreographic_department"
-            element={<ChoreographicDepartment />}
-          />
-          <Route path="/theater_department" element={<TheaterDepartment />} />
-          <Route
-            path="/fine_arts_department"
-            element={<FineArtsDepartment />}
-          />
-          <Route
-            path="/preschool_department"
-            element={<PreschoolDepartment />}
-          />
-          <Route
-            path="/about_school_administration"
-            element={<AboutSchool />}
-          />
-        </Route>
+      <Router>
+        <Routes>
+          {/* main */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="*" element={<Page404 />} />
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/news" element={<AllNews />} />
+            <Route path="/news/:id" element={<OneNews />} />
+            <Route path="/posters" element={<PostersPage />} />
+            <Route path="/cooperation" element={<Cooperation />} />
+            <Route path="/statement" element={<StatementPage />} />
+            <Route path="/about_school" element={<AboutSchool />} />
+            <Route path="/about_school_history" element={<SchoolHistory />} />
 
-        {/* login */}
-        <Route path="/login" element={<LoginLayout />}>
-          <Route index element={<SignInPage />} />
-          <Route path="password-recovery" element={<PasswordRecoveryPage />} />
-          <Route
-            path="password-recovery/:token"
-            element={<CompletePasswordRecoveryPage />}
-          />
-          <Route path="password-recovery-success" element={<SuccessPage />} />
-        </Route>
+            {/* departments */}
+            <Route path="/music_department" element={<MusicDepartment />} />
+            <Route path="/vocal_department" element={<VocalDepartment />} />
+            <Route
+              path="/сhoreographic_department"
+              element={<ChoreographicDepartment />}
+            />
+            <Route path="/theater_department" element={<TheaterDepartment />} />
+            <Route
+              path="/fine_arts_department"
+              element={<FineArtsDepartment />}
+            />
+            <Route
+              path="/preschool_department"
+              element={<PreschoolDepartment />}
+            />
+            <Route
+              path="/about_school_administration"
+              element={<AboutSchool />}
+            />
+          </Route>
 
-        {/* admin */}
-        <Route
-          path="/admin"
-          element={
-            <PrivateRoute redirectTo="/login">
-              <AdminSharedLayout />
-            </PrivateRoute>
-          }
-        >
-          <Route index element={<AdminDashboard />} />
-          <Route path="sliders" element={<SlidersPageAdmin />} />
-          <Route path="sliders/add" element={<AddSlidersPage />} />
-          <Route path="sliders/edit/:id" element={<EditSlidersPage />} />
-          <Route path="news" element={<NewsPageAdmin />} />
-          <Route path="news/add" element={<AddNewsPageAdmin />} />
-          <Route path="news/edit/:id" element={<EditNewsPageAdmin />} />
-          <Route path="posters" element={<PostersPageAdmin />} />
-          <Route path="posters/add" element={<AddPostersPage />} />
-          <Route path="posters/edit/:id" element={<EditPostersPage />} />
-          <Route path="gallery" element={<GalleryPageAdmin />} />
-          <Route path="gallery/add" element={<AddGalleryPage />} />
-          <Route path="gallery/edit/:id" element={<EditGalleryPage />} />
-          <Route path="video" element={<VideoPageAdmin />} />
-          <Route path="video/add" element={<AddVideoPage />} />
-          <Route path="video/edit/:id" element={<EditVideoPage />} />
-          <Route path="departments" element={<DepartmentsPageAdmin />} />
-          <Route path="departments/:id" element={<DepartmentPageAdmin />} />
-          <Route
-            path="departments/sub_department/add"
-            element={<AddSubDepartmentPage />}
-          />
-          <Route
-            path="departments/sub_department/edit/:id"
-            element={<EditSubDepartmentPage />}
-          />
-          <Route path="achievements" element={<OurAchievementsPageAdmin />} />
-          <Route path="achievements/add" element={<AddOurAchievementsPage />} />
-          <Route
-            path="achievements/edit/:id"
-            element={<EditOurAchievementsPage />}
-          />
-          <Route path="contacts" element={<ContactsPageAdmin />} />
-          <Route
-            path="contacts/edit/:key"
-            element={<EditContactsPageAdmin />}
-          />
-          <Route path="password" element={<ChangePasswordPageAdmin />} />
-          <Route
-            path="administration"
-            element={<SchoolAdministrationPageAdmin />}
-          />
-          <Route
-            path="administration/add"
-            element={<AddSchoolAdministrationPage />}
-          />
-          <Route
-            path="administration/edit/:id"
-            element={<EditSchoolAdministrationPage />}
-          />
-        </Route>
+          {/* login */}
+          <Route path="/login" element={<LoginLayout />}>
+            <Route index element={<SignInPage />} />
+            <Route
+              path="password-recovery"
+              element={<PasswordRecoveryPage />}
+            />
+            <Route
+              path="password-recovery/:token"
+              element={<CompletePasswordRecoveryPage />}
+            />
+            <Route path="password-recovery-success" element={<SuccessPage />} />
+          </Route>
 
-        <Route path="/admin/*" element={<NotFoundAdmin />} />
-      </Routes>
-    </Router>
+          {/* admin */}
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <AdminSharedLayout />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<AdminDashboard />} />
+            <Route path="sliders" element={<SlidersPageAdmin />} />
+            <Route path="sliders/add" element={<AddSlidersPage />} />
+            <Route path="sliders/edit/:id" element={<EditSlidersPage />} />
+            <Route path="news" element={<NewsPageAdmin />} />
+            <Route path="news/add" element={<AddNewsPageAdmin />} />
+            <Route path="news/edit/:id" element={<EditNewsPageAdmin />} />
+            <Route path="posters" element={<PostersPageAdmin />} />
+            <Route path="posters/add" element={<AddPostersPage />} />
+            <Route path="posters/edit/:id" element={<EditPostersPage />} />
+            <Route path="gallery" element={<GalleryPageAdmin />} />
+            <Route path="gallery/add" element={<AddGalleryPage />} />
+            <Route path="gallery/edit/:id" element={<EditGalleryPage />} />
+            <Route path="video" element={<VideoPageAdmin />} />
+            <Route path="video/add" element={<AddVideoPage />} />
+            <Route path="video/edit/:id" element={<EditVideoPage />} />
+            <Route path="departments" element={<DepartmentsPageAdmin />} />
+            <Route path="departments/:id" element={<DepartmentPageAdmin />} />
+            <Route
+              path="departments/sub_department/add"
+              element={<AddSubDepartmentPage />}
+            />
+            <Route
+              path="departments/sub_department/edit/:id"
+              element={<EditSubDepartmentPage />}
+            />
+            <Route path="achievements" element={<OurAchievementsPageAdmin />} />
+            <Route
+              path="achievements/add"
+              element={<AddOurAchievementsPage />}
+            />
+            <Route
+              path="achievements/edit/:id"
+              element={<EditOurAchievementsPage />}
+            />
+            <Route path="contacts" element={<ContactsPageAdmin />} />
+            <Route
+              path="contacts/edit/:key"
+              element={<EditContactsPageAdmin />}
+            />
+            <Route path="password" element={<ChangePasswordPageAdmin />} />
+            <Route
+              path="administration"
+              element={<SchoolAdministrationPageAdmin />}
+            />
+            <Route
+              path="administration/add"
+              element={<AddSchoolAdministrationPage />}
+            />
+            <Route
+              path="administration/edit/:id"
+              element={<EditSchoolAdministrationPage />}
+            />
+          </Route>
+
+          <Route path="/admin/*" element={<NotFoundAdmin />} />
+        </Routes>
+      </Router>
+    </HelmetProvider>
   );
 };
 

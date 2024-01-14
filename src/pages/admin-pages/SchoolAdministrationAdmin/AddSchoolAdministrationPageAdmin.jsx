@@ -55,14 +55,16 @@ const AddSchoolAdministrationPage = () => {
           return (
             <Form>
               <div className={styles.layout}>
-                <Field
-                  name="full_name"
-                  id="full_name"
-                  component={TextInput}
-                  maxLength={120}
-                  showCharacterCount={true}
-                  label="ПІБ працівника*"
-                />
+                <div className={styles.fieltTextInput}>
+                  <Field
+                    name="full_name"
+                    id="full_name"
+                    component={TextInput}
+                    maxLength={120}
+                    showCharacterCount={true}
+                    label="ПІБ працівника*"
+                  />
+                </div>
                 <div className={styles.secondRow}>
                   <Field
                     name="position"

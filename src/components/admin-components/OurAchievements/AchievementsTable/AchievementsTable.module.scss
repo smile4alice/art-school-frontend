@@ -1,6 +1,7 @@
 .table {
   margin-top: 1rem;
   width: 100%;
+  overflow: hidden;
   border: 1px solid $admin-purple;
   border-radius: 8px;
   font-weight: 500;
@@ -46,7 +47,7 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
     font-size: 0.75rem;
-    max-height: calc(100vh - 270px);
+    max-height: calc(100vh - 282px);
     overflow-y: auto;
     &::-webkit-scrollbar {
       width: 0.3125rem;

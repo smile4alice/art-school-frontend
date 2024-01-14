@@ -13,7 +13,6 @@ const ContactsPageAdmin = () => {
   const contacts = useContactsStore(state => state.contacts);
   const loading = useContactsStore(state => state.loading);
   const error = useContactsStore(state => state.error);
-
   useEffect(() => {
     const fetchData = async () => {
       try {

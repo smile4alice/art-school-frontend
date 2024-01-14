@@ -1,5 +1,4 @@
 .contentWrap {
-  // position: relative;
   display: flex;
   min-width: 296px;
   flex-direction: column;
@@ -25,8 +24,8 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   width: 100%;
-  max-height: calc(100vh - 100px);
-  overflow-y: scroll;
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
   &::-webkit-scrollbar {
     width: 0.3125rem;
   }

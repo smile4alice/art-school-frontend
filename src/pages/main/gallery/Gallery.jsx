@@ -9,6 +9,7 @@ import PageTitle from '@/components/ui/PageTitle/PageTitle';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './Gallery.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
+import SEO from '@/components/SEO';
 
 const Gallery = () => {
   const { getAllVideo } = useVideoStore();
@@ -35,26 +36,32 @@ const Gallery = () => {
   }, [getAllVideo, getAllImages]);
 
   return (
-    <Container>
-      <section className={styles.Gallery}>
-        <PageTitle title="Галерея" />
-        <YoutubeLink />
-        {videoLoading || imageLoading ? (
-          <Spinner />
-        ) : (
-          <>
-            {videos?.length > 0 || images?.length > 0 ? (
-              <>
-                <GalleryVideo videos={videos} />
-                <GalleryImages images={images} />
-              </>
-            ) : (
-              <Placeholder />
-            )}
-          </>
-        )}
-      </section>
-    </Container>
+    <>
+      <SEO
+        title="Галерея Київської дитячої школи мистецтв №2 ім. М.І.Вериківського"
+        description="Київська дитяча школа мистецтв №2 ім. М.І.Вериківського є осередком, де виховуються таланти, вирує мистецьке життя, та відбуваються різні мистецькі заходи. Детальніше дізнатись про те чим живе школа та переглянути як пройшов мистецький захід можна на сторінці Галерея дитячої школи мистецтв. "
+      />
+      <Container>
+        <section className={styles.Gallery}>
+          <PageTitle title="Галерея" />
+          <YoutubeLink />
+          {videoLoading || imageLoading ? (
+            <Spinner />
+          ) : (
+            <>
+              {videos?.length > 0 || images?.length > 0 ? (
+                <>
+                  <GalleryVideo videos={videos} />
+                  <GalleryImages images={images} />
+                </>
+              ) : (
+                <Placeholder />
+              )}
+            </>
+          )}
+        </section>
+      </Container>
+    </>
   );
 };
 
