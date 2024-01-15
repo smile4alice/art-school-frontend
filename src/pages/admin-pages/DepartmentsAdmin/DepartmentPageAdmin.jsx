@@ -60,7 +60,8 @@ const DepartmentPageAdmin = () => {
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
         title={`${title}`}
-        showBackButton={false}
+        showBackButton={true}
+        backButtonLink='/admin/departments'
         showActionButton={true}
         actionButtonLink="/admin/departments/sub_department/add"
         isActionButtonDisabled={false}

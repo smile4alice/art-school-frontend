@@ -8,7 +8,9 @@ const Sidebar = () => {
       <div className={styles.sidebarWrapper}>            
          <div className={styles.sidebarContent}>
             <LogoAdmin/>
+            <div className={styles.sidebar}>
             <SideBarMenuList />
+            </div>
             <LogoutButton/>
          </div>
          <div className={styles.copyright}>                    

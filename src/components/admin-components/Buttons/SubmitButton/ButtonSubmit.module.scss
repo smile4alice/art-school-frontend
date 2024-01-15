@@ -11,7 +11,6 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-
   transition: background-color 0.3s ease;
 }
 
@@ -19,6 +18,7 @@
   border-radius: 6px;
   border: 1px solid #0047ff;
   background: #0047ff;
+  cursor: pointer;
 }
 
 .activeButton:hover {
@@ -30,6 +30,7 @@
   border-radius: 6px;
   border: 1px solid #b7bfcc;
   background: #b7bfcc;
+  cursor: default;
 }
 
 .rightButton {

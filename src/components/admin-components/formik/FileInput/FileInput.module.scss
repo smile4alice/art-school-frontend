@@ -20,7 +20,9 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    min-height: 197px;
+    //min-height: 197px;
+    height: 197px;
+    box-sizing: border-box;
     border: 2px dashed $admin-blue;
     margin: 0 auto;
     margin-bottom: 0.5rem;
@@ -46,6 +48,7 @@
     .imagePreview {
       padding: 0.5rem;
       width: 100%;
+      height: 100%;
       height: 197px;
       img {
         width: 100%;
@@ -55,8 +58,7 @@
     }
   }
   .errorWrap {
-    width: 422px;
-    //margin-bottom: 2rem;
+    width: 100%;
   }
 
   .errorMessage {

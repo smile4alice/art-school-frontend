@@ -7,6 +7,7 @@ import artImg from '/departments/art.webp';
 import choreografyImg from '/departments/horeografy.webp';
 import theaterImg from '/departments/theater.webp';
 import vocalImg from '/departments/vocal.webp';
+import preschoolImg from '/departments/preschool.webp';
 
 import styles from './Departments.module.scss';
 
@@ -57,7 +58,7 @@ const Departments = () => {
             <Department
               title={preschoolPreparatoryDepartment}
               link="/preschool_department"
-              img={theaterImg}
+              img={preschoolImg}
             />
           </div>
         </div>

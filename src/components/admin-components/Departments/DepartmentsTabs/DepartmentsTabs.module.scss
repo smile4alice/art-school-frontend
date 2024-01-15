@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin: 0 0.31rem 1.25rem;
 }
 .item {
   min-width: 162px;
@@ -14,7 +14,7 @@
   font-size: 14px;
   &_active {
     font-size: 14px;
-    padding: 0.5rem 1rem;
+    padding: .5rem 0.44rem;
     color: $admin-accent;
     border-bottom: 2px solid $admin-accent;
   }

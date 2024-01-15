@@ -14,7 +14,7 @@ module.exports = {
     'commitlint.config.cjs',
     'vite.config.js',
     'jest.config.js',
-    '**.test.jsx'
+    '**.test.jsx',
   ],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.2' } },

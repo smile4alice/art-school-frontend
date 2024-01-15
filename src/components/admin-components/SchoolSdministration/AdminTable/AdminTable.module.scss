@@ -124,27 +124,23 @@
   font-weight: 500;
   overflow: hidden;
 }
-
-.cellPhotoRow {
-  display: flex;
-  width: 77px;
-  height: 36px;
-  padding: 0px 10px;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contentElementImg {
-  display: flex;
-  width: 57px;
-  height: 36px;
-  padding: 5px 0px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 3px;
-  border: 1px solid $admin-light-purple;
-  background: $admin-light-purple;
+.photo {
+  >div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $admin-light-purple;
+    border-radius: 0.1875rem;
+    width: 3.5rem;
+    height: 2.25rem;
+    padding: .1rem;
+    overflow: hidden;
+    img {
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
 }
 
 .cellActionRow {
