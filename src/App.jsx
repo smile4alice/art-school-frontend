@@ -13,6 +13,7 @@ import OneNews from './pages/main/news/news_post/NewsPost';
 import PostersPage from './pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
 import StatementPage from './pages/main/statement/StatementPage';
+import SchoolDocuments from './pages/main/school_documents/School_documents';
 
 /* login */
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
@@ -41,6 +42,7 @@ import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
 import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
 import EditNewsPageAdmin from './pages/admin-pages/NewsAdmin/EditNewsPageAdmin';
 import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
+import SchoolDocumentsPageAdmin from './pages/admin-pages/SchoolDocumentsAdmin/SchoolDocumentsPageAdmin';
 
 import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryPageAdmin';
 import AddGalleryPage from './pages/admin-pages/GalleryAdmin/AddGalleryPageAdmin';
@@ -74,7 +76,6 @@ const App = () => {
         title="Київська дитяча школа мистецтв №2 ім. М.І.Вериківського"
         description="У 2021-2022 навчальному році Київська дитяча школа мистецтв № 2 імені M. I. Вериківського відсвяткувала свій ювілей – 90 річницю від дня утворення. Нині на музичному, театральному, хореографічному, образотворчому та підготовчому відділеннях навчається близько 1000 учнів віком від 2,5 до 17 років."
       />
-
       <Router>
         <Routes>
           {/* main */}
@@ -90,6 +91,7 @@ const App = () => {
             <Route path="/statement" element={<StatementPage />} />
             <Route path="/about_school" element={<AboutSchool />} />
             <Route path="/about_school_history" element={<SchoolHistory />} />
+            <Route path="/school_documents" element={<SchoolDocuments />} />
 
             {/* departments */}
             <Route path="/music_department" element={<MusicDepartment />} />
@@ -190,6 +192,9 @@ const App = () => {
               element={<EditSchoolAdministrationPage />}
             />
           </Route>
+          <Route path="documents" element={<SchoolDocumentsPageAdmin />} />
+          {/* <Route path="documents/add" element={<AddSchoolDocumentsPage />} />
+          <Route path="documents/edit/:id" element={<EditSchoolDocumentsPage />} /> */}
 
           <Route path="/admin/*" element={<NotFoundAdmin />} />
         </Routes>
