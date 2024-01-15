@@ -11,7 +11,7 @@ import OneNews from './pages/main/news/news_post/NewsPost';
 import PostersPage from './pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
 import StatementPage from './pages/main/statement/StatementPage';
-import SchoolDocuments from './pages/main/school_documents/school_documents';
+import SchoolDocuments from './pages/main/school_documents/School_documents';
 
 /* login */
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
