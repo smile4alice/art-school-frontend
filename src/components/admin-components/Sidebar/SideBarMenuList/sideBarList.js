@@ -59,4 +59,10 @@ export const sideBarList = [
     isFilled: true,
     iconClass: 'icon-password',
   },
+    {
+    title: 'Документи школи ',
+    link: 'documents',
+    isFilled: true,
+    iconClass: 'icon-documents',
+  },
 ];

@@ -39,6 +39,7 @@ import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
 import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
 import EditNewsPageAdmin from './pages/admin-pages/NewsAdmin/EditNewsPageAdmin';
 import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
+import SchoolDocumentsPageAdmin from './pages/admin-pages/SchoolDocumentsAdmin/SchoolDocumentsPageAdmin'
 
 import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryPageAdmin';
 import AddGalleryPage from './pages/admin-pages/GalleryAdmin/AddGalleryPageAdmin';
@@ -81,6 +82,7 @@ const App = () => {
           <Route path="/statement" element={<StatementPage />} />
           <Route path="/about_school" element={<AboutSchool />} />
           <Route path="/about_school_history" element={<SchoolHistory />} />
+            
 
           {/* departments */}
           <Route path="/music_department" element={<MusicDepartment />} />
@@ -175,6 +177,9 @@ const App = () => {
             element={<EditSchoolAdministrationPage />}
           />
         </Route>
+          <Route path="documents" element={<SchoolDocumentsPageAdmin />} />
+          {/* <Route path="documents/add" element={<AddSchoolDocumentsPage />} />
+          <Route path="documents/edit/:id" element={<EditSchoolDocumentsPage />} /> */}
 
         <Route path="/admin/*" element={<NotFoundAdmin />} />
       </Routes>
