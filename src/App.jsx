@@ -41,6 +41,7 @@ import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
 import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
 import EditNewsPageAdmin from './pages/admin-pages/NewsAdmin/EditNewsPageAdmin';
 import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
+import SchoolDocumentsPageAdmin from './pages/admin-pages/SchoolDocumentsAdmin/SchoolDocumentsPageAdmin'
 
 import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryPageAdmin';
 import AddGalleryPage from './pages/admin-pages/GalleryAdmin/AddGalleryPageAdmin';
@@ -69,11 +70,28 @@ import PrivateRoute from './components/admin-components/PrivateRoute/PrivateRout
 const App = () => {
   const helmetContext = {};
   return (
+
     <HelmetProvider context={helmetContext}>
       <SEO
         title="Київська дитяча школа мистецтв №2 ім. М.І.Вериківського"
         description="У 2021-2022 навчальному році Київська дитяча школа мистецтв № 2 імені M. I. Вериківського відсвяткувала свій ювілей – 90 річницю від дня утворення. Нині на музичному, театральному, хореографічному, образотворчому та підготовчому відділеннях навчається близько 1000 учнів віком від 2,5 до 17 років."
       />
+    <Router>
+      <Routes>
+        {/* main */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="*" element={<Page404 />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/news" element={<AllNews />} />
+          <Route path="/news/:id" element={<OneNews />} />
+          <Route path="/posters" element={<PostersPage />} />
+          <Route path="/cooperation" element={<Cooperation />} />
+          <Route path="/statement" element={<StatementPage />} />
+          <Route path="/about_school" element={<AboutSchool />} />
+          <Route path="/about_school_history" element={<SchoolHistory />} />
+            
 
       <Router>
         <Routes>
@@ -190,6 +208,13 @@ const App = () => {
               element={<EditSchoolAdministrationPage />}
             />
           </Route>
+            path="administration/edit/:id"
+            element={<EditSchoolAdministrationPage />}
+          />
+        </Route>
+          <Route path="documents" element={<SchoolDocumentsPageAdmin />} />
+          {/* <Route path="documents/add" element={<AddSchoolDocumentsPage />} />
+          <Route path="documents/edit/:id" element={<EditSchoolDocumentsPage />} /> */}
 
           <Route path="/admin/*" element={<NotFoundAdmin />} />
         </Routes>
