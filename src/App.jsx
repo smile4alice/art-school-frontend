@@ -71,24 +71,6 @@ import PrivateRoute from './components/admin-components/PrivateRoute/PrivateRout
 const App = () => {
   const helmetContext = {};
   return (
-
-    <Router>
-      <Routes>
-        {/* main */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="*" element={<Page404 />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/news" element={<AllNews />} />
-          <Route path="/news/:id" element={<OneNews />} />
-          <Route path="/posters" element={<PostersPage />} />
-          <Route path="/cooperation" element={<Cooperation />} />
-          <Route path="/statement" element={<StatementPage />} />
-          <Route path="/about_school" element={<AboutSchool />} />
-          <Route path="/about_school_history" element={<SchoolHistory />} />
-          <Route path="/school_documents" element={<SchoolDocuments />} />
-
     <HelmetProvider context={helmetContext}>
       <SEO
         title="Київська дитяча школа мистецтв №2 ім. М.І.Вериківського"
@@ -109,7 +91,7 @@ const App = () => {
             <Route path="/statement" element={<StatementPage />} />
             <Route path="/about_school" element={<AboutSchool />} />
             <Route path="/about_school_history" element={<SchoolHistory />} />
-
+            <Route path="/school_documents" element={<SchoolDocuments />} />
 
             {/* departments */}
             <Route path="/music_department" element={<MusicDepartment />} />
