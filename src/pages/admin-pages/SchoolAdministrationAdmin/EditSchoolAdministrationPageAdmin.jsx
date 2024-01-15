@@ -74,15 +74,17 @@ const EditSchoolAdministrationPage = () => {
           return (
             <Form>
               <div className={styles.layout}>
-                <Field
-                  name="full_name"
-                  id="full_name"
-                  component={TextInput}
-                  maxLength={60}
-                  showCharacterCount={true}
-                  label="ПІБ працівника*"
-                  text={member?.full_name}
-                />
+                <div className={styles.fieltTextInput}>
+                  <Field
+                    name="full_name"
+                    id="full_name"
+                    component={TextInput}
+                    maxLength={60}
+                    showCharacterCount={true}
+                    label="ПІБ працівника*"
+                    text={member?.full_name}
+                  />
+                </div>
                 <div className={styles.secondRow}>
                   <Field
                     name="position"

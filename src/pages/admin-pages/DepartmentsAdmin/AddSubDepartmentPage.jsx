@@ -66,15 +66,17 @@ const AddSubDepartmentPage = () => {
             <Form>
               <div className={styles.layout}>
                 <div className={styles.secondRow}>
-                  <Field
-                    name="title"
-                    id="title"
-                    placeholder="Title"
-                    component={TextInput}
-                    maxLength={120}
-                    showCharacterCount={true}
-                    label="Назва*"
-                  />
+                  <div className={styles.fieltTextInput}>
+                    <Field
+                      name="title"
+                      id="title"
+                      placeholder="Title"
+                      component={TextInput}
+                      maxLength={120}
+                      showCharacterCount={true}
+                      label="Назва*"
+                    />
+                  </div>
                   <Field
                     name="text"
                     id="text"

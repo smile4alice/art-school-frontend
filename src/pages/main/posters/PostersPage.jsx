@@ -6,7 +6,7 @@ import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
-
+import SEO from '@/components/SEO';
 const PostersPage = () => {
   const ITEMS_PER_PAGE = 6;
   const { getPosters } = usePostersStore();
@@ -82,59 +82,62 @@ const PostersPage = () => {
   //console.log(posters.length > postersPerPage);
 
   return (
-    <Container>
-      {!loading ? (
-        <section className={styles.contentWrapper}>
-          <h1 className={styles.pageTitle}>Афіша</h1>
-          {posters?.length > 0 ? (
-            <ul className={styles.postersList}>
-              {posters.slice(0, postersPerPage).map((poster, index) => (
-                <li key={index} className={styles.postersListItem}>
-                  <div className={styles.postersListItemImg}>
-                    <img
-                      className={styles.image}
-                      src={poster.photo}
-                      alt={`Афіша  ${poster.title}`}
-                      onClick={() => {
-                        setActiveImgUrl(poster.id);
-                        toggleModal();
-                      }}
-                    />
-                  </div>
-                  <div  className={styles.postersListItemText}>{poster.title}</div>
-                 
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <Placeholder />
-          )}
+    <>
+      <SEO
+        title="Афіша Київської дитячої школи мистецтв №2 ім. М.І.Вериківського"
+        description='На сцені Київської дитячої школи мистецтв №2 ім. М.І.Вериківського регулярно проводяться мистецькі заходи, представленні відділеннями школи, детальніше про ці заходи можна дізнатися на сторінці Афіша дитячої школи мистецтв.'
+      />
+      <Container>
+        {!loading ? (
+          <section className={styles.contentWrapper}>
+            <h1 className={styles.pageTitle}>Афіша</h1>
+            {posters?.length > 0 ? (
+              <ul className={styles.postersList}>
+                {posters.slice(0, postersPerPage).map((poster, index) => (
+                  <li key={index} className={styles.postersListItem}>
+                    <div className={styles.postersListItemImg}>
+                      <img
+                        className={styles.image}
+                        src={poster.photo}
+                        alt={`Афіша  ${poster.title}`}
+                        onClick={() => {
+                          setActiveImgUrl(poster.id);
+                          toggleModal();
+                        }}
+                      />
+                    </div>
+                    <div className={styles.postersListItemText}>
+                      {poster.title}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <Placeholder />
+            )}
 
-          {showModal && (
-            <Modal toggleModal={toggleModal}>
-              <img
-                src={selectedImg.photo}
-                alt={`Афіша  ${selectedImg.title}`}
+            {showModal && (
+              <Modal toggleModal={toggleModal}>
+                <img
+                  src={selectedImg.photo}
+                  alt={`Афіша  ${selectedImg.title}`}
+                />
+              </Modal>
+            )}
+            {posters.length > ITEMS_PER_PAGE && (
+              <ViewButton
+                isMaxAmount={isMaxAmount}
+                viewMore={viewMore}
+                viewLess={viewLess}
               />
-            </Modal>
-          )}
-          {posters.length > ITEMS_PER_PAGE && (
-            <ViewButton
-              isMaxAmount={isMaxAmount}
-              viewMore={viewMore}
-              viewLess={viewLess}
-            />
-          )}
-        </section>
-      ) : (
-        <Spinner />
-      )}
-    </Container>
+            )}
+          </section>
+        ) : (
+          <Spinner />
+        )}
+      </Container>
+    </>
   );
 };
 
 export default PostersPage;
-/* <Markup
-                    className={styles.postersListItemText}
-                    content={poster.title}
-                  /> */

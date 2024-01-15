@@ -1,24 +1,21 @@
 import { Link } from 'react-router-dom';
-import { dataKeys } from './dataKeys';
-import styles from './ContactsTable.module.scss';
+// import { dataKeys } from './dataKeys';
+import styles from './SchoolDocuments.moduleTable.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
-const ContactsTable = ({ data }) => {
+const SchoolDocumentsTable = ({ data }) => {
   const dataValues = Object.keys(data);
-  console.log(dataValues);
 
   return (
     <div className={styles.contentWrap}>
       <ul className={styles.tableHeader}>
-        <li className={styles.cellHeadingHeader}>Заголовок</li>
-        <li className={styles.cellTextHeader}>Текст</li>
+        <li className={styles.cellHeadingHeader}>Назва документу</li>
         <li className={styles.cellActionHeader}>Дія</li>
       </ul>
       <div className={styles.tbody}>
         {dataValues.map((item, index) => (
           <div className={styles.tableRow} key={index}>
             <div className={styles.cellHeadingRow}>{dataKeys[index]}</div>
-            <div className={styles.cellTextRow}>{data[item]}</div>
             <div className={styles.cellActionRow}>
               <Link
                 to={`edit/${item}`}
@@ -37,4 +34,4 @@ const ContactsTable = ({ data }) => {
     </div>
   );
 };
-export default ContactsTable;
+export default SchoolDocumentsTable;

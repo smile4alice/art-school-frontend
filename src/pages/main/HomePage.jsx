@@ -6,7 +6,6 @@ import History from '@/components/main/History/History';
 import Departments from '@/components/main/Departments/Departments';
 import Map from '@/components/main/Map/Map';
 import News from '@/components/main/News/News';
-
 const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);

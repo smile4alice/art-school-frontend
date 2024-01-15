@@ -5,9 +5,9 @@ import Spinner from '@/components/ui/Spinner/Spinner';
 import NewsItem from './news_item/NewsItem';
 import Container from '@/components/Container/Container';
 import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
-
 import styles from './AllNews.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
+import SEO from '@/components/SEO';
 
 const AllNews = () => {
   const ITEMS_PER_PAGE = 6;
@@ -39,43 +39,49 @@ const AllNews = () => {
   }, []);
 
   return (
-    <Container>
-      <section className={styles.wrapper}>
-        <p className={`${styles.title} sectionTitle`}>Новини</p>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <div className={styles.newsWrapper}>
-            {news && Array.isArray(news) && news.length > 0 ? (
-              news.slice(0, itemsPerPage).map((item, index) => (
-                <Link
-                  to={`/news/${item.id}`}
-                  state={{ post: item }}
-                  key={index}
-                >
-                  <NewsItem
-                    imgSrc={item.photo}
-                    date={item.created_at}
-                    title={item.title}
-                  />
-                </Link>
-              ))
-            ) : (
-              <Placeholder />
+    <>
+      <SEO
+        title="Події Київської дитячої школи мистецтв №2 ім. М.І.Вериківського"
+        description="Київська дитяча школа мистецтв №2 ім. М.І.Вериківського є осередком, де виховуються таланти та вирує мистецьке життя, детальніше про всі події пов'язані зі школою та її вихованцями можна дізнатися на сторінці Афіша дитячої школи мистецтв. "
+      />
+      <Container>
+        <section className={styles.wrapper}>
+          <p className={`${styles.title} sectionTitle`}>Новини</p>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <div className={styles.newsWrapper}>
+              {news && Array.isArray(news) && news.length > 0 ? (
+                news.slice(0, itemsPerPage).map((item, index) => (
+                  <Link
+                    to={`/news/${item.id}`}
+                    state={{ post: item }}
+                    key={index}
+                  >
+                    <NewsItem
+                      imgSrc={item.photo}
+                      date={item.created_at}
+                      title={item.title}
+                    />
+                  </Link>
+                ))
+              ) : (
+                <Placeholder />
+              )}
+            </div>
+          )}
+          <div className={styles.buttonContainer}>
+            {news.length > ITEMS_PER_PAGE && (
+              <ViewButton
+                isMaxAmount={isMaxAmount}
+                viewMore={viewMore}
+                viewLess={viewLess}
+              />
             )}
           </div>
-        )}
-        <div className={styles.buttonContainer}>
-          {news.length > ITEMS_PER_PAGE && (
-            <ViewButton
-              isMaxAmount={isMaxAmount}
-              viewMore={viewMore}
-              viewLess={viewLess}
-            />
-          )}
-        </div>
-      </section>
-    </Container>
+        </section>
+      </Container>
+    </>
   );
 };
 
