@@ -13,6 +13,7 @@ import OneNews from './pages/main/news/news_post/NewsPost';
 import PostersPage from './pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
 import StatementPage from './pages/main/statement/StatementPage';
+import SchoolDocuments from './pages/main/school_documents/School_documents';
 
 /* login */
 import LoginLayout from './components/admin-components/Login/LoginLayout/LoginLayout';
@@ -90,6 +91,7 @@ const App = () => {
             <Route path="/statement" element={<StatementPage />} />
             <Route path="/about_school" element={<AboutSchool />} />
             <Route path="/about_school_history" element={<SchoolHistory />} />
+            <Route path="/school_documents" element={<SchoolDocuments />} />
 
             {/* departments */}
             <Route path="/music_department" element={<MusicDepartment />} />

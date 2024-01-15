@@ -1,0 +1,55 @@
+.schoolDocuments{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+} 
+
+.contentWrapper {  
+       margin: 20px 16px 30px; 
+
+      @media screen and (min-width: 768px) {
+         margin: 0 16px 40px;
+         width: 736px;
+         }
+
+      @media screen and (min-width: 1280px) {
+         margin: 40px 50px 60px;
+         width: 1180px; 
+      }
+   }
+
+.documentsTitle{   
+   font-size: 24px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: normal;
+   margin-bottom: 16px;
+
+   @media screen and (min-width: 1280px) {
+   font-size: 32px;
+   margin-bottom: 33px;
+   }
+}
+
+.documentsList {
+   display: flex;
+   flex-direction: column;      
+   gap: 15px;   
+}
+
+.documentLink {
+   color: #1E58C2;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+   letter-spacing: 0.259px;
+   text-decoration-line: underline;
+
+   @media screen and (min-width: 1280px) {
+      font-size: 18px;
+   }
+}
+.documentLink:hover{
+   color: #0335E6;
+}
