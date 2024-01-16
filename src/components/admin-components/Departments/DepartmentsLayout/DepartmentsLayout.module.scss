@@ -1,16 +1,17 @@
 .contentWrap {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 205px;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.12rem;
   min-width: 296px;
   width: 100%;
   border-radius: 8px;
   border: 1px solid $admin-purple;
   overflow: hidden;
   padding: 1rem;
-  height: calc(100vh - 146px);
+  max-height: calc(100vh - 146px);
   overflow-y: auto;
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);

@@ -40,14 +40,11 @@ const AdminTable = ({ data }) => {
             <div className={styles.tableRow} key={index}>
               <div className={styles.cellHeadingRow}>{item.full_name}</div>
               <div className={styles.cellTextRow}>{item.position}</div>
-              <div className={styles.cellPhotoRow}>
-                <img
-                  src={item.photo}
-                  alt={item.title}
-                  className={styles.contentElementImg}
-                />
+              <div className={styles.photo}>
+                <div>
+                  <img src={item.photo} alt={item.title} />
+                </div>
               </div>
-
               <div className={styles.cellActionRow}>
                 <Link to={`edit/${item.id}`}>
                   <div className={styles.cellActionContainer}>
