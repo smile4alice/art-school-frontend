@@ -42,7 +42,6 @@ import NewsPageAdmin from './pages/admin-pages/NewsAdmin/NewsPageAdmin';
 import AddNewsPageAdmin from './pages/admin-pages/NewsAdmin/AddNewsPageAdmin';
 import EditNewsPageAdmin from './pages/admin-pages/NewsAdmin/EditNewsPageAdmin';
 import PostersPageAdmin from './pages/admin-pages/PostersAdmin/PostersPageAdmin';
-import SchoolDocumentsPageAdmin from './pages/admin-pages/SchoolDocumentsAdmin/SchoolDocumentsPageAdmin';
 
 import GalleryPageAdmin from './pages/admin-pages/GalleryAdmin/GalleryPageAdmin';
 import AddGalleryPage from './pages/admin-pages/GalleryAdmin/AddGalleryPageAdmin';
@@ -67,6 +66,9 @@ import VideoPageAdmin from './pages/admin-pages/VideoAdmin/VideoPageAdmin';
 import AddVideoPage from './pages/admin-pages/VideoAdmin/AddVideoPageAdmin';
 import EditVideoPage from './pages/admin-pages/VideoAdmin/EditVideoPageAdmin';
 import PrivateRoute from './components/admin-components/PrivateRoute/PrivateRoute';
+import SchoolDocumentsPageAdmin from './pages/admin-pages/SchoolDocumentsAdmin/SchoolDocumentsPageAdmin';
+import AddSchoolDocumentsPage from './pages/admin-pages/SchoolDocumentsAdmin/AddSchoolDocuments';
+import EditSchoolDocumentsPage from './pages/admin-pages/SchoolDocumentsAdmin/EditSchoolDocuments';
 
 const App = () => {
   const helmetContext = {};
@@ -173,6 +175,12 @@ const App = () => {
               path="achievements/edit/:id"
               element={<EditOurAchievementsPage />}
             />
+            <Route path="documents" element={<SchoolDocumentsPageAdmin />} />
+            <Route path="documents/add" element={<AddSchoolDocumentsPage />} />
+            <Route
+              path="documents/edit/:id"
+              element={<EditSchoolDocumentsPage />}
+            />
             <Route path="contacts" element={<ContactsPageAdmin />} />
             <Route
               path="contacts/edit/:key"
@@ -192,9 +200,6 @@ const App = () => {
               element={<EditSchoolAdministrationPage />}
             />
           </Route>
-          <Route path="documents" element={<SchoolDocumentsPageAdmin />} />
-          {/* <Route path="documents/add" element={<AddSchoolDocumentsPage />} />
-          <Route path="documents/edit/:id" element={<EditSchoolDocumentsPage />} /> */}
 
           <Route path="/admin/*" element={<NotFoundAdmin />} />
         </Routes>

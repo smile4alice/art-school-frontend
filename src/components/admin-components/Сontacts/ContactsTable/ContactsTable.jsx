@@ -5,7 +5,6 @@ import sprite from '@/assets/icons/sprite-admin.svg';
 
 const ContactsTable = ({ data }) => {
   const dataValues = Object.keys(data);
-  console.log(dataValues);
 
   return (
     <div className={styles.contentWrap}>
