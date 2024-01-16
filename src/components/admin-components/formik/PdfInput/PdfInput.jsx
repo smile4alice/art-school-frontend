@@ -1,40 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { AiOutlinePlus } from 'react-icons/ai';
-import styles from './FileInput.module.scss';
+import styles from './PdfInput.module.scss';
 
 const FileInput = ({
   label,
   field,
-  photo,
+  pdf,
   form: { errors, setFieldValue },
   ...props
 }) => {
   const name = field.name;
-  const [imagePreview, setImagePreview] = useState('');
-  const fieldValue = field.value;
 
   useEffect(() => {
-    if (!photo) return;
-    setFieldValue(`${name}`, [new File([], photo, { type: 'for-url' })]);
-  }, [photo, setFieldValue, name]);
-
-  useEffect(() => {
-    setImagePreview(fieldValue?.[0]?.name);
-  }, [fieldValue]);
-
-  const setFileToBase64 = file => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImagePreview(reader.result);
-    };
-  };
+    if (!pdf) return;
+    setFieldValue(`${name}`, [new File([], pdf, { type: 'for-url' })]);
+  }, [pdf, setFieldValue, name]);
 
   const onDrop = async files => {
-    setFieldValue('image', files);
-    const file = files[0];
-    setFileToBase64(file);
+    setFieldValue('document', files);
   };
 
   return (
@@ -54,12 +38,12 @@ const FileInput = ({
           <section className={styles.section}>
             <div className={styles.dropzone} {...getRootProps()}>
               <input {...getInputProps()} />
-              {imagePreview ? (
+              {field.value?.[0] ? (
                 <div className={styles.imagePreview}>
-                  <img src={imagePreview} />
+                  <img src="/pdf-icon.png" />
                 </div>
               ) : null}
-              {!imagePreview && (
+              {!field.value?.[0] && (
                 <div className={styles.innerWrapper}>
                   <AiOutlinePlus className={styles.icon} />
                   <p>Перетягніть або натисніть тут, щоб завантажити файл</p>

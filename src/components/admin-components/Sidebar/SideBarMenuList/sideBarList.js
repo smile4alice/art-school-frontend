@@ -23,7 +23,7 @@ export const sideBarList = [
     isFilled: true,
     iconClass: 'icon-gallery',
   },
-    {
+  {
     title: 'Відеогалерея',
     link: 'video',
     isFilled: true,
@@ -54,15 +54,15 @@ export const sideBarList = [
     iconClass: 'icon-contacts',
   },
   {
-    title: 'Зміна паролю',
-    link: 'password',
-    isFilled: true,
-    iconClass: 'icon-password',
-  },
-    {
     title: 'Документи школи ',
     link: 'documents',
     isFilled: true,
     iconClass: 'icon-documents',
+  },
+  {
+    title: 'Зміна паролю',
+    link: 'password',
+    isFilled: true,
+    iconClass: 'icon-password',
   },
 ];

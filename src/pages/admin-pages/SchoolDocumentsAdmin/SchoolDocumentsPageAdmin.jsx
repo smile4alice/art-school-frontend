@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useSlidersStore from '@/store/slidersStore';
+import useDocumentsStore from '@/store/documentsStore';
 
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import SchoolDocumentsTable from '@/components/admin-components/SchoolDocuments/SchoolDocumentsTable';
@@ -10,21 +10,21 @@ import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/Pla
 const breadcrumbs = ['Документи школи'];
 
 const SchoolDocumentsPageAdmin = () => {
-  const { getSlides } = useSlidersStore();
-  const documents = useSlidersStore(state => state.documents);
-  const loading = useSlidersStore(state => state.loading);
-  const error = useSlidersStore(state => state.error);
+  const { getDocuments } = useDocumentsStore();
+  const documents = useDocumentsStore(state => state.documents);
+  const loading = useDocumentsStore(state => state.loading);
+  const error = useDocumentsStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getSlides();
+        await getDocuments();
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [getSlides]);
+  }, [getDocuments]);
 
   return (
     <div>
@@ -34,7 +34,7 @@ const SchoolDocumentsPageAdmin = () => {
         showBackButton={false}
         showActionButton={true}
         actionButtonLink="/admin/documents/add"
-        isActionButtonDisabled={documents.length >= 8}
+        isActionButtonDisabled={documents?.length >= 8}
         actionButtonLabel="Додати документ"
       />
       {loading && !Object.keys(error).length ? (
