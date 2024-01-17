@@ -1,4 +1,5 @@
 .selectContainer {
+  z-index: 10;
   width: 17rem;
   position: relative;
   font-family: Montserrat;
@@ -47,7 +48,7 @@
   .optionsContainer {
     width: 100%;
     position: absolute;
-    z-index: 11;
+    z-index: 20;
     top: calc(100%);
     border: 1px solid $admin-purple;
     background-color: aqua;
