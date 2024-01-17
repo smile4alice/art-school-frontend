@@ -60,7 +60,11 @@ const Footer = ({ contacts }) => {
 
             <div className={styles.footerButton}>
               <DownloadButton
-                link={documents[0]?.doc_path}
+                link={
+                  documents[0]?.doc_path
+                    ? documents[0]?.doc_path
+                    : '/documents/заява_на_вступ.pdf'
+                }
                 title="Завантажити заяву"
               />
             </div>
@@ -119,7 +123,11 @@ const Footer = ({ contacts }) => {
               </ul>
               <div className={styles.footerButtonAdaptive}>
                 <DownloadButton
-                  link={documents[0]?.doc_path}
+                  link={
+                    documents[0]?.doc_path
+                      ? documents[0]?.doc_path
+                      : '/documents/заява_на_вступ.pdf'
+                  }
                   title="Завантажити заяву"
                 />
               </div>

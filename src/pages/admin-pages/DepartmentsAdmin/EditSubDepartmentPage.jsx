@@ -91,7 +91,7 @@ const EditSubDepartmentPage = () => {
                       component={TextInput}
                       maxLength={120}
                       showCharacterCount={true}
-                      label="Назва*"
+                      label="Назва відділу*"
                       text={subDepartment?.sub_department_name}
                     />
                   </div>
