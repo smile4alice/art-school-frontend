@@ -36,7 +36,6 @@ const EditObjectPage = ({
   const { getAchievementsPositions, getAchievemenById, editAchievement } =
     useServicesStore();
   const [achievement, setAchievement ]= useState({});
-  //const achievement = useServicesStore(state => state.achievement);
   const achievementsPositions = useServicesStore(
     state => state.achievementsPositions
   );
