@@ -23,6 +23,7 @@
     //min-height: 197px;
     height: 197px;
     box-sizing: border-box;
+    background-color: #EEF1FF;
     border: 2px dashed $admin-blue;
     margin: 0 auto;
     margin-bottom: 0.5rem;
@@ -42,7 +43,7 @@
       p {
         width: 153px;
         color: gray;
-        font-size: 11px;
+        font-size: 10px;
       }
     }
     .imagePreview {

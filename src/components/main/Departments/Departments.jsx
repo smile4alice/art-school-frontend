@@ -36,7 +36,7 @@ const Departments = () => {
   }, [getDocuments]);
 
   return (
-    <section className="section">
+    <section>
       <Container>
         <div id="departmens" className={styles.wrapper}>
           <p className={`${styles.title} sectionTitle`}>Відділення</p>

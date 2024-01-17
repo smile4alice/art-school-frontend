@@ -55,7 +55,10 @@ const useServicesStore = create((set, get) => ({
         set(state => {
           return {
             ...state,
-            gallery: page === 1 ? response.data.items : [...state.gallery, ...response.data.items],
+            gallery:
+              page === 1
+                ? response.data.items
+                : [...state.gallery, ...response.data.items],
             galleryPageCount: response.data.pages,
           };
         });
@@ -63,14 +66,17 @@ const useServicesStore = create((set, get) => ({
         set(state => {
           return {
             ...state,
-            achievements:page === 1? response.data.items: [...state.achievements, ...response.data.items],
+            achievements:
+              page === 1
+                ? response.data.items
+                : [...state.achievements, ...response.data.items],
             achievementPageCount: response.data.pages,
           };
         });
       }
-      set(state => ({ ...state, loading: 'success'}));
+      set(state => ({ ...state, loading: 'success' }));
     } catch (error) {
-      set(state => ({ ...state, loading: 'error'}));
+      set(state => ({ ...state, loading: 'error' }));
       throw new Error(error);
     }
   },
@@ -94,8 +100,8 @@ const useServicesStore = create((set, get) => ({
             achievements: response.data.items,
           };
         }
-      })
-      set(state => ({ ...state, loading: 'success'}));
+      });
+      set(state => ({ ...state, loading: 'success' }));
     } catch (error) {
       set(() => {
         if (url === 'gallery') {
@@ -108,7 +114,7 @@ const useServicesStore = create((set, get) => ({
           };
         }
       });
-      set(state => ({ ...state, loading: 'error'}));
+      set(state => ({ ...state, loading: 'error' }));
       throw new Error(error);
     }
   },
@@ -187,25 +193,11 @@ const useServicesStore = create((set, get) => ({
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     if (isDataValid(data)) {
       try {
-        const queryParams = new URLSearchParams();
-        if (data.get('pinned_position') !== '' && data.get('pinned_position') !== null) {
-          queryParams.append('pinned_position', data.get('pinned_position'));
-        }
-        if (data.get('sub_department') !== '' && data.get('sub_department') !== null) {
-          queryParams.append('sub_department', data.get('sub_department'));
-        }
-        if (data.get('description') !== '') {
-          queryParams.append('description', data.get('description'));
-        }
-        const response = await axios.post(
-          `/${newUrl}?${queryParams.toString()}`,
-          data,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
+        const response = await axios.post(`/${newUrl}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         return response;
       } catch (error) {
         throw new Error(error);
@@ -217,25 +209,11 @@ const useServicesStore = create((set, get) => ({
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
       if (isDataValid(data)) {
-        const queryParams = new URLSearchParams();
-        if (data.get('pinned_position') !== '' && data.get('pinned_position') !== null) {
-          queryParams.append('pinned_position', data.get('pinned_position'));
-        }
-        if (data.get('sub_department') !== '' && data.get('sub_department') !== null) {
-          queryParams.append('sub_department', data.get('sub_department'));
-        }
-        if (data.get('description') !== '') {
-          queryParams.append('description', data.get('description'));
-        }
-        const response = await axios.put(
-          `/${newUrl}/${id}?${queryParams.toString()}`,
-          data,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
+        const response = await axios.put(`/${newUrl}/${id}`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         return response;
       }
     } catch (error) {
