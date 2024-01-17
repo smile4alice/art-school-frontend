@@ -3,7 +3,6 @@ import { clsx } from 'clsx';
 import { Link } from 'react-router-dom';
 import useSlidersStore from '@/store/slidersStore';
 import { useModal } from '@/store/modalStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './SlidersTable.module.scss';
@@ -11,19 +10,15 @@ import sprite from '@/assets/icons/sprite-admin.svg';
 
 const SlidersTable = ({ data }) => {
   const { deleteSlide } = useSlidersStore();
-  const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
 
   const removePost = async () => {
-    if (isDeleteConfirm && data.length > 1) {
-      try {
-        await deleteSlide(currentId);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
+    try {
+      await deleteSlide(currentId);
       closeModal();
+    } catch (error) {
+      console.log(error);
     }
   };
 

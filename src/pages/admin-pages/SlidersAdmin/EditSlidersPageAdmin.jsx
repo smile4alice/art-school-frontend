@@ -86,7 +86,7 @@ const EditSlidersPage = () => {
                     maxLength={120}
                     showCharacterCount={true}
                     text={slide?.title}
-                    label="Заголовок*"
+                    label="Заголовок"
                   />
                 </div>
                 <div className={styles.secondRow}>

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useNewsStore from '@/store/newsStore';
 import { useModal } from '@/store/modalStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './NewsTable.module.scss';
@@ -10,19 +9,15 @@ import sprite from '@/assets/icons/sprite-admin.svg';
 
 const NewsTable = ({ data }) => {
   const { deletePost } = useNewsStore();
-  const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
 
   const removePost = async () => {
-    if (isDeleteConfirm) {
-      try {
-        await deletePost(currentId);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
+    try {
+      await deletePost(currentId);
       closeModal();
+    } catch (error) {
+      console.log(error);
     }
   };
 

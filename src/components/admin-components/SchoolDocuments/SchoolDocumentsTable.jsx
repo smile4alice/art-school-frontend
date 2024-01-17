@@ -1,27 +1,22 @@
 import { Link } from 'react-router-dom';
-import styles from './SchoolDocumentsTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 import { useState } from 'react';
 import useDocumentsStore from '@/store/documentsStore';
 import { useModal } from '@/store/modalStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
+import styles from './SchoolDocumentsTable.module.scss';
 
 const SchoolDocumentsTable = ({ data }) => {
   const { deleteDocument } = useDocumentsStore();
-  const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
 
   const removePost = async () => {
-    if (isDeleteConfirm) {
-      try {
-        await deleteDocument(currentId);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
+    try {
+      await deleteDocument(currentId);
       closeModal();
+    } catch (error) {
+      console.log(error);
     }
   };
   return (

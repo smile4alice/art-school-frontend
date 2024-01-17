@@ -2,26 +2,22 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAdministrationStore from '@/store/administrationStore';
 import { useModal } from '@/store/modalStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './AdminTable.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
 const AdminTable = ({ data }) => {
   const { deleteMember } = useAdministrationStore();
-  const { isDeleteConfirm } = useConfirmDelete();
+
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
 
   const removeMember = async () => {
-    if (isDeleteConfirm) {
-      try {
-        await deleteMember(currentId);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
+    try {
+      await deleteMember(currentId);
       closeModal();
+    } catch (error) {
+      console.log(error);
     }
   };
 

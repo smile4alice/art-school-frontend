@@ -1,17 +1,9 @@
 import CloseIcon from '@/components/Icons/CloseIcon';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import { useModal } from '@/store/modalStore';
 import styles from './ConfirmDeleteModa.module.scss';
 
 const ConfirmDeleteModal = ({ handleDelete }) => {
-  const { confirmDelete } = useConfirmDelete();
   const { closeModal } = useModal();
-
-  const handleDeleteClick = async () => {
-    await confirmDelete();
-    await handleDelete();
-    closeModal();
-  };
 
   return (
     <div className={styles.deleteModal}>
@@ -29,7 +21,7 @@ const ConfirmDeleteModal = ({ handleDelete }) => {
           >
             Відміна
           </button>
-          <button onClick={handleDeleteClick}>Видалити</button>
+          <button onClick={handleDelete}>Видалити</button>
         </div>
       </div>
     </div>

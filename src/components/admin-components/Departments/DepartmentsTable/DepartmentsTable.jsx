@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useModal } from '@/store/modalStore';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import { subString } from '@/utils/subString';
 import useDepartmentsStore from '@/store/departmentsStore';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
@@ -10,20 +9,15 @@ import sprite from '@/assets/icons/sprite-admin.svg';
 
 const DepartmentsTable = ({ data, departmentId }) => {
   const { deleteSubDepartment } = useDepartmentsStore();
-  const { isDeleteConfirm } = useConfirmDelete();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
 
   const removePost = async () => {
-    if (isDeleteConfirm) {
-      console.log(currentId);
-      try {
-        await deleteSubDepartment(currentId);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
+    try {
+      await deleteSubDepartment(currentId);
       closeModal();
+    } catch (error) {
+      console.log(error);
     }
   };
 
