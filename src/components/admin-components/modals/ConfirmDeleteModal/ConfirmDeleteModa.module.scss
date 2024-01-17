@@ -18,7 +18,7 @@
   p {
     color: $admin-text-main;
     text-align: center;
-    font-family: 'Montserra' t;
+    font-family: 'Montserrat';
     font-size: 26px;
     font-weight: 500;
   }
@@ -39,6 +39,9 @@
   gap: 60px;
 
   button {
+    font-family: 'Montserrat';
+
+    
     display: flex;
     width: 119px;
     padding: 9px 43px;
