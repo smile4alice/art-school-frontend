@@ -63,7 +63,7 @@ const AddSlidersPage = () => {
                     component={TextInput}
                     maxLength={120}
                     showCharacterCount={true}
-                    label="Заголовок*"
+                    label="Заголовок"
                   />
                 </div>
                 <div className={styles.secondRow}>

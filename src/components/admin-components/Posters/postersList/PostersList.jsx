@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useConfirmDelete } from '@/store/confirmDelete';
 import { useModal } from '@/store/modalStore';
 import usePostersStore from '@/store/posterStore';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
@@ -9,19 +8,16 @@ import sprite from '@/assets/icons/sprite-admin.svg';
 
 const PostersList = ({ data }) => {
   const { deletePostersById } = usePostersStore();
-  const { isDeleteConfirm } = useConfirmDelete();
+
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
 
   const handleDelete = async () => {
-    if (isDeleteConfirm) {
-      try {
-        await deletePostersById(currentId);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
+    try {
+      await deletePostersById(currentId);
       closeModal();
+    } catch (error) {
+      console.log(error);
     }
   };
 
