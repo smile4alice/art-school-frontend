@@ -74,7 +74,7 @@ const AddSubDepartmentPage = () => {
                       component={TextInput}
                       maxLength={120}
                       showCharacterCount={true}
-                      label="Назва*"
+                      label="Назва відділу*"
                     />
                   </div>
                   <Field

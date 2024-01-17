@@ -31,7 +31,7 @@ const DepartmentsTable = ({ data, departmentId }) => {
     <div className={styles.contentWrap}>
       <ul className={styles.tableHeader}>
         <li className={styles.cellHeadingHeader}>Відділ</li>
-        <li className={styles.cellTextHeader}>Опис Відділу</li>
+        <li className={styles.cellTextHeader}>Опис</li>
         <li className={styles.cellActionHeader}>Дія</li>
       </ul>
       <div className={styles.tbody}>

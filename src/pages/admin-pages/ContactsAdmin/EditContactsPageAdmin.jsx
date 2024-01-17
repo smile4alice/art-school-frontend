@@ -60,7 +60,7 @@ const EditContactsPageAdmin = () => {
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
+                    isActive={formik.isValid && formik.values[key]?.length}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
                     isProcessing={loading}

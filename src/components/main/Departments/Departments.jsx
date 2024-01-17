@@ -42,7 +42,11 @@ const Departments = () => {
           <p className={`${styles.title} sectionTitle`}>Відділення</p>
           <div className={styles.buttonContainer}>
             <a
-              href={documents[0]?.doc_path}
+              href={
+                documents[0]?.doc_path
+                  ? documents[0]?.doc_path
+                  : '/documents/заява_на_вступ.pdf'
+              }
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
