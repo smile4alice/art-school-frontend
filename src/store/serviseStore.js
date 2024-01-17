@@ -8,7 +8,6 @@ const useServicesStore = create((set, get) => ({
   achievements: [],
   gallery: [],
   achievementsPositions: [],
-  achievement: {},
   achievementPageCount: '',
   galleryPageCount: '',
   pageSize: 10,
@@ -161,15 +160,12 @@ const useServicesStore = create((set, get) => ({
     }
   },
   //конкретне досягнення по id
+
   getAchievemenById: async (url, id) => {
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     try {
       const response = await axios.get(`/${newUrl}/${id}`);
-      set(() => {
-        return {
-          achievement: response.data,
-        };
-      });
+      return response.data;
     } catch (error) {
       throw new Error(error);
     }

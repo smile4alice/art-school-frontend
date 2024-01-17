@@ -35,7 +35,8 @@ const EditObjectPage = ({
   const { id } = useParams();
   const { getAchievementsPositions, getAchievemenById, editAchievement } =
     useServicesStore();
-  const achievement = useServicesStore(state => state.achievement);
+  const [achievement, setAchievement ]= useState({});
+  //const achievement = useServicesStore(state => state.achievement);
   const achievementsPositions = useServicesStore(
     state => state.achievementsPositions
   );
@@ -77,7 +78,8 @@ const EditObjectPage = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getAchievemenById(url, id);
+       const result =  await getAchievemenById(url, id);
+       setAchievement(result);
       } catch (error) {
         console.error(error);
       }
