@@ -9,11 +9,7 @@ const Department = ({ title, link, img }) => {
       <div className={styles.wrapper}>
         <div className={styles.info}>
           <p className={styles.cardTitle}>{title}</p>
-          <div className={styles.knowMore}>
-            <div className={styles.verticalLine}></div>
-            <span className={styles.linkKnowMore}>{knowMore}</span>
-            <div className={styles.verticalLine}></div>
-          </div>
+          <div className={styles.knowMore}>{knowMore}</div>
         </div>
         <div className={styles.picture}>
           <img src={img} alt={title} />

@@ -20,7 +20,7 @@ const Departments = () => {
   const preschoolPreparatoryDepartment = 'Дошкільне та підготовче відділення';
 
   return (
-    <section className="section">
+    <section>
       <Container>
         <div id="departmens" className={styles.wrapper}>
           <p className={`${styles.title} sectionTitle`}>Відділення</p>
