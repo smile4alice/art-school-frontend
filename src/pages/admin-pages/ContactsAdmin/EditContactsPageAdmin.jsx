@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { declineWord } from '@/utils/declineWord';
 import { contactsValidation } from './validationSchema';
+import { getFieldLength } from '@/utils/getFieldLength';
 import useContactsStore from '@/store/contactsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
@@ -51,7 +52,8 @@ const EditContactsPageAdmin = () => {
                   name={`${key.toLowerCase()}`}
                   id={`${key.toLowerCase()}`}
                   component={TextInput}
-                  showCharacterCount={false}
+                  showCharacterCount={true}
+                  maxLength={getFieldLength(key)}
                   text={value}
                   label={`${title}`}
                 />

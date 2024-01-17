@@ -60,7 +60,7 @@ const AddSchoolAdministrationPage = () => {
                     name="full_name"
                     id="full_name"
                     component={TextInput}
-                    maxLength={120}
+                    maxLength={60}
                     showCharacterCount={true}
                     label="ПІБ працівника*"
                   />
@@ -70,7 +70,7 @@ const AddSchoolAdministrationPage = () => {
                     name="position"
                     id="position"
                     component={TextArea}
-                    maxLength={2000}
+                    maxLength={120}
                     showCharacterCount={true}
                     label="Посада*"
                   />

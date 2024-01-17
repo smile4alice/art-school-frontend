@@ -49,9 +49,14 @@ const SchoolDocumentsTable = ({ data }) => {
                   setCurrentId(item.id);
                   openModal();
                 }}
-                className={styles.cellActionContainer}
+                className={
+                  index === 0 ? styles.disabled : styles.cellActionContainer
+                }
+                disabled={index === 0}
               >
-                <svg className={styles.iconTrash}>
+                <svg
+                  className={index === 0 ? styles.disabled : styles.iconTrash}
+                >
                   <use href={`${sprite}#icon-trash`} width="20" height="20" />
                 </svg>
               </button>

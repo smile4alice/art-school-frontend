@@ -76,7 +76,7 @@ const AddNewsPage = () => {
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}
-                    label="Текст*"
+                    label="Текст"
                   />
                   <Field
                     name="image"

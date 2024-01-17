@@ -12,7 +12,6 @@ import AllNews from './pages/main/news/AllNews';
 import OneNews from './pages/main/news/news_post/NewsPost';
 import PostersPage from './pages/main/posters/PostersPage';
 import Cooperation from './pages/main/cooperation/Cooperation';
-import StatementPage from './pages/main/statement/StatementPage';
 import SchoolDocuments from './pages/main/school_documents/School_documents';
 
 /* login */
@@ -90,7 +89,6 @@ const App = () => {
             <Route path="/news/:id" element={<OneNews />} />
             <Route path="/posters" element={<PostersPage />} />
             <Route path="/cooperation" element={<Cooperation />} />
-            <Route path="/statement" element={<StatementPage />} />
             <Route path="/about_school" element={<AboutSchool />} />
             <Route path="/about_school_history" element={<SchoolHistory />} />
             <Route path="/school_documents" element={<SchoolDocuments />} />

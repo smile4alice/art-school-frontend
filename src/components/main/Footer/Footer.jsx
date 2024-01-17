@@ -1,15 +1,32 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import useDocumentsStore from '@/store/documentsStore';
+
 import Logo from '@/components/Logo/Logo';
 import LocationIcon from '@/components/Icons/LocationIcon';
 import PhoneIcon from '@/components/Icons/PhoneIcon';
 import EmailIcon from '@/components/Icons/EmailIcon';
 import FacebookIcon from '@/components/Icons/FacebookIcon';
 import YoutubeIcon from '@/components/Icons/YoutubeIcon';
-import DownloadButton from '@/components/ui/Buttons/NavLinkButton';
+import DownloadButton from '@/components/ui/Buttons/DownloadButton';
 import styles from './Footer.module.scss';
 import ClockIcon from '@/components/Icons/ClockIcon';
 
 const Footer = ({ contacts }) => {
+  const { getDocuments } = useDocumentsStore();
+  const documents = useDocumentsStore(state => state.documents);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getDocuments();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [getDocuments]);
+
   return (
     <div className={styles.footer}>
       <div className={styles.footerWrap}>
@@ -22,7 +39,7 @@ const Footer = ({ contacts }) => {
               <li>
                 <a
                   className={styles.socialLink}
-                  href={contacts.facebook}
+                  href={contacts.facebook_url}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -32,7 +49,7 @@ const Footer = ({ contacts }) => {
               <li>
                 <a
                   className={styles.socialLink}
-                  href={contacts.youtube}
+                  href={contacts.youtube_url}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -42,9 +59,10 @@ const Footer = ({ contacts }) => {
             </ul>
 
             <div className={styles.footerButton}>
-              <Link to="/statement">
-                <DownloadButton link="#" text="Завантажити заяву" />
-              </Link>
+              <DownloadButton
+                link={documents[0]?.doc_path}
+                title="Завантажити заяву"
+              />
             </div>
           </div>
           <div className={styles.footerLinksSectionWrap}>
@@ -75,7 +93,7 @@ const Footer = ({ contacts }) => {
                 <li className={styles.contactsListItem}>
                   <LocationIcon />
                   <a
-                    href={contacts.map}
+                    href={contacts.map_url}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >
@@ -100,7 +118,10 @@ const Footer = ({ contacts }) => {
                 </li>
               </ul>
               <div className={styles.footerButtonAdaptive}>
-                <DownloadButton link="#" text="Завантажити заяву" />
+                <DownloadButton
+                  link={documents[0]?.doc_path}
+                  title="Завантажити заяву"
+                />
               </div>
             </div>
           </div>
@@ -110,7 +131,7 @@ const Footer = ({ contacts }) => {
           <li>
             <a
               className={styles.socialLink}
-              href={contacts.facebook}
+              href={contacts.facebook_url}
               target="_blank"
               rel="noreferrer"
             >
@@ -120,7 +141,7 @@ const Footer = ({ contacts }) => {
           <li>
             <a
               className={styles.socialLink}
-              href={contacts.youtube}
+              href={contacts.youtube_url}
               target="_blank"
               rel="noreferrer"
             >
@@ -142,17 +163,20 @@ const Footer = ({ contacts }) => {
             2023
           </div>
           <div className={styles.footerLinksRules}>
-            {/* <a href="#" target="_blank">
-              Офіційна інформація
-            </a> */}
-            {/* <a href="#" target="_blank">
+            <a
+              href="/documents/політика_конфіденційності.pdf"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
               Політика конфіденційності
-            </a> */}
-            {/* <a href="#" target="_blank">
+            </a>
+            <a
+              href="/documents/правила_користування_сайтом.pdf"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
               Правила користування сайтом
-            </a> */}
-            <Link to="/statement">Політика конфідеційності</Link>
-            <Link to="/school_documents">Правила користування сайтом</Link>
+            </a>
           </div>
         </div>
       </div>

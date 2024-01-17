@@ -14,4 +14,5 @@ export const aboutUs = [
   // { name: 'Історія Школи', to: '/about_school_history' },
   { name: 'Музей', to: '/about_school#museum' },
   { name: 'Адміністрація', to: '/about_school#administration' },
+  { name: 'Документи школи', to: '/school_documents' },
 ];
