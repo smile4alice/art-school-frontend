@@ -42,7 +42,7 @@ const Departments = () => {
           <p className={`${styles.title} sectionTitle`}>Відділення</p>
           <div className={styles.buttonContainer}>
             <a
-              href={documents[0].doc_path}
+              href={documents[0]?.doc_path}
               target="_blank"
               rel="noopener noreferrer nofollow"
             >
