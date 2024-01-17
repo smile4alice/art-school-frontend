@@ -82,7 +82,7 @@ const AddSubDepartmentPage = () => {
                     id="text"
                     placeholder="Title"
                     component={TextArea}
-                    maxLength={2000}
+                    maxLength={10000}
                     showCharacterCount={true}
                     label="Опис"
                   />

@@ -63,7 +63,7 @@ const Hero = () => {
           swiperRef.current = swiper;
         }}
         autoplay={{
-          delay: 5000,
+          delay: 500,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}

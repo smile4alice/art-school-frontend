@@ -32,5 +32,8 @@ export const declineWord = string => {
   if (string === 'Дошкільне та підготовче відділення') {
     return 'дошкільного та підготовчого відділення';
   }
+  if (string === 'Заява для вступу') {
+    return 'Заяву для вступу';
+  }
   return string;
 };

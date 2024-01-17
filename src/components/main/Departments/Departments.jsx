@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import useDocumentsStore from '@/store/documentsStore';
+
 import Department from './Department/Department';
 import Container from '@/components/Container/Container';
 
@@ -12,6 +14,9 @@ import preschoolImg from '/departments/preschool.webp';
 import styles from './Departments.module.scss';
 
 const Departments = () => {
+  const { getDocuments } = useDocumentsStore();
+  const documents = useDocumentsStore(state => state.documents);
+
   const musicDepartment = 'Музичне відділення';
   const artDepartment = 'Образотворче відділення';
   const choreografyDepartment = 'Хореографічне відділення';
@@ -19,15 +24,30 @@ const Departments = () => {
   const vocalDepartment = 'Вокально-хорове відділення';
   const preschoolPreparatoryDepartment = 'Дошкільне та підготовче відділення';
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getDocuments();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [getDocuments]);
+
   return (
     <section className="section">
       <Container>
         <div id="departmens" className={styles.wrapper}>
           <p className={`${styles.title} sectionTitle`}>Відділення</p>
           <div className={styles.buttonContainer}>
-            <Link to="/statement">
+            <a
+              href={documents[0].doc_path}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
               <button className={styles.buttonStyle}>завантажити заяву</button>
-            </Link>
+            </a>
           </div>
           <div className={styles.departmentsContainer}>
             <Department

@@ -37,7 +37,7 @@ const HeaderContacts = ({ contacts }) => {
         <li className={styles.contactsListItem}>
           <a
             className={styles.contactsListLink}
-            href={contacts.map}
+            href={contacts.map_url}
             target="_blank"
             rel="noopener noreferrer nofollow"
           >
@@ -68,8 +68,8 @@ const HeaderContacts = ({ contacts }) => {
       </ul>
       <SocialList
         type="headerIcon"
-        facebook={contacts.facebook}
-        youtube={contacts.youtube}
+        facebook={contacts.facebook_url}
+        youtube={contacts.youtube_url}
       />
     </div>
   );

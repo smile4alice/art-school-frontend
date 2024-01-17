@@ -75,17 +75,17 @@ const EditNewsPage = () => {
           return (
             <Form>
               <div className={styles.layout}>
-              <div className={styles.fieltTextInput}>
-                <Field
-                  name="title"
-                  id="title"
-                  placeholder="Title"
-                  component={TextInput}
-                  maxLength={120}
-                  showCharacterCount={true}
-                  text={post?.title}
-                  label="Заголовок*"
-                />
+                <div className={styles.fieltTextInput}>
+                  <Field
+                    name="title"
+                    id="title"
+                    placeholder="Title"
+                    component={TextInput}
+                    maxLength={120}
+                    showCharacterCount={true}
+                    text={post?.title}
+                    label="Заголовок*"
+                  />
                 </div>
                 <div className={styles.secondRow}>
                   <Field
@@ -96,7 +96,7 @@ const EditNewsPage = () => {
                     maxLength={2000}
                     showCharacterCount={true}
                     text={post?.text}
-                    label="Текст*"
+                    label="Текст"
                   />
                   <Field
                     name="image"

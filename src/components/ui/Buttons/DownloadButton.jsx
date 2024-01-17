@@ -1,11 +1,15 @@
-import { Link } from 'react-router-dom';
 import styles from './NavLinkButton.module.scss';
 
-function DownloadButton({ title, to }) {
+function DownloadButton({ title, link }) {
   return (
-    <Link to={to} className={styles.NavLinkButton}>
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      className={styles.NavLinkButton}
+    >
       {title}
-    </Link>
+    </a>
   );
 }
 

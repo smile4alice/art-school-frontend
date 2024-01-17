@@ -26,7 +26,6 @@ export const newsValidation = Yup.object().shape({
       'Введіть коректну назву'
     ),
   text: Yup.string()
-    .required('Поле має бути заповнене')
     .min(2, 'Мінімальна довжина тексту 2 символи')
     .max(2000, 'Максимальна довжина тексту 2000 символів')
     .matches(
