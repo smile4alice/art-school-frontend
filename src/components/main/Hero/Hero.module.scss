@@ -19,10 +19,6 @@
     .SlideStyle {
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      flex-direction: column;
       overflow: hidden;
       .slideImage {
         width: 100%;
@@ -47,16 +43,32 @@
     font-family: Mulish;
     position: absolute;
     z-index: 10;
-    top: 16px;
-    left: 16px;
-    padding: 16px 24px;
+    top: 1rem;
+    left: 1rem;
+    padding: 1rem 1.5rem;
+    width: 13.2rem;
+    @media screen and (min-width: 768px) {
+      width: auto;
+      padding: 1rem;
+    }
+    @media screen and (min-width: 1280px) {
+      top: 6rem;
+      left: 6rem;
+      width: 32rem;
+    }
 
     .HeroPrimaryTitle {
-      width: 162px;
       color: $black;
       font-size: 1rem;
       font-weight: 700;
-      line-height: 1.4rem;
+      line-height: 140%;
+      margin-bottom: 0.25rem;
+      @media screen and (min-width: 768px) {
+        font-size: 1.875rem;
+      }
+      @media screen and (min-width: 1280px) {
+        font-size: 2.8125rem;
+      }
     }
 
     .HeroSecondaryTitle {
@@ -64,142 +76,82 @@
       font-size: 0.75rem;
       font-weight: 700;
       line-height: 1.05rem;
+      @media screen and (min-width: 768px) {
+        font-size: 1.25rem;
+      }
+      @media screen and (min-width: 1280px) {
+        font-family: Ubuntu;
+        font-size: 1.5rem;
+      }
+
+
     }
+    
   }
 
   .HeroEvent {
-    display: flex;
-    flex-direction: column;
-    row-gap: 13.5px;
-    width: 288px;
+    width: calc(100% - 2rem);
+    padding: 0.75rem;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.8);
     font-style: normal;
     font-family: Mulish;
     position: absolute;
     z-index: 10;
-    top: 175px;
-    left: 16px;
-    padding: 16px 16px;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
     overflow: hidden;
-    @media screen and (max-width: 1280px) {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .HeroEventName {
-      color: $gray;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 19.6px;
-      text-transform: uppercase;
-      overflow: hidden;
+    @media screen and (min-width: 1280px) {
+      width:67.5rem;
     }
 
     .HeroEventTitle {
       color: $black;
       text-align: left;
-      font-size: 18px;
+      font-size: 15px;//18px
       font-weight: 700;
-      line-height: 25.2px;
+      line-height: 140%;
       text-transform: uppercase;
       overflow: hidden;
+      &.margin{
+        margin-bottom: 0.6rem;
+      }
+      @media screen and (min-width: 768px) {
+        font-size: 24px;//32px
+      }
+      @media screen and (min-width: 1280px) {
+        font-size: 26px;
+      }
     }
 
     .HeroEventInfo {
       color: $accent;
       text-align: left;
-      font-size: 16px;
+      font-size: 13px;//16px
       font-weight: 700;
-      line-height: 22.4px;
+      line-height: 140%;
       text-transform: uppercase;
       overflow: hidden;
+      @media screen and (min-width: 768px) {
+        font-size: 20px;//24px
+      }
+      @media screen and (min-width: 1280px) {
+        font-size: 22px;
+      }
     }
 
     .HeroEventLink {
       color: $gray;
       width: 141px;
-      font-size: 16px;
+      font-size: .9rem;
       font-weight: 400;
       line-height: 22.4px;
       text-decoration-line: underline;
       text-decoration-skip-ink: none;
       margin-left: auto;
-    }
-  }
-}
-
-// ------TABLET-------------------------------------------------
-
-@media (min-width: 768px) {
-  .HeroSection {
-    margin: 0 auto;
-    padding: 0;
-    position: relative;
-    padding-bottom: 40px;
-    .SliderStyle {
-      width: 100%;
-      background-color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      //padding-bottom: 3rem;
-
-      .SlideStyle {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-direction: column;
-        .slideImage {
-          height: 890px;
-        }
-      }
-    }
-
-    .HeroTitle {
-      padding: 16px 16px;
-
-      .HeroPrimaryTitle {
-        width: 560px;
-        font-size: 1.875rem;
-        line-height: 42px;
-        margin-bottom: 4px;
-      }
-
-      .HeroSecondaryTitle {
-        font-size: 1.5rem;
-        line-height: 1.75rem;
-      }
-    }
-
-    .HeroEvent {
-      display: flex;
-      flex-direction: column;
-      row-gap: 14.5px;
-      width: 736px;
-      top: 545px;
-
-      .HeroEventName {
-        font-size: 20px;
-        line-height: 28px;
-      }
-
-      .HeroEventTitle {
-        font-size: 2rem;
-        line-height: 44.8px;
-      }
-
-      .HeroEventInfo {
-        font-size: 1.5rem;
-        line-height: 33.6px;
-      }
-
-      .HeroEventLink {
-        width: 211px;
-        font-size: 1.5rem;
-        line-height: 33.6px;
+      @media screen and (min-width: 1280px) {
+        font-size: 26px;
       }
     }
   }
@@ -209,8 +161,6 @@
 
 @media (min-width: 1280px) {
   .HeroSection {
-    margin: 0 auto;
-    padding: 0;
     max-width: 1280px;
     padding-bottom: 120px;
     position: relative;
@@ -256,7 +206,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      //padding-bottom: 3rem;
 
       .SlideStyle {
         width: 100%;
@@ -271,62 +220,6 @@
       }
     }
 
-    .HeroTitle {
-      border-radius: 1.875rem;
-      top: 125px;
-      left: 100px;
-      padding: 16px 24px;
-
-      .HeroPrimaryTitle {
-        width: 460px;
-        font-size: 2.813rem;
-        line-height: 50px; /* 111.111% */
-        margin-bottom: 13px;
-      }
-
-      .HeroSecondaryTitle {
-        color: $black;
-        font-size: 1.5rem;
-        line-height: 24px; /* 100% */
-      }
-    }
-
-    .HeroEvent {
-      display: block;
-      width: 1080px;
-      top: 400px;
-      left: 100px;
-      padding: 22px 24px 24px 24px;
-
-      .HeroEventName {
-        color: $black;
-        font-size: 1rem;
-        line-height: normal;
-        margin-bottom: 15px;
-      }
-
-      .HeroEventTitle {
-        margin-bottom: 6px;
-        line-height: normal;
-      }
-
-      .HeroEventInfo {
-        line-height: normal;
-      }
-
-      .HeroEventLink {
-        position: absolute;
-        width: 190px;
-        color: $black;
-        font-size: 1.125rem;
-        line-height: normal;
-        border-bottom: 1px solid black;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        text-decoration: none;
-        top: 16px;
-        right: 24px;
-      }
-    }
+   
   }
 }

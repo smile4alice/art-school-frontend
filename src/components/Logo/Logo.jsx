@@ -14,10 +14,10 @@ const Logo = () => {
       onClick={scrollToTop}
     >
       <LogoIcon />
-      <h1 className={styles.logoText}>
+      <div className={styles.logoText}>
         Київська дитяча школа мистецтв №2 <br />
         <span> ім. М. I. Вериківського</span>
-      </h1>
+      </div>
     </Link>
   );
 };
