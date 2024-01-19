@@ -41,7 +41,7 @@ const AddNewObjectPage = ({
   let breadcrumbs;
   const setBreadcrumbs = url => {
     if (url === 'achievements') {
-      breadcrumbs = ['Наші Досягнення', 'Додати досягнення'];
+      breadcrumbs = ['Наші досягнення', 'Додати досягнення'];
     } else if (url === 'gallery') {
       breadcrumbs = ['Фотогалерея', 'Додати фото в галерею'];
     }

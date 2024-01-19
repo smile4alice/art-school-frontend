@@ -60,7 +60,7 @@ const EditPostersPage = () => {
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <div>
         <PageTitle
-          title="Редагувати Афішу"
+          title="Редагувати афішу"
           showBackButton={true}
           backButtonLink="/admin/posters"
           showActionButton={false}

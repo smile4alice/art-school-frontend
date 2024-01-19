@@ -1,18 +1,21 @@
 export const declineWord = string => {
   if (string === 'Адреса') {
-    return 'Адресу';
+    return 'адресу';
+  }
+  if (string === 'Телефон') {
+    return 'телефон';
   }
   if (string === 'Карта') {
-    return 'Карту';
+    return 'карту';
   }
   if (string === 'Електронна пошта') {
-    return 'Електронну Пошту';
+    return 'електронну пошту';
   }
   if (string === 'Інформація для вступу') {
-    return 'Інформацію для вступу';
+    return 'інформацію для вступу';
   }
   if (string === 'Юридична інформація') {
-    return 'Юридичну інформацію';
+    return 'юридичну інформацію';
   }
   if (string === 'Музичне відділення') {
     return 'музичного відділення';
@@ -33,7 +36,7 @@ export const declineWord = string => {
     return 'дошкільного та підготовчого відділення';
   }
   if (string === 'Заява для вступу') {
-    return 'Заяву для вступу';
+    return 'заяву для вступу';
   }
   return string;
 };

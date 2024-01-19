@@ -35,7 +35,7 @@ const EditObjectPage = ({
   const { id } = useParams();
   const { getAchievementsPositions, getAchievemenById, editAchievement } =
     useServicesStore();
-  const [achievement, setAchievement ]= useState({});
+  const [achievement, setAchievement] = useState({});
   const achievementsPositions = useServicesStore(
     state => state.achievementsPositions
   );
@@ -46,7 +46,7 @@ const EditObjectPage = ({
   let breadcrumbs;
   const setBreadcrumbs = url => {
     if (url === 'achievements') {
-      breadcrumbs = ['Наші Досягнення', 'Редагувати досягнення'];
+      breadcrumbs = ['Наші досягнення', 'Редагувати досягнення'];
     } else if (url === 'gallery') {
       breadcrumbs = ['Фотогалерея', 'Редагувати фото'];
     }
@@ -77,8 +77,8 @@ const EditObjectPage = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-       const result =  await getAchievemenById(url, id);
-       setAchievement(result);
+        const result = await getAchievemenById(url, id);
+        setAchievement(result);
       } catch (error) {
         console.error(error);
       }

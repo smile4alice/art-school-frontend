@@ -38,7 +38,7 @@ const AddPostersPage = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Додати Афішу"
+        title="Додати афішу"
         showBackButton={true}
         backButtonLink="/admin/posters"
         showActionButton={false}

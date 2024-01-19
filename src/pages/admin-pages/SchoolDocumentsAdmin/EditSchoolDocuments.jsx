@@ -52,7 +52,7 @@ const EditSchoolDocuments = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Редагувати Документ"
+        title="Редагувати документи школи"
         showBackButton={true}
         backButtonLink="/admin/documents"
         showActionButton={false}
