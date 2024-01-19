@@ -63,7 +63,7 @@ const Hero = () => {
           swiperRef.current = swiper;
         }}
         autoplay={{
-          delay: 500,
+          delay: 5000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
@@ -87,7 +87,7 @@ const Hero = () => {
             </div>
             {index === 0 && (
               <div className={styles.HeroTitle}>
-                <p className={styles.HeroPrimaryTitle}>
+                <p  className={styles.HeroPrimaryTitle}>
                   Київська дитяча школа мистецтв №2
                 </p>
                 <span className={styles.HeroSecondaryTitle}>
@@ -97,8 +97,7 @@ const Hero = () => {
             )}
             {index >= 0 && (slide.title || slide.description) && (
               <div className={styles.HeroEvent}>
-                <p className={styles.HeroEventName}>подія</p>
-                <h3 className={styles.HeroEventTitle}>{slide.title}</h3>
+                <h3 className={`${styles.HeroEventTitle} ${slide.title && slide.description ? styles.margin : ''}`}>{slide.title}</h3>
                 <p className={styles.HeroEventInfo}>{slide.description}</p>
               </div>
             )}
