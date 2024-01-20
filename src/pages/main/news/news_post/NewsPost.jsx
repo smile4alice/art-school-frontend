@@ -20,10 +20,10 @@ const NewsPost = () => {
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <p className={styles.date}>{formatDate(post.created_at)}</p>
-            <p className={`${styles.title} sectionTitle`}>{post.title}</p>
+            <h2 className={`${styles.title} sectionTitle`}>{post.title}</h2>
           </div>
           <div className={styles.img}>
-            <img src={post.photo} alt="slide" />
+            <img src={post.photo} alt={post.title} />
           </div>
           <p className={styles.text}>{post.text}</p>
         </div>

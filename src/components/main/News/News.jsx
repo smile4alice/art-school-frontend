@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,7 +12,6 @@ import styles from './News.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
-import { Link } from 'react-router-dom';
 import usePostersStore from '@/store/posterStore';
 import Spinner from '@/components/ui/Spinner/Spinner';
 
@@ -36,7 +35,7 @@ const News = () => {
   return (
     <section className={`${styles.News} section`}>
       <Container>
-        <h1>Новини</h1>
+        <h2>Новини</h2>
         {isLaptop && (
           <div className={styles.ButtonContainer}>
             <NavLinkButton text={'Переглянути всі новини'} href={'/news'} />

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import SEO from './components/SEO';
+import RemoveTrailingSlash from './components/RemoveTrailingSlash';
 
 /* main */
 import Layout from './components/layout/Layout';
@@ -78,55 +79,106 @@ const App = () => {
         description="У 2021-2022 навчальному році Київська дитяча школа мистецтв № 2 імені M. I. Вериківського відсвяткувала свій ювілей – 90 річницю від дня утворення. Нині на музичному, театральному, хореографічному, образотворчому та підготовчому відділеннях навчається близько 1000 учнів віком від 2,5 до 17 років."
       />
       <Router>
+        <RemoveTrailingSlash />
         <Routes>
           {/* main */}
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="*" element={<Page404 />} />
-            <Route path="/contacts" element={<Contacts />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/news" element={<AllNews />} />
-            <Route path="/news/:id" element={<OneNews />} />
-            <Route path="/posters" element={<PostersPage />} />
-            <Route path="/cooperation" element={<Cooperation />} />
-            <Route path="/about_school" element={<AboutSchool />} />
-            <Route path="/about_school_history" element={<SchoolHistory />} />
-            <Route path="/school_documents" element={<SchoolDocuments />} />
+            <Route
+              path="/contacts"
+              caseSensitive={true}
+              element={<Contacts />}
+            />
+            <Route path="/gallery" caseSensitive={true} element={<Gallery />} />
+            <Route path="/events" caseSensitive={true} element={<AllNews />} />
+            <Route
+              path="/events/:title"
+              caseSensitive={true}
+              element={<OneNews />}
+            />
+            <Route
+              path="/posters"
+              caseSensitive={true}
+              element={<PostersPage />}
+            />
+            <Route
+              path="/cooperation"
+              caseSensitive={true}
+              element={<Cooperation />}
+            />
+            <Route
+              path="/about-school"
+              caseSensitive={true}
+              element={<AboutSchool />}
+            />
+            <Route
+              path="/about-school-history"
+              caseSensitive={true}
+              element={<SchoolHistory />}
+            />
+            <Route
+              path="/school-documents"
+              caseSensitive={true}
+              element={<SchoolDocuments />}
+            />
 
             {/* departments */}
-            <Route path="/music_department" element={<MusicDepartment />} />
-            <Route path="/vocal_department" element={<VocalDepartment />} />
             <Route
-              path="/сhoreographic_department"
+              path="/music-department"
+              caseSensitive={true}
+              element={<MusicDepartment />}
+            />
+            <Route
+              path="/vocal-department"
+              caseSensitive={true}
+              element={<VocalDepartment />}
+            />
+            <Route
+              path="/сhoreographic-department"
+              caseSensitive={true}
               element={<ChoreographicDepartment />}
             />
-            <Route path="/theater_department" element={<TheaterDepartment />} />
             <Route
-              path="/fine_arts_department"
+              path="/theater-department"
+              caseSensitive={true}
+              element={<TheaterDepartment />}
+            />
+            <Route
+              path="/fine-arts-department"
+              caseSensitive={true}
               element={<FineArtsDepartment />}
             />
             <Route
-              path="/preschool_department"
+              path="/preschool-department"
+              caseSensitive={true}
               element={<PreschoolDepartment />}
             />
             <Route
-              path="/about_school_administration"
+              path="/about-school-administration"
+              caseSensitive={true}
               element={<AboutSchool />}
             />
           </Route>
 
           {/* login */}
-          <Route path="/login" element={<LoginLayout />}>
+          <Route path="/login" caseSensitive={true} element={<LoginLayout />}>
             <Route index element={<SignInPage />} />
             <Route
               path="password-recovery"
+              caseSensitive={true}
               element={<PasswordRecoveryPage />}
             />
             <Route
               path="password-recovery/:token"
+              caseSensitive={true}
               element={<CompletePasswordRecoveryPage />}
             />
-            <Route path="password-recovery-success" element={<SuccessPage />} />
+            <Route
+              path="password-recovery-success"
+              caseSensitive={true}
+              element={<SuccessPage />}
+            />
           </Route>
 
           {/* admin */}
@@ -157,11 +209,11 @@ const App = () => {
             <Route path="departments" element={<DepartmentsPageAdmin />} />
             <Route path="departments/:id" element={<DepartmentPageAdmin />} />
             <Route
-              path="departments/sub_department/add"
+              path="departments/sub-department/add"
               element={<AddSubDepartmentPage />}
             />
             <Route
-              path="departments/sub_department/edit/:id"
+              path="departments/sub-department/edit/:id"
               element={<EditSubDepartmentPage />}
             />
             <Route path="achievements" element={<OurAchievementsPageAdmin />} />

@@ -13,7 +13,7 @@ const Map = () => {
     <section className={styles.Map}>
       <Container>
         <div className={styles.MapWrapper}>
-          <h1>Наше Розташування</h1>
+          <h2>Наше Розташування</h2>
           <div className={styles.MapContainer}>
             <MapContainer
               center={[50.45449, 30.50435]}

@@ -18,8 +18,6 @@ const PostersPage = () => {
   const [selectedImg, setSelectedImg] = useState({});
   const isMaxAmount = postersPerPage >= posters.length;
 
-  //console.log(isMaxAmount);
-
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
     setSelectedImg(selectImg);
@@ -79,13 +77,11 @@ const PostersPage = () => {
     }
   }, [windowWidth]);
 
-  //console.log(posters.length > postersPerPage);
-
   return (
     <>
       <SEO
         title="Афіша Київської дитячої школи мистецтв №2 ім. М.І.Вериківського"
-        description='На сцені Київської дитячої школи мистецтв №2 ім. М.І.Вериківського регулярно проводяться мистецькі заходи, представленні відділеннями школи, детальніше про ці заходи можна дізнатися на сторінці Афіша дитячої школи мистецтв.'
+        description="На сцені Київської дитячої школи мистецтв №2 ім. М.І.Вериківського регулярно проводяться мистецькі заходи, представленні відділеннями школи, детальніше про ці заходи можна дізнатися на сторінці Афіша дитячої школи мистецтв."
       />
       <Container>
         {!loading ? (

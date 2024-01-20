@@ -7,7 +7,7 @@ const Page404 = () => {
     <div className={styles.NotFound}>
       <div className={styles.wrapper}>
         <div className="image">
-          <img src="/404.svg" alt="page 404" />
+          <img src="/icons/404.svg" alt="page 404" />
         </div>
         <p>
           Ой, тут має бути шедевр, але здається, ми його забули на виставці!

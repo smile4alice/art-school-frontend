@@ -38,6 +38,8 @@ const AllNews = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  console.log(news);
+
   return (
     <>
       <SEO
@@ -54,9 +56,10 @@ const AllNews = () => {
               {news && Array.isArray(news) && news.length > 0 ? (
                 news.slice(0, itemsPerPage).map((item, index) => (
                   <Link
-                    to={`/news/${item.id}`}
+                    to={`/events/${item.title}`}
                     state={{ post: item }}
                     key={index}
+                    rel="canonical"
                   >
                     <NewsItem
                       imgSrc={item.photo}
