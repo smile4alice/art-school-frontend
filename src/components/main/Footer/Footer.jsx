@@ -74,20 +74,20 @@ const Footer = ({ contacts }) => {
               <div className={styles.footerLinksColumn}>
                 <Link to="/">Головна</Link>
                 <Link to="/about_school">Наша школа</Link>
-                <Link to="/news">Наші події</Link>
+                <Link to="/events">Наші події</Link>
                 <Link to="/posters">Афіша</Link>
                 <Link to="/gallery">Галерея</Link>
                 <Link to="/cooperation">Співпраця</Link>
               </div>
               <div className={styles.footerLinksColumnDepartment}>
-                <Link to="/music_department">Музичне відділення</Link>
-                <Link to="/vocal_department">Вокально-хорове відділення</Link>
-                <Link to="/choreographic_department">
+                <Link to="/music-department">Музичне відділення</Link>
+                <Link to="/vocal-department">Вокально-хорове відділення</Link>
+                <Link to="/сhoreographic-department">
                   Хореографічне відділення
                 </Link>
-                <Link to="/fine_arts_department">Образотворче відділення</Link>
-                <Link to="/theater_department">Театральне відділення</Link>
-                <Link to="/preschool_department">
+                <Link to="/fine-arts-department">Образотворче відділення</Link>
+                <Link to="/theater-department">Театральне відділення</Link>
+                <Link to="/preschool-department">
                   Дошкільне та підготовче відділення
                 </Link>
               </div>
@@ -99,7 +99,7 @@ const Footer = ({ contacts }) => {
                   <a
                     href={contacts.map_url}
                     target="_blank"
-                    rel="noopener noreferrer nofollow"
+                    rel="noopener noreferrer"
                   >
                     {contacts.address}
                   </a>
@@ -174,14 +174,14 @@ const Footer = ({ contacts }) => {
             <a
               href="/documents/політика_конфіденційності.pdf"
               target="_blank"
-              rel="noopener noreferrer nofollow"
+              rel="noopener noreferrer"
             >
               Політика конфіденційності
             </a>
             <a
               href="/documents/правила_користування_сайтом.pdf"
               target="_blank"
-              rel="noopener noreferrer nofollow"
+              rel="noopener noreferrer"
             >
               Правила користування сайтом
             </a>

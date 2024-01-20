@@ -16,6 +16,7 @@
     margin: 0.62rem 0;
   }
   .dropzone {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,7 +53,7 @@
       width: 100%;
       height: 100%;
       height: 197px;
-      img {
+      .preview {
         width: 100%;
         height: 100%;
         object-fit: contain;

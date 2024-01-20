@@ -1,7 +1,11 @@
 User-agent: *
+
+User-agent: Googlebot
+
 Disallow: /admin/
 Disallow: /login/
 Disallow: /documents/політика_конфіденційності.pdf
 Disallow: /documents/правила_користування_сайтом.pdf
 
-Sitemap: https://https:art-school-frontend.vercel.app/sitemap.xml
+
+Sitemap: https://art-school-frontend.vercel.app/sitemap.xml

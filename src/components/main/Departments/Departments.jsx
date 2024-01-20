@@ -39,7 +39,7 @@ const Departments = () => {
     <section>
       <Container>
         <div id="departmens" className={styles.wrapper}>
-          <p className={`${styles.title} sectionTitle`}>Відділення</p>
+          <h2 className={`${styles.title} sectionTitle`}>Відділення</h2>
           <div className={styles.buttonContainer}>
             <a
               href={
@@ -56,32 +56,32 @@ const Departments = () => {
           <div className={styles.departmentsContainer}>
             <Department
               title={musicDepartment}
-              link="/music_department"
+              link="/music-department"
               img={musicImg}
             />
             <Department
               title={vocalDepartment}
-              link="/vocal_department"
+              link="/vocal-department"
               img={vocalImg}
             />
             <Department
               title={choreografyDepartment}
-              link="/сhoreographic_department"
+              link="/сhoreographic-department"
               img={choreografyImg}
             />
             <Department
               title={artDepartment}
-              link="/fine_arts_department"
+              link="/fine-arts-department"
               img={artImg}
             />
             <Department
               title={theaterDepartment}
-              link="/theater_department"
+              link="/theater-department"
               img={theaterImg}
             />
             <Department
               title={preschoolPreparatoryDepartment}
-              link="/preschool_department"
+              link="/preschool-department"
               img={preschoolImg}
             />
           </div>

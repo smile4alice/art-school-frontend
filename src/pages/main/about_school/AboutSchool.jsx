@@ -37,7 +37,7 @@ const AboutSchool = () => {
                 {isDesktop && (
                   <Link
                     className={styles.readMoreButton}
-                    to="/about_school_history"
+                    to="/about-school-history"
                   >
                     Читати більше
                   </Link>
@@ -53,7 +53,7 @@ const AboutSchool = () => {
             {!isDesktop && (
               <Link
                 className={styles.readMoreButton}
-                to="/about_school_history"
+                to="/about-school-history"
               >
                 Читати більше
               </Link>
