@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import useDocumentsStore from '@/store/documentsStore';
+import SEO from '@/components/SEO';
 import styles from './School_documents.module.scss';
 
 const SchoolDocuments = () => {
@@ -22,6 +23,11 @@ const SchoolDocuments = () => {
   }, [getDocuments]);
 
   return (
+    <>
+    <SEO
+        title="Документи КДШМ №2 ім. М.І.Вериківського"
+        description="Документи Київської Дитячої Школи Мистецтв №2 ім. М.І.Вериківського"
+      />
     <section className={styles.schoolDocuments}>
       <div className={styles.contentWrapper}>
         <h1 className={styles.documentsTitle}>Документи школи</h1>
@@ -41,6 +47,7 @@ const SchoolDocuments = () => {
         </ul>
       </div>
     </section>
+    </>
   );
 };
 

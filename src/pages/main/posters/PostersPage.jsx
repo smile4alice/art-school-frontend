@@ -7,6 +7,7 @@ import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SEO from '@/components/SEO';
+
 const PostersPage = () => {
   const ITEMS_PER_PAGE = 6;
   const { getPosters } = usePostersStore();
@@ -80,8 +81,8 @@ const PostersPage = () => {
   return (
     <>
       <SEO
-        title="Афіша Київської дитячої школи мистецтв №2 ім. М.І.Вериківського"
-        description="На сцені Київської дитячої школи мистецтв №2 ім. М.І.Вериківського регулярно проводяться мистецькі заходи, представленні відділеннями школи, детальніше про ці заходи можна дізнатися на сторінці Афіша дитячої школи мистецтв."
+        title="Афіша КДШМ №2 ім. М.І.Вериківського"
+        description='Детальніше про мистецькі заходи, представленні відділеннями школи можна дізнатися на сторінці Афіша КДШМ №2 ім. М.І.Вериківського.'
       />
       <Container>
         {!loading ? (

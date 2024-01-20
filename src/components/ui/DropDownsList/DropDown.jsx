@@ -1,4 +1,3 @@
-// DropDown.jsx
 import { Markup } from 'interweave';
 import arrowIcon from '@/assets/icons/bottom-arrow.svg';
 import s from './DropDown.module.scss';
