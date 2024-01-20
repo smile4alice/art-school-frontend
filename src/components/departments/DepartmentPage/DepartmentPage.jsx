@@ -45,7 +45,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
       <section className={styles.departmentSection}>
         <Container>
           <div className={styles.contentWrapper}>
-            <h2 className="department_title ">{title}</h2>
+            <h1 className="department_title ">{title}</h1>
             {subDepartments?.length > 0 ? (
               <div className={styles.wrapper}>
                 <Articles articles={articles} title={title} />

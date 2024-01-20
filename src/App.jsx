@@ -75,7 +75,7 @@ const App = () => {
     <HelmetProvider context={helmetContext}>
       <SEO
         title="Київська дитяча школа мистецтв №2 ім. М.І.Вериківського"
-        description="У 2021-2022 навчальному році Київська дитяча школа мистецтв № 2 імені M. I. Вериківського відсвяткувала свій ювілей – 90 річницю від дня утворення. Нині на музичному, театральному, хореографічному, образотворчому та підготовчому відділеннях навчається близько 1000 учнів віком від 2,5 до 17 років."
+        description="У різних відділеннях КДШМ № 2 імені M. I. Вериківського навчається близько 1000 учнів віком від 2,5 до 17 років."
       />
       <Router>
         <Routes>
@@ -97,7 +97,7 @@ const App = () => {
             <Route path="/music_department" element={<MusicDepartment />} />
             <Route path="/vocal_department" element={<VocalDepartment />} />
             <Route
-              path="/сhoreographic_department"
+              path="/choreographic_department"
               element={<ChoreographicDepartment />}
             />
             <Route path="/theater_department" element={<TheaterDepartment />} />
