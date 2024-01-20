@@ -23,7 +23,14 @@ const useClickOutside = (refs, callback) => {
   }, [refs, callback]);
 };
 
+const truncateString = (maxLength, string) => {
+  
+  if (string.length <= maxLength) {
+    return string;
+  } else {
+    return string.substring(0, maxLength) + '...';
+  }
+};
 
 
-
-export { useToggle, useClickOutside };
+export { useToggle, useClickOutside, truncateString };
