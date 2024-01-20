@@ -97,7 +97,7 @@ const App = () => {
             <Route path="/music_department" element={<MusicDepartment />} />
             <Route path="/vocal_department" element={<VocalDepartment />} />
             <Route
-              path="/сhoreographic_department"
+              path="/choreographic_department"
               element={<ChoreographicDepartment />}
             />
             <Route path="/theater_department" element={<TheaterDepartment />} />
