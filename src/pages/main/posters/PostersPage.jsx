@@ -7,6 +7,7 @@ import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SEO from '@/components/SEO';
+
 const PostersPage = () => {
   const ITEMS_PER_PAGE = 6;
   const { getPosters } = usePostersStore();

@@ -19,7 +19,7 @@ const NewsPost = () => {
       <Container>
         <section className={styles.wrapper}>
           <div className={styles.buttonContainer}>
-            <NavLinkButton href={'/news'} text={'переглянути всі новини'} />
+            <NavLinkButton href={'/events'} text={'переглянути всі новини'} />
           </div>
 
           <div className={styles.card}>
