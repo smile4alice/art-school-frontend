@@ -23,7 +23,7 @@ const useAuthStore = create(set => ({
             set(() => {
               if (error.code === 'ERR_BAD_REQUEST') {
                 return {
-                  error: 'Невірні логін або пароль',
+                  error: 'Невірно введений пароль або електронна пошта',
                 };
               }
             });
@@ -33,7 +33,7 @@ const useAuthStore = create(set => ({
                   error: '',
                 };
               });
-            }, 3000);
+            }, 5000);
           });
       }
     } catch (error) {

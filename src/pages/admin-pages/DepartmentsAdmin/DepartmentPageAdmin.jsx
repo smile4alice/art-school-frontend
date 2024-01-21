@@ -61,9 +61,9 @@ const DepartmentPageAdmin = () => {
       <PageTitle
         title={`${title}`}
         showBackButton={true}
-        backButtonLink='/admin/departments'
+        backButtonLink="/admin/departments"
         showActionButton={true}
-        actionButtonLink="/admin/departments/sub_department/add"
+        actionButtonLink="/admin/departments/sub-department/add"
         isActionButtonDisabled={false}
         actionButtonLabel="Додати відділ"
         stateTitle={title}

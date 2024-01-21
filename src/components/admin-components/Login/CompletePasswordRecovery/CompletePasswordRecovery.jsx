@@ -50,7 +50,7 @@ const CompletePasswordRecovery = () => {
                   component={PasswordInput}
                   showCharacterCount={false}
                   label="Новий пароль*"
-                  placeholder="Введіть 6 символів і більше"
+                  placeholder="Введіть 8 символів і більше"
                 />
                 <Field
                   name="confirm_password"
