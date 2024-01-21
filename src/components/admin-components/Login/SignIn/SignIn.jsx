@@ -34,13 +34,13 @@ const SignIn = () => {
     }
   };
 
+  console.log(error);
+
   useEffect(() => {
     checkToken('access_token');
   }, []);
 
   if (isAuthorized) return <Navigate to="/admin" />;
-
-  console.log(error.code);
 
   const onSubmit = async values => {
     const formData = new FormData();

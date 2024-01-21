@@ -14,7 +14,7 @@ export const completeRecoveryValidation = Yup.object().shape({
     ),
   confirm_password: Yup.string().test(
     'passwords-match',
-    'Passwords must match',
+    'Паролі не співпадають',
     function (value) {
       return this.parent.password === value;
     }
