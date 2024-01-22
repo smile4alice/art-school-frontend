@@ -49,7 +49,7 @@
    @media screen and (min-width: 1280px) {
       font-size: 18px;
    }
-}
-.documentLink:hover{
-   color: #0335E6;
+        &:hover {
+           color: $accent-hover;
+        }
 }

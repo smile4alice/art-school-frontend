@@ -34,6 +34,9 @@ const SchoolHistory = () => {
                   </p>
                 ))}
                 <p className={`${styles.text} ${styles.text_bold}  `}>
+                  Запрошуємо і ваших дітей долучитися до родини КДШМ № 2 ім. М. І. Вериківського!
+                </p>
+                <p className={`${styles.text} ${styles.text_bold}  `}>
                   Tворімо історію нашого міста разом!
                 </p>
               </div>

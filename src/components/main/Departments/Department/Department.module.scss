@@ -16,6 +16,9 @@
     width: 370px;
     height: 210px;
   }
+  &:hover {
+    background: $lightgray;
+  }
 
   .info {
     display: flex;
@@ -52,6 +55,11 @@
       }
       @media screen and (min-width: 1280px) {
         color: $black;
+      }
+      &:hover {
+        border-left: 1px solid $accent-hover;
+        border-right: 1px solid $accent-hover;
+        color: $accent-hover;
       }
     }
   }
