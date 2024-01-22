@@ -110,6 +110,9 @@
   text-align: center;
   border-bottom: 1px solid $white;
   border-radius: 5px;
+  &:hover {   
+    background: $accent-hover;
+    }
 }
 .menulink {
   pointer-events: none;

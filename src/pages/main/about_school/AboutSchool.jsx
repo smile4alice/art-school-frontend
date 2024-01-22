@@ -27,10 +27,10 @@ const AboutSchool = () => {
       />
       <section className={`${styles.history} section`}>
         <Container>
-          <div className={styles.history_wrapper}>
-            <h1 className="department_title ">Історія школи</h1>
+          <div className={styles.history_wrapper}>            
             <div className={styles.history_contentWrapper}>
               <div className={styles.history_textWrapper}>
+                <h1 className="department_title ">Історія школи</h1>
                 <p className={styles.history_content_text}>
                   {historyData[0].description}
                 </p>
