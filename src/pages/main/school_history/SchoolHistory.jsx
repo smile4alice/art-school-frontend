@@ -16,9 +16,9 @@ const SchoolHistory = () => {
       />
       <section>
         <Container>
-          <div className={styles.contentWrapper}>
-            <h1 className="department_title">Історія нашої школи</h1>
+          <div className={styles.contentWrapper}>            
             <div>
+              <h1 className="department_title">Історія нашої школи</h1>
               <div className={styles.imgWrapper}>
                 <p>{historyData[0].description}</p>
                 <img
