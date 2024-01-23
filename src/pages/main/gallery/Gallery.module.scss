@@ -11,4 +11,7 @@
       font-weight: 700;
     }
   }
+        @include desktop {
+          padding: 40px 0 60px 0;
+        }        
 }
