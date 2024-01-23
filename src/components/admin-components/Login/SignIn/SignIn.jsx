@@ -34,8 +34,6 @@ const SignIn = () => {
     }
   };
 
-  console.log(error);
-
   useEffect(() => {
     checkToken('access_token');
   }, []);

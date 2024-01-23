@@ -54,13 +54,35 @@ const useAuthStore = create(set => ({
   },
 
   resetPassword: async data => {
-    try {
-      if (!Object.values(data).includes(undefined)) {
-        const response = await axios.post(`/auth/reset-password`, data, {});
+    if (data && !Object.values(data).includes(undefined)) {
+      try {
+        const response = await axios
+          .post(`/auth/reset-password`, data, {})
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log('Fetch error:', error.response.data.detail);
+            set(() => {
+              if (error.response.data.detail === 'RESET_PASSWORD_BAD_TOKEN') {
+                return {
+                  error:
+                    'Посилання недійсне, надішліть запит для відновлення паролю повторно',
+                };
+              }
+            });
+            setTimeout(() => {
+              set(() => {
+                return {
+                  error: '',
+                };
+              });
+            }, 5000);
+          });
         return response;
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   },
 
