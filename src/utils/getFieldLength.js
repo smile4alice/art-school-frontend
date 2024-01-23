@@ -3,10 +3,10 @@ export const getFieldLength = val => {
     return 300;
   }
   if (val === 'address') {
-    return 2000;
+    return 300;
   }
   if (val === 'phone') {
-    return 300;
+    return 50;
   }
   if (val === 'email') {
     return 300;

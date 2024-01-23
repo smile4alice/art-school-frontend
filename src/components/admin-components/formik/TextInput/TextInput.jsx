@@ -14,8 +14,9 @@ const TextInput = ({
 }) => {
   const name = field.name;
   const isFieldTouched = touched[field.name];
-  const valueLength = field.value?.length;
   const { isFocused, setIsFocused } = useFocused();
+  const valueLength =
+    field.value?.length !== undefined ? field.value?.length : 0;
 
   useEffect(() => {
     if (!text) return;
