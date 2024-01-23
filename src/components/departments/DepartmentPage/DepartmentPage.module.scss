@@ -8,7 +8,7 @@
   @extend%aligncenter;
   flex-direction: column;
   gap: 12px;
-  h2 {
+  h1 {
     align-self: flex-start;
   }
   @media screen and (min-width: 768px) {
@@ -17,6 +17,7 @@
   }
   @media screen and (min-width: 1240px) {
     max-width: 1180px;
+    padding: 40px 0 60px;
     gap: 30px;
   }
 }
@@ -29,6 +30,7 @@
     gap: 24px;
   }
   @include desktop {
-    gap: 120px;
+    // gap: 120px;
+    gap: 0;
   }
 }

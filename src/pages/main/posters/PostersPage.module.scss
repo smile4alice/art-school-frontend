@@ -55,6 +55,7 @@
       height: 420px;
     }
   }
+
 }
 
 .postersListItemText {
@@ -79,8 +80,8 @@
   margin: 40px auto;
 
   &:hover .iconMore span {
-    border-top: 2px solid $accent;
-    border-right: 2px solid $accent;
+    border-top: 2px solid $accent-hover;
+    border-right: 2px solid $accent-hover;
   }
 
   @media screen and (min-width: 768px) {
