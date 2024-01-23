@@ -1,21 +1,21 @@
 .youtubeIcon {
-  fill: $white;
+  fill: $accent;
   transition: fill 0.3s;
 
   &:hover {
-    fill: $lightblue;
+    fill: $accent-hover;
   }
   &:focus {
-    fill: $lightblue;
+    fill: $accent-hover;
   }
 }
 
 .facebookIcon {
-  fill: $white;
+  fill: $accent;
   transition: fill 0.3s;
 
   &:hover {
-    fill: $lightblue;
+    fill: $accent-hover;
   }
 }
 .burgerMenuIcon {
