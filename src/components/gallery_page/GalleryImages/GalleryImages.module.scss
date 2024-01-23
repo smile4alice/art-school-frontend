@@ -13,11 +13,14 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
     &:hover {
         color: $accent-hover;
       }
-  }
-  
+  }  
 }
 
 .gallery {
