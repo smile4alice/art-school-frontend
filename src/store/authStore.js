@@ -106,7 +106,7 @@ const useAuthStore = create(set => ({
             set(() => {
               if (error.response.data.detail === 'Old password is incorrect.') {
                 return {
-                  error: 'Поточний пароль невірний',
+                  error: 'Надісланий поточний пароль невірний',
                 };
               }
             });
