@@ -21,6 +21,7 @@ const ChangePasswordPageAdmin = () => {
   const { changePassword } = useAuthStore();
   const { isModalOpen, openModal } = useModal();
   const loading = useAuthStore(state => state.loading);
+  const error = useAuthStore(state => state.error);
 
   const onSubmit = async values => {
     const formData = new FormData();
@@ -60,6 +61,7 @@ const ChangePasswordPageAdmin = () => {
                     label="Поточний пароль*"
                   />
                 </div>
+                {error && <p className={styles.error}>{error}</p>}
                 <Field
                   name="newPassword"
                   id="newPassword"

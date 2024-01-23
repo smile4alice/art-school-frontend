@@ -87,28 +87,46 @@ const useAuthStore = create(set => ({
   },
 
   changePassword: async data => {
-    try {
-      set(() => {
-        return {
-          loading: true,
-        };
-      });
-      if (isDataValid(data)) {
+    if (isDataValid(data)) {
+      try {
+        set(() => {
+          return {
+            loading: true,
+          };
+        });
+
         const requestData = new URLSearchParams(data);
-        const response = await axios.post(
-          `/auth/change-password`,
-          requestData,
-          {}
-        );
+        const response = await axios
+          .post(`/auth/change-password`, requestData, {})
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log('Fetch error:', error.response.data.detail);
+            set(() => {
+              if (error.response.data.detail === 'Old password is incorrect.') {
+                return {
+                  error: 'Поточний пароль невірний',
+                };
+              }
+            });
+            setTimeout(() => {
+              set(() => {
+                return {
+                  error: '',
+                };
+              });
+            }, 5000);
+          });
         set(() => {
           return {
             loading: false,
           };
         });
         return response;
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   },
 }));
