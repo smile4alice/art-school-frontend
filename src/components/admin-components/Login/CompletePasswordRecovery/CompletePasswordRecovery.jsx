@@ -18,6 +18,9 @@ const CompletePasswordRecovery = () => {
   const navigate = useNavigate();
   const { resetPassword } = useAuthStore();
   const [isProcessing, setIsProcessing] = useState(false);
+  const error = useAuthStore(state => state.error);
+
+  console.log(error);
 
   const onSubmit = async values => {
     const data = {
@@ -26,9 +29,14 @@ const CompletePasswordRecovery = () => {
     };
     setIsProcessing(true);
     const response = await resetPassword(data);
-    if (response.status === 200) {
+    if (response && response.status === 200) {
       setIsProcessing(false);
       navigate('/login/password-recovery-success');
+    } else {
+      setIsProcessing(false);
+      setTimeout(() => {
+        navigate('/login/password-recovery');
+      }, 5000);
     }
   };
 
@@ -60,6 +68,7 @@ const CompletePasswordRecovery = () => {
                   label="Повторити новий пароль*"
                   placeholder="Повторіть свій пароль"
                 />
+                {error && <p className={styles.error}>{error}</p>}
                 <div className={styles.button}>
                   <ButtonSubmit
                     handlerSubmitButton={onSubmit}
