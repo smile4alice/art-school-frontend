@@ -17,7 +17,7 @@
     height: 210px;
   }
   &:hover {
-    background: $lightgray;
+    background-color: $lightgray-hover;
   }
 
   .info {
@@ -36,9 +36,6 @@
       color: $black;
       @media screen and (min-width: 768px) {
         font-size: 1.25rem; // 20px;
-      }
-      @media screen and (min-width: 1280px) {
-        color: $title-card-department;
       }
     }
 

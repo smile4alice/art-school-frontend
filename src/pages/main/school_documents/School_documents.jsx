@@ -1,3 +1,4 @@
+import Container from '@/components/Container/Container';
 import { useEffect } from 'react';
 import useDocumentsStore from '@/store/documentsStore';
 import SEO from '@/components/SEO';
@@ -28,24 +29,26 @@ const SchoolDocuments = () => {
         title="Документи КДШМ №2 ім. М.І.Вериківського"
         description="Документи Київської Дитячої Школи Мистецтв №2 ім. М.І.Вериківського"
       />
-    <section className={styles.schoolDocuments}>
-      <div className={styles.contentWrapper}>
-        <h1 className={styles.documentsTitle}>Документи школи</h1>
-        <ul className={styles.documentsList}>
-          {documents.map((document, index) => (
-            <li key={index}>
-              <a
-                className={styles.documentLink}
-                href={index > 0 && document.doc_path}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {index > 0 && document.doc_name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <section>
+        <Container>        
+          <div className={styles.contentWrapper}>
+            <h1 className={styles.documentsTitle}>Документи школи</h1>
+            <ul className={styles.documentsList}>
+              {documents.map((document, index) => (
+                <li key={index}>
+                  <a
+                    className={styles.documentLink}
+                    href={index > 0 && document.doc_path}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {index > 0 && document.doc_name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+       </Container>
     </section>
     </>
   );

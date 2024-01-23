@@ -13,7 +13,11 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    &:hover {
+        color: $accent-hover;
+      }
   }
+  
 }
 
 .gallery {
@@ -55,4 +59,7 @@
   gap: 1rem;
   font-size: 24px;
   margin: 2rem auto;
+  &:hover{
+    color: $accent-hover;
+  }
 }
