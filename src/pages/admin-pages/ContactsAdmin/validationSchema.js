@@ -31,6 +31,7 @@ export const contactsValidation = Yup.object().shape({
     ),
 
   facebook_url: Yup.string()
+
     .min(5, 'Мінімальна довжина поля 5 символів')
     .max(300, 'Максимальна довжина поля 300 символів')
     .matches(FACEBOOK_URL, 'Введіть коректну електронну адресу Facebook'),

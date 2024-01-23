@@ -1,3 +1,4 @@
+import { Markup } from 'interweave';
 import styles from './Articles.module.scss';
 
 const Articles = ({ articles, title }) => {
@@ -9,7 +10,7 @@ const Articles = ({ articles, title }) => {
           articles.map((article, index) => (
             <article key={index} className={styles.article}>
               <div className={styles.textWrapper}>
-                <p className={styles.text}>{article.text}</p>
+                <Markup className={styles.text} content={article.text} />
               </div>
               <div className={styles.image}>
                 <img src={article.image} alt={title} />

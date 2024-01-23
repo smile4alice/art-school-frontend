@@ -41,7 +41,7 @@ const DepartmentsTable = ({ data, departmentId }) => {
               </div>
               <div className={styles.cellActionRow}>
                 <Link
-                  to={`/admin/departments/sub_department/edit/${item.id}`}
+                  to={`/admin/departments/sub-department/edit/${item.id}`}
                   state={{
                     title: item.sub_department_name,
                     departmentId: departmentId,

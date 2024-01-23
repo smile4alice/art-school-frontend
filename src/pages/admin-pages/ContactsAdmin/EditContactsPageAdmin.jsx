@@ -43,7 +43,7 @@ const EditContactsPageAdmin = () => {
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={contactsValidation}
+        validationSchema={contactsValidation[key]}
         onSubmit={onSubmit}
       >
         {formik => {
@@ -62,9 +62,7 @@ const EditContactsPageAdmin = () => {
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
-                    isActive={
-                      formik.isValid && Object.keys(formik.values).length
-                    }
+                    isActive={formik.isValid && !formik.values[key] == ''}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
                     isProcessing={loading}

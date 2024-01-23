@@ -16,7 +16,7 @@ const SchoolHistory = () => {
       />
       <section>
         <Container>
-          <div className={styles.contentWrapper}>            
+          <div className={styles.contentWrapper}>
             <div>
               <h1 className="department_title">Історія нашої школи</h1>
               <div className={styles.imgWrapper}>
@@ -34,7 +34,8 @@ const SchoolHistory = () => {
                   </p>
                 ))}
                 <p className={`${styles.text} ${styles.text_bold}  `}>
-                  Запрошуємо і ваших дітей долучитися до родини КДШМ № 2 ім. М. І. Вериківського!
+                  Запрошуємо і ваших дітей долучитися до родини КДШМ №2 ім.
+                  М.І.Вериківського!
                 </p>
                 <p className={`${styles.text} ${styles.text_bold}  `}>
                   Tворімо історію нашого міста разом!
