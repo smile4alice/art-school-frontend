@@ -6,7 +6,6 @@ import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import PasswordInput from '@/components/admin-components/formik/PasswordInput/PasswordInput';
-import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import ConfirmModal from '@/components/admin-components/modals/ConfirmModal/ConfirmModal';
 import styles from './ChangePassword.module.scss';
 
@@ -57,29 +56,31 @@ const ChangePasswordPageAdmin = () => {
                     name="oldPassword"
                     id="oldPassword"
                     placeholder="Поточний пароль"
-                    component={TextInput}
+                    component={PasswordInput}
                     label="Поточний пароль*"
                   />
-                  </div>
-                  <Field
-                    name="newPassword"
-                    id="newPassword"
-                    placeholder="Новий пароль"
-                    component={PasswordInput}
-                    label="Новий пароль*"
-                  />
-                  <Field
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    placeholder="Повторити новий пароль"
-                    component={PasswordInput}
-                    label="Повторити новий пароль*"
-                  />
-                
+                </div>
+                <Field
+                  name="newPassword"
+                  id="newPassword"
+                  placeholder="Новий пароль"
+                  component={PasswordInput}
+                  label="Новий пароль*"
+                />
+                <Field
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  placeholder="Повторити новий пароль"
+                  component={PasswordInput}
+                  label="Повторити новий пароль*"
+                />
+
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
+                    isActive={
+                      formik.isValid && Object.keys(formik.touched).length
+                    }
                     isRight={true}
                     handlerSubmitButton={onSubmit}
                     isProcessing={loading}

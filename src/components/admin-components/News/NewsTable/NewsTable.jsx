@@ -24,8 +24,8 @@ const NewsTable = ({ data }) => {
   return (
     <div className={styles.contentWrap}>
       <ul className={styles.tableHeader}>
-        <li className={styles.cellHeadingHeader}>Заголовок Новини</li>
-        <li className={styles.cellTextHeader}>Текст Новини</li>
+        <li className={styles.cellHeadingHeader}>Заголовок</li>
+        <li className={styles.cellTextHeader}>Текст</li>
         <li className={styles.cellPhotoHeader}>Фото</li>
         <li className={styles.cellActionHeader}>Дія</li>
       </ul>

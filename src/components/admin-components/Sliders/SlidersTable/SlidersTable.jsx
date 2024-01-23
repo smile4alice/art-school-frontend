@@ -26,8 +26,8 @@ const SlidersTable = ({ data }) => {
     <div className={styles.contentWrap}>
       <ul className={styles.tableHeader}>
         <li className={styles.cellSlideHeader}>Слайди</li>
-        <li className={styles.cellHeadingHeader}>Заголовок Слайда</li>
-        <li className={styles.cellTextHeader}>Опис Слайда</li>
+        <li className={styles.cellHeadingHeader}>Заголовок</li>
+        <li className={styles.cellTextHeader}>Опис</li>
         <li className={styles.cellPhotoHeader}>Фото</li>
         <li className={styles.cellActionHeader}>Дія</li>
       </ul>
