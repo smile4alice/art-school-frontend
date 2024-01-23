@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,13 +12,12 @@ import styles from './News.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
-import { Link } from 'react-router-dom';
 import usePostersStore from '@/store/posterStore';
 import Spinner from '@/components/ui/Spinner/Spinner';
 
 const News = () => {
   const swiperRef = useRef();
-  const isLaptop = useMediaQuery({ minWidth: 1024 });
+  const isLaptop = useMediaQuery({ minWidth: 1280 });
   const { getNews } = useNewsStore();
   const news = useNewsStore(state => state.news);
   const loading = usePostersStore(state => state.loading);
@@ -49,7 +48,7 @@ const News = () => {
                 className={styles.Slider}
                 spaceBetween={50}
                 slidesPerView={1}
-                modules={[Pagination]}
+                modules={[Pagination, Navigation]}
                 pagination={{ clickable: true }}
                 loop={true}
                 onSwiper={swiper => {
