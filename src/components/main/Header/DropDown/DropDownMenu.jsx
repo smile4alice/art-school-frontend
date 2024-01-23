@@ -87,9 +87,9 @@ const DropDownMenu = ({
 
       <Link
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
-        to="/about_school"
+        to="/about-school"
         onMouseEnter={() => {
-          setCurrentId('about_school');
+          setCurrentId('about-school');
           setIsOpen(true);
         }}
         onMouseLeave={() => {
@@ -98,7 +98,7 @@ const DropDownMenu = ({
         }}
         onClick={() => {
           setIsOpen(!isOpen);
-          setCurrentId('about_school');
+          setCurrentId('about-school');
         }}
       >
         <div className={styles.dropDownNameWrapper}>
@@ -107,18 +107,18 @@ const DropDownMenu = ({
             Наша школа
           </span>
 
-          {isOpen && currentId === 'about_school' ? (
+          {isOpen && currentId === 'about-school' ? (
             <span className={styles.dropDown_iconUp}></span>
           ) : (
             <span className={styles.dropDown_iconDown}></span>
           )}
         </div>
 
-        {isOpen && currentId === 'about_school' && (
+        {isOpen && currentId === 'about-school' && (
           <ul
             className={clsx(
               styles.menu,
-              isOpen && currentId === 'about_school' ? styles.open : '',
+              isOpen && currentId === 'about-school' ? styles.open : '',
               styles.aboutUsMenu
             )}
           >
@@ -126,7 +126,7 @@ const DropDownMenu = ({
               <Link
                 className={clsx(styles.menulink, open ? styles.open : '')}
                 key={name}
-                to="/about_school_history"
+                to="/about-school-history"
                 onClick={() => {
                   !isDesktop && toggleBurgerMenu();
                 }}

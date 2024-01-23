@@ -7,9 +7,18 @@
     padding: 1.25rem;
     display: grid;
     gap: 1.12rem;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     max-height: calc(100vh - 148px);
-    overflow-y: scroll;
+    overflow-y: auto;
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media screen and (min-width: 1280px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
     &::-webkit-scrollbar {
       width: 0.3125rem;
     }
@@ -36,10 +45,14 @@
   }
   .photo {
     overflow: hidden;
-    height: 5.75rem;
-    max-width: 9.3rem;
-    border-radius: 0.3125rem;
-    margin: 0.9rem auto;
+    height: 6.3rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    iframe{
+      border-radius: 0.3125rem;
+    }
   }
   .action {
     display: flex;

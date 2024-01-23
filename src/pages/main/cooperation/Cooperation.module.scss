@@ -17,7 +17,7 @@
     }
 
     p {
-      line-height: 1.66;
+      line-height: 1.44;
       font-size: 18px;
     }
     .imagegWrapper {
@@ -42,6 +42,7 @@
       flex-direction: column;
       img {
         width: 90vw;
+        border-radius: 5px;
       }
 
       @media screen and (min-width: 1280px) {
@@ -96,7 +97,7 @@
         font-size: 18px;
       }
       @include tablet {
-        gap: 24px;
+        gap: 34px;
         padding-bottom: 60px;
         h2 {
           font-size: 24px;
@@ -112,7 +113,7 @@
         gap: 17px;
         li {
           position: relative;
-          margin-bottom: 1.25rem;
+          // margin-bottom: 1.25rem;
           padding-left: 1.75rem;
           &:hover {
             color: $accent;

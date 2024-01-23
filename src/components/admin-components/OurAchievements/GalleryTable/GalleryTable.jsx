@@ -18,17 +18,19 @@ const GalleryTable = ({ typeOfAchievements, url, departmentId }) => {
   const gallery = useServicesStore(state => state.gallery);
   const pageCount = useServicesStore(state => state.galleryPageCount);
   const loading = useServicesStore(state => state.loading);
-  const { isModalOpen, openModal } = useModal();
+  const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
   const [page, setPage] = useState(1);
   const triggerRef = useRef(null);
 
   const removePost = async () => {
       try {
+        closeModal();
         await deleteAchievement(url, currentId);
         setPage(1);
       } catch (error) {
         console.log(error);
+        closeModal();
       }
   };
 

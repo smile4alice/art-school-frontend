@@ -40,8 +40,6 @@ const SignIn = () => {
 
   if (isAuthorized) return <Navigate to="/admin" />;
 
-  console.log(error.code);
-
   const onSubmit = async values => {
     const formData = new FormData();
     formData.append('password', values.password);

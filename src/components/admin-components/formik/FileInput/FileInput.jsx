@@ -56,7 +56,7 @@ const FileInput = ({
               <input {...getInputProps()} />
               {imagePreview ? (
                 <div className={styles.imagePreview}>
-                  <img src={imagePreview} />
+                  <img src={imagePreview} className={styles.preview} />
                 </div>
               ) : null}
               {!imagePreview && (

@@ -4,15 +4,18 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  width: 400px;
+  width: 391px;
+  height: 235;
   border-radius: 6px;
   background: $admin-white;
   box-shadow: 0 0 10px #ccc;
 }
 
 .contentWrapper {
-  @extend%aligncenter;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   gap: 45px;
   padding: 45px 35px;
   p {
@@ -22,21 +25,23 @@
     font-size: 26px;
     font-weight: 500;
   }
-
-  svg {
-    width: 15px;
-    height: 15px;
-    font-weight: 800;
+  .close{
     position: absolute;
-    top: 18px;
-    right: 18px;
+    top: 1rem;
+    right: 1rem;
     cursor: pointer;
+    svg {
+      width: 15px;
+      height: 15px;
+      font-weight: 800;
+    }
   }
+ 
 }
 
 .buttonsWrapper {
   @extend%aligncenter;
-  gap: 60px;
+  gap: 1.88rem;
 
   button {
     font-family: 'Montserrat';

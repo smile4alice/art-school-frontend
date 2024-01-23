@@ -8,7 +8,7 @@ const ConfirmDeleteModal = ({ handleDelete }) => {
   return (
     <div className={styles.deleteModal}>
       <div className={styles.contentWrapper}>
-        <div onClick={() => closeModal()}>
+        <div className={styles.close} onClick={() => closeModal()}>
           <CloseIcon />
         </div>
 

@@ -38,7 +38,7 @@ const AddPostersPage = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Додати Афішу"
+        title="Додати афішу"
         showBackButton={true}
         backButtonLink="/admin/posters"
         showActionButton={false}
@@ -75,7 +75,9 @@ const AddPostersPage = () => {
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
+                    isActive={
+                      formik.isValid && Object.keys(formik.touched).length
+                    }
                     isRight={true}
                     handlerSubmitButton={onSubmit}
                     isProcessing={loading}

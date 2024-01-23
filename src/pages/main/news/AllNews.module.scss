@@ -1,8 +1,8 @@
 .wrapper {
-  margin: 0px 16px 40px;
+  padding: 0px 16px 40px;
   min-height: 40vh;
   @media screen and (min-width: 1280px) {
-    margin: 24px 90px 82px;
+    padding: 40px 90px 60px;
   }
 
   .title {
@@ -25,8 +25,8 @@
     }
 
     @media screen and (min-width: 1280px) {
-      column-gap: 60px;
-      margin: 32px 0 60px;
+      column-gap: 60px;     
+      margin: 32px 0 0;
     }
   }
 

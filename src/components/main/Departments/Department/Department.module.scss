@@ -16,6 +16,9 @@
     width: 370px;
     height: 210px;
   }
+  &:hover {
+    background-color: $lightgray-hover;
+  }
 
   .info {
     display: flex;
@@ -34,9 +37,6 @@
       @media screen and (min-width: 768px) {
         font-size: 1.25rem; // 20px;
       }
-      @media screen and (min-width: 1280px) {
-        color: $title-card-department;
-      }
     }
 
     .knowMore {
@@ -52,6 +52,11 @@
       }
       @media screen and (min-width: 1280px) {
         color: $black;
+      }
+      &:hover {
+        border-left: 1px solid $accent-hover;
+        border-right: 1px solid $accent-hover;
+        color: $accent-hover;
       }
     }
   }

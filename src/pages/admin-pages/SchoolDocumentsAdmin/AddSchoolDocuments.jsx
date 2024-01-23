@@ -9,7 +9,7 @@ import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import styles from './SchoolDocuments.module.scss';
 
-const breadcrumbs = ['Документи', 'Додати документ'];
+const breadcrumbs = ['Документи', 'Додати документи школи'];
 
 const initialValues = {
   title: '',
@@ -38,7 +38,7 @@ const AddSchoolDocumentsPage = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Додати Документ"
+        title="Додати документи школи"
         showBackButton={true}
         backButtonLink="/admin/documents"
         showActionButton={false}

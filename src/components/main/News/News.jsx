@@ -35,10 +35,10 @@ const News = () => {
   return (
     <section className={`${styles.News} section`}>
       <Container>
-        <h1>Новини</h1>
+        <h2 className={styles.title}>Новини</h2>
         {isLaptop && (
           <div className={styles.ButtonContainer}>
-            <NavLinkButton text={'Переглянути всі новини'} href={'/news'} />
+            <NavLinkButton text={'Переглянути всі новини'} href={'/events'} />
           </div>
         )}
         {!loading ? (
@@ -48,7 +48,7 @@ const News = () => {
                 className={styles.Slider}
                 spaceBetween={50}
                 slidesPerView={1}
-                modules={[Pagination, Navigation]}
+                modules={[Pagination]}
                 pagination={{ clickable: true }}
                 loop={true}
                 onSwiper={swiper => {
@@ -99,7 +99,7 @@ const News = () => {
 
         {!isLaptop && (
           <div className={styles.ButtonContainer}>
-            <NavLinkButton text={'Переглянути всі новини'} href={'/news'} />
+            <NavLinkButton text={'Переглянути всі новини'} href={'/events'} />
           </div>
         )}
       </Container>

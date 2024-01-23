@@ -1,5 +1,8 @@
 .contentWrapper {
   min-height: 40vh;
+    @include desktop {
+      padding: 40px 0 60px 0;
+        }    
 }
 
 .pageTitle {
@@ -55,6 +58,7 @@
       height: 420px;
     }
   }
+
 }
 
 .postersListItemText {
@@ -79,8 +83,8 @@
   margin: 40px auto;
 
   &:hover .iconMore span {
-    border-top: 2px solid $accent;
-    border-right: 2px solid $accent;
+    border-top: 2px solid $accent-hover;
+    border-right: 2px solid $accent-hover;
   }
 
   @media screen and (min-width: 768px) {

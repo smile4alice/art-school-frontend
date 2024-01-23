@@ -14,8 +14,9 @@ const TextInput = ({
 }) => {
   const name = field.name;
   const isFieldTouched = touched[field.name];
-  const valueLength = field.value?.length;
   const { isFocused, setIsFocused } = useFocused();
+  const valueLength =
+    field.value?.length !== undefined ? field.value?.length : 0;
 
   useEffect(() => {
     if (!text) return;
@@ -25,6 +26,8 @@ const TextInput = ({
   const handleFocus = () => {
     setIsFocused(name);
   };
+
+  console.log(isFocused);
 
   const getBorderColor = () => {
     if (valueLength > maxLength) {
@@ -65,6 +68,7 @@ const TextInput = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         onClick={() => setIsFocused(name)}
+        autoComplete="off"
         placeholder={placeholder ? placeholder : ''}
         {...field}
       />

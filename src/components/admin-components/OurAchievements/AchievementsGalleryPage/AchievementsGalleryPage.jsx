@@ -24,7 +24,7 @@ const AchievementsGalleryPage = ({
 
   const setBreadcrumbs = (url, title) => {
     if (url === 'achievements') {
-      breadcrumbs = ['Наші Досягнення'];
+      breadcrumbs = ['Наші досягнення'];
     } else if (url === 'gallery') {
       breadcrumbs = ['Фотогалерея'];
     }

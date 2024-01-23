@@ -40,7 +40,7 @@ export const newsValidation = Yup.object().shape({
     })
     .test(
       'is-valid-type',
-      'Зображення має бути в форматі .jpg, .png або .webp',
+      'Зображення має бути в форматі .jpg, .jpeg, .png або .webp',
       value => isValidFileType(value && value[0]?.type)
     )
     .test(

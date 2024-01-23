@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useVideoStore from '@/store/videoStore';
 import { useModal } from '@/store/modalStore';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
@@ -7,7 +7,6 @@ import sprite from '@/assets/icons/sprite-admin.svg';
 import s from './VideoTable.module.scss';
 
 const VideoTable = ({ videos }) => {
-  const navigate = useNavigate();
   const { deleteVideo } = useVideoStore();
   const { isModalOpen, openModal, closeModal } = useModal();
   const [currentId, setCurrentId] = useState('');
@@ -18,12 +17,11 @@ const VideoTable = ({ videos }) => {
 
   const removePost = async () => {
     try {
-      console.log(currentId);
-      await deleteVideo(currentId);
       closeModal();
-      navigate(`/admin/video`);
+      await deleteVideo(currentId);
     } catch (error) {
       console.log(error);
+      closeModal();
     }
   };
 
@@ -37,7 +35,7 @@ const VideoTable = ({ videos }) => {
                 <iframe
                   src={replaceUrl(item.media)}
                   title={`Video ${i + 1}`}
-                  width="150"
+                  width="100%"
                   height="95"
                 />
               </div>

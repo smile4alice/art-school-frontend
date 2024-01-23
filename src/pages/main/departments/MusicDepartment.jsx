@@ -1,6 +1,7 @@
 import DepartmentPage from '@/components/departments/DepartmentPage/DepartmentPage';
 import articles from '@/data/departments/music';
 import SEO from '@/components/SEO';
+
 const MusicDepartment = () => {
   return (
     <>

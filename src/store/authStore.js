@@ -23,7 +23,7 @@ const useAuthStore = create(set => ({
             set(() => {
               if (error.code === 'ERR_BAD_REQUEST') {
                 return {
-                  error: 'Невірні логін або пароль',
+                  error: 'Невірно введений пароль або електронна пошта',
                 };
               }
             });
@@ -33,7 +33,7 @@ const useAuthStore = create(set => ({
                   error: '',
                 };
               });
-            }, 3000);
+            }, 5000);
           });
       }
     } catch (error) {
@@ -54,13 +54,35 @@ const useAuthStore = create(set => ({
   },
 
   resetPassword: async data => {
-    try {
-      if (!Object.values(data).includes(undefined)) {
-        const response = await axios.post(`/auth/reset-password`, data, {});
+    if (data && !Object.values(data).includes(undefined)) {
+      try {
+        const response = await axios
+          .post(`/auth/reset-password`, data, {})
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log('Fetch error:', error.response.data.detail);
+            set(() => {
+              if (error.response.data.detail === 'RESET_PASSWORD_BAD_TOKEN') {
+                return {
+                  error:
+                    'Посилання недійсне, надішліть запит для відновлення паролю повторно',
+                };
+              }
+            });
+            setTimeout(() => {
+              set(() => {
+                return {
+                  error: '',
+                };
+              });
+            }, 5000);
+          });
         return response;
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   },
 

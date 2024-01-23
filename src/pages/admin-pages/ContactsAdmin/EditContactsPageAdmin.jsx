@@ -22,11 +22,13 @@ const EditContactsPageAdmin = () => {
   const initialValues = {};
 
   const onSubmit = async values => {
-    try {
-      await editContact(values);
-      navigate(-1);
-    } catch (error) {
-      console.log(error);
+    if (Object.keys(values).length) {
+      try {
+        await editContact(values);
+        navigate(-1);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -41,7 +43,7 @@ const EditContactsPageAdmin = () => {
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={contactsValidation}
+        validationSchema={contactsValidation[key]}
         onSubmit={onSubmit}
       >
         {formik => {
@@ -60,7 +62,7 @@ const EditContactsPageAdmin = () => {
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
-                    isActive={formik.isValid && formik.values[key]?.length}
+                    isActive={formik.isValid && !formik.values[key] == ''}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
                     isProcessing={loading}

@@ -71,6 +71,9 @@
     &.reverse {
       flex-direction: row-reverse;
     }
+    >div{
+      margin-top: 0;
+    }
   }
 }
 .button {

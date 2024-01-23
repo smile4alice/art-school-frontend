@@ -3,7 +3,7 @@
   padding: 0;
   width: 100%;
   position: relative;
-  padding-bottom: 28px;
+  padding-bottom: 28px;  
   .prevSlide,
   .nextSlide {
     display: none;
@@ -11,10 +11,11 @@
 
   .SliderStyle {
     width: 100%;
-    background-color: #fff;
+    background-color: $white;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
 
     .SlideStyle {
       width: 100%;
@@ -79,8 +80,7 @@
       @media screen and (min-width: 768px) {
         font-size: 1.25rem;
       }
-      @media screen and (min-width: 1280px) {
-        font-family: Ubuntu;
+      @media screen and (min-width: 1280px) {        
         font-size: 1.5rem;
       }
 
@@ -202,7 +202,7 @@
 
     .SliderStyle {
       width: 100%;
-      background-color: #fff;
+      background-color: $white;
       display: flex;
       justify-content: center;
       align-items: center;

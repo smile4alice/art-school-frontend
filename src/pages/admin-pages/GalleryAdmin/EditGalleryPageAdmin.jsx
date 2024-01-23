@@ -3,7 +3,7 @@ import EditObjectPage from "@/components/admin-components/OurAchievements/EditOb
 const EditGalleryPage = () => {
   return (
     <EditObjectPage
-      pageTitle='Додати фото'
+      pageTitle='Редагувати фото'
       backButtonLink='/admin/gallery'
       achievementPositionsTitle='Закріпити в галерею на головній сторінці'
       url="gallery"

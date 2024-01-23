@@ -12,7 +12,7 @@ import s from './Gallery.module.scss';
 const Gallery = () => {
   const { getMainAchievements } = useServicesStore();
   const swiperRef = useRef();
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
   const gallery = useServicesStore(state => state.gallery);
   const [loadingState, setLoadingState] = useState('loading');
 
@@ -88,7 +88,7 @@ const Gallery = () => {
           ))}
         {!isDesktop && (
           <div className={s.ButtonContainer}>
-            <NavLinkButton text={'Дивитися більше'} href={'/gallery'} />
+            <NavLinkButton text={'Дивитись більше'} href={'/gallery'} />
           </div>
         )}
       </Container>

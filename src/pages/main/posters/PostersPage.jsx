@@ -7,6 +7,7 @@ import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SEO from '@/components/SEO';
+
 const PostersPage = () => {
   const ITEMS_PER_PAGE = 6;
   const { getPosters } = usePostersStore();
@@ -17,8 +18,6 @@ const PostersPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedImg, setSelectedImg] = useState({});
   const isMaxAmount = postersPerPage >= posters.length;
-
-  //console.log(isMaxAmount);
 
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
@@ -79,13 +78,11 @@ const PostersPage = () => {
     }
   }, [windowWidth]);
 
-  //console.log(posters.length > postersPerPage);
-
   return (
     <>
       <SEO
         title="Афіша КДШМ №2 ім. М.І.Вериківського"
-        description='Детальніше про мистецькі заходи, представленні відділеннями школи можна дізнатися на сторінці Афіша КДШМ №2 ім. М.І.Вериківського.'
+        description="Детальніше про мистецькі заходи, представленні відділеннями школи можна дізнатися на сторінці Афіша КДШМ №2 ім. М.І.Вериківського."
       />
       <Container>
         {!loading ? (
