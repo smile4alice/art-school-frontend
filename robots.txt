@@ -8,4 +8,4 @@ Disallow: /documents/політика_конфіденційності.pdf
 Disallow: /documents/правила_користування_сайтом.pdf
 
 
-Sitemap: https://art-school-frontend.vercel.app/sitemap.xml
+Sitemap: https://verykivsky-art-school2.com.ua/sitemap.xml

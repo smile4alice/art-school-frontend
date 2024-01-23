@@ -24,7 +24,7 @@ const PostersList = ({ data }) => {
   return (
     <div className={styles.contentWrap}>
       <div className={styles.tableHeader}>
-        <p className={styles.cellHeadingHeader}>Заголовок Афіші</p>
+        <p className={styles.cellHeadingHeader}>Заголовок</p>
         <div className={styles.cellActionWrapper}>
           <p className={styles.cellPhotoHeader}>Фото</p>
           <p className={styles.cellActionHeader}>Дія</p>

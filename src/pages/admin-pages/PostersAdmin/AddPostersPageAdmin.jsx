@@ -75,7 +75,9 @@ const AddPostersPage = () => {
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
+                    isActive={
+                      formik.isValid && Object.keys(formik.touched).length
+                    }
                     isRight={true}
                     handlerSubmitButton={onSubmit}
                     isProcessing={loading}
