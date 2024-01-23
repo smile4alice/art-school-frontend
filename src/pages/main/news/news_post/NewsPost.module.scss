@@ -4,6 +4,9 @@
   align-items: center;
   flex-direction: column;
   padding-top: 24px;
+    @include desktop {       
+        padding: 40px 0 60px 0;
+      }
 
   .buttonContainer {
     width: 100%;
