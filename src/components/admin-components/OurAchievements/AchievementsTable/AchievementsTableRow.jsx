@@ -2,8 +2,13 @@ import { Link } from 'react-router-dom';
 import sprite from '@/assets/icons/sprite-admin.svg';
 import s from './AchievementsTable.module.scss';
 
-const AchievementsTableRow = ({typeOfAchievements, item, index, setCurrentId, openModal}) => {
-
+const AchievementsTableRow = ({
+  typeOfAchievements,
+  item,
+  index,
+  setCurrentId,
+  openModal,
+}) => {
   return (
     <div className={s.row}>
       {typeOfAchievements === 'mainAchievements' && (
@@ -18,7 +23,7 @@ const AchievementsTableRow = ({typeOfAchievements, item, index, setCurrentId, op
       <div className={s.action}>
         <Link to={`edit/${item.id}`}>
           <button className={s.edit}>
-            <svg>
+            <svg id="edit" className={s.editIcon}>
               <use href={`${sprite}#icon-edit`} />
             </svg>
           </button>

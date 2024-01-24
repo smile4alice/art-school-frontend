@@ -4,16 +4,16 @@
   border: 1px solid $admin-purple;
   border-radius: 8px;
   overflow: hidden;
-  .trigger{
+  .trigger {
     height: 5px;
   }
-  .gallary{
+  .gallary {
     padding: 1.25rem;
     display: grid;
     gap: 1.12rem;
     grid-template-columns: repeat(2, 1fr);
     max-height: calc(100vh - 248px);
-    overflow-y: auto;  
+    overflow-y: auto;
     @media screen and (min-width: 768px) {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -22,19 +22,19 @@
     }
     @media screen and (min-width: 1280px) {
       grid-template-columns: repeat(5, 1fr);
-    } 
+    }
     &::-webkit-scrollbar {
       width: 0.3125rem;
     }
     &::-webkit-scrollbar-track {
       background-color: $admin-light-purple;
       border-radius: 0 0 8px;
-      margin: .3rem 0;
+      margin: 0.3rem 0;
     }
     &::-webkit-scrollbar-thumb {
       background-color: $admin-blue;
       border-radius: 0.375rem;
-      border: .5px solid $admin-light-purple;
+      border: 0.5px solid $admin-light-purple;
     }
     &::-webkit-scrollbar-thumb:hover {
       background-color: rgba(117, 116, 252, 1);
@@ -45,13 +45,13 @@
     border: 1px solid $admin-purple;
     border-radius: 8px;
     overflow: hidden;
-    background: #FCFCFF;
+    background: #fcfcff;
   }
   .photo {
     overflow: hidden;
     border-radius: 0.3125rem;
     margin: 0 auto;
-    >div {
+    > div {
       overflow: hidden;
       border-radius: 4px;
       height: 7.5rem;
@@ -73,7 +73,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    button, .count {
+    button,
+    .count {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -87,27 +88,27 @@
       }
     }
     .edit {
-      svg{
-        fill: rgba(155, 166, 175, 1);
+      svg {
+        fill: #3c4242;
       }
     }
     .edit:hover {
       background-color: $admin-light-purple;
-      border: 1px solid #D1D8FF;
-      svg{
-        fill: $admin-accent
+      border: 1px solid #d1d8ff;
+      svg {
+        fill: $admin-accent;
       }
     }
-    .delete{
-      svg{
+    .delete {
+      svg {
         stroke-width: 1.5px;
         stroke: $admin-red;
         fill: transparent;
       }
     }
     .delete:hover {
-      background-color:#FFEBEB;
-      border: 1px solid #F9BFBF;
+      background-color: #ffebeb;
+      border: 1px solid #f9bfbf;
     }
   }
 }
