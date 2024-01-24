@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import axios from '@/utils/axios';
+import { stringifyObj } from '@/utils/stringifyObj';
 
 const useContactsStore = create(set => ({
   loading: false,
@@ -44,7 +45,7 @@ const useContactsStore = create(set => ({
           loading: true,
         };
       });
-      const body = JSON.stringify(data);
+      const body = stringifyObj(data);
       const response = await axios.patch('/contacts', body, {
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +56,6 @@ const useContactsStore = create(set => ({
           loading: false,
         };
       });
-
       return response;
     } catch (error) {
       throw new Error(error);

@@ -27,8 +27,6 @@ const TextInput = ({
     setIsFocused(name);
   };
 
-  console.log(isFocused);
-
   const getBorderColor = () => {
     if (valueLength > maxLength) {
       return styles.redBorder;
