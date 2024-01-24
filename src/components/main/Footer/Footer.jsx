@@ -73,7 +73,7 @@ const Footer = ({ contacts }) => {
             <div className={styles.footerLinksSection}>
               <div className={styles.footerLinksColumn}>
                 <Link to="/">Головна</Link>
-                <Link to="/about_school">Наша школа</Link>
+                <Link to="/about-school">Наша школа</Link>
                 <Link to="/events">Наші події</Link>
                 <Link to="/posters">Афіша</Link>
                 <Link to="/gallery">Галерея</Link>
