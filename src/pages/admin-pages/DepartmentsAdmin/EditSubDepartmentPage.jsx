@@ -56,6 +56,7 @@ const EditSubDepartmentPage = () => {
       if (response.status === 200) {
         navigate(`/admin/departments/${departmentId}`);
       }
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -111,7 +112,6 @@ const EditSubDepartmentPage = () => {
                     nameButton="Зберегти зміни"
                     isActive={formik.isValid}
                     isRight={true}
-                    handlerSubmitButton={onSubmit}
                     isProcessing={loading}
                   />
                 </div>

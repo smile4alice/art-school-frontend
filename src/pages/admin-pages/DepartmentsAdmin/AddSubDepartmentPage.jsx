@@ -94,7 +94,6 @@ const AddSubDepartmentPage = () => {
                       formik.isValid && Object.keys(formik.touched).length
                     }
                     isRight={true}
-                    handlerSubmitButton={onSubmit}
                     isProcessing={loading}
                   />
                 </div>

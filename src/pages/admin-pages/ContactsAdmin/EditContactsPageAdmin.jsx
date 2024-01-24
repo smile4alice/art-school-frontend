@@ -62,7 +62,6 @@ const EditContactsPageAdmin = () => {
                     nameButton="Зберегти зміни"
                     isActive={formik.isValid && !formik.values[key] == ''}
                     isRight={true}
-                    // handlerSubmitButton={handleSubmit}
                     isProcessing={loading}
                   />
                 </div>
