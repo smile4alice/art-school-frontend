@@ -33,7 +33,7 @@ const useAuthStore = create(set => ({
                   error: '',
                 };
               });
-            }, 5000);
+            }, 8000);
           });
       }
     } catch (error) {
@@ -77,7 +77,7 @@ const useAuthStore = create(set => ({
                   error: '',
                 };
               });
-            }, 5000);
+            }, 8000);
           });
         return response;
       } catch (error) {
@@ -116,7 +116,7 @@ const useAuthStore = create(set => ({
                   error: '',
                 };
               });
-            }, 5000);
+            }, 8000);
           });
         set(() => {
           return {
