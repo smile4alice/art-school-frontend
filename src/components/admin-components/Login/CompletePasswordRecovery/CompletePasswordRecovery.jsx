@@ -36,7 +36,7 @@ const CompletePasswordRecovery = () => {
       setIsProcessing(false);
       setTimeout(() => {
         navigate('/login/password-recovery');
-      }, 5000);
+      }, 8000);
     }
   };
 
