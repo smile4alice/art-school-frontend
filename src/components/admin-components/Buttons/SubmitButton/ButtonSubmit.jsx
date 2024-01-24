@@ -14,7 +14,6 @@ export const ButtonSubmit = ({
 
   return (
     <button
-      type="submit"
       disabled={!active || isProcessing}
       onClick={active ? handlerSubmitButton : null}
       className={`${styles.button} ${buttonClass} ${additionalClass} ${inProcess}`}
