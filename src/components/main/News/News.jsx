@@ -17,7 +17,7 @@ import Spinner from '@/components/ui/Spinner/Spinner';
 
 const News = () => {
   const swiperRef = useRef();
-  const isLaptop = useMediaQuery({ minWidth: 1024 });
+  const isLaptop = useMediaQuery({ minWidth: 1280 });
   const { getNews } = useNewsStore();
   const news = useNewsStore(state => state.news);
   const loading = usePostersStore(state => state.loading);
@@ -35,10 +35,10 @@ const News = () => {
   return (
     <section className={`${styles.News} section`}>
       <Container>
-        <h2>Новини</h2>
+        <h2 className={styles.title}>Новини</h2>
         {isLaptop && (
           <div className={styles.ButtonContainer}>
-            <NavLinkButton text={'Переглянути всі новини'} href={'/news'} />
+            <NavLinkButton text={'Переглянути всі новини'} href={'/events'} />
           </div>
         )}
         {!loading ? (
@@ -99,7 +99,7 @@ const News = () => {
 
         {!isLaptop && (
           <div className={styles.ButtonContainer}>
-            <NavLinkButton text={'Переглянути всі новини'} href={'/news'} />
+            <NavLinkButton text={'Переглянути всі новини'} href={'/events'} />
           </div>
         )}
       </Container>

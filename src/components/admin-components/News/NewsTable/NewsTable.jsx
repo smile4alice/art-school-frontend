@@ -15,10 +15,11 @@ const NewsTable = ({ data }) => {
   const removePost = async () => {
     try {
       await deletePost(currentId);
-      closeModal();
+    //  closeModal();
     } catch (error) {
       console.log(error);
     }
+    closeModal();
   };
 
   return (

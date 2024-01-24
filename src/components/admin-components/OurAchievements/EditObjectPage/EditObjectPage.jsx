@@ -14,7 +14,7 @@ import CustomTitle from '@/components/admin-components/OurAchievements/CustomTit
 import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
 import AchievementPositions from '@/components/admin-components/OurAchievements/AchievementPositions/AchievementsPositions'; // Замініть шлях на реальний
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
-import s from '../../../../pages/admin-pages/OurAchievementsAdmin/AchievementsAdmin.module.scss';
+import s from '@/pages/admin-pages/OurAchievementsAdmin/AchievementsAdmin.module.scss';
 import axios from '@/utils/axios';
 const initialValues = {
   pinned_position: '',

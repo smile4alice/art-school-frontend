@@ -3,7 +3,7 @@ import AddNewObjectPage from '@/components/admin-components/OurAchievements/AddN
 const AddGalleryPage = () => {
   return (
     <AddNewObjectPage
-      pageTitle='Додати фото'
+      pageTitle='Додати фото в галерею'
       backButtonLink='/admin/gallery'
       achievementPositionsTitle='Закріпити в галерею на головній сторінці'
       url="gallery"
