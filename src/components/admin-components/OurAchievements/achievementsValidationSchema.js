@@ -22,7 +22,7 @@ export const achievementsValidation = Yup.object().shape({
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
       'Введіть коректний опис'
     ),
-    image: Yup.mixed()
+  image: Yup.mixed()
     .test('is-value', 'Додайте зображення', value => value && value.length > 0)
     .test('is-image-from-db', 'Додайте зображення', value => {
       value && value[0]?.size === 0 && value[0]?.type === 'for-url';
@@ -38,19 +38,18 @@ export const achievementsValidation = Yup.object().shape({
       `Максимальний розмір зображення ${formatBytes(sizeLimit)}`,
       value => value && value[0]?.size <= sizeLimit
     ),
-    pinned_position: Yup.mixed(),
+  pinned_position: Yup.mixed(),
 });
 
 export const galleryValidation = Yup.object().shape({
   description: Yup.string()
-    .required('Введіть опис досягнення')
     .min(2)
     .max(150)
     .matches(
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
       'Введіть коректний опис'
     ),
-    image: Yup.mixed()
+  image: Yup.mixed()
     .test('is-value', 'Додайте зображення', value => value && value.length > 0)
     .test('is-image-from-db', 'Додайте зображення', value => {
       value && value[0]?.size === 0 && value[0]?.type === 'for-url';
@@ -66,6 +65,5 @@ export const galleryValidation = Yup.object().shape({
       `Максимальний розмір зображення ${formatBytes(sizeLimit)}`,
       value => value && value[0]?.size <= sizeLimit
     ),
-    pinned_position: Yup.mixed(),
+  pinned_position: Yup.mixed(),
 });
-
