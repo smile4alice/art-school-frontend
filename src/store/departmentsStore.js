@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import axios from '@/utils/axios';
+import { stringifyObj } from '@/utils/stringifyObj';
 
 const useDepartmentsStore = create((set, get) => ({
   loading: false,
@@ -80,7 +81,7 @@ const useDepartmentsStore = create((set, get) => ({
         };
       });
       if (!Object.values(data).includes(undefined)) {
-        const body = JSON.stringify(data);
+        const body = stringifyObj(data);
         const response = await axios.post('/departments/sub_department', body, {
           headers: {
             'Content-Type': 'application/json',
@@ -115,6 +116,7 @@ const useDepartmentsStore = create((set, get) => ({
   },
 
   editDepartment: async (id, data) => {
+    console.log(data);
     try {
       set(() => {
         return {
@@ -122,7 +124,7 @@ const useDepartmentsStore = create((set, get) => ({
         };
       });
       if (!Object.values(data).includes(undefined)) {
-        const body = JSON.stringify(data);
+        const body = stringifyObj(data);
         const response = await axios.patch(
           `/departments/sub_department/${id}`,
           body,
