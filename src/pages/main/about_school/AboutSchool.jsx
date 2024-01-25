@@ -22,7 +22,7 @@ const AboutSchool = () => {
   return (
     <>
       <SEO
-        title="Історія КДШМ №2 ім. М.І.Вериківського"
+        title="Про нас КДШМ №2 ім. М.І.Вериківського"
         description="КДШМ №2 ім. М.І.Вериківського є одним із найстаріших осередків в Україні, де виховуються таланти і впроваджуються інноваційні ідеї мистецької освіти."
       />
       <section className={`${styles.history} section`}>
@@ -46,7 +46,7 @@ const AboutSchool = () => {
               <img
                 className={styles.history_content_img}
                 src={historyData[0].media}
-                alt=" scholl building  "
+                alt="Scholl building  "
               />
             </div>
 

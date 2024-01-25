@@ -97,7 +97,7 @@ const Hero = () => {
             )}
             {index >= 0 && (slide.title || slide.description) && (
               <div className={styles.HeroEvent}>
-                <h3 className={`${styles.HeroEventTitle} ${slide.title && slide.description ? styles.margin : ''}`}>{slide.title}</h3>
+                <h2 className={`${styles.HeroEventTitle} ${slide.title && slide.description ? styles.margin : ''}`}>{slide.title}</h2>
                 <p className={styles.HeroEventInfo}>{slide.description}</p>
               </div>
             )}
