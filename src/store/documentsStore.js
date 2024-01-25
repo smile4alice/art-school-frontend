@@ -6,7 +6,14 @@ const useDocumentsStore = create((set, get) => ({
   loading: false,
   error: '',
   documents: [],
-
+  getApplication: async () => {
+    try {
+      const response = await axios.get(`/documents?is_pinned=true`);
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
   getDocuments: async () => {
     try {
       set(() => {

@@ -24,7 +24,6 @@ const useClickOutside = (refs, callback) => {
 };
 
 const truncateString = (maxLength, string) => {
-  
   if (string.length <= maxLength) {
     return string;
   } else {
@@ -33,4 +32,4 @@ const truncateString = (maxLength, string) => {
 };
 
 
-export { useToggle, useClickOutside, truncateString };
+export { useToggle, useClickOutside, truncateString, };
