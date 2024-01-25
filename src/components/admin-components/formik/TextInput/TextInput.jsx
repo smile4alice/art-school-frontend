@@ -28,6 +28,7 @@ const TextInput = ({
   };
 
   const getBorderColor = () => {
+    
     if (valueLength > maxLength) {
       return styles.redBorder;
     }
