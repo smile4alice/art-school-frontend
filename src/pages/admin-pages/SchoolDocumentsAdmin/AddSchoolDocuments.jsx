@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import useDocumentsStore from '@/store/documentsStore';
-import { posterValidation } from './validationSchema';
+import { documentValidation } from './validationSchema';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import PdfInput from '@/components/admin-components/formik/PdfInput/PdfInput';
@@ -9,7 +9,7 @@ import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import styles from './SchoolDocuments.module.scss';
 
-const breadcrumbs = ['Документи', 'Додати документи школи'];
+const breadcrumbs = ['Документи школи', 'Додати документи школи'];
 
 const initialValues = {
   title: '',
@@ -46,7 +46,7 @@ const AddSchoolDocumentsPage = () => {
       {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
-        validationSchema={posterValidation}
+        validationSchema={documentValidation}
         onSubmit={onSubmit}
       >
         {formik => {

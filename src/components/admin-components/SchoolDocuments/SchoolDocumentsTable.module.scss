@@ -22,12 +22,12 @@
 }
 
 .tbody {
+  background-color: #e5e9fd;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   width: 100%;
   max-height: calc(100vh - 100px);
-  overflow-y: scroll;
-
+  overflow-y: auto;
   &::-webkit-scrollbar {
     width: 0.3125rem;
   }
@@ -95,13 +95,19 @@
 }
 
 .tableRow {
+  background-color: $admin-background;
   display: flex;
   padding: 7px 5px;
   gap: 0px;
   align-items: center;
   align-self: stretch;
   border-bottom: 1px solid $admin-purple;
-
+  &:first-child{
+    margin-bottom: 14px;
+  }
+  &:nth-child(2){
+    border-top: 1px solid $admin-purple;
+  }
   &:last-child {
     border-bottom: 0;
   }
@@ -189,7 +195,7 @@
   stroke: $admin-gray;
   fill: transparent;
   transition: all 0.3s ease-in-out;
-
+  cursor: auto;
   &:hover {
     background-color: none;
     border: none;

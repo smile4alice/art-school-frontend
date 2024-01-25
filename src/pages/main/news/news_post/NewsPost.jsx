@@ -12,7 +12,7 @@ const NewsPost = () => {
   const metaTitle = truncateString(56, post?.title);
   const metaDescription = post.text
     ? truncateString(150, post.text)
-    : `КДШМ №2 ім. М.І.Вериківського подія ${truncateString(150, post.title)} `;
+    : `КДШМ №2 ім. М.І.Вериківського подія ${truncateString(150, post.text)} `;
   return (
     <>
       <SEO title={metaTitle} description={metaDescription} />

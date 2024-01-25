@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
-import { posterValidation } from './validationSchema';
+import { applicationValidation, documentValidation } from './validationSchema';
 import useDocumentsStore from '@/store/documentsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
@@ -8,6 +8,8 @@ import PdfInput from '@/components/admin-components/formik/PdfInput/PdfInput';
 import styles from './SchoolDocuments.module.scss';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
+
+const breadcrumbs = ['Документи школи', 'Редагувати документи школи'];
 
 const initialValues = {
   title: '',
@@ -21,12 +23,6 @@ const EditSchoolDocuments = () => {
   const { editDocument } = useDocumentsStore();
   const loading = useDocumentsStore(state => state.loading);
   const error = useDocumentsStore(state => state.error);
-
-  const breadcrumbs = [
-    ` Документи`,
-    `${value.doc_name}`,
-    `Редагувати ${value.doc_name}`,
-  ];
 
   const onSubmit = async values => {
     try {
@@ -60,7 +56,7 @@ const EditSchoolDocuments = () => {
       {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
-        validationSchema={posterValidation}
+        validationSchema={value.id === 1 ? applicationValidation : documentValidation}
         onSubmit={onSubmit}
       >
         {formik => {
@@ -68,17 +64,18 @@ const EditSchoolDocuments = () => {
             <Form>
               <div className={styles.layout}>
                 <div className={styles.inputWrapper}>
-                  <Field
-                    name="title"
-                    id="text"
-                    placeholder="Title"
-                    component={TextInput}
-                    maxLength={120}
-                    text={value.doc_name}
-                    showCharacterCount={true}
-                    label="Назва документу*"
-                  />
-
+                  {value.id !== 1 && (
+                    <Field
+                      name="title"
+                      id="text"
+                      placeholder="Title"
+                      component={TextInput}
+                      maxLength={120}
+                      text={value.doc_name}
+                      showCharacterCount={true}
+                      label="Назва документу*"
+                    />
+                  )}
                   <Field
                     name="document"
                     id="document"

@@ -92,11 +92,15 @@ const useDepartmentsStore = create((set, get) => ({
             loading: false,
           };
         });
-        console.log(response);
         return response;
       }
     } catch (error) {
       set(() => {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
         if (error.code === 'ERR_BAD_REQUEST') {
           return {
             error:
@@ -142,6 +146,11 @@ const useDepartmentsStore = create((set, get) => ({
         return response;
       }
     } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
       set(() => {
         if (error.code === 'ERR_BAD_REQUEST') {
           return {
