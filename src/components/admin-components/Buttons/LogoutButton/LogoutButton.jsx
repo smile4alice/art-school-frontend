@@ -1,27 +1,31 @@
-import { Link } from 'react-router-dom';
-import sprite from '../../../../assets/icons/sprite-admin.svg';
+import sprite from '@/assets/icons/sprite-admin.svg';
 import styles from './LogoutButton.module.scss';
 import { useAuthorized } from '@/store/IsAuthorizedStore';
+import { useNavigate } from 'react-router-dom';
+import axios from '@/utils/axios';
 
 const LogoutButton = () => {
+  const navigate = useNavigate();
   const { setUnAuthorized } = useAuthorized();
-  // Define a function to check and remove the key
-  const checkAndRemoveKey = key => {
-    // Get the value of the key from local storage
+
+  const checkAndRemoveKey = async key => {
     const value = localStorage.getItem(key);
-    // Check if the value is not null
     const exists = value !== null;
-    // If the key exists, remove it
     if (exists) {
-      localStorage.removeItem(key);
+      await axios.post('/auth/logout').then(res => {
+        if (res.status > 200 && res.status < 400) {
+          localStorage.removeItem(key);
+          setUnAuthorized();
+          navigate('/login');
+        }
+      });
     }
   };
+
   return (
-    <Link
+    <button
       className={styles.logoutButtonLink}
       onClick={() => {
-        setUnAuthorized();
-        // Call the function with the key 'access_token'
         checkAndRemoveKey('access_token');
       }}
     >
@@ -29,7 +33,7 @@ const LogoutButton = () => {
         <use href={`${sprite}#logout`} className={styles.icon} />
       </svg>
       <p>Вихід</p>
-    </Link>
+    </button>
   );
 };
 

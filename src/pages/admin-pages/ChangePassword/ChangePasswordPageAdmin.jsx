@@ -1,7 +1,12 @@
+import axios from '@/utils/axios';
 import { useModal } from '@/store/modalStore';
 import { Field, Form, Formik } from 'formik';
 import { passwordValidation } from './validationSchema';
 import useAuthStore from '@/store/authStore';
+
+import { useAuthorized } from '@/store/IsAuthorizedStore';
+import { useNavigate } from 'react-router-dom';
+
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
@@ -18,19 +23,34 @@ const initialValues = {
 };
 
 const ChangePasswordPageAdmin = () => {
+  const navigate = useNavigate();
+  const { setUnAuthorized } = useAuthorized();
   const { changePassword } = useAuthStore();
-  const { isModalOpen, openModal } = useModal();
+  const { isModalOpen, openModal, closeModal } = useModal();
   const loading = useAuthStore(state => state.loading);
   const error = useAuthStore(state => state.error);
+  const response = useAuthStore(state => state.changeResponse);
 
   const onSubmit = async values => {
     const formData = new FormData();
     formData.append('old_password', values.oldPassword);
     formData.append('new_password', values.newPassword);
     formData.append('new_password_confirm', values.confirmPassword);
-    const response = await changePassword(formData);
+    await changePassword(formData);
     if (response.status === 200) {
       openModal();
+      const value = localStorage.getItem('access_token');
+      const exists = value !== null;
+      if (exists) {
+        await axios.post('/auth/logout').then(res => {
+          if (res.status > 200 && res.status < 400) {
+            localStorage.removeItem('access_token');
+            setUnAuthorized();
+            navigate('/login');
+          }
+        });
+      }
+      closeModal();
     }
   };
 
@@ -94,7 +114,9 @@ const ChangePasswordPageAdmin = () => {
         }}
       </Formik>
 
-      {isModalOpen && <ConfirmModal message="Пароль успішно змінено" />}
+      {isModalOpen && (
+        <ConfirmModal message="Пароль успішно змінено, зайдіть під новим паролем" />
+      )}
     </div>
   );
 };

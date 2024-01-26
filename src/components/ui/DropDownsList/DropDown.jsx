@@ -6,7 +6,10 @@ const DropDown = ({ subDep, isOpen, onDropDownClick }) => {
   return (
     <div className={s.dropdown}>
       <div className={s.dropdownHead} onClick={onDropDownClick}>
-        <h2 className={s.dropdownName}>{subDep.sub_department_name}</h2>
+        <Markup
+          content={subDep.sub_department_name}
+          className={s.dropdownName}
+        />
         <button className={isOpen ? s.rotateIcon : s.icon}>
           <img src={arrowIcon} alt="Arrow Icon" />
         </button>
