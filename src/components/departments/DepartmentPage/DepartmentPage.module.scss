@@ -21,6 +21,11 @@
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  > section:last-child {
+    > div {
+      padding: 0 1rem;
+    }
+  }
   @include tablet {
     gap: 24px;
   }
