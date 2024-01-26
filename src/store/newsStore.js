@@ -80,12 +80,19 @@ const useNewsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        /*
         set(() => {
           if (error.code === 'ERR_BAD_REQUEST') {
             return {
               error: 'Новина з цією назвою вже існує, спробуйте іншу назву',
             };
           }
+        });
+        */
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         setTimeout(() => {
           set(() => {
@@ -125,6 +132,11 @@ const useNewsStore = create((set, get) => ({
               error: 'Новина з цією назвою вже існує, спробуйте іншу назву',
             };
           }
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         setTimeout(() => {
           set(() => {

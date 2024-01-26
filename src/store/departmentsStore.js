@@ -120,7 +120,6 @@ const useDepartmentsStore = create((set, get) => ({
   },
 
   editDepartment: async (id, data) => {
-    console.log(data);
     try {
       set(() => {
         return {

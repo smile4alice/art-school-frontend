@@ -72,6 +72,11 @@ const useDocumentsStore = create((set, get) => ({
             };
           }
         });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
         setTimeout(() => {
           set(() => {
             return {
@@ -110,6 +115,11 @@ const useDocumentsStore = create((set, get) => ({
               error: 'Документ з цією назвою вже існує, спробуйте іншу назву',
             };
           }
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         setTimeout(() => {
           set(() => {

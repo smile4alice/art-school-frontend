@@ -17,7 +17,6 @@ const TextInput = ({
   const { isFocused, setIsFocused } = useFocused();
   const valueLength =
     field.value?.length !== undefined ? field.value?.length : 0;
-
   useEffect(() => {
     if (!text) return;
     setFieldValue(`${name}`, text);
@@ -28,18 +27,17 @@ const TextInput = ({
   };
 
   const getBorderColor = () => {
-    if (valueLength > maxLength) {
-      return styles.redBorder;
+    if (valueLength > 0 && valueLength <= maxLength && isFocused !== name ) {
+      return styles.greenBorder;
+
     }
-    if (errors?.[field.name]) {
-      return styles.redBorder;
-    }
-    if (isFocused === name) {
+    if (isFocused === name && valueLength > 1 && valueLength <= maxLength) {
       return styles.blueBorder;
     }
-    if (valueLength > 0) {
-      return styles.greenBorder;
-    } else {
+    if (valueLength > maxLength || errors?.[field.name]) {
+      return styles.redBorder;
+    }
+   else {
       return styles.grayBorder;
     }
   };
@@ -65,8 +63,8 @@ const TextInput = ({
         className={`${styles.input} ${getBorderColor()} ${getInputState()}`}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        onClick={() => setIsFocused(name)}
-        // autoComplete="off"
+        onClick={handleFocus}
+        autoComplete="off"
         placeholder={placeholder ? placeholder : ''}
         {...field}
       />
