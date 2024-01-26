@@ -75,7 +75,7 @@ const AddSchoolDocumentsPage = () => {
                 <div className={styles.button}>
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
-                    isActive={formik.isValid}
+                    isActive={formik.isValid && !formik.values['title'] == ''}
                     isRight={true}
                     handlerSubmitButton={onSubmit}
                     isProcessing={loading}

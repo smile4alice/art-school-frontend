@@ -125,7 +125,7 @@
   overflow: hidden;
 }
 .photo {
-  >div {
+  > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,7 +133,7 @@
     border-radius: 0.1875rem;
     width: 3.5rem;
     height: 2.25rem;
-    padding: .1rem;
+    padding: 0.1rem;
     overflow: hidden;
     img {
       max-height: 100%;

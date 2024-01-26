@@ -28,7 +28,6 @@ const TextInput = ({
   };
 
   const getBorderColor = () => {
-    
     if (valueLength > maxLength) {
       return styles.redBorder;
     }
@@ -67,7 +66,7 @@ const TextInput = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         onClick={() => setIsFocused(name)}
-        autoComplete="off"
+        // autoComplete="off"
         placeholder={placeholder ? placeholder : ''}
         {...field}
       />
