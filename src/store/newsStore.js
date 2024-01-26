@@ -80,6 +80,7 @@ const useNewsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        /*
         set(() => {
           if (error.code === 'ERR_BAD_REQUEST') {
             return {
@@ -87,6 +88,7 @@ const useNewsStore = create((set, get) => ({
             };
           }
         });
+        */
         set(() => {
           return {
             loading: false,

@@ -53,17 +53,22 @@ const AdminTable = ({ data }) => {
                     </svg>
                   </div>
                 </Link>
-
-                <button
-                  onClick={() => {
-                    setCurrentId(item.id);
-                    openModal();
-                  }}
-                >
-                  <svg className={styles.iconTrash}>
-                    <use href={`${sprite}#icon-trash`} width="20" height="20" />
-                  </svg>
-                </button>
+                <div className={styles.cellActionContainer}>
+                  <button
+                    onClick={() => {
+                      setCurrentId(item.id);
+                      openModal();
+                    }}
+                  >
+                    <svg className={styles.iconTrash}>
+                      <use
+                        href={`${sprite}#icon-trash`}
+                        width="20"
+                        height="20"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           ))}

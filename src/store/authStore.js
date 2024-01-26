@@ -5,6 +5,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 const useAuthStore = create(set => ({
   loading: false,
   error: '',
+  changeResponse: {},
 
   login: async data => {
     try {
@@ -100,6 +101,11 @@ const useAuthStore = create(set => ({
           .post(`/auth/change-password`, requestData, {})
           .then(response => {
             console.log(response);
+            set(() => {
+              return {
+                changeResponse: response,
+              };
+            });
           })
           .catch(error => {
             console.log('Fetch error:', error.response.data.detail);
@@ -107,6 +113,14 @@ const useAuthStore = create(set => ({
               if (error.response.data.detail === 'Old password is incorrect.') {
                 return {
                   error: 'Надісланий поточний пароль невірний',
+                };
+              }
+              if (
+                error.response.data.detail ===
+                'Password should not contain e-mail.'
+              ) {
+                return {
+                  error: 'Пароль має відрізнятись від логіна',
                 };
               }
             });
@@ -123,12 +137,31 @@ const useAuthStore = create(set => ({
             loading: false,
           };
         });
+        console.log(response);
         return response;
       } catch (error) {
         console.error(error);
       }
     }
   },
+
+  // logout: async (key) => {
+  //   try {
+  //     const value = localStorage.getItem(key);
+  //     const exists = value !== null;
+  //     if (exists) {
+  //       await axios.post('/auth/logout').then(res => {
+  //         if (res.status > 200 && res.status < 400) {
+  //           localStorage.removeItem(key);
+  //           setUnAuthorized();
+  //           navigate('/login');
+  //         }
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // },
 }));
 
 export default useAuthStore;
