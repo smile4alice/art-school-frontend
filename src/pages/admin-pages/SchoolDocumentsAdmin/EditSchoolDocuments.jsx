@@ -9,8 +9,6 @@ import styles from './SchoolDocuments.module.scss';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 
-const breadcrumbs = ['Документи школи', 'Редагувати документи школи'];
-
 const initialValues = {
   title: '',
   document: [],
@@ -24,19 +22,27 @@ const EditSchoolDocuments = () => {
   const loading = useDocumentsStore(state => state.loading);
   const error = useDocumentsStore(state => state.error);
 
+  const breadcrumbs = [
+    'Документи школи',
+    value.id === 1 ? 'Редагувати заяву на вступ' : 'Редагувати документи школи',
+  ];
+
   const onSubmit = async values => {
     try {
       const formData = new FormData();
       formData.append('doc_name', values.title);
-
-      if (values.document[0].size === 0) {
+      if (
+        values &&
+        values.document &&
+        values.document.length > 0 &&
+        values.document[0].size === 0
+      ) {
         formData.append('doc_path', '');
-      } else {
+      } else if (values && values.document && values.document.length > 0) {
         formData.append('doc_path', values.document[0]);
       }
-
       const response = await editDocument(formData, value.id);
-      if (response.status === 200) {
+      if (response && response.status === 200) {
         navigate(`/admin/documents`);
       }
     } catch (error) {
@@ -48,7 +54,11 @@ const EditSchoolDocuments = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Редагувати документи школи"
+        title={
+          value.id === 1
+            ? 'Редагувати заяву на вступ'
+            : 'Редагувати документи школи'
+        }
         showBackButton={true}
         backButtonLink="/admin/documents"
         showActionButton={false}
@@ -56,7 +66,9 @@ const EditSchoolDocuments = () => {
       {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
-        validationSchema={value.id === 1 ? applicationValidation : documentValidation}
+        validationSchema={
+          value.id === 1 ? applicationValidation : documentValidation
+        }
         onSubmit={onSubmit}
       >
         {formik => {
@@ -79,7 +91,7 @@ const EditSchoolDocuments = () => {
                   <Field
                     name="document"
                     id="document"
-                    label="Документ*"
+                    label={value.id === 1 ? 'Заява на вступ*' : 'Документ*'}
                     component={PdfInput}
                     pdf={value.doc_path}
                   />

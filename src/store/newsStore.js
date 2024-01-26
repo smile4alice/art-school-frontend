@@ -87,6 +87,11 @@ const useNewsStore = create((set, get) => ({
             };
           }
         });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
         setTimeout(() => {
           set(() => {
             return {
@@ -125,6 +130,11 @@ const useNewsStore = create((set, get) => ({
               error: 'Новина з цією назвою вже існує, спробуйте іншу назву',
             };
           }
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         setTimeout(() => {
           set(() => {

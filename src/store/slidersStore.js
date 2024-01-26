@@ -48,7 +48,6 @@ const useSlidersStore = create((set, get) => ({
             'Content-Type': 'multipart/form-data',
           },
         });
-        console.log(response);
         set(() => {
           return {
             loading: false,
@@ -62,6 +61,11 @@ const useSlidersStore = create((set, get) => ({
               error: 'Слайд з цією назвою вже існує, спробуйте іншу назву',
             };
           }
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         setTimeout(() => {
           set(() => {
@@ -101,6 +105,11 @@ const useSlidersStore = create((set, get) => ({
               error: 'Слайд з цією назвою вже існує, спробуйте іншу назву',
             };
           }
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
         });
         setTimeout(() => {
           set(() => {

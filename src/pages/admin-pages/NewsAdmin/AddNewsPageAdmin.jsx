@@ -30,7 +30,6 @@ const AddNewsPage = () => {
       formData.append('title', values.title);
       formData.append('text', values.text);
       formData.append('photo', values.image[0]);
-
       await addPost(formData);
       navigate(-1);
     } catch (error) {
