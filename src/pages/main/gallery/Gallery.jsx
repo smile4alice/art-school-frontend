@@ -39,7 +39,7 @@ const Gallery = () => {
     <>
       <SEO
         title="Галерея КДШМ №2 ім. М.І.Вериківського"
-        description='Детальніше дізнатись про те чим живе школа та переглянути як пройшов мистецький захід можна на сторінці Галерея КДШМ №2 ім. М.І.Вериківського.'
+        description="Детальніше дізнатись про те чим живе школа та переглянути як пройшов мистецький захід можна на сторінці Галерея КДШМ №2 ім. М.І.Вериківського."
       />
       <Container>
         <section className={styles.Gallery}>
@@ -49,9 +49,15 @@ const Gallery = () => {
             <Spinner />
           ) : (
             <>
-              {videos?.length > 0 || images?.length > 0 ? (
+              {videos?.length > 0 ? (
                 <>
                   <GalleryVideo videos={videos} />
+                </>
+              ) : (
+                <Placeholder />
+              )}
+              {images?.length > 0 ? (
+                <>
                   <GalleryImages images={images} />
                 </>
               ) : (

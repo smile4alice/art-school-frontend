@@ -16,9 +16,9 @@ const Sidebar = () => {
       <div className={styles.copyright}>
         © Розробка{' '}
         <a href="https://baza-trainee.tech/" rel="noreferrer" target="_blank">
-          &nbsp; Baza Trainee Ukraine, {' '}
+          &nbsp; Baza Trainee Ukraine,{' '}
         </a>
-        2024
+        2023
       </div>
     </div>
   );

@@ -1,12 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { useModal } from '@/store/modalStore';
 import styles from './ConfirmModal.module.scss';
 import sprite from '@/assets/icons/sprite-admin.svg';
 
-const ConfirmModal = ({ message }) => {
-  const navigate = useNavigate();
-  const { closeModal } = useModal();
-
+const ConfirmModal = ({ message, handleClick }) => {
   return (
     <div className={styles.modal}>
       <div className={styles.contentWrapper}>
@@ -16,11 +11,10 @@ const ConfirmModal = ({ message }) => {
         </svg>
         <button
           onClick={() => {
-            closeModal();
-            navigate('/login');
+            handleClick();
           }}
         >
-          Закрити
+          Ok
         </button>
       </div>
     </div>
