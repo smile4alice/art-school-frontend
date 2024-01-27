@@ -5,7 +5,6 @@ import { isDataValid } from '@/utils/formDataValidation';
 const useAuthStore = create(set => ({
   loading: false,
   error: '',
-  changeResponse: {},
 
   login: async data => {
     try {
@@ -97,16 +96,17 @@ const useAuthStore = create(set => ({
         });
 
         const requestData = new URLSearchParams(data);
-        const response = await axios
+        return await axios
           .post(`/auth/change-password`, requestData, {})
           .then(response => {
             console.log(response);
             set(() => {
               return {
-                changeResponse: response,
+                loading: false,
               };
             });
           })
+
           .catch(error => {
             console.log('Fetch error:', error.response.data.detail);
             set(() => {
@@ -132,36 +132,14 @@ const useAuthStore = create(set => ({
               });
             }, 8000);
           });
-        set(() => {
-          return {
-            loading: false,
-          };
-        });
-        console.log(response);
-        return response;
+
+        // console.log(response);
+        // return response;
       } catch (error) {
         console.error(error);
       }
     }
   },
-
-  // logout: async (key) => {
-  //   try {
-  //     const value = localStorage.getItem(key);
-  //     const exists = value !== null;
-  //     if (exists) {
-  //       await axios.post('/auth/logout').then(res => {
-  //         if (res.status > 200 && res.status < 400) {
-  //           localStorage.removeItem(key);
-  //           setUnAuthorized();
-  //           navigate('/login');
-  //         }
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },
 }));
 
 export default useAuthStore;

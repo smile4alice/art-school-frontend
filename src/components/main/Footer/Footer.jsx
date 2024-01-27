@@ -168,7 +168,7 @@ const Footer = ({ contacts }) => {
             >
               Baza Trainee Ukraine,{' '}
             </a>
-            2024
+            2023
           </div>
           <div className={styles.footerLinksRules}>
             <a
