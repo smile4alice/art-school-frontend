@@ -24,7 +24,6 @@ const EditPostersPage = () => {
   const { updatePoster } = usePostersStore();
   const loading = usePostersStore(state => state.loading);
   const poster = usePostersStore(state => state.poster);
-  const error = usePostersStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,13 +40,11 @@ const EditPostersPage = () => {
     try {
       const formData = new FormData();
       formData.append('title', values.title);
-
       if (values.image[0].size === 0) {
         formData.append('photo', '');
       } else {
         formData.append('photo', values.image[0]);
       }
-
       await updatePoster(formData, id);
       navigate(-1);
     } catch (error) {
@@ -65,7 +62,6 @@ const EditPostersPage = () => {
           backButtonLink="/admin/posters"
           showActionButton={false}
         />
-        {error && <p className={styles.error}>{error}</p>}
         <Formik
           initialValues={initialValues}
           validationSchema={posterValidation}

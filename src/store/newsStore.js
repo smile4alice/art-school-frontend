@@ -80,27 +80,16 @@ const useNewsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
-        /*
-        set(() => {
-          if (error.code === 'ERR_BAD_REQUEST') {
-            return {
-              error: 'Новина з цією назвою вже існує, спробуйте іншу назву',
-            };
-          }
-        });
-        */
         set(() => {
           return {
             loading: false,
           };
         });
-        setTimeout(() => {
-          set(() => {
-            return {
-              error: '',
-            };
-          });
-        }, 5000);
+        set(() => {
+          return {
+            error: '',
+          };
+        });
         throw new Error(error);
       }
     }
@@ -127,24 +116,15 @@ const useNewsStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
-          if (error.code === 'ERR_BAD_REQUEST') {
-            return {
-              error: 'Новина з цією назвою вже існує, спробуйте іншу назву',
-            };
-          }
-        });
-        set(() => {
           return {
             loading: false,
           };
         });
-        setTimeout(() => {
-          set(() => {
-            return {
-              error: '',
-            };
-          });
-        }, 5000);
+        set(() => {
+          return {
+            error: '',
+          };
+        });
         throw new Error(error);
       }
     }

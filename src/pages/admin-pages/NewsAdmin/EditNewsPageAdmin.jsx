@@ -25,7 +25,6 @@ const EditNewsPage = () => {
   const { getOnePost, editPost } = useNewsStore();
   const post = useNewsStore(state => state.post);
   const loading = useNewsStore(state => state.loading);
-  const error = useNewsStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,7 +64,6 @@ const EditNewsPage = () => {
         backButtonLink="/admin/news"
         showActionButton={false}
       />
-      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={newsValidation}

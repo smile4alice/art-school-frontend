@@ -203,17 +203,17 @@ const useServicesStore = create((set, get) => ({
   //зміна досягнення
   editAchievement: async (url, id, data) => {
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
-    try {
-      if (isDataValid(data)) {
+    if (isDataValid(data)) {
+      try {
         const response = await axios.put(`/${newUrl}/${id}`, data, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
         return response;
+      } catch (error) {
+        throw new Error(error);
       }
-    } catch (error) {
-      throw new Error(error);
     }
   },
   //видалення досягнення
