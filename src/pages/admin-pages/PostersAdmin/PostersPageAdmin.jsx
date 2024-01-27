@@ -36,7 +36,7 @@ const PostersPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати афішу"
       />
-      {loading && !Object.keys(error).length ? (
+      {loading ? (
         <SpinnerAdmin />
       ) : (
         <PostersList data={posters} />

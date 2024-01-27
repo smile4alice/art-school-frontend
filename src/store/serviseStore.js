@@ -186,7 +186,6 @@ const useServicesStore = create((set, get) => ({
     }
   },
   addAchievement: async (url, data) => {
-    console.log(data);
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     if (isDataValid(data)) {
       try {
@@ -203,7 +202,6 @@ const useServicesStore = create((set, get) => ({
   },
   //зміна досягнення
   editAchievement: async (url, id, data) => {
-    console.log(data);
     const newUrl = url === 'gallery' ? 'gallery/photo' : url;
     if (isDataValid(data)) {
       try {

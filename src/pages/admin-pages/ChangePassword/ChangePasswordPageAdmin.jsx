@@ -29,7 +29,6 @@ const ChangePasswordPageAdmin = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
   const loading = useAuthStore(state => state.loading);
   const error = useAuthStore(state => state.error);
-  const response = useAuthStore(state => state.changeResponse);
 
   const onSubmit = async values => {
     const formData = new FormData();
@@ -37,20 +36,21 @@ const ChangePasswordPageAdmin = () => {
     formData.append('new_password', values.newPassword);
     formData.append('new_password_confirm', values.confirmPassword);
     await changePassword(formData);
-    if (response.status === 200) {
-      openModal();
-      const value = localStorage.getItem('access_token');
-      const exists = value !== null;
-      if (exists) {
-        await axios.post('/auth/logout').then(res => {
-          if (res.status > 200 && res.status < 400) {
-            localStorage.removeItem('access_token');
-            setUnAuthorized();
-            navigate('/login');
-          }
-        });
-      }
-      closeModal();
+    openModal();
+  };
+
+  const handleLogout = async () => {
+    const value = localStorage.getItem('access_token');
+    const exists = value !== null;
+    if (exists) {
+      await axios.post('/auth/logout').then(res => {
+        if (res.status > 200 && res.status < 400) {
+          localStorage.removeItem('access_token');
+          setUnAuthorized();
+          closeModal();
+          navigate('/login');
+        }
+      });
     }
   };
 
@@ -115,7 +115,10 @@ const ChangePasswordPageAdmin = () => {
       </Formik>
 
       {isModalOpen && (
-        <ConfirmModal message="Пароль успішно змінено, зайдіть під новим паролем" />
+        <ConfirmModal
+          handleClick={handleLogout}
+          message="Пароль успішно змінено, зайдіть під новим паролем"
+        />
       )}
     </div>
   );
