@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
   //baseURL: import.meta.env.VITE_APP_API_URL,
-  baseURL: 'https://art-school-backend.vercel.app/api/v1/',
+  baseURL: 'https://verykivsky-art-school2.com.ua/api/v1/',
 });
 
 instance.interceptors.request.use(config => {
