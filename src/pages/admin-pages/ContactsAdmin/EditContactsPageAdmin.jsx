@@ -41,7 +41,7 @@ const EditContactsPageAdmin = () => {
       />
       <Formik
         initialValues={initialValues}
-        validationSchema={contactsValidation[key]}
+        validationSchema={contactsValidation}
         onSubmit={handleSubmit}
       >
         {formik => {
