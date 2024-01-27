@@ -104,7 +104,7 @@ const useDepartmentsStore = create((set, get) => ({
         if (error.code === 'ERR_BAD_REQUEST') {
           return {
             error:
-              'Відділ з такою назвою вже існує в цьому відділенні, спробуйте іншу назву',
+              'Відділ з такою назвою вже існує, спробуйте іншу назву',
           };
         }
       });
@@ -153,7 +153,7 @@ const useDepartmentsStore = create((set, get) => ({
       set(() => {
         if (error.code === 'ERR_BAD_REQUEST') {
           return {
-            error: 'Відділ з цією назвою вже існує, спробуйте іншу назву',
+            error: 'Відділ з такою назвою вже існує, спробуйте іншу назву',
           };
         }
       });
