@@ -160,15 +160,15 @@ const Footer = ({ contacts }) => {
 
         <div className={styles.footerLinksRulesWrap}>
           <div className={styles.footerSecurity}>
-            © Розробка{' '}
+            © Розробка&nbsp;
             <a
               href="https://baza-trainee.tech/"
               rel="noreferrer"
               target="_blank"
             >
-              Baza Trainee Ukraine,{' '}
+              Baza Trainee Ukraine
             </a>
-            2023
+            , 2024
           </div>
           <div className={styles.footerLinksRules}>
             <a

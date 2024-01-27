@@ -42,12 +42,14 @@ const EditNewsPage = () => {
       const formData = new FormData();
       formData.append('title', values.title);
       formData.append('text', values.text);
-
-      if (values.image[0].size === 0) {
-        formData.append('photo', '');
-      } else {
-        formData.append('photo', values.image[0]);
+      if (values.image && values.image[0]) {
+        if (values.image[0].size === 0) {
+          formData.append('photo', '');
+        } else {
+          formData.append('photo', values.image[0]);
+        }
       }
+      
       await editPost(id, formData);
       navigate(-1);
     } catch (error) {

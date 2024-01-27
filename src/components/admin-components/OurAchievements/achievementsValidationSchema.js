@@ -19,7 +19,7 @@ export const achievementsValidation = Yup.object().shape({
   description: Yup.string()
     .max(200)
     .matches(
-      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
+      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d$&+,=_@#Nº№'<>^*()%'’`.,:;"()—!?«»/+-]+$/,
       'Введіть коректний опис'
     ),
   image: Yup.mixed()
@@ -46,7 +46,7 @@ export const galleryValidation = Yup.object().shape({
     .min(2)
     .max(150)
     .matches(
-      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d'’.,:;"()!?-]+$/,
+      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d$&+,=_@#Nº№'<>^*()%'’`.,:;"()!?«»/+-]+$/,
       'Введіть коректний опис'
     ),
   image: Yup.mixed()
