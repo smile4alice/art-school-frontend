@@ -22,6 +22,7 @@ const AddNewsPage = () => {
   const navigate = useNavigate();
   const { addPost } = useNewsStore();
   const loading = useNewsStore(state => state.loading);
+  const error = useNewsStore(state => state.error);
 
   const onSubmit = async values => {
     try {
@@ -31,8 +32,10 @@ const AddNewsPage = () => {
       if (values.image && values.image[0]) {
         formData.append('photo', values.image[0]);
       }
-      await addPost(formData);
-      navigate(-1);
+      const res = await addPost(formData);
+      if (res && res.status === 200) {
+        navigate('/admin/news');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -47,6 +50,7 @@ const AddNewsPage = () => {
         backButtonLink="/admin/news"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={newsValidation}
@@ -60,7 +64,6 @@ const AddNewsPage = () => {
                   <Field
                     name="title"
                     id="title"
-                    placeholder="Title"
                     component={TextInput}
                     maxLength={120}
                     showCharacterCount={true}
@@ -71,7 +74,6 @@ const AddNewsPage = () => {
                   <Field
                     name="text"
                     id="text"
-                    placeholder="Title"
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}

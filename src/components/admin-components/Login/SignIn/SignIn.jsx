@@ -49,7 +49,7 @@ const SignIn = () => {
   };
 
   return (
-    <>
+    <div className={styles.form}>
       <Heading title="Увійти в акаунт" />
       <Formik
         initialValues={initialValues}
@@ -77,15 +77,15 @@ const SignIn = () => {
                   placeholder="Введіть 8 символів і більше"
                 />
                 {error && <p className={styles.error}>{error}</p>}
-                <div className={styles.button}>
-                  <ButtonSubmit
-                    handlerSubmitButton={onSubmit}
-                    nameButton="Увійти"
-                    isActive={
-                      formik.isValid && Object.keys(formik.touched).length
-                    }
-                  />
-                </div>
+              </div>
+              <div className={styles.button}>
+                <ButtonSubmit
+                  handlerSubmitButton={onSubmit}
+                  nameButton="Увійти"
+                  isActive={
+                    formik.isValid && Object.keys(formik.touched).length
+                  }
+                />
               </div>
             </Form>
           );
@@ -94,7 +94,7 @@ const SignIn = () => {
       <Link to="/login/password-recovery" className={styles.link}>
         Забули пароль?
       </Link>
-    </>
+    </div>
   );
 };
 export default SignIn;

@@ -56,11 +56,9 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
-          if (error.code === 'ERR_BAD_REQUEST') {
-            return {
-              error: 'Слайд з цією назвою вже існує, спробуйте іншу назву',
-            };
-          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
         });
         set(() => {
           return {
@@ -100,11 +98,9 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
-          if (error.code === 'ERR_BAD_REQUEST') {
-            return {
-              error: 'Слайд з цією назвою вже існує, спробуйте іншу назву',
-            };
-          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
         });
         set(() => {
           return {

@@ -22,6 +22,7 @@ const AddSchoolAdministrationPage = () => {
   const navigate = useNavigate();
   const { addMember } = useAdministrationStore();
   const loading = useAdministrationStore(state => state.loading);
+  const error = useAdministrationStore(state => state.error);
 
   const onSubmit = async values => {
     try {
@@ -30,8 +31,10 @@ const AddSchoolAdministrationPage = () => {
       formData.append('position', values.position);
       formData.append('photo', values.image[0]);
 
-      await addMember(formData);
-      navigate(-1);
+      const res = await addMember(formData);
+      if (res && res.status === 200) {
+        navigate('/admin/administration');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -46,6 +49,7 @@ const AddSchoolAdministrationPage = () => {
         backButtonLink="/admin/administration"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={administrationValidation}

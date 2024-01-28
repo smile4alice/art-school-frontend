@@ -41,8 +41,8 @@ const EditSchoolDocuments = () => {
       } else if (values && values.document && values.document.length > 0) {
         formData.append('doc_path', values.document[0]);
       }
-      const response = await editDocument(formData, value.id);
-      if (response && response.status === 200) {
+      const res = await editDocument(formData, value.id);
+      if (res && res.status === 200) {
         navigate(`/admin/documents`);
       }
     } catch (error) {
