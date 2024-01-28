@@ -52,10 +52,11 @@ const EditSlidersPage = () => {
           formData.append('photo', values.image[0]);
         }
       }
-      
 
-      await editSlide(id, formData);
-      navigate(-1);
+      const res = await editSlide(id, formData);
+      if (res && res.status === 200) {
+        navigate('/admin/sliders');
+      }
     } catch (error) {
       console.log(error);
     }

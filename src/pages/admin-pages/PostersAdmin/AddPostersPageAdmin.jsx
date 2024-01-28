@@ -20,6 +20,7 @@ const AddPostersPage = () => {
   const navigate = useNavigate();
   const { addPoster } = usePostersStore();
   const loading = usePostersStore(state => state.loading);
+  const error = usePostersStore(state => state.error);
 
   const onSubmit = async values => {
     try {
@@ -28,8 +29,10 @@ const AddPostersPage = () => {
       if (values.image && values.image[0]) {
         formData.append('photo', values.image[0]);
       }
-      await addPoster(formData);
-      navigate(-1);
+      const res = await addPoster(formData);
+      if (res && res.status === 200) {
+        navigate('/admin/posters');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -44,6 +47,7 @@ const AddPostersPage = () => {
         backButtonLink="/admin/posters"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={posterValidation}

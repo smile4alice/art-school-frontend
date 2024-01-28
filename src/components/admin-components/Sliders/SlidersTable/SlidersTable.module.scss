@@ -88,6 +88,7 @@
   text-align: center;
   font-size: 15px;
   font-weight: 500;
+  margin-right: 1rem;
 }
 
 .cellActionHeader {
@@ -100,6 +101,7 @@
   text-align: center;
   font-size: 15px;
   font-weight: 500;
+  margin-right: 0.5rem;
 }
 .tableRow {
   display: flex;
@@ -177,6 +179,7 @@
   align-items: center;
   gap: 0.7rem;
   margin-left: 1rem;
+  background: lightcyan;
 }
 
 .cellActionContainer {
@@ -188,6 +191,7 @@
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
   border: 1px solid transparent;
+  background: lightcyan;
   &:nth-child(1):hover {
     fill: $admin-accent;
     background: rgba(117, 139, 253, 0.3);

@@ -70,7 +70,6 @@ const AddSubDepartmentPage = () => {
                     <Field
                       name="title"
                       id="title"
-                      placeholder="Title"
                       component={TextInput}
                       maxLength={120}
                       showCharacterCount={true}
@@ -80,7 +79,6 @@ const AddSubDepartmentPage = () => {
                   <Field
                     name="text"
                     id="text"
-                    placeholder="Title"
                     component={TextArea}
                     maxLength={10000}
                     showCharacterCount={true}

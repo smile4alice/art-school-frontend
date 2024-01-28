@@ -48,8 +48,10 @@ const EditPostersPage = () => {
         }
       }
 
-      await updatePoster(formData, id);
-      navigate(-1);
+      const res = await updatePoster(formData, id);
+      if (res && res.status === 200) {
+        navigate('/admin/posters');
+      }
     } catch (error) {
       console.log(error);
     }

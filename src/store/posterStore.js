@@ -82,6 +82,11 @@ const usePostersStore = create((set, get) => ({
       } catch (error) {
         set(() => {
           return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        set(() => {
+          return {
             loading: false,
           };
         });
@@ -120,11 +125,11 @@ const usePostersStore = create((set, get) => ({
             loading: false,
           };
         });
-          set(() => {
-            return {
-              error: '',
-            };
-          });
+        set(() => {
+          return {
+            error: '',
+          };
+        });
         throw new Error(error);
       }
     }

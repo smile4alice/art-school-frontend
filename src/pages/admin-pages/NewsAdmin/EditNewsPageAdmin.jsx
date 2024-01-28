@@ -25,6 +25,7 @@ const EditNewsPage = () => {
   const { getOnePost, editPost } = useNewsStore();
   const post = useNewsStore(state => state.post);
   const loading = useNewsStore(state => state.loading);
+  const error = useNewsStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,9 +50,11 @@ const EditNewsPage = () => {
           formData.append('photo', values.image[0]);
         }
       }
-      
-      await editPost(id, formData);
-      navigate(-1);
+
+      const res = await editPost(id, formData);
+      if (res && res.status === 200) {
+        navigate('/admin/news');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -66,6 +69,7 @@ const EditNewsPage = () => {
         backButtonLink="/admin/news"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={newsValidation}
@@ -79,7 +83,6 @@ const EditNewsPage = () => {
                   <Field
                     name="title"
                     id="title"
-                    placeholder="Title"
                     component={TextInput}
                     maxLength={120}
                     showCharacterCount={true}
@@ -91,7 +94,6 @@ const EditNewsPage = () => {
                   <Field
                     name="text"
                     id="text"
-                    placeholder="Title"
                     component={TextArea}
                     maxLength={2000}
                     showCharacterCount={true}

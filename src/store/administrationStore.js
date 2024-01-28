@@ -84,6 +84,21 @@ const useAdministrationStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          return {
+            error: '',
+          };
+        });
         throw new Error(error);
       }
     }
@@ -113,6 +128,21 @@ const useAdministrationStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          return {
+            error: '',
+          };
+        });
         throw new Error(error);
       }
     }

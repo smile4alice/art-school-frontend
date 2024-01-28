@@ -1,9 +1,16 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
 .layout {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .link {
   color: $admin-accent;
@@ -11,6 +18,13 @@
   font-weight: 500;
   margin-top: -1.5rem;
   text-decoration: underline;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 
 .error {

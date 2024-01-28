@@ -4,7 +4,7 @@ import { stringifyObj } from '@/utils/stringifyObj';
 
 const useContactsStore = create(set => ({
   loading: false,
-  error: {},
+  error: '',
   contacts: {},
 
   getContacts: async () => {
@@ -29,11 +29,6 @@ const useContactsStore = create(set => ({
       }
       return response;
     } catch (error) {
-      set(() => {
-        return {
-          error: error,
-        };
-      });
       throw new Error(error);
     }
   },

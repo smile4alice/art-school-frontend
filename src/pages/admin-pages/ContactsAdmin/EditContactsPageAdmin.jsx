@@ -16,6 +16,7 @@ const EditContactsPageAdmin = () => {
   const { key, title, value } = location.state;
   const { editContact } = useContactsStore();
   const loading = useContactsStore(state => state.loading);
+  const error = useContactsStore(state => state.error);
 
   const breadcrumbs = [`${title}`, `Редагувати ${declineWord(title)}`];
 
@@ -23,8 +24,10 @@ const EditContactsPageAdmin = () => {
 
   const handleSubmit = async values => {
     try {
-      await editContact(values);
-      navigate(-1);
+      const res = await editContact(values);
+      if (res && res.status === 200) {
+        navigate('/admin/contacts');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -39,6 +42,7 @@ const EditContactsPageAdmin = () => {
         backButtonLink="/admin/contacts"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={contactsValidation}

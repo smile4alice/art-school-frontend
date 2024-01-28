@@ -29,8 +29,10 @@ const AddSchoolDocumentsPage = () => {
       if (values.document && values.document[0]) {
         formData.append('doc_path', values.document[0]);
       }
-      await addDocument(formData);
-      navigate(-1);
+      const res = await addDocument(formData);
+      if (res && res.status === 200) {
+        navigate('/admin/documents');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +61,6 @@ const AddSchoolDocumentsPage = () => {
                   <Field
                     name="title"
                     id="text"
-                    placeholder="Title"
                     component={TextInput}
                     maxLength={120}
                     showCharacterCount={true}

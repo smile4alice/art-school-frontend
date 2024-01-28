@@ -25,6 +25,7 @@ const EditSchoolAdministrationPage = () => {
   const { getOneMember, editMember } = useAdministrationStore();
   const member = useAdministrationStore(state => state.member);
   const loading = useAdministrationStore(state => state.loading);
+  const error = useAdministrationStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,8 +50,10 @@ const EditSchoolAdministrationPage = () => {
         formData.append('photo', values.image[0]);
       }
 
-      await editMember(id, formData);
-      navigate(-1);
+      const res = await editMember(id, formData);
+      if (res && res.status === 200) {
+        navigate('/admin/administration');
+      }
     } catch (error) {
       console.log(error);
     }
@@ -65,6 +68,7 @@ const EditSchoolAdministrationPage = () => {
         backButtonLink="/admin/administration"
         showActionButton={false}
       />
+      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={administrationValidation}

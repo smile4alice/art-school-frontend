@@ -82,6 +82,11 @@ const useNewsStore = create((set, get) => ({
       } catch (error) {
         set(() => {
           return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        set(() => {
+          return {
             loading: false,
           };
         });
@@ -115,6 +120,11 @@ const useNewsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
         set(() => {
           return {
             loading: false,
