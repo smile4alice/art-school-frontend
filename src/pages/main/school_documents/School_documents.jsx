@@ -7,6 +7,7 @@ import styles from './School_documents.module.scss';
 const SchoolDocuments = () => {
   const { getDocuments } = useDocumentsStore();
   const documents = useDocumentsStore(state => state.documents);
+  console.log(documents);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -38,11 +39,11 @@ const SchoolDocuments = () => {
                 <li key={index}>
                   <a
                     className={styles.documentLink}
-                    href={index > 0 && document.doc_path}
+                    href={document.doc_path}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {index > 0 && document.doc_name}
+                    {document.doc_name}
                   </a>
                 </li>
               ))}
