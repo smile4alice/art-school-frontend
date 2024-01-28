@@ -80,7 +80,6 @@ const EditSchoolDocuments = () => {
                     <Field
                       name="title"
                       id="text"
-                      placeholder="Title"
                       component={TextInput}
                       maxLength={120}
                       text={value.doc_name}

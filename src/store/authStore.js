@@ -94,19 +94,17 @@ const useAuthStore = create(set => ({
             loading: true,
           };
         });
-
         const requestData = new URLSearchParams(data);
         return await axios
           .post(`/auth/change-password`, requestData, {})
           .then(response => {
-            console.log(response);
             set(() => {
               return {
                 loading: false,
               };
             });
+            return response;
           })
-
           .catch(error => {
             console.log('Fetch error:', error.response.data.detail);
             set(() => {
@@ -124,6 +122,11 @@ const useAuthStore = create(set => ({
                 };
               }
             });
+            set(() => {
+              return {
+                loading: false,
+              };
+            });
             setTimeout(() => {
               set(() => {
                 return {
@@ -132,9 +135,6 @@ const useAuthStore = create(set => ({
               });
             }, 8000);
           });
-
-        // console.log(response);
-        // return response;
       } catch (error) {
         console.error(error);
       }

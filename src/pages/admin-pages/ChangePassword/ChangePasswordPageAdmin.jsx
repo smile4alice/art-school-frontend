@@ -35,8 +35,10 @@ const ChangePasswordPageAdmin = () => {
     formData.append('old_password', values.oldPassword);
     formData.append('new_password', values.newPassword);
     formData.append('new_password_confirm', values.confirmPassword);
-    await changePassword(formData);
-    openModal();
+    const response = await changePassword(formData);
+    if (response && response.status === 200) {
+      openModal();
+    }
   };
 
   const handleLogout = async () => {
