@@ -28,7 +28,9 @@ const AddNewsPage = () => {
       const formData = new FormData();
       formData.append('title', values.title);
       formData.append('text', values.text);
-      formData.append('photo', values.image[0]);
+      if (values.image && values.image[0]) {
+        formData.append('photo', values.image[0]);
+      }
       await addPost(formData);
       navigate(-1);
     } catch (error) {

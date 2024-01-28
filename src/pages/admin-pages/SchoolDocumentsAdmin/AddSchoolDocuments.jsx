@@ -26,7 +26,9 @@ const AddSchoolDocumentsPage = () => {
     try {
       const formData = new FormData();
       formData.append('doc_name', values.title);
-      formData.append('doc_path', values.document[0]);
+      if (values.document && values.document[0]) {
+        formData.append('doc_path', values.document[0]);
+      }
       await addDocument(formData);
       navigate(-1);
     } catch (error) {

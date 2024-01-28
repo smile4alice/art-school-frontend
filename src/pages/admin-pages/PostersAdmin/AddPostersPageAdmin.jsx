@@ -25,7 +25,9 @@ const AddPostersPage = () => {
     try {
       const formData = new FormData();
       formData.append('title', values.title);
-      formData.append('photo', values.image[0]);
+      if (values.image && values.image[0]) {
+        formData.append('photo', values.image[0]);
+      }
       await addPoster(formData);
       navigate(-1);
     } catch (error) {

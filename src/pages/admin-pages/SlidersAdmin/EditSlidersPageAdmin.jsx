@@ -45,12 +45,14 @@ const EditSlidersPage = () => {
       const formData = new FormData();
       formData.append('title', values.title);
       formData.append('description', values.text);
-
-      if (values.image[0].size === 0) {
-        formData.append('photo', '');
-      } else {
-        formData.append('photo', values.image[0]);
+      if (values.image && values.image[0]) {
+        if (values.image[0].size === 0) {
+          formData.append('photo', '');
+        } else {
+          formData.append('photo', values.image[0]);
+        }
       }
+      
 
       await editSlide(id, formData);
       navigate(-1);

@@ -14,11 +14,11 @@ const Sidebar = () => {
         <LogoutButton />
       </div>
       <div className={styles.copyright}>
-        © Розробка{' '}
+        © Розробка&nbsp;
         <a href="https://baza-trainee.tech/" rel="noreferrer" target="_blank">
-          &nbsp; Baza Trainee Ukraine,{' '}
+          Baza Trainee Ukraine
         </a>
-        2023
+        , 2024
       </div>
     </div>
   );
