@@ -28,7 +28,9 @@ const AddSlidersPage = () => {
       const formData = new FormData();
       formData.append('title', values.title);
       formData.append('description', values.text);
-      formData.append('photo', values.image[0]);
+      if (values.image && values.image[0]) {
+        formData.append('photo', values.image[0]);
+      }
 
       await addSlide(formData);
       navigate(-1);
@@ -87,7 +89,7 @@ const AddSlidersPage = () => {
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
                     isActive={
-                      formik.isValid && Object.keys(formik.touched).length
+                      formik.isValid
                     }
                     isRight={true}
                     isError={error}

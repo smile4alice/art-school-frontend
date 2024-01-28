@@ -70,6 +70,7 @@
     gap: 1.5rem;
     &.reverse {
       flex-direction: row-reverse;
+      justify-content: flex-end;
     }
     >div{
       margin-top: 0;
