@@ -5,6 +5,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 const useSlidersStore = create((set, get) => ({
   loading: false,
   error: '',
+  isAuthorized: true,
   slides: [],
 
   getSlides: async () => {
@@ -53,9 +54,15 @@ const useSlidersStore = create((set, get) => ({
             loading: false,
           };
         });
+        console.log(response);
         return response;
       } catch (error) {
         set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
           return {
             error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
@@ -71,7 +78,13 @@ const useSlidersStore = create((set, get) => ({
               error: '',
             };
           });
+          set(() => {
+            return {
+              isAuthorized: false,
+            };
+          });
         }, 5000);
+
         throw new Error(error);
       }
     }
@@ -98,6 +111,11 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
           return {
             error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
@@ -111,6 +129,11 @@ const useSlidersStore = create((set, get) => ({
           set(() => {
             return {
               error: '',
+            };
+          });
+          set(() => {
+            return {
+              isAuthorized: false,
             };
           });
         }, 5000);
@@ -140,6 +163,33 @@ const useSlidersStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+          set(() => {
+            return {
+              isAuthorized: false,
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }
