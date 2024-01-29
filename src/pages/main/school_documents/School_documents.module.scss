@@ -1,49 +1,49 @@
-.contentWrapper {  
-       padding: 20px 16px 30px; 
+.contentWrapper {
+  padding: 20px 16px 30px;
 
-      @media screen and (min-width: 768px) {
-         padding: 0 16px 40px;
-         width: 736px;
-         }
+  @media screen and (min-width: 768px) {
+    padding: 0 16px 40px;
+    width: 736px;
+  }
 
-      @media screen and (min-width: 1280px) {
-         padding: 40px 0 60px;
-         width: 1180px; 
-      }
-   }
+  @media screen and (min-width: 1280px) {
+    padding: 40px 0 60px;
+    width: 1180px;
+  }
+}
 
-.documentsTitle{   
-   font-size: 24px;
-   font-style: normal;
-   font-weight: 700;
-   line-height: normal;
-   margin-bottom: 16px;
+.documentsTitle {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 16px;
 
-   @media screen and (min-width: 1280px) {
-   font-size: 32px;
-   margin-bottom: 33px;
-   }
+  @media screen and (min-width: 1280px) {
+    font-size: 32px;
+    margin-bottom: 33px;
+  }
 }
 
 .documentsList {
-   display: flex;
-   flex-direction: column;      
-   gap: 15px;   
+  li {
+    margin-bottom: 0.94rem;
+  }
 }
 
 .documentLink {
-   color: $link-color;
-   font-size: 14px;
-   font-style: normal;
-   font-weight: 500;
-   line-height: normal;
-   letter-spacing: 0.259px;
-   text-decoration-line: underline;
+  color: $link-color;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.259px;
+  text-decoration-line: underline;
 
-   @media screen and (min-width: 1280px) {
-      font-size: 18px;
-   }
-        &:hover {
-           color: $accent-hover;
-        }
+  @media screen and (min-width: 1280px) {
+    font-size: 18px;
+  }
+  &:hover {
+    color: $accent-hover;
+  }
 }
