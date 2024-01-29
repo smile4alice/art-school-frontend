@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { slidersValidation } from './validationSchema';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import useSlidersStore from '@/store/slidersStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
@@ -9,6 +10,7 @@ import FileInput from '@/components/admin-components/formik/FileInput/FileInput'
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import styles from './SlidersAdmin.module.scss';
+import { useEffect } from 'react';
 
 const breadcrumbs = ['Слайдери', 'Додати слайд'];
 
@@ -21,7 +23,16 @@ const initialValues = {
 const AddSlidersPage = () => {
   const navigate = useNavigate();
   const { addSlide, loading } = useSlidersStore();
+  const { setUnAuthorized } = useAuthorized();
   const error = useSlidersStore(state => state.error);
+  const isAuthorized = useSlidersStore(state => state.isAuthorized);
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const onSubmit = async values => {
     try {

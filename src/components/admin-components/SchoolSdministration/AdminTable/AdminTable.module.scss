@@ -26,6 +26,11 @@
   width: 100%;
   max-height: calc(100vh - 207px);
   overflow-y: auto;
+  scrollbar-color: #ecefff #0047ff !important;
+  scrollbar-width: thin !important;
+  &:hover {
+    scrollbar-color: #ecefff rgba(117, 116, 252, 1) !important;
+  }
   &::-webkit-scrollbar {
     width: 0.3125rem;
   }
@@ -135,6 +140,7 @@
     height: 2.25rem;
     padding: 0.1rem;
     overflow: hidden;
+    margin-right: 0.5rem;
     img {
       max-height: 100%;
       object-fit: contain;

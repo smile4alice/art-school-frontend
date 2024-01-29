@@ -26,6 +26,11 @@
   width: 100%;
   max-height: calc(100vh - 194px);
   overflow-y: scroll;
+  scrollbar-color: #ecefff #0047ff !important;
+  scrollbar-width: thin !important;
+  &:hover {
+    scrollbar-color: #ecefff rgba(117, 116, 252, 1) !important;
+  }
   &::-webkit-scrollbar {
     width: 0.3125rem;
   }
@@ -53,6 +58,7 @@
   font-size: 15px;
   font-weight: 500;
   margin: 0 0.5rem;
+  padding: 7px 5px;
 }
 
 .cellHeadingHeader {
@@ -80,20 +86,19 @@
 
 .cellPhotoHeader {
   display: flex;
-  width: 77px;
-  padding: 0px 10px;
-  justify-content: center;
+  min-width: 67px;
+  padding: 0px 5px;
+  justify-content: flex-start;
   align-items: flex-start;
   color: $admin-text-main;
   text-align: center;
   font-size: 15px;
   font-weight: 500;
-  margin-right: 1rem;
 }
 
 .cellActionHeader {
   display: flex;
-  width: 76px;
+  width: 96px;
   height: 40px;
   justify-content: center;
   align-items: center;
@@ -101,7 +106,6 @@
   text-align: center;
   font-size: 15px;
   font-weight: 500;
-  margin-right: 0.5rem;
 }
 .tableRow {
   display: flex;
