@@ -26,13 +26,7 @@
   width: 100%;
   max-height: calc(100vh - 194px);
   overflow-y: auto;
-  //scrollbar-color: #ecefff #0047ff !important;
-  //scrollbar-width: thin !important;
-  /*
-  &:hover {
-    scrollbar-color: #ecefff rgba(117, 116, 252, 1) !important;
-  }
-*/
+
   &::-webkit-scrollbar {
     width: 0.3125rem;
   }
