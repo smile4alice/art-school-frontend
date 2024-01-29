@@ -1,12 +1,19 @@
 import CloseIcon from '@/components/Icons/CloseIcon';
+import { useRef } from 'react';
 import { useModal } from '@/store/modalStore';
+import { useClickOutside } from '@/hooks/hooks';
 import styles from './ConfirmDeleteModa.module.scss';
 
 const ConfirmDeleteModal = ({ handleDelete }) => {
-  const { closeModal } = useModal();
-
+  const { isModalOpen, closeModal } = useModal();
+  const modalRef = useRef();
+  useClickOutside([modalRef], ()=>{
+    if(isModalOpen){
+      closeModal()
+    }
+  })
   return (
-    <div className={styles.deleteModal}>
+    <div className={styles.deleteModal} ref={modalRef}>
       <div className={styles.contentWrapper}>
         <div className={styles.close} onClick={() => closeModal()}>
           <CloseIcon />
