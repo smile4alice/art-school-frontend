@@ -54,7 +54,6 @@ const useSlidersStore = create((set, get) => ({
             loading: false,
           };
         });
-        console.log(response);
         return response;
       } catch (error) {
         set(() => {
@@ -83,7 +82,7 @@ const useSlidersStore = create((set, get) => ({
               isAuthorized: false,
             };
           });
-        }, 5000);
+        }, 3000);
 
         throw new Error(error);
       }
@@ -136,7 +135,7 @@ const useSlidersStore = create((set, get) => ({
               isAuthorized: false,
             };
           });
-        }, 5000);
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -187,6 +186,13 @@ const useSlidersStore = create((set, get) => ({
           set(() => {
             return {
               isAuthorized: false,
+            };
+          });
+        }, 3000);
+        setTimeout(() => {
+          set(() => {
+            return {
+              isAuthorized: true,
             };
           });
         }, 5000);
