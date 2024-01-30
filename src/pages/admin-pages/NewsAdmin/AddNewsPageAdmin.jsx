@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { newsValidation } from './validationSchema';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
 import useNewsStore from '@/store/newsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
@@ -23,17 +21,7 @@ const initialValues = {
 const AddNewsPage = () => {
   const navigate = useNavigate();
   const { addPost } = useNewsStore();
-  const { setUnAuthorized } = useAuthorized();
   const loading = useNewsStore(state => state.loading);
-  const error = useNewsStore(state => state.error);
-  const isAuthorized = useNewsStore(state => state.isAuthorized);
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const onSubmit = async values => {
     try {
@@ -61,7 +49,6 @@ const AddNewsPage = () => {
         backButtonLink="/admin/news"
         showActionButton={false}
       />
-      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={newsValidation}

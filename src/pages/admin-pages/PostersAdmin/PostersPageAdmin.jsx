@@ -7,7 +7,6 @@ import usePostersStore from '@/store/posterStore';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
-import styles from './PostersAdmin.module.scss';
 
 const breadcrumbs = ['Афіші'];
 
@@ -49,7 +48,6 @@ const PostersPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати афішу"
       />
-      {error && <p className={styles.error}>{error}</p>}
       {loading ? <SpinnerAdmin /> : <PostersList data={posters} />}
       {error && Object.keys(error).length && !posters.length ? (
         <PlaceholderAdmin />

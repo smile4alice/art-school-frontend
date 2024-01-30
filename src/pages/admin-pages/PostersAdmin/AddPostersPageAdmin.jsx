@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
 import { Formik, Form, Field } from 'formik';
 import usePostersStore from '@/store/posterStore';
 import { posterValidation } from './validationSchema';
@@ -21,17 +19,7 @@ const initialValues = {
 const AddPostersPage = () => {
   const navigate = useNavigate();
   const { addPoster } = usePostersStore();
-  const { setUnAuthorized } = useAuthorized();
   const loading = usePostersStore(state => state.loading);
-  const error = usePostersStore(state => state.error);
-  const isAuthorized = usePostersStore(state => state.isAuthorized);
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const onSubmit = async values => {
     try {
@@ -58,7 +46,6 @@ const AddPostersPage = () => {
         backButtonLink="/admin/posters"
         showActionButton={false}
       />
-      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={posterValidation}

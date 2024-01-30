@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import useVideoStore from '@/store/videoStore';
@@ -13,20 +11,9 @@ const breadcrumbs = ['Відеогалерея'];
 
 const VideoPageAdmin = () => {
   const { getAllVideo } = useVideoStore();
-  const { setUnAuthorized } = useAuthorized();
-  const navigate = useNavigate();
   const videos = useVideoStore(state => state.videos);
   const loading = useVideoStore(state => state.loading);
   const [loadingState, setLoadingState] = useState('loading');
-  const error = useVideoStore(state => state.error);
-  const isAuthorized = useVideoStore(state => state.isAuthorized);
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,7 +40,6 @@ const VideoPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати відео"
       />
-      {error && <p className={s.error}>{error}</p>}
       {loading ? (
         <SpinnerAdmin />
       ) : (

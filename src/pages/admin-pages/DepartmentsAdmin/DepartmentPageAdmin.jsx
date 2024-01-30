@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
+import { useParams } from 'react-router-dom';
 import { useModal } from '@/store/modalStore';
 import useDepartmentsStore from '@/store/departmentsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
@@ -9,13 +8,10 @@ import DepartmentsTable from '@/components/admin-components/Departments/Departme
 import DepartmentsTabs from '@/components/admin-components/Departments/DepartmentsTabs/DepartmentsTabs';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
-import styles from './DepartmentsAdmin.module.scss';
 
 const DepartmentPageAdmin = () => {
   const { id } = useParams();
   const { isModalOpen } = useModal();
-  const { setUnAuthorized } = useAuthorized();
-  const navigate = useNavigate();
   const { getOneDepartment, getDepartments } = useDepartmentsStore();
   const [thisDepartment, setThisdepartment] = useState([]);
   const [title, setTitle] = useState([]);
@@ -23,14 +19,6 @@ const DepartmentPageAdmin = () => {
   const departments = useDepartmentsStore(state => state.departments);
   const loading = useDepartmentsStore(state => state.loading);
   const error = useDepartmentsStore(state => state.error);
-  const isAuthorized = useDepartmentsStore(state => state.isAuthorized);
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,7 +70,6 @@ const DepartmentPageAdmin = () => {
         stateId={id}
       />
       <DepartmentsTabs departments={departments} />
-      {error && <p className={styles.error}>{error}</p>}
       {loading && !Object.keys(error).length ? (
         <SpinnerAdmin />
       ) : (

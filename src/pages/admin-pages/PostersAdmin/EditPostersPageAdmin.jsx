@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { Formik, Form, Field } from 'formik';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
 import usePostersStore from '@/store/posterStore';
 import { posterValidation } from './validationSchema';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
@@ -23,18 +22,9 @@ const EditPostersPage = () => {
   const navigate = useNavigate();
   const { getPostersById } = usePostersStore();
   const { updatePoster } = usePostersStore();
-  const { setUnAuthorized } = useAuthorized();
   const loading = usePostersStore(state => state.loading);
   const poster = usePostersStore(state => state.poster);
   const error = usePostersStore(state => state.error);
-  const isAuthorized = usePostersStore(state => state.isAuthorized);
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -7,7 +7,6 @@ const useNewsStore = create((set, get) => ({
   error: '',
   news: [],
   post: {},
-  isAuthorized: true,
 
   getNews: async () => {
     try {
@@ -31,7 +30,7 @@ const useNewsStore = create((set, get) => ({
       set(() => {
         return {
           loading: false,
-          error: error,
+          error: error.message,
         };
       });
       throw new Error(error);
@@ -97,13 +96,6 @@ const useNewsStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
@@ -151,13 +143,6 @@ const useNewsStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
@@ -206,26 +191,12 @@ const useNewsStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
             };
           });
         }, 3000);
-        setTimeout(() => {
-          set(() => {
-            return {
-              isAuthorized: true,
-            };
-          });
-        }, 5000);
         throw new Error(error);
       }
     }

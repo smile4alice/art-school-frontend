@@ -28,8 +28,11 @@ const PasswordRecovery = () => {
         'Якщо у вас є акаунт, вам на електронну пошту буде надіслано посилання для відновлення паролю'
       );
       const response = await sendMail(data);
-      if (response && response.detail.status === 'success') {
+      if (response && response.status === 202) {
         setMessage('Листа надіслано. Перевірте електронну пошту');
+        setTimeout(() => {
+          setIsAlertOpen(false);
+        }, 5000);
       }
     } catch (error) {
       console.log(error);

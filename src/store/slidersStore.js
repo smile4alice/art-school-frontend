@@ -5,7 +5,6 @@ import { isDataValid } from '@/utils/formDataValidation';
 const useSlidersStore = create((set, get) => ({
   loading: false,
   error: '',
-  isAuthorized: true,
   slides: [],
 
   getSlides: async () => {
@@ -29,7 +28,7 @@ const useSlidersStore = create((set, get) => ({
     } catch (error) {
       set(() => {
         return {
-          error: error,
+          error: error.message,
         };
       });
       throw new Error(error);
@@ -72,13 +71,6 @@ const useSlidersStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
@@ -127,13 +119,6 @@ const useSlidersStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
@@ -182,26 +167,12 @@ const useSlidersStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
             };
           });
         }, 3000);
-        setTimeout(() => {
-          set(() => {
-            return {
-              isAuthorized: true,
-            };
-          });
-        }, 5000);
         throw new Error(error);
       }
     }

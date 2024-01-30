@@ -3,7 +3,6 @@ import { Formik, Form, Field } from 'formik';
 import { useParams, useNavigate } from 'react-router-dom';
 import useSlidersStore from '@/store/slidersStore';
 import { slidersValidation } from './validationSchema';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
@@ -23,21 +22,13 @@ const initialValues = {
 const EditSlidersPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { setUnAuthorized } = useAuthorized();
   const { getSlides, editSlide } = useSlidersStore();
   const loading = useSlidersStore(state => state.loading);
   const error = useSlidersStore(state => state.error);
-  const isAuthorized = useSlidersStore(state => state.isAuthorized);
+
   const slide = useSlidersStore(state =>
     state.slides.find(item => item.id == id)
   );
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {

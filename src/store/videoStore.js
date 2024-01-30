@@ -7,7 +7,6 @@ const useVideoStore = create((set, get) => ({
   videos: [],
   media: {},
   error: '',
-  isAuthorized: true,
 
   getAllVideo: async () => {
     try {
@@ -33,7 +32,7 @@ const useVideoStore = create((set, get) => ({
       set(() => {
         return {
           loading: false,
-          error: error,
+          error: error.message,
         };
       });
       throw new Error(error);
@@ -85,13 +84,6 @@ const useVideoStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
@@ -135,13 +127,6 @@ const useVideoStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
@@ -190,26 +175,12 @@ const useVideoStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
             };
           });
         }, 3000);
-        setTimeout(() => {
-          set(() => {
-            return {
-              isAuthorized: true,
-            };
-          });
-        }, 5000);
         throw new Error(error);
       }
     }

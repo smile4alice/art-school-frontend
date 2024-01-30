@@ -1,7 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
-import useServicesStore from '@/store/serviseStore';
+import { useState } from 'react';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
@@ -19,22 +16,12 @@ const AchievementsGalleryPage = ({
   buttonTitle1,
   buttonTitle2,
 }) => {
-  const { setUnAuthorized } = useAuthorized();
-  const navigate = useNavigate();
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
-  const error = useServicesStore(state => state.error);
-  const isAuthorized = useServicesStore(state => state.isAuthorized);
+
   const [typeOfAchievements, setTypeOfAchievements] =
     useState('allAchievements');
   let breadcrumbs;
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const setBreadcrumbs = (url, title) => {
     if (url === 'achievements') {
@@ -74,7 +61,6 @@ const AchievementsGalleryPage = ({
         isActionButtonDisabled={false}
         actionButtonLabel={actionButtonLabel}
       />
-      {error && <p className="error">{error}</p>}
       <div className={s.selectsContainer}>
         <div className={s.selectButtons}>
           <button

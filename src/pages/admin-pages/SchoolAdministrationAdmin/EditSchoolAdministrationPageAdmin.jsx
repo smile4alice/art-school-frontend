@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
 import { Formik, Form, Field } from 'formik';
 import { administrationValidation } from './validationSchema';
 import useAdministrationStore from '@/store/administrationStore';
@@ -23,19 +22,10 @@ const initialValues = {
 const EditSchoolAdministrationPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { setUnAuthorized } = useAuthorized();
   const { getOneMember, editMember } = useAdministrationStore();
   const member = useAdministrationStore(state => state.member);
   const loading = useAdministrationStore(state => state.loading);
   const error = useAdministrationStore(state => state.error);
-  const isAuthorized = useAdministrationStore(state => state.isAuthorized);
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {
