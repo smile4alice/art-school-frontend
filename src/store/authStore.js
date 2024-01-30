@@ -49,8 +49,7 @@ const useAuthStore = create(set => ({
     if (data.email !== undefined) {
       try {
         const response = await axios.post(`/auth/forgot-password`, data, {});
-        console.log(response.data);
-        return response.data;
+        return response;
       } catch (error) {
         console.error(error);
       }
@@ -139,11 +138,6 @@ const useAuthStore = create(set => ({
               set(() => {
                 return {
                   error: '',
-                };
-              });
-              set(() => {
-                return {
-                  isAuthorized: false,
                 };
               });
             }, 4000);

@@ -7,7 +7,6 @@ const usePostersStore = create((set, get) => ({
   error: '',
   posters: [],
   poster: {},
-  isAuthorized: true,
 
   getPosters: async () => {
     try {
@@ -30,8 +29,8 @@ const usePostersStore = create((set, get) => ({
     } catch (error) {
       set(() => {
         return {
-          error: error,
           loading: false,
+          error: error.message,
         };
       });
       throw new Error(error);
@@ -57,6 +56,11 @@ const usePostersStore = create((set, get) => ({
         };
       });
     } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
       throw new Error(error);
     }
   },
@@ -97,13 +101,6 @@ const usePostersStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
@@ -151,13 +148,6 @@ const usePostersStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
@@ -206,26 +196,12 @@ const usePostersStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
             };
           });
         }, 3000);
-        setTimeout(() => {
-          set(() => {
-            return {
-              isAuthorized: true,
-            };
-          });
-        }, 5000);
         throw new Error(error);
       }
     }

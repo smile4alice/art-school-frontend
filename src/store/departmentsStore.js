@@ -5,7 +5,6 @@ import { stringifyObj } from '@/utils/stringifyObj';
 const useDepartmentsStore = create((set, get) => ({
   loading: false,
   error: '',
-  isAuthorized: true,
   departments: [],
   department: [],
   sub_department: {},
@@ -31,7 +30,7 @@ const useDepartmentsStore = create((set, get) => ({
     } catch (error) {
       set(() => {
         return {
-          error: error,
+          error: error.messsage,
         };
       });
       throw new Error(error);
@@ -117,13 +116,6 @@ const useDepartmentsStore = create((set, get) => ({
         };
       });
       setTimeout(() => {
-        if (error.response.data.detail === 'Unauthorized') {
-          set(() => {
-            return {
-              isAuthorized: false,
-            };
-          });
-        }
         set(() => {
           return {
             error: '',
@@ -181,13 +173,6 @@ const useDepartmentsStore = create((set, get) => ({
         };
       });
       setTimeout(() => {
-        if (error.response.data.detail === 'Unauthorized') {
-          set(() => {
-            return {
-              isAuthorized: false,
-            };
-          });
-        }
         set(() => {
           return {
             error: '',
@@ -239,26 +224,12 @@ const useDepartmentsStore = create((set, get) => ({
           };
         });
         setTimeout(() => {
-          if (error.response.data.detail === 'Unauthorized') {
-            set(() => {
-              return {
-                isAuthorized: false,
-              };
-            });
-          }
           set(() => {
             return {
               error: '',
             };
           });
         }, 3000);
-        setTimeout(() => {
-          set(() => {
-            return {
-              isAuthorized: true,
-            };
-          });
-        }, 5000);
         throw new Error(error);
       }
     }

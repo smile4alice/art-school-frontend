@@ -6,7 +6,6 @@ const useContactsStore = create(set => ({
   loading: false,
   error: '',
   contacts: {},
-  isAuthorized: true,
 
   getContacts: async () => {
     try {
@@ -70,13 +69,6 @@ const useContactsStore = create(set => ({
         };
       });
       setTimeout(() => {
-        if (error.response.data.detail === 'Unauthorized') {
-          set(() => {
-            return {
-              isAuthorized: false,
-            };
-          });
-        }
         set(() => {
           return {
             error: '',

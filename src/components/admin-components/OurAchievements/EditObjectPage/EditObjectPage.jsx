@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
 import {
   achievementsValidation,
   galleryValidation,
@@ -33,7 +32,6 @@ const EditObjectPage = ({
   maxSymbols,
 }) => {
   const navigate = useNavigate();
-  const { setUnAuthorized } = useAuthorized();
   const { id } = useParams();
   const { getAchievementsPositions, getAchievemenById, editAchievement } =
     useServicesStore();
@@ -45,14 +43,6 @@ const EditObjectPage = ({
   const subDepartmentId = achievement.sub_department;
   const [title, setTitle] = useState(selectTitle);
   const error = useServicesStore(state => state.error);
-  const isAuthorized = useServicesStore(state => state.isAuthorized);
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   let breadcrumbs;
   const setBreadcrumbs = url => {
