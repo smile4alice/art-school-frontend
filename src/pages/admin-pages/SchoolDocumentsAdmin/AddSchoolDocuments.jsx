@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import useDocumentsStore from '@/store/documentsStore';
 import { documentValidation } from './validationSchema';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
 import PdfInput from '@/components/admin-components/formik/PdfInput/PdfInput';
@@ -18,9 +20,18 @@ const initialValues = {
 
 const AddSchoolDocumentsPage = () => {
   const navigate = useNavigate();
+  const { setUnAuthorized } = useAuthorized();
   const { addDocument } = useDocumentsStore();
   const loading = useDocumentsStore(state => state.loading);
   const error = useDocumentsStore(state => state.error);
+  const isAuthorized = useDocumentsStore(state => state.isAuthorized);
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const onSubmit = async values => {
     try {

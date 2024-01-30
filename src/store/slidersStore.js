@@ -57,6 +57,11 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
           if (error.response.data.detail === 'Unauthorized') {
             return {
               error: 'Помилка авторизації',
@@ -66,20 +71,17 @@ const useSlidersStore = create((set, get) => ({
             error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
-        set(() => {
-          return {
-            loading: false,
-          };
-        });
         setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
           set(() => {
             return {
               error: '',
-            };
-          });
-          set(() => {
-            return {
-              isAuthorized: false,
             };
           });
         }, 3000);
@@ -110,6 +112,11 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
           if (error.response.data.detail === 'Unauthorized') {
             return {
               error: 'Помилка авторизації',
@@ -119,20 +126,17 @@ const useSlidersStore = create((set, get) => ({
             error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
-        set(() => {
-          return {
-            loading: false,
-          };
-        });
         setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
           set(() => {
             return {
               error: '',
-            };
-          });
-          set(() => {
-            return {
-              isAuthorized: false,
             };
           });
         }, 3000);
@@ -163,6 +167,11 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
           if (error.response.data.detail === 'Unauthorized') {
             return {
               error: 'Помилка авторизації',
@@ -172,20 +181,17 @@ const useSlidersStore = create((set, get) => ({
             error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
-        set(() => {
-          return {
-            loading: false,
-          };
-        });
         setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
           set(() => {
             return {
               error: '',
-            };
-          });
-          set(() => {
-            return {
-              isAuthorized: false,
             };
           });
         }, 3000);

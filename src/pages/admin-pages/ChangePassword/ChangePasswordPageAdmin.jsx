@@ -31,13 +31,18 @@ const ChangePasswordPageAdmin = () => {
   const error = useAuthStore(state => state.error);
 
   const onSubmit = async values => {
-    const formData = new FormData();
-    formData.append('old_password', values.oldPassword);
-    formData.append('new_password', values.newPassword);
-    formData.append('new_password_confirm', values.confirmPassword);
-    const response = await changePassword(formData);
-    if (response && response.status === 200) {
-      openModal();
+    try {
+      const formData = new FormData();
+      formData.append('old_password', values.oldPassword);
+      formData.append('new_password', values.newPassword);
+      formData.append('new_password_confirm', values.confirmPassword);
+      const response = await changePassword(formData);
+      if (response && response.status === 200) {
+        openModal();
+      }
+    } catch (error) {
+      console.log(error);
+      closeModal();
     }
   };
 

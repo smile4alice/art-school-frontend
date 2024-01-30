@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { applicationValidation, documentValidation } from './validationSchema';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import useDocumentsStore from '@/store/documentsStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/ButtonSubmit';
@@ -18,9 +20,18 @@ const EditSchoolDocuments = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { value } = location.state;
+  const { setUnAuthorized } = useAuthorized();
   const { editDocument } = useDocumentsStore();
   const loading = useDocumentsStore(state => state.loading);
   const error = useDocumentsStore(state => state.error);
+  const isAuthorized = useDocumentsStore(state => state.isAuthorized);
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const breadcrumbs = [
     'Документи школи',

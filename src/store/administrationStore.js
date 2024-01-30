@@ -7,6 +7,7 @@ const useAdministrationStore = create((set, get) => ({
   error: '',
   members: [],
   member: {},
+  isAuthorized: true,
 
   getMembers: async () => {
     try {
@@ -86,19 +87,33 @@ const useAdministrationStore = create((set, get) => ({
       } catch (error) {
         set(() => {
           return {
-            error: 'Не вдалося виконати запит, спробуйте пізніше',
-          };
-        });
-        set(() => {
-          return {
             loading: false,
           };
         });
         set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
           return {
-            error: '',
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
+        setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -130,19 +145,33 @@ const useAdministrationStore = create((set, get) => ({
       } catch (error) {
         set(() => {
           return {
-            error: 'Не вдалося виконати запит, спробуйте пізніше',
-          };
-        });
-        set(() => {
-          return {
             loading: false,
           };
         });
         set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
           return {
-            error: '',
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
+        setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -169,6 +198,42 @@ const useAdministrationStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
+        setTimeout(() => {
+          set(() => {
+            return {
+              isAuthorized: true,
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }

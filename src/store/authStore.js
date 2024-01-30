@@ -19,9 +19,13 @@ const useAuthStore = create(set => ({
             }
           })
           .catch(error => {
-            console.error('Fetch error:', error);
             set(() => {
               if (error.code === 'ERR_BAD_REQUEST') {
+                return {
+                  error: 'Невірно введений пароль або електронна пошта',
+                };
+              }
+              if (error.response.data.detail === 'LOGIN_BAD_CREDENTIALS') {
                 return {
                   error: 'Невірно введений пароль або електронна пошта',
                 };
@@ -33,11 +37,11 @@ const useAuthStore = create(set => ({
                   error: '',
                 };
               });
-            }, 8000);
+            }, 30000);
           });
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   },
 
@@ -77,7 +81,7 @@ const useAuthStore = create(set => ({
                   error: '',
                 };
               });
-            }, 8000);
+            }, 30000);
           });
         return response;
       } catch (error) {
@@ -106,8 +110,12 @@ const useAuthStore = create(set => ({
             return response;
           })
           .catch(error => {
-            console.log('Fetch error:', error.response.data.detail);
             set(() => {
+              if (error.response.data.detail === 'Unauthorized') {
+                return {
+                  error: 'Помилка авторизації',
+                };
+              }
               if (error.response.data.detail === 'Old password is incorrect.') {
                 return {
                   error: 'Надісланий поточний пароль невірний',
@@ -133,7 +141,12 @@ const useAuthStore = create(set => ({
                   error: '',
                 };
               });
-            }, 8000);
+              set(() => {
+                return {
+                  isAuthorized: false,
+                };
+              });
+            }, 4000);
           });
       } catch (error) {
         console.error(error);

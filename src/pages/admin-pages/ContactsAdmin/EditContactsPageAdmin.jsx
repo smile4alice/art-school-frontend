@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import { Formik, Form, Field } from 'formik';
 import { declineWord } from '@/utils/declineWord';
 import { contactsValidation } from './validationSchema';
@@ -13,10 +15,19 @@ import styles from './ContactsAdmin.module.scss';
 const EditContactsPageAdmin = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { setUnAuthorized } = useAuthorized();
   const { key, title, value } = location.state;
   const { editContact } = useContactsStore();
   const loading = useContactsStore(state => state.loading);
   const error = useContactsStore(state => state.error);
+  const isAuthorized = useContactsStore(state => state.isAuthorized);
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const breadcrumbs = [`${title}`, `Редагувати ${declineWord(title)}`];
 

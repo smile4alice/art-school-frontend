@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import {
   achievementsValidation,
   galleryValidation,
@@ -32,13 +33,24 @@ const AddNewObjectPage = ({
   maxSymbols,
 }) => {
   const navigate = useNavigate();
+  const { setUnAuthorized } = useAuthorized();
   const { addAchievement, getAchievementsPositions } = useServicesStore();
   const achievementsPositions = useServicesStore(
     state => state.achievementsPositions
   );
   const [title, setTitle] = useState(selectTitle);
   const [isProcessing, setIsProcessing] = useState(false);
+  const error = useServicesStore(state => state.error);
+  const isAuthorized = useServicesStore(state => state.isAuthorized);
   let breadcrumbs;
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
+
   const setBreadcrumbs = url => {
     if (url === 'achievements') {
       breadcrumbs = ['Наші досягнення', 'Додати досягнення'];
@@ -89,6 +101,7 @@ const AddNewObjectPage = ({
         backButtonLink={backButtonLink}
         showActionButton={false}
       />
+      {error && <p className="error">{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={

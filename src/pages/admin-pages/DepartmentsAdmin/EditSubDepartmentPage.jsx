@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import { Formik, Form, Field } from 'formik';
 import { newsValidation } from './validationSchema';
 import { declineWord } from '@/utils/declineWord';
@@ -21,10 +22,12 @@ const EditSubDepartmentPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { title, departmentId } = location.state;
+  const { setUnAuthorized } = useAuthorized();
   const { editDepartment, getOneSubDepartment } = useDepartmentsStore();
   const subDepartment = useDepartmentsStore(state => state.sub_department);
   const loading = useDepartmentsStore(state => state.loading);
   const error = useDepartmentsStore(state => state.error);
+  const isAuthorized = useDepartmentsStore(state => state.isAuthorized);
   const department = useDepartmentsStore(state =>
     state.departments.find(department => department.id == departmentId)
   );
@@ -34,6 +37,13 @@ const EditSubDepartmentPage = () => {
     `${title}`,
     `Редагувати ${declineWord(title).toLowerCase()}`,
   ];
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {

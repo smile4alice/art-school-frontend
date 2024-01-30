@@ -34,6 +34,8 @@ const SignIn = () => {
     }
   };
 
+  console.log(error);
+
   useEffect(() => {
     checkToken('access_token');
   }, []);
@@ -76,8 +78,8 @@ const SignIn = () => {
                   label="Пароль*"
                   placeholder="Введіть 8 символів і більше"
                 />
-                {error && <p className={styles.error}>{error}</p>}
               </div>
+              <p className={styles.error}>{error}</p>
               <div className={styles.button}>
                 <ButtonSubmit
                   handlerSubmitButton={onSubmit}
