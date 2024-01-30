@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import { newsValidation } from './validationSchema';
@@ -18,10 +20,19 @@ const initialValues = {
 const AddSubDepartmentPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { setUnAuthorized } = useAuthorized();
   const { title, departmentId } = location.state;
   const { addDepartment } = useDepartmentsStore();
   const loading = useDepartmentsStore(state => state.loading);
   const error = useDepartmentsStore(state => state.error);
+  const isAuthorized = useDepartmentsStore(state => state.isAuthorized);
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const breadcrumbs = [
     'Відділення',

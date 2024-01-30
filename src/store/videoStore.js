@@ -6,6 +6,8 @@ const useVideoStore = create((set, get) => ({
   loading: false,
   videos: [],
   media: {},
+  error: '',
+  isAuthorized: true,
 
   getAllVideo: async () => {
     try {
@@ -67,10 +69,40 @@ const useVideoStore = create((set, get) => ({
         );
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
   },
+
   editVideo: async (id, data) => {
     if (isDataValid(data)) {
       try {
@@ -87,10 +119,40 @@ const useVideoStore = create((set, get) => ({
         );
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
   },
+
   deleteVideo: async id => {
     if (id) {
       try {
@@ -112,6 +174,42 @@ const useVideoStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
+        setTimeout(() => {
+          set(() => {
+            return {
+              isAuthorized: true,
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }

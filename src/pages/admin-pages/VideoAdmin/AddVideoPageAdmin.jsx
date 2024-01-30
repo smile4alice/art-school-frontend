@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import useVideoStore from '@/store/videoStore';
 import { videoValidation } from './validationSchema';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
@@ -18,7 +19,17 @@ const initialValues = {
 const AddVideoPage = () => {
   const { addVideo } = useVideoStore();
   const navigate = useNavigate();
+  const { setUnAuthorized } = useAuthorized();
   const [isProcessing, setIsProcessing] = useState(false);
+  const error = useVideoStore(state => state.error);
+  const isAuthorized = useVideoStore(state => state.isAuthorized);
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   const onSubmit = async value => {
     try {
@@ -42,6 +53,7 @@ const AddVideoPage = () => {
         backButtonLink="/admin/video"
         showActionButton={false}
       />
+      {error && <p className={s.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={videoValidation}

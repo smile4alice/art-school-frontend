@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import useDocumentsStore from '@/store/documentsStore';
+import { useNavigate } from 'react-router-dom';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import SchoolDocumentsTable from '@/components/admin-components/SchoolDocuments/SchoolDocumentsTable';
@@ -10,10 +12,20 @@ import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/Pla
 const breadcrumbs = ['Документи школи'];
 
 const SchoolDocumentsPageAdmin = () => {
-  const { getDocuments} = useDocumentsStore();
+  const { getDocuments } = useDocumentsStore();
+  const { setUnAuthorized } = useAuthorized();
+  const navigate = useNavigate();
   const documents = useDocumentsStore(state => state.documents);
   const loading = useDocumentsStore(state => state.loading);
   const error = useDocumentsStore(state => state.error);
+  const isAuthorized = useDocumentsStore(state => state.isAuthorized);
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,9 +52,11 @@ const SchoolDocumentsPageAdmin = () => {
       {loading && !Object.keys(error).length ? (
         <SpinnerAdmin />
       ) : (
-        <SchoolDocumentsTable data={documents}/>
+        <SchoolDocumentsTable data={documents} />
       )}
-      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
+      {error && Object.keys(error).length && !documents.length ? (
+        <PlaceholderAdmin />
+      ) : null}
     </div>
   );
 };

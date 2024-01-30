@@ -18,6 +18,8 @@ const PostersList = ({ data }) => {
       closeModal();
     } catch (error) {
       console.log(error);
+    } finally {
+      closeModal();
     }
   };
 

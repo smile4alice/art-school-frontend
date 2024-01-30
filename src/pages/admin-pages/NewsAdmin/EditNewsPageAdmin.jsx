@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { useParams, useNavigate } from 'react-router-dom';
 import useNewsStore from '@/store/newsStore';
 import { newsValidation } from './validationSchema';
+import { useAuthorized } from '@/store/IsAuthorizedStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import TextInput from '@/components/admin-components/formik/TextInput/TextInput';
 import TextArea from '@/components/admin-components/formik/TextArea/TextArea';
@@ -22,10 +23,19 @@ const initialValues = {
 const EditNewsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { setUnAuthorized } = useAuthorized();
   const { getOnePost, editPost } = useNewsStore();
   const post = useNewsStore(state => state.post);
   const loading = useNewsStore(state => state.loading);
   const error = useNewsStore(state => state.error);
+  const isAuthorized = useNewsStore(state => state.isAuthorized);
+
+  useEffect(() => {
+    if (isAuthorized) return;
+    localStorage.removeItem('access_token');
+    setUnAuthorized();
+    navigate('/login');
+  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -6,7 +6,7 @@ import { useModal } from '@/store/modalStore';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import styles from './SchoolDocumentsTable.module.scss';
 
-const SchoolDocumentsTable = ({ data}) => {
+const SchoolDocumentsTable = ({ data }) => {
   const { deleteDocument, getApplication } = useDocumentsStore();
   const [application, setApplication] = useState([]);
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -15,8 +15,8 @@ const SchoolDocumentsTable = ({ data}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-       const result = await getApplication();
-       setApplication(result[0]);
+        const result = await getApplication();
+        setApplication(result[0]);
       } catch (error) {
         console.log(error);
       }
@@ -30,6 +30,8 @@ const SchoolDocumentsTable = ({ data}) => {
       closeModal();
     } catch (error) {
       console.log(error);
+    } finally {
+      closeModal();
     }
   };
 
@@ -41,33 +43,36 @@ const SchoolDocumentsTable = ({ data}) => {
       </ul>
       <div className={styles.tbody}>
         {application && (
-           <div className={styles.tableRow}>
-           <div className={styles.cellHeadingRow}>{application.doc_name}</div>
-           <div className={styles.cellActionRow}>
-             <Link to={`edit/${application.id}`} state={{ value: application }}>
-               <div className={styles.cellActionContainer}>
-                 <svg className={styles.iconEdit}>
-                   <use href={`${sprite}#icon-edit`} width="20" height="20" />
-                 </svg>
-               </div>
-             </Link>
- 
-             <button
-               onClick={() => {
-                 setCurrentId(application.id);
-                 openModal();
-               }}
-               className={styles.disabled}
-               disabled
-             >
-               <svg className={styles.disabled}>
-                 <use href={`${sprite}#icon-trash`} width="20" height="20" />
-               </svg>
-             </button>
-           </div>
-         </div>
+          <div className={styles.tableRow}>
+            <div className={styles.cellHeadingRow}>{application.doc_name}</div>
+            <div className={styles.cellActionRow}>
+              <Link
+                to={`edit/${application.id}`}
+                state={{ value: application }}
+              >
+                <div className={styles.cellActionContainer}>
+                  <svg className={styles.iconEdit}>
+                    <use href={`${sprite}#icon-edit`} width="20" height="20" />
+                  </svg>
+                </div>
+              </Link>
+
+              <button
+                onClick={() => {
+                  setCurrentId(application.id);
+                  openModal();
+                }}
+                className={styles.disabled}
+                disabled
+              >
+                <svg className={styles.disabled}>
+                  <use href={`${sprite}#icon-trash`} width="20" height="20" />
+                </svg>
+              </button>
+            </div>
+          </div>
         )}
-       
+
         {data.map((item, index) => (
           <div className={styles.tableRow} key={index}>
             <div className={styles.cellHeadingRow}>{item.doc_name}</div>

@@ -113,6 +113,14 @@ iframe {
   margin-top: 3rem;
 }
 
+.error {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: $admin-red;
+  margin-top: -1rem;
+}
+
 #header-bar {
   min-height: 10px;
 }
