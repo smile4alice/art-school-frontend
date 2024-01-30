@@ -1,0 +1,30 @@
+.sidebarWrapper {
+  position: relative;
+  width: 215px;
+  height: 100%;
+  padding: 10px 0px 5px 0px;
+  border-radius: 0px 10px 10px 0px;
+  border: 1px solid var(--admin-purple, #C4B9FD);
+  background: #E5E9FD;
+}
+
+.sidebar {
+  margin: 1.9rem 0;
+  overflow: hidden;
+}
+
+.copyright {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+  color: var(--admin-text-main, #152340);
+  font-family: Montserrat;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  bottom: 0rem;
+}/*# sourceMappingURL=Sidebar.module.css.map */
