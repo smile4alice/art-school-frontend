@@ -1,0 +1,74 @@
+.gallerySection {
+  width: 100%;
+  margin: 0 auto;
+}
+.gallerySection h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .gallerySection h2 {
+    font-size: 2rem;
+  }
+}
+.gallerySection .ButtonContainer {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+@media screen and (min-width: 1024px) {
+  .gallerySection .ButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+  }
+}
+.gallerySection .gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.gallerySection .gallery .item {
+  height: 350px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallerySection .gallery .item:nth-child(5) {
+  grid-column: span 2;
+}
+.gallerySection .gallery .item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+.gallerySection .slider {
+  width: 100%;
+  margin-top: 1rem;
+}
+.gallerySection .slider .slide {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 2rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gallerySection .slider .slide img {
+  height: 507px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 5px;
+}
+@media screen and (min-width: 768px) {
+  .gallerySection .slider .slide img {
+    height: 396px;
+  }
+}/*# sourceMappingURL=Gallery.module.css.map */

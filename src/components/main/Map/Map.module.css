@@ -1,0 +1,42 @@
+.Map {
+  overflow: hidden;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  max-width: 1280px;
+}
+.Map h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+@media screen and (max-width: 678px) {
+  .Map h1 {
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+}
+.Map .MapWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.Map .MapContainer {
+  position: relative;
+  height: 22rem;
+  width: 100%;
+  max-width: 1280px;
+  flex: 1 0 auto;
+  margin: 0 auto;
+  z-index: 0;
+}
+@media screen and (max-width: 768px) {
+  .Map .MapContainer {
+    width: 90vw;
+  }
+}
+@media screen and (max-width: 320px) {
+  .Map .MapContainer {
+    width: 80vw;
+  }
+}/*# sourceMappingURL=Map.module.css.map */

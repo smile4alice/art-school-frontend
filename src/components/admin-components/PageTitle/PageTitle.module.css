@@ -1,0 +1,72 @@
+.pageTitle {
+  margin: 1.25rem 0;
+  display: flex;
+  padding: 6px 10px;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 10px;
+  flex-wrap: wrap;
+  border: 1px solid var(--admin-purple, #c4b9fd);
+  border-radius: 6px;
+  background: var(--admin-white, #fff);
+  width: 100%;
+}
+
+.titleWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.backButton {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: var(--admin-background, #f6f7ff);
+}
+.backButton:hover {
+  background: var(--admin-light-purple, #ecefff);
+}
+
+.headerTitle {
+  display: flex;
+  padding: 10px;
+  align-items: flex-start;
+  color: var(--admin-text-main, #152340);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.actionButton {
+  display: flex;
+  padding: 9px 23px 9px 15px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 3px;
+  border: 1px solid var(--admin-accent, #0047ff);
+  background: var(--admin-accent, #0047ff);
+  color: var(--admin-white, #fff);
+  font-family: Montserrat;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.actionButton:not(:disabled):hover {
+  border: 1px solid var(--admin-dark-purle, #7574fc);
+  background: var(--admin-dark-purle, #7574fc);
+}
+
+.disabled {
+  border: 1px solid #cecfd2;
+  background: var(--admin-gray, #bbbcbe);
+  pointer-events: none;
+}/*# sourceMappingURL=PageTitle.module.css.map */
