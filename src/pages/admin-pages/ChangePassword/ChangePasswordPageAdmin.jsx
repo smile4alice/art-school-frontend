@@ -42,7 +42,6 @@ const ChangePasswordPageAdmin = () => {
       }
     } catch (error) {
       console.log(error);
-      closeModal();
     }
   };
 
