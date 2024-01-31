@@ -27,13 +27,23 @@ const Gallery = () => {
     const fetchVideo = async () => {
       try {
         await getAllVideo();
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchVideo();
+  }, [getAllVideo]);
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      try {
         await getAllImages();
       } catch (error) {
         console.log(error);
       }
     };
     fetchVideo();
-  }, [getAllVideo, getAllImages]);
+  }, [getAllImages]);
 
   return (
     <>
