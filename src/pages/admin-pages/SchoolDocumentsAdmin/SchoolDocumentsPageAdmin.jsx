@@ -10,7 +10,7 @@ import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/Pla
 const breadcrumbs = ['Документи школи'];
 
 const SchoolDocumentsPageAdmin = () => {
-  const { getDocuments} = useDocumentsStore();
+  const { getDocuments } = useDocumentsStore();
   const documents = useDocumentsStore(state => state.documents);
   const loading = useDocumentsStore(state => state.loading);
   const error = useDocumentsStore(state => state.error);
@@ -40,9 +40,11 @@ const SchoolDocumentsPageAdmin = () => {
       {loading && !Object.keys(error).length ? (
         <SpinnerAdmin />
       ) : (
-        <SchoolDocumentsTable data={documents}/>
+        <SchoolDocumentsTable data={documents} />
       )}
-      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
+      {error && Object.keys(error).length && !documents.length ? (
+        <PlaceholderAdmin />
+      ) : null}
     </div>
   );
 };

@@ -18,6 +18,8 @@ const DepartmentsTable = ({ data, departmentId }) => {
       closeModal();
     } catch (error) {
       console.log(error);
+    } finally {
+      closeModal();
     }
   };
 

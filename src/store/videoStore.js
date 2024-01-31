@@ -6,6 +6,7 @@ const useVideoStore = create((set, get) => ({
   loading: false,
   videos: [],
   media: {},
+  error: '',
 
   getAllVideo: async () => {
     try {
@@ -31,7 +32,7 @@ const useVideoStore = create((set, get) => ({
       set(() => {
         return {
           loading: false,
-          error: error,
+          error: error.message,
         };
       });
       throw new Error(error);
@@ -67,10 +68,33 @@ const useVideoStore = create((set, get) => ({
         );
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
   },
+
   editVideo: async (id, data) => {
     if (isDataValid(data)) {
       try {
@@ -87,10 +111,33 @@ const useVideoStore = create((set, get) => ({
         );
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
   },
+
   deleteVideo: async id => {
     if (id) {
       try {
@@ -112,6 +159,28 @@ const useVideoStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }

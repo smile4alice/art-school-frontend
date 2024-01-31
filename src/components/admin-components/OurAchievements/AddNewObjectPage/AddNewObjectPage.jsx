@@ -38,7 +38,9 @@ const AddNewObjectPage = ({
   );
   const [title, setTitle] = useState(selectTitle);
   const [isProcessing, setIsProcessing] = useState(false);
+  const error = useServicesStore(state => state.error);
   let breadcrumbs;
+
   const setBreadcrumbs = url => {
     if (url === 'achievements') {
       breadcrumbs = ['Наші досягнення', 'Додати досягнення'];
@@ -89,6 +91,7 @@ const AddNewObjectPage = ({
         backButtonLink={backButtonLink}
         showActionButton={false}
       />
+      {error && <p className="error">{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={

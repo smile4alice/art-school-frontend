@@ -126,7 +126,6 @@ const EditObjectPage = ({
                   changeTitle={setTitle}
                 />
               </div>
-
               <div className={s.form}>
                 <div
                   className={`${s.fieldSection} ${

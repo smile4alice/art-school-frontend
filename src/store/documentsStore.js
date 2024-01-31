@@ -6,6 +6,8 @@ const useDocumentsStore = create((set, get) => ({
   loading: false,
   error: '',
   documents: [],
+  isAuthorized: true,
+
   getApplication: async () => {
     try {
       const response = await axios.get(`/documents?is_pinned=true`);
@@ -14,6 +16,7 @@ const useDocumentsStore = create((set, get) => ({
       throw new Error(error);
     }
   },
+
   getDocuments: async () => {
     try {
       set(() => {
@@ -66,24 +69,39 @@ const useDocumentsStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
-          if (error.code === 'ERR_BAD_REQUEST') {
-            return {
-              error: 'Документ з цією назвою вже існує, спробуйте іншу назву',
-            };
-          }
-        });
-        set(() => {
           return {
             loading: false,
           };
         });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          if (error.code === 'ERR_BAD_REQUEST') {
+            return {
+              error: 'Документ з такою назвою вже існує, спробуйте іншу назву',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
         setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
           set(() => {
             return {
               error: '',
             };
           });
-        }, 5000);
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -110,24 +128,39 @@ const useDocumentsStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
-          if (error.code === 'ERR_BAD_REQUEST') {
-            return {
-              error: 'Документ з цією назвою вже існує, спробуйте іншу назву',
-            };
-          }
-        });
-        set(() => {
           return {
             loading: false,
           };
         });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          if (error.code === 'ERR_BAD_REQUEST') {
+            return {
+              error: 'Документ з такою назвою вже існує, спробуйте іншу назву',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
         setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
           set(() => {
             return {
               error: '',
             };
           });
-        }, 5000);
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -154,6 +187,42 @@ const useDocumentsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            set(() => {
+              return {
+                isAuthorized: false,
+              };
+            });
+          }
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
+        setTimeout(() => {
+          set(() => {
+            return {
+              isAuthorized: true,
+            };
+          });
+        }, 5000);
         throw new Error(error);
       }
     }

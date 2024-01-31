@@ -30,7 +30,7 @@ const useNewsStore = create((set, get) => ({
       set(() => {
         return {
           loading: false,
-          error: error,
+          error: error.message,
         };
       });
       throw new Error(error);
@@ -82,19 +82,26 @@ const useNewsStore = create((set, get) => ({
       } catch (error) {
         set(() => {
           return {
-            error: 'Не вдалося виконати запит, спробуйте пізніше',
-          };
-        });
-        set(() => {
-          return {
             loading: false,
           };
         });
         set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
           return {
-            error: '',
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -122,19 +129,26 @@ const useNewsStore = create((set, get) => ({
       } catch (error) {
         set(() => {
           return {
-            error: 'Не вдалося виконати запит, спробуйте пізніше',
-          };
-        });
-        set(() => {
-          return {
             loading: false,
           };
         });
         set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
           return {
-            error: '',
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -161,6 +175,28 @@ const useNewsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }

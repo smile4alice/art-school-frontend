@@ -22,6 +22,8 @@ const VideoTable = ({ videos }) => {
     } catch (error) {
       console.log(error);
       closeModal();
+    } finally {
+      closeModal();
     }
   };
 

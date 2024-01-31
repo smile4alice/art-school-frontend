@@ -22,7 +22,6 @@ const AddNewsPage = () => {
   const navigate = useNavigate();
   const { addPost } = useNewsStore();
   const loading = useNewsStore(state => state.loading);
-  const error = useNewsStore(state => state.error);
 
   const onSubmit = async values => {
     try {
@@ -50,7 +49,6 @@ const AddNewsPage = () => {
         backButtonLink="/admin/news"
         showActionButton={false}
       />
-      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={newsValidation}

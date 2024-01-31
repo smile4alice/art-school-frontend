@@ -41,7 +41,9 @@ const SchoolAdministrationPage = () => {
       ) : (
         <AdminTable data={members} />
       )}
-      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
+      {error && Object.keys(error).length && !members.length ? (
+        <PlaceholderAdmin />
+      ) : null}
     </div>
   );
 };

@@ -37,7 +37,9 @@ const ContactsPageAdmin = () => {
       ) : (
         <ContactsTable data={contacts} />
       )}
-      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
+      {error && Object.keys(error).length && !contacts.length ? (
+        <PlaceholderAdmin />
+      ) : null}
     </div>
   );
 };
