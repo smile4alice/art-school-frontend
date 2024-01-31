@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuthorized } from '@/store/IsAuthorizedStore';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
 import PostersList from '@/components/admin-components/Posters/postersList/PostersList';
 import usePostersStore from '@/store/posterStore';
@@ -12,19 +10,9 @@ const breadcrumbs = ['Афіші'];
 
 const PostersPageAdmin = () => {
   const { getPosters } = usePostersStore();
-  const { setUnAuthorized } = useAuthorized();
-  const navigate = useNavigate();
   const posters = usePostersStore(state => state.posters);
   const loading = usePostersStore(state => state.loading);
   const error = usePostersStore(state => state.error);
-  const isAuthorized = usePostersStore(state => state.isAuthorized);
-
-  useEffect(() => {
-    if (isAuthorized) return;
-    localStorage.removeItem('access_token');
-    setUnAuthorized();
-    navigate('/login');
-  }, [isAuthorized, navigate, setUnAuthorized]);
 
   useEffect(() => {
     const fetchData = async () => {
