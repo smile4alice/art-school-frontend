@@ -21,7 +21,7 @@ const Header = ({ contacts }) => {
   return (
     <header className={styles.headerWrapper}>
       {windowWidth >= 1280 && <HeaderContacts contacts={contacts} />}
-      <HeaderNavigation windowWidth={windowWidth} />
+      <HeaderNavigation windowWidth={windowWidth} contacts={contacts} />
     </header>
   );
 };
