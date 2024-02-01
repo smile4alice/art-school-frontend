@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import useDocumentsStore from '@/store/documentsStore';
-
 import Logo from '@/components/Logo/Logo';
 import LocationIcon from '@/components/Icons/LocationIcon';
 import PhoneIcon from '@/components/Icons/PhoneIcon';
@@ -12,9 +11,37 @@ import DownloadButton from '@/components/ui/Buttons/DownloadButton';
 import styles from './Footer.module.scss';
 import ClockIcon from '@/components/Icons/ClockIcon';
 
+const footerLinksColumn = [
+  { title: 'Головна', path: '/' },
+  { title: 'Наша школа', path: '/about-school' },
+  { title: 'Наші події', path: '/events' },
+  { title: 'Афіша', path: '/posters' },
+  { title: 'Галерея', path: '/gallery' },
+  { title: 'Співпраця', path: '/cooperation' },
+];
+const footerLinksColumnDepartment = [
+  { title: 'Музичне відділення', path: '/music-department' },
+  { title: 'Вокально-хорове відділення', path: '/vocal-department' },
+  { title: 'Хореографічне відділення', path: '/choreographic-department' },
+  { title: 'Образотворче відділення', path: '/fine-arts-department' },
+  { title: 'Театральне відділення', path: '/theater-department' },
+  {
+    title: 'Дошкільне та підготовче відділення',
+    path: '/preschool-department',
+  },
+];
+
 const Footer = ({ contacts }) => {
   const { getDocuments } = useDocumentsStore();
   const documents = useDocumentsStore(state => state.documents);
+
+  const handleClick = path => {
+    //на початок сторінки, якщо сторінка активна
+    const currentPath = window.location.pathname;
+    if (currentPath === path) {
+      window.scrollTo(0, 0);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,24 +99,30 @@ const Footer = ({ contacts }) => {
           <div className={styles.footerLinksSectionWrap}>
             <div className={styles.footerLinksSection}>
               <div className={styles.footerLinksColumn}>
-                <Link to="/">Головна</Link>
-                <Link to="/about-school">Наша школа</Link>
-                <Link to="/events">Наші події</Link>
-                <Link to="/posters">Афіша</Link>
-                <Link to="/gallery">Галерея</Link>
-                <Link to="/cooperation">Співпраця</Link>
+                {footerLinksColumn.map((item, i) => (
+                  <Link
+                    onClick={() => {
+                      handleClick(item.path);
+                    }}
+                    key={i}
+                    to={item.path}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
               </div>
               <div className={styles.footerLinksColumnDepartment}>
-                <Link to="/music-department">Музичне відділення</Link>
-                <Link to="/vocal-department">Вокально-хорове відділення</Link>
-                <Link to="/сhoreographic-department">
-                  Хореографічне відділення
-                </Link>
-                <Link to="/fine-arts-department">Образотворче відділення</Link>
-                <Link to="/theater-department">Театральне відділення</Link>
-                <Link to="/preschool-department">
-                  Дошкільне та підготовче відділення
-                </Link>
+                {footerLinksColumnDepartment.map((item, i) => (
+                  <Link
+                    onClick={() => {
+                      handleClick(item.path);
+                    }}
+                    key={i}
+                    to={item.path}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
               </div>
             </div>
             <div className={styles.contactsListWrap}>
