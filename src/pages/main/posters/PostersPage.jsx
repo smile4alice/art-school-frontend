@@ -8,7 +8,7 @@ import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SEO from '@/components/SEO';
 import { useModal } from '@/store/modalStore';
-import Modal from '@/components/Modal/Modal';
+import Modal from '@/components/ui/Modal/Modal';
 
 const PostersPage = () => {
   const ITEMS_PER_PAGE = 6;

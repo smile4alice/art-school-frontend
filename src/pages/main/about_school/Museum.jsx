@@ -26,7 +26,8 @@ const Museum = ({ museumData }) => {
             spaceBetween={16}
             slidesPerView={1}
             pagination={{ clickable: true }}
-            loop={true}
+            loop={ true }
+            
           >
             {museumData.map(item => (
               <SwiperSlide className={styles.slideContent} key={item.id}>

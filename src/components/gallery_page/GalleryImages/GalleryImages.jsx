@@ -3,7 +3,7 @@ import SortIcon from '@/components/Icons/SortIcon';
 import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 
 import styles from './GalleryImages.module.scss';
-import Modal from '@/components/Modal/Modal';
+import Modal from '@/components/ui/Modal/Modal';
 import { useModal } from '@/store/modalStore';
 
 const GalleryImages = ({ images }) => {
