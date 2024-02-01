@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useDocumentsStore from '@/store/documentsStore';
 import Logo from '@/components/Logo/Logo';
 import LocationIcon from '@/components/Icons/LocationIcon';
@@ -32,7 +32,8 @@ const footerLinksColumnDepartment = [
 ];
 
 const Footer = ({ contacts }) => {
-  const { getDocuments } = useDocumentsStore();
+  const [application, setApplication] = useState([]);
+  const { getDocuments, getApplication } = useDocumentsStore();
   const documents = useDocumentsStore(state => state.documents);
 
   const handleClick = path => {
@@ -53,6 +54,18 @@ const Footer = ({ contacts }) => {
     };
     fetchData();
   }, [getDocuments]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getApplication();
+        setApplication(result[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [getApplication]);
 
   return (
     <div className={styles.footer}>
@@ -157,8 +170,8 @@ const Footer = ({ contacts }) => {
               <div className={styles.footerButtonAdaptive}>
                 <DownloadButton
                   link={
-                    documents[0]?.doc_path
-                      ? documents[0]?.doc_path
+                    application?.doc_path
+                      ? application?.doc_path
                       : '/documents/заява_на_вступ.pdf'
                   }
                   title="Завантажити заяву"

@@ -56,10 +56,10 @@ const Administration = () => {
                 className={s.slider}
                 modules={[Pagination]}
                 spaceBetween={16}
-                slidesPerView={1.2}
+                slidesPerView={1}
                 breakpoints={{
                   768: {
-                    slidesPerView: 2.1,
+                    slidesPerView: 2,
                   },
                   1280: {
                     slidesPerView: 3,

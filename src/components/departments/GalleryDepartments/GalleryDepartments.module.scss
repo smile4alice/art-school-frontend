@@ -87,10 +87,15 @@
 /*
 .gallery {
   width: 100%;
- // max-width: 1280px;
+<<<<<<< HEAD
+  // max-width: 1280px;
+=======
+>>>>>>> dev
   background-color: inherit;
   padding: 0 1rem;
   margin: 1rem auto;
+  position: relative;
+
   h2 {
     font-size: 1.3rem;
     font-weight: 700;
@@ -98,10 +103,15 @@
   .slidersContainer {
     padding-top: 1rem;
     width: 100%;
+<<<<<<< HEAD
+=======
     position: relative;
+>>>>>>> dev
+
     .slider {
       margin: 0 auto;
       width: 100%;
+      z-index: -1;
       overflow: hidden;
       .slideContent {
         padding-bottom: 2rem;
@@ -135,7 +145,7 @@
 }
 
 @media (min-width: 768px) {
-  .galary {
+.gallery{
     h2 {
       font-size: 2rem;
     }
@@ -154,12 +164,13 @@
 }
 
 @media (min-width: 1280px) {
-  .galary {
+.gallery{
     h2 {
       font-size: 2rem;
     }
     .slidersContainer {
       position: relative;
+
       .slider {
         width: 86%;
         .slideContent {
@@ -176,9 +187,9 @@
             justify-content: center;
             border-radius: 5px;
             overflow: hidden;
-            img {
-              height: auto;
-            }
+            // img {
+            //   height: auto;
+            // }
           }
           .slideText {
             padding: 0.65rem 0;

@@ -1,13 +1,28 @@
+.topTitle {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  @include tablet {
+    margin-bottom: 2.15rem;
+    font-size: 2rem;
+  }
+  @include desktop {
+    padding-top: 40px;
+  }
+}
+
 .history_wrapper {
   @extend%aligncenter;
   flex-direction: column;
   gap: 16px;
-
-  h1 {
-    align-self: flex-start;
+  h2 {
+    font-size: 18px;
+    @include tablet {
+      font-size: 1.5rem;
+    }
   }
   @include desktop {
-    margin-top: 205px;
+    //  margin-top: 205px;
     gap: 30px;
   }
 }
@@ -28,7 +43,7 @@
   @extend%aligncenter;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: 16px;
 
   @include desktop {
     gap: 30px;

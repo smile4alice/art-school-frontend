@@ -21,7 +21,7 @@ const GalleryDepartments = ({
 }) => {
   const { getDepartmentAchievements } = useServicesStore();
   const gallery = useServicesStore(state => state.gallery);
-  const isDextop = useMediaQuery({ minWidth: 1280 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
   const swiperGalaryRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
 
@@ -39,8 +39,8 @@ const GalleryDepartments = ({
   }, [getDepartmentAchievements, url, departmentId]);
 
   return (
-    <section className={`${s.gallery}`}>
-      {showSelect && isDextop && (
+    <section className={`${s.gallery} section`}>
+      {showSelect && isDesktop && (
         <Select
           title="Обрати відділ"
           options={selectOptions}
@@ -59,7 +59,7 @@ const GalleryDepartments = ({
       )}
       {loadingState === 'success' && gallery?.length > 0 && (
         <div className={s.slidersContainer}>
-          {isDextop && (
+          {isDesktop && (
             <SwiperButtons
               onPrevClick={() => swiperGalaryRef.current.slidePrev()}
               onNextClick={() => swiperGalaryRef.current.slideNext()}
@@ -95,7 +95,7 @@ const GalleryDepartments = ({
           </Swiper>
         </div>
       )}
-      {showSelect && !isDextop && (
+      {showSelect && !isDesktop && (
         <Select
           title="Обрати відділ"
           options={selectOptions}

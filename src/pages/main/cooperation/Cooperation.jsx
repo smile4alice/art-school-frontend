@@ -40,6 +40,7 @@ const Cooperation = () => {
       <Container>
         <div className={styles.Cooperation}>
           <div className={styles.wrapper}>
+          <h1 className={styles.title}>Співпраця</h1>
             <p>
               Уявіть, що Ваш захід проводиться в одній із найкрасивіших
               концертних зал, розрахованих на 288 місць, у самому серці столиці!
@@ -52,7 +53,7 @@ const Cooperation = () => {
               ваших послуг також шкільна студія звукозапису!
             </p>
             <div className={styles.imagegWrapper}>
-              <h1>Концертна зала</h1>
+              <h2>Концертна зала</h2>
               {(isMobile || isLaptop) && (
                 <div className={styles.images}>
                   {data.concertHallImages.map((image, index) => (
@@ -144,7 +145,7 @@ const Cooperation = () => {
               <ul className={styles.contacts}>
                 <li>
                   <a
-                    href={contacts.map}
+                    href={contacts.map_url}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                   >
