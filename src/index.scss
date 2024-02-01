@@ -48,7 +48,9 @@ a {
   padding: 0;
   cursor: pointer;
 }
-
+.active {
+  border-bottom: 1px solid $accent;
+}
 button {
   background: none;
   border: none;
