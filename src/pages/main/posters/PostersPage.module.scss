@@ -1,7 +1,8 @@
 .contentWrapper {
   min-height: 40vh;
+  margin-bottom: 50px;
     @include desktop {
-      padding: 40px 0 60px 0;
+      padding: 40px 0 10px;
         }    
 }
 
@@ -12,7 +13,7 @@
   @media screen and (min-width: 768px) {
     font-size: 32px;
     font-weight: 700;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
 }
 .postersList {
@@ -21,16 +22,18 @@
   grid-template-columns: 1fr;
   //justify-items: stretch;
   row-gap: 1.5rem;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3rem;
     row-gap: 1.88rem;
+    margin-bottom: 30px;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 3.75rem;
     row-gap: 1.88rem;
+    margin-bottom: 60px;
   }
 }
 
