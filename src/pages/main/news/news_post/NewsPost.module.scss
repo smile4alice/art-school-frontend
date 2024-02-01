@@ -63,17 +63,18 @@
         }
       }
     }
+
     .text {
       font-size: 18px;
-=======
-    @include desktop {
-      img {
-        width: 820px;
-        margin-bottom: 40px;
-      }
-      .cardHeader {
-        .title {
-          margin-bottom: 14px;
+      @include desktop {
+        img {
+          width: 820px;
+          margin-bottom: 40px;
+        }
+        .cardHeader {
+          .title {
+            margin-bottom: 14px;
+          }
         }
       }
     }
