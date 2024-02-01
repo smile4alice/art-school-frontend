@@ -3,7 +3,7 @@ import styles from './BurgerMenu.module.scss';
 import CloseIcon from '@/components/Icons/CloseIcon';
 import clsx from 'clsx';
 import SocialList from '../SosialList/SocialList';
-const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
+const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu, contacts }) => {
   // console.log('showBurgerMenu: ', showBurgerMenu);
 
   const toggleBurgerMenu = () => setShowBurgerMenu(!showBurgerMenu);
@@ -26,7 +26,11 @@ const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu }) => {
       >
         <CloseIcon />
       </button>
-      <SocialList type="burgerMenuIcon" />
+      <SocialList
+        type="burgerMenuIcon"
+        facebook={contacts.facebook_url}
+        youtube={contacts.youtube_url}
+      />
     </div>
   );
 };

@@ -48,7 +48,9 @@ a {
   padding: 0;
   cursor: pointer;
 }
-
+.active {
+  border-bottom: 1px solid $accent;
+}
 button {
   background: none;
   border: none;
@@ -101,6 +103,9 @@ iframe {
   font-style: normal;
   font-weight: 700;
   line-height: 140%;
+  @media screen and (min-width: 768px) {
+    font-size: 1.5rem; //24px
+  }
   @media screen and (min-width: 768px) {
     font-size: 2rem; //32px
   }

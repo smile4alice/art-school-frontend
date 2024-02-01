@@ -21,11 +21,7 @@ const SchoolHistory = () => {
               <h1 className={styles.title}>Історія нашої школи</h1>
               <div className={styles.imgWrapper}>
                 <p>{historyData[0].description}</p>
-                <img
-                  src={historyData[0].media}
-                  alt=" будівля школи 
-              "
-                />
+                <img src={historyData[0].media} alt="Будівля школи" />
               </div>
               <div>
                 {historyData.slice(1, historyData.length - 1).map(text => (

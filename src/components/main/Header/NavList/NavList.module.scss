@@ -62,13 +62,21 @@
   @include font(18px, 600, 1.4);
   letter-spacing: 0.19px;
   color: $linkColor;
-  border-bottom: 1px solid transparent;
+  //border-bottom: 1px solid transparent;
   padding: 1rem;
+  &.active{
+    border-bottom: 1px solid $accent;
+  }
   @media screen and (min-width: 1280px) {
     padding: .5rem 0;
+    &.active{
+      border-bottom: 1px solid $accent;
+    }
   }
-  &:hover,
-  &:focus {
+  
+  //,&:focus
+  &:hover
+   {
     outline: none;
     color: $black;
     border-bottom: 1px solid $accent;

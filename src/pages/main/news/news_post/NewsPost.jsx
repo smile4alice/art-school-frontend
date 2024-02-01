@@ -18,10 +18,6 @@ const NewsPost = () => {
       <SEO title={metaTitle} description={metaDescription} />
       <Container>
         <section className={styles.wrapper}>
-          <div className={styles.buttonContainer}>
-            <NavLinkButton href={'/events'} text={'переглянути всі новини'} />
-          </div>
-
           <div className={styles.card}>
             <div className={styles.cardHeader}>
               <p className={styles.date}>{formatDate(post.created_at)}</p>
@@ -31,6 +27,9 @@ const NewsPost = () => {
               <img src={post.photo} alt="slide" />
             </div>
             <p className={styles.text}>{post.text}</p>
+          </div>
+          <div className={styles.buttonContainer}>
+            <NavLinkButton href={'/events'} text={'переглянути всі новини'} />
           </div>
         </section>
       </Container>
