@@ -1,6 +1,6 @@
 .gallery {
   width: 100%;
- // max-width: 1280px;
+  // max-width: 1280px;
   background-color: inherit;
   padding: 0 1rem;
   margin: 1rem auto;
@@ -11,6 +11,7 @@
   .slidersContainer {
     padding-top: 1rem;
     width: 100%;
+
     .slider {
       margin: 0 auto;
       width: 100%;
@@ -47,7 +48,7 @@
 }
 
 @media (min-width: 768px) {
-  .galary {
+.gallery{
     h2 {
       font-size: 2rem;
     }
@@ -66,12 +67,13 @@
 }
 
 @media (min-width: 1280px) {
-  .galary {
+.gallery{
     h2 {
       font-size: 2rem;
     }
     .slidersContainer {
       position: relative;
+
       .slider {
         width: 86%;
         .slideContent {
@@ -88,9 +90,9 @@
             justify-content: center;
             border-radius: 5px;
             overflow: hidden;
-            img {
-              height: auto;
-            }
+            // img {
+            //   height: auto;
+            // }
           }
           .slideText {
             padding: 0.65rem 0;
