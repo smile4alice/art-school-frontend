@@ -3,6 +3,7 @@ import styles from './DropDown.module.scss';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { HashLink } from 'react-router-hash-link';
+import arrowIcon from '/icons/arrow.svg';
 
 const DropDownMenu = ({
   departmemts,
@@ -52,11 +53,9 @@ const DropDownMenu = ({
             Відділення
           </span>
 
-          {isOpen && currentId === 'departments' ? (
-            <span className={styles.dropDown_iconUp}></span>
-          ) : (
-            <span className={styles.dropDown_iconDown}></span>
-          )}
+          <span className={`${styles.icon} ${isOpen && currentId === 'departments' ? styles.rotateIcon : ''}`}>
+            <img src={arrowIcon} alt="Arrow Icon" />
+          </span>
         </div>
 
         {isOpen && currentId === 'departments' && (
@@ -107,11 +106,9 @@ const DropDownMenu = ({
             Наша школа
           </span>
 
-          {isOpen && currentId === 'about-school' ? (
-            <span className={styles.dropDown_iconUp}></span>
-          ) : (
-            <span className={styles.dropDown_iconDown}></span>
-          )}
+          <span className={`${styles.icon} ${isOpen && currentId === 'about-school' ? styles.rotateIcon : ''}`}>
+            <img src={arrowIcon} alt="Arrow Icon" />
+          </span>
         </div>
 
         {isOpen && currentId === 'about-school' && (

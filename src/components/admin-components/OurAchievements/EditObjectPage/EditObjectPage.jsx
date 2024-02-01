@@ -42,7 +42,7 @@ const EditObjectPage = ({
   const [isProcessing, setIsProcessing] = useState(false);
   const subDepartmentId = achievement.sub_department;
   const [title, setTitle] = useState(selectTitle);
-  const error = useServicesStore(state => state.error);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   let breadcrumbs;
   const setBreadcrumbs = url => {
@@ -68,33 +68,22 @@ const EditObjectPage = ({
     const fetchData = async () => {
       try {
         await getAchievementsPositions(url);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, [getAchievementsPositions, url]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
         const result = await getAchievemenById(url, id);
         setAchievement(result);
+        setIsDataLoaded(true);
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
-  }, [getAchievemenById, id, url]);
+  }, [getAchievementsPositions, url, id, getAchievemenById]);
 
   const onSubmit = async values => {
     try {
       const formData = new FormData();
       formData.append('pinned_position', values.pinned_position);
       formData.append('description', values.description);
-      values.sub_department === ''
-        ? formData.append('sub_department', '')
-        : formData.append('sub_department', values.sub_department);
+      formData.append('sub_department', values.sub_department);
       values.image?.[0].size === 0
         ? formData.append('media', '')
         : formData.append('media', values.image[0]);
@@ -119,72 +108,69 @@ const EditObjectPage = ({
         backButtonLink={backButtonLink}
         showActionButton={false}
       />
-      {error && <p className="error">{error}</p>}
-      <Formik
-        initialValues={initialValues}
-        validationSchema={
-          url === 'achievements' ? achievementsValidation : galleryValidation
-        }
-        onSubmit={onSubmit}
-      >
-        {formik => (
-          <Form>
-            <div className={s.selectBlock}>
-              <CustomTitle title={title} width={'fixed'} />
-              <SelectAdminDouble
-                changeDepartment={(id, title) => {
-                  if (id !== undefined && id !== null) {
-                    formik.setFieldValue('sub_department', id);
-                    setTitle(title);
-                  }
-                }}
-              />
-            </div>
-
-            <div className={s.form}>
-              <div
-                className={`${s.fieldSection} ${
-                  url !== 'achievements' && s.reverse
-                }`}
-              >
-                <Field
-                  name="description"
-                  id="description"
-                  component={TextArea}
-                  maxLength={maxSymbols}
-                  showCharacterCount={true}
-                  label="Опис"
-                  text={achievement?.description}
-                />
-                <Field
-                  name="image"
-                  id="image"
-                  component={FileInput}
-                  photo={achievement?.media}
-                  label="Фото"
+      {isDataLoaded && (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={
+            url === 'achievements' ? achievementsValidation : galleryValidation
+          }
+          onSubmit={onSubmit}
+        >
+          {formik => (
+            <Form>
+              <div className={s.selectBlock}>
+                <CustomTitle title={title} width={'fixed'} />
+                <SelectAdminDouble
+                  form={formik}
+                  subDepartmentId={achievement?.sub_department}
+                  changeTitle={setTitle}
                 />
               </div>
-              <Field
-                name="pinned_position"
-                id="pinned_position"
-                component={AchievementPositions}
-                title={achievementPositionsTitle}
-                achievementPositions={achievementsPositions}
-                activePosition={achievement.pinned_position}
-              />
-              <div className={s.button}>
-                <ButtonSubmit
-                  nameButton="Зберегти зміни"
-                  isActive={formik.isValid}
-                  isRight={true}
-                  handlerSubmitButton={formik.handleSubmit}
-                  isProcessing={isProcessing}
+              <div className={s.form}>
+                <div
+                  className={`${s.fieldSection} ${
+                    url !== 'achievements' && s.reverse
+                  }`}
+                >
+                  <Field
+                    name="description"
+                    id="description"
+                    component={TextArea}
+                    maxLength={maxSymbols}
+                    showCharacterCount={true}
+                    label="Опис"
+                    text={achievement?.description}
+                  />
+                  <Field
+                    name="image"
+                    id="image"
+                    component={FileInput}
+                    photo={achievement?.media}
+                    label="Фото"
+                  />
+                </div>
+                <Field
+                  name="pinned_position"
+                  id="pinned_position"
+                  component={AchievementPositions}
+                  title={achievementPositionsTitle}
+                  achievementPositions={achievementsPositions}
+                  activePosition={achievement.pinned_position}
                 />
+                <div className={s.button}>
+                  <ButtonSubmit
+                    nameButton="Зберегти зміни"
+                    isActive={formik.isValid}
+                    isRight={true}
+                    handlerSubmitButton={formik.handleSubmit}
+                    isProcessing={isProcessing}
+                  />
+                </div>
               </div>
-            </div>
-          </Form>
-        )}
-      </Formik>
+            </Form>
+          )}
+        </Formik>
+      )}
     </div>
   );
 };
