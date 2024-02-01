@@ -39,7 +39,7 @@ const GalleryDepartments = ({
   }, [getDepartmentAchievements, url, departmentId]);
 
   return (
-    <section className={`${s.gallery} section`}>
+    <section className={`${s.gallery}`}>
       {showSelect && isDextop && (
         <Select
           title="Обрати відділ"
