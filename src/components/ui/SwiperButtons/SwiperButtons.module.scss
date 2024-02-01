@@ -15,12 +15,12 @@
   }
 }
 .prevSlide {
+  left: -3rem;
   transform: translateY(-150%);
-  left: 0;
 }
 .nextSlide {
+  right: -3rem;
   transform: rotate(180deg) translateY(150%);
-  right: 0;
 }
 .prevSlide:hover svg,
 .nextSlide:hover svg {
