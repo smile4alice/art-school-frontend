@@ -1,9 +1,10 @@
 .gallery {
   width: 100%;
- // max-width: 1280px;
   background-color: inherit;
   padding: 0 1rem;
   margin: 1rem auto;
+  position: relative;
+
   h2 {
     font-size: 1.3rem;
     font-weight: 700;
@@ -11,9 +12,11 @@
   .slidersContainer {
     padding-top: 1rem;
     width: 100%;
+
     .slider {
       margin: 0 auto;
       width: 100%;
+      z-index: -1;
       overflow: hidden;
       .slideContent {
         padding-bottom: 2rem;

@@ -26,6 +26,8 @@ const SchoolDocumentsPageAdmin = () => {
     fetchData();
   }, [getDocuments]);
 
+  console.log(documents);
+
   return (
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
