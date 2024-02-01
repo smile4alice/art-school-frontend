@@ -8,7 +8,7 @@ import BurgerIcon from '@/components/Icons/BurgerIcon';
 
 import styles from './Header.module.scss';
 
-const HeaderNavigation = ({ windowWidth }) => {
+const HeaderNavigation = ({ windowWidth, contacts }) => {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -73,6 +73,7 @@ const HeaderNavigation = ({ windowWidth }) => {
       <BurgerMenu
         showBurgerMenu={showBurgerMenu}
         setShowBurgerMenu={setShowBurgerMenu}
+        contacts={contacts}
       />
     </div>
   );
