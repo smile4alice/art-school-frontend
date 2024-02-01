@@ -1,20 +1,15 @@
 import { useState } from 'react';
-
-import { Link } from 'react-router-dom';
-
+import { useMediaQuery } from 'react-responsive';
+import { NavLink } from 'react-router-dom';
 import { aboutUs, departmemts } from '@/constants/dropDownItems.js';
 import { navItems } from '@/constants/navList.js';
-
 import DropDownMenu from '../DropDown/DropDownMenu';
-
-import styles from './NavList.module.scss';
 import clsx from 'clsx';
-import { useMediaQuery } from 'react-responsive';
+import styles from './NavList.module.scss';
 
 const NavList = ({ toggleBurgerMenu }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentId, setCurrentId] = useState('');
-
   const isDesktop = useMediaQuery({ minWidth: 1240 });
 
   return (
@@ -36,14 +31,14 @@ const NavList = ({ toggleBurgerMenu }) => {
       >
         {navItems.map(({ name, to }) => (
           <li className={styles.navList_item} key={name}>
-            <Link
+            <NavLink
               className={styles.navList_link}
               key={name}
               to={to}
               onClick={toggleBurgerMenu}
             >
               {name}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
