@@ -23,6 +23,9 @@
   &:focus svg {
     fill: $lightblue;
   }
+  &:visited svg {
+    fill: $accent;
+  }
   @media screen and (min-width: 1280px) {
     padding: 0;
   }
