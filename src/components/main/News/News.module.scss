@@ -63,14 +63,14 @@
           img {
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: top;
             @media screen and (min-width: 768px) {
               width: 100%;
               height: auto;
-             }
+            }
             @media screen and (min-width: 1280px) {
-             width: 100%;
-             height: auto;
+              width: 100%;
+              height: auto;
             }
           }
         }
@@ -78,7 +78,7 @@
         .Text {
           margin-top: 2.8rem;
           font-family: Mulish;
-          color: $gray;
+          //color: $gray;
           @media screen and (min-width: 1280px) {
             margin-top: 1.25rem;
           }
@@ -93,6 +93,7 @@
             }
           }
           p {
+            color: $black;
             font-size: 14px;
             font-weight: bold;
             @media screen and (min-width: 768px) {

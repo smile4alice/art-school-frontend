@@ -53,7 +53,11 @@ const DropDownMenu = ({
             Відділення
           </span>
 
-          <span className={`${styles.icon} ${isOpen && currentId === 'departments' ? styles.rotateIcon : ''}`}>
+          <span
+            className={`${styles.icon} ${
+              isOpen && currentId === 'departments' ? styles.rotateIcon : ''
+            }`}
+          >
             <img src={arrowIcon} alt="Arrow Icon" />
           </span>
         </div>
@@ -84,9 +88,8 @@ const DropDownMenu = ({
         )}
       </HashLink>
 
-      <Link
+      <div
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
-        to="/about-school"
         onMouseEnter={() => {
           setCurrentId('about-school');
           setIsOpen(true);
@@ -106,7 +109,11 @@ const DropDownMenu = ({
             Наша школа
           </span>
 
-          <span className={`${styles.icon} ${isOpen && currentId === 'about-school' ? styles.rotateIcon : ''}`}>
+          <span
+            className={`${styles.icon} ${
+              isOpen && currentId === 'about-school' ? styles.rotateIcon : ''
+            }`}
+          >
             <img src={arrowIcon} alt="Arrow Icon" />
           </span>
         </div>
@@ -153,7 +160,7 @@ const DropDownMenu = ({
             ))}
           </ul>
         )}
-      </Link>
+      </div>
     </>
   );
 };

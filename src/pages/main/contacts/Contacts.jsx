@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Icon } from 'leaflet';
+//import Container from '@/components/Container/Container';
 import useContactsStore from '@/store/contactsStore';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import SEO from '@/components/SEO';
@@ -36,9 +37,8 @@ const Contacts = () => {
         title="Контакти КДЩМ №2 ім. М.І.Вериківського"
         description="Адреса: вул.Бульварно-Кудрявська, 2, телефон: +38(044)272-00-30"
       />
-
       <div className={s.contacts}>
-        <h1>Наші контакти</h1>
+        <h1 className={s.title}>Наші контакти</h1>
         <ul className="list">
           <li>{contacts.address}</li>
           <li>Пн-Пт 10:00-17:00</li>

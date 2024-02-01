@@ -24,6 +24,8 @@ const SchoolDocumentsTable = ({ data }) => {
     fetchData();
   }, [getApplication]);
 
+  console.log(application);
+
   const removePost = async () => {
     try {
       await deleteDocument(currentId);
