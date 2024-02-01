@@ -1,20 +1,13 @@
 .wrapper {
-  padding: 0px 16px 40px;
+  width: 100%;
   min-height: 40vh;
-  @media screen and (min-width: 1280px) {
-    padding: 40px 90px 60px;
-  }
-
-  .title {
-    @media screen and (min-width: 1280px) {
-    }
-  }
 
   .newsWrapper {
     display: grid;
     justify-self: center;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(8, auto);
+    // grid-template-rows: repeat(8, auto);
+    justify-items: center;
     margin: 24px 0 40px;
     row-gap: 40px;
 
@@ -25,7 +18,7 @@
     }
 
     @media screen and (min-width: 1280px) {
-      column-gap: 60px;     
+      column-gap: 60px;
       margin: 32px 0 0;
     }
   }
