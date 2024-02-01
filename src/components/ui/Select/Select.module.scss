@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
   margin-top: 0.5rem;
-  z-index: 20;
+  // z-index: 20;
 
   .selectButton {
     width: 100%;
@@ -38,7 +38,7 @@
       border-bottom: none;
     }
     .option:hover {
-     background-color: $accent-hover;
+      background-color: $accent-hover;
     }
   }
 }
@@ -52,4 +52,8 @@
 
 .isSelected {
   background-color: $white;
+}
+
+.active {
+  background-color: $accent-hover;
 }

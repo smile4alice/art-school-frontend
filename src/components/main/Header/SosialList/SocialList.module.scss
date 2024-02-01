@@ -21,6 +21,9 @@
   &:focus svg {
     fill: $accent;
   }
+  &:visited svg {
+    fill: $accent;
+  }
   @media screen and (min-width: 1280px) {
     padding: 0;
   }
