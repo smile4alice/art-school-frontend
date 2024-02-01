@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import usePostersStore from '@/store/posterStore';
-import Modal from './Modal';
+
 import Container from '@/components/Container/Container';
 import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SEO from '@/components/SEO';
+import { useModal } from '@/store/modalStore';
+import Modal from '@/components/Modal/Modal';
 
 const PostersPage = () => {
   const ITEMS_PER_PAGE = 6;
@@ -15,17 +17,13 @@ const PostersPage = () => {
   const loading = usePostersStore(state => state.loading);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [postersPerPage, setPostersPerPage] = useState(6);
-  const [showModal, setShowModal] = useState(false);
+  const { isModalOpen, openModal } = useModal();
   const [selectedImg, setSelectedImg] = useState({});
   const isMaxAmount = postersPerPage >= posters.length;
 
   const setActiveImgUrl = id => {
     const selectImg = posters.find(poster => poster.id === id);
     setSelectedImg(selectImg);
-  };
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
   };
 
   const viewMore = () => {
@@ -99,7 +97,7 @@ const PostersPage = () => {
                         alt={`Афіша  ${poster.title}`}
                         onClick={() => {
                           setActiveImgUrl(poster.id);
-                          toggleModal();
+                          openModal();
                         }}
                       />
                     </div>
@@ -113,8 +111,8 @@ const PostersPage = () => {
               <Placeholder />
             )}
 
-            {showModal && (
-              <Modal toggleModal={toggleModal}>
+            {isModalOpen && (
+              <Modal>
                 <img
                   src={selectedImg.photo}
                   alt={`Афіша  ${selectedImg.title}`}
