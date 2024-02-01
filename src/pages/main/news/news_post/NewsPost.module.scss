@@ -3,10 +3,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 24px;
-    @include desktop {       
-        padding: 40px 0 60px 0;
-      }
+  gap: 16px;
+  padding: 0 0 71px 0;
+  @include tablet {
+    padding: 0 0 41px 0;
+  }
+  @include desktop {
+    padding: 0 0 60px 0;
+  }
 
   .buttonContainer {
     width: 100%;
@@ -21,20 +25,21 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    max-width: 820px;
-    margin-bottom: 50px;
+    max-width: 939px;
+
     .cardHeader {
       width: 100%;
-      max-width: 820px;
+
       .date {
         color: $gray;
-        font-size: 14px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
-        .title {
-          font-size: 20px;
-        }
+        margin-bottom: 8px;
+      }
+      .title {
+        margin-bottom: 8px;
       }
     }
     img {
@@ -43,13 +48,31 @@
       max-height: 487px;
       object-fit: cover;
       object-position: top;
-
-      @media screen and (min-width: 1280px) {
-        width: 820px;
-      }
+      margin-bottom: 16px;
     }
     .text {
-      font-size: 24px;
+      width: 100%;
+      font-size: 18px;
+      line-height: 1.44;
+    }
+
+    @include tablet {
+      .cardHeader {
+        .title {
+          font-size: 24px;
+        }
+      }
+    }
+    @include desktop {
+      img {
+        width: 820px;
+        margin-bottom: 40px;
+      }
+      .cardHeader {
+        .title {
+          margin-bottom: 14px;
+        }
+      }
     }
   }
 }
