@@ -60,20 +60,20 @@ const News = () => {
                   news.length > 0 &&
                   news.map((slide, index) => (
                     <SwiperSlide key={index} className={styles.Slide}>
-                      <div className={styles.image}>
-                        {loading && (
-                          <div className={styles.errorData}>
-                            Завантаження...
-                          </div>
-                        )}
-                        {!loading && (
-                          <img
-                            src={slide.photo}
-                            alt={slide.title}
-                            loading="lazy"
-                          />
-                        )}
-                      </div>
+                      {loading && (
+                        <div className={styles.errorData}>Завантаження...</div>
+                      )}
+                      {!loading && (
+                        <div
+                          className={styles.image}
+                          style={{
+                            background: `url(${slide.photo})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                          }}
+                        ></div>
+                      )}
                       <div className={styles.Text}>
                         <span>{formatDate(slide.created_at)}</span>
                         <p>{slide.title}</p>

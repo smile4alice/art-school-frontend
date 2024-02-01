@@ -1,18 +1,19 @@
 .contentWrapper {
   min-height: 40vh;
-    @include desktop {
-      padding: 40px 0 60px 0;
-        }    
+  @include desktop {
+    padding: 40px 0 0 0;
+  }
 }
 
 .pageTitle {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 14px;
+  color: #120000;
   @media screen and (min-width: 768px) {
     font-size: 32px;
     font-weight: 700;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
 }
 .postersList {
@@ -21,7 +22,7 @@
   grid-template-columns: 1fr;
   //justify-items: stretch;
   row-gap: 1.5rem;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3rem;
@@ -58,7 +59,6 @@
       height: 420px;
     }
   }
-
 }
 
 .postersListItemText {
