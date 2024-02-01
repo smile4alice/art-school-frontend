@@ -22,7 +22,11 @@
     background-color: rgba(117, 116, 252, 1);
   }
   .fieltTextInput{
-    width: 48.5%;
+    width:48.5%;
+    >div{
+      margin-top: 0;
+      max-width: none;
+    }
   }
   .secondRow {
     width: 100%;

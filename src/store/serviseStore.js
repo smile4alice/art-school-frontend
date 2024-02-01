@@ -12,6 +12,7 @@ const useServicesStore = create((set, get) => ({
   galleryPageCount: '',
   pageSize: 10,
   loading: false,
+  error: '',
   //отримати всі основні відділення
   getMainDepartments: async () => {
     const response = await axios.get('/departments');
@@ -181,6 +182,28 @@ const useServicesStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -196,6 +219,28 @@ const useServicesStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -212,6 +257,28 @@ const useServicesStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
@@ -231,6 +298,28 @@ const useServicesStore = create((set, get) => ({
       }
       return response;
     } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+      set(() => {
+        if (error.response.data.detail === 'Unauthorized') {
+          return {
+            error: 'Помилка авторизації',
+          };
+        }
+        return {
+          error: 'Не вдалося виконати запит, спробуйте пізніше',
+        };
+      });
+      setTimeout(() => {
+        set(() => {
+          return {
+            error: '',
+          };
+        });
+      }, 3000);
       throw new Error(error);
     }
   },

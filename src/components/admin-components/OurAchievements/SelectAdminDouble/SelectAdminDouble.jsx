@@ -4,7 +4,7 @@ import { useClickOutside } from '@/hooks/hooks';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import s from './SelectAdminDouble.module.scss';
 
-const SelectAdminDouble = ({ changeDepartment }) => {
+const SelectAdminDouble = ({ form, subDepartmentId, changeDepartment, changeTitle }) => {
   const departments = useServicesStore(state => state.departments);
   const subDepartments = useServicesStore(state => state.subDepartments);
   const { getMainDepartments, getSubDepartments } = useServicesStore();
@@ -12,6 +12,13 @@ const SelectAdminDouble = ({ changeDepartment }) => {
   const [secondOptionsVisible, setSecondOptionsVisible] = useState(false);
   const [selectedOptionId, setSelectedOptionId] = useState('');
   const [loadingState, setLoadingState] = useState('loading');
+
+  useEffect(() => {
+    if (!subDepartmentId) return;
+    form?.setFieldValue('sub_department', subDepartmentId);
+    //eslint-disable-next-line
+  }, [subDepartmentId]);
+
   //видимість основного select
   const toggleOptionsVisible = () => {
     setOptionsVisible(!optionsVisible);
@@ -113,7 +120,9 @@ const SelectAdminDouble = ({ changeDepartment }) => {
                         key={item.id}
                         className={s.secondOption}
                         onClick={() => {
-                          changeDepartment(item.id, item.sub_department_name); //встановлюємо id для запиту
+                          form?.setFieldValue('sub_department', item.id);
+                          changeDepartment ? changeDepartment(item.id, item.sub_department_name) : null;
+                          changeTitle ? changeTitle(item.sub_department_name) : null
                           toggleOptionsVisible();
                         }}
                       >

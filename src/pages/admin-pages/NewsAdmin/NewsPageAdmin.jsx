@@ -41,7 +41,9 @@ const NewsPageAdmin = () => {
       ) : (
         <NewsTable data={news} />
       )}
-      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
+      {error && Object.keys(error).length && !news.length ? (
+        <PlaceholderAdmin />
+      ) : null}
     </div>
   );
 };

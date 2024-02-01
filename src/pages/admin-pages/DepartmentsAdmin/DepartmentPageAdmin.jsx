@@ -78,7 +78,9 @@ const DepartmentPageAdmin = () => {
           departmentId={thisDepartment[0]?.id}
         />
       )}
-      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
+      {error && Object.keys(error).length && !department.length ? (
+        <PlaceholderAdmin />
+      ) : null}
     </div>
   );
 };

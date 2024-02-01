@@ -1,0 +1,37 @@
+.button {
+  display: flex;
+  width: 273px;
+  padding: 14px 10px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  transition: background-color 0.3s ease;
+}
+
+.activeButton {
+  border-radius: 6px;
+  border: 1px solid #0047ff;
+  background: #0047ff;
+  cursor: pointer;
+}
+
+.activeButton:hover {
+  border: 1px solid #7574fc;
+  background: #7574fc;
+}
+
+.inactiveButton {
+  border-radius: 6px;
+  border: 1px solid #b7bfcc;
+  background: #b7bfcc;
+  cursor: default;
+}
+
+.rightButton {
+  float: right;
+}/*# sourceMappingURL=ButtonSubmit.module.css.map */

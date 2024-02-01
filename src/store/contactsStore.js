@@ -53,6 +53,28 @@ const useContactsStore = create(set => ({
       });
       return response;
     } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+      set(() => {
+        if (error.response.data.detail === 'Unauthorized') {
+          return {
+            error: 'Помилка авторизації',
+          };
+        }
+        return {
+          error: 'Не вдалося виконати запит, спробуйте пізніше',
+        };
+      });
+      setTimeout(() => {
+        set(() => {
+          return {
+            error: '',
+          };
+        });
+      }, 3000);
       throw new Error(error);
     }
   },

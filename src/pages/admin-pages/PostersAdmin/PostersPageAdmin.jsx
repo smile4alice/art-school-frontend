@@ -36,12 +36,10 @@ const PostersPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати афішу"
       />
-      {loading ? (
-        <SpinnerAdmin />
-      ) : (
-        <PostersList data={posters} />
-      )}
-      {error && Object.keys(error).length ? <PlaceholderAdmin /> : null}
+      {loading ? <SpinnerAdmin /> : <PostersList data={posters} />}
+      {error && Object.keys(error).length && !posters.length ? (
+        <PlaceholderAdmin />
+      ) : null}
     </div>
   );
 };

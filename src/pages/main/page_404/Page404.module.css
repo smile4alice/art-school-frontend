@@ -1,0 +1,39 @@
+.NotFound {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.NotFound .wrapper {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px auto;
+}
+@media screen and (max-width: 1024px) {
+  .NotFound .wrapper {
+    width: 100%;
+    padding: 2rem;
+    margin: 60px auto;
+  }
+}
+.NotFound .wrapper p {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 18px;
+  margin: 50px auto 30px;
+}
+@media screen and (max-width: 1024px) {
+  .NotFound .wrapper p {
+    white-space: inherit;
+  }
+}
+@media screen and (max-width: 768px) {
+  .NotFound .wrapper p {
+    font-size: 14px;
+  }
+}/*# sourceMappingURL=Page404.module.css.map */

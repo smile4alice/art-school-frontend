@@ -2,12 +2,10 @@
   @extend%aligncenter;
   width: 100%;
   flex-direction: column;
-  gap: 24px;
-
   @media screen and (min-width: 1280px) {
     width: max-content;
     flex-direction: row;
-    gap: 30px;
+    gap: 1.5rem;
   }
 }
 
@@ -15,7 +13,7 @@
   width: 100%;
   @extend%aligncenter;
   flex-direction: column;
-  gap: 24px;
+ // gap: 24px;
 
   @media screen and (min-width: 1280px) {
     width: max-content;
@@ -29,7 +27,7 @@
   list-style: none;
   @extend%aligncenter;
   flex-direction: column;
-  gap: 24px;
+  //gap: 24px;
 
   @media screen and (min-width: 1280px) {
     width: max-content;
@@ -61,14 +59,14 @@
 .navList_link {
   display: block;
   height: 100%;
-
   @include font(18px, 600, 1.4);
   letter-spacing: 0.19px;
   color: $linkColor;
-  padding-top: 5px;
-  padding-bottom: 5px;
   border-bottom: 1px solid transparent;
-
+  padding: 1rem;
+  @media screen and (min-width: 1280px) {
+    padding: .5rem 0;
+  }
   &:hover,
   &:focus {
     outline: none;

@@ -5,7 +5,6 @@ import { isDataValid } from '@/utils/formDataValidation';
 const useSlidersStore = create((set, get) => ({
   loading: false,
   error: '',
-  isAuthorized: true,
   slides: [],
 
   getSlides: async () => {
@@ -29,7 +28,7 @@ const useSlidersStore = create((set, get) => ({
     } catch (error) {
       set(() => {
         return {
-          error: error,
+          error: error.message,
         };
       });
       throw new Error(error);
@@ -57,6 +56,11 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
           if (error.response.data.detail === 'Unauthorized') {
             return {
               error: 'Помилка авторизації',
@@ -66,20 +70,10 @@ const useSlidersStore = create((set, get) => ({
             error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
-        set(() => {
-          return {
-            loading: false,
-          };
-        });
         setTimeout(() => {
           set(() => {
             return {
               error: '',
-            };
-          });
-          set(() => {
-            return {
-              isAuthorized: false,
             };
           });
         }, 3000);
@@ -110,6 +104,11 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
           if (error.response.data.detail === 'Unauthorized') {
             return {
               error: 'Помилка авторизації',
@@ -119,20 +118,10 @@ const useSlidersStore = create((set, get) => ({
             error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
-        set(() => {
-          return {
-            loading: false,
-          };
-        });
         setTimeout(() => {
           set(() => {
             return {
               error: '',
-            };
-          });
-          set(() => {
-            return {
-              isAuthorized: false,
             };
           });
         }, 3000);
@@ -163,6 +152,11 @@ const useSlidersStore = create((set, get) => ({
         return response;
       } catch (error) {
         set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
           if (error.response.data.detail === 'Unauthorized') {
             return {
               error: 'Помилка авторизації',
@@ -172,30 +166,13 @@ const useSlidersStore = create((set, get) => ({
             error: 'Не вдалося виконати запит, спробуйте пізніше',
           };
         });
-        set(() => {
-          return {
-            loading: false,
-          };
-        });
         setTimeout(() => {
           set(() => {
             return {
               error: '',
             };
           });
-          set(() => {
-            return {
-              isAuthorized: false,
-            };
-          });
         }, 3000);
-        setTimeout(() => {
-          set(() => {
-            return {
-              isAuthorized: true,
-            };
-          });
-        }, 5000);
         throw new Error(error);
       }
     }

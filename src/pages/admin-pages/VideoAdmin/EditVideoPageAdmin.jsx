@@ -20,6 +20,7 @@ const EditVideoPage = () => {
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
   const video = useVideoStore(state => state.video);
+  const error = useVideoStore(state => state.error);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,6 +55,7 @@ const EditVideoPage = () => {
         backButtonLink="/admin/video"
         showActionButton={false}
       />
+      {error && <p className={s.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={videoValidation}

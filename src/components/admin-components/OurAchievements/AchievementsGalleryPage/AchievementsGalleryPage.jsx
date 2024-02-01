@@ -18,6 +18,7 @@ const AchievementsGalleryPage = ({
 }) => {
   const [departmentId, setDepartmentId] = useState('1');
   const [title, setTitle] = useState(selectTitle);
+
   const [typeOfAchievements, setTypeOfAchievements] =
     useState('allAchievements');
   let breadcrumbs;

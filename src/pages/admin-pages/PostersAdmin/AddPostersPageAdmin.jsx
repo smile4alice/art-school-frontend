@@ -20,7 +20,6 @@ const AddPostersPage = () => {
   const navigate = useNavigate();
   const { addPoster } = usePostersStore();
   const loading = usePostersStore(state => state.loading);
-  const error = usePostersStore(state => state.error);
 
   const onSubmit = async values => {
     try {
@@ -47,7 +46,6 @@ const AddPostersPage = () => {
         backButtonLink="/admin/posters"
         showActionButton={false}
       />
-      {error && <p className={styles.error}>{error}</p>}
       <Formik
         initialValues={initialValues}
         validationSchema={posterValidation}

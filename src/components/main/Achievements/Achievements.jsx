@@ -45,7 +45,7 @@ const Achievements = ({
   }, [getMainAchievements, getDepartmentAchievements, url, departmentId]);
 
   return (
-    <section className={`${s.achievements} section`}>
+    <section className={`${s.achievements}`}>
       <Container>
         <div className={s.achievementsWrapper}>
           <h2>{title}</h2>

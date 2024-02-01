@@ -30,7 +30,7 @@ const useDepartmentsStore = create((set, get) => ({
     } catch (error) {
       set(() => {
         return {
-          error: error,
+          error: error.messsage,
         };
       });
       throw new Error(error);
@@ -96,17 +96,24 @@ const useDepartmentsStore = create((set, get) => ({
       }
     } catch (error) {
       set(() => {
-        set(() => {
+        return {
+          loading: false,
+        };
+      });
+      set(() => {
+        if (error.response.data.detail === 'Unauthorized') {
           return {
-            loading: false,
-          };
-        });
-        if (error.code === 'ERR_BAD_REQUEST') {
-          return {
-            error:
-              'Відділ з такою назвою вже існує, спробуйте іншу назву',
+            error: 'Помилка авторизації',
           };
         }
+        if (error.code === 'ERR_BAD_REQUEST') {
+          return {
+            error: 'Відділ з такою назвою вже існує, спробуйте іншу назву',
+          };
+        }
+        return {
+          error: 'Не вдалося виконати запит, спробуйте пізніше',
+        };
       });
       setTimeout(() => {
         set(() => {
@@ -114,7 +121,7 @@ const useDepartmentsStore = create((set, get) => ({
             error: '',
           };
         });
-      }, 5000);
+      }, 3000);
       throw new Error(error);
     }
   },
@@ -151,11 +158,19 @@ const useDepartmentsStore = create((set, get) => ({
         };
       });
       set(() => {
+        if (error.response.data.detail === 'Unauthorized') {
+          return {
+            error: 'Помилка авторизації',
+          };
+        }
         if (error.code === 'ERR_BAD_REQUEST') {
           return {
             error: 'Відділ з такою назвою вже існує, спробуйте іншу назву',
           };
         }
+        return {
+          error: 'Не вдалося виконати запит, спробуйте пізніше',
+        };
       });
       setTimeout(() => {
         set(() => {
@@ -163,7 +178,7 @@ const useDepartmentsStore = create((set, get) => ({
             error: '',
           };
         });
-      }, 5000);
+      }, 3000);
       throw new Error(error);
     }
   },
@@ -193,6 +208,28 @@ const useDepartmentsStore = create((set, get) => ({
         });
         return response;
       } catch (error) {
+        set(() => {
+          return {
+            loading: false,
+          };
+        });
+        set(() => {
+          if (error.response.data.detail === 'Unauthorized') {
+            return {
+              error: 'Помилка авторизації',
+            };
+          }
+          return {
+            error: 'Не вдалося виконати запит, спробуйте пізніше',
+          };
+        });
+        setTimeout(() => {
+          set(() => {
+            return {
+              error: '',
+            };
+          });
+        }, 3000);
         throw new Error(error);
       }
     }
