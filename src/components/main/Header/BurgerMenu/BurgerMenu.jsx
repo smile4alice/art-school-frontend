@@ -18,7 +18,7 @@ const BurgerMenu = ({ showBurgerMenu, setShowBurgerMenu, contacts }) => {
         <NavList toggleBurgerMenu={toggleBurgerMenu} />
       </div>
       <button
-        aria-label=" menu close button"
+        aria-label="menu close button"
         tabIndex="0"
         type="button"
         className={styles.burgerMenuCloseButton}

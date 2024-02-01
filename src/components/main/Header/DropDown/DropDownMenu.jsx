@@ -40,7 +40,6 @@ const DropDownMenu = ({
             });
           }
         }}
-        to="/#departmens"
       >
         <div className={styles.dropDownNameWrapper}>
           <span

@@ -40,6 +40,7 @@
       width: 100%;
       @extend%aligncenter;
       flex-direction: column;
+      gap: 10px;
       img {
         width: 90vw;
         border-radius: 5px;
