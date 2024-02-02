@@ -27,17 +27,16 @@ const TextInput = ({
   };
 
   const getBorderColor = () => {
-    if (valueLength > 0 && valueLength <= maxLength && isFocused !== name ) {
+    if (valueLength > 0 && valueLength <= maxLength && !errors?.[field.name]) {
       return styles.greenBorder;
+    }
 
-    }
-    if (isFocused === name && valueLength > 1 && valueLength <= maxLength) {
-      return styles.blueBorder;
-    }
     if (valueLength > maxLength || errors?.[field.name]) {
       return styles.redBorder;
     }
-   else {
+    if (isFocused === name) {
+      return styles.blueBorder;
+    } else {
       return styles.grayBorder;
     }
   };
@@ -71,7 +70,7 @@ const TextInput = ({
 
       <div className={styles.commentsWrapper}>
         <div className={styles.errorWrap}>
-          {errors?.[field.name] && isFieldTouched && (
+          {errors?.[field.name] && isFocused && (
             <p className={styles.errorMessage}>{errors?.[field.name]}</p>
           )}
         </div>
