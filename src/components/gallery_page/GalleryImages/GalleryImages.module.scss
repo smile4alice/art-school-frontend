@@ -43,6 +43,10 @@
     border-radius: 0.5rem;
     overflow: hidden;
     flex-grow: 1;
+    background: url('../../defaultImg.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     @media screen and (min-width: 768px) {
       min-width: 175px;
       max-width: 362px;

@@ -59,7 +59,7 @@ const GalleryDepartments = ({
       )}
       {loadingState === 'success' && gallery?.length > 0 && (
         <div className={s.slidersContainer}>
-          {isDesktop && (
+          {isDesktop && gallery?.length > 3 && (
             <SwiperButtons
               onPrevClick={() => swiperGalaryRef.current.slidePrev()}
               onNextClick={() => swiperGalaryRef.current.slideNext()}
@@ -73,6 +73,8 @@ const GalleryDepartments = ({
             modules={[Pagination]}
             spaceBetween={16}
             slidesPerView={1}
+            pagination={{ clickable: true }}
+            loop={true}
             breakpoints={{
               768: {
                 slidesPerView: 2,
@@ -81,10 +83,8 @@ const GalleryDepartments = ({
                 slidesPerView: 3,
               },
             }}
-            pagination={{ clickable: true }}
-            loop={true}
           >
-            {gallery.map(item => (
+            {gallery?.map(item => (
               <SwiperSlide className={s.slideContent} key={item.id}>
                 <div className={s.slidePhoto}>
                   <img src={item.media} alt={item.description} />

@@ -68,7 +68,7 @@ const Achievements = ({
           )}
           {loadingState === 'success' && achievements?.length > 0 && (
             <div className={s.slidersContainer}>
-              {isDesktop && (
+              {isDesktop && achievements?.length > 3 && (
                 <SwiperButtons
                   onPrevClick={() => swiperRef.current.slidePrev()}
                   onNextClick={() => swiperRef.current.slideNext()}
@@ -82,6 +82,8 @@ const Achievements = ({
                 modules={[Pagination]}
                 spaceBetween={16}
                 slidesPerView={1}
+                pagination={{ clickable: true }}
+                loop={true}
                 breakpoints={{
                   768: {
                     slidesPerView: 2,
@@ -90,10 +92,8 @@ const Achievements = ({
                     slidesPerView: 3,
                   },
                 }}
-                pagination={{ clickable: true }}
-                loop={true}
               >
-                {achievements.map(item => (
+                {achievements?.map(item => (
                   <SwiperSlide className={s.slideContent} key={item.id}>
                     <div className={s.slidePhoto}>
                       <img src={item.media} alt={item.description} />

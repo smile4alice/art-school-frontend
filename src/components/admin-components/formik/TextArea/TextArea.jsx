@@ -32,11 +32,11 @@ const TextArea = ({
     if (errors?.[field.name]) {
       return styles.redBorder;
     }
-    if (isFocused === name) {
-      return styles.blueBorder;
-    }
     if (valueLength > 0) {
       return styles.greenBorder;
+    }
+    if (isFocused === name) {
+      return styles.blueBorder;
     } else {
       return styles.grayBorder;
     }
@@ -67,7 +67,7 @@ const TextArea = ({
       />
       <div className={styles.commentsWrapper}>
         <div className={styles.errorWrap}>
-          {errors?.[field.name] && isFieldTouched && (
+          {errors?.[field.name] && isFocused && (
             <p className={styles.errorMessage}>{errors?.[field.name]}</p>
           )}
         </div>
