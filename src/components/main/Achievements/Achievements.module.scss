@@ -3,6 +3,9 @@
   width: 100%;
   background-color: inherit;
   margin-bottom: 35px;
+  >div:first-child{
+    padding: 0;
+  }
   @media (min-width: 1280px) {
     margin-bottom: 100px;
   }
@@ -12,6 +15,7 @@
   }
 
   .achievementsWrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -79,6 +83,7 @@
     .slidersContainer {
       position: relative;
       .slider {
+        width: 86%;
         .slideContent {
           display: flex;
           align-items: center;

@@ -1,11 +1,11 @@
-\.wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 24px;
-    @include desktop {
-      padding: 40px 0 60px 0;
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 24px;
+  @include desktop {
+    padding: 40px 0 60px 0;
     gap: 16px;
     padding: 0 0 71px 0;
     @include tablet {
@@ -14,7 +14,7 @@
     @include desktop {
       padding: 0 0 60px 0;
     }
-  
+
     .buttonContainer {
       width: 100%;
       max-width: 820px;
@@ -22,17 +22,17 @@
       display: flex;
       justify-content: flex-end;
     }
-  
+
     .card {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       max-width: 939px;
-  
+
       .cardHeader {
         width: 100%;
-  
+
         .date {
           color: $gray;
           font-size: 18px;
@@ -47,11 +47,10 @@
       }
       img {
         width: 100%;
-        // max-width: 820px;
+        max-width: 820px;
         max-height: 487px;
         object-fit: cover;
         object-position: center;
-        margin-bottom: 2rem;
         object-position: top;
         margin-bottom: 16px;
       }
@@ -59,29 +58,31 @@
         width: 100%;
         font-size: 18px;
         line-height: 1.44;
+        margin-top: 2rem;
       }
-  
+
       @include tablet {
         .cardHeader {
           .title {
-            font-size: 24px;
+            font-size: 18px;
           }
         }
       }
-  
+
       .text {
         font-size: 18px;
-  
+
         @media screen and (min-width: 1280px) {
-          font-size: 24px;
-        @include desktop {
-          img {
-            width: 820px;
-            margin-bottom: 40px;
-          }
-          .cardHeader {
-            .title {
-              margin-bottom: 14px;
+          font-size: 18px;
+          @include desktop {
+            img {
+              width: 820px;
+              margin-bottom: 40px;
+            }
+            .cardHeader {
+              .title {
+                margin-bottom: 14px;
+              }
             }
           }
         }
@@ -89,4 +90,3 @@
     }
   }
 }
-}  

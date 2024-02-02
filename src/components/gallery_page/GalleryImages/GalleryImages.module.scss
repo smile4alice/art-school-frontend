@@ -29,6 +29,13 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  padding-bottom: 24px;
+  @media screen and (min-width: 768px) {
+    padding-bottom: 20px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-bottom: 60px;
+  }
   .item {
     min-width: 138px;
     max-width: 288px;
