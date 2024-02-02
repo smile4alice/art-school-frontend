@@ -65,6 +65,7 @@ const GalleryDepartments = ({
               onNextClick={() => swiperGalaryRef.current.slideNext()}
             />
           )}
+
           <Swiper
             onSwiper={swiper => {
               swiperGalaryRef.current = swiper;
@@ -73,7 +74,10 @@ const GalleryDepartments = ({
             modules={[Pagination]}
             spaceBetween={16}
             slidesPerView={1}
-            pagination={{ clickable: true }}
+            pagination={{
+              el: '.swiper-pagination-gallery',
+              clickable: true,
+            }}
             loop={true}
             breakpoints={{
               768: {
@@ -93,6 +97,7 @@ const GalleryDepartments = ({
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className=" swiper-pagination swiper-pagination-gallery"></div>
         </div>
       )}
       {showSelect && !isDesktop && (
