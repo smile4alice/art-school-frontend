@@ -1,13 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-<<<<<<< HEAD
-  //baseURL: import.meta.env.VITE_APP_API_URL,
-  baseURL: 'https://verykivsky-art-school2.com.ua/api/v1/',
-=======
- baseURL: import.meta.env.VITE_APP_API_URL,
- //baseURL: 'https://verykivsky-art-school2.com.ua/api/v1/',
->>>>>>> 0b441c6e6475568a4f9695cdd0cd469976857e4d
+  baseURL: import.meta.env.VITE_APP_API_URL,
+  //baseURL: 'https://verykivsky-art-school2.com.ua/api/v1/',
 });
 
 instance.interceptors.request.use(config => {
