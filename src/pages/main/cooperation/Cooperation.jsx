@@ -40,6 +40,7 @@ const Cooperation = () => {
       <Container>
         <div className={styles.Cooperation}>
           <div className={styles.wrapper}>
+          <h1 className={styles.title}>Співпраця</h1>
             <p>
               Уявіть, що Ваш захід проводиться в одній із найкрасивіших
               концертних зал, розрахованих на 288 місць, у самому серці столиці!
