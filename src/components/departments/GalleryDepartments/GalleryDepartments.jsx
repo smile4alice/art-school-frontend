@@ -22,7 +22,7 @@ const GalleryDepartments = ({
   const { getDepartmentAchievements } = useServicesStore();
   const gallery = useServicesStore(state => state.gallery);
   const isDesktop = useMediaQuery({ minWidth: 1280 });
-  const swiperGalaryRef = useRef();
+  const swiperGalleryRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
 
   useEffect(() => {
@@ -61,19 +61,19 @@ const GalleryDepartments = ({
         <div className={s.slidersContainer}>
           {isDesktop && gallery?.length > 3 && (
             <SwiperButtons
-              onPrevClick={() => swiperGalaryRef.current.slidePrev()}
-              onNextClick={() => swiperGalaryRef.current.slideNext()}
+              onPrevClick={() => swiperGalleryRef.current.slidePrev()}
+              onNextClick={() => swiperGalleryRef.current.slideNext()}
             />
           )}
           <Swiper
             onSwiper={swiper => {
-              swiperGalaryRef.current = swiper;
+              swiperGalleryRef.current = swiper;
             }}
             className={s.slider}
             modules={[Pagination]}
             spaceBetween={16}
             slidesPerView={1}
-            pagination={{ clickable: true }}
+            pagination={{ el: '.swiper-paginationGallery', clickable: true }}
             loop={true}
             breakpoints={{
               768: {
@@ -93,6 +93,7 @@ const GalleryDepartments = ({
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="swiper-pagination swiper-paginationGallery"></div>
         </div>
       )}
       {showSelect && !isDesktop && (

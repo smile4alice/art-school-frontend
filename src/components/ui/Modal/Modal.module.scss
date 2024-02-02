@@ -29,5 +29,7 @@
   display: flex;
   align-items: stretch;
   justify-content: center;
-
+  img {
+    object-fit: contain;
+  }
 }

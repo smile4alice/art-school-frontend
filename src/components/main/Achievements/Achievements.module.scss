@@ -3,7 +3,7 @@
   width: 100%;
   background-color: inherit;
   margin-bottom: 35px;
-  >div:first-child{
+  > div:first-child {
     padding: 0;
   }
   @media (min-width: 1280px) {
@@ -41,7 +41,7 @@
           img {
             width: 100%;
             height: 100%;
-
+            object-fit: cover;
             object-position: center;
             border-radius: 5px;
           }
