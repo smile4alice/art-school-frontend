@@ -20,6 +20,12 @@ const NewsPost = () => {
         <section className={styles.wrapper}>
           <div className={styles.card}>
             <div className={styles.cardHeader}>
+              <div className={styles.buttonContainer}>
+                <NavLinkButton
+                  href={'/events'}
+                  text={'переглянути всі новини'}
+                />
+              </div>
               <p className={styles.date}>{formatDate(post.created_at)}</p>
               <p className={`${styles.title} sectionTitle`}>{post.title}</p>
             </div>
@@ -27,9 +33,6 @@ const NewsPost = () => {
               <img src={post.photo} alt="slide" />
             </div>
             <p className={styles.text}>{post.text}</p>
-          </div>
-          <div className={styles.buttonContainer}>
-            <NavLinkButton href={'/events'} text={'переглянути всі новини'} />
           </div>
         </section>
       </Container>

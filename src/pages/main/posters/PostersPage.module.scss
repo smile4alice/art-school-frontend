@@ -44,8 +44,13 @@
 .postersListItem {
   height: auto;
   overflow: hidden;
+
   .postersListItemImg {
     width: 100%;
+    background: url('../../defaultImg.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     height: fit-content;
     border-radius: 5px;
     display: flex;
@@ -54,8 +59,9 @@
     overflow: hidden;
     .image {
       width: 100%;
+      height: 100%;
       max-width: none;
-      object-fit: cover;
+      // object-fit: cover;
       object-position: center;
       border-radius: 5px;
       cursor: pointer;

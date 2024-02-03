@@ -1,4 +1,4 @@
-.gallery{
+.gallery {
   margin: 0 auto;
   width: 100%;
   background-color: inherit;
@@ -37,11 +37,10 @@
       }
     }
   }
-  
 }
 
 @media (min-width: 768px) {
-  .gallery{
+  .gallery {
     .slidersContainer {
       .slider {
         .slideContent {
@@ -84,13 +83,8 @@
   }
 }
 
-/*
 .gallery {
   width: 100%;
-<<<<<<< HEAD
-  // max-width: 1280px;
-=======
->>>>>>> dev
   background-color: inherit;
   padding: 0 1rem;
   margin: 1rem auto;
@@ -103,10 +97,7 @@
   .slidersContainer {
     padding-top: 1rem;
     width: 100%;
-<<<<<<< HEAD
-=======
     position: relative;
->>>>>>> dev
 
     .slider {
       margin: 0 auto;
@@ -120,6 +111,7 @@
           height: 470px;
           border-radius: 5px;
           overflow: hidden;
+
           img {
             height: 100%;
             width: 100%;
@@ -145,7 +137,7 @@
 }
 
 @media (min-width: 768px) {
-.gallery{
+  .gallery {
     h2 {
       font-size: 2rem;
     }
@@ -164,7 +156,7 @@
 }
 
 @media (min-width: 1280px) {
-.gallery{
+  .gallery {
     h2 {
       font-size: 2rem;
     }
@@ -187,6 +179,10 @@
             justify-content: center;
             border-radius: 5px;
             overflow: hidden;
+            background: url('../../defaultImg.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             // img {
             //   height: auto;
             // }
@@ -199,4 +195,3 @@
     }
   }
 }
-*/

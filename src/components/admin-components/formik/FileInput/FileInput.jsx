@@ -7,10 +7,11 @@ const FileInput = ({
   label,
   field,
   photo,
-  form: { errors, setFieldValue },
+  form: { errors, setFieldValue, touched },
   ...props
 }) => {
   const name = field.name;
+  const isFieldTouched = touched[field.name];
   const [imagePreview, setImagePreview] = useState('');
   const fieldValue = field.value;
 
@@ -70,7 +71,7 @@ const FileInput = ({
         )}
       </Dropzone>
       <div className={styles.errorWrap}>
-        {errors?.[field.name] && (
+        {errors?.[field.name] && isFieldTouched && (
           <p className={styles.errorMessage}>{errors?.[field.name]}</p>
         )}
       </div>

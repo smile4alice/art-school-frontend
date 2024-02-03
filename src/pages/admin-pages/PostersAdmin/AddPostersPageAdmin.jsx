@@ -78,7 +78,7 @@ const AddPostersPage = () => {
                   <ButtonSubmit
                     nameButton="Зберегти зміни"
                     isActive={
-                      formik.isValid && Object.keys(formik.touched).length
+                      formik.isValid && Object.values(formik.values)[0] !== ''
                     }
                     isRight={true}
                     handlerSubmitButton={onSubmit}
