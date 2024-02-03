@@ -39,7 +39,7 @@ const GalleryDepartments = ({
   }, [getDepartmentAchievements, url, departmentId]);
 
   return (
-    <section className={`${s.gallery} section`}>
+    <section className={`${s.gallery} `}>
       {showSelect && isDesktop && (
         <Select
           title="Обрати відділ"
@@ -53,7 +53,7 @@ const GalleryDepartments = ({
         </div>
       )}
       {loadingState === 'error' && (
-        <div className="errorData">
+        <div className={`${s.errorData} errorData`}>
           <Placeholder />
         </div>
       )}

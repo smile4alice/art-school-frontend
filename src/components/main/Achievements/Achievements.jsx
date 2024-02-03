@@ -62,7 +62,7 @@ const Achievements = ({
             </div>
           )}
           {loadingState === 'error' && (
-            <div className="errorData">
+            <div className={`${s.errorData} errorData`}>
               <Placeholder />
             </div>
           )}
