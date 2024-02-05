@@ -1,22 +1,22 @@
-.contacts{
+.contacts {
   padding: 0 1.7rem 75px;
   overflow: hidden;
   margin: 0 auto;
   width: 100%;
   max-width: 1280px;
-  .title{
+  .title {
     font-weight: 700;
     font-size: 1.5rem;
   }
- 
+
   ul {
     margin: 1.5rem 0 2rem;
-    li{
+    li {
       position: relative;
       margin-bottom: 1.25rem;
       padding-left: 1.75rem;
     }
-    li::before{
+    li::before {
       content: '';
       position: absolute;
       left: 0;
@@ -27,46 +27,48 @@
       background-position: center;
       background-repeat: no-repeat;
     }
-    li:nth-child(1)::before{
-      background-image: url("/icons/location.png");
+    li:nth-child(1)::before {
+      background-image: url('/icons/location.png');
       left: 2px;
     }
-    li:nth-child(2)::before{
-      background-image: url("/icons/clock.png");
+    li:nth-child(2)::before {
+      background-image: url('/icons/clock.png');
     }
-    li:nth-child(3)::before{
-      background-image: url("/icons/phone.png");
+    li:nth-child(3)::before {
+      background-image: url('/icons/phone.png');
     }
-    li:nth-child(4)::before{
-      background-image: url("/icons/mail.png");
+    li:nth-child(4)::before {
+      background-image: url('/icons/mail.png');
     }
   }
-  .mapContainer{
+  .mapContainer {
     width: 100%;
     height: 6.6rem;
     border-radius: 5px;
     overflow: hidden;
+    position: relative;
+    z-index: 0;
   }
 }
 @media (min-width: 380px) {
-  .contacts{
-    .mapContainer{
+  .contacts {
+    .mapContainer {
       height: 150px;
     }
   }
 }
 @media (min-width: 576px) {
-  .contacts{
-    .mapContainer{
+  .contacts {
+    .mapContainer {
       height: 200px;
     }
   }
 }
 @media (min-width: 768px) {
-  .contacts{
-     padding: .5rem 2.5rem 2rem;
+  .contacts {
+    padding: 0.5rem 2.5rem 2rem;
     // padding: 0 1.7rem 75px;
-    .mapContainer{
+    .mapContainer {
       height: 350px;
     }
     ul {
@@ -76,9 +78,9 @@
 }
 
 @media (min-width: 1280px) {
-  .contacts{
+  .contacts {
     padding: 2.5rem 9.5rem 3rem;
-    .title{
+    .title {
       font-size: 2rem;
     }
     ul {

@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
 
-  z-index: 99;
+  z-index: 101;
   max-width: 100vw;
 }
 
@@ -78,6 +78,7 @@
 // -----------NAVIGATION------------
 .headerNavigationWrapper {
   width: 100%;
+  color: $black;
 
   @extend%aligncenter;
   height: 90px;
