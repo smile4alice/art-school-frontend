@@ -29,7 +29,6 @@ const PasswordRecovery = () => {
       );
       const response = await sendMail(data);
       if (response && response.status === 202) {
-        setMessage('Листа надіслано. Перевірте електронну пошту');
         setTimeout(() => {
           setIsAlertOpen(false);
         }, 5000);

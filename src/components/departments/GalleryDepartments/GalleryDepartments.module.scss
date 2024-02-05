@@ -8,12 +8,15 @@
   .slidersContainer {
     width: 100%;
     position: relative;
+
     .slider {
       margin: 0 auto;
       //width:86%;
       overflow: hidden;
+
       .slideContent {
         padding-bottom: 2rem;
+        margin-bottom: 2rem;
         .slidePhoto {
           width: 100%;
           height: 470px;

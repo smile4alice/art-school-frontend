@@ -12,13 +12,21 @@ const LogoutButton = () => {
     const value = localStorage.getItem(key);
     const exists = value !== null;
     if (exists) {
-      await axios.post('/auth/logout').then(res => {
-        if (res.status > 200 && res.status < 400) {
-          localStorage.removeItem(key);
-          setUnAuthorized();
-          navigate('/login');
-        }
-      });
+      await axios
+        .post('/auth/logout')
+        .then(res => {
+          if (res.status > 200 && res.status < 400) {
+            localStorage.removeItem(key);
+            setUnAuthorized();
+            navigate('/login');
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          setTimeout(() => {
+            navigate('/login');
+          }, 1000);
+        });
     }
   };
 
