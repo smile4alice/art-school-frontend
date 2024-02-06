@@ -11,6 +11,9 @@ import s from './GalleryDepartments.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import Modal from '@/components/ui/Modal/Modal';
+import { useModal } from '@/store/modalStore';
+import { useActiveImg } from '@/store/selectImg';
 
 const GalleryDepartments = ({
   url,
@@ -24,7 +27,13 @@ const GalleryDepartments = ({
   const isDesktop = useMediaQuery({ minWidth: 1280 });
   const swiperGalleryRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
+  const { isModalOpen, openModal } = useModal();
+  const { activeImg, setActiveImg } = useActiveImg();
 
+  const setActiveImgUrl = async id => {
+    const selectImg = await gallery.find(item => item.id === id);
+    setActiveImg(selectImg);
+  };
   useEffect(() => {
     const fetchData = async () => {
       setLoadingState('loading');
@@ -39,7 +48,7 @@ const GalleryDepartments = ({
   }, [getDepartmentAchievements, url, departmentId]);
 
   return (
-    <section className={`${s.gallery} section`}>
+    <section className={`${s.gallery} `}>
       {showSelect && isDesktop && (
         <Select
           title="Обрати відділ"
@@ -53,7 +62,7 @@ const GalleryDepartments = ({
         </div>
       )}
       {loadingState === 'error' && (
-        <div className="errorData">
+        <div className={`${s.errorData} errorData`}>
           <Placeholder />
         </div>
       )}
@@ -65,6 +74,7 @@ const GalleryDepartments = ({
               onNextClick={() => swiperGalleryRef.current.slideNext()}
             />
           )}
+
           <Swiper
             onSwiper={swiper => {
               swiperGalleryRef.current = swiper;
@@ -73,7 +83,10 @@ const GalleryDepartments = ({
             modules={[Pagination]}
             spaceBetween={16}
             slidesPerView={1}
-            pagination={{ el: '.swiper-paginationGallery', clickable: true }}
+            pagination={{
+              el: '.swiper-pagination-gallery',
+              clickable: true,
+            }}
             loop={true}
             breakpoints={{
               768: {
@@ -87,13 +100,20 @@ const GalleryDepartments = ({
             {gallery?.map(item => (
               <SwiperSlide className={s.slideContent} key={item.id}>
                 <div className={s.slidePhoto}>
-                  <img src={item.media} alt={item.description} />
+                  <img
+                    src={item.media}
+                    alt={item.description}
+                    onClick={() => {
+                      setActiveImgUrl(item.id);
+                      openModal();
+                    }}
+                  />
                 </div>
                 <p className={s.slideText}>{item.description}</p>
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="swiper-pagination swiper-paginationGallery"></div>
+          <div className="swiper-pagination swiper-pagination-gallery"></div>
         </div>
       )}
       {showSelect && !isDesktop && (
@@ -102,6 +122,12 @@ const GalleryDepartments = ({
           options={selectOptions}
           changeDepartment={changeDepartment}
         />
+      )}
+
+      {isModalOpen && (
+        <Modal>
+          <img src={activeImg?.media} alt={` ${activeImg.description}`} />
+        </Modal>
       )}
     </section>
   );

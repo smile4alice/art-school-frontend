@@ -35,14 +35,14 @@ const Gallery = () => {
   }, [getAllVideo]);
 
   useEffect(() => {
-    const fetchVideo = async () => {
+    const fetchImages = async () => {
       try {
         await getAllImages();
       } catch (error) {
         console.log(error);
       }
     };
-    fetchVideo();
+    fetchImages();
   }, [getAllImages]);
 
   return (
