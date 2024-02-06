@@ -8,12 +8,16 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 100;
+  z-index: 102;
+  // touch-action: none;
+  -webkit-overflow-scrolling: none;
+
+  overscroll-behavior: none;
   .close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
+    top: 25px;
+    right: 25px;
+    z-index: 102;
   }
 }
 
