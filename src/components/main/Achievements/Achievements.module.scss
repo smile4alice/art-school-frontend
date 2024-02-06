@@ -4,7 +4,7 @@
   width: 100%;
   background-color: inherit;
   margin-bottom: 35px;
-  >div:first-child{
+  > div:first-child {
     padding: 0;
   }
   @media (min-width: 1280px) {
@@ -40,10 +40,6 @@
           align-items: center;
           justify-content: center;
           img {
-            width: 100%;
-            height: 100%;
-
-            object-position: center;
             border-radius: 5px;
           }
         }
@@ -95,11 +91,6 @@
             width: 100%;
             height: 470px;
             border-radius: 5px;
-            overflow: hidden;
-            background: url('../../defaultImg.webp');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
           }
           .slideText {
             padding: 0.65rem 0;
@@ -110,7 +101,7 @@
     }
   }
 }
-/*
+
 .errorData {
   height: 526px;
   @media (min-width: 768px) {
@@ -120,4 +111,3 @@
     height: 547px;
   }
 }
-*/

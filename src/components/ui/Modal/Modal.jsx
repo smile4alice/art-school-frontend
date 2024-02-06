@@ -4,7 +4,7 @@ import CloseIcon from '@/components/Icons/CloseIcon';
 import { useClickOutside } from '@/hooks/hooks';
 import { useModal } from '@/store/modalStore';
 const Modal = ({ children }) => {
-  const { isModalOpen, closeModal, openModal } = useModal();
+  const { isModalOpen, closeModal } = useModal();
   const modalRef = useRef();
   useClickOutside([modalRef], () => {
     if (isModalOpen) {
@@ -20,7 +20,7 @@ const Modal = ({ children }) => {
     return () => {
       window.removeEventListener('keydown', handleEscKeyDown);
     };
-  }, []);
+  }, [closeModal]);
 
   return (
     <div className={styles.Overlay} ref={modalRef} onClick={() => closeModal()}>
