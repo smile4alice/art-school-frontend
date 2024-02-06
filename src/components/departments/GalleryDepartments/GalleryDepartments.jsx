@@ -97,7 +97,7 @@ const GalleryDepartments = ({
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className=" swiper-pagination swiper-pagination-gallery"></div>
+          <div className="swiper-pagination swiper-pagination-gallery"></div>
         </div>
       )}
       {showSelect && !isDesktop && (
