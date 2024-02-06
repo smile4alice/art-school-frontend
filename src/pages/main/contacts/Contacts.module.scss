@@ -4,9 +4,11 @@
   margin: 0 auto;
   width: 100%;
   max-width: 1280px;
+  color: $black;
   .title {
     font-weight: 700;
     font-size: 1.5rem;
+    color: $black;
   }
 
   ul {
@@ -15,6 +17,7 @@
       position: relative;
       margin-bottom: 1.25rem;
       padding-left: 1.75rem;
+      color: $black;
     }
     li::before {
       content: '';
@@ -26,6 +29,7 @@
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
+      color: $black;
     }
     li:nth-child(1)::before {
       background-image: url('/icons/location.png');
@@ -67,7 +71,6 @@
 @media (min-width: 768px) {
   .contacts {
     padding: 0.5rem 2.5rem 2rem;
-    // padding: 0 1.7rem 75px;
     .mapContainer {
       height: 350px;
     }

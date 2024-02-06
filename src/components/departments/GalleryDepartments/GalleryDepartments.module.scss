@@ -4,6 +4,7 @@
   width: 100%;
   background-color: inherit;
   margin-bottom: 24px;
+  color: $black;
 
   .slidersContainer {
     width: 100%;
@@ -11,7 +12,6 @@
 
     .slider {
       margin: 0 auto;
-      //width:86%;
       overflow: hidden;
 
       .slideContent {
@@ -34,6 +34,7 @@
           font-size: 0.875rem;
           font-weight: 500;
           padding: 1rem 0 0.5rem;
+          color: $black;
         }
       }
     }
@@ -85,14 +86,3 @@
     }
   }
 }
-/*
-.errorData {
-  height: 526px;
-  @media (min-width: 768px) {
-    height: 534px;
-  }
-  @media (min-width: 1024px) {
-    height: 547px;
-  }
-}
-*/
