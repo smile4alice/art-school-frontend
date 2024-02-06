@@ -1,29 +1,31 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import { formatDate } from '@/utils/formatDate';
-import useNewsStore from '@/store/newsStore';
 import Container from '@/components/Container/Container';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
-// import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 import Navigation from './Navigation/Navigation';
 import styles from './News.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
-import usePostersStore from '@/store/posterStore';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import useVideoStore from '@/store/videoStore';
+import Select from '@/components/ui/Select/Select';
 
-const News = () => {
+const News = ({ selectOptions }) => {
   const swiperRef = useRef();
   const isLaptop = useMediaQuery({ minWidth: 1280 });
-  const { getNews } = useNewsStore();
-  const news = useNewsStore(state => state.news);
-  const loading = usePostersStore(state => state.loading);
-  const { getAllVideo } = useVideoStore();
+  const { getMainVideo, getDepartmentVideo } = useVideoStore();
   const videos = useVideoStore(state => state.videos);
+  const loading = useVideoStore(state => state.loading);
+  const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
+  //const totalPages = useVideoStore(state => state.totalPages);
+  const [page, setPage] = useState(1);
+  console.log(departmentId);
+  const changeDepartment = id => {
+    setDepartmentId(id);
+  };
 
   const replaceUrl = url => {
     if (url && url.length) {
@@ -31,108 +33,85 @@ const News = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await getNews();
-      } catch (error) {
-        console.log(error);
+  const fetchData = async () => {
+    try {
+      if (departmentId) {
+        await getDepartmentVideo(departmentId, page);
+      } else {
+        await getMainVideo(page);
+        setPage(1);
       }
-    };
+    } catch (error) {
+      console.log(error);
+      setPage(1);
+    }
+  };
+  useEffect(() => {
     fetchData();
-  }, [getNews]);
-
-  useEffect(() => {
-    const fetchVideo = async () => {
-      try {
-        await getAllVideo();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchVideo();
-  }, [getAllVideo]);
-
-  console.log(videos);
-
+    //eslint-disable-next-line
+  }, [page, departmentId]);
   return (
     <section className={`${styles.News} section`}>
+      {departmentId && isLaptop && (
+        <Select
+          title="Обрати відділ"
+          options={selectOptions}
+          changeDepartment={changeDepartment}
+        />
+      )}
       <Container>
-        <h2 className={styles.title}>Події</h2>
-        {/* {isLaptop && (
-          <div className={styles.ButtonContainer}>
-            <NavLinkButton text={'Переглянути всі новини'} href={'/events'} />
-          </div>
-        )} */}
-        {!loading ? (
-          <div className={styles.wrapper}>
-            {news?.length > 0 ? (
-              <Swiper
-                className={styles.Slider}
-                spaceBetween={50}
-                slidesPerView={1}
-                modules={[Pagination]}
-                pagination={{ clickable: true }}
-                loop={true}
-                onSwiper={swiper => {
-                  swiperRef.current = swiper;
-                }}
-              >
-                {videos &&
-                  Array.isArray(videos) &&
-                  videos.length > 0 &&
-                  videos.map((slide, index) => (
-                    <SwiperSlide key={index} className={styles.Slide}>
-                      {loading && (
-                        <div className={styles.errorData}>Завантаження...</div>
-                      )}
-                      {!loading && (
-                        // <div
-                        //   className={styles.image}
-                        //   style={{
-                        //     background: `url(${slide.photo})`,
-                        //     backgroundSize: 'cover',
-                        //     backgroundPosition: 'center',
-                        //     backgroundRepeat: 'no-repeat',
-                        //   }}
-                        // ></div>
-                        <div className={styles.video}>
-                          <iframe
-                            src={replaceUrl(slide.media)}
-                            title="Відео з життя школи"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen
-                          ></iframe>
-                        </div>
-                      )}
-                      {/* <div className={styles.Text}>
-                        <span>{formatDate(slide.created_at)}</span>
-                        <p>{slide.title}</p>
-                      </div> */}
-                    </SwiperSlide>
-                  ))}
-                {isLaptop && (
-                  <Navigation
-                    onPrevClick={() => swiperRef.current.slidePrev()}
-                    onNextClick={() => swiperRef.current.slideNext()}
-                  />
-                )}
-              </Swiper>
-            ) : (
-              <div className="errorData">
-                <Placeholder />
-              </div>
-            )}
-          </div>
-        ) : (
-          <Spinner />
-        )}
-
-        {/* {!isLaptop && (
-          <div className={styles.ButtonContainer}>
-            <NavLinkButton text={'Переглянути всі новини'} href={'/events'} />
-          </div>
-        )} */}
+        {!departmentId && <h2 className={styles.title}>Події</h2>}
+        <div className={styles.wrapper}>
+          {loading === 'loading' && <Spinner />}
+          {!loading && videos?.length > 0 ? (
+            <Swiper
+              className={styles.Slider}
+              spaceBetween={50}
+              slidesPerView={1}
+              modules={[Pagination]}
+              pagination={{ clickable: true }}
+              loop={true}
+              onSwiper={swiper => {
+                swiperRef.current = swiper;
+              }}
+            >
+              {videos &&
+                Array.isArray(videos) &&
+                videos.length > 0 &&
+                videos.map((slide, index) => (
+                  <SwiperSlide key={index} className={styles.Slide}>
+                    {!loading && (
+                      <div className={styles.video}>
+                        <iframe
+                          src={replaceUrl(slide.media)}
+                          title="Відео з життя школи"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    )}
+                  </SwiperSlide>
+                ))}
+              {isLaptop && (
+                <Navigation
+                  onPrevClick={() => swiperRef.current.slidePrev()}
+                  onNextClick={() => swiperRef.current.slideNext()}
+                />
+              )}
+            </Swiper>
+          ) : (
+            <div className="errorData">
+              <Placeholder />
+            </div>
+          )}
+          {departmentId && !isLaptop && (
+            <Select
+              title="Обрати відділ"
+              options={selectOptions}
+              changeDepartment={changeDepartment}
+            />
+          )}
+        </div>
       </Container>
     </section>
   );

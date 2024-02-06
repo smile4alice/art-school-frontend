@@ -50,7 +50,6 @@ const useVideoStore = create((set, get) => ({
         };
       });
       const response = await axios.get(`/gallery/video?is_pinned=true${page ? `&page=${page}&size=5` : ''}`);
-      //console.log(response.data);
       set(() => {
         return {
           videos: response.data.items,
@@ -80,6 +79,7 @@ const useVideoStore = create((set, get) => ({
         };
       });
       const response = await axios.get(`/departments/sub_department_video/${id}${page ? `?page=${page}&size=5` : ''}`);
+      console.log(response.data.items);
       set(() => {
         return {
           videos: response.data.items,
@@ -94,7 +94,8 @@ const useVideoStore = create((set, get) => ({
     } catch (error) {
       set(() => {
         return {
-          loading: false,
+          videos: [],
+          loading: 'error',
           error: error.message,
         };
       });

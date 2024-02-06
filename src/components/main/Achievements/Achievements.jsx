@@ -19,8 +19,6 @@ import { useActiveImg } from '@/store/selectImg';
 const Achievements = ({
   title,
   url,
-  departmentId,
-  changeDepartment,
   showSelect,
   selectOptions,
 }) => {
@@ -31,6 +29,11 @@ const Achievements = ({
   const [loadingState, setLoadingState] = useState('loading');
   const { isModalOpen, openModal } = useModal();
   const { activeImg, setActiveImg } = useActiveImg();
+  const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
+
+  const changeDepartment = id => {
+    setDepartmentId(id);
+  };
 
   const setActiveImgUrl = async id => {
     const selectImg = await achievements.find(item => item.id === id);
