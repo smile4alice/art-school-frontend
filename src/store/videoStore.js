@@ -5,19 +5,77 @@ import { isDataValid } from '@/utils/formDataValidation';
 const useVideoStore = create((set, get) => ({
   loading: false,
   videos: [],
+  videoPositions: [],
   media: {},
   error: '',
+  videoPageCount: '',
+  pageSize: 10,
 
-  getAllVideo: async () => {
+  getAllVideo: async page => {
     try {
       set(() => {
         return {
           loading: true,
         };
       });
-      const response = await axios.get(
-        `/gallery/video?reverse=true&page=1&size=50`
-      );
+      const response = await axios.get(`/gallery/video?page=${page}&size=50`);
+      set(() => {
+        return {
+          videos: response.data.items,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+    } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+          error: error.message,
+        };
+      });
+      throw new Error(error);
+    }
+  },
+
+  getMainVideo: async () => {
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const response = await axios.get(`/gallery/video?is_pinned=true`);
+      set(() => {
+        return {
+          videos: response.data.items,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+    } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+          error: error.message,
+        };
+      });
+      throw new Error(error);
+    }
+  },
+  getDepartmentVideo: async (id) => {
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const response = await axios.get(`/departments/sub_department_video/${id}`);
       set(() => {
         return {
           videos: response.data.items,
@@ -183,6 +241,18 @@ const useVideoStore = create((set, get) => ({
         }, 3000);
         throw new Error(error);
       }
+    }
+  },
+  getVideoPositions: async () => {
+    try {
+      const response = await axios.get(`/gallery/positions?is_video=true`);
+      set(() => {
+        return {
+          videoPositions: response.data,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
   },
 }));
