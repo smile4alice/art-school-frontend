@@ -11,6 +11,9 @@ import s from './GalleryDepartments.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
+import Modal from '@/components/ui/Modal/Modal';
+import { useModal } from '@/store/modalStore';
+import { useActiveImg } from '@/store/selectImg';
 
 const GalleryDepartments = ({
   url,
@@ -22,9 +25,16 @@ const GalleryDepartments = ({
   const { getDepartmentAchievements } = useServicesStore();
   const gallery = useServicesStore(state => state.gallery);
   const isDesktop = useMediaQuery({ minWidth: 1280 });
-  const swiperGalaryRef = useRef();
+  const swiperGalleryRef = useRef();
   const [loadingState, setLoadingState] = useState('loading');
+  const { isModalOpen, openModal } = useModal();
+  const { activeImg, setActiveImg } = useActiveImg();
 
+  const setActiveImgUrl = async id => {
+    const selectImg = await gallery.find(item => item.id === id);
+    setActiveImg(selectImg);
+   
+  };
   useEffect(() => {
     const fetchData = async () => {
       setLoadingState('loading');
@@ -61,14 +71,14 @@ const GalleryDepartments = ({
         <div className={s.slidersContainer}>
           {isDesktop && gallery?.length > 3 && (
             <SwiperButtons
-              onPrevClick={() => swiperGalaryRef.current.slidePrev()}
-              onNextClick={() => swiperGalaryRef.current.slideNext()}
+              onPrevClick={() => swiperGalleryRef.current.slidePrev()}
+              onNextClick={() => swiperGalleryRef.current.slideNext()}
             />
           )}
 
           <Swiper
             onSwiper={swiper => {
-              swiperGalaryRef.current = swiper;
+              swiperGalleryRef.current = swiper;
             }}
             className={s.slider}
             modules={[Pagination]}
@@ -91,7 +101,14 @@ const GalleryDepartments = ({
             {gallery?.map(item => (
               <SwiperSlide className={s.slideContent} key={item.id}>
                 <div className={s.slidePhoto}>
-                  <img src={item.media} alt={item.description} />
+                  <img
+                    src={item.media}
+                    alt={item.description}
+                    onClick={() => {
+                      setActiveImgUrl(item.id);
+                      openModal();
+                    }}
+                  />
                 </div>
                 <p className={s.slideText}>{item.description}</p>
               </SwiperSlide>
@@ -106,6 +123,12 @@ const GalleryDepartments = ({
           options={selectOptions}
           changeDepartment={changeDepartment}
         />
+      )}
+
+      {isModalOpen && (
+        <Modal>
+          <img src={activeImg?.media} alt={` ${activeImg.description}`} />
+        </Modal>
       )}
     </section>
   );

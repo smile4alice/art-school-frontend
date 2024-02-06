@@ -48,7 +48,7 @@ const AllNews = () => {
       />
       <Container>
         <section className={styles.wrapper}>
-          <h1 className={`${styles.title} sectionTitle`}>Новини</h1>
+          <h1 className={`${styles.title} sectionTitle`}>Заходи</h1>
           {loading ? (
             <Spinner />
           ) : (

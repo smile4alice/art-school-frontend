@@ -3,6 +3,7 @@
   border-bottom: 1px solid $accent;
   width: 100%;
   overflow: hidden;
+  color: $black;
 
   &Head {
     width: 100%;
@@ -17,7 +18,7 @@
     font-weight: 700;
     width: 80%;
     overflow: hidden;
-   // word-break: break-all;
+    color: $black;
     @media screen and (max-width: 678px) {
       font-size: 18px;
     }
@@ -27,6 +28,7 @@
     margin-top: 15px;
     font-size: 14px;
     line-height: 1.66;
+    color: $black;
     @media screen and (min-width: 1280px) {
       font-size: 18px;
       line-height: 1.66;

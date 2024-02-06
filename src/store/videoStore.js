@@ -10,15 +10,17 @@ const useVideoStore = create((set, get) => ({
   error: '',
   videoPageCount: '',
   pageSize: 10,
+  totalPages: '',
 
   getAllVideo: async page => {
+    const size = get().pageSize;
     try {
       set(() => {
         return {
           loading: true,
         };
       });
-      const response = await axios.get(`/gallery/video?page=${page}&size=50`);
+      const response = await axios.get(`/gallery/video?page=${page}&size=${size}`);
       set(() => {
         return {
           videos: response.data.items,
@@ -40,17 +42,19 @@ const useVideoStore = create((set, get) => ({
     }
   },
 
-  getMainVideo: async () => {
+  getMainVideo: async (page) => {
     try {
       set(() => {
         return {
           loading: true,
         };
       });
-      const response = await axios.get(`/gallery/video?is_pinned=true`);
+      const response = await axios.get(`/gallery/video?is_pinned=true${page ? `&page=${page}&size=5` : ''}`);
+      //console.log(response.data);
       set(() => {
         return {
           videos: response.data.items,
+          totalPages: response.data.pages
         };
       });
       set(() => {
@@ -68,17 +72,18 @@ const useVideoStore = create((set, get) => ({
       throw new Error(error);
     }
   },
-  getDepartmentVideo: async (id) => {
+  getDepartmentVideo: async (id, page) => {
     try {
       set(() => {
         return {
           loading: true,
         };
       });
-      const response = await axios.get(`/departments/sub_department_video/${id}`);
+      const response = await axios.get(`/departments/sub_department_video/${id}${page ? `?page=${page}&size=5` : ''}`);
       set(() => {
         return {
           videos: response.data.items,
+          totalPages: response.data.pages
         };
       });
       set(() => {

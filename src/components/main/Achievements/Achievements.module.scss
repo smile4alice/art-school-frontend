@@ -4,18 +4,13 @@
   width: 100%;
   background-color: inherit;
   margin-bottom: 35px;
-  padding: 0;
-  /*
-  >div:first-child{
-    padding: 0;
-  }
-  */
   @media (min-width: 1280px) {
     margin-bottom: 100px;
   }
   h2 {
     font-size: 1.25rem;
     font-weight: 700;
+    color: $black;
   }
 
   .achievementsWrapper {
@@ -25,6 +20,7 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 1.5rem;
+    color: $black;
   }
   .slidersContainer {
     width: 100%;
@@ -43,10 +39,6 @@
           align-items: center;
           justify-content: center;
           img {
-            width: 100%;
-            height: 100%;
-
-            object-position: center;
             border-radius: 5px;
           }
         }
@@ -54,6 +46,7 @@
           font-size: 0.875rem;
           font-weight: 500;
           padding: 1rem 0 0.5rem;
+          color: $black;
         }
       }
     }
@@ -98,11 +91,6 @@
             width: 100%;
             height: 470px;
             border-radius: 5px;
-            overflow: hidden;
-            background: url('../../defaultImg.webp');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
           }
           .slideText {
             padding: 0.65rem 0;
