@@ -12,6 +12,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 import Container from '@/components/Container/Container';
+import { useModal } from '@/store/modalStore';
+import Modal from '@/components/ui/Modal/Modal';
+import { useActiveImg } from '@/store/selectImg';
 
 const Achievements = ({
   title,
@@ -26,7 +29,13 @@ const Achievements = ({
   const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
   const achievements = useServicesStore(state => state.achievements);
   const [loadingState, setLoadingState] = useState('loading');
+  const { isModalOpen, openModal } = useModal();
+  const { activeImg, setActiveImg } = useActiveImg();
 
+  const setActiveImgUrl = async id => {
+    const selectImg = await achievements.find(item => item.id === id);
+    setActiveImg(selectImg);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -96,7 +105,14 @@ const Achievements = ({
                 {achievements?.map(item => (
                   <SwiperSlide className={s.slideContent} key={item.id}>
                     <div className={s.slidePhoto}>
-                      <img src={item.media} alt={item.description} />
+                      <img
+                        src={item.media}
+                        alt={item.description}
+                        onClick={() => {
+                          setActiveImgUrl(item.id);
+                          openModal();
+                        }}
+                      />
                     </div>
                     <p className={s.slideText}>{item.description}</p>
                   </SwiperSlide>
@@ -113,6 +129,11 @@ const Achievements = ({
           )}
         </div>
       </Container>
+      {isModalOpen && (
+        <Modal>
+          <img src={activeImg.media} alt={` ${activeImg.description}`} />
+        </Modal>
+      )}
     </section>
   );
 };
