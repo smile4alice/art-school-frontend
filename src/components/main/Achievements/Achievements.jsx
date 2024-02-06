@@ -22,7 +22,7 @@ const Achievements = ({
   selectOptions,
 }) => {
   const swiperRef = useRef();
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
   const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
   const achievements = useServicesStore(state => state.achievements);
   const [loadingState, setLoadingState] = useState('loading');
