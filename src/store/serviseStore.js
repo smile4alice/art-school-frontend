@@ -133,12 +133,12 @@ const useServicesStore = create((set, get) => ({
       set(() => {
         if (url === 'gallery') {
           return {
-            gallery: response.data,
+            gallery: response.data.items,
             loading: 'success',
           };
         } else {
           return {
-            achievements: response.data,
+            achievements: response.data.items,
             loading: 'success',
           };
         }

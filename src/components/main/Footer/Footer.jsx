@@ -22,7 +22,7 @@ const footerLinksColumn = [
 const footerLinksColumnDepartment = [
   { title: 'Музичне відділення', path: '/music-department' },
   { title: 'Вокально-хорове відділення', path: '/vocal-department' },
-  { title: 'Хореографічне відділення', path: '/сhoreographic-department' },
+  { title: 'Хореографічне відділення', path: '/choreographic-department' },
   { title: 'Образотворче відділення', path: '/fine-arts-department' },
   { title: 'Театральне відділення', path: '/theater-department' },
   {

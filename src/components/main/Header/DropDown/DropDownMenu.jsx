@@ -16,6 +16,14 @@ const DropDownMenu = ({
 }) => {
   const isDesktop = useMediaQuery({ minWidth: 1280 });
 
+  const handleClick = path => {
+    //на початок сторінки, якщо сторінка активна
+    const currentPath = window.location.pathname;
+    if (currentPath === path) {
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <>
       <HashLink
@@ -76,6 +84,7 @@ const DropDownMenu = ({
                   key={name}
                   to={to}
                   onClick={() => {
+                    handleClick(to);
                     !isDesktop && toggleBurgerMenu();
                   }}
                 >

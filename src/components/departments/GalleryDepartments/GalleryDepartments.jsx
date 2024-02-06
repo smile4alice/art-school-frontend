@@ -17,8 +17,6 @@ import { useActiveImg } from '@/store/selectImg';
 
 const GalleryDepartments = ({
   url,
-  departmentId,
-  changeDepartment,
   showSelect,
   selectOptions,
 }) => {
@@ -29,6 +27,11 @@ const GalleryDepartments = ({
   const [loadingState, setLoadingState] = useState('loading');
   const { isModalOpen, openModal } = useModal();
   const { activeImg, setActiveImg } = useActiveImg();
+  const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
+
+  const changeDepartment = id => {
+    setDepartmentId(id);
+  };
 
   const setActiveImgUrl = async id => {
     const selectImg = await gallery.find(item => item.id === id);
