@@ -12,9 +12,9 @@ const PrivateRoute = ({ children, redirectTo = '/login' }) => {
     const checkAuth = async () => {
       await axios
         .post('auth/is-accessible')
-        .then(res => {
-          console.log(res);
-        })
+       // .then(res => {
+         // console.log(res);
+      //  })
         .catch(err => {
           console.log(err.response.data.detail);
           if (err.response.data.detail === 'Unauthorized') {

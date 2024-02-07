@@ -7,6 +7,7 @@ import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import styles from './News.module.scss';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import 'swiper/css';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import useVideoStore from '@/store/videoStore';
@@ -19,7 +20,7 @@ const News = ({ selectOptions }) => {
   const videos = useVideoStore(state => state.videos);
   const [loadingState, setLoadingState] = useState('loading');
   const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
-  const [page, setPage] = useState(1);
+  //const [page, setPage] = useState(1);
   const changeDepartment = id => {
     setDepartmentId(id);
   };
