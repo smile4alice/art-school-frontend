@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import useAuthStore from '@/store/authStore';
@@ -22,26 +22,34 @@ const CompletePasswordRecovery = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
   const [isProcessing, setIsProcessing] = useState(false);
   const error = useAuthStore(state => state.error);
+  const success = useAuthStore(state => state.success);
 
   const onSubmit = async values => {
-    const data = {
-      token: token,
-      password: values.password,
-    };
-    setIsProcessing(true);
-    const response = await resetPassword(data);
-    if (response && response.detail.status === 'success') {
-      openModal();
+    try {
+      const data = {
+        token: token,
+        password: values.password,
+      };
+      setIsProcessing(true);
+      await resetPassword(data);
       setIsProcessing(false);
-      setTimeout(() => {
-        navigate('/login/password-recovery-success');
-      }, 5000);
-    } else {
+    } catch (error) {
       setIsProcessing(false);
       setTimeout(() => {
         navigate('/login/password-recovery');
       }, 8000);
     }
+  };
+
+  useEffect(() => {
+    if (success) {
+      openModal();
+    }
+  }, [success, openModal]);
+
+  const handleClose = () => {
+    closeModal();
+    navigate('/login/password-recovery-success');
   };
 
   return (
@@ -93,7 +101,7 @@ const CompletePasswordRecovery = () => {
       </Link>
       {isModalOpen && (
         <ConfirmModal
-          handleClick={closeModal}
+          handleClick={handleClose}
           message="Пароль успішно змінено"
         />
       )}
