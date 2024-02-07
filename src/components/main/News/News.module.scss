@@ -9,7 +9,7 @@
     }
     @media screen and (min-width: 1024px) {
       font-size: 32px;
-      margin-bottom: 1rem;
+      margin-bottom: 56px;
     }
   }
   .ButtonContainer {
@@ -25,6 +25,12 @@
   .wrapper {
     position: relative;
     width: 100%;
+    .swiperContainer {
+      position: relative;
+      > button {
+        top: 55%;
+      }
+    }
     .Slider {
       position: relative;
       width: 100%;
@@ -32,8 +38,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-bottom: 2rem;
-
+      &.pagination {
+        padding-bottom: 2rem;
+      }
+      @media (min-width: 1280px) {
+        width: 1021px;
+      }
       .Slide {
         width: 100%;
         border-radius: 5px;
