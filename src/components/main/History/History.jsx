@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Container from '@/components/Container/Container';
-import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
+import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 import historyData from '@/data/about/history.json';
 import styles from './History.module.scss';
 
@@ -17,9 +17,7 @@ const History = () => {
             <p className={styles.text}>{historyData[0].description}</p>
           </div>
           <div className={styles.buttonContainer}>
-            <Link to={url}>
-              <NavLinkButton title={buttonName} to={url} />
-            </Link>
+            <NavLinkButton text={buttonName} href={url} />
           </div>
           <div className={styles.img_container}>
             <img
