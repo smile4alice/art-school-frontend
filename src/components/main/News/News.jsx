@@ -20,7 +20,6 @@ const News = ({ selectOptions }) => {
   const videos = useVideoStore(state => state.videos);
   const loading = useVideoStore(state => state.loading);
   const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
-  //const totalPages = useVideoStore(state => state.totalPages);
   const [page, setPage] = useState(1);
   console.log(departmentId);
   const changeDepartment = id => {
