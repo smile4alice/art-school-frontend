@@ -4,9 +4,10 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Container from '@/components/Container/Container';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
-import Navigation from './Navigation/Navigation';
+//import Navigation from './Navigation/Navigation';
+import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import styles from './News.module.scss';
-import 'swiper/css/navigation';
+//import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
 import Spinner from '@/components/ui/Spinner/Spinner';
@@ -20,7 +21,6 @@ const News = ({ selectOptions }) => {
   const videos = useVideoStore(state => state.videos);
   const [loadingState, setLoadingState] = useState('loading');
   const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
-  const [page, setPage] = useState(1);
   const changeDepartment = id => {
     setDepartmentId(id);
   };
@@ -35,9 +35,9 @@ const News = ({ selectOptions }) => {
     try {
       setLoadingState('loading');
       if (departmentId) {
-        await getDepartmentVideo(departmentId, page);
+        await getDepartmentVideo(departmentId);
       } else {
-        await getMainVideo(page);
+        await getMainVideo();
       }
       setLoadingState('success');
     } catch (error) {
@@ -48,7 +48,7 @@ const News = ({ selectOptions }) => {
   useEffect(() => {
     fetchData();
     //eslint-disable-next-line
-  }, [page, departmentId]);
+  }, [departmentId]);
   return (
     <section className={`${styles.News} section`}>
       {departmentId && isLaptop && (
@@ -63,39 +63,43 @@ const News = ({ selectOptions }) => {
         <div className={styles.wrapper}>
           {loadingState === 'loading' && <Spinner />}
           {loadingState === 'success' && (
-            <Swiper
-              className={styles.Slider}
-              spaceBetween={50}
-              slidesPerView={1}
-              modules={[Pagination]}
-              pagination={{ clickable: true }}
-              loop={true}
-              onSwiper={swiper => {
-                swiperRef.current = swiper;
-              }}
-            >
-              {videos &&
-                Array.isArray(videos) &&
-                videos.length > 0 &&
-                videos.map((slide, index) => (
-                  <SwiperSlide key={index} className={styles.Slide}>
-                    <div className={styles.video}>
-                      <iframe
-                        src={replaceUrl(slide.media)}
-                        title="Відео з життя школи"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              {isLaptop && (
-                <Navigation
+            <div className={styles.swiperContainer}>
+              {isLaptop && videos?.length > 1 && (
+                <SwiperButtons
                   onPrevClick={() => swiperRef.current.slidePrev()}
                   onNextClick={() => swiperRef.current.slideNext()}
                 />
               )}
-            </Swiper>
+              <Swiper
+                className={`${styles.Slider} ${
+                  videos?.length > 1 ? styles.pagination : ''
+                }`}
+                spaceBetween={50}
+                slidesPerView={1}
+                modules={[Pagination]}
+                pagination={{ clickable: true }}
+                loop={true}
+                onSwiper={swiper => {
+                  swiperRef.current = swiper;
+                }}
+              >
+                {videos &&
+                  Array.isArray(videos) &&
+                  videos.length > 0 &&
+                  videos.map((slide, index) => (
+                    <SwiperSlide key={index} className={styles.Slide}>
+                      <div className={styles.video}>
+                        <iframe
+                          src={replaceUrl(slide.media)}
+                          title="Відео з життя школи"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+            </div>
           )}
           {loadingState === 'error' && (
             <div className="errorData">
