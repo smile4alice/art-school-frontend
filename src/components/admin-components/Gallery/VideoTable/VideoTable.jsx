@@ -95,7 +95,7 @@ const VideoTable = ({ typeOfAchievements, departmentId }) => {
                 />
               </div>
               <div className={s.action}>
-                {typeOfAchievements === 'mainAchievements' && (
+                {item.pinned_position && (
                   <div className={s.count}>{item.pinned_position}</div>
                 )}
                 <Link to={`edit/${item.id}`}>

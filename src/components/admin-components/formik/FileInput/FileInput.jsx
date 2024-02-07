@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -7,14 +8,15 @@ const FileInput = ({
   label,
   field,
   photo,
-  form: { errors, setFieldValue, touched },
+  form: { errors, setFieldValue },// touched
   ...props
 }) => {
   const name = field.name;
-  const isFieldTouched = touched[field.name];
+  //const isFieldTouched = touched;
   const [imagePreview, setImagePreview] = useState('');
   const fieldValue = field.value;
-
+  console.log(errors);
+  console.log(field.name);
   useEffect(() => {
     if (!photo) return;
     setFieldValue(`${name}`, [new File([], photo, { type: 'for-url' })]);
@@ -71,7 +73,7 @@ const FileInput = ({
         )}
       </Dropzone>
       <div className={styles.errorWrap}>
-        {errors?.[field.name] && isFieldTouched && (
+        {errors?.[field.name] &&  (
           <p className={styles.errorMessage}>{errors?.[field.name]}</p>
         )}
       </div>
@@ -80,3 +82,4 @@ const FileInput = ({
 };
 
 export default FileInput;
+

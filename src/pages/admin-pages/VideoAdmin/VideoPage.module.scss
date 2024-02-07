@@ -10,6 +10,13 @@
     border-radius: 0.4375rem;
     border: 1px solid #c4b9fd;
     padding: 1.25rem 1.25rem 4.5rem;
+    margin-bottom: 2rem;
+    >div:first-child{
+      >div:last-child{
+        height: 1.5rem;
+      }
+    }
+    
     > div {
       input {
         color: $admin-accent;
@@ -18,6 +25,7 @@
         }
       }
     }
+    
     .button {
       margin-top: 1rem;
     }

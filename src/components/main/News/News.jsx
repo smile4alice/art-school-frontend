@@ -18,11 +18,9 @@ const News = ({ selectOptions }) => {
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const { getMainVideo, getDepartmentVideo } = useVideoStore();
   const videos = useVideoStore(state => state.videos);
-  const loading = useVideoStore(state => state.loading);
+  const [loadingState, setLoadingState] = useState('loading');
   const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
-  //const totalPages = useVideoStore(state => state.totalPages);
   const [page, setPage] = useState(1);
-  console.log(departmentId);
   const changeDepartment = id => {
     setDepartmentId(id);
   };
@@ -35,15 +33,16 @@ const News = ({ selectOptions }) => {
 
   const fetchData = async () => {
     try {
+      setLoadingState('loading');
       if (departmentId) {
         await getDepartmentVideo(departmentId, page);
       } else {
         await getMainVideo(page);
-        setPage(1);
       }
+      setLoadingState('success');
     } catch (error) {
       console.log(error);
-      setPage(1);
+      setLoadingState('error');
     }
   };
   useEffect(() => {
@@ -62,8 +61,8 @@ const News = ({ selectOptions }) => {
       <Container>
         {!departmentId && <h2 className={styles.title}>Події</h2>}
         <div className={styles.wrapper}>
-          {loading === 'loading' && <Spinner />}
-          {!loading && videos?.length > 0 ? (
+          {loadingState === 'loading' && <Spinner />}
+          {loadingState === 'success' && (
             <Swiper
               className={styles.Slider}
               spaceBetween={50}
@@ -80,16 +79,14 @@ const News = ({ selectOptions }) => {
                 videos.length > 0 &&
                 videos.map((slide, index) => (
                   <SwiperSlide key={index} className={styles.Slide}>
-                    {!loading && (
-                      <div className={styles.video}>
-                        <iframe
-                          src={replaceUrl(slide.media)}
-                          title="Відео з життя школи"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
-                    )}
+                    <div className={styles.video}>
+                      <iframe
+                        src={replaceUrl(slide.media)}
+                        title="Відео з життя школи"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
                   </SwiperSlide>
                 ))}
               {isLaptop && (
@@ -99,11 +96,13 @@ const News = ({ selectOptions }) => {
                 />
               )}
             </Swiper>
-          ) : (
+          )}
+          {loadingState === 'error' && (
             <div className="errorData">
               <Placeholder />
             </div>
           )}
+
           {departmentId && !isLaptop && (
             <Select
               title="Обрати відділ"

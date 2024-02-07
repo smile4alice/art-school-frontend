@@ -31,7 +31,6 @@ const AddVideoPage = () => {
   const [title, setTitle] = useState('Всі відео')
 
   const onSubmit = async values => {
-    console.log(values);
     try {
       const formData = new FormData();
       formData.append('media', values.media);
