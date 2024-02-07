@@ -108,11 +108,13 @@ const News = ({ selectOptions }) => {
           )}
 
           {departmentId && !isLaptop && (
-            <Select
-              title="Обрати відділ"
-              options={selectOptions}
-              changeDepartment={changeDepartment}
-            />
+            <div className={styles.select}>
+              <Select
+                title="Обрати відділ"
+                options={selectOptions}
+                changeDepartment={changeDepartment}
+              />
+            </div>
           )}
         </div>
       </Container>
