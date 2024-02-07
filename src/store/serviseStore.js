@@ -326,7 +326,7 @@ const useServicesStore = create((set, get) => ({
   //Позиції досягнень головної сторінки
   getAchievementsPositions: async url => {
     try {
-      const response = await axios.get(`/${url}/positions`);
+      const response = await axios.get(`/${url}/positions?is_video=false`);
       set(() => {
         return {
           achievementsPositions: response.data,

@@ -15,8 +15,6 @@ const FileInput = ({
   //const isFieldTouched = touched;
   const [imagePreview, setImagePreview] = useState('');
   const fieldValue = field.value;
-  console.log(errors);
-  console.log(field.name);
   useEffect(() => {
     if (!photo) return;
     setFieldValue(`${name}`, [new File([], photo, { type: 'for-url' })]);
