@@ -30,7 +30,7 @@ const CompletePasswordRecovery = () => {
     };
     setIsProcessing(true);
     const response = await resetPassword(data);
-    if (response && response.status === 200) {
+    if (response && response.detail.status === 'success') {
       openModal();
       setIsProcessing(false);
       setTimeout(() => {
