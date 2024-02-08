@@ -23,9 +23,9 @@
 }
 .prevSlide {
   left: 1.69rem;
-  transform: translateY(-5%);
+  transform: translateY(-100%);
 }
 .nextSlide {
-  transform: rotate(180deg) translateY(30%);
+  transform: rotate(180deg) translateY(100%);
   right: 1.69rem;
 }

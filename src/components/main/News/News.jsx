@@ -11,6 +11,7 @@ import 'swiper/css';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import useVideoStore from '@/store/videoStore';
 import Select from '@/components/ui/Select/Select';
+import Navigation from './Navigation/Navigation';
 
 const News = ({ selectOptions }) => {
   const swiperRef = useRef();
@@ -19,7 +20,6 @@ const News = ({ selectOptions }) => {
   const videos = useVideoStore(state => state.videos);
   const [loadingState, setLoadingState] = useState('loading');
   const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
-  const [page, setPage] = useState(1);
   const changeDepartment = id => {
     setDepartmentId(id);
   };
@@ -104,6 +104,12 @@ const News = ({ selectOptions }) => {
             <div className="errorData">
               <Placeholder />
             </div>
+          )}
+          {!isLaptop && (
+            <Navigation
+              onPrevClick={() => swiperRef.current.slidePrev()}
+              onNextClick={() => swiperRef.current.slideNext()}
+            />
           )}
 
           {departmentId && !isLaptop && (
