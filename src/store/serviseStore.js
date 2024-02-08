@@ -119,18 +119,18 @@ const useServicesStore = create((set, get) => ({
     }
   },
   // досягнення відділу по id
-  getDepartmentAchievements: async (url, id) => {
+  getDepartmentAchievementsPage: async (url, id, page, size) => {
     const newUrl = url === 'achievements' ? 'achievement' : url;
     try {
       const response = await axios.get(
-        `/departments/sub_department_${newUrl}/${id}`
+        `/departments/sub_department_${newUrl}/${id}${page ? `?page=${page}`: ''}${size ? `&size=${size}`: ''}`
       );
-      return response.data.items;
+      return response.data;
     } catch (error) {
       throw new Error(error);
     }
   },
-  /*
+  
   getDepartmentAchievements: async (url, id) => {
     const newUrl = url === 'achievements' ? 'achievement' : url;
     try {
@@ -172,7 +172,7 @@ const useServicesStore = create((set, get) => ({
       throw new Error(error);
     }
   },
-  */
+  
   //конкретне досягнення по id
 
   getAchievemenById: async (url, id) => {
