@@ -7,6 +7,7 @@ import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import styles from './News.module.scss';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import 'swiper/css';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import useVideoStore from '@/store/videoStore';
@@ -112,12 +113,15 @@ const News = ({ selectOptions }) => {
             />
           )}
 
+
           {departmentId && !isLaptop && (
-            <Select
-              title="Обрати відділ"
-              options={selectOptions}
-              changeDepartment={changeDepartment}
-            />
+            <div className={styles.select}>
+              <Select
+                title="Обрати відділ"
+                options={selectOptions}
+                changeDepartment={changeDepartment}
+              />
+            </div>
           )}
         </div>
       </Container>
