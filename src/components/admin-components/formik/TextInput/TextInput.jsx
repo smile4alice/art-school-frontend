@@ -7,16 +7,26 @@ const TextInput = ({
   field,
   text,
   label,
-  form: { errors, handleBlur, touched, setFieldValue },
+  form: { errors, handleBlur, setFieldValue },//, touched
   maxLength,
   showCharacterCount,
   placeholder,
 }) => {
   const name = field.name;
-  const isFieldTouched = touched[field.name];
+  //const isFieldTouched = touched?.[field.name];
   const { isFocused, setIsFocused } = useFocused();
   const valueLength =
     field.value?.length !== undefined ? field.value?.length : 0;
+  //додав оновлення даних після завантаження
+    useEffect(() => {
+      if (field.value) {
+        setFieldValue(`${name}`, field.value);
+        console.log(field.value);
+      }
+      //eslint-disable-next-line
+    }, [field.value]);
+
+
   useEffect(() => {
     if (!text) return;
     setFieldValue(`${name}`, text);
