@@ -106,10 +106,13 @@ const News = ({ selectOptions }) => {
               <Placeholder />
             </div>
           )}
-          <Navigation
-            onPrevClick={() => swiperRef.current.slidePrev()}
-            onNextClick={() => swiperRef.current.slideNext()}
-          />
+          {!isLaptop && (
+            <Navigation
+              onPrevClick={() => swiperRef.current.slidePrev()}
+              onNextClick={() => swiperRef.current.slideNext()}
+            />
+          )}
+
 
           {departmentId && !isLaptop && (
             <div className={styles.select}>
