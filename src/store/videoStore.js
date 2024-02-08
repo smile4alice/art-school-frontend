@@ -79,7 +79,7 @@ const useVideoStore = create((set, get) => ({
         };
       });
       const response = await axios.get(`/departments/sub_department_video/${id}${page ? `?page=${page}&size=5` : ''}`);
-      console.log(response.data.items);
+      //console.log(response.data.items);
       set(() => {
         return {
           videos: response.data.items,
