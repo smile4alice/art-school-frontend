@@ -25,6 +25,9 @@
   .wrapper {
     position: relative;
     width: 100%;
+    >.select{
+      padding-top: .5rem;
+    }
     .swiperContainer {
       position: relative;
       > button {

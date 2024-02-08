@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Dropzone from 'react-dropzone';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -15,6 +14,17 @@ const FileInput = ({
   //const isFieldTouched = touched;
   const [imagePreview, setImagePreview] = useState('');
   const fieldValue = field.value;
+  //додав оновлення даних після завантаження
+  useEffect(() => {
+    if (field.value) {
+      setFieldValue(`${name}`, field.value);
+     // console.log(field.value);
+    }
+    //eslint-disable-next-line
+  }, [field.value]);
+
+
+
   useEffect(() => {
     if (!photo) return;
     setFieldValue(`${name}`, [new File([], photo, { type: 'for-url' })]);

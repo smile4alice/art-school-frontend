@@ -122,6 +122,18 @@ const useServicesStore = create((set, get) => ({
   getDepartmentAchievements: async (url, id) => {
     const newUrl = url === 'achievements' ? 'achievement' : url;
     try {
+      const response = await axios.get(
+        `/departments/sub_department_${newUrl}/${id}`
+      );
+      return response.data.items;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  /*
+  getDepartmentAchievements: async (url, id) => {
+    const newUrl = url === 'achievements' ? 'achievement' : url;
+    try {
       set(() => {
         return {
           loading: 'loading',
@@ -160,6 +172,7 @@ const useServicesStore = create((set, get) => ({
       throw new Error(error);
     }
   },
+  */
   //конкретне досягнення по id
 
   getAchievemenById: async (url, id) => {
