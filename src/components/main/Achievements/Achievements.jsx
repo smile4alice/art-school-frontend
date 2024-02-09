@@ -39,6 +39,7 @@ const Achievements = ({
     const selectImg = await achievements.find(item => item.id === id);
     setActiveImg(selectImg);
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -94,19 +95,22 @@ const Achievements = ({
                 modules={[Pagination]}
                 spaceBetween={16}
                 slidesPerView={1}
+                slidesPerGroup={1}
                 pagination={{ clickable: true }}
                 loop={true}
                 breakpoints={{
                   768: {
                     slidesPerView: 2,
+                    slidesPerGroup: 2,
                   },
                   1280: {
                     slidesPerView: 3,
+                    slidesPerGroup: 3,
                   },
                 }}
               >
                 {achievements?.map(item => (
-                  <SwiperSlide className={s.slideContent} key={item.id}>
+                  <SwiperSlide className={`swiper-lazy ${s.slideContent}`} key={item.id}>
                     <div className={s.slidePhoto}>
                       <img
                         src={item.media}
