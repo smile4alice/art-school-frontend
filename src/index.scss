@@ -14,7 +14,6 @@ html {
 }
 
 body {
-  min-height: 100vh;
   min-width: 320px;
   font-family: 'Mulish', sans-serif;
   overflow-x: hidden;
@@ -124,14 +123,4 @@ iframe {
   font-size: 18px;
   color: $admin-red;
   margin-top: -1rem;
-}
-
-#header-bar {
-  min-height: 10px;
-}
-#pdf-page-wrapper {
-  margin: 0;
-}
-#pdf-controls {
-  background-color: $accent;
 }

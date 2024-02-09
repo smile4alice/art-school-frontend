@@ -8,9 +8,10 @@
     padding: 40px 0 60px 0;
   }
 }
-.title{
+.title {
   margin-bottom: 1rem;
   font-weight: 700;
+  color: $black;
   @media screen and (min-width: 1280px) {
     font-size: 2rem;
   }
@@ -39,6 +40,7 @@
 .text {
   @include font(16px, 400, 1.44);
   margin: 20px 0;
+  color: $black;
 
   @include desktop {
     @include font(18px, 400, 1.44);
