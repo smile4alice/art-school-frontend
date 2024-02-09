@@ -19,7 +19,6 @@
 .logoText {
   width: 170px;
   font-family: 'Mulish';
-  color: $white;
   @include font(14px, 800, 1.2);
 
   @media screen and (min-width: 768px) {
