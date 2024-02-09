@@ -19,6 +19,11 @@
   flex-direction: column;
   width: 100%;
   color: $black;
+  >section:nth-child(3){
+    >div{
+      padding: 0;
+    }
+  }
   > section:last-child {
     margin-bottom: 70px;
     > div {

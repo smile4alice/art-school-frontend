@@ -16,12 +16,7 @@ import { useModal } from '@/store/modalStore';
 import Modal from '@/components/ui/Modal/Modal';
 import { useActiveImg } from '@/store/selectImg';
 
-const Achievements = ({
-  title,
-  url,
-  showSelect,
-  selectOptions,
-}) => {
+const Achievements = ({ title, url, showSelect, selectOptions }) => {
   const swiperRef = useRef();
   const isDesktop = useMediaQuery({ minWidth: 1280 });
   const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
@@ -95,33 +90,36 @@ const Achievements = ({
                 modules={[Pagination]}
                 spaceBetween={16}
                 slidesPerView={1}
-                slidesPerGroup={1}
                 pagination={{ clickable: true }}
                 loop={true}
                 breakpoints={{
                   768: {
                     slidesPerView: 2,
-                    slidesPerGroup: 2,
                   },
                   1280: {
                     slidesPerView: 3,
-                    slidesPerGroup: 3,
                   },
                 }}
               >
                 {achievements?.map(item => (
-                  <SwiperSlide className={`swiper-lazy ${s.slideContent}`} key={item.id}>
-                    <div className={s.slidePhoto}>
-                      <img
-                        src={item.media}
-                        alt={item.description}
-                        onClick={() => {
-                          setActiveImgUrl(item.id);
-                          openModal();
-                        }}
-                      />
-                    </div>
-                    <p className={s.slideText}>{item.description}</p>
+                  <SwiperSlide
+                    className={`swiper-lazy ${s.slideContent}`}
+                    key={item.id}
+                  >
+                    <>
+                      <div className={s.slidePhoto} loading="lazy">
+                        <img
+                          src={item.media}
+                          alt={item.description}
+                          onClick={() => {
+                            setActiveImgUrl(item.id);
+                            openModal();
+                          }}
+                        />
+                      </div>
+                      <p className={s.slideText}>{item.description}</p>
+                    </>
+                    <div className="swiper-lazy-preloader"></div>
                   </SwiperSlide>
                 ))}
               </Swiper>

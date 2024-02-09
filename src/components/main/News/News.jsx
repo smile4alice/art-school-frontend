@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import VideoButtons from './VideoButtons/VideoButtons';
 import Container from '@/components/Container/Container';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
@@ -12,7 +13,6 @@ import 'swiper/css';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import useVideoStore from '@/store/videoStore';
 import Select from '@/components/ui/Select/Select';
-import Navigation from './Navigation/Navigation';
 
 const News = ({ selectOptions }) => {
   const swiperRef = useRef();
@@ -76,9 +76,10 @@ const News = ({ selectOptions }) => {
                 }`}
                 spaceBetween={50}
                 slidesPerView={1}
+                slidesPerGroup={1}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
-                loop={true}
+                //loop={true}//прибрав, так працює стабільніше
                 onSwiper={swiper => {
                   swiperRef.current = swiper;
                 }}
@@ -87,8 +88,11 @@ const News = ({ selectOptions }) => {
                   Array.isArray(videos) &&
                   videos.length > 0 &&
                   videos.map((slide, index) => (
-                    <SwiperSlide key={index} className={styles.Slide}>
-                      <div className={styles.video}>
+                    <SwiperSlide
+                      key={index}
+                      className={`swiper-lazy ${styles.Slide}`}
+                    >
+                      <div className={` ${styles.video}`}>
                         <iframe
                           src={replaceUrl(slide.media)}
                           title="Відео з життя школи"
@@ -96,6 +100,7 @@ const News = ({ selectOptions }) => {
                           allowFullScreen
                         ></iframe>
                       </div>
+                      <div className="swiper-lazy-preloader"></div>
                     </SwiperSlide>
                   ))}
               </Swiper>
@@ -106,13 +111,12 @@ const News = ({ selectOptions }) => {
               <Placeholder />
             </div>
           )}
-          {!isLaptop && (
-            <Navigation
-              onPrevClick={() => swiperRef.current.slidePrev()}
-              onNextClick={() => swiperRef.current.slideNext()}
-            />
-          )}
 
+          {!isLaptop && videos?.length > 1 && (
+            <VideoButtons
+            onPrevClick={() => swiperRef.current.slidePrev()}
+            onNextClick={() => swiperRef.current.slideNext()}/>
+          )}
 
           {departmentId && !isLaptop && (
             <div className={styles.select}>

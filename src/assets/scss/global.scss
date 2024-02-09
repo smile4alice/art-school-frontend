@@ -10,7 +10,8 @@ body {
 }
 
 main {
-  min-height: 80vh; //прибрати? якщо прибрати то коли на сторінці немає контенту, футер "підстрибує" наверх
+  //min-height: 80vh; //прибрати? якщо прибрати то коли на сторінці немає контенту, футер "підстрибує" наверх
+  min-height: 40vh; // потестити, збільшує відступи
   margin-top: 110px;
   @media only screen and (orientation: landscape) {
     margin-top: 91px;
