@@ -23,7 +23,7 @@ const NewsPost = () => {
               <div className={styles.buttonContainer}>
                 <NavLinkButton
                   href={'/events'}
-                  text={'переглянути всі новини'}
+                  text={'переглянути всі заходи'}
                 />
               </div>
               <p className={styles.date}>{formatDate(post.created_at)}</p>

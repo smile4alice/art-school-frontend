@@ -33,7 +33,9 @@ const CompletePasswordRecovery = () => {
       setIsProcessing(true);
       await resetPassword(data);
       setIsProcessing(false);
+      openModal();
     } catch (error) {
+      console.log(error);
       setIsProcessing(false);
       setTimeout(() => {
         navigate('/login/password-recovery');
