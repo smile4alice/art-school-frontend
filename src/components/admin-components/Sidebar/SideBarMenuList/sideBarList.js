@@ -6,7 +6,7 @@ export const sideBarList = [
     iconClass: 'icon-sliders',
   },
   {
-    title: 'Новини',
+    title: 'Події',
     link: 'news',
     isFilled: true,
     iconClass: 'icon-news',

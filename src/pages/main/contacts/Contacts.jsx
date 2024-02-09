@@ -37,38 +37,41 @@ const Contacts = () => {
         title="Контакти КДЩМ №2 ім. М.І.Вериківського"
         description="Адреса: вул.Бульварно-Кудрявська, 2, телефон: +38(044)272-00-30"
       />
-      <div className={s.contacts}>
-        <h1 className={s.title}>Наші контакти</h1>
-        <ul className="list">
-          <li>{contacts.address}</li>
-          <li>Пн-Пт 10:00-17:00</li>
-          <li>
-            <a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
-          </li>
-          <li>
-            <a href={`tel:${contacts.email}`}>{contacts.email}</a>
-          </li>
-        </ul>
-        <div className={s.mapContainer}>
-          <MapContainer
-            center={{ lat: 50.45449, lng: 30.50435 }}
-            zoom={17}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[50.45449, 30.50435]} icon={customIcon}>
-              <Popup>
-                <div className={s.popup}>
-                  <h3>Наша адреса</h3>
-                  <p>{contacts.address}</p>
-                  <p>{contacts.phone}</p>
-                </div>
-              </Popup>
-            </Marker>
-          </MapContainer>
+      <div className={s.wrapper}>
+        <div className={s.contacts}>
+          <h1 className={s.title}>Наші контакти</h1>
+          <ul className="list">
+            <li>{contacts.address}</li>
+            <li>Пн-Пт 10:00-17:00</li>
+            <li>
+              <a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
+            </li>
+            <li>
+              <a href={`tel:${contacts.email}`}>{contacts.email}</a>
+            </li>
+          </ul>
+          <div className={s.mapContainer}>
+            <MapContainer
+              center={{ lat: 50.4544, lng: 30.5043 }}
+              zoom={18}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                detectRetina={true}
+              />
+              <Marker position={[50.45449, 30.50435]} icon={customIcon}>
+                <Popup>
+                  <div className={s.popup}>
+                    <h3>Наша адреса</h3>
+                    <p>{contacts.address}</p>
+                    <p>{contacts.phone}</p>
+                  </div>
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
         </div>
       </div>
     </>
