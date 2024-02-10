@@ -7,7 +7,7 @@ const TextInput = ({
   field,
   text,
   label,
-  form: { errors, handleBlur, setFieldValue },//, touched
+  form: { errors, handleBlur, setFieldValue }, //, touched
   maxLength,
   showCharacterCount,
   placeholder,
@@ -18,14 +18,13 @@ const TextInput = ({
   const valueLength =
     field.value?.length !== undefined ? field.value?.length : 0;
   //додав оновлення даних після завантаження
-    useEffect(() => {
-      if (field.value) {
-        setFieldValue(`${name}`, field.value);
-        console.log(field.value);
-      }
-      //eslint-disable-next-line
-    }, [field.value]);
-
+  useEffect(() => {
+    if (field.value) {
+      setFieldValue(`${name}`, field.value);
+      console.log(field.value);
+    }
+    //eslint-disable-next-line
+  }, [field.value]);
 
   useEffect(() => {
     if (!text) return;

@@ -1,6 +1,5 @@
 .NotFound {
   width: 100vw;
-  min-height: 100vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -32,6 +31,25 @@
       @media screen and (max-width: 768px) {
         font-size: 14px;
       }
+    }
+  }
+  .button {
+    display: flex;
+    width: 288px;
+    height: 2.75rem;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: $accent;
+    color: $white;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    @media screen and (min-width: 678px) {
+      width: 280px;
     }
   }
 }

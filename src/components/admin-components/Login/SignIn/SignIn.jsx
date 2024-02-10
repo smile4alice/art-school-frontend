@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router';
 import { Formik, Form, Field } from 'formik';
@@ -18,6 +18,7 @@ const initialValues = {
 };
 
 const SignIn = () => {
+  const [active, setActive] = useState(false);
   const { setIsAuthorized } = useAuthorized();
   const isAuthorized = useAuthorized(state => state.isAuthorized);
   const { login } = useAuthStore();
@@ -34,10 +35,9 @@ const SignIn = () => {
     }
   };
 
-  console.log(error);
-
   useEffect(() => {
     checkToken('access_token');
+    setActive(true);
   }, []);
 
   if (isAuthorized) return <Navigate to="/admin" />;
@@ -84,9 +84,7 @@ const SignIn = () => {
                 <ButtonSubmit
                   handlerSubmitButton={onSubmit}
                   nameButton="Увійти"
-                  isActive={
-                    formik.isValid && Object.keys(formik.touched).length
-                  }
+                  isActive={formik.isValid && active}
                 />
               </div>
             </Form>
