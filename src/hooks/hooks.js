@@ -32,4 +32,8 @@ const truncateString = (maxLength, string) => {
 };
 
 
-export { useToggle, useClickOutside, truncateString, };
+
+
+
+
+export { useToggle, useClickOutside, truncateString};

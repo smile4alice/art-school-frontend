@@ -71,7 +71,7 @@ const GalleryDepartments = ({ url, showSelect, selectOptions }) => {
   };
 
 
-
+/*
 
   let startX = 0;
   let startY = 0;
@@ -106,7 +106,22 @@ const GalleryDepartments = ({ url, showSelect, selectOptions }) => {
     deltaY = 0;
   };
 
+  useEffect(() => {
+    const sliderElement = sliderRef.current;
 
+    // Додаємо обробники подій
+    sliderElement.addEventListener('touchstart', handleTouchStart);
+    sliderElement.addEventListener('touchmove', handleTouchMove, { passive: true });
+    sliderElement.addEventListener('touchend', handleTouchEnd);
+
+    // Прибираємо обробники подій при виході з компонента
+    return () => {
+      sliderElement.removeEventListener('touchstart', handleTouchStart);
+      sliderElement.removeEventListener('touchmove', handleTouchMove);
+      sliderElement.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, []);
+*/
   return (
     <section className={`${s.gallery} `}>
       {showSelect && isDesktop && (
@@ -130,9 +145,9 @@ const GalleryDepartments = ({ url, showSelect, selectOptions }) => {
           )}
           <div
             ref={sliderRef}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+            //onTouchStart={handleTouchStart}
+           // onTouchMove={handleTouchMove}
+            //onTouchEnd={handleTouchEnd}
             className={s.slider}
           >
             {data?.map(item => (

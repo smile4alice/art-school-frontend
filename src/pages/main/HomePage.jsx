@@ -23,7 +23,7 @@ const HomePage = () => {
         url={'achievements'}
         showSelect={false}
       />
-      <Map />
+       <Map />
     </>
   );
 };

@@ -79,7 +79,10 @@ iframe {
   width: 100%;
   height: 100%;
 }
-
+.swiper-lazy-preloader {
+  border: 4px solid rgba($accent, 0.3);
+  border-top: 4px solid $accent;
+}
 .swiper-pagination-bullet {
   width: 8px;
   height: 8px;

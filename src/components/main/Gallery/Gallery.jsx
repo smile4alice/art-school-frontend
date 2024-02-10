@@ -69,9 +69,6 @@ const Gallery = () => {
                 768: {
                   slidesPerView: 2,
                 },
-                1280: {
-                  slidesPerView: 3,
-                },
               }}
               pagination={{ clickable: true }}
               loop={true}
@@ -80,8 +77,9 @@ const Gallery = () => {
               }}
             >
               {gallery.map((slide, index) => (
-                <SwiperSlide key={index} className={s.slide}>
-                  <img src={slide.media} alt={slide.description} />
+                <SwiperSlide key={index} className={`swiper-lazy ${s.slide}`}>
+                  <img src={slide.media} alt={slide.description} loading="lazy"/>
+                  <div className="swiper-lazy-preloader"></div>
                 </SwiperSlide>
               ))}
             </Swiper>

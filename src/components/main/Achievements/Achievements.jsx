@@ -16,12 +16,7 @@ import { useModal } from '@/store/modalStore';
 import Modal from '@/components/ui/Modal/Modal';
 import { useActiveImg } from '@/store/selectImg';
 
-const Achievements = ({
-  title,
-  url,
-  showSelect,
-  selectOptions,
-}) => {
+const Achievements = ({ title, url, showSelect, selectOptions }) => {
   const swiperRef = useRef();
   const isDesktop = useMediaQuery({ minWidth: 1280 });
   const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
@@ -39,6 +34,7 @@ const Achievements = ({
     const selectImg = await achievements.find(item => item.id === id);
     setActiveImg(selectImg);
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -106,18 +102,24 @@ const Achievements = ({
                 }}
               >
                 {achievements?.map(item => (
-                  <SwiperSlide className={s.slideContent} key={item.id}>
-                    <div className={s.slidePhoto}>
-                      <img
-                        src={item.media}
-                        alt={item.description}
-                        onClick={() => {
-                          setActiveImgUrl(item.id);
-                          openModal();
-                        }}
-                      />
-                    </div>
-                    <p className={s.slideText}>{item.description}</p>
+                  <SwiperSlide
+                    className={`swiper-lazy ${s.slideContent}`}
+                    key={item.id}
+                  >
+                    <>
+                      <div className={s.slidePhoto} loading="lazy">
+                        <img
+                          src={item.media}
+                          alt={item.description}
+                          onClick={() => {
+                            setActiveImgUrl(item.id);
+                            openModal();
+                          }}
+                        />
+                      </div>
+                      <p className={s.slideText}>{item.description}</p>
+                    </>
+                    <div className="swiper-lazy-preloader"></div>
                   </SwiperSlide>
                 ))}
               </Swiper>
