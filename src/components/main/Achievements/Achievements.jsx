@@ -1,37 +1,42 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
-import Select from '@/components/ui/Select/Select';
 import useServicesStore from '@/store/serviseStore';
-import Spinner from '@/components/ui/Spinner/Spinner';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import s from './Achievements.module.scss';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css';
 import Container from '@/components/Container/Container';
 import { useModal } from '@/store/modalStore';
-import Modal from '@/components/ui/Modal/Modal';
 import { useActiveImg } from '@/store/selectImg';
+import useSwipe from '@/hooks/useSwipe';
+const Modal = lazy(() => import('@/components/ui/Modal/Modal'));
+const SwiperButtons = lazy(() =>
+  import('@/components/ui/SwiperButtons/SwiperButtons')
+);
+const SwiperPagination = lazy(() =>
+  import('@/components/ui/swiperPagination/swiperPagination')
+);
+const Select = lazy(() => import('@/components/ui/Select/Select'));
 
 const Achievements = ({ title, url, showSelect, selectOptions }) => {
-  const swiperRef = useRef();
+  const isLaptop = useMediaQuery({ minWidth: 768 });
   const isDesktop = useMediaQuery({ minWidth: 1280 });
-  const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
-  const achievements = useServicesStore(state => state.achievements);
-  const [loadingState, setLoadingState] = useState('loading');
+  const { getMainAchievementsPage, getDepartmentAchievementsPage } =
+    useServicesStore();
   const { isModalOpen, openModal } = useModal();
   const { activeImg, setActiveImg } = useActiveImg();
   const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
+  const [loadingState, setLoadingState] = useState('loading');
+  const [data, setData] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const size = isDesktop ? 3 : isLaptop ? 2 : 1;
 
   const changeDepartment = id => {
     setDepartmentId(id);
+    setCurrentPage(1);
   };
 
   const setActiveImgUrl = async id => {
-    const selectImg = await achievements.find(item => item.id === id);
+    const selectImg = await data.find(item => item.id === id);
     setActiveImg(selectImg);
   };
 
@@ -39,18 +44,54 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
     const fetchData = async () => {
       try {
         setLoadingState('loading');
+        let result;
         if (url === 'achievements') {
-          await getMainAchievements(url);
+          result = await getMainAchievementsPage(url, currentPage, size);
         } else {
-          await getDepartmentAchievements(url, departmentId);
+          result = await getDepartmentAchievementsPage(
+            url,
+            departmentId,
+            currentPage,
+            size
+          );
         }
+        setData(result.items);
+        setTotalPages(result.pages);
         setLoadingState('success');
       } catch (error) {
+        console.log(error);
+        setData([]);
         setLoadingState('error');
       }
     };
     fetchData();
-  }, [getMainAchievements, getDepartmentAchievements, url, departmentId]);
+  }, [
+    getMainAchievementsPage,
+    getDepartmentAchievementsPage,
+    url,
+    departmentId,
+    currentPage,
+    size,
+  ]);
+
+  const handlePageChange = page => {
+    setCurrentPage(page);
+  };
+  const prevPage = () => {
+    currentPage > 1
+      ? setCurrentPage(currentPage - 1)
+      : setCurrentPage(totalPages);
+  };
+  const nextPage = () => {
+    currentPage < totalPages
+      ? setCurrentPage(currentPage + 1)
+      : setCurrentPage(1);
+  };
+  //свайп по блоку
+  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useSwipe(
+    prevPage,
+    nextPage
+  );
 
   return (
     <section className={`${s.achievements}`}>
@@ -58,30 +99,126 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
         <div className={s.achievementsWrapper}>
           <h2>{title}</h2>
           {showSelect && isDesktop && (
-            <Select
-              title="Обрати відділ"
-              options={selectOptions}
-              changeDepartment={changeDepartment}
-            />
+            <Suspense>
+              <Select
+                title="Обрати відділ"
+                options={selectOptions}
+                changeDepartment={changeDepartment}
+              />
+            </Suspense>
           )}
-          {loadingState === 'loading' && (
-            <div className={s.errorData}>
-              <Spinner />
-            </div>
-          )}
+
           {loadingState === 'error' && (
             <div className={`${s.errorData} errorData`}>
               <Placeholder />
             </div>
           )}
-          {loadingState === 'success' && achievements?.length > 0 && (
+          {data?.length > 0 && (
             <div className={s.slidersContainer}>
-              {isDesktop && achievements?.length > 3 && (
-                <SwiperButtons
-                  onPrevClick={() => swiperRef.current.slidePrev()}
-                  onNextClick={() => swiperRef.current.slideNext()}
-                />
+              {isDesktop && totalPages > 1 && (
+                <div className={s.swiperButtons}>
+                  <Suspense>
+                    <SwiperButtons
+                      onPrevClick={prevPage}
+                      onNextClick={nextPage}
+                    />
+                  </Suspense>
+                </div>
               )}
+
+              <div
+                className={`${s.slider} ${
+                  loadingState === 'loading' ? s.fadeEnter : s.fadeEnterActive
+                }`}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                {data?.map(item => (
+                  <div className={s.slideContent} key={item.id}>
+                    <div className={s.slidePhoto}>
+                      <img
+                        loading="lazy"
+                        src={item.media}
+                        alt={item.description}
+                        onClick={() => {
+                          setActiveImgUrl(item.id);
+                          openModal();
+                        }}
+                      />
+                    </div>
+                    <p className={s.slideText}>{item.description}</p>
+                  </div>
+                ))}
+              </div>
+              {totalPages > 1 && (
+                <Suspense>
+                  <SwiperPagination
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    handlePageChange={handlePageChange}
+                  />
+                </Suspense>
+              )}
+            </div>
+          )}
+          {showSelect && !isDesktop && (
+            <Suspense>
+              <Select
+                title="Обрати відділ"
+                options={selectOptions}
+                changeDepartment={changeDepartment}
+              />
+            </Suspense>
+          )}
+        </div>
+      </Container>
+      {isModalOpen && (
+        <Suspense>
+          <Modal>
+            <img src={activeImg.media} alt={` ${activeImg.description}`} />
+          </Modal>
+        </Suspense>
+      )}
+    </section>
+  );
+};
+
+export default Achievements;
+/*{loadingState === 'loading' && (
+                      <Spinner/>
+                    )}
+
+ <section className={`${s.achievements}`}>
+      <Container>
+        <div className={s.achievementsWrapper}>
+          <h2>{title}</h2>
+          {showSelect && isDesktop && (
+            <Suspense>
+              <Select
+                title="Обрати відділ"
+                options={selectOptions}
+                changeDepartment={changeDepartment}
+              />
+            </Suspense>
+          )}
+         
+          {loadingState === 'error' && (
+            <div className={`${s.errorData} errorData`}>
+              <Placeholder />
+            </div>
+          )}
+          {loadingState === 'success' && data?.length > 0 && (
+            <div className={s.slidersContainer}>
+              {isDesktop && data?.length > 3 && (
+                <Suspense>
+                  <SwiperButtons
+                    onPrevClick={() => swiperRef.current.slidePrev()}
+                    onNextClick={() => swiperRef.current.slideNext()}
+                  />
+                </Suspense>
+              )}
+
               <Swiper
                 onSwiper={swiper => {
                   swiperRef.current = swiper;
@@ -91,7 +228,7 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
                 spaceBetween={16}
                 slidesPerView={1}
                 pagination={{ clickable: true }}
-                loop={true}
+                //loop={true}
                 breakpoints={{
                   768: {
                     slidesPerView: 2,
@@ -107,8 +244,9 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
                     key={item.id}
                   >
                     <>
-                      <div className={s.slidePhoto} loading="lazy">
+                      <div className={s.slidePhoto}>
                         <img
+                          loading="lazy"
                           src={item.media}
                           alt={item.description}
                           onClick={() => {
@@ -126,21 +264,36 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
             </div>
           )}
           {showSelect && !isDesktop && (
-            <Select
-              title="Обрати відділ"
-              options={selectOptions}
-              changeDepartment={changeDepartment}
-            />
+            <Suspense>
+              <Select
+                title="Обрати відділ"
+                options={selectOptions}
+                changeDepartment={changeDepartment}
+              />
+            </Suspense>
           )}
         </div>
       </Container>
       {isModalOpen && (
-        <Modal>
-          <img src={activeImg.media} alt={` ${activeImg.description}`} />
-        </Modal>
+        <Suspense>
+          <Modal>
+            <img src={activeImg.media} alt={` ${activeImg.description}`} />
+          </Modal>
+        </Suspense>
       )}
     </section>
-  );
-};
 
-export default Achievements;
+
+
+
+
+
+
+ /*
+          {loadingState === 'loading' && (
+            <div className={s.errorData}>
+              <Spinner />
+            </div>
+          )}
+
+*/
