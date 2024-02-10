@@ -1,4 +1,3 @@
-import NavLinkButton from '@/components/ui/Buttons/DownloadButton';
 import { Link } from 'react-router-dom';
 import styles from './Page404.module.scss';
 
@@ -16,7 +15,7 @@ const Page404 = () => {
           скарбниці.
         </p>
         <Link to={'/'}>
-          <NavLinkButton title={'Повернутися на головну'} />
+          <button className={styles.button}>Повернутися на головну</button>
         </Link>
       </div>
     </div>
