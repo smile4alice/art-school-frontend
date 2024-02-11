@@ -118,6 +118,15 @@ const useServicesStore = create((set, get) => ({
       throw new Error(error);
     }
   },
+  getMainAchievementsPage: async (url, page, size) => {
+    const newUrl = url === 'gallery' ? 'gallery/photo' : url;
+    try {
+      const response = await axios.get(`/${newUrl}?is_pinned=true${page ? `&page=${page}`: ''}${size ? `&size=${size}`: ''}`);
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
   // досягнення відділу по id
   getDepartmentAchievementsPage: async (url, id, page, size) => {
     const newUrl = url === 'achievements' ? 'achievement' : url;

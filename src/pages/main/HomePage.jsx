@@ -1,18 +1,24 @@
-import { useEffect } from 'react';
-import Hero from '@/components/main/Hero/Hero';
-import Gallery from '@/components/main/Gallery/Gallery';
-import Achievements from '@/components/main/Achievements/Achievements';
-import History from '@/components/main/History/History';
-import Departments from '@/components/main/Departments/Departments';
-import Map from '@/components/main/Map/Map';
-import News from '@/components/main/News/News';
+import { useEffect, lazy, Suspense } from 'react';
+import Spinner from '@/components/ui/Spinner/Spinner';
+const Hero = lazy(() => import('@/components/main/Hero/Hero'));
+const Gallery = lazy(() => import('@/components/main/Gallery/Gallery'));
+const Achievements = lazy(() =>
+  import('@/components/main/Achievements/Achievements')
+);
+const History = lazy(() => import('@/components/main/History/History'));
+const Departments = lazy(() =>
+  import('@/components/main/Departments/Departments')
+);
+const Map = lazy(() => import('@/components/main/Map/Map'));
+const News = lazy(() => import('@/components/main/News/News'));
+
 const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <>
+    <Suspense fallback={<Spinner />}>
       <Hero />
       <History />
       <Departments />
@@ -23,8 +29,8 @@ const HomePage = () => {
         url={'achievements'}
         showSelect={false}
       />
-       <Map />
-    </>
+      <Map />
+    </Suspense>
   );
 };
 

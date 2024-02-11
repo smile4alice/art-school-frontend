@@ -1,18 +1,22 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, lazy, Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import VideoButtons from './VideoButtons/VideoButtons';
+import Spinner from '@/components/ui/Spinner/Spinner';
+import useVideoStore from '@/store/videoStore';
 import Container from '@/components/Container/Container';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
-import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
 import styles from './News.module.scss';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css';
-import Spinner from '@/components/ui/Spinner/Spinner';
-import useVideoStore from '@/store/videoStore';
-import Select from '@/components/ui/Select/Select';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+const VideoButtons = lazy(() => import('./VideoButtons/VideoButtons'));
+const SwiperButtons = lazy(() =>
+  import('@/components/ui/SwiperButtons/SwiperButtons')
+);
+const Select = lazy(() => import('@/components/ui/Select/Select'));
 
 const News = ({ selectOptions }) => {
   const swiperRef = useRef();
@@ -21,14 +25,15 @@ const News = ({ selectOptions }) => {
   const videos = useVideoStore(state => state.videos);
   const [loadingState, setLoadingState] = useState('loading');
   const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
+
+  const videoIds = videos.map(video => {
+    //отримуємо id відео з посилання на YouTube
+    const id = video.media.split('v=')[1];
+    return id;
+  });
+
   const changeDepartment = id => {
     setDepartmentId(id);
-  };
-
-  const replaceUrl = url => {
-    if (url && url.length) {
-      return url?.replace('watch?v=', 'embed/');
-    }
   };
 
   const fetchData = async () => {
@@ -52,11 +57,13 @@ const News = ({ selectOptions }) => {
   return (
     <section className={`${styles.News} section`}>
       {departmentId && isLaptop && (
-        <Select
-          title="Обрати відділ"
-          options={selectOptions}
-          changeDepartment={changeDepartment}
-        />
+        <Suspense>
+          <Select
+            title="Обрати відділ"
+            options={selectOptions}
+            changeDepartment={changeDepartment}
+          />
+        </Suspense>
       )}
       <Container>
         {!departmentId && <h2 className={styles.title}>Події</h2>}
@@ -65,10 +72,12 @@ const News = ({ selectOptions }) => {
           {loadingState === 'success' && (
             <div className={styles.swiperContainer}>
               {isLaptop && videos?.length > 1 && (
-                <SwiperButtons
-                  onPrevClick={() => swiperRef.current.slidePrev()}
-                  onNextClick={() => swiperRef.current.slideNext()}
-                />
+                <Suspense>
+                  <SwiperButtons
+                    onPrevClick={() => swiperRef.current.slidePrev()}
+                    onNextClick={() => swiperRef.current.slideNext()}
+                  />
+                </Suspense>
               )}
               <Swiper
                 className={`${styles.Slider} ${
@@ -76,10 +85,9 @@ const News = ({ selectOptions }) => {
                 }`}
                 spaceBetween={50}
                 slidesPerView={1}
-                slidesPerGroup={1}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
-                //loop={true}//прибрав, так працює стабільніше
+                loop={true}
                 onSwiper={swiper => {
                   swiperRef.current = swiper;
                 }}
@@ -87,18 +95,16 @@ const News = ({ selectOptions }) => {
                 {videos &&
                   Array.isArray(videos) &&
                   videos.length > 0 &&
-                  videos.map((slide, index) => (
+                  videoIds.map((slide, index) => (
                     <SwiperSlide
                       key={index}
                       className={`swiper-lazy ${styles.Slide}`}
                     >
                       <div className={` ${styles.video}`}>
-                        <iframe
-                          src={replaceUrl(slide.media)}
+                        <LiteYouTubeEmbed
+                          id={slide}
                           title="Відео з життя школи"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                        ></iframe>
+                        />
                       </div>
                       <div className="swiper-lazy-preloader"></div>
                     </SwiperSlide>
@@ -113,18 +119,23 @@ const News = ({ selectOptions }) => {
           )}
 
           {!isLaptop && videos?.length > 1 && (
-            <VideoButtons
-            onPrevClick={() => swiperRef.current.slidePrev()}
-            onNextClick={() => swiperRef.current.slideNext()}/>
+            <Suspense>
+              <VideoButtons
+                onPrevClick={() => swiperRef.current.slidePrev()}
+                onNextClick={() => swiperRef.current.slideNext()}
+              />
+            </Suspense>
           )}
 
           {departmentId && !isLaptop && (
             <div className={styles.select}>
-              <Select
-                title="Обрати відділ"
-                options={selectOptions}
-                changeDepartment={changeDepartment}
-              />
+              <Suspense>
+                <Select
+                  title="Обрати відділ"
+                  options={selectOptions}
+                  changeDepartment={changeDepartment}
+                />
+              </Suspense>
             </div>
           )}
         </div>

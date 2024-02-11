@@ -44,7 +44,7 @@ const useVideoStore = create((set, get) => ({
     }
   },
 
-  getMainVideo: async page => {
+  getMainVideo: async (page,size) => {
     try {
       set(() => {
         return {
@@ -52,7 +52,7 @@ const useVideoStore = create((set, get) => ({
         };
       });
       const response = await axios.get(
-        `/gallery/video?is_pinned=true${page ? `&page=${page}&size=5` : ''}`
+        `/gallery/video?is_pinned=true${page ? `&page=${page}` : ''}${size ? `&size=${size}` : ''}`
       );
       set(() => {
         return {
@@ -75,6 +75,7 @@ const useVideoStore = create((set, get) => ({
       throw new Error(error);
     }
   },
+ 
   getDepartmentVideo: async (id, page) => {
     try {
       set(() => {
