@@ -1,74 +1,88 @@
-import { useState, useEffect } from 'react';
-import SortIcon from '@/components/Icons/SortIcon';
-import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
-
-import styles from './GalleryImages.module.scss';
-import Modal from '@/components/ui/Modal/Modal';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import useServicesStore from '@/store/serviseStore';
+import Spinner from '@/components/ui/Spinner/Spinner';
 import { useModal } from '@/store/modalStore';
-
-const GalleryImages = ({ images }) => {
-  const ITEMS_PER_PAGE = 6;
-  const [isHovered, setIsHovered] = useState(false);
-  const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE);
-  const [sorting, setSorting] = useState(false);
-  const [sortedImages, setSortedImages] = useState(images);
+import SortIcon from '@/components/Icons/SortIcon';
+import ArrowIcon from '@/components/Icons/Arrow/Arrow';
+import styles from './GalleryImages.module.scss';
+const Modal = lazy(() => import('@/components/ui/Modal/Modal'));
+const GalleryImages = () => {
   const { isModalOpen, openModal } = useModal();
   const [selectedImg, setSelectedImg] = useState({});
-  const isMaxAmount = images?.length <= itemsPerPage;
-
+  const { getAllPhotoPage } = useServicesStore();
+  const [images, setImages] = useState([]);
+  const [pageCount, setPageCount] = useState();
+  const [page, setPage] = useState(1);
+  const pageSize = 7;
+  const [reverse, setReverse] = useState(true);
+  const [loadingState, setLoadingState] = useState('loading');
   const setActiveImgUrl = id => {
     const selectImg = images.find(poster => poster.id === id);
     setSelectedImg(selectImg);
   };
-
-  const viewMore = () => {
-    if (!isMaxAmount) {
-      setItemsPerPage(prev => prev + ITEMS_PER_PAGE);
+  const fetchData = async () => {
+    try {
+      setLoadingState('loading');
+      const result = await getAllPhotoPage(reverse, page, pageSize);
+      setPageCount(result.pages);
+      if (page === 1) {
+        // Заміна даних при завантаженні першої сторінки
+        setImages(result.items);
+      } else {
+        // Додавання нових даних до поточних при завантаженні наступних сторінок
+        setImages(prevImages => [...prevImages, ...result.items]);
+      }
+      setLoadingState('success');
+    } catch (error) {
+      console.log(error);
     }
   };
-
-  const viewLess = () => {
-    setItemsPerPage(ITEMS_PER_PAGE);
-    window.scrollTo(0, 0);
-  };
-
   useEffect(() => {
-    if (sorting) {
-      setSortedImages(
-        images.sort(
-          (a, b) =>
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-        )
-      );
+    fetchData();
+    //eslint-disable-next-line
+  }, [getAllPhotoPage, reverse, page, pageSize]);
+
+  const changePage = () => {
+    if (page < pageCount) {
+      setPage(prevPage => prevPage + 1);
     } else {
-      setSortedImages(
-        images.sort(
-          (a, b) =>
-            new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-        )
-      );
+      setPage(1);
     }
-  }, [setSortedImages, sorting, images]);
+  };
+
+  const toggleSorting = async () => {
+    try {
+      setImages([]);
+      setReverse(!reverse);
+      setPage(1);
+      setPage(1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
       {images?.length > 0 && (
-        <div className={styles.sort}>
-          <button onClick={() => setSorting(!sorting)}>
-            {images?.length > 0 && <SortIcon />}
-            {!sorting
-              ? ' Сортування від новіших до старіших'
-              : ' Сортування від старіших до новіших'}
-          </button>
-        </div>
+        <button
+          className={styles.sort}
+          onClick={() => {
+            toggleSorting();
+          }}
+        >
+          <SortIcon />
+          {reverse
+            ? ' Сортування від новіших до старіших'
+            : ' Сортування від старіших до новіших'}
+        </button>
       )}
-
       <div className={styles.gallery}>
-        {sortedImages &&
-          Array.isArray(sortedImages) &&
-          sortedImages.slice(0, itemsPerPage).map((image, index) => (
+        {Array.isArray(images) &&
+          images.length > 0 &&
+          images.map((image, index) => (
             <div key={image.id} className={styles.item}>
               <img
+                loading="lazy"
                 src={image.media}
                 alt={`Image ${index + 1}`}
                 onClick={() => {
@@ -78,24 +92,26 @@ const GalleryImages = ({ images }) => {
               />
             </div>
           ))}
+        {loadingState === 'loading' && <Spinner />}
       </div>
-
+      <button
+        className={`${styles.showMore} ${
+          page < pageCount ? '' : styles.noMore
+        }`}
+        onClick={changePage}
+      >
+        {page < pageCount ? 'Дивитися більше' : 'Дивитися менше'}
+        <ArrowIcon />
+      </button>
       {isModalOpen && (
-        <Modal>
-          <img
-            src={selectedImg.media}
-            alt={`Галерея   ${selectedImg.description}`}
-          />
-        </Modal>
-      )}
-      {images.length > ITEMS_PER_PAGE && (
-        <ViewButton
-          isHovered={isHovered}
-          setIsHovered={setIsHovered}
-          isMaxAmount={isMaxAmount}
-          viewMore={viewMore}
-          viewLess={viewLess}
-        />
+        <Suspense>
+          <Modal>
+            <img
+              src={selectedImg.media}
+              alt={`Галерея ${selectedImg.description}`}
+            />
+          </Modal>
+        </Suspense>
       )}
     </>
   );

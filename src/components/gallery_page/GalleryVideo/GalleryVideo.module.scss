@@ -20,7 +20,9 @@
   .video {
     @media screen and (min-width: 1280px) {
       width: 702px;
-      height: 400px;
+      height: 390px;
+      border-radius: 5px;
+      overflow: hidden;
     }
   }
   .videos {
@@ -40,7 +42,7 @@
     }
     @media screen and (min-width: 1280px) {
       width: 382px;
-      height: 400px;
+      height: 390px;
     }
     .swiper {
       width: 100%;
@@ -55,16 +57,13 @@
       }
       @media screen and (min-width: 1280px) {
         width: 382px;
-        height: 400px;
+        height: 390px;
       }
       .slide {
         overflow: hidden;
         height: 160px;
         border-radius: 5px;
         height: 100%;
-        @media screen and (min-width: 1280px) {
-          border-radius: 0;
-        }
       }
     }
   }
@@ -72,7 +71,7 @@
     @media screen and (min-width: 768px) {
       transform: rotate(90deg);
       position: absolute;
-      right: -15px;
+      right: -25px;
     }
   }
 }
