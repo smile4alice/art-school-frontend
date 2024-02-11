@@ -84,7 +84,7 @@ const GalleryImages = () => {
               <img
                 loading="lazy"
                 src={image.media}
-                alt={`Image ${index + 1}`}
+                alt={image.description ? image.description : `КДШМ М.І.Вериківського фото ${index + 1}`}
                 onClick={() => {
                   setActiveImgUrl(image.id);
                   openModal();

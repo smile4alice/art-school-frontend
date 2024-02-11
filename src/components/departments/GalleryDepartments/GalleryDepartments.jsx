@@ -118,7 +118,7 @@ const GalleryDepartments = ({ url, showSelect, selectOptions }) => {
                 <div className={s.slidePhoto}>
                   <img
                     src={item.media}
-                    alt={item.description}
+                    alt={item.description ? item.description : 'КДШМ М.І.Вериківського фото' }
                     onClick={() => {
                       setActiveImgUrl(item.id);
                       openModal();

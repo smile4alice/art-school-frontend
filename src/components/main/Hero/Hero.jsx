@@ -81,7 +81,7 @@ const Hero = () => {
               <img
                 loading="lazy"
                 src={slide.photo}
-                alt={slide.title}
+                alt={slide.title ? slide.title : 'КДШМ М.І.Вериківського фото'}
                 className={styles.HeroImage}
               />
             </div>

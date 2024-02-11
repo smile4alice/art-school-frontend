@@ -55,7 +55,7 @@ const Gallery = () => {
             <div className={s.gallery}>
               {gallery.map((image, i) => (
                 <div key={i} className={s.item}>
-                  <img src={image.media} alt={image.description} />
+                  <img src={image.media} alt={image.description ? image.description : 'КДШМ М.І.Вериківського фото' } />
                 </div>
               ))}
             </div>
@@ -78,7 +78,7 @@ const Gallery = () => {
             >
               {gallery.map((slide, index) => (
                 <SwiperSlide key={index} className={`swiper-lazy ${s.slide}`}>
-                  <img src={slide.media} alt={slide.description} loading="lazy"/>
+                  <img src={slide.media} alt={slide.description ? slide.description : 'КДШМ М.І.Вериківського фото' } loading="lazy"/>
                   <div className="swiper-lazy-preloader"></div>
                 </SwiperSlide>
               ))}
