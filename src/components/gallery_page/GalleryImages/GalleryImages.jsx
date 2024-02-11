@@ -105,7 +105,7 @@ const GalleryImages = () => {
       </button>
       {isModalOpen && (
         <Suspense>
-          <Modal>
+          <Modal accentIcon={true}>
             <img
               src={selectedImg.media}
               alt={`Галерея ${selectedImg.description}`}

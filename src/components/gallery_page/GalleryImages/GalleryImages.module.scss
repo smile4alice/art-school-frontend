@@ -7,6 +7,7 @@
   .item {
     width: calc(50% - 6px);
     height: 172px;
+    cursor: pointer;
     &:nth-child(5n) {
       width: 100%;
     }
@@ -37,7 +38,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 12px;
-  font-family: Mulish;
+  font-family: 'Mulish', sans-serif;
   font-weight: 700;
   transition: all linear 0.3s;
   padding: 1rem 0;
@@ -66,7 +67,7 @@
 }
 
 .showMore {
-  font-family: Mulish;
+  font-family: 'Mulish', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
