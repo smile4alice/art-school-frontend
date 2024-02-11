@@ -1,89 +1,78 @@
 .videoWrapper {
-  max-height: 65vh;
   width: 100%;
-  margin-bottom: 10vh;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-
-  @media screen and (min-width: 768px) {
+  position: relative;
+  article {
+    width: 100%;
+    height: 100%;
+    background-position: center;
   }
-  @media screen and (min-width: 1280px) {
-    justify-content: space-between;
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
   }
 
   .video {
-    flex: 1;
-    width: 742px;
-    height: 400px;
-    iframe {
-      width: 100%;
-      height: 100%;
+    @media screen and (min-width: 1280px) {
+      width: 702px;
+      height: 400px;
     }
   }
   .videos {
     position: relative;
     width: 100%;
+    height: max-content;
+    height: 165px;
+    border-radius: 5px;
+    @media screen and (min-width: 380px) {
+      height: 220px;
+    }
 
     @media screen and (min-width: 768px) {
+      border-radius: 5px;
+      height: 355px;
+      width: calc(100% - 50px);
     }
     @media screen and (min-width: 1280px) {
-      width: 43%;
+      width: 382px;
+      height: 400px;
     }
     .swiper {
       width: 100%;
-
-      @media screen and (min-width: 768px) {
-        height: 370px;
+      height: 160px;
+      @media screen and (min-width: 380px) {
+        height: 220px;
       }
-      @media screen and (min-width: 1280px) {
-        height: 65vh;
-      }
-    }
-
-    .slide {
-      width: 100%;
-      height: 100%;
-      background: $white;
-      width: 288px;
-      height: 164px;
       @media screen and (min-width: 768px) {
-        width: 93%;
-        height: 370px;
+        height: 355px;
+        width: calc(100% - 50px);
         margin: 0;
       }
       @media screen and (min-width: 1280px) {
         width: 382px;
-        height: 190px;
+        height: 400px;
       }
-      iframe {
-        margin: 0 auto;
-        width: 100%;
+      .slide {
+        overflow: hidden;
+        height: 160px;
+        border-radius: 5px;
         height: 100%;
+        @media screen and (min-width: 1280px) {
+          border-radius: 0;
+        }
       }
     }
   }
-}
-.arrowUp {
-  position: absolute;
-  top: 100%;
-  right: 53%;
-  z-index: 98;
-  padding: 1rem;
-  @media screen and (min-width: 768px) {
-    top: 35%;
-    right: 0;
-  }
-}
-.arrowDown {
-  position: absolute;
-  top: 100%;
-  right: 33%;
-  z-index: 98;
-  padding: 1rem;
-  @media screen and (min-width: 768px) {
-    top: 50%;
-    right: 0;
+  .videoButtons {
+    @media screen and (min-width: 768px) {
+      transform: rotate(90deg);
+      position: absolute;
+      right: -15px;
+    }
   }
 }
