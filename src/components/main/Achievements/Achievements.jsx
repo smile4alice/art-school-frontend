@@ -140,7 +140,7 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
                       <img
                         loading="lazy"
                         src={item.media}
-                        alt={item.description}
+                        alt={item.description ? item.description : 'КДШМ М.І.Вериківського досягнення'}
                         onClick={() => {
                           setActiveImgUrl(item.id);
                           openModal();

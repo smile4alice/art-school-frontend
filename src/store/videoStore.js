@@ -12,8 +12,7 @@ const useVideoStore = create((set, get) => ({
   pageSize: 10,
   totalPages: '',
 
-  getAllVideo: async page => {
-    const size = get().pageSize;
+  getAllVideo: async (page, size) => {
     try {
       set(() => {
         return {
@@ -21,7 +20,7 @@ const useVideoStore = create((set, get) => ({
         };
       });
       const response = await axios.get(
-        `/gallery/video?page=${page}&size=${size}`
+        `/gallery/video?reverse=true${page ? `&page=${page}`: ''}${size ? `&size=${size}`: ''}`
       );
       set(() => {
         return {
@@ -43,7 +42,6 @@ const useVideoStore = create((set, get) => ({
       throw new Error(error);
     }
   },
-
   getMainVideo: async (page,size) => {
     try {
       set(() => {

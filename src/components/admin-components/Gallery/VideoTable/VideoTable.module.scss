@@ -50,6 +50,11 @@
     align-items: center;
     width: 100%;
     margin: 0 auto;
+    article{
+      width: 100%;
+      height: 100%;
+      border-radius: 0.3125rem;
+    }
     iframe{
       border-radius: 0.3125rem;
     }

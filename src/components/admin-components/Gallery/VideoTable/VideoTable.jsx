@@ -6,6 +6,7 @@ import PlaceholderAdmin from '../../PlaceholderAdmin/PlaceholderAdmin';
 import { useModal } from '@/store/modalStore';
 import ConfirmDeleteModal from '@/components/admin-components/modals/ConfirmDeleteModal/ConfirmDeleteModal';
 import sprite from '@/assets/icons/sprite-admin.svg';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import s from './VideoTable.module.scss';
 
 const VideoTable = ({ typeOfAchievements, departmentId }) => {
@@ -18,9 +19,22 @@ const VideoTable = ({ typeOfAchievements, departmentId }) => {
   const loading = useVideoStore(state => state.loading);
   const [page, setPage] = useState(1);
   const triggerRef = useRef(null);
-  const replaceUrl = videoUrl => {
-    return videoUrl.replace('watch?v=', 'embed/');
+ 
+ //отримуємо id відео з посилання на YouTube
+  const getIdFromUrl = url => {
+    if (url && typeof url === 'string') {
+      const id = url.split('v=')[1];
+      return id;
+    } else {
+      return null;
+    }
   };
+  const newVideosData = videos.map(item => {
+    return {
+      ...item,
+      media: getIdFromUrl(item.media),
+    };
+  });
 
   const removePost = async () => {
     try {
@@ -37,7 +51,7 @@ const VideoTable = ({ typeOfAchievements, departmentId }) => {
   const fetchData = async () => {
     try {
       if (typeOfAchievements === 'allAchievements') {
-        await getAllVideo(page);
+        await getAllVideo(page, 10);
       } else if (typeOfAchievements === 'mainAchievements') {
         await getMainVideo();
         setPage(1);
@@ -78,21 +92,16 @@ const VideoTable = ({ typeOfAchievements, departmentId }) => {
     fetchData();
     //eslint-disable-next-line
   }, [page, typeOfAchievements, departmentId]);
-
+ 
   return (
     <div className={s.galleryTable}>
       <div className={s.videos}>
-        {Array.isArray(videos) &&
-          videos?.length > 0 &&
-          videos.map((item, i) => (
+        {Array.isArray(newVideosData) &&
+          newVideosData?.length > 0 &&
+          newVideosData.map((item, i) => (
             <div className={s.photoContainer} key={i}>
               <div className={s.photo}>
-                <iframe
-                  src={replaceUrl(item.media)}
-                  title={`Video ${i + 1}`}
-                  width="100%"
-                  height="95"
-                />
+              <LiteYouTubeEmbed id={item.media} title="Відео з життя школи" />
               </div>
               <div className={s.action}>
                 {item.pinned_position && (
@@ -129,3 +138,11 @@ const VideoTable = ({ typeOfAchievements, departmentId }) => {
 };
 
 export default VideoTable;
+/*
+ <iframe
+                  src={replaceUrl(item.media)}
+                  title={`Video ${i + 1}`}
+                  width="100%"
+                  height="95"
+                />
+*/

@@ -31,7 +31,6 @@ const News = ({ selectOptions }) => {
     const id = video.media.split('v=')[1];
     return id;
   });
-
   const changeDepartment = id => {
     setDepartmentId(id);
   };

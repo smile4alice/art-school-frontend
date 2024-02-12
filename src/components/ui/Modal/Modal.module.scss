@@ -4,20 +4,27 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 102;
   // touch-action: none;
-  -webkit-overflow-scrolling: none;
-
-  overscroll-behavior: none;
+  // -webkit-overflow-scrolling: none;
+  // overscroll-behavior: none;
   .close {
     position: absolute;
-    top: 25px;
-    right: 25px;
-    z-index: 102;
+    top: 3rem;
+    right: 3rem;
+    z-index: 103;
+    cursor: pointer;
+    color: $white;
+    svg {
+      width: 3rem;
+      height: 3rem;
+      transition: all linear 0.3s;
+      &:hover {
+        color: $accent;
+      }
+    }
   }
 }
 
