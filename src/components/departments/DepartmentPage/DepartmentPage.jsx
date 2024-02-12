@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import {useState, useEffect } from 'react';
 import Container from '@/components/Container/Container';
 import Achievements from '@/components/main/Achievements/Achievements';
 import GalleryDepartments from '@/components/departments/GalleryDepartments/GalleryDepartments';
@@ -12,6 +12,7 @@ import Spinner from '@/components/ui/Spinner/Spinner';
 const DepartmentPage = ({ id, title, showSelect, articles }) => {
   const subDepartments = useServicesStore(state => state.subDepartments);
   const { getSubDepartments } = useServicesStore();
+  const [departmentId, setDepartmentId] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,6 +29,10 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
     fetchData();
   }, [id, getSubDepartments]);
 
+  useEffect(() => {
+    setDepartmentId(subDepartments?.[0]?.id);
+  }, [subDepartments]);
+
   return (
     <>
       <section className={styles.departmentSection}>
@@ -40,17 +45,20 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
                 <DropDownsList departmentId={id} />
                 <News
                   selectOptions={subDepartments}
+                  subDepartmentId={departmentId}
                 />
                 <GalleryDepartments
                   showSelect={showSelect}
                   selectOptions={subDepartments}
                   url={'gallery'}
+                  subDepartmentId={departmentId}
                 />
                 <Achievements
                   title={'Досягнення відділу'}
                   showSelect={showSelect}
                   selectOptions={subDepartments}
                   url={'achievement'}
+                  subDepartmentId={departmentId}
                 />
               </div>
             ) : (

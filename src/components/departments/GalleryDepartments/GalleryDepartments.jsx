@@ -15,7 +15,12 @@ const SwiperButtons = lazy(() =>
 );
 const Select = lazy(() => import('@/components/ui/Select/Select'));
 
-const GalleryDepartments = ({ url, showSelect, selectOptions }) => {
+const GalleryDepartments = ({
+  subDepartmentId,
+  url,
+  showSelect,
+  selectOptions,
+}) => {
   const sliderRef = useRef(null);
   const { getDepartmentAchievementsPage } = useServicesStore();
   const [totalPages, setTotalPages] = useState(0);
@@ -25,15 +30,20 @@ const GalleryDepartments = ({ url, showSelect, selectOptions }) => {
   const [loadingState, setLoadingState] = useState('loading');
   const { isModalOpen, openModal } = useModal();
   const { activeImg, setActiveImg } = useActiveImg();
-  const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
+  const [departmentId, setDepartmentId] = useState(subDepartmentId);
   const size = isDesktop ? 3 : isLaptop ? 2 : 1;
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
   const changeDepartment = id => {
     setDepartmentId(id);
     setCurrentPage(1);
   };
+
+  useEffect(() => {
+    setDepartmentId(subDepartmentId);
+    setCurrentPage(1);
+  }, [subDepartmentId]);
+
   const setActiveImgUrl = async id => {
     const selectImg = await data.find(item => item.id === id);
     setActiveImg(selectImg);
@@ -118,7 +128,11 @@ const GalleryDepartments = ({ url, showSelect, selectOptions }) => {
                 <div className={s.slidePhoto}>
                   <img
                     src={item.media}
-                    alt={item.description ? item.description : 'КДШМ М.І.Вериківського фото' }
+                    alt={
+                      item.description
+                        ? item.description
+                        : 'КДШМ М.І.Вериківського фото'
+                    }
                     onClick={() => {
                       setActiveImgUrl(item.id);
                       openModal();
@@ -151,8 +165,15 @@ const GalleryDepartments = ({ url, showSelect, selectOptions }) => {
       )}
       {isModalOpen && (
         <Suspense>
-          <Modal>
-            <img src={activeImg?.media} alt={` ${activeImg.description}`} />
+          <Modal accentIcon={true}>
+            <img
+              src={activeImg?.media}
+              alt={` ${
+                activeImg.description
+                  ? activeImg.description
+                  : 'КДШМ М.І.Вериківського фото'
+              }`}
+            />
           </Modal>
         </Suspense>
       )}
