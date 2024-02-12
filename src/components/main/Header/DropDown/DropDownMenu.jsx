@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import styles from './DropDown.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { HashLink } from 'react-router-hash-link';
 import arrowIcon from '/icons/arrow.svg';
@@ -15,7 +15,7 @@ const DropDownMenu = ({
   setIsOpen,
 }) => {
   const isDesktop = useMediaQuery({ minWidth: 1280 });
-
+  const navigate = useNavigate();
   const handleClick = path => {
     //на початок сторінки, якщо сторінка активна
     const currentPath = window.location.pathname;
@@ -109,6 +109,8 @@ const DropDownMenu = ({
         onClick={() => {
           setIsOpen(!isOpen);
           setCurrentId('about-school');
+          handleClick('/about-school');
+          navigate('/about-school');
         }}
       >
         <div className={styles.dropDownNameWrapper}>
