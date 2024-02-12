@@ -108,7 +108,11 @@ const GalleryImages = () => {
           <Modal accentIcon={true}>
             <img
               src={selectedImg.media}
-              alt={`Галерея ${selectedImg.description}`}
+              alt={` ${
+                selectedImg.description
+                  ? selectedImg.description
+                  : 'КДШМ М.І.Вериківського фото'
+              }`}
             />
           </Modal>
         </Suspense>

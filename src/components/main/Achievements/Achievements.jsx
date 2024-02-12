@@ -16,7 +16,13 @@ const SwiperPagination = lazy(() =>
 );
 const Select = lazy(() => import('@/components/ui/Select/Select'));
 
-const Achievements = ({ title, url, showSelect, selectOptions }) => {
+const Achievements = ({
+  title,
+  url,
+  showSelect,
+  selectOptions,
+  subDepartmentId,
+}) => {
   const isLaptop = useMediaQuery({ minWidth: 768 });
   const isDesktop = useMediaQuery({ minWidth: 1280 });
   const { getMainAchievementsPage, getDepartmentAchievementsPage } =
@@ -39,6 +45,11 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
     const selectImg = await data.find(item => item.id === id);
     setActiveImg(selectImg);
   };
+
+  useEffect(() => {
+    setDepartmentId(subDepartmentId);
+    setCurrentPage(1);
+  }, [subDepartmentId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -140,7 +151,11 @@ const Achievements = ({ title, url, showSelect, selectOptions }) => {
                       <img
                         loading="lazy"
                         src={item.media}
-                        alt={item.description ? item.description : 'КДШМ М.І.Вериківського досягнення'}
+                        alt={
+                          item.description
+                            ? item.description
+                            : 'КДШМ М.І.Вериківського досягнення'
+                        }
                         onClick={() => {
                           setActiveImgUrl(item.id);
                           openModal();

@@ -18,13 +18,13 @@ const SwiperButtons = lazy(() =>
 );
 const Select = lazy(() => import('@/components/ui/Select/Select'));
 
-const News = ({ selectOptions }) => {
+const News = ({ selectOptions, subDepartmentId }) => {
   const swiperRef = useRef();
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const { getMainVideo, getDepartmentVideo } = useVideoStore();
   const videos = useVideoStore(state => state.videos);
   const [loadingState, setLoadingState] = useState('loading');
-  const [departmentId, setDepartmentId] = useState(selectOptions?.[0].id);
+  const [departmentId, setDepartmentId] = useState(subDepartmentId);
 
   const videoIds = videos.map(video => {
     //отримуємо id відео з посилання на YouTube
@@ -34,6 +34,10 @@ const News = ({ selectOptions }) => {
   const changeDepartment = id => {
     setDepartmentId(id);
   };
+  useEffect(() => {
+    setDepartmentId(subDepartmentId);;
+  }, [subDepartmentId]);
+
 
   const fetchData = async () => {
     try {
