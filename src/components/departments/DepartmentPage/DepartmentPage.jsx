@@ -1,4 +1,4 @@
-import {useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Container from '@/components/Container/Container';
 import Achievements from '@/components/main/Achievements/Achievements';
 import GalleryDepartments from '@/components/departments/GalleryDepartments/GalleryDepartments';
@@ -9,7 +9,7 @@ import Articles from '../DepartmentArticles/Articles';
 import styles from './DepartmentPage.module.scss';
 import Spinner from '@/components/ui/Spinner/Spinner';
 
-const DepartmentPage = ({ id, title, showSelect, articles }) => {
+const DepartmentPage = ({ id, title, articles, showSelect }) => {
   const subDepartments = useServicesStore(state => state.subDepartments);
   const { getSubDepartments } = useServicesStore();
   const [departmentId, setDepartmentId] = useState();
@@ -47,7 +47,7 @@ const DepartmentPage = ({ id, title, showSelect, articles }) => {
                   selectOptions={subDepartments}
                   subDepartmentId={departmentId}
                 />
-                <GalleryDepartments
+                 <GalleryDepartments
                   showSelect={showSelect}
                   selectOptions={subDepartments}
                   url={'gallery'}
