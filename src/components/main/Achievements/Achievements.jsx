@@ -108,7 +108,7 @@ const Achievements = ({
     <section className={`${s.achievements}`}>
       <Container>
         <div className={s.achievementsWrapper}>
-          <h2>{title}</h2>
+          <h2 className={subDepartmentId ? '': s.title}>{title}</h2>
           {showSelect && isDesktop && (
             <Suspense>
               <Select

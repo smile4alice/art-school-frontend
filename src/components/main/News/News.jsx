@@ -59,6 +59,7 @@ const News = ({ selectOptions, subDepartmentId }) => {
   }, [departmentId]);
   return (
     <section className={`${styles.News} section`}>
+      {departmentId && <h2 className={styles.titleDepartment}>Події відділу</h2>}
       {departmentId && isLaptop && (
         <Suspense>
           <Select
