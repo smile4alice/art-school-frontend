@@ -6,7 +6,7 @@ import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
 import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
 
-const breadcrumbs = ['Події'];
+const breadcrumbs = ['Заходи'];
 
 const NewsPageAdmin = () => {
   const { getNews } = useNewsStore();
@@ -29,12 +29,12 @@ const NewsPageAdmin = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Події"
+        title="Заходи"
         showBackButton={false}
         showActionButton={true}
         actionButtonLink="/admin/news/add"
         isActionButtonDisabled={false}
-        actionButtonLabel="Додати подію"
+        actionButtonLabel="Додати захід"
       />
       {loading && !Object.keys(error).length ? (
         <SpinnerAdmin />
