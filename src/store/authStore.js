@@ -65,12 +65,12 @@ const useAuthStore = create(set => ({
           .then(response => {
             console.log(response);
             set(() => {
-              if (response.detail.status === 'success') {
+              if (response.data.detail.status === 'success') {
                 return {
                   success: true,
                 };
               }
-              if (response.status === 'ok') {
+              if (response.status === 200) {
                 return {
                   success: true,
                 };
