@@ -10,7 +10,7 @@ import ButtonSubmit from '@/components/admin-components/Buttons/SubmitButton/But
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import styles from './NewsAdmin.module.scss';
 
-const breadcrumbs = ['Події', 'Додати подію'];
+const breadcrumbs = ['Заходи', 'Додати захід'];
 
 const initialValues = {
   title: '',
@@ -44,7 +44,7 @@ const AddNewsPage = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Додати подію"
+        title="Додати захід"
         showBackButton={true}
         backButtonLink="/admin/news"
         showActionButton={false}
