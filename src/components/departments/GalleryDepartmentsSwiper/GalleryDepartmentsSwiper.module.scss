@@ -34,12 +34,6 @@
     .slider {
       margin: 0 auto;
       overflow: hidden;
-      padding-bottom: 1rem;
-      /*
-      >div:nth-child(2){
-        bottom: -1rem;
-      }
-      */
       @media (min-width: 768px) {
         display: flex;
         gap: 1rem;

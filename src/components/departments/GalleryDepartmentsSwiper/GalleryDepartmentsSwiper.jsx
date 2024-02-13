@@ -1,84 +1,53 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import useServicesStore from '@/store/serviseStore';
-import { useModal } from '@/store/modalStore';
-import { useActiveImg } from '@/store/selectImg';
-import s from './GalleryDepartments.module.scss';
+import s from './GalleryDepartmentsSwiper.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
-import Spinner from '@/components/ui/Spinner/Spinner';
-import Placeholder from '@/components/ui/Placeholder/Placeholder';
-const Modal = lazy(() => import('@/components/ui/Modal/Modal'));
 const SwiperButtons = lazy(() =>
   import('@/components/ui/SwiperButtons/SwiperButtons')
 );
-const Select = lazy(() => import('@/components/ui/Select/Select'));
-const GalleryDepartmentsSwiper = ({
-  subDepartmentId,
-  url,
-  showSelect,
-  selectOptions,
-}) => {
+
+const GalleryDepartmentsSwiper = ({ subDepartmentId, url }) => {
   const swiperRef = useRef();
   const { getDepartmentAchievementsPage } = useServicesStore();
-  const { isModalOpen, openModal } = useModal();
-  const { activeImg, setActiveImg } = useActiveImg();
   const [totalPages, setTotalPages] = useState(0);
   const isDesktop = useMediaQuery({ minWidth: 1280 });
   const isLaptop = useMediaQuery({ minWidth: 768 });
-  const [departmentId, setDepartmentId] = useState(subDepartmentId);
-  const [loadingState, setLoadingState] = useState('loading');
+  const departmentId = subDepartmentId;
 
   const [data, setData] = useState([]);
   //розмір сторінки для першого запиту
-  const firstFetchPageSize = isDesktop ? 3 : isLaptop ? 3 : 2;
+  const firstFetchPageSize = isDesktop ? 3 : isLaptop ? 2 : 1;
+
   const [currentPage, setCurrentPage] = useState(1); //сторінка в запиті
   const pageSize = 1; //розмір запиту
   const [currentIndex, setCurrentIndex] = useState(1); //активний слайд
 
-  const setActiveImgUrl = async id => {
-    const selectImg = await data.find(item => item.id === id);
-    setActiveImg(selectImg);
-  };
-
-  const changeDepartment = id => {
-    setDepartmentId(id);
-    setCurrentPage(1);
-  };
-
-  useEffect(() => {
-    setDepartmentId(subDepartmentId);
-  }, [subDepartmentId]);
-
   useEffect(() => {
     const firstFetchData = async () => {
-      console.log('fetch first data');
       try {
-        setLoadingState('loading');
         const result = await getDepartmentAchievementsPage(
           url,
-          departmentId,
+          1,
           currentPage,
           firstFetchPageSize
         );
         setData(result.items);
-        setCurrentPage(firstFetchPageSize + 1);//різні значення під різні екрани
-        setLoadingState('success');
+        setCurrentPage(4);
       } catch (error) {
-        setLoadingState('error');
         console.log(error);
         setData([]);
       }
     };
     firstFetchData();
     //eslint-disable-next-line
-  }, [departmentId]);
+  }, []);
 
   useEffect(() => {
     const fetchNextData = async () => {
-      console.log('fetch next data');
-      if (currentPage > firstFetchPageSize) {//різні значення під різні екрани
+      if (currentPage > 3) {
         try {
           const result = await getDepartmentAchievementsPage(
             url,
@@ -96,7 +65,7 @@ const GalleryDepartmentsSwiper = ({
     };
     fetchNextData();
     //eslint-disable-next-line
-  }, [currentPage]); //departmentId, url,departmentId,
+  }, [getDepartmentAchievementsPage, url, departmentId, currentPage]);
 
   // swiper navigation
   const handlePrevSlide = () => {
@@ -121,17 +90,6 @@ const GalleryDepartmentsSwiper = ({
 
   return (
     <section className={`${s.gallery} `}>
-      {loadingState === 'loading' && (
-        <div className={s.errorData}>
-          <Spinner />
-        </div>
-      )}
-      {loadingState === 'error' && (
-        <div className={`${s.errorData} errorData`}>
-          <Placeholder />
-        </div>
-      )}
-
       {data?.length > 0 && (
         <div className={s.slidersContainer}>
           {isDesktop && totalPages > 1 && (
@@ -151,7 +109,7 @@ const GalleryDepartmentsSwiper = ({
             </div>
           )}
 
-          {loadingState === 'success' && data?.length > 0 && (
+          {data?.length > 0 && (
             <div className={s.slidersContainer}>
               <Swiper
                 onSwiper={swiper => {
@@ -171,56 +129,23 @@ const GalleryDepartmentsSwiper = ({
                 }}
                 className={s.slider}
                 spaceBetween={16}
-                slidesPerView={1}
-                //loop={true}
-                breakpoints={{
-                  768: {
-                    slidesPerView: 2,
-                  },
-                  1280: {
-                    slidesPerView: 3,
-                  },
-                }}
+                slidesPerView={3}
+                loop={true}
               >
                 {data?.map(item => (
-                  <SwiperSlide className={s.slideContent} key={item.id}>
+                  <SwiperSlide
+                    className={s.slideContent}
+                    key={item.id}
+                    noSwiping={true}
+                  >
                     <div className={s.slidePhoto}>
-                      <img
-                        loading="lazy"
-                        src={item.media}
-                        alt={
-                          item.description
-                            ? item.description
-                            : 'КДШМ М.І.Вериківського досягнення'
-                        }
-                        onClick={() => {
-                          setActiveImgUrl(item.id);
-                          openModal();
-                        }}
-                      />
+                      <img src={item.media} alt={item.description} />
                     </div>
                     <p className={s.slideText}>{item.description}</p>
                   </SwiperSlide>
                 ))}
               </Swiper>
             </div>
-          )}
-          {showSelect && !isDesktop && (
-            <Suspense>
-              <Select
-                title="Обрати відділ"
-                options={selectOptions}
-                changeDepartment={changeDepartment}
-              />
-            </Suspense>
-          )}
-
-          {isModalOpen && (
-            <Suspense>
-              <Modal>
-                <img src={activeImg.media} alt={` ${activeImg.description}`} />
-              </Modal>
-            </Suspense>
           )}
         </div>
       )}
@@ -579,194 +504,6 @@ const GalleryDepartments = ({
         <Modal>
           <img src={activeImg?.media} alt={` ${activeImg.description}`} />
         </Modal>
-      )}
-    </section>
-  );
-};
-
-export default GalleryDepartments;
-*/
-
-/*
-import { useState, useEffect, useRef, lazy, Suspense } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import useServicesStore from '@/store/serviseStore';
-import { useModal } from '@/store/modalStore';
-import { useActiveImg } from '@/store/selectImg';
-import Placeholder from '@/components/ui/Placeholder/Placeholder';
-import useSwipe from '@/hooks/useSwipe';
-import s from './GalleryDepartments.module.scss';
-const SwiperPagination = lazy(() =>
-  import('@/components/ui/swiperPagination/swiperPagination')
-);
-const Modal = lazy(() => import('@/components/ui/Modal/Modal'));
-const SwiperButtons = lazy(() =>
-  import('@/components/ui/SwiperButtons/SwiperButtons')
-);
-const Select = lazy(() => import('@/components/ui/Select/Select'));
-
-const GalleryDepartments = ({
-  subDepartmentId,
-  url,
-  showSelect,
-  selectOptions,
-}) => {
-  const sliderRef = useRef(null);
-  const { getDepartmentAchievementsPage } = useServicesStore();
-  const [totalPages, setTotalPages] = useState(0);
-  const isLaptop = useMediaQuery({ minWidth: 768 });
-  const isDesktop = useMediaQuery({ minWidth: 1280 });
-
-  const [loadingState, setLoadingState] = useState('loading');
-  const { isModalOpen, openModal } = useModal();
-  const { activeImg, setActiveImg } = useActiveImg();
-  const [departmentId, setDepartmentId] = useState(subDepartmentId);
-  const size = isDesktop ? 3 : isLaptop ? 2 : 1;
-  const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const changeDepartment = id => {
-    setDepartmentId(id);
-    setCurrentPage(1);
-  };
-
-  useEffect(() => {
-    setDepartmentId(subDepartmentId);
-    setCurrentPage(1);
-  }, [subDepartmentId]);
-
-  const setActiveImgUrl = async id => {
-    const selectImg = await data.find(item => item.id === id);
-    setActiveImg(selectImg);
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoadingState('loading');
-        const result = await getDepartmentAchievementsPage(
-          url,
-          departmentId,
-          currentPage,
-          size
-        );
-        setData(result.items);
-        setTotalPages(result.pages);
-        setLoadingState('success');
-      } catch (error) {
-        console.log(error);
-        setData([]);
-        setLoadingState('error');
-      }
-    };
-    fetchData();
-  }, [getDepartmentAchievementsPage, url, departmentId, currentPage, size]);
-
-  //зміна сторінки для запиту при натисканні кнопки
-  const handlePageChange = page => {
-    setCurrentPage(page);
-  };
-  const prevPage = () => {
-    currentPage > 1
-      ? setCurrentPage(currentPage - 1)
-      : setCurrentPage(totalPages);
-  };
-  const nextPage = () => {
-    currentPage < totalPages
-      ? setCurrentPage(currentPage + 1)
-      : setCurrentPage(1);
-  };
-  //свайп по блоку
-  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useSwipe(
-    prevPage,
-    nextPage
-  );
-
-  return (
-    <section className={`${s.gallery} `}>
-      <h2>Галерея відділу</h2>
-      {showSelect && isDesktop && (
-        <Suspense>
-          <Select
-            title="Обрати відділ"
-            options={selectOptions}
-            changeDepartment={changeDepartment}
-          />
-        </Suspense>
-      )}
-      {loadingState === 'error' && (
-        <div className={`${s.errorData} errorData`}>
-          <Placeholder />
-        </div>
-      )}
-      {data?.length > 0 && (
-        <div className={s.slidersContainer}>
-          {isDesktop && totalPages > 1 && (
-            <div className={s.swiperButtons}>
-              <Suspense>
-                <SwiperButtons onPrevClick={prevPage} onNextClick={nextPage} />
-              </Suspense>
-            </div>
-          )}
-          <div
-            className={s.slider}
-            ref={sliderRef}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {data?.map(item => (
-              <div className={s.slideContent} key={item.id}>
-                <div className={s.slidePhoto}>
-                  <img
-                    src={item.media}
-                    alt={
-                      item.description
-                        ? item.description
-                        : 'КДШМ М.І.Вериківського фото'
-                    }
-                    onClick={() => {
-                      setActiveImgUrl(item.id);
-                      openModal();
-                    }}
-                  />
-                </div>
-                <p className={s.slideText}>{item.description}</p>
-              </div>
-            ))}
-          </div>
-          {totalPages > 1 && (
-            <Suspense>
-              <SwiperPagination
-                totalPages={totalPages}
-                currentPage={currentPage}
-                handlePageChange={handlePageChange}
-              />
-            </Suspense>
-          )}
-        </div>
-      )}
-      {showSelect && !isDesktop && (
-        <Suspense>
-          <Select
-            title="Обрати відділ"
-            options={selectOptions}
-            changeDepartment={changeDepartment}
-          />
-        </Suspense>
-      )}
-      {isModalOpen && (
-        <Suspense>
-          <Modal accentIcon={true}>
-            <img
-              src={activeImg?.media}
-              alt={` ${
-                activeImg.description
-                  ? activeImg.description
-                  : 'КДШМ М.І.Вериківського фото'
-              }`}
-            />
-          </Modal>
-        </Suspense>
       )}
     </section>
   );

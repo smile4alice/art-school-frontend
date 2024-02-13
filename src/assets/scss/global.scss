@@ -11,15 +11,18 @@ body {
 
 main {
   //min-height: 80vh; //прибрати? якщо прибрати то коли на сторінці немає контенту, футер "підстрибує" наверх
-  min-height: 40vh; // потестити, збільшує відступи
+  //min-height: 40vh; // потестити, збільшує відступи
   margin-top: 110px;
+  min-height: calc(100vh - 900px);
   @media only screen and (orientation: landscape) {
     margin-top: 91px;
   }
+  @media (min-width: 768px) {
+    min-height: calc(100vh - 777px);
+  }
 
   @media (min-width: 1280px) {
-    & {
-      margin-top: 167px;
-    }
+    margin-top: 167px;
+    min-height: calc(100vh - 517px);
   }
 }
