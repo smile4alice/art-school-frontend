@@ -43,6 +43,9 @@
   .slider {
     width: 100%;
     margin-top: 1rem;
+    > div:nth-child(2) {
+      padding: 0.5rem;
+    }
     .slide {
       width: 100%;
       overflow: hidden;

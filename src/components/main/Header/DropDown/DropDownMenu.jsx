@@ -26,7 +26,7 @@ const DropDownMenu = ({
 
   return (
     <>
-      <HashLink
+      <div
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
         onClick={() => {
           setIsOpen(!isOpen);
@@ -39,14 +39,6 @@ const DropDownMenu = ({
         onMouseLeave={() => {
           setIsOpen(false);
           setCurrentId('');
-        }}
-        scroll={el => {
-          if (isDesktop) {
-            el.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-            });
-          }
         }}
       >
         <div className={styles.dropDownNameWrapper}>
@@ -94,7 +86,7 @@ const DropDownMenu = ({
             ))}
           </ul>
         )}
-      </HashLink>
+      </div>
 
       <div
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}

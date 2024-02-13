@@ -91,7 +91,7 @@ const News = ({ selectOptions, subDepartmentId }) => {
                 slidesPerView={1}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
-                loop={true}
+               // loop={true}
                 onSwiper={swiper => {
                   swiperRef.current = swiper;
                 }}
