@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Container from '@/components/Container/Container';
 import Achievements from '@/components/main/Achievements/Achievements';
-import GalleryDepartments from '@/components/departments/GalleryDepartments/GalleryDepartments';
 import DropDownsList from '@/components/ui/DropDownsList/DropDownsList';
 import News from '@/components/main/News/News';
 import useServicesStore from '@/store/serviseStore';
@@ -47,7 +46,8 @@ const DepartmentPage = ({ id, title, articles, showSelect }) => {
                   selectOptions={subDepartments}
                   subDepartmentId={departmentId}
                 />
-                 <GalleryDepartments
+                <Achievements
+                  title={'Галерея відділу'}
                   showSelect={showSelect}
                   selectOptions={subDepartments}
                   url={'gallery'}
