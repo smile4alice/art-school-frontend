@@ -44,7 +44,7 @@ const AddNewsPage = () => {
     <div>
       <BreadCrumbs breadcrumbs={breadcrumbs} />
       <PageTitle
-        title="Додати подію"
+        title="Додати захід"
         showBackButton={true}
         backButtonLink="/admin/news"
         showActionButton={false}
