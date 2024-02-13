@@ -13,6 +13,7 @@ import styles from './NewsAdmin.module.scss';
 
 const breadcrumbs = ['Заходи', 'Редагувати захід'];
 
+
 const initialValues = {
   title: '',
   text: '',

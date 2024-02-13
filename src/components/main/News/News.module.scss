@@ -1,17 +1,23 @@
 .News {
-  .title {
+  h2 {
     color: $black;
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    @media screen and (min-width: 678px) {
+    @media screen and (min-width: 768px) {
       font-size: 2rem;
     }
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 1280px) {
       font-size: 32px;
-      margin-bottom: 56px;
+      margin-bottom: 0;
+    }
+    &.title {
+      @media screen and (min-width: 1024px) {
+        margin-bottom: 36px;
+      }
     }
   }
+
   .ButtonContainer {
     width: 100%;
     margin-top: 1rem;
@@ -46,6 +52,7 @@
         &.pagination {
           padding-bottom: 3rem;
         }
+        padding-top: 1.5rem;
       }
       .Slide {
         width: 100%;
@@ -61,7 +68,7 @@
           @media (min-width: 1280px) {
             height: 500px;
           }
-          article{
+          article {
             width: 100%;
             height: 100%;
             border-radius: 0.3125rem;

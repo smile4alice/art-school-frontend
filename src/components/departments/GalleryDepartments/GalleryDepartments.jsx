@@ -93,6 +93,7 @@ const GalleryDepartments = ({
 
   return (
     <section className={`${s.gallery} `}>
+      <h2>Галерея відділу</h2>
       {showSelect && isDesktop && (
         <Suspense>
           <Select
