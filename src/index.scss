@@ -16,7 +16,7 @@ html {
 body {
   min-width: 320px;
   font-family: 'Mulish', sans-serif;
- // overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 h1,
@@ -101,13 +101,11 @@ iframe {
 
 .sectionTitle {
   color: $black;
-  font-size: 1.125rem; //18px
+  font-size: 1.5rem; //24px
   font-style: normal;
   font-weight: 700;
   line-height: 140%;
-  @media screen and (min-width: 768px) {
-    font-size: 1.5rem; //24px
-  }
+
   @media screen and (min-width: 768px) {
     font-size: 2rem; //32px
   }
