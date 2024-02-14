@@ -43,6 +43,7 @@ const Achievements = ({
     setLoadingState('Loading');
     setDepartmentId(id);
     setCurrentPage(1);
+    setCurrentIndex(1);
   };
 
   const setActiveImgUrl = async id => {
