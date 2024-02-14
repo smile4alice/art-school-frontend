@@ -8,8 +8,7 @@ import SocialList from './SosialList/SocialList';
 
 import styles from './Header.module.scss';
 
-const HeaderContacts = ({ contacts }) => {
-  const [show, setShow] = useState(true);
+const HeaderContacts = ({ contacts, setShow, show }) => {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {

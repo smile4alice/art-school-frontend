@@ -3,10 +3,11 @@ import HeaderNavigation from './HeaderNavigation';
 
 import styles from './Header.module.scss';
 import { useEffect, useState } from 'react';
+import clsx from 'clsx';
 
 const Header = ({ contacts }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+  const [show, setShow] = useState(true);
   useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
@@ -19,8 +20,10 @@ const Header = ({ contacts }) => {
     };
   }, []);
   return (
-    <header className={styles.headerWrapper}>
-      {windowWidth >= 1280 && <HeaderContacts contacts={contacts} />}
+    <header className={clsx(styles.headerWrapper, show ? '' : styles.hidden)}>
+      {windowWidth >= 1280 && (
+        <HeaderContacts show={show} setShow={setShow} contacts={contacts} />
+      )}
       <HeaderNavigation windowWidth={windowWidth} contacts={contacts} />
     </header>
   );
