@@ -20,6 +20,7 @@
   @extend%aligncenter;
   flex-direction: column;
   gap: 5px;
+  color: $black;
   @include font(16px, 400, 1.44);
   img {
     width: 100%;

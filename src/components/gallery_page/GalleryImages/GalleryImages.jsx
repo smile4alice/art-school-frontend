@@ -71,7 +71,7 @@ const GalleryImages = () => {
           }}
         >
           <SortIcon />
-          {reverse
+          {!reverse
             ? ' Сортування від новіших до старіших'
             : ' Сортування від старіших до новіших'}
         </button>
@@ -84,7 +84,11 @@ const GalleryImages = () => {
               <img
                 loading="lazy"
                 src={image.media}
-                alt={image.description ? image.description : `КДШМ М.І.Вериківського фото ${index + 1}`}
+                alt={
+                  image.description
+                    ? image.description
+                    : `КДШМ М.І.Вериківського фото ${index + 1}`
+                }
                 onClick={() => {
                   setActiveImgUrl(image.id);
                   openModal();
