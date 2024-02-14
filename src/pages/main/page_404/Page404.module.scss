@@ -1,10 +1,10 @@
 .NotFound {
   width: 100vw;
-  min-height: 100vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  color: $black;
 
   .wrapper {
     width: 50%;
@@ -13,6 +13,7 @@
     align-items: center;
     flex-direction: column;
     margin: 100px auto;
+    color: $black;
     @media screen and (max-width: 1024px) {
       width: 100%;
       padding: 2rem;
@@ -23,12 +24,32 @@
       text-align: center;
       font-size: 18px;
       margin: 50px auto 30px;
+      color: $black;
       @media screen and (max-width: 1024px) {
         white-space: inherit;
       }
       @media screen and (max-width: 768px) {
         font-size: 14px;
       }
+    }
+  }
+  .button {
+    display: flex;
+    width: 288px;
+    height: 2.75rem;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: $accent;
+    color: $white;
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    @media screen and (min-width: 767px) {
+      width: 280px;
     }
   }
 }

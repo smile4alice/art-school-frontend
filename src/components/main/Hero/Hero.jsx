@@ -2,7 +2,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useRef, useEffect } from 'react';
 import useSlidersStore from '@/store/slidersStore';
 import { Autoplay, Pagination, Keyboard } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -80,8 +79,9 @@ const Hero = () => {
           <SwiperSlide key={index} className={styles.SlideStyle}>
             <div className={styles.slideImage}>
               <img
+                loading="lazy"
                 src={slide.photo}
-                alt={slide.title}
+                alt={slide.title ? slide.title : 'КДШМ М.І.Вериківського фото'}
                 className={styles.HeroImage}
               />
             </div>

@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import styles from './DropDown.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { HashLink } from 'react-router-hash-link';
 import arrowIcon from '/icons/arrow.svg';
@@ -15,10 +15,18 @@ const DropDownMenu = ({
   setIsOpen,
 }) => {
   const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const navigate = useNavigate();
+  const handleClick = path => {
+    //на початок сторінки, якщо сторінка активна
+    const currentPath = window.location.pathname;
+    if (currentPath === path) {
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
     <>
-      <HashLink
+      <div
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
         onClick={() => {
           setIsOpen(!isOpen);
@@ -31,14 +39,6 @@ const DropDownMenu = ({
         onMouseLeave={() => {
           setIsOpen(false);
           setCurrentId('');
-        }}
-        scroll={el => {
-          if (isDesktop) {
-            el.scrollIntoView({
-              behavior: 'smooth',
-              block: 'center',
-            });
-          }
         }}
       >
         <div className={styles.dropDownNameWrapper}>
@@ -76,6 +76,7 @@ const DropDownMenu = ({
                   key={name}
                   to={to}
                   onClick={() => {
+                    handleClick(to);
                     !isDesktop && toggleBurgerMenu();
                   }}
                 >
@@ -85,7 +86,7 @@ const DropDownMenu = ({
             ))}
           </ul>
         )}
-      </HashLink>
+      </div>
 
       <div
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
@@ -100,6 +101,8 @@ const DropDownMenu = ({
         onClick={() => {
           setIsOpen(!isOpen);
           setCurrentId('about-school');
+          handleClick('/about-school');
+          navigate('/about-school');
         }}
       >
         <div className={styles.dropDownNameWrapper}>

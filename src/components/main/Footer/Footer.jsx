@@ -22,7 +22,7 @@ const footerLinksColumn = [
 const footerLinksColumnDepartment = [
   { title: 'Музичне відділення', path: '/music-department' },
   { title: 'Вокально-хорове відділення', path: '/vocal-department' },
-  { title: 'Хореографічне відділення', path: '/сhoreographic-department' },
+  { title: 'Хореографічне відділення', path: '/choreographic-department' },
   { title: 'Образотворче відділення', path: '/fine-arts-department' },
   { title: 'Театральне відділення', path: '/theater-department' },
   {
@@ -34,10 +34,8 @@ const footerLinksColumnDepartment = [
 const Footer = ({ contacts }) => {
   const [application, setApplication] = useState([]);
   const { getDocuments, getApplication } = useDocumentsStore();
-  const documents = useDocumentsStore(state => state.documents);
 
   const handleClick = path => {
-    //на початок сторінки, якщо сторінка активна
     const currentPath = window.location.pathname;
     if (currentPath === path) {
       window.scrollTo(0, 0);
@@ -101,8 +99,8 @@ const Footer = ({ contacts }) => {
             <div className={styles.footerButton}>
               <DownloadButton
                 link={
-                  documents[0]?.doc_path
-                    ? documents[0]?.doc_path
+                  application?.doc_path
+                    ? application?.doc_path
                     : '/documents/заява_на_вступ.pdf'
                 }
                 title="Завантажити заяву"

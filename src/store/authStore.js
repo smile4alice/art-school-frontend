@@ -5,6 +5,7 @@ import { isDataValid } from '@/utils/formDataValidation';
 const useAuthStore = create(set => ({
   loading: false,
   error: '',
+  success: false,
 
   login: async data => {
     try {
@@ -63,6 +64,18 @@ const useAuthStore = create(set => ({
           .post(`/auth/reset-password`, data, {})
           .then(response => {
             console.log(response);
+            set(() => {
+              if (response.data.detail.status === 'success') {
+                return {
+                  success: true,
+                };
+              }
+              if (response.status === 200) {
+                return {
+                  success: true,
+                };
+              }
+            });
           })
           .catch(error => {
             console.log('Fetch error:', error.response.data.detail);

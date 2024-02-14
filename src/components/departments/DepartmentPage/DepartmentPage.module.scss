@@ -1,16 +1,14 @@
 .contentWrapper {
- color: $black;
+  color: $black;
   width: 100%;
   min-height: 40vh;
   padding-top: 24px;
+  color: $black;
   @extend%aligncenter;
   flex-direction: column;
   gap: 12px;
   h1 {
     align-self: flex-start;
-  }
-  @media screen and (min-width: 768px) {
-    //gap: 16px;
   }
   @media screen and (min-width: 1240px) {
     padding-top: 40px;
@@ -19,10 +17,18 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  //gap: 10px;
   width: 100%;
+  color: $black;
+  >section:nth-child(4){
+    >div{
+      padding: 0;
+    }
+  }
   > section:last-child {
     margin-bottom: 70px;
+    > div {
+      padding: 0;
+    }
   }
   @media screen and (min-width: 768px) {
     > section:last-child {

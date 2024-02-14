@@ -9,15 +9,14 @@
 }
 
 html {
-  overflow-x: hidden;
+  //overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
-  min-height: 100vh;
   min-width: 320px;
   font-family: 'Mulish', sans-serif;
-  overflow-x: hidden;
+ // overflow-x: hidden;
 }
 
 h1,
@@ -80,7 +79,10 @@ iframe {
   width: 100%;
   height: 100%;
 }
-
+.swiper-lazy-preloader {
+  border: 4px solid rgba($accent, 0.3);
+  border-top: 4px solid $accent;
+}
 .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
@@ -124,14 +126,4 @@ iframe {
   font-size: 18px;
   color: $admin-red;
   margin-top: -1rem;
-}
-
-#header-bar {
-  min-height: 10px;
-}
-#pdf-page-wrapper {
-  margin: 0;
-}
-#pdf-controls {
-  background-color: $accent;
 }

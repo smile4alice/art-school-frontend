@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useDocumentsStore from '@/store/documentsStore';
 
 import Department from './Department/Department';
@@ -14,8 +14,8 @@ import preschoolImg from '/departments/preschool.webp';
 import styles from './Departments.module.scss';
 
 const Departments = () => {
-  const { getDocuments } = useDocumentsStore();
-  const documents = useDocumentsStore(state => state.documents);
+  const [application, setApplication] = useState([]);
+  const { getApplication } = useDocumentsStore();
 
   const musicDepartment = 'Музичне відділення';
   const artDepartment = 'Образотворче відділення';
@@ -27,13 +27,14 @@ const Departments = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getDocuments();
+        const response = await getApplication();
+        setApplication(response[0]);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [getDocuments]);
+  }, [getApplication]);
 
   return (
     <section>
@@ -43,8 +44,8 @@ const Departments = () => {
           <div className={styles.buttonContainer}>
             <a
               href={
-                documents[0]?.doc_path
-                  ? documents[0]?.doc_path
+                application?.doc_path
+                  ? application?.doc_path
                   : '/documents/заява_на_вступ.pdf'
               }
               target="_blank"
@@ -66,7 +67,7 @@ const Departments = () => {
             />
             <Department
               title={choreografyDepartment}
-              link="/сhoreographic-department"
+              link="/choreographic-department"
               img={choreografyImg}
             />
             <Department

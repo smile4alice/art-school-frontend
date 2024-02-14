@@ -1,13 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import useAuthStore from '@/store/authStore';
-import { useModal } from '@/store/modalStore';
 import { completeRecoveryValidation } from './validationSchema';
 import Heading from '../Heading/Heading';
 import ButtonSubmit from '../../Buttons/SubmitButton/ButtonSubmit.jsx';
 import PasswordInput from '@/components/admin-components/formik/PasswordInput/PasswordInput';
-import ConfirmModal from '@/components/admin-components/modals/ConfirmModal/ConfirmModal';
 import styles from './CompletePasswordRecovery.module.scss';
 
 const initialValues = {
@@ -19,30 +17,33 @@ const CompletePasswordRecovery = () => {
   const { token } = useParams();
   const navigate = useNavigate();
   const { resetPassword } = useAuthStore();
-  const { isModalOpen, openModal, closeModal } = useModal();
   const [isProcessing, setIsProcessing] = useState(false);
   const error = useAuthStore(state => state.error);
+  const success = useAuthStore(state => state.success);
 
   const onSubmit = async values => {
-    const data = {
-      token: token,
-      password: values.password,
-    };
-    setIsProcessing(true);
-    const response = await resetPassword(data);
-    if (response && response.status === 200) {
-      openModal();
+    try {
+      const data = {
+        token: token,
+        password: values.password,
+      };
+      setIsProcessing(true);
+      await resetPassword(data);
       setIsProcessing(false);
-      setTimeout(() => {
-        navigate('/login/password-recovery-success');
-      }, 5000);
-    } else {
+    } catch (error) {
+      console.log(error);
       setIsProcessing(false);
       setTimeout(() => {
         navigate('/login/password-recovery');
       }, 8000);
     }
   };
+
+  useEffect(() => {
+    if (success) {
+      navigate('/login/password-recovery-success');
+    }
+  }, [success, navigate]);
 
   return (
     <>
@@ -91,12 +92,6 @@ const CompletePasswordRecovery = () => {
       <Link to="/login" className={styles.link}>
         Я згадав пароль!
       </Link>
-      {isModalOpen && (
-        <ConfirmModal
-          handleClick={closeModal}
-          message="Пароль успішно змінено"
-        />
-      )}
     </>
   );
 };

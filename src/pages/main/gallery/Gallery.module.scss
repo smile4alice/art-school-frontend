@@ -3,23 +3,24 @@
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  padding: 1rem;
+  //padding: 1rem;
   padding-bottom: 40px;
+  color: $black;
   @include tablet {
     padding-bottom: 60px;
-  }  
-  @include desktop{
+  }
+  @include desktop {
     padding-top: 40px;
-  }     
+  }
   .galleryHeading {
     width: 100%;
+    color: $black;
     h1 {
       font-size: 24px;
       font-weight: 700;
       @include desktop {
         font-size: 32px;
-      }  
+      }
     }
   }
-           
 }

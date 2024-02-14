@@ -118,7 +118,46 @@ const useServicesStore = create((set, get) => ({
       throw new Error(error);
     }
   },
+  getAllPhotoPage: async (reverse, page, size) => {
+    try {
+      const response = await axios.get(
+        `/gallery/photo?reverse=${reverse}${
+          page ? `&page=${page}` : ''
+        }${size ? `&size=${size}` : ''}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  getMainAchievementsPage: async (url, page, size) => {
+    const newUrl = url === 'gallery' ? 'gallery/photo' : url;
+    try {
+      const response = await axios.get(
+        `/${newUrl}?is_pinned=true${page ? `&page=${page}` : ''}${
+          size ? `&size=${size}` : ''
+        }`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
   // досягнення відділу по id
+  getDepartmentAchievementsPage: async (url, id, page, size) => {
+    const newUrl = url === 'achievements' ? 'achievement' : url;
+    try {
+      const response = await axios.get(
+        `/departments/sub_department_${newUrl}/${id}${
+          page ? `?page=${page}` : ''
+        }${size ? `&size=${size}` : ''}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
   getDepartmentAchievements: async (url, id) => {
     const newUrl = url === 'achievements' ? 'achievement' : url;
     try {
@@ -133,12 +172,12 @@ const useServicesStore = create((set, get) => ({
       set(() => {
         if (url === 'gallery') {
           return {
-            gallery: response.data,
+            gallery: response.data.items,
             loading: 'success',
           };
         } else {
           return {
-            achievements: response.data,
+            achievements: response.data.items,
             loading: 'success',
           };
         }
@@ -160,6 +199,7 @@ const useServicesStore = create((set, get) => ({
       throw new Error(error);
     }
   },
+
   //конкретне досягнення по id
 
   getAchievemenById: async (url, id) => {
@@ -326,7 +366,7 @@ const useServicesStore = create((set, get) => ({
   //Позиції досягнень головної сторінки
   getAchievementsPositions: async url => {
     try {
-      const response = await axios.get(`/${url}/positions`);
+      const response = await axios.get(`/${url}/positions?is_video=false`);
       set(() => {
         return {
           achievementsPositions: response.data,

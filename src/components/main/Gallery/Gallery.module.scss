@@ -5,13 +5,13 @@
   h2 {
     font-size: 1.25rem;
     font-weight: 700;
+    color: $black;
     @media (min-width: 768px) {
       font-size: 2rem;
     }
   }
   .ButtonContainer {
     width: 100%;
-    margin-top: 0.5rem;
     @media screen and (min-width: 1024px) {
       display: flex;
       justify-content: flex-end;
@@ -43,6 +43,9 @@
   .slider {
     width: 100%;
     margin-top: 1rem;
+    > div:nth-child(2) {
+      padding: 0.5rem;
+    }
     .slide {
       width: 100%;
       overflow: hidden;
@@ -57,6 +60,7 @@
         object-fit: cover;
         object-position: center;
         border-radius: 5px;
+        overflow: hidden;
         @media screen and (min-width: 768px) {
           height: 396px;
         }

@@ -7,6 +7,7 @@ const AchievementPositions = ({
   form: { setFieldValue },
   activePosition,
   achievementPositions,
+  video,
 }) => {
   const name = field.name;
   const [isActivePosition, setIsActivePosition] = useState(activePosition);
@@ -39,7 +40,7 @@ const AchievementPositions = ({
       radios.push(
         <div key={i} className={s.radioContainer}>
           <label htmlFor={`radio-${i}`} className={s.label}>
-            Фото {i}
+           {video ? 'Відео' : 'Фото'} {i}
           </label>
           <input
             className={inputClassName}
@@ -68,7 +69,7 @@ const AchievementPositions = ({
   return (
     <div className={s.container}>
       <h4 className={s.title}>{title}</h4>
-      <div className={s.radioList}>{renderRadios()}</div>
+      <div className={`${s.radioList} ${video ? s.videoType : ''}`}>{renderRadios()}</div>
     </div>
   );
 };

@@ -22,7 +22,19 @@ const useClickOutside = (refs, callback) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refs, callback]);
 };
-
+const useBodyScrollLockRight = (isActive) => {
+  useEffect(() => {
+    if (isActive) {
+      const paddingForScroll = window.innerWidth - document.body.offsetWidth + 'px';
+      document.body.classList.add('noScroll');
+      document.body.style.paddingRight = paddingForScroll;
+      return () => {
+        document.body.classList.remove('noScroll');
+        document.body.style.paddingRight = '0';
+      };
+    }
+  }, [isActive]);
+};
 const truncateString = (maxLength, string) => {
   if (string.length <= maxLength) {
     return string;
@@ -32,4 +44,8 @@ const truncateString = (maxLength, string) => {
 };
 
 
-export { useToggle, useClickOutside, truncateString, };
+
+
+
+
+export { useToggle, useClickOutside, useBodyScrollLockRight, truncateString};

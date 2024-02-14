@@ -135,7 +135,7 @@ const App = () => {
               element={<VocalDepartment />}
             />
             <Route
-              path="/сhoreographic-department"
+              path="/choreographic-department"
               caseSensitive={true}
               element={<ChoreographicDepartment />}
             />

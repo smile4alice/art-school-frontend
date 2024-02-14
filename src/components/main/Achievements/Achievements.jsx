@@ -1,60 +1,156 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import useServicesStore from '@/store/serviseStore';
+import { useModal } from '@/store/modalStore';
+import Placeholder from '@/components/ui/Placeholder/Placeholder';
+import Container from '@/components/Container/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import SwiperButtons from '@/components/ui/SwiperButtons/SwiperButtons';
-import Select from '@/components/ui/Select/Select';
-import useServicesStore from '@/store/serviseStore';
 import Spinner from '@/components/ui/Spinner/Spinner';
-import Placeholder from '@/components/ui/Placeholder/Placeholder';
+import { useActiveImg } from '@/store/selectImg';
 import s from './Achievements.module.scss';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css';
-import Container from '@/components/Container/Container';
+const Modal = lazy(() => import('@/components/ui/Modal/Modal'));
+const SwiperButtons = lazy(() =>
+  import('@/components/ui/SwiperButtons/SwiperButtons')
+);
+const Select = lazy(() => import('@/components/ui/Select/Select'));
 
 const Achievements = ({
   title,
   url,
-  departmentId,
-  changeDepartment,
   showSelect,
   selectOptions,
+  subDepartmentId,
 }) => {
   const swiperRef = useRef();
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
-  const { getMainAchievements, getDepartmentAchievements } = useServicesStore();
-  const achievements = useServicesStore(state => state.achievements);
+  const { getMainAchievementsPage, getDepartmentAchievementsPage } =
+    useServicesStore();
+  const { isModalOpen, openModal } = useModal();
+  const { activeImg, setActiveImg } = useActiveImg();
+  const [totalPages, setTotalPages] = useState(0);
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const isLaptop = useMediaQuery({ minWidth: 768 });
+  const [departmentId, setDepartmentId] = useState(subDepartmentId);
   const [loadingState, setLoadingState] = useState('loading');
+  const [data, setData] = useState([]);
+  const firstFetchPageSize = isDesktop ? 3 : isLaptop ? 2 : 1;
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 1;
+  const [currentIndex, setCurrentIndex] = useState(1);
+
+  const changeDepartment = id => {
+    setData([]);
+    setLoadingState('Loading');
+    setDepartmentId(id);
+    setCurrentPage(1);
+    setCurrentIndex(1);
+  };
+
+  const setActiveImgUrl = async id => {
+    const selectImg = await data.find(item => item.id === id);
+    setActiveImg(selectImg);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
+    setDepartmentId(subDepartmentId);
+    setCurrentPage(1);
+  }, [subDepartmentId]);
+
+  useEffect(() => {
+    const firstFetchData = async () => {
       try {
         setLoadingState('loading');
+        let result;
         if (url === 'achievements') {
-          await getMainAchievements(url);
+          result = await getMainAchievementsPage(
+            url,
+            currentPage,
+            firstFetchPageSize
+          );
         } else {
-          await getDepartmentAchievements(url, departmentId);
+          if (departmentId) {
+            result = await getDepartmentAchievementsPage(
+              url,
+              departmentId,
+              1,
+              firstFetchPageSize
+            );
+          }
         }
+        if (result?.items) {
+          setData(result.items);
+        }
+        setCurrentPage(firstFetchPageSize + 1);
         setLoadingState('success');
       } catch (error) {
         setLoadingState('error');
+        console.log(error);
+        setData([]);
       }
     };
-    fetchData();
-  }, [getMainAchievements, getDepartmentAchievements, url, departmentId]);
+    firstFetchData();
+    //eslint-disable-next-line
+  }, [departmentId]);
+
+  useEffect(() => {
+    const fetchNextData = async () => {
+      if (currentPage > firstFetchPageSize && data.length > 0) {
+        try {
+          let result;
+          if (url === 'achievements') {
+            result = await getMainAchievementsPage(url, currentPage, pageSize);
+          } else {
+            if (departmentId) {
+              result = await getDepartmentAchievementsPage(
+                url,
+                departmentId,
+                currentPage,
+                pageSize
+              );
+            }
+          }
+          if (result?.items) {
+            setData(prevData => [...prevData, ...result.items]);
+          }
+
+          setTotalPages(result.pages);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    fetchNextData();
+    //eslint-disable-next-line
+  }, [currentPage]);
+
+  // swiper navigation
+  const handlePrevSlide = () => {
+    if (currentIndex > 1) {
+      setCurrentIndex(prevValue => prevValue - 1);
+    }
+  };
+  const handleNextSlide = () => {
+    if (currentIndex < totalPages) {
+      setCurrentIndex(prevValue => prevValue + 1);
+    }
+    if (currentPage < totalPages && currentPage >= currentIndex) {
+      setCurrentPage(prevPage => prevPage + 1);
+    }
+  };
 
   return (
     <section className={`${s.achievements}`}>
       <Container>
         <div className={s.achievementsWrapper}>
-          <h2>{title}</h2>
+          <h2 className={subDepartmentId ? '' : s.title}>{title}</h2>
           {showSelect && isDesktop && (
-            <Select
-              title="Обрати відділ"
-              options={selectOptions}
-              changeDepartment={changeDepartment}
-            />
+            <Suspense>
+              <Select
+                title="Обрати відділ"
+                options={selectOptions}
+                changeDepartment={changeDepartment}
+              />
+            </Suspense>
           )}
           {loadingState === 'loading' && (
             <div className={s.errorData}>
@@ -66,24 +162,42 @@ const Achievements = ({
               <Placeholder />
             </div>
           )}
-          {loadingState === 'success' && achievements?.length > 0 && (
+          {data?.length > 0 && (
             <div className={s.slidersContainer}>
-              {isDesktop && achievements?.length > 3 && (
-                <SwiperButtons
-                  onPrevClick={() => swiperRef.current.slidePrev()}
-                  onNextClick={() => swiperRef.current.slideNext()}
-                />
+              {isDesktop && totalPages > 3 && (
+                <div className={s.swiperButtons}>
+                  <Suspense>
+                    <SwiperButtons
+                      onPrevClick={() => {
+                        swiperRef.current.slidePrev();
+                      }}
+                      onNextClick={() => {
+                        swiperRef.current.slideNext();
+                      }}
+                    />
+                  </Suspense>
+                </div>
               )}
+
               <Swiper
                 onSwiper={swiper => {
                   swiperRef.current = swiper;
                 }}
-                className={s.slider}
+                onSlidePrevTransitionStart={() => {
+                  handlePrevSlide();
+                }}
+                onSlideNextTransitionStart={() => {
+                  handleNextSlide();
+                }}
                 modules={[Pagination]}
+                pagination={{
+                  type: 'bullets',
+                  dynamicBullets: true,
+                  dynamicMainBullets: 3,
+                }}
+                className={s.slider}
                 spaceBetween={16}
                 slidesPerView={1}
-                pagination={{ clickable: true }}
-                loop={true}
                 breakpoints={{
                   768: {
                     slidesPerView: 2,
@@ -93,10 +207,26 @@ const Achievements = ({
                   },
                 }}
               >
-                {achievements?.map(item => (
+                {data?.map(item => (
                   <SwiperSlide className={s.slideContent} key={item.id}>
-                    <div className={s.slidePhoto}>
-                      <img src={item.media} alt={item.description} />
+                    <div
+                      className={`${s.slidePhoto} ${
+                        url === 'gallery' ? s.gallery : ''
+                      }`}
+                    >
+                      <img
+                        loading="lazy"
+                        src={item.media}
+                        alt={
+                          item.description
+                            ? item.description
+                            : 'КДШМ М.І.Вериківського досягнення'
+                        }
+                        onClick={() => {
+                          setActiveImgUrl(item.id);
+                          openModal();
+                        }}
+                      />
                     </div>
                     <p className={s.slideText}>{item.description}</p>
                   </SwiperSlide>
@@ -105,14 +235,23 @@ const Achievements = ({
             </div>
           )}
           {showSelect && !isDesktop && (
-            <Select
-              title="Обрати відділ"
-              options={selectOptions}
-              changeDepartment={changeDepartment}
-            />
+            <Suspense>
+              <Select
+                title="Обрати відділ"
+                options={selectOptions}
+                changeDepartment={changeDepartment}
+              />
+            </Suspense>
           )}
         </div>
       </Container>
+      {isModalOpen && (
+        <Suspense>
+          <Modal>
+            <img src={activeImg.media} alt={` ${activeImg.description}`} />
+          </Modal>
+        </Suspense>
+      )}
     </section>
   );
 };

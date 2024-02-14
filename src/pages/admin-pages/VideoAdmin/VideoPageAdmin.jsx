@@ -1,33 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import BreadCrumbs from '@/components/admin-components/BreadCrumbs/BreadCrumbs';
 import PageTitle from '@/components/admin-components/PageTitle/PageTitle';
-import useVideoStore from '@/store/videoStore';
-import SpinnerAdmin from '@/components/admin-components/SpinnerAdmin/SpinnerAdmin';
-import PlaceholderAdmin from '@/components/admin-components/PlaceholderAdmin/PlaceholderAdmin';
+import SelectAdminDouble from '@/components/admin-components/OurAchievements/SelectAdminDouble/SelectAdminDouble';
+import CustomTitle from '@/components/admin-components/OurAchievements/CustomTitle/CustomTitle';
 import VideoTable from '@/components/admin-components/Gallery/VideoTable/VideoTable';
 import s from './VideoPage.module.scss';
 
-const breadcrumbs = ['Відеогалерея'];
-
 const VideoPageAdmin = () => {
-  const { getAllVideo } = useVideoStore();
-  const videos = useVideoStore(state => state.videos);
-  const loading = useVideoStore(state => state.loading);
-  const [loadingState, setLoadingState] = useState('loading');
+  const [typeOfAchievements, setTypeOfAchievements] =
+  useState('allAchievements');
+  const [title, setTitle] = useState('Всі відео');
+  const [departmentId, setDepartmentId] = useState('1');
+  let breadcrumbs = ['Відеогалерея']
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoadingState('loading');
-        await getAllVideo();
-        setLoadingState('success');
-      } catch (error) {
-        console.log(error);
-        setLoadingState('error');
-      }
-    };
-    fetchData();
-  }, [getAllVideo]);
+  const setBreadcrumbs = ( title) => {
+    if (title !== 'Всі відео' && typeOfAchievements !== 'mainAchievements') {
+      breadcrumbs.push(title);
+    }
+    if (typeOfAchievements === 'mainAchievements') {
+      breadcrumbs.push('Закріпленні відео');
+    }
+    return breadcrumbs;
+  };
+  setBreadcrumbs( title);
+
+  const changeDepartment = (id, title) => {
+    if (id !== undefined && id !== null) {
+      setDepartmentId(id);
+      setTitle(title);
+      setTypeOfAchievements('departmentAchievements');
+    }
+  };
 
   return (
     <div className={s.container}>
@@ -40,21 +43,41 @@ const VideoPageAdmin = () => {
         isActionButtonDisabled={false}
         actionButtonLabel="Додати відео"
       />
-      {loading ? (
-        <SpinnerAdmin />
-      ) : (
-        <>
-          {loadingState === 'success' && videos?.length > 0 && (
-            <VideoTable videos={videos} url="video" />
-          )}
-          {loadingState === 'loading' && (
-            <div className={s.errorData}>
-              <SpinnerAdmin />
-            </div>
-          )}
-          {loadingState === 'error' && <PlaceholderAdmin />}
-        </>
+      <div className={s.selectsContainer}>
+        <div className={s.selectButtons}>
+          <button
+            className={typeOfAchievements === 'allAchievements' ? s.active : ''}
+            onClick={() => {
+              setTitle('Всі відео');
+              setTypeOfAchievements('allAchievements');
+            }}
+          >
+            Сторінка Відеогалерея
+          </button>
+          <button
+            className={
+              typeOfAchievements === 'mainAchievements' ? s.active : ''
+            }
+            onClick={() => {
+              setTypeOfAchievements('mainAchievements');
+            }}
+          >
+            Закріплені відео
+          </button>
+        </div>
+        {typeOfAchievements !== 'mainAchievements' && (
+          <div className={s.selectDepartments}>
+            <SelectAdminDouble changeDepartment={changeDepartment} />
+          </div>
+        )}
+      </div>
+      {typeOfAchievements !== 'mainAchievements' && (
+        <CustomTitle title={title} />
       )}
+      <VideoTable
+        typeOfAchievements={typeOfAchievements}
+        departmentId={departmentId}
+      />
     </div>
   );
 };

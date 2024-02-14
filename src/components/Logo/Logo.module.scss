@@ -8,10 +8,6 @@
     height: 54px;
   }
 
-  // &:focus {
-  //   outline: 1px solid $accent;
-  // }
-
   @media screen and (min-width: 1280px) {
     svg {
       width: 75px;
@@ -23,27 +19,27 @@
 .logoText {
   width: 170px;
   font-family: 'Mulish';
-  @include font(14px, 800, 1.2);
+  @include font(14px, 700, 1.2);
 
   @media screen and (min-width: 768px) {
     width: 616px;
-    @include font(24px, 800, 1.2);
+    @include font(24px, 700, 1.2);
   }
 
   @media screen and (min-width: 1280px) {
     width: 181px;
-    @include font(15px, 800, 1.2);
+    @include font(15px, 700, 1.2);
   }
 }
 .logoText span {
   font-family: 'Mulish';
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.2;
   @media screen and (min-width: 768px) {
-    @include font(20px, 800, 1.2);
+    @include font(20px, 700, 1.2);
   }
   @media screen and (min-width: 1280px) {
-    @include font(15px, 800, 1.2);
+    @include font(15px, 700, 1.2);
   }
 }

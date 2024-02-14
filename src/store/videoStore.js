@@ -5,10 +5,14 @@ import { isDataValid } from '@/utils/formDataValidation';
 const useVideoStore = create((set, get) => ({
   loading: false,
   videos: [],
+  videoPositions: [],
   media: {},
   error: '',
+  videoPageCount: '',
+  pageSize: 10,
+  totalPages: '',
 
-  getAllVideo: async () => {
+  getAllVideo: async (page, size) => {
     try {
       set(() => {
         return {
@@ -16,7 +20,7 @@ const useVideoStore = create((set, get) => ({
         };
       });
       const response = await axios.get(
-        `/gallery/video?reverse=true&page=1&size=50`
+        `/gallery/video?reverse=true${page ? `&page=${page}`: ''}${size ? `&size=${size}`: ''}`
       );
       set(() => {
         return {
@@ -32,6 +36,73 @@ const useVideoStore = create((set, get) => ({
       set(() => {
         return {
           loading: false,
+          error: error.message,
+        };
+      });
+      throw new Error(error);
+    }
+  },
+  getMainVideo: async (page,size) => {
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const response = await axios.get(
+        `/gallery/video?is_pinned=true${page ? `&page=${page}` : ''}${size ? `&size=${size}` : ''}`
+      );
+      set(() => {
+        return {
+          videos: response.data.items,
+          totalPages: response.data.pages,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+    } catch (error) {
+      set(() => {
+        return {
+          loading: false,
+          error: error.message,
+        };
+      });
+      throw new Error(error);
+    }
+  },
+ 
+  getDepartmentVideo: async (id, page) => {
+    try {
+      set(() => {
+        return {
+          loading: true,
+        };
+      });
+      const response = await axios.get(
+        `/departments/sub_department_video/${id}${
+          page ? `?page=${page}&size=5` : ''
+        }`
+      );
+      //console.log(response.data.items);
+      set(() => {
+        return {
+          videos: response.data.items,
+          totalPages: response.data.pages,
+        };
+      });
+      set(() => {
+        return {
+          loading: false,
+        };
+      });
+    } catch (error) {
+      set(() => {
+        return {
+          videos: [],
+          loading: 'error',
           error: error.message,
         };
       });
@@ -183,6 +254,18 @@ const useVideoStore = create((set, get) => ({
         }, 3000);
         throw new Error(error);
       }
+    }
+  },
+  getVideoPositions: async () => {
+    try {
+      const response = await axios.get(`/gallery/positions?is_video=true`);
+      set(() => {
+        return {
+          videoPositions: response.data,
+        };
+      });
+    } catch (error) {
+      throw new Error(error);
     }
   },
 }));
