@@ -7,9 +7,9 @@
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 102;
-  // touch-action: none;
-  // -webkit-overflow-scrolling: none;
-  // overscroll-behavior: none;
+  touch-action: none;
+   -webkit-overflow-scrolling: none;
+ overscroll-behavior: none;
   .close {
     position: absolute;
     top: 3rem;

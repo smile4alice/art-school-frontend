@@ -5,7 +5,6 @@ import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useServicesStore from '@/store/serviseStore';
-import { useModal } from '@/store/modalStore';
 import { useActiveImg } from '@/store/selectImg';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
@@ -15,7 +14,7 @@ const Modal = lazy(() => import('@/components/ui/Modal/Modal'));
 const Gallery = () => {
   const { getMainAchievementsPage } = useServicesStore();
   const swiperRef = useRef();
-  const { isModalOpen, openModal } = useModal();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { activeImg, setActiveImg } = useActiveImg();
   const [totalPages, setTotalPages] = useState(0);
   const isDesktop = useMediaQuery({ minWidth: 1280 });
@@ -137,7 +136,7 @@ const Gallery = () => {
                     }
                     onClick={() => {
                       setActiveImgUrl(image.id);
-                      openModal();
+                      setIsModalOpen(!isModalOpen);
                     }}
                   />
                 </div>
@@ -181,7 +180,7 @@ const Gallery = () => {
                     loading="lazy"
                     onClick={() => {
                       setActiveImgUrl(slide.id);
-                      openModal();
+                      setIsModalOpen(!isModalOpen);
                     }}
                   />
                   <div className="swiper-lazy-preloader"></div>
@@ -194,14 +193,25 @@ const Gallery = () => {
             <NavLinkButton text={'Дивитись більше'} href={'/gallery'} />
           </div>
         )}
-        {isModalOpen && (
-          <Suspense>
-            <Modal>
-              <img src={activeImg.media} alt={` ${activeImg.description}`} />
-            </Modal>
-          </Suspense>
-        )}
       </Container>
+      {isModalOpen && activeImg.media && (
+        <Suspense>
+          <Modal
+            isModalOpen={isModalOpen}
+            closeModal={setIsModalOpen}
+            accentIcon={true}
+          >
+            <img
+              src={activeImg.media}
+              alt={` ${
+                activeImg.description
+                  ? activeImg.description
+                  : 'КДШМ М.І.Вериківського фото'
+              }`}
+            />
+          </Modal>
+        </Suspense>
+      )}
     </section>
   );
 };

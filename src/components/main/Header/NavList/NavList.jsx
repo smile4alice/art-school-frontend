@@ -25,7 +25,6 @@ const NavList = ({ toggleBurgerMenu }) => {
           toggleBurgerMenu={toggleBurgerMenu}
         />
       </div>
-
       <ul
         className={clsx(styles.navList, !isDesktop ? styles.navListMobile : '')}
       >

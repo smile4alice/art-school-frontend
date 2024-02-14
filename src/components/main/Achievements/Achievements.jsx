@@ -1,7 +1,6 @@
 import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import useServicesStore from '@/store/serviseStore';
-import { useModal } from '@/store/modalStore';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import Container from '@/components/Container/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -25,7 +24,7 @@ const Achievements = ({
   const swiperRef = useRef();
   const { getMainAchievementsPage, getDepartmentAchievementsPage } =
     useServicesStore();
-  const { isModalOpen, openModal } = useModal();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { activeImg, setActiveImg } = useActiveImg();
   const [totalPages, setTotalPages] = useState(0);
   const isDesktop = useMediaQuery({ minWidth: 1280 });
@@ -224,7 +223,7 @@ const Achievements = ({
                         }
                         onClick={() => {
                           setActiveImgUrl(item.id);
-                          openModal();
+                          setIsModalOpen(!isModalOpen);
                         }}
                       />
                     </div>
@@ -247,8 +246,19 @@ const Achievements = ({
       </Container>
       {isModalOpen && (
         <Suspense>
-          <Modal>
-            <img src={activeImg.media} alt={` ${activeImg.description}`} />
+          <Modal
+            isModalOpen={isModalOpen}
+            closeModal={setIsModalOpen}
+            accentIcon={true}
+          >
+            <img
+              src={activeImg.media}
+              alt={` ${
+                activeImg.description
+                  ? activeImg.description
+                  : 'КДШМ М.І.Вериківського фото'
+              }`}
+            />
           </Modal>
         </Suspense>
       )}

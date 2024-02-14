@@ -1,3 +1,5 @@
+
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import Container from '@/components/Container/Container';
@@ -15,6 +17,10 @@ const NewsPost = () => {
   const metaDescription = post.text
     ? truncateString(150, post.text)
     : `КДШМ №2 ім. М.І.Вериківського подія ${truncateString(150, post.text)} `;
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
     <>
       <SEO title={metaTitle} description={metaDescription} />

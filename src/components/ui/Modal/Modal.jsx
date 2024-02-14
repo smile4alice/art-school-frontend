@@ -2,17 +2,15 @@ import { useEffect, useRef } from 'react';
 import styles from './Modal.module.scss';
 import CloseIcon from '@/components/Icons/CloseIcon';
 import CloseIconAccent from '@/components/Icons/CloseIconAccent';
-import { useClickOutside, useBodyScrollLockRight} from '@/hooks/hooks';
-import { useModal } from '@/store/modalStore';
-const Modal = ({ children, accentIcon }) => {
-  const { isModalOpen, closeModal } = useModal();
+import { useClickOutside} from '@/hooks/hooks';
+
+const Modal = ({ children, accentIcon, isModalOpen, closeModal }) => {
   const modalRef = useRef();
   useClickOutside([modalRef], () => {
     if (isModalOpen) {
       closeModal();
     }
   });
-  useBodyScrollLockRight(isModalOpen);
   useEffect(() => {
     const handleEscKeyDown = event => {
       if (event.code === 'Escape') closeModal();
@@ -24,8 +22,8 @@ const Modal = ({ children, accentIcon }) => {
   }, [closeModal]);
 
   return (
-    <div className={styles.Overlay} ref={modalRef} onClick={() => closeModal()}>
-      <div className={styles.Modal}>{children}</div>
+    <div className={styles.Overlay}  onClick={() => closeModal()}>
+      <div ref={modalRef} className={styles.Modal}>{children}</div>
       <div className={styles.close} onClick={() => closeModal()}>
         {accentIcon ? <CloseIconAccent/> : <CloseIcon /> }
       </div>

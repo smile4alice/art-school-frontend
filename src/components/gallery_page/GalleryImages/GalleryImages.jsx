@@ -1,13 +1,12 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import useServicesStore from '@/store/serviseStore';
 import Spinner from '@/components/ui/Spinner/Spinner';
-import { useModal } from '@/store/modalStore';
 import SortIcon from '@/components/Icons/SortIcon';
 import ArrowIcon from '@/components/Icons/Arrow/Arrow';
 import styles from './GalleryImages.module.scss';
 const Modal = lazy(() => import('@/components/ui/Modal/Modal'));
 const GalleryImages = () => {
-  const { isModalOpen, openModal } = useModal();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImg, setSelectedImg] = useState({});
   const { getAllPhotoPage } = useServicesStore();
   const [images, setImages] = useState([]);
@@ -72,8 +71,8 @@ const GalleryImages = () => {
         >
           <SortIcon />
           {!reverse
-            ? ' Сортування від новіших до старіших'
-            : ' Сортування від старіших до новіших'}
+            ? 'Сортування від старіших до новіших'
+            : 'Сортування від новіших до старіших'}
         </button>
       )}
       <div className={styles.gallery}>
@@ -91,7 +90,7 @@ const GalleryImages = () => {
                 }
                 onClick={() => {
                   setActiveImgUrl(image.id);
-                  openModal();
+                  setIsModalOpen(!isModalOpen);
                 }}
               />
             </div>
@@ -109,7 +108,11 @@ const GalleryImages = () => {
       </button>
       {isModalOpen && (
         <Suspense>
-          <Modal accentIcon={true}>
+          <Modal
+            isModalOpen={isModalOpen}
+            closeModal={setIsModalOpen}
+            accentIcon={true}
+          >
             <img
               src={selectedImg.media}
               alt={` ${

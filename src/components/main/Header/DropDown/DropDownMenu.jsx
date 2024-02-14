@@ -98,15 +98,16 @@ const DropDownMenu = ({
           setIsOpen(false);
           setCurrentId('');
         }}
-        onClick={() => {
-          setIsOpen(!isOpen);
-          setCurrentId('about-school');
-          handleClick('/about-school');
-          navigate('/about-school');
-        }}
       >
         <div className={styles.dropDownNameWrapper}>
-          <span className={clsx(styles.dropDownName, open ? styles.open : '')}>
+          <span
+            onClick={() => {
+              setIsOpen(!isOpen);
+              navigate('/about-school');
+              handleClick('/about-school');
+            }}
+            className={clsx(styles.dropDownName, open ? styles.open : '')}
+          >
             {/* {type} */}
             Наша школа
           </span>
