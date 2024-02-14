@@ -29,7 +29,7 @@ const HeaderContacts = ({ contacts, setShow, show }) => {
         window.removeEventListener('scroll', controlNavbar);
       };
     }
-  }, [lastScrollY]);
+  }, [lastScrollY,setShow]);
   return (
     <div className={clsx(styles.contactsWrapper, show ? '' : styles.hidden)}>
       <ul className={styles.contactsList}>

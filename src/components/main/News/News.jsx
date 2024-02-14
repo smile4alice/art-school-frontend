@@ -35,9 +35,8 @@ const News = ({ selectOptions, subDepartmentId }) => {
     setDepartmentId(id);
   };
   useEffect(() => {
-    setDepartmentId(subDepartmentId);;
+    setDepartmentId(subDepartmentId);
   }, [subDepartmentId]);
-
 
   const fetchData = async () => {
     try {
@@ -59,7 +58,9 @@ const News = ({ selectOptions, subDepartmentId }) => {
   }, [departmentId]);
   return (
     <section className={`${styles.News} section`}>
-      {departmentId && <h2 className={styles.titleDepartment}>Події відділу</h2>}
+      {departmentId && (
+        <h2 className={styles.titleDepartment}>Події відділу</h2>
+      )}
       {departmentId && isLaptop && (
         <Suspense>
           <Select
@@ -91,7 +92,7 @@ const News = ({ selectOptions, subDepartmentId }) => {
                 slidesPerView={1}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
-               // loop={true}
+                // loop={true}
                 onSwiper={swiper => {
                   swiperRef.current = swiper;
                 }}
