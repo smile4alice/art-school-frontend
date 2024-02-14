@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import Container from '@/components/Container/Container';
 import SEO from '@/components/SEO';
 import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
@@ -7,6 +8,7 @@ import { formatDate } from '@/utils/formatDate';
 import styles from './NewsPost.module.scss';
 
 const NewsPost = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
   const location = useLocation();
   const { post } = location.state;
   const metaTitle = truncateString(56, post?.title);
@@ -20,12 +22,15 @@ const NewsPost = () => {
         <section className={styles.wrapper}>
           <div className={styles.card}>
             <div className={styles.cardHeader}>
-              <div className={styles.buttonContainer}>
-                <NavLinkButton
-                  href={'/events'}
-                  text={'переглянути всі заходи'}
-                />
-              </div>
+              {isDesktop && (
+                <div className={styles.buttonContainer}>
+                  <NavLinkButton
+                    href={'/events'}
+                    text={'переглянути всі заходи'}
+                  />
+                </div>
+              )}
+
               <p className={styles.date}>{formatDate(post.created_at)}</p>
               <p className={`${styles.title} sectionTitle`}>{post.title}</p>
             </div>
@@ -34,6 +39,14 @@ const NewsPost = () => {
             </div>
             <p className={styles.text}>{post.text}</p>
           </div>
+          {!isDesktop && (
+                <div className={styles.buttonContainer}>
+                  <NavLinkButton
+                    href={'/events'}
+                    text={'переглянути всі заходи'}
+                  />
+                </div>
+              )}
         </section>
       </Container>
     </>
