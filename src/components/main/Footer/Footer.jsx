@@ -204,7 +204,7 @@ const Footer = ({ contacts }) => {
 
         <div className={styles.footerLinksRulesWrap}>
           <div className={styles.footerSecurity}>
-            © Розробка&nbsp;
+            Розробка&nbsp;
             <a
               href="https://baza-trainee.tech/"
               rel="noreferrer"
@@ -212,7 +212,8 @@ const Footer = ({ contacts }) => {
             >
               Baza Trainee Ukraine
             </a>
-            , 2024
+            , 2024&nbsp;
+            <span> ( © ) Всі права захищені</span>
           </div>
           <div className={styles.footerLinksRules}>
             <a

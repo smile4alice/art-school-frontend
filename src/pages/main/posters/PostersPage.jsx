@@ -7,7 +7,6 @@ import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
 import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SEO from '@/components/SEO';
-import { useModal } from '@/store/modalStore';
 import Modal from '@/components/ui/Modal/Modal';
 
 const PostersPage = () => {
@@ -17,7 +16,7 @@ const PostersPage = () => {
   const loading = usePostersStore(state => state.loading);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [postersPerPage, setPostersPerPage] = useState(6);
-  const { isModalOpen, openModal } = useModal();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImg, setSelectedImg] = useState({});
   const isMaxAmount = postersPerPage >= posters.length;
 
@@ -94,10 +93,14 @@ const PostersPage = () => {
                       <img
                         className={styles.image}
                         src={poster.photo}
-                        alt={`Афіша  ${poster.title}`}
+                        alt={
+                          selectedImg.title
+                            ? selectedImg.title
+                            : `КДШМ М.І.Вериківського афіша ${index + 1}`
+                        }
                         onClick={() => {
                           setActiveImgUrl(poster.id);
-                          openModal();
+                          setIsModalOpen(!isModalOpen);
                         }}
                       />
                     </div>
@@ -112,10 +115,18 @@ const PostersPage = () => {
             )}
 
             {isModalOpen && (
-              <Modal>
+              <Modal
+                isModalOpen={isModalOpen}
+                closeModal={setIsModalOpen}
+                accentIcon={true}
+              >
                 <img
                   src={selectedImg.photo}
-                  alt={`Афіша  ${selectedImg.title}`}
+                  alt={
+                    selectedImg.title
+                      ? selectedImg.title
+                      : `КДШМ М.І.Вериківського афіша`
+                  }
                 />
               </Modal>
             )}

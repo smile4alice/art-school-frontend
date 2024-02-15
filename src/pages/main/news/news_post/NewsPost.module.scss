@@ -1,93 +1,63 @@
 .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   padding-top: 24px;
-  @include desktop {
-    padding: 40px 0 60px 0;
-    gap: 16px;
-    padding: 0 0 71px 0;
+  max-width: 940px;
+  margin: 0 auto;
+  .buttonContainer {
+    width: 100%;
+    margin-bottom: 70px;
     @include tablet {
-      padding: 0 0 41px 0;
+      margin-bottom: 40px;
     }
     @include desktop {
-      padding: 0 0 60px 0;
+      margin-bottom: 1rem;
+      width: fit-content;
+      margin-left: auto;
     }
-
-    .buttonContainer {
-      width: 100%;
-      max-width: 820px;
-      margin: 10px auto;
-      display: flex;
-      justify-content: flex-end;
+  }
+  .date {
+    color: $gray;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .title {
+    margin: 0.5rem 0 1rem;
+    font-size: 20px;
+    @include tablet {
+      font-size: 24px;
     }
-
-    .card {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      max-width: 939px;
-
-      .cardHeader {
-        width: 100%;
-
-        .date {
-          color: $gray;
-          font-size: 18px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: normal;
-          margin-bottom: 8px;
-        }
-        .title {
-          margin-bottom: 8px;
-        }
-      }
-      img {
-        width: 100%;
-        max-width: 820px;
-        max-height: 487px;
-        object-fit: cover;
-        object-position: center;
-        object-position: top;
-        margin-bottom: 16px;
-      }
-      .text {
-        width: 100%;
-        font-size: 18px;
-        line-height: 1.44;
-        margin-top: 2rem;
-        color: $black;
-      }
-
-      @include tablet {
-        .cardHeader {
-          .title {
-            font-size: 24px;
-          }
-        }
-      }
-
-      .text {
-        font-size: 18px;
-
-        @media screen and (min-width: 1280px) {
-          font-size: 18px;
-          @include desktop {
-            img {
-              width: 820px;
-              margin-bottom: 40px;
-            }
-            .cardHeader {
-              .title {
-                margin-bottom: 14px;
-              }
-            }
-          }
-        }
-      }
+    @include desktop {
+      font-size: 32px;
+    }
+  }
+  .text {
+    width: 100%;
+    font-size: 18px;
+    line-height: 1.44;
+    margin: 1rem 0;
+    color: $black;
+    @include desktop {
+      margin: 1rem 0 60px;
+    }
+  }
+  .img {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    max-height: 351px;
+    border-radius: 5px;
+    overflow: hidden;
+    @include desktop {
+      width: 820px;
+      height: 487px;
+    }
+    img {
+      object-fit: cover;
+      object-position: center;
+    }
+    @include tablet {
+      max-height: 450px;
+    }
+    @include desktop {
     }
   }
 }

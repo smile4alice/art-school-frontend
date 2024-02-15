@@ -150,6 +150,9 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  span {
+    display: block;
+  }
 }
 
 .footerButton {
@@ -253,7 +256,7 @@
   }
 
   .footerLinksRulesWrap {
-    align-items: start;
+    align-items: center;
     flex-direction: row;
   }
 
@@ -278,5 +281,10 @@
   }
   .footerContent::after {
     display: none;
+  }
+  .footerSecurity {
+    span {
+      display: inline-block;
+    }
   }
 }

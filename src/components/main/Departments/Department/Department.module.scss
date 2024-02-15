@@ -23,10 +23,10 @@
   .info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0.5rem 0 1rem;
     align-items: center;
-    gap: 2.59rem;
+
 
     .cardTitle {
       font-size: 0.875rem; // 14px;
@@ -71,7 +71,6 @@
       border-radius: 0.3125rem;
       object-fit: cover;
       object-position: center;
-
     }
   }
 }
