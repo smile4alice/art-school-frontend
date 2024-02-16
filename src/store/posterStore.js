@@ -8,6 +8,15 @@ const usePostersStore = create((set, get) => ({
   posters: [],
   poster: {},
 
+  getAllPostersPage: async ( page, size) => {
+    try {
+      const response = await axios.get(`/posters?page=${page}&size=${size}`);
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
   getPosters: async () => {
     try {
       set(() => {
