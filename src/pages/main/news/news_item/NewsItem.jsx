@@ -7,8 +7,10 @@ const NewsItem = ({ imgSrc, date, title, id }) => {
       <div className={styles.imgContainer}>
         <img src={imgSrc} alt={title} />
       </div>
-      <p className={styles.date}>{formatDate(date)}</p>
-      <p className={styles.title}>{title}</p>
+      <div>
+        <p className={styles.date}>{formatDate(date)}</p>
+        <p className={styles.title}>{title}</p>
+      </div>
     </div>
   );
 };

@@ -17,6 +17,7 @@ export const documentValidation = Yup.object().shape({
     .test('is-value', 'Додайте заголовок', value => value && value.length > 0)
     .matches(
       /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d$&+,=_@#Nº№'<>^*()%'’`.,:;"()—!?«»/+-]+$/,
+      /^[a-zA-Zа-яА-ЯҐґЄєІіЇї\s\d$&+,=_@#Nº№'<>^*()%'’`.,:;"()—!?«»/+-]+$/,
       'Введіть коректну назву'
     ),
 

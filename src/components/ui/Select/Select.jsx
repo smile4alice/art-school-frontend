@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useClickOutside } from '@/hooks/hooks';
 import s from './Select.module.scss';
-import clsx from 'clsx';
+
 
 const Select = ({ title, options, changeDepartment }) => {
   const [isOptionsVisible, setOptionsVisible] = useState(false);

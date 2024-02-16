@@ -7,7 +7,14 @@ const useNewsStore = create((set, get) => ({
   error: '',
   news: [],
   post: {},
-
+  getAllNewsPage: async ( page, size) => {
+    try {
+      const response = await axios.get(`/news?page=${page}&size=${size}`);
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
   getNews: async () => {
     try {
       set(() => {

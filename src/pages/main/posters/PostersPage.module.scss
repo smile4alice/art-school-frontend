@@ -2,7 +2,7 @@
   min-height: 40vh;
   margin-bottom: 50px;
   @include tablet {
-    margin-bottom: 64px;
+    margin-bottom: 55px;
   }
   @media screen and (min-width: 1280px) {
     margin-bottom: 60px;
@@ -25,18 +25,18 @@
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 1.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3rem;
     row-gap: 1.88rem;
-    margin-bottom: 35px;
+    margin-bottom: 28px;
   }
   @media screen and (min-width: 1280px) {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 3.75rem;
     row-gap: 1.88rem;
-    margin-bottom: 60px;
+    margin-bottom: 52px;
   }
 }
 
@@ -84,35 +84,31 @@
     font-size: 1.5rem;
   }
 }
-.buttonViewMore {
+
+.showMore {
+  color: #120000;
+  font-family: 'Mulish', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   font-size: 18px;
-  font-weight: 400;
-  margin: 40px auto;
-
-  &:hover .iconMore span {
-    border-top: 2px solid $accent-hover;
-    border-right: 2px solid $accent-hover;
+  padding: 0.5rem;
+  margin: 0 auto;
+  transition: all linear 0.3s;
+  &.noMore {
+    svg {
+      transform: rotate(180deg);
+    }
   }
-
-  @media screen and (min-width: 768px) {
-    font-size: 24px;
+  svg {
+    fill: #120000;
+    transition: all linear 0.3s;
   }
-}
-
-.iconMore {
-  width: 32px;
-  height: 32px;
-  @extend%aligncenter;
-
-  span {
-    width: 9px;
-    height: 9px;
-    border-top: 2px solid $black;
-    border-right: 2px solid $black;
-    transform: rotate(135deg);
+  &:hover {
+    color: $accent-hover;
+    svg {
+      fill: $accent-hover;
+    }
   }
 }

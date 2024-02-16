@@ -1,79 +1,64 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import usePostersStore from '@/store/posterStore';
-
+import ArrowIcon from '@/components/Icons/Arrow/Arrow';
 import Container from '@/components/Container/Container';
-import ViewButton from '@/components/ui/Buttons/ViewButton/ViewButton';
 import Spinner from '@/components/ui/Spinner/Spinner';
 import styles from './PostersPage.module.scss';
-import Placeholder from '@/components/ui/Placeholder/Placeholder';
 import SEO from '@/components/SEO';
-import Modal from '@/components/ui/Modal/Modal';
+const Modal = lazy(() => import('@/components/ui/Modal/Modal'));
 
 const PostersPage = () => {
-  const ITEMS_PER_PAGE = 6;
-  const { getPosters } = usePostersStore();
-  const posters = usePostersStore(state => state.posters);
-  const loading = usePostersStore(state => state.loading);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [postersPerPage, setPostersPerPage] = useState(6);
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const isLaptop = useMediaQuery({ minWidth: 768 });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImg, setSelectedImg] = useState({});
-  const isMaxAmount = postersPerPage >= posters.length;
+  const { getAllPostersPage } = usePostersStore();
+  const [data, setData] = useState([]);
+  const [pageCount, setPageCount] = useState();
+  const [page, setPage] = useState(1);
+  const pageSize = isDesktop ? 9 : isLaptop ? 8 : 4;
+  const [loadingState, setLoadingState] = useState('loading');
 
   const setActiveImgUrl = id => {
-    const selectImg = posters.find(poster => poster.id === id);
+    const selectImg = data.find(poster => poster.id === id);
     setSelectedImg(selectImg);
   };
 
-  const viewMore = () => {
-    if (!isMaxAmount) {
-      setPostersPerPage(prev => prev + ITEMS_PER_PAGE);
-    }
-  };
-
-  const viewLess = () => {
-    setPostersPerPage(ITEMS_PER_PAGE);
-    window.scrollTo(0, 0);
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await getPosters();
-      } catch (error) {
-        console.log(error);
+  const fetchData = async () => {
+    try {
+      setLoadingState('loading');
+      const result = await getAllPostersPage(page, pageSize);
+      setPageCount(result.pages);
+      if (page === 1) {
+        // Заміна даних при завантаженні першої сторінки
+        setData(result.items);
+      } else {
+        // Додавання нових даних до поточних при завантаженні наступних сторінок
+        setData(prevImages => [...prevImages, ...result.items]);
       }
-    };
+      setLoadingState('success');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
     fetchData();
-  }, [getPosters]);
+    //eslint-disable-next-line
+  }, [getAllPostersPage, page, pageSize]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    function handleResize() {
-      setWindowWidth(window.innerWidth);
+  const changePage = () => {
+    if (page < pageCount) {
+      setPage(prevPage => prevPage + 1);
+    } else {
+      setPage(1);
+      window.scrollTo(0, 0);
     }
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (windowWidth <= 768) {
-      setPostersPerPage(4);
-    }
-    if (windowWidth >= 768 && windowWidth <= 1279) {
-      setPostersPerPage(8);
-    }
-    if (windowWidth >= 1280) {
-      setPostersPerPage(ITEMS_PER_PAGE);
-    }
-  }, [windowWidth]);
+  };
 
   return (
     <>
@@ -82,12 +67,13 @@ const PostersPage = () => {
         description="Детальніше про мистецькі заходи, представленні відділеннями школи можна дізнатися на сторінці Афіша КДШМ №2 ім. М.І.Вериківського."
       />
       <Container>
-        {!loading ? (
-          <section className={styles.contentWrapper}>
-            <h1 className={styles.pageTitle}>Афіша</h1>
-            {posters?.length > 0 ? (
-              <ul className={styles.postersList}>
-                {posters.slice(0, postersPerPage).map((poster, index) => (
+        <section className={styles.contentWrapper}>
+          <h1 className={styles.pageTitle}>Афіша</h1>
+
+          <ul className={styles.postersList}>
+                {data?.length > 0 && (
+                
+                data.map((poster, index) => (
                   <li key={index} className={styles.postersListItem}>
                     <div className={styles.postersListItemImg}>
                       <img
@@ -108,38 +94,40 @@ const PostersPage = () => {
                       {poster.title}
                     </div>
                   </li>
-                ))}
+                ))
+                )}
               </ul>
-            ) : (
-              <Placeholder />
-            )}
+              {loadingState === 'loading' && <Spinner />}
+              {pageCount > 1 && (
+                <button
+                  className={`${styles.showMore} ${
+                    page < pageCount ? '' : styles.noMore
+                  }`}
+                  onClick={changePage}
+                >
+                  {page < pageCount ? 'Дивитися більше' : 'Дивитися менше'}
+                  <ArrowIcon />
+                </button>
+              )}
 
-            {isModalOpen && (
-              <Modal
-                isModalOpen={isModalOpen}
-                closeModal={setIsModalOpen}
-                accentIcon={true}
-              >
-                <img
-                  src={selectedImg.photo}
-                  alt={
-                    selectedImg.title
-                      ? selectedImg.title
-                      : `КДШМ М.І.Вериківського афіша`
-                  }
-                />
-              </Modal>
-            )}
-            {posters.length > ITEMS_PER_PAGE && (
-              <ViewButton
-                isMaxAmount={isMaxAmount}
-                viewMore={viewMore}
-                viewLess={viewLess}
+        </section>
+        {isModalOpen && (
+          <Suspense>
+            <Modal
+              isModalOpen={isModalOpen}
+              closeModal={setIsModalOpen}
+              accentIcon={true}
+            >
+              <img
+                src={selectedImg.photo}
+                alt={
+                  selectedImg.title
+                    ? selectedImg.title
+                    : `КДШМ М.І.Вериківського афіша`
+                }
               />
-            )}
-          </section>
-        ) : (
-          <Spinner />
+            </Modal>
+          </Suspense>
         )}
       </Container>
     </>
