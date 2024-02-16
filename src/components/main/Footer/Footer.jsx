@@ -212,8 +212,8 @@ const Footer = ({ contacts }) => {
             >
               Baza Trainee Ukraine
             </a>
-            , 2024&nbsp;
-            <span> ( © ) Всі права захищені</span>
+            &nbsp;2024&nbsp;
+            <span> ©  Всі права захищені</span>
           </div>
           <div className={styles.footerLinksRules}>
             <a

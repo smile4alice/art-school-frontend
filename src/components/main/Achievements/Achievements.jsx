@@ -17,13 +17,13 @@ const Select = lazy(() => import('@/components/ui/Select/Select'));
 const Achievements = ({
   title,
   url,
-  showSelect,
   selectOptions,
   subDepartmentId,
 }) => {
   const swiperRef = useRef();
   const { getMainAchievementsPage, getDepartmentAchievementsPage } =
     useServicesStore();
+    const showSelect = selectOptions && Array.isArray(selectOptions) && selectOptions.length > 1 ? true: false;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { activeImg, setActiveImg } = useActiveImg();
   const [totalPages, setTotalPages] = useState(0);
@@ -36,7 +36,6 @@ const Achievements = ({
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 1;
   const [currentIndex, setCurrentIndex] = useState(1);
-
   const changeDepartment = id => {
     setData([]);
     setLoadingState('Loading');

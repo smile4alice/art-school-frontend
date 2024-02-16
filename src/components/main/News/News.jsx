@@ -22,9 +22,18 @@ const News = ({ selectOptions, subDepartmentId }) => {
   const swiperRef = useRef();
   const isLaptop = useMediaQuery({ minWidth: 1280 });
   const { getMainVideo, getDepartmentVideo } = useVideoStore();
+  const showSelect =
+    selectOptions && Array.isArray(selectOptions) && selectOptions.length > 1
+      ? true
+      : false;
   const videos = useVideoStore(state => state.videos);
   const [loadingState, setLoadingState] = useState('loading');
   const [departmentId, setDepartmentId] = useState(subDepartmentId);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+  const handleSlideChange = swiper => {
+    setActiveSlideIndex(swiper.realIndex);
+  };
 
   const videoIds = videos.map(video => {
     //отримуємо id відео з посилання на YouTube
@@ -61,7 +70,7 @@ const News = ({ selectOptions, subDepartmentId }) => {
       {departmentId && (
         <h2 className={styles.titleDepartment}>Події відділу</h2>
       )}
-      {departmentId && isLaptop && (
+      {showSelect && isLaptop && (
         <Suspense>
           <Select
             title="Обрати відділ"
@@ -92,10 +101,10 @@ const News = ({ selectOptions, subDepartmentId }) => {
                 slidesPerView={1}
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
-                // loop={true}
                 onSwiper={swiper => {
                   swiperRef.current = swiper;
                 }}
+                onSlideChange={handleSlideChange}
               >
                 {videos &&
                   Array.isArray(videos) &&
@@ -106,10 +115,12 @@ const News = ({ selectOptions, subDepartmentId }) => {
                       className={`swiper-lazy ${styles.Slide}`}
                     >
                       <div className={` ${styles.video}`}>
-                        <LiteYouTubeEmbed
-                          id={slide}
-                          title="Відео з життя школи"
-                        />
+                        {activeSlideIndex === index && (
+                          <LiteYouTubeEmbed
+                            id={slide}
+                            title="Відео з життя школи"
+                          />
+                        )}
                       </div>
                       <div className="swiper-lazy-preloader"></div>
                     </SwiperSlide>
@@ -132,7 +143,7 @@ const News = ({ selectOptions, subDepartmentId }) => {
             </Suspense>
           )}
 
-          {departmentId && !isLaptop && (
+          {showSelect && !isLaptop && (
             <div className={styles.select}>
               <Suspense>
                 <Select

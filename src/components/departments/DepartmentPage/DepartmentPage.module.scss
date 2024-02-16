@@ -19,8 +19,13 @@
   flex-direction: column;
   width: 100%;
   color: $black;
-  >section:nth-child(4){
-    >div{
+  > section:nth-child(3) {
+    > div {
+      padding: 0;
+    }
+  }
+  > section:nth-child(4) {
+    > div {
       padding: 0;
     }
   }

@@ -47,9 +47,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      > div:nth-child(2) {
+        display: none;
+      }
+
       @media (min-width: 1280px) {
+        > div:nth-child(2) {
+           display: block;
+        }
         width: 1021px;
         &.pagination {
+          // display: block;
           padding-bottom: 3rem;
         }
         padding-top: 1.5rem;
