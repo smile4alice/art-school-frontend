@@ -151,7 +151,7 @@ const Footer = ({ contacts }) => {
                 <li className={styles.contactsListItem}>
                   <ClockIcon />
                   <div className={styles.contactsListItem_PhoneWrapper}>
-                    Пн-Пт 10:00-17:00
+                    Пн-Пт 9:00-18:00
                   </div>
                 </li>
                 <li className={styles.contactsListItem}>
