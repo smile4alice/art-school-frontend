@@ -14,7 +14,7 @@ import ClockIcon from '@/components/Icons/ClockIcon';
 const footerLinksColumn = [
   { title: 'Головна', path: '/' },
   { title: 'Наша школа', path: '/about-school' },
-  { title: 'Наші події', path: '/events' },
+  { title: 'Заходи', path: '/events' },
   { title: 'Афіша', path: '/posters' },
   { title: 'Галерея', path: '/gallery' },
   { title: 'Співпраця', path: '/cooperation' },

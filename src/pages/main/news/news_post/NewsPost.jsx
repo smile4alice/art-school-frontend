@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
 import Container from '@/components/Container/Container';
 import SEO from '@/components/SEO';
 import NavLinkButton from '@/components/ui/Buttons/NavLinkButton';
@@ -9,7 +8,6 @@ import { formatDate } from '@/utils/formatDate';
 import styles from './NewsPost.module.scss';
 
 const NewsPost = () => {
-  const isDesktop = useMediaQuery({ minWidth: 1280 });
   const location = useLocation();
   const { post } = location.state;
   const metaTitle = truncateString(56, post?.title);
