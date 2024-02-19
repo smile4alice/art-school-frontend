@@ -42,7 +42,7 @@ const Contacts = () => {
           <h1 className={s.title}>Наші контакти</h1>
           <ul className="list">
             <li>{contacts.address}</li>
-            <li>Пн-Пт 10:00-17:00</li>
+            <li>Пн-Пт 9:00-18:00</li>
             <li>
               <a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
             </li>
