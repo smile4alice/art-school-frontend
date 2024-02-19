@@ -13,7 +13,7 @@ const GalleryImages = () => {
   const [pageCount, setPageCount] = useState();
   const [page, setPage] = useState(1);
   const pageSize = 7;
-  const [reverse, setReverse] = useState(true);
+  const [reverse, setReverse] = useState(false);
   const [loadingState, setLoadingState] = useState('loading');
   const setActiveImgUrl = id => {
     const selectImg = images.find(poster => poster.id === id);
@@ -54,7 +54,6 @@ const GalleryImages = () => {
       setImages([]);
       setReverse(!reverse);
       setPage(1);
-      setPage(1);
     } catch (error) {
       console.log(error);
     }
@@ -70,7 +69,7 @@ const GalleryImages = () => {
           }}
         >
           <SortIcon />
-          {!reverse
+          {reverse
             ? 'Сортування від старіших до новіших'
             : 'Сортування від новіших до старіших'}
         </button>

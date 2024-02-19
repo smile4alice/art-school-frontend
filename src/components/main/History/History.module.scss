@@ -34,13 +34,12 @@
   font-weight: normal;
   font-weight: 400;
   line-height: 140%;
-  color: $gray;
-
+  color: $black;
   @media screen and (min-width: 768px) {
     font-size: 1.125rem; // 18px
   }
   @media screen and (min-width: 1280px) {
-    color: $black;
+   
     margin: 30px 0px 24px;
   }
 }
