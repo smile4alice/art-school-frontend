@@ -67,7 +67,7 @@
 }
 
 .showMore {
-  color: #120000;
+  color: $black;
   font-family: 'Mulish', sans-serif;
   display: flex;
   justify-content: center;
@@ -83,7 +83,7 @@
     }
   }
   svg {
-    fill: #120000;
+    fill: $black;
     transition: all linear 0.3s;
   }
   &:hover {
