@@ -10,7 +10,9 @@ const useToggle = initialValue => {
 
 const useClickOutside = (refs, callback) => {
   const handleClick = event => {
-    const isOutside = refs.every(ref => ref.current && !ref.current.contains(event.target));
+    const isOutside = refs.every(
+      ref => ref.current && !ref.current.contains(event.target)
+    );
     if (isOutside) {
       callback();
     }
@@ -22,10 +24,11 @@ const useClickOutside = (refs, callback) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refs, callback]);
 };
-const useBodyScrollLockRight = (isActive) => {
+const useBodyScrollLockRight = isActive => {
   useEffect(() => {
     if (isActive) {
-      const paddingForScroll = window.innerWidth - document.body.offsetWidth + 'px';
+      const paddingForScroll =
+        window.innerWidth - document.body.offsetWidth + 'px';
       document.body.classList.add('noScroll');
       document.body.style.paddingRight = paddingForScroll;
       return () => {
@@ -36,16 +39,13 @@ const useBodyScrollLockRight = (isActive) => {
   }, [isActive]);
 };
 const truncateString = (maxLength, string) => {
-  if (string.length <= maxLength) {
-    return string;
-  } else {
-    return string.substring(0, maxLength) + '...';
+  if (string) {
+    if (string.length <= maxLength) {
+      return string;
+    } else {
+      return string.substring(0, maxLength) + '...';
+    }
   }
 };
 
-
-
-
-
-
-export { useToggle, useClickOutside, useBodyScrollLockRight, truncateString};
+export { useToggle, useClickOutside, useBodyScrollLockRight, truncateString };
