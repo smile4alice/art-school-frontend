@@ -10,10 +10,16 @@ import styles from './NewsPost.module.scss';
 const NewsPost = () => {
   const location = useLocation();
   const { post } = location.state;
-  const metaTitle = truncateString(56, post?.title);
-  const metaDescription = post.text
+
+  //const metaTitle = truncateString(56, post?.title);
+
+  const metaTitle = post?.title
+    ? truncateString(60, post.title)
+    : `КДШМ №2 ім. М.І.Вериківського подія `;
+
+  const metaDescription = post?.text
     ? truncateString(150, post.text)
-    : `КДШМ №2 ім. М.І.Вериківського подія ${truncateString(150, post.text)} `;
+    : `КДШМ №2 ім. М.І.Вериківського опис події ${post.title}`;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,9 +35,9 @@ const NewsPost = () => {
               <p className={`${styles.title} sectionTitle`}>{post.title}</p>
             </div>
             <div className={styles.img}>
-              <img src={post.photo} alt="slide" />
+              <img src={post.photo} alt={post?.title ? post?.title : 'КДШМ №2 ім. М.І.Вериківського захід '} />
             </div>
-            <p className={styles.text}>{post.text}</p>
+            {post?.text && <p className={styles.text}>{post.text}</p>}
           </div>
 
           <div className={styles.buttonContainer}>
