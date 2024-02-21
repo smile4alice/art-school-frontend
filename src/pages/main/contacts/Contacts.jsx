@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Icon } from 'leaflet';
-//import Container from '@/components/Container/Container';
+import { Link } from 'react-router-dom';
 import useContactsStore from '@/store/contactsStore';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import SEO from '@/components/SEO';
@@ -30,7 +30,7 @@ const Contacts = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  //<a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
   return (
     <>
       <SEO
@@ -44,10 +44,10 @@ const Contacts = () => {
             <li>{contacts.address}</li>
             <li>Пн-Пт 9:00-18:00</li>
             <li>
-              <a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
+              <Link to={`tel:${contacts.phone}`}>{contacts.phone}</Link>
             </li>
             <li>
-              <a href={`tel:${contacts.email}`}>{contacts.email}</a>
+              <Link to={`mailto:${contacts.email}`}>{contacts.email}</Link>
             </li>
           </ul>
           <div className={s.mapContainer}>
