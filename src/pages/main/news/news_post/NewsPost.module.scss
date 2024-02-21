@@ -35,6 +35,9 @@
     line-height: 1.44;
     margin: 1rem 0;
     color: $black;
+    a{
+      text-decoration: underline;
+    }
     @include desktop {
       margin: 1rem 0;
     }

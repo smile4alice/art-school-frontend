@@ -90,6 +90,10 @@ const DropDownMenu = ({
 
       <div
         className={clsx(styles.dropDown, !isDesktop && styles.dropDownMobile)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          setCurrentId('about-school');
+        }}
         onMouseEnter={() => {
           setCurrentId('about-school');
           setIsOpen(true);
@@ -135,6 +139,7 @@ const DropDownMenu = ({
                 key={name}
                 to="/about-school-history"
                 onClick={() => {
+                  handleClick("/about-school-history");
                   !isDesktop && toggleBurgerMenu();
                 }}
               >
