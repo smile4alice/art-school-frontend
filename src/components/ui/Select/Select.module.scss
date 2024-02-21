@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
   margin-top: 0.5rem;
-  z-index: 22;
+
 
   .selectButton {
     width: 100%;
@@ -13,15 +13,16 @@
     background-color: $accent;
     color: $white;
     border-radius: 0.3125rem;
+    z-index: 12;
   }
   .selectButton:hover {
     background-color: $accent-hover;
   }
 
   .optionsContainer {
+    z-index: 22;
     width: 100%;
     position: absolute;
-    z-index: 11;
     top: calc(100% + 0.5rem);
     border-radius: 0.3125rem;
     overflow: hidden;
