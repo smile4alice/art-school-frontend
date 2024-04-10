@@ -1,4 +1,4 @@
-import Container from '@/components/Container/Container';
+ import Container from '@/components/Container/Container';
 import { useEffect } from 'react';
 import historyData from '@/data/about/history.json';
 import styles from './SchoolHistory.module.scss';
@@ -12,7 +12,7 @@ const SchoolHistory = () => {
     <>
       <SEO
         title="Історія КДШМ №2 ім. М.І.Вериківського"
-        description="КДШМ № 2 імені M. I. Вериківського є одним із найстаріших осередків в Україні, де виховуються таланти і впроваджуються інноваційні ідеї мистецької освіти. "
+        description="Школа мистецтв Київ. Київська дитяча школа мистецтв. Історія Київської дитячої школи мистецтв №2 ім. М.І.Вериківського. Історія КДШМ №2 ім. М.І.Вериківського."
       />
       <section>
         <Container>
