@@ -30,12 +30,12 @@ const Contacts = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  //<a href={`tel:${contacts.phone}`}>{contacts.phone}</a>
+
   return (
     <>
       <SEO
         title="Контакти КДШМ №2 ім. М.І.Вериківського"
-        description="Адреса: вул.Бульварно-Кудрявська, 2, телефон: +38(044)272-00-30"
+        description="Школа мистецтв Київ. Київська дитяча школа мистецтв. Адреса КДШМ №2 ім. М.І.Вериківського: вул.Бульварно-Кудрявська, 2, телефон: +38(044)272-00-30"
       />
       <div className={s.wrapper}>
         <div className={s.contacts}>
